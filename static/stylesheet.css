@@ -1,19 +1,16 @@
+/* **************************************************************
+                      GENERAL
+*****************************************************************/
+
 body {
-  margin: 0;
-  padding: 0;
   background: #151515 url("../images/bkg.png") 0 0;
   color: #eaeaea;
-  font: 16px;
   line-height: 1.5;
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-family: "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
 }
-
-/* General & 'Reset' Stuff */
-
 .container {
   width: 90%;
-  max-width: 600px;
-  margin: 0 auto;
+
 }
 
 section {
@@ -29,12 +26,6 @@ li {
   line-height: 1.4 ;
 }
 
-/* Header, <header>
-   header   - container
-   h1       - project name
-   h2       - project description
-*/
-
 header {
   background: rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -48,7 +39,7 @@ header h1 {
   line-height: 1.5;
   margin: 0 0 0 -40px;
   font-weight: bold;
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-family: "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   color: #b5e853;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
                0 0 5px rgba(181, 232, 83, 0.1),
@@ -74,8 +65,6 @@ header h2 {
   margin: 0;
 }
 
-/* Main Content
-*/
 
 #main_content {
   width: 100%;
@@ -87,9 +76,8 @@ section img {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-family:  "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   color: #b5e853;
-  letter-spacing: -0.03em;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
                0 0 5px rgba(181, 232, 83, 0.1),
                0 0 10px rgba(181, 232, 83, 0.1);
@@ -245,3 +233,133 @@ a {
 .cf {
   zoom:1;
 }
+
+
+/* **************************************************************
+                      BLOG MENU
+*****************************************************************/
+
+.blog-nav-item {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-weight: 500;
+  color: #cdddeb;
+  margin: 2px 2px 0 0;
+}
+.blog-nav-item:hover,
+.blog-nav-item:focus {
+  color: #fff;
+  text-decoration: none;
+}
+.blog-nav .active {
+  color: #fff;
+}
+.blog-nav .active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  border-left: 5px solid transparent;
+}
+
+
+
+
+
+/* **************************************************************
+                      BLOG
+*****************************************************************/
+
+.blog-header {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+.blog-title {
+  margin-top: 30px;
+  margin-bottom: 20;
+  font-size: 60px;
+  font-weight: normal;
+}
+.blog-description {
+  font-size: 20px;
+  color: #999;
+}
+
+.blog-main {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Sidebar modules for boxing content */
+.sidebar-module {
+  padding: 15px;
+  margin: 0 -15px 15px;
+}
+.sidebar-module-inset {
+  padding: 15px;
+  border-radius: 4px;
+}
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+  margin-bottom: 0;
+}
+
+
+
+/* **************************************************************
+                      pagination
+*****************************************************************/
+.pager {
+  margin-bottom: 60px;
+  text-align: left;
+}
+.pager > li > a {
+  width: 140px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 30px;
+}
+
+
+/* **************************************************************
+                      BLOG POSTS
+*****************************************************************/
+
+.blog-post {
+  margin-bottom: 60px;
+}
+.blog-post-title {
+  margin-bottom: 5px;
+  font-size: 40px;
+}
+.blog-post-meta {
+  margin-bottom: 20px;
+  color: #999;
+}
+
+
+
+/* **************************************************************
+                      FOOTER
+*****************************************************************/
+.footer {
+  padding: 10px 0;
+  color: #999;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+}
+
+
+
+
+/* Main Content
+*/
+
