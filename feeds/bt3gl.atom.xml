@@ -571,7 +571,7 @@ We should blow up the bridge at midnight
 &lt;/blockquote&gt;
 &lt;p&gt;And it gives us two pictures, a map and a sudoku. Solving the sudoku leads to the flag:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/nNMm64M.png" /&gt;
-&lt;img alt="" src="http://i.imgur.com/1IXD8tI.png" /&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="Steganography"></category></entry><entry><title>Crypto-200: psifer school</title><link href="bt3gl.github.io/crypto-200-psifer-school.html" rel="alternate"></link><updated>2014-09-22T10:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:,2014-09-22:bt3gl.github.io/crypto-200-psifer-school.html</id><summary type="html">&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
+&lt;img alt="" src="http://i.imgur.com/1IXD8tIs.png" /&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="Steganography"></category></entry><entry><title>Crypto-200: psifer school</title><link href="bt3gl.github.io/crypto-200-psifer-school.html" rel="alternate"></link><updated>2014-09-22T10:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:,2014-09-22:bt3gl.github.io/crypto-200-psifer-school.html</id><summary type="html">&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
 &lt;p&gt;The problem starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;There's no heartbleed here. Why don't we use these ciphers?&lt;/p&gt;
