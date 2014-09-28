@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>High Bytes</title><link>bt3gl.github.io/</link><description></description><atom:link href="bt3gl.github.io/feeds/bt3gl.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 26 Sep 2014 04:20:00 -0400</lastBuildDate><item><title>The Sharif University Capture The Flag 2014</title><link>bt3gl.github.io/the-sharif-university-capture-the-flag-2014.html</link><description>&lt;p&gt;I didn't have the change to play for too long, but I managed to solve a few problems in the morning.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>High Bytes</title><link>bt3gl.github.io/</link><description></description><atom:link href="bt3gl.github.io/feeds/bt3gl.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 26 Sep 2014 04:20:00 -0400</lastBuildDate><item><title>The Sharif University CTF 2014</title><link>bt3gl.github.io/the-sharif-university-ctf-2014.html</link><description>&lt;p&gt;I didn't have the change to play for too long, but I managed to solve a few problems in the morning.&lt;/p&gt;
 &lt;h2&gt;Avatar: steganography&lt;/h2&gt;
 &lt;p&gt;The challenge starts with:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;A terrorist has changed his picture in a social network. What is the hidden message?&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;And the following message:
+&lt;p&gt;And the following image:
 &lt;img alt="" src="http://i.imgur.com/6NIu64u.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;For this problem, I use &lt;a href="http://www.outguess.org/download.php"&gt;OutGuess&lt;/a&gt;, which can be installed as:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tar -zxvf outguess-0.2.tar.gz 
@@ -96,7 +96,7 @@ We should blow up the bridge at midnight
 &lt;/blockquote&gt;
 &lt;p&gt;And it gives us two pictures, a map and a sudoku. Solving the sudoku leads to the flag:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/nNMm64M.png" /&gt;
-&lt;img alt="" src="http://i.imgur.com/1IXD8tI.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3gl</dc:creator><pubDate>Fri, 26 Sep 2014 04:20:00 -0400</pubDate><guid>tag:,2014-09-26:bt3gl.github.io/the-sharif-university-capture-the-flag-2014.html</guid><category>CTF</category><category>CSAW</category><category>steganography</category></item><item><title>Forensics-300: Fluffy No More</title><link>bt3gl.github.io/forensics-300-fluffy-no-more.html</link><description>&lt;p&gt;This is the fourth and the last forensics challenge in the CSAW CTF 2014 competition. I think it was much harder than any of the three before it, but it's also much more interesting. &lt;/p&gt;
+&lt;img alt="" src="http://i.imgur.com/1IXD8tI.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3gl</dc:creator><pubDate>Fri, 26 Sep 2014 04:20:00 -0400</pubDate><guid>tag:,2014-09-26:bt3gl.github.io/the-sharif-university-ctf-2014.html</guid><category>CTF</category><category>Steganography</category></item><item><title>Forensics-300: Fluffy No More</title><link>bt3gl.github.io/forensics-300-fluffy-no-more.html</link><description>&lt;p&gt;This is the fourth and the last forensics challenge in the CSAW CTF 2014 competition. I think it was much harder than any of the three before it, but it's also much more interesting. &lt;/p&gt;
 &lt;p&gt;The challenge stars with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;OH NO WE'VE BEEN HACKED!!!!!! -- said the Eye Heart Fluffy Bunnies Blog owner. 
