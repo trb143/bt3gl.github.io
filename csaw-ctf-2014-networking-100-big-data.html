@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>CSAW CTF 2014 - Forensics 200: "why not sftp?"</title>
+    <title>CSAW CTF 2014 - Networking 100: "Big Data"</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="bt3gl">
@@ -87,84 +87,70 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to CSAW CTF 2014 - Forensics 200: "why not sftp?"">
-                                        CSAW CTF 2014 - Forensics 200: "why not sftp?"
+                                        title="Permalink to CSAW CTF 2014 - Networking 100: "Big Data"">
+                                        CSAW CTF 2014 - Networking 100: "Big Data"
                                 </a>
                         </h1>
                 </header>
                 <div class="entry-content">
                 <div class="well">
 <footer class="post-info">
-<abbr class="published" title="2014-09-22T05:20:00">
+<abbr class="published" title="2014-09-22T08:20:00">
       Mon 22 September 2014 </abbr>
 
 <span class="label"> Category</span>
-<a href="./category/forensics.html"><i class="icon-folder-open"></i>Forensics</a>
+<a href="./category/networking.html"><i class="icon-folder-open"></i>Networking</a>
 
 
 <span class="label">Tags</span>
 	<a href="./tag/ctf.html"><i class="icon-tag"></i>CTF</a>
 	<a href="./tag/csaw.html"><i class="icon-tag"></i>CSAW</a>
 	<a href="./tag/wireshark.html"><i class="icon-tag"></i>Wireshark</a>
-	<a href="./tag/ftp.html"><i class="icon-tag"></i>FTP</a>
+	<a href="./tag/chaosreader.html"><i class="icon-tag"></i>Chaosreader</a>
 </footer><!-- /.post-info -->                </div>
-                <p>The purpose of this problem is to teach about the need of encrypting your data. The <a href="http://en.wikipedia.org/wiki/File_Transfer_Protocol">FTP</a>  protocol sends clear text over the wire, <em>i.e</em>  the  data is transmitted without any encryption.
- <a href="http://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol">SSH/Secure File Transfer Protocol</a> is a network protocol providing secure file transfer. Using SFTP, instead of FTP, would avoid to find the flag in this problem in the way we did.</p>
-<p>This is the second forensics problem and it starts with the following text:</p>
+                <p>This is the only networking problem, and it is only 100 points, so it turned out to be very easy.</p>
+<p>The problem starts with the following text:</p>
 <blockquote>
-<p>well seriously, why not?</p>
-<p>Written by marc</p>
-<p><a href="https://ctf.isis.poly.edu/static/uploads/7831788f2ab94feddc72ce53e80fda5f/traffic-5.pcap">traffic-5.pcap</a></p>
+<p>Something, something, data, something, something, big</p>
+<p>Written by HockeyInJune</p>
+<p><a href="https://github.com/ctfs/write-ups/blob/master/csaw-ctf-2014/big-data/pcap.pcapng">pcap.pcapng</a></p>
 </blockquote>
 <hr />
-<h2>Analyzing the PCAP File</h2>
-<p>Now let's search for the flag! We open the <a href="http://en.wikipedia.org/wiki/Pcap">pcap</a> file in <a href="https://www.wireshark.org/">Wireshark</a> (an open-source packet analyzer). There are several things that we could search for in this file, for instance we could look for FTP transactions or we could search for strings such as <em>password</em> or <em>flag</em>. We show both approaches.</p>
-<h2>Solution 1: Searching for the string <em>flag</em></h2>
-<h4>Going in the Wrong Way</h4>
-<p>So the first thing I did was searching for the string <em>password</em>:</p>
-<ol>
-<li>Go to Edit</li>
-<li>Go to Find Packet</li>
-<li>Search for password choosing the options string and packet bytes.</li>
-</ol>
-<p>Clicking on <em>Follow TCP Stream</em> gives:
-<img alt="" src="http://i.imgur.com/c61P5Aj.png" /></p>
-<p>Nope. This is a misleading information!</p>
+<h2>Inspecting the Wireshark File</h2>
+<p>The file extension <a href="https://appliance.cloudshark.org/blog/5-reasons-to-move-to-pcapng/">.pcapng</a> correspond to files for <em>packet capture</em>. They usually contain a dump of data packets captured over a network. This type of files holds blocks or data, and they can be used to rebuild captured packets into recognizable data.</p>
+<p>We can open this file with <a href="https://www.wireshark.org/">Wireshark</a>, which is an open-source packet analyzer, or using <a href="http://chaosreader.sourceforge.net/">chaosreader</a>, a freeware tool to trace TCP and UDP sessions. We choose the first. There are several things that we could explore and look for in this file:
+- We could search for all the the interesting protocols inside and analyze them.
+- We could go to <em>Statistics</em>-&gt; <em>Protocol Hierarchy</em> and look at the traffic patterns.
+- We could search in packet bytes, looking for specific strings such as login or password.
+- We could try to find something interesting in <em>Conversations</em>.</p>
+<h2>Searching for the String <em>Password</em></h2>
+<p>It turned out that all we need was to look for the string <em>password</em>. To do this we followed these steps in Wireshark:
+ 1. Go to <em>Edit</em>
+ 2. Go to <em>Find Packet</em>
+ 3. Search for <strong>password</strong> choosing the options <em>string</em> and <em>packet bytes</em>.</p>
+<p>Yay! We found something over a <strong>telnet</strong> protocol:</p>
+<p><img alt="" src="http://i.imgur.com/mUN4b1n.png" /></p>
 <hr />
-<h4>But We Were Almost There!</h4>
-<p>Now, if we search for <em>flag</em> we actually find something:</p>
-<p><img alt="" src="http://i.imgur.com/knuwJFq.png" /></p>
-<p>We find the packet with a file named flag! Awesome.</p>
-<hr />
-<h2>Solution 2: Looking for the FTP Protocols</h2>
-<p>All right, let's use another information we have: it should be something related to the FTP protocol. In Wireshark, we can find specific protocol with filters. We want to filter for FTP with some data. We start trying the usual FTP-DATA port:</p>
-<div class="highlight"><pre><span class="n">tcp</span><span class="p">.</span><span class="n">port</span><span class="o">==</span><span class="mi">20</span>
+<h2>Following the TCP Stream</h2>
+<p>Now, all we need to do is to right-click in the line and choose <em>Follow TCP Stream</em>. This  returns:</p>
+<div class="highlight"><pre><span class="p">.....</span> <span class="p">.....</span><span class="err">&#39;</span><span class="p">...........</span><span class="o">%</span><span class="p">..</span><span class="o">&amp;</span><span class="p">.....</span> <span class="p">..</span><span class="err">#</span><span class="p">..</span><span class="err">&#39;</span><span class="p">..</span><span class="err">$</span><span class="p">..</span><span class="o">%</span><span class="p">..</span><span class="o">&amp;</span><span class="p">..</span><span class="err">#</span><span class="p">..............</span><span class="err">$</span><span class="p">..</span> <span class="p">.....</span><span class="err">&#39;</span><span class="p">.............</span><span class="n">P</span><span class="p">......</span> <span class="mf">.38400</span><span class="p">,</span><span class="mf">38400.</span><span class="p">...</span><span class="err">&#39;</span><span class="p">.......</span><span class="n">XTERM</span><span class="p">.......</span><span class="s">&quot;.....!.....&quot;</span><span class="p">.....</span><span class="o">!</span><span class="p">............</span>
+<span class="n">Linux</span> <span class="mf">3.13.0</span><span class="o">-</span><span class="mi">32</span><span class="o">-</span><span class="n">generic</span> <span class="p">(</span><span class="n">ubuntu</span><span class="p">)</span> <span class="p">(</span><span class="n">pts</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="p">..</span><span class="n">ubuntu</span> <span class="n">login</span><span class="o">:</span> <span class="n">j</span><span class="p">.</span><span class="n">ju</span><span class="p">.</span><span class="n">ul</span><span class="p">.</span><span class="n">li</span><span class="p">.</span><span class="n">ia</span><span class="p">.</span><span class="n">an</span><span class="p">.</span><span class="n">n</span>
+<span class="p">.</span>
+<span class="p">..</span><span class="n">Password</span><span class="o">:</span> <span class="n">flag</span><span class="p">{</span><span class="n">bigdataisaproblemnotasolution</span><span class="p">}</span>
+<span class="p">.</span>
+<span class="p">.</span>
+<span class="n">Login</span> <span class="n">incorrect</span>
+<span class="p">..</span><span class="n">ubuntu</span> <span class="n">login</span><span class="o">:</span>
 </pre></div>
 
 
-<p>Nope. The results should be another port. Let's search explicitly for:</p>
-<div class="highlight"><pre><span class="n">ftp</span><span class="o">-</span><span class="n">data</span>
+<p>And we find our flag: <strong>bigdataisaproblemnotasolution</strong>!</p>
+<p><strong>Hack all the things!</strong></p>
+<p>Edited: If you had decided to use <em>chaosreader</em> to process the pcapng file instead, the solution <a href="http://evandrix.github.io/ctf/2014-csaw-networking-100-bigdata.html">from this write-up</a> is also cool:</p>
+<div class="highlight"><pre><span class="k">for </span>f in pcap.pcapng-chaosreader/*.html; <span class="k">do </span>cat <span class="s2">&quot;${f}&quot;</span> | w3m -dump -T text/html <span class="s2">&quot;${f}&quot;</span>; <span class="k">done</span> | egrep <span class="s2">&quot;flag{&quot;</span>
 </pre></div>
-
-
-<p>Cool, we found a few packets:
-<img alt="" src="http://i.imgur.com/cWhiXZD.png" /></p>
-<p>We don't need to scroll down too much to find a packet with  a string flag on it! Awesome.</p>
-<hr />
-<h2>Extracting the File</h2>
-<p>Once we find the packet with any of the methods above, we right-click it selecting <em>Follow TCP Stream</em>. This leads to:</p>
-<p><img alt="" src="http://i.imgur.com/LZTse2s.png" /></p>
-<p>The file <em>flag.png</em> is our flag. To extract it we  click in the <em>Save as</em> button, then in the terminal we can use the command <a href="http://en.wikipedia.org/wiki/File_(command)">file</a>:</p>
-<div class="highlight"><pre><span class="nv">$ </span>file s.whatever
-s.whatever: Zip archive data, at least v2.0 to extract
-</pre></div>
-
-
-<p>Awesome, so all we need is to <em>unzip</em> this file and we get <em>flag.png</em>:</p>
-<p><img alt="" src="http://i.imgur.com/WcxyITv.png" /></p>
-<h4>Extra: Finding files with <em>File Signatures</em></h4>
-<p>If we don't know the name of the file we are looking for, but we know its type, we can search for its <a href="http://en.wikipedia.org/wiki/File_signature">file signature</a>, which can be found <a href="http://en.wikipedia.org/wiki/List_of_file_signatures">here</a> (a hex value).</p>
-<p><strong>Hack all the Things!</strong></p>
                 </div><!-- /.entry-content -->
         </article>
 </section>

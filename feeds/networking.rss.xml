@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>High Bytes by bt3gl</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/networking.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 22 Sep 2014 08:20:00 -0400</lastBuildDate><item><title>CSAW CTF 2014 - Networking 100: "Big Data"</title><link>http://bt3gl.github.io/csaw-ctf-2014-networking-100-big-data.html</link><description>&lt;p&gt;This is the only networking problem, and it is only 100 points, so it turned out to be very easy.&lt;/p&gt;
+&lt;p&gt;The problem starts with the following text:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Something, something, data, something, something, big&lt;/p&gt;
+&lt;p&gt;Written by HockeyInJune&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/ctfs/write-ups/blob/master/csaw-ctf-2014/big-data/pcap.pcapng"&gt;pcap.pcapng&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Inspecting the Wireshark File&lt;/h2&gt;
+&lt;p&gt;The file extension &lt;a href="https://appliance.cloudshark.org/blog/5-reasons-to-move-to-pcapng/"&gt;.pcapng&lt;/a&gt; correspond to files for &lt;em&gt;packet capture&lt;/em&gt;. They usually contain a dump of data packets captured over a network. This type of files holds blocks or data, and they can be used to rebuild captured packets into recognizable data.&lt;/p&gt;
+&lt;p&gt;We can open this file with &lt;a href="https://www.wireshark.org/"&gt;Wireshark&lt;/a&gt;, which is an open-source packet analyzer, or using &lt;a href="http://chaosreader.sourceforge.net/"&gt;chaosreader&lt;/a&gt;, a freeware tool to trace TCP and UDP sessions. We choose the first. There are several things that we could explore and look for in this file:
+- We could search for all the the interesting protocols inside and analyze them.
+- We could go to &lt;em&gt;Statistics&lt;/em&gt;-&amp;gt; &lt;em&gt;Protocol Hierarchy&lt;/em&gt; and look at the traffic patterns.
+- We could search in packet bytes, looking for specific strings such as login or password.
+- We could try to find something interesting in &lt;em&gt;Conversations&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Searching for the String &lt;em&gt;Password&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;It turned out that all we need was to look for the string &lt;em&gt;password&lt;/em&gt;. To do this we followed these steps in Wireshark:
+ 1. Go to &lt;em&gt;Edit&lt;/em&gt;
+ 2. Go to &lt;em&gt;Find Packet&lt;/em&gt;
+ 3. Search for &lt;strong&gt;password&lt;/strong&gt; choosing the options &lt;em&gt;string&lt;/em&gt; and &lt;em&gt;packet bytes&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Yay! We found something over a &lt;strong&gt;telnet&lt;/strong&gt; protocol:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.imgur.com/mUN4b1n.png" /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Following the TCP Stream&lt;/h2&gt;
+&lt;p&gt;Now, all we need to do is to right-click in the line and choose &lt;em&gt;Follow TCP Stream&lt;/em&gt;. This  returns:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.....&lt;/span&gt; &lt;span class="p"&gt;.....&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;...........&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;.....&lt;/span&gt; &lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="p"&gt;..............&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="p"&gt;.....&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;.............&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt;&lt;span class="p"&gt;......&lt;/span&gt; &lt;span class="mf"&gt;.38400&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;38400.&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;.......&lt;/span&gt;&lt;span class="n"&gt;XTERM&lt;/span&gt;&lt;span class="p"&gt;.......&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;.....!.....&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;.....&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;............&lt;/span&gt;
+&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="mf"&gt;3.13.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;generic&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pts&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt; &lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ju&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ul&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ia&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;an&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="n"&gt;Password&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;bigdataisaproblemnotasolution&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Login&lt;/span&gt; &lt;span class="n"&gt;incorrect&lt;/span&gt;
+&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt; &lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And we find our flag: &lt;strong&gt;bigdataisaproblemnotasolution&lt;/strong&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hack all the things!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Edited: If you had decided to use &lt;em&gt;chaosreader&lt;/em&gt; to process the pcapng file instead, the solution &lt;a href="http://evandrix.github.io/ctf/2014-csaw-networking-100-bigdata.html"&gt;from this write-up&lt;/a&gt; is also cool:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for &lt;/span&gt;f in pcap.pcapng-chaosreader/*.html; &lt;span class="k"&gt;do &lt;/span&gt;cat &lt;span class="s2"&gt;&amp;quot;${f}&amp;quot;&lt;/span&gt; | w3m -dump -T text/html &lt;span class="s2"&gt;&amp;quot;${f}&amp;quot;&lt;/span&gt;; &lt;span class="k"&gt;done&lt;/span&gt; | egrep &lt;span class="s2"&gt;&amp;quot;flag{&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3gl</dc:creator><pubDate>Mon, 22 Sep 2014 08:20:00 -0400</pubDate><guid>tag:bt3gl.github.io,2014-09-22:csaw-ctf-2014-networking-100-big-data.html</guid><category>CTF</category><category>CSAW</category><category>Wireshark</category><category>Chaosreader</category></item></channel></rss>
