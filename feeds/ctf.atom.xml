@@ -154,7 +154,7 @@ secretspace.com.    285 IN  A   72.167.232.29
 &lt;hr /&gt;
 &lt;h2&gt;Cracking the Password&lt;/h2&gt;
 &lt;p&gt;We want to crack &lt;code&gt;$P$BmHbpWPZrjt.2V8T2xDJfbDrAJZ9So1&lt;/code&gt; and for this we are going to use &lt;a href="http://hashcat.net/hashcat/"&gt;hashcat&lt;/a&gt;. If you are in &lt;a href="http://www.kali.org/"&gt;Kali&lt;/a&gt; or in any Debian distribution you can install it with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get hashact
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get hashcat
 &lt;/pre&gt;&lt;/div&gt;
 
 
