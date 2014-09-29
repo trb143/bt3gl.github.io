@@ -99,13 +99,17 @@
       Mon 22 September 2014 </abbr>
 
 <span class="label"> Category</span>
-<a href="./category/infosec.html"><i class="icon-folder-open"></i>InfoSec</a>
+<a href="./category/cryptography.html"><i class="icon-folder-open"></i>Cryptography</a>
 
 
 <span class="label">Tags</span>
 	<a href="./tag/ctf.html"><i class="icon-tag"></i>CTF</a>
 	<a href="./tag/csaw.html"><i class="icon-tag"></i>CSAW</a>
-	<a href="./tag/cryptography.html"><i class="icon-tag"></i>Cryptography</a>
+	<a href="./tag/rot13.html"><i class="icon-tag"></i>ROT13</a>
+	<a href="./tag/telnet.html"><i class="icon-tag"></i>telnet</a>
+	<a href="./tag/socket.html"><i class="icon-tag"></i>socket</a>
+	<a href="./tag/vigenere.html"><i class="icon-tag"></i>Vigenere</a>
+	<a href="./tag/pygenere.html"><i class="icon-tag"></i>pygenere</a>
 </footer><!-- /.post-info -->                </div>
                 <p>This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.</p>
 <p>The problem starts with the following text:</p>
@@ -114,6 +118,7 @@
 <p>nc 54.209.5.48 12345</p>
 <p>Written by psifertex</p>
 </blockquote>
+<hr />
 <h2>Stage One: Caesar Cipher</h2>
 <h4>Connecting to the Server</h4>
 <p>We start typing the <strong>netcat</strong> command in the terminal:</p>
@@ -131,8 +136,8 @@
 </blockquote>
 <p>This text gives a cipher <code>wkh dqvzhu wr wklv vwdjh lv vxshuvlpsoh</code> and the hint <em>a famous ancient roman would be proud</em>. That's all we need to decipher it!</p>
 <h4>Frequency Analysis</h4>
-<p>The famous roman is <strong>Ceasar</strong>, and <a href="http://en.wikipedia.org/wiki/Caesar_cipher">his cryptographic scheme</a> is one of the simplest possible. This cipher is also known as  <strong>rotation cipher</strong>, because all we do is rotating the letters by some value (the <strong>key</strong>). A modern version of it is called <strong>ROT13</strong>, meaning <strong>rotation by 13 places</strong>. This is a simple letter substitution cipher which replaces each letter with the 13th letter after it in the alphabet. In this case, we say that the <em>key is 13</em>.</p>
-<p>In our problem, we don't know the key. However there is a method to circumvent it: we can count how many times each letter appears in the text and then we use some previous knowledge about the frequency of each letter in the English words. For example, in the English language, <em>e</em>, <em>t</em>, <em>a</em>, <em>o</em>, and <em>n</em> are frequent letters while <em>z</em> or <em>v</em> are not. This means that we can analyse the frequency of each character to determine what's the most probable rotation key. </p>
+<p>The famous roman is <strong>Caesar</strong>, and <a href="http://en.wikipedia.org/wiki/Caesar_cipher">his cryptographic scheme</a> is one of the simplest possible. This cipher is also known as  <strong>rotation cipher</strong>, because all we do is rotating the letters by some value (the <strong>key</strong>). A modern version of it is called <strong>ROT13</strong>, meaning <strong>rotation by 13 places</strong>. This is a simple letter substitution cipher which replaces each letter with the 13th letter after it in the alphabet. In this case, we say that the <em>key is 13</em>.</p>
+<p>In our problem, we don't know the key. However there is a method to circumvent it: we can count how many times each letter appears in the text and then we use some previous knowledge about the frequency of each letter in the English words. For example, in the English language, <em>e</em>, <em>t</em>, <em>a</em>, <em>o</em>, and <em>n</em> are frequent letters while <em>z</em> or <em>v</em> are not. This means that we can analyse the frequency of each character to determine what's the most probable rotation key.</p>
 <p>To count the frequency of characters in our cipher, we write a snippet that creates a counter <a href="https://docs.python.org/2/tutorial/datastructures.html#dictionaries">dictionary (hash table)</a> with all the (lowercase) characters as the dictionary's keys. Note that we could have used Python's <a href="https://docs.python.org/2/library/collections.html#collections.Counter">Counter() data-structure</a> as well. We then iterate through each character in the message, counting their frequency, and returning a sorted list of these values:</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span>
 
@@ -236,20 +241,31 @@
 </pre></div>
 
 
+<hr />
 <h2>Stage Two: Offset with Special Characters</h2>
 <p>The second stage starts with the following message:</p>
 <blockquote>
 <p>Congratulations, you have solved stage 1. You have 9 seconds left.</p>
-<p>Now it's time for something slightly more difficult. Hint, everybody knows it's 
+<p>Now it's time for something slightly more difficult. Hint, everybody knows it's
 not length that matters.</p>
 </blockquote>
 <p>Together with the hint <em>length doesn't matter</em>, we get the following cipher:</p>
 <p><code>has nf tn k eshhqsgdrnrbr gnlgq   ddo nvnooeqdvtzegme  hkq qnnbxsccazsqgng  zr szt ahrdmrk sdeh nykcg  bes dnhex n xmmrznbqvnft htq qtdsbq xxn n gkgonmvagzxzstfhzk unqokukrda akdds  d   mqcseefzfzngend dhmdnqsoafd q  q g lsxznhskzrnmq</code></p>
-<p>To crack this cipher we need to deal with special characters to find the rotation shift. We proceed with the following steps:
- 1. We start looping over the length of our message, where for each iteration we create a blank list with the size of the message. This is a bit <em>space-expensive</em> and it should be optimized if we needed to scale for larger problems. It's fine for our current problem.
- 2. We start a second loop, which will tell us about the shifts. This loop iterates again in the length of the message, this time adding the current character to the list we've created before and updating a pointer to the pacing value given in the first loop. Notice that we have a loop inside another, so this solutions has <em>O(n^2) runtime</em> and it also should be optimized for larger problems.
- 3. Inside this second loop, we check whether the pacing pointer is larger than the length of the message, and if this is the case, we register it in a shift counter. The former pointer receives the value of this shift. This is the end of the second loop.
- 4. Back to the first loop, we add all the characters so far from our list into a the message string. But when should we stop doing this? Until we make sure that had a rotation that produces real words. I tried a few of common words, and 'you' worked just fine!</p>
+<p>To crack this cipher we need to deal with special characters to find the rotation shift. We proceed with the following steps:</p>
+<ol>
+<li>
+<p>We start looping over the length of our message, where for each iteration we create a blank list with the size of the message. This is a bit <em>space-expensive</em> and it should be optimized if we needed to scale for larger problems. It's fine for our current problem.</p>
+</li>
+<li>
+<p>We start a second loop, which will tell us about the shifts. This loop iterates again in the length of the message, this time adding the current character to the list we've created before and updating a pointer to the pacing value given in the first loop. Notice that we have a loop inside another, so this solutions has <em>O(n^2) runtime</em> and it also should be optimized for larger problems.</p>
+</li>
+<li>
+<p>Inside this second loop, we check whether the pacing pointer is larger than the length of the message, and if this is the case, we register it in a shift counter. The former pointer receives the value of this shift. This is the end of the second loop.</p>
+</li>
+<li>
+<p>Back to the first loop, we add all the characters so far from our list into a the message string. But when should we stop doing this? Until we make sure that had a rotation that produces real words. I tried a few of common words, and 'you' worked just fine!</p>
+</li>
+</ol>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">solve2</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)):</span>
     <span class="n">dec_msg</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;0&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
@@ -270,7 +286,8 @@ not length that matters.</p>
 <blockquote>
 <p>I hope you don't have a problem with this challenge. It should be fairly straight forward if you have done lots of basic crypto. The magic phrase for your efforts is "<strong>not not wrong</strong>". For your efforts, you will get another challenge!</p>
 </blockquote>
-<h2>Stage Three: VigenÃ¨re Cipher</h2>
+<hr />
+<h2>Stage Three: Vigenere Cipher</h2>
 <p>The next message lets us know that we are close to the end:</p>
 <blockquote>
 <p>Congratulations, you have solved stage 2. You have 9 seconds left.
@@ -281,7 +298,7 @@ Last one.</p>
 </pre></div>
 
 
-<p>This is a <strong><a href="http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher">VigenÃ¨re Cipher</a></strong>, which is basically several Caesar ciphers in sequence, with different shift values, given by a key-word. Finding these shifts when we don't know the key can be done by writing the alphabet 26 times in different rows. In this case, each alphabet is shifted cyclically to the left compared to the previous alphabet (26 Caesar ciphers). </p>
+<p>This is a <strong><a href="http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher">VigenÃ¨re Cipher</a></strong>, which is basically several Caesar ciphers in sequence, with different shift values, given by a key-word. Finding these shifts when we don't know the key can be done by writing the alphabet 26 times in different rows. In this case, each alphabet is shifted cyclically to the left compared to the previous alphabet (26 Caesar ciphers).</p>
 <p>Although we could use some <a href="http://smurfoncrack.com/pygenere/">online VigenÃ¨re cracker</a> to extract the flag from this text, we will instead write a code. We  use Python's library <a href="http://smurfoncrack.com/pygenere/pygenere.php">pygenere</a>, which has the methods  <code>crack_message()</code> to decipher the message and <code>crack_codeword()</code> to find the key (useful because we don't have the key). We then send our cipher to the following function:</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">solve3</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
   <span class="n">key</span> <span class="o">=</span>  <span class="n">VigCrack</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">.</span><span class="n">crack_codeword</span><span class="p">()</span>
@@ -298,7 +315,7 @@ Last one.</p>
 
 <p>Reading it carefully give us thee last answer for the flag: <strong>NORMALWORD</strong>. Sweet!</p>
 <h2>Final Words</h2>
-<p>If you like this solution, take a look at my  <a href="https://github.com/bt3gl/CTFs-and-Hacking-Scripts-and-Tutorials/blob/master/2014-CSAW-CTF/cryptography/crypto-200/psifer-school.py">exploit for this problem</a> (Python). </p>
+<p>If you like this solution, take a look at my  <a href="https://github.com/bt3gl/CTFs-and-Hacking-Scripts-and-Tutorials/blob/master/2014-CSAW-CTF/cryptography/crypto-200/psifer-school.py">exploit for this problem</a> (Python).</p>
 <p>If Python is not your thing, check out <a href="https://github.com/bt3gl/CTFs-and-Hacking-Scripts-and-Tutorials/tree/master/2014-CSAW-CTF/cryptography/crypto-200/from_the_net">scripts from other authors</a>, in Pearl and in PHP.</p>
 <p><strong>Hack all the things!</strong></p>
                 </div><!-- /.entry-content -->
@@ -317,6 +334,16 @@ Last one.</p>
     <i class="icon-folder-open icon-large"></i>InfoSec
 </a>
 </li>
+<li>
+<a href="./category/forensics.html">
+    <i class="icon-folder-open icon-large"></i>Forensics
+</a>
+</li>
+<li>
+<a href="./category/cryptography.html">
+    <i class="icon-folder-open icon-large"></i>Cryptography
+</a>
+</li>
 
 <br>
 
@@ -331,14 +358,64 @@ Last one.</p>
         <i class="icon-tag icon-large"></i>Reverse Engineering
     </a>
 </li>
+<li class="tag-4">
+    <a href="./tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/networking.html">
+        <i class="icon-tag icon-large"></i>Networking
+    </a>
+</li>
 <li class="tag-2">
     <a href="./tag/forensics.html">
         <i class="icon-tag icon-large"></i>Forensics
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
+    <a href="./tag/js.html">
+        <i class="icon-tag icon-large"></i>JS
     </a>
 </li>
 <li class="tag-1">
@@ -347,13 +424,8 @@ Last one.</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/networking.html">
-        <i class="icon-tag icon-large"></i>Networking
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/cryptography.html">
-        <i class="icon-tag icon-large"></i>Cryptography
+    <a href="./tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
     </a>
 </li>
 

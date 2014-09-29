@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>High Bytes by bt3gl</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/bt3gl.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-09-26T04:21:00-04:00</updated><entry><title>Forensics-300: Fluffy No More</title><link href="http://bt3gl.github.io/forensics-300-fluffy-no-more.html" rel="alternate"></link><updated>2014-09-26T04:21:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-26:forensics-300-fluffy-no-more.html</id><summary type="html">&lt;p&gt;This is the fourth and the last forensics challenge in the CSAW CTF 2014 competition. I think it was much harder than any of the three before it, but it was also much more interesting.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>High Bytes by bt3gl</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/bt3gl.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-09-26T04:21:00-04:00</updated><entry><title>CSAW CTF 2014 - Forensics 300: "Fluffy No More"</title><link href="http://bt3gl.github.io/csaw-ctf-2014-forensics-300-fluffy-no-more.html" rel="alternate"></link><updated>2014-09-26T04:21:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-26:csaw-ctf-2014-forensics-300-fluffy-no-more.html</id><summary type="html">&lt;p&gt;This is the fourth and the last forensics challenge in the CSAW CTF 2014 competition. I think it was much harder than any of the three before it, but it was also much more interesting.&lt;/p&gt;
 &lt;p&gt;The challenge starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;OH NO WE'VE BEEN HACKED!!!!!! -- said the Eye Heart Fluffy Bunnies Blog owner.
@@ -409,7 +409,7 @@ Saving to: ‘analytics.js’
 &lt;p&gt;It should be in the PDF somewhere!&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Finding the Second Hex-encoded String: Approach I&lt;/h2&gt;
-&lt;p&gt;All right, let's use what we learned from the &lt;a href="https://gist.github.com/bt3gl/4574e99fe0f0dbdb56a9"&gt;CSAW CTF 2014 Forensic -Obscurity&lt;/a&gt; problem. First, let's see if we find the flag with a simple grep:&lt;/p&gt;
+&lt;p&gt;All right, let's use what we learned from the &lt;a href="http://bt3gl.github.io/forensics-200-obscurity.html"&gt;CSAW CTF 2014 Forensic -Obscurity&lt;/a&gt; problem. First, let's see if we find the flag with a simple grep:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$.&lt;/span&gt;/pdf-parser.py announcement.pdf | grep flag
 &lt;span class="nv"&gt;$.&lt;/span&gt;/pdf-parser.py announcement.pdf | grep key
 &lt;/pre&gt;&lt;/div&gt;
@@ -490,7 +490,7 @@ obj 8 0
 &lt;hr /&gt;
 &lt;h2&gt;Finding the Second Hex-encoded String: Approach II&lt;/h2&gt;
 &lt;p&gt;There is a nice tool called &lt;a href="http://qpdf.sourceforge.net/"&gt;qpdf&lt;/a&gt; that can be very useful here:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudp yum install qpf
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudp yum install qpdf
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -508,7 +508,7 @@ obj 8 0
 
 
 &lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt;That's it! Hack all the things!&lt;/strong&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="CSAW"></category><category term="Forensics"></category></entry><entry><title>The Sharif University CTF 2014</title><link href="http://bt3gl.github.io/the-sharif-university-ctf-2014.html" rel="alternate"></link><updated>2014-09-26T04:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-26:the-sharif-university-ctf-2014.html</id><summary type="html">&lt;p&gt;It looked like a fun CTF, but I did not have the chance to play for too long. I managed to solve a few problems in the morning and the solutions are bellow:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;That's it! Hack all the things!&lt;/strong&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="CSAW"></category><category term="hashcat"></category><category term="pdf-parser"></category><category term="qpdf"></category><category term="LAMP"></category><category term="JS"></category></entry><entry><title>The Sharif University CTF 2014</title><link href="http://bt3gl.github.io/the-sharif-university-ctf-2014.html" rel="alternate"></link><updated>2014-09-26T04:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-26:the-sharif-university-ctf-2014.html</id><summary type="html">&lt;p&gt;It looked like a fun CTF, but I did not have the chance to play for too long. I managed to solve a few problems in the morning and the solutions are bellow:&lt;/p&gt;
 &lt;h2&gt;Avatar: Steganography&lt;/h2&gt;
 &lt;p&gt;The challenge starts with:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -612,6 +612,7 @@ We should blow up the bridge at midnight
 &lt;p&gt;nc 54.209.5.48 12345&lt;/p&gt;
 &lt;p&gt;Written by psifertex&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;hr /&gt;
 &lt;h2&gt;Stage One: Caesar Cipher&lt;/h2&gt;
 &lt;h4&gt;Connecting to the Server&lt;/h4&gt;
 &lt;p&gt;We start typing the &lt;strong&gt;netcat&lt;/strong&gt; command in the terminal:&lt;/p&gt;
@@ -629,8 +630,8 @@ We should blow up the bridge at midnight
 &lt;/blockquote&gt;
 &lt;p&gt;This text gives a cipher &lt;code&gt;wkh dqvzhu wr wklv vwdjh lv vxshuvlpsoh&lt;/code&gt; and the hint &lt;em&gt;a famous ancient roman would be proud&lt;/em&gt;. That's all we need to decipher it!&lt;/p&gt;
 &lt;h4&gt;Frequency Analysis&lt;/h4&gt;
-&lt;p&gt;The famous roman is &lt;strong&gt;Ceasar&lt;/strong&gt;, and &lt;a href="http://en.wikipedia.org/wiki/Caesar_cipher"&gt;his cryptographic scheme&lt;/a&gt; is one of the simplest possible. This cipher is also known as  &lt;strong&gt;rotation cipher&lt;/strong&gt;, because all we do is rotating the letters by some value (the &lt;strong&gt;key&lt;/strong&gt;). A modern version of it is called &lt;strong&gt;ROT13&lt;/strong&gt;, meaning &lt;strong&gt;rotation by 13 places&lt;/strong&gt;. This is a simple letter substitution cipher which replaces each letter with the 13th letter after it in the alphabet. In this case, we say that the &lt;em&gt;key is 13&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;In our problem, we don't know the key. However there is a method to circumvent it: we can count how many times each letter appears in the text and then we use some previous knowledge about the frequency of each letter in the English words. For example, in the English language, &lt;em&gt;e&lt;/em&gt;, &lt;em&gt;t&lt;/em&gt;, &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;o&lt;/em&gt;, and &lt;em&gt;n&lt;/em&gt; are frequent letters while &lt;em&gt;z&lt;/em&gt; or &lt;em&gt;v&lt;/em&gt; are not. This means that we can analyse the frequency of each character to determine what's the most probable rotation key. &lt;/p&gt;
+&lt;p&gt;The famous roman is &lt;strong&gt;Caesar&lt;/strong&gt;, and &lt;a href="http://en.wikipedia.org/wiki/Caesar_cipher"&gt;his cryptographic scheme&lt;/a&gt; is one of the simplest possible. This cipher is also known as  &lt;strong&gt;rotation cipher&lt;/strong&gt;, because all we do is rotating the letters by some value (the &lt;strong&gt;key&lt;/strong&gt;). A modern version of it is called &lt;strong&gt;ROT13&lt;/strong&gt;, meaning &lt;strong&gt;rotation by 13 places&lt;/strong&gt;. This is a simple letter substitution cipher which replaces each letter with the 13th letter after it in the alphabet. In this case, we say that the &lt;em&gt;key is 13&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In our problem, we don't know the key. However there is a method to circumvent it: we can count how many times each letter appears in the text and then we use some previous knowledge about the frequency of each letter in the English words. For example, in the English language, &lt;em&gt;e&lt;/em&gt;, &lt;em&gt;t&lt;/em&gt;, &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;o&lt;/em&gt;, and &lt;em&gt;n&lt;/em&gt; are frequent letters while &lt;em&gt;z&lt;/em&gt; or &lt;em&gt;v&lt;/em&gt; are not. This means that we can analyse the frequency of each character to determine what's the most probable rotation key.&lt;/p&gt;
 &lt;p&gt;To count the frequency of characters in our cipher, we write a snippet that creates a counter &lt;a href="https://docs.python.org/2/tutorial/datastructures.html#dictionaries"&gt;dictionary (hash table)&lt;/a&gt; with all the (lowercase) characters as the dictionary's keys. Note that we could have used Python's &lt;a href="https://docs.python.org/2/library/collections.html#collections.Counter"&gt;Counter() data-structure&lt;/a&gt; as well. We then iterate through each character in the message, counting their frequency, and returning a sorted list of these values:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;string&lt;/span&gt;
 
@@ -734,20 +735,31 @@ We should blow up the bridge at midnight
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;hr /&gt;
 &lt;h2&gt;Stage Two: Offset with Special Characters&lt;/h2&gt;
 &lt;p&gt;The second stage starts with the following message:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Congratulations, you have solved stage 1. You have 9 seconds left.&lt;/p&gt;
-&lt;p&gt;Now it's time for something slightly more difficult. Hint, everybody knows it's 
+&lt;p&gt;Now it's time for something slightly more difficult. Hint, everybody knows it's
 not length that matters.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Together with the hint &lt;em&gt;length doesn't matter&lt;/em&gt;, we get the following cipher:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;has nf tn k eshhqsgdrnrbr gnlgq   ddo nvnooeqdvtzegme  hkq qnnbxsccazsqgng  zr szt ahrdmrk sdeh nykcg  bes dnhex n xmmrznbqvnft htq qtdsbq xxn n gkgonmvagzxzstfhzk unqokukrda akdds  d   mqcseefzfzngend dhmdnqsoafd q  q g lsxznhskzrnmq&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;To crack this cipher we need to deal with special characters to find the rotation shift. We proceed with the following steps:
- 1. We start looping over the length of our message, where for each iteration we create a blank list with the size of the message. This is a bit &lt;em&gt;space-expensive&lt;/em&gt; and it should be optimized if we needed to scale for larger problems. It's fine for our current problem.
- 2. We start a second loop, which will tell us about the shifts. This loop iterates again in the length of the message, this time adding the current character to the list we've created before and updating a pointer to the pacing value given in the first loop. Notice that we have a loop inside another, so this solutions has &lt;em&gt;O(n^2) runtime&lt;/em&gt; and it also should be optimized for larger problems.
- 3. Inside this second loop, we check whether the pacing pointer is larger than the length of the message, and if this is the case, we register it in a shift counter. The former pointer receives the value of this shift. This is the end of the second loop.
- 4. Back to the first loop, we add all the characters so far from our list into a the message string. But when should we stop doing this? Until we make sure that had a rotation that produces real words. I tried a few of common words, and 'you' worked just fine!&lt;/p&gt;
+&lt;p&gt;To crack this cipher we need to deal with special characters to find the rotation shift. We proceed with the following steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;We start looping over the length of our message, where for each iteration we create a blank list with the size of the message. This is a bit &lt;em&gt;space-expensive&lt;/em&gt; and it should be optimized if we needed to scale for larger problems. It's fine for our current problem.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We start a second loop, which will tell us about the shifts. This loop iterates again in the length of the message, this time adding the current character to the list we've created before and updating a pointer to the pacing value given in the first loop. Notice that we have a loop inside another, so this solutions has &lt;em&gt;O(n^2) runtime&lt;/em&gt; and it also should be optimized for larger problems.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Inside this second loop, we check whether the pacing pointer is larger than the length of the message, and if this is the case, we register it in a shift counter. The former pointer receives the value of this shift. This is the end of the second loop.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Back to the first loop, we add all the characters so far from our list into a the message string. But when should we stop doing this? Until we make sure that had a rotation that produces real words. I tried a few of common words, and 'you' worked just fine!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;solve2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
   &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
     &lt;span class="n"&gt;dec_msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -768,7 +780,8 @@ not length that matters.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;I hope you don't have a problem with this challenge. It should be fairly straight forward if you have done lots of basic crypto. The magic phrase for your efforts is "&lt;strong&gt;not not wrong&lt;/strong&gt;". For your efforts, you will get another challenge!&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2&gt;Stage Three: VigenÃ¨re Cipher&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Stage Three: Vigenere Cipher&lt;/h2&gt;
 &lt;p&gt;The next message lets us know that we are close to the end:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Congratulations, you have solved stage 2. You have 9 seconds left.
@@ -779,7 +792,7 @@ Last one.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;This is a &lt;strong&gt;&lt;a href="http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher"&gt;VigenÃ¨re Cipher&lt;/a&gt;&lt;/strong&gt;, which is basically several Caesar ciphers in sequence, with different shift values, given by a key-word. Finding these shifts when we don't know the key can be done by writing the alphabet 26 times in different rows. In this case, each alphabet is shifted cyclically to the left compared to the previous alphabet (26 Caesar ciphers). &lt;/p&gt;
+&lt;p&gt;This is a &lt;strong&gt;&lt;a href="http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher"&gt;VigenÃ¨re Cipher&lt;/a&gt;&lt;/strong&gt;, which is basically several Caesar ciphers in sequence, with different shift values, given by a key-word. Finding these shifts when we don't know the key can be done by writing the alphabet 26 times in different rows. In this case, each alphabet is shifted cyclically to the left compared to the previous alphabet (26 Caesar ciphers).&lt;/p&gt;
 &lt;p&gt;Although we could use some &lt;a href="http://smurfoncrack.com/pygenere/"&gt;online VigenÃ¨re cracker&lt;/a&gt; to extract the flag from this text, we will instead write a code. We  use Python's library &lt;a href="http://smurfoncrack.com/pygenere/pygenere.php"&gt;pygenere&lt;/a&gt;, which has the methods  &lt;code&gt;crack_message()&lt;/code&gt; to decipher the message and &lt;code&gt;crack_codeword()&lt;/code&gt; to find the key (useful because we don't have the key). We then send our cipher to the following function:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;solve3&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
   &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="n"&gt;VigCrack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;crack_codeword&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -796,9 +809,9 @@ Last one.&lt;/p&gt;
 
 &lt;p&gt;Reading it carefully give us thee last answer for the flag: &lt;strong&gt;NORMALWORD&lt;/strong&gt;. Sweet!&lt;/p&gt;
 &lt;h2&gt;Final Words&lt;/h2&gt;
-&lt;p&gt;If you like this solution, take a look at my  &lt;a href="https://github.com/bt3gl/CTFs-and-Hacking-Scripts-and-Tutorials/blob/master/2014-CSAW-CTF/cryptography/crypto-200/psifer-school.py"&gt;exploit for this problem&lt;/a&gt; (Python). &lt;/p&gt;
+&lt;p&gt;If you like this solution, take a look at my  &lt;a href="https://github.com/bt3gl/CTFs-and-Hacking-Scripts-and-Tutorials/blob/master/2014-CSAW-CTF/cryptography/crypto-200/psifer-school.py"&gt;exploit for this problem&lt;/a&gt; (Python).&lt;/p&gt;
 &lt;p&gt;If Python is not your thing, check out &lt;a href="https://github.com/bt3gl/CTFs-and-Hacking-Scripts-and-Tutorials/tree/master/2014-CSAW-CTF/cryptography/crypto-200/from_the_net"&gt;scripts from other authors&lt;/a&gt;, in Pearl and in PHP.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Hack all the things!&lt;/strong&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="CSAW"></category><category term="Cryptography"></category></entry><entry><title>Reverse Engineering-100: eggshells</title><link href="http://bt3gl.github.io/reverse-engineering-100-eggshells.html" rel="alternate"></link><updated>2014-09-22T09:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-22:reverse-engineering-100-eggshells.html</id><summary type="html">&lt;p&gt;This is the first exploitation problem and it starts with the following text:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hack all the things!&lt;/strong&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="CSAW"></category><category term="ROT13"></category><category term="telnet"></category><category term="socket"></category><category term="Vigenere"></category><category term="pygenere"></category></entry><entry><title>Reverse Engineering-100: eggshells</title><link href="http://bt3gl.github.io/reverse-engineering-100-eggshells.html" rel="alternate"></link><updated>2014-09-22T09:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-22:reverse-engineering-100-eggshells.html</id><summary type="html">&lt;p&gt;This is the first exploitation problem and it starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;I trust people on the internet all the time, do you?&lt;/p&gt;
 &lt;p&gt;Written by ColdHeat&lt;/p&gt;
