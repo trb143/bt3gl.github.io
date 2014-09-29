@@ -115,19 +115,29 @@
 <p>Written by HockeyInJune</p>
 <p><a href="https://github.com/ctfs/write-ups/blob/master/csaw-ctf-2014/big-data/pcap.pcapng">pcap.pcapng</a></p>
 </blockquote>
-<hr />
 <h2>Inspecting the Wireshark File</h2>
 <p>The file extension <a href="https://appliance.cloudshark.org/blog/5-reasons-to-move-to-pcapng/">.pcapng</a> correspond to files for <em>packet capture</em>. They usually contain a dump of data packets captured over a network. This type of files holds blocks or data, and they can be used to rebuild captured packets into recognizable data.</p>
-<p>We can open this file with <a href="https://www.wireshark.org/">Wireshark</a>, which is an open-source packet analyzer, or using <a href="http://chaosreader.sourceforge.net/">chaosreader</a>, a freeware tool to trace TCP and UDP sessions. We choose the first. There are several things that we could explore and look for in this file:
-- We could search for all the the interesting protocols inside and analyze them.
-- We could go to <em>Statistics</em>-&gt; <em>Protocol Hierarchy</em> and look at the traffic patterns.
-- We could search in packet bytes, looking for specific strings such as login or password.
-- We could try to find something interesting in <em>Conversations</em>.</p>
+<p>We can open this file with <a href="https://www.wireshark.org/">Wireshark</a>, which is an open-source packet analyzer, or using <a href="http://chaosreader.sourceforge.net/">chaosreader</a>, a freeware tool to trace TCP and UDP sessions. We choose the first. There are several things that we could explore and look for in this file:</p>
+<div class="highlight"><pre>    <span class="o">-</span> <span class="n">We</span> <span class="n">could</span> <span class="n">search</span> <span class="k">for</span> <span class="n">all</span> <span class="n">the</span> <span class="n">the</span> <span class="n">interesting</span> <span class="n">protocols</span> <span class="n">inside</span> <span class="n">and</span> <span class="n">analyze</span> <span class="n">them</span><span class="p">.</span>
+
+    <span class="o">-</span> <span class="n">We</span> <span class="n">could</span> <span class="n">go</span> <span class="n">to</span> <span class="o">*</span><span class="n">Statistics</span><span class="o">*-&gt;</span> <span class="o">*</span><span class="n">Protocol</span> <span class="n">Hierarchy</span><span class="o">*</span> <span class="n">and</span> <span class="n">look</span> <span class="n">at</span> <span class="n">the</span> <span class="n">traffic</span> <span class="n">patterns</span><span class="p">.</span>
+
+    <span class="o">-</span> <span class="n">We</span> <span class="n">could</span> <span class="n">search</span> <span class="n">in</span> <span class="n">packet</span> <span class="n">bytes</span><span class="p">,</span> <span class="n">looking</span> <span class="k">for</span> <span class="n">specific</span> <span class="n">strings</span> <span class="n">such</span> <span class="n">as</span> <span class="n">login</span> <span class="n">or</span> <span class="n">password</span><span class="p">.</span>
+
+    <span class="o">-</span> <span class="n">We</span> <span class="n">could</span> <span class="n">try</span> <span class="n">to</span> <span class="n">find</span> <span class="n">something</span> <span class="n">interesting</span> <span class="n">in</span> <span class="o">*</span><span class="n">Conversations</span><span class="o">*</span><span class="p">.</span>
+</pre></div>
+
+
 <h2>Searching for the String <em>Password</em></h2>
-<p>It turned out that all we need was to look for the string <em>password</em>. To do this we followed these steps in Wireshark:
- 1. Go to <em>Edit</em>
- 2. Go to <em>Find Packet</em>
- 3. Search for <strong>password</strong> choosing the options <em>string</em> and <em>packet bytes</em>.</p>
+<p>It turned out that all we need was to look for the string <em>password</em>. To do this we followed these steps in Wireshark:</p>
+<div class="highlight"><pre>     <span class="mf">1.</span> <span class="n">Go</span> <span class="n">to</span> <span class="o">*</span><span class="n">Edit</span><span class="o">*</span>
+
+     <span class="mf">2.</span> <span class="n">Go</span> <span class="n">to</span> <span class="o">*</span><span class="n">Find</span> <span class="n">Packet</span><span class="o">*</span>
+
+     <span class="mf">3.</span> <span class="n">Search</span> <span class="k">for</span> <span class="o">**</span><span class="n">password</span><span class="o">**</span> <span class="n">choosing</span> <span class="n">the</span> <span class="n">options</span> <span class="o">*</span><span class="n">string</span><span class="o">*</span> <span class="n">and</span> <span class="o">*</span><span class="n">packet</span> <span class="n">bytes</span><span class="o">*</span><span class="p">.</span>
+</pre></div>
+
+
 <p>Yay! We found something over a <strong>telnet</strong> protocol:</p>
 <p><img alt="" src="http://i.imgur.com/mUN4b1n.png" /></p>
 <hr />
@@ -187,13 +197,8 @@
 
 <li class="nav-header"><h4>Tags</h4></li>
 <li class="tag-4">
-    <a href="./tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/readelf.html">
-        <i class="icon-tag icon-large"></i>readelf
+    <a href="./tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
     </a>
 </li>
 <li class="tag-4">
@@ -202,23 +207,23 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/telnet.html">
-        <i class="icon-tag icon-large"></i>telnet
+    <a href="./tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/qpdf.html">
-        <i class="icon-tag icon-large"></i>qpdf
+    <a href="./tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-1">
+    <a href="./tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/pdftotext.html">
-        <i class="icon-tag icon-large"></i>pdftotext
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
+    <a href="./tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
     </a>
 </li>
 <li class="tag-4">
@@ -231,54 +236,14 @@
         <i class="icon-tag icon-large"></i>Steganography
     </a>
 </li>
-<li class="tag-3">
-    <a href="./tag/pdf-parser.html">
-        <i class="icon-tag icon-large"></i>pdf-parser
-    </a>
-</li>
-<li class="tag-1">
-    <a href="./tag/csaw.html">
-        <i class="icon-tag icon-large"></i>CSAW
+<li class="tag-4">
+    <a href="./tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/ftp.html">
-        <i class="icon-tag icon-large"></i>FTP
-    </a>
-</li>
-<li class="tag-1">
-    <a href="./tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/chaosreader.html">
-        <i class="icon-tag icon-large"></i>Chaosreader
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
-    </a>
-</li>
-<li class="tag-3">
-    <a href="./tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/javascript.html">
-        <i class="icon-tag icon-large"></i>JavaScript
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/outguess.html">
-        <i class="icon-tag icon-large"></i>OutGuess
+    <a href="./tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
     </a>
 </li>
 <li class="tag-4">
@@ -287,13 +252,58 @@
     </a>
 </li>
 <li class="tag-4">
+    <a href="./tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
     <a href="./tag/pygenere.html">
         <i class="icon-tag icon-large"></i>pygenere
     </a>
 </li>
+<li class="tag-3">
+    <a href="./tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-1">
+    <a href="./tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-3">
+    <a href="./tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
 <li class="tag-4">
-    <a href="./tag/uncompyle2.html">
-        <i class="icon-tag icon-large"></i>uncompyle2
+    <a href="./tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
     </a>
 </li>
 
