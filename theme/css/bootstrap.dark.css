@@ -419,13 +419,14 @@ abbr.initialism {
     text-transform: uppercase;
 }
 blockquote {
-    background-color: #F4E0F7;
+    background-color: #BFF586;
     padding: 0 0 0 15px;
     /* margin: 0 0 18px; */
     border-left: 5px solid #a6dc3b;
 }
 blockquote p {
     margin-bottom: 0;
+    font-family: sans-serif;
     font-size: 11px;
     font-weight: 300;
     line-height: 20px;
