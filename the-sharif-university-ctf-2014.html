@@ -99,12 +99,13 @@
       Fri 26 September 2014 </abbr>
 
 <span class="label"> Category</span>
-<a href="./category/infosec.html"><i class="icon-folder-open"></i>InfoSec</a>
+<a href="./category/reverse-engineering.html"><i class="icon-folder-open"></i>Reverse Engineering</a>
 
 
 <span class="label">Tags</span>
 	<a href="./tag/ctf.html"><i class="icon-tag"></i>CTF</a>
 	<a href="./tag/steganography.html"><i class="icon-tag"></i>Steganography</a>
+	<a href="./tag/jad.html"><i class="icon-tag"></i>jad</a>
 </footer><!-- /.post-info -->                </div>
                 <p>It looked like a fun CTF, but I did not have the chance to play for too long. I managed to solve a few problems in the morning and the solutions are bellow:</p>
 <h2>Avatar: Steganography</h2>
@@ -115,8 +116,8 @@
 <p>And the following image:</p>
 <p><img alt="" src="http://i.imgur.com/6NIu64us.jpg" /></p>
 <p>For this problem, I use <a href="http://www.outguess.org/download.php">OutGuess</a>, which can be installed as bellow:</p>
-<div class="highlight"><pre><span class="nv">$ </span>tar -zxvf outguess-0.2.tar.gz 
-<span class="nv">$ </span><span class="nb">cd </span>outguess 
+<div class="highlight"><pre><span class="nv">$ </span>tar -zxvf outguess-0.2.tar.gz
+<span class="nv">$ </span><span class="nb">cd </span>outguess
 <span class="nv">$ </span>./configure <span class="o">&amp;&amp;</span> make
 </pre></div>
 
@@ -126,7 +127,7 @@
 Reading ../lamb.jpg....
 Extracting usable bits:   28734 bits
 Steg retrieve: seed: 94, len: 41
-<span class="nv">$ </span>cat pass.txt 
+<span class="nv">$ </span>cat pass.txt
 We should blow up the bridge at midnight
 </pre></div>
 
@@ -146,9 +147,9 @@ We should blow up the bridge at midnight
 <span class="kn">from</span> <span class="nn">scipy.misc</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imsave</span>
 
 <span class="k">def</span> <span class="nf">compare_images</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">):</span>
-    <span class="n">diff</span> <span class="o">=</span> <span class="n">img1</span> <span class="o">+</span> <span class="n">img2</span>  
-    <span class="n">imsave</span><span class="p">(</span><span class="s">&#39;sum.png&#39;</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span> 
-    <span class="n">diff</span> <span class="o">=</span> <span class="n">img1</span> <span class="o">-</span> <span class="n">img2</span>  
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">img1</span> <span class="o">+</span> <span class="n">img2</span>
+    <span class="n">imsave</span><span class="p">(</span><span class="s">&#39;sum.png&#39;</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">img1</span> <span class="o">-</span> <span class="n">img2</span>
     <span class="n">imsave</span><span class="p">(</span><span class="s">&#39;diff.png&#39;</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
@@ -177,7 +178,7 @@ We should blow up the bridge at midnight
 <div class="highlight"><pre><span class="err">```</span><span class="n">java</span>
 <span class="c1">// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.</span>
 <span class="c1">// Jad home page: http://www.geocities.com/kpdus/jad.html</span>
-<span class="c1">// Decompiler options: packimports(3) </span>
+<span class="c1">// Decompiler options: packimports(3)</span>
 <span class="c1">// Source File Name:   guess.java</span>
 
 <span class="o">(...)</span>
@@ -216,6 +217,11 @@ We should blow up the bridge at midnight
 
 <li class="nav-header"><h4>Categories</h4></li>
 <li>
+<a href="./category/reverse-engineering.html">
+    <i class="icon-folder-open icon-large"></i>Reverse Engineering
+</a>
+</li>
+<li>
 <a href="./category/infosec.html">
     <i class="icon-folder-open icon-large"></i>InfoSec
 </a>
@@ -235,6 +241,71 @@ We should blow up the bridge at midnight
 
 <li class="nav-header"><h4>Tags</h4></li>
 <li class="tag-4">
+    <a href="./tag/reverse-engineering.html">
+        <i class="icon-tag icon-large"></i>Reverse Engineering
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-3">
+    <a href="./tag/forensics.html">
+        <i class="icon-tag icon-large"></i>Forensics
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-1">
+    <a href="./tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-1">
+    <a href="./tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
     <a href="./tag/networking.html">
         <i class="icon-tag icon-large"></i>Networking
     </a>
@@ -244,59 +315,9 @@ We should blow up the bridge at midnight
         <i class="icon-tag icon-large"></i>pygenere
     </a>
 </li>
-<li class="tag-1">
-    <a href="./tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
 <li class="tag-4">
     <a href="./tag/wireshark.html">
         <i class="icon-tag icon-large"></i>Wireshark
-    </a>
-</li>
-<li class="tag-3">
-    <a href="./tag/forensics.html">
-        <i class="icon-tag icon-large"></i>Forensics
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/socket.html">
-        <i class="icon-tag icon-large"></i>socket
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/ftp.html">
-        <i class="icon-tag icon-large"></i>FTP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/telnet.html">
-        <i class="icon-tag icon-large"></i>telnet
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/lamp.html">
-        <i class="icon-tag icon-large"></i>LAMP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/hashcat.html">
-        <i class="icon-tag icon-large"></i>hashcat
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/pdf-parser.html">
-        <i class="icon-tag icon-large"></i>pdf-parser
     </a>
 </li>
 <li class="tag-4">
@@ -305,23 +326,13 @@ We should blow up the bridge at midnight
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/reverse-engineering.html">
-        <i class="icon-tag icon-large"></i>Reverse Engineering
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
-    </a>
-</li>
-<li class="tag-1">
-    <a href="./tag/csaw.html">
-        <i class="icon-tag icon-large"></i>CSAW
-    </a>
-</li>
-<li class="tag-4">
     <a href="./tag/js.html">
         <i class="icon-tag icon-large"></i>JS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
     </a>
 </li>
 

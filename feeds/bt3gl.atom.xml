@@ -517,8 +517,8 @@ obj 8 0
 &lt;p&gt;And the following image:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/6NIu64us.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;For this problem, I use &lt;a href="http://www.outguess.org/download.php"&gt;OutGuess&lt;/a&gt;, which can be installed as bellow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tar -zxvf outguess-0.2.tar.gz 
-&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;outguess 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tar -zxvf outguess-0.2.tar.gz
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;outguess
 &lt;span class="nv"&gt;$ &lt;/span&gt;./configure &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; make
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -528,7 +528,7 @@ obj 8 0
 Reading ../lamb.jpg....
 Extracting usable bits:   28734 bits
 Steg retrieve: seed: 94, len: 41
-&lt;span class="nv"&gt;$ &lt;/span&gt;cat pass.txt 
+&lt;span class="nv"&gt;$ &lt;/span&gt;cat pass.txt
 We should blow up the bridge at midnight
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -548,9 +548,9 @@ We should blow up the bridge at midnight
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy.misc&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;imread&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;imsave&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;compare_images&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;img1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;img2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;img1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;img2&lt;/span&gt;  
-    &lt;span class="n"&gt;imsave&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;sum.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;diff&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
-    &lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;img1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;img2&lt;/span&gt;  
+    &lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;img1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;img2&lt;/span&gt;
+    &lt;span class="n"&gt;imsave&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;sum.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;diff&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;img1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;img2&lt;/span&gt;
     &lt;span class="n"&gt;imsave&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;diff.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;diff&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
@@ -579,7 +579,7 @@ We should blow up the bridge at midnight
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="n"&gt;java&lt;/span&gt;
 &lt;span class="c1"&gt;// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.&lt;/span&gt;
 &lt;span class="c1"&gt;// Jad home page: http://www.geocities.com/kpdus/jad.html&lt;/span&gt;
-&lt;span class="c1"&gt;// Decompiler options: packimports(3) &lt;/span&gt;
+&lt;span class="c1"&gt;// Decompiler options: packimports(3)&lt;/span&gt;
 &lt;span class="c1"&gt;// Source File Name:   guess.java&lt;/span&gt;
 
 &lt;span class="o"&gt;(...)&lt;/span&gt;
@@ -605,7 +605,7 @@ We should blow up the bridge at midnight
 &lt;/blockquote&gt;
 &lt;p&gt;And it gives us two pictures, a map and a sudoku. Solving the sudoku leads to the flag:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/nNMm64M.png" /&gt;
-&lt;img alt="" src="http://i.imgur.com/1IXD8tIs.png" /&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="Steganography"></category></entry><entry><title>CSAW CTF 2014 - Crypto 200: "psifer school"</title><link href="http://bt3gl.github.io/csaw-ctf-2014-crypto-200-psifer-school.html" rel="alternate"></link><updated>2014-09-22T10:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-22:csaw-ctf-2014-crypto-200-psifer-school.html</id><summary type="html">&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
+&lt;img alt="" src="http://i.imgur.com/1IXD8tIs.png" /&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="Steganography"></category><category term="jad"></category></entry><entry><title>CSAW CTF 2014 - Crypto 200: "psifer school"</title><link href="http://bt3gl.github.io/csaw-ctf-2014-crypto-200-psifer-school.html" rel="alternate"></link><updated>2014-09-22T10:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-22:csaw-ctf-2014-crypto-200-psifer-school.html</id><summary type="html">&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
 &lt;p&gt;The problem starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;There's no heartbleed here. Why don't we use these ciphers?&lt;/p&gt;
