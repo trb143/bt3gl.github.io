@@ -96,9 +96,9 @@ textarea {
 }
 body {
     margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    line-height: 18px;
+    font-family: Courier New;
+    font-size: 12px;
+    /* line-height: 18px; */
     color: #bbbbbb;
     background-color: #000000;
 }
@@ -1671,10 +1671,10 @@ table .span24 {
 }
 .well {
     min-height: 20px;
-    padding: 10px;
+    /* padding: 10px; */
     margin-bottom: 20px;
-    background-color: #333333;
-    border: 1px solid #eee;
+    /* background-color: #333333; */
+    /* border: 1px solid #eee; */
     border: 1px solid rgba(0, 0, 0, 0.05);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
