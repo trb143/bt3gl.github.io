@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>High Bytes by bt3gl</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/pdf-parser.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-09-28T11:21:00-04:00</updated><entry><title>CSAW CTF 2014 - Forensics 300: "Fluffy No More"</title><link href="http://bt3gl.github.io/csaw-ctf-2014-forensics-300-fluffy-no-more.html" rel="alternate"></link><updated>2014-09-28T11:21:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-28:csaw-ctf-2014-forensics-300-fluffy-no-more.html</id><summary type="html">&lt;p&gt;This is the fourth and the last forensics challenge in the CSAW CTF 2014 competition. I think it was much harder than any of the three before it, but it was also much more interesting.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>High Bytes by bt3gl</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/pdf-parser.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-09-28T11:21:00-04:00</updated><entry><title>CSAW CTF 2014 - Forensics 300: "Fluffy No More"</title><link href="http://bt3gl.github.io/csaw-ctf-2014-forensics-300-fluffy-no-more.html" rel="alternate"></link><updated>2014-09-28T11:21:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-28:csaw-ctf-2014-forensics-300-fluffy-no-more.html</id><summary type="html">&lt;p&gt;This is the fourth and the last of the forensics challenge in the CSAW CTF 2014 competition. It was much harder than the three before, but it was also much more interesting.&lt;/p&gt;
 &lt;p&gt;The challenge starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;OH NO WE'VE BEEN HACKED!!!!!! -- said the Eye Heart Fluffy Bunnies Blog owner.
@@ -44,10 +44,10 @@ CSAW2014-FluffyNoMore-v0.1
 
 &lt;p&gt;This is the directory structure of a  &lt;a href="https://coderwall.com/p/syyk0g?i=5&amp;amp;p=1&amp;amp;q=author%3Abt3gl&amp;amp;t%5B%5D=bt3gl"&gt;LAMP server&lt;/a&gt;, where LAMP stands for Linux-Apache-MySQL-PHP in the &lt;a href="http://www.tldp.org/LDP/intro-linux/html/sect_03_01.html"&gt;Linux File System&lt;/a&gt;. In this framework, the PHP/HTML/JavaScript webpage is placed inside &lt;code&gt;var/www&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The directory &lt;code&gt;var/&lt;/code&gt; contains files that are expected to change in size and content as the system is running (var stands for variable). So it is natural that system log files are generally placed at &lt;code&gt;/var/log&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Finally, the &lt;code&gt;etc/&lt;/code&gt; directory contains the system configuration files. For example, the file &lt;code&gt;resolv.conf&lt;/code&gt; tells the system where to go on the network to obtain host name to IP address mappings (DNS). Another example, the file  &lt;code&gt;passwd&lt;/code&gt;, which stores login information.&lt;/p&gt;
+&lt;p&gt;Finally, the &lt;code&gt;etc/&lt;/code&gt; directory contains the system configuration files. For example, the file &lt;code&gt;resolv.conf&lt;/code&gt; tells the system where to go on the network to obtain host name to IP address mappings (DNS). Another example is the file  &lt;code&gt;passwd&lt;/code&gt;, which stores login information.&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h2&gt;Life is Made of Futile Tries&lt;/h2&gt;
-&lt;p&gt;OK,  before anything, we need to give a try:&lt;/p&gt;
+&lt;h2&gt;Before Anything else...&lt;/h2&gt;
+&lt;p&gt;OK, based on the previous challenges, we need to give a try:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;grep -r -l &lt;span class="s2"&gt;&amp;quot;key{&amp;quot;&lt;/span&gt;
 var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
 webroot.tar.bz2-extracted/var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
@@ -136,18 +136,18 @@ secretspace.com.    285 IN  A   72.167.232.29
 
 
 &lt;p&gt;The IP 72.167.232.29  leads to another generic page with no hints and with nothing in special in the source code. Wrong direction...&lt;/p&gt;
-&lt;p&gt;All right, let's give a last try and open the tables from the MySQL dump file inside a nice GUI. I use &lt;a href="http://www.phpmyadmin.net/home_page/index.php"&gt;phpMyAdmin&lt;/a&gt;, which I showed how to install and configure in my tutorial about setting up a &lt;a href="https://coderwall.com/p/syyk0g?i=5&amp;amp;p=1&amp;amp;q=author%3Abt3gl&amp;amp;t%5B%5D=bt3gl"&gt;LAMP server&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;All right, let's give a last try and open the tables from the MySQL dump file inside a nice GUI. I use &lt;a href="http://www.phpmyadmin.net/home_page/index.php"&gt;phpMyAdmin&lt;/a&gt;, which I showed how to install and to configure in my tutorial about setting up a &lt;a href="https://coderwall.com/p/syyk0g?i=5&amp;amp;p=1&amp;amp;q=author%3Abt3gl&amp;amp;t%5B%5D=bt3gl"&gt;LAMP server&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We open &lt;code&gt;localhost/phpmyadmin&lt;/code&gt; in our browser. First we go  to &lt;em&gt;Databases&lt;/em&gt; and then &lt;em&gt;Create Database&lt;/em&gt; with any name we want. Then we  &lt;em&gt;Import&lt;/em&gt; &lt;code&gt;`mysql_backup.sql&lt;/code&gt; to this database. All the tables are loaded. Let's use the &lt;em&gt;Search&lt;/em&gt; option to look for &lt;em&gt;key&lt;/em&gt; or &lt;em&gt;flag&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/tVOY1VJ.png" /&gt;
 &lt;img alt="" src="http://i.imgur.com/jY7CbLZ.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Nope. Nothing in special. By the way, &lt;code&gt;`default_pingback_flag1&lt;/code&gt; is just a &lt;strong&gt;Wordpress&lt;/strong&gt; flag indicating the default status of ping backs when new blog posts are published.&lt;/p&gt;
-&lt;p&gt;Continuing our search, if we look  inside each of the tables we find:&lt;/p&gt;
+&lt;p&gt;Let's continue our search. If we look  inside each of the tables we find:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;The URL for the &lt;a href="http://ww17.blog.eyeheartfluffybunnies.com"&gt;blog&lt;/a&gt;, which doesn't render. However, in the source code, there is a commented link that leads to a &lt;a href="http://ww17.blog.eyeheartfluffybunnies.com/?fp=Tnxj5vWdcChO2G66EhCHHqSAdskqgQmZEbVQIh1DCmrgCyQjbeNsPhkvCpIUcP19mwOmcCS1hIeFb9Aj3%2FP4fw%3D%3D&amp;amp;prvtof=RyfmkPY5YuWnUulUghSjPRX510XSb9C0HJ2xsUn%2Fd3Q%3D&amp;amp;poru=jcHIwHNMXYtWvhsucEK%2BtSMzUepfq46Tam%2BwGZBSFMjZiV2p3eqdw8zpPiLr76ixCoirz%2FR955vowRxEMBO%2FoQ%3D%3D&amp;amp;cifr=1&amp;amp;%22"&gt;cute website&lt;/a&gt;. Nothing else.&lt;/p&gt;
+&lt;p&gt;The URL for the &lt;a href="http://ww17.blog.eyeheartfluffybunnies.com"&gt;blog&lt;/a&gt;, which doesn't render. However, in the source code there is a commented link that leads to a &lt;a href="http://ww17.blog.eyeheartfluffybunnies.com/?fp=Tnxj5vWdcChO2G66EhCHHqSAdskqgQmZEbVQIh1DCmrgCyQjbeNsPhkvCpIUcP19mwOmcCS1hIeFb9Aj3%2FP4fw%3D%3D&amp;amp;prvtof=RyfmkPY5YuWnUulUghSjPRX510XSb9C0HJ2xsUn%2Fd3Q%3D&amp;amp;poru=jcHIwHNMXYtWvhsucEK%2BtSMzUepfq46Tam%2BwGZBSFMjZiV2p3eqdw8zpPiLr76ixCoirz%2FR955vowRxEMBO%2FoQ%3D%3D&amp;amp;cifr=1&amp;amp;%22"&gt;cute website&lt;/a&gt;. Nothing else.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;A hashed password!
+&lt;p&gt;Oh, wait! We found a hashed password!
 &lt;img alt="" src="http://i.imgur.com/FiQONze.png" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -169,7 +169,7 @@ secretspace.com.    285 IN  A   72.167.232.29
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;If this is not the case, this is an example for you (it's allways good to have several lists!):&lt;/p&gt;
+&lt;p&gt;If not, this is an example for you (it's always good to have several lists!):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://www.scovetta.com/download/500_passwords.txt
 &lt;span class="nv"&gt;$ &lt;/span&gt;head 500_passwords.txt
 123456
@@ -250,7 +250,7 @@ Stopped: Thu Sep 25 18:25:50 2014
 &lt;p&gt;It worked! Our password is &lt;strong&gt;fluffybunnies&lt;/strong&gt;!&lt;/p&gt;
 &lt;p&gt;All right, this is a very silly password! It could be easily guessed. If you were the attacker, wouldn't you try this as the first option? OK, maybe right after &lt;em&gt;password&lt;/em&gt; and &lt;em&gt;123456&lt;/em&gt;... :)&lt;/p&gt;
 &lt;h4&gt;What we have so far&lt;/h4&gt;
-&lt;p&gt;All we have learned from this file was:&lt;/p&gt;
+&lt;p&gt;All we have learned from the MySQL dump file was:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;the attacker's motivation,&lt;/p&gt;

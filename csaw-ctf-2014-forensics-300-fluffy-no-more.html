@@ -116,7 +116,7 @@
 	<a href="http://bt3gl.github.io/tag/lamp.html"><i class="icon-tag"></i>LAMP</a>
 	<a href="http://bt3gl.github.io/tag/javascript.html"><i class="icon-tag"></i>JavaScript</a>
 </footer><!-- /.post-info -->                </div>
-                <p>This is the fourth and the last forensics challenge in the CSAW CTF 2014 competition. I think it was much harder than any of the three before it, but it was also much more interesting.</p>
+                <p>This is the fourth and the last of the forensics challenge in the CSAW CTF 2014 competition. It was much harder than the three before, but it was also much more interesting.</p>
 <p>The challenge starts with the following text:</p>
 <blockquote>
 <p>OH NO WE'VE BEEN HACKED!!!!!! -- said the Eye Heart Fluffy Bunnies Blog owner.
@@ -161,10 +161,10 @@ CSAW2014-FluffyNoMore-v0.1
 
 <p>This is the directory structure of a  <a href="https://coderwall.com/p/syyk0g?i=5&amp;p=1&amp;q=author%3Abt3gl&amp;t%5B%5D=bt3gl">LAMP server</a>, where LAMP stands for Linux-Apache-MySQL-PHP in the <a href="http://www.tldp.org/LDP/intro-linux/html/sect_03_01.html">Linux File System</a>. In this framework, the PHP/HTML/JavaScript webpage is placed inside <code>var/www</code>.</p>
 <p>The directory <code>var/</code> contains files that are expected to change in size and content as the system is running (var stands for variable). So it is natural that system log files are generally placed at <code>/var/log</code>.</p>
-<p>Finally, the <code>etc/</code> directory contains the system configuration files. For example, the file <code>resolv.conf</code> tells the system where to go on the network to obtain host name to IP address mappings (DNS). Another example, the file  <code>passwd</code>, which stores login information.</p>
+<p>Finally, the <code>etc/</code> directory contains the system configuration files. For example, the file <code>resolv.conf</code> tells the system where to go on the network to obtain host name to IP address mappings (DNS). Another example is the file  <code>passwd</code>, which stores login information.</p>
 <hr />
-<h2>Life is Made of Futile Tries</h2>
-<p>OK,  before anything, we need to give a try:</p>
+<h2>Before Anything else...</h2>
+<p>OK, based on the previous challenges, we need to give a try:</p>
 <div class="highlight"><pre><span class="nv">$ </span>grep -r -l <span class="s2">&quot;key{&quot;</span>
 var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
 webroot.tar.bz2-extracted/var/www/html/wp-content/plugins/contact-form-7/includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css
@@ -253,18 +253,18 @@ secretspace.com.    285 IN  A   72.167.232.29
 
 
 <p>The IP 72.167.232.29  leads to another generic page with no hints and with nothing in special in the source code. Wrong direction...</p>
-<p>All right, let's give a last try and open the tables from the MySQL dump file inside a nice GUI. I use <a href="http://www.phpmyadmin.net/home_page/index.php">phpMyAdmin</a>, which I showed how to install and configure in my tutorial about setting up a <a href="https://coderwall.com/p/syyk0g?i=5&amp;p=1&amp;q=author%3Abt3gl&amp;t%5B%5D=bt3gl">LAMP server</a>.</p>
+<p>All right, let's give a last try and open the tables from the MySQL dump file inside a nice GUI. I use <a href="http://www.phpmyadmin.net/home_page/index.php">phpMyAdmin</a>, which I showed how to install and to configure in my tutorial about setting up a <a href="https://coderwall.com/p/syyk0g?i=5&amp;p=1&amp;q=author%3Abt3gl&amp;t%5B%5D=bt3gl">LAMP server</a>.</p>
 <p>We open <code>localhost/phpmyadmin</code> in our browser. First we go  to <em>Databases</em> and then <em>Create Database</em> with any name we want. Then we  <em>Import</em> <code>`mysql_backup.sql</code> to this database. All the tables are loaded. Let's use the <em>Search</em> option to look for <em>key</em> or <em>flag</em>.</p>
 <p><img alt="" src="http://i.imgur.com/tVOY1VJ.png" />
 <img alt="" src="http://i.imgur.com/jY7CbLZ.png" /></p>
 <p>Nope. Nothing in special. By the way, <code>`default_pingback_flag1</code> is just a <strong>Wordpress</strong> flag indicating the default status of ping backs when new blog posts are published.</p>
-<p>Continuing our search, if we look  inside each of the tables we find:</p>
+<p>Let's continue our search. If we look  inside each of the tables we find:</p>
 <ul>
 <li>
-<p>The URL for the <a href="http://ww17.blog.eyeheartfluffybunnies.com">blog</a>, which doesn't render. However, in the source code, there is a commented link that leads to a <a href="http://ww17.blog.eyeheartfluffybunnies.com/?fp=Tnxj5vWdcChO2G66EhCHHqSAdskqgQmZEbVQIh1DCmrgCyQjbeNsPhkvCpIUcP19mwOmcCS1hIeFb9Aj3%2FP4fw%3D%3D&amp;prvtof=RyfmkPY5YuWnUulUghSjPRX510XSb9C0HJ2xsUn%2Fd3Q%3D&amp;poru=jcHIwHNMXYtWvhsucEK%2BtSMzUepfq46Tam%2BwGZBSFMjZiV2p3eqdw8zpPiLr76ixCoirz%2FR955vowRxEMBO%2FoQ%3D%3D&amp;cifr=1&amp;%22">cute website</a>. Nothing else.</p>
+<p>The URL for the <a href="http://ww17.blog.eyeheartfluffybunnies.com">blog</a>, which doesn't render. However, in the source code there is a commented link that leads to a <a href="http://ww17.blog.eyeheartfluffybunnies.com/?fp=Tnxj5vWdcChO2G66EhCHHqSAdskqgQmZEbVQIh1DCmrgCyQjbeNsPhkvCpIUcP19mwOmcCS1hIeFb9Aj3%2FP4fw%3D%3D&amp;prvtof=RyfmkPY5YuWnUulUghSjPRX510XSb9C0HJ2xsUn%2Fd3Q%3D&amp;poru=jcHIwHNMXYtWvhsucEK%2BtSMzUepfq46Tam%2BwGZBSFMjZiV2p3eqdw8zpPiLr76ixCoirz%2FR955vowRxEMBO%2FoQ%3D%3D&amp;cifr=1&amp;%22">cute website</a>. Nothing else.</p>
 </li>
 <li>
-<p>A hashed password!
+<p>Oh, wait! We found a hashed password!
 <img alt="" src="http://i.imgur.com/FiQONze.png" /></p>
 </li>
 </ul>
@@ -286,7 +286,7 @@ secretspace.com.    285 IN  A   72.167.232.29
 </pre></div>
 
 
-<p>If this is not the case, this is an example for you (it's allways good to have several lists!):</p>
+<p>If not, this is an example for you (it's always good to have several lists!):</p>
 <div class="highlight"><pre><span class="nv">$ </span>wget http://www.scovetta.com/download/500_passwords.txt
 <span class="nv">$ </span>head 500_passwords.txt
 123456
@@ -367,7 +367,7 @@ Stopped: Thu Sep 25 18:25:50 2014
 <p>It worked! Our password is <strong>fluffybunnies</strong>!</p>
 <p>All right, this is a very silly password! It could be easily guessed. If you were the attacker, wouldn't you try this as the first option? OK, maybe right after <em>password</em> and <em>123456</em>... :)</p>
 <h4>What we have so far</h4>
-<p>All we have learned from this file was:</p>
+<p>All we have learned from the MySQL dump file was:</p>
 <ul>
 <li>
 <p>the attacker's motivation,</p>
@@ -676,53 +676,13 @@ obj 8 0
 
 <li class="nav-header"><h4>Tags</h4></li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pdftotext.html">
-        <i class="icon-tag icon-large"></i>pdftotext
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ftp.html">
-        <i class="icon-tag icon-large"></i>FTP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
-        <i class="icon-tag icon-large"></i>uncompyle2
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
     </a>
 </li>
 <li class="tag-4">
     <a href="http://bt3gl.github.io/tag/hashcat.html">
         <i class="icon-tag icon-large"></i>hashcat
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
     </a>
 </li>
 <li class="tag-1">
@@ -731,38 +691,8 @@ obj 8 0
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/lamp.html">
-        <i class="icon-tag icon-large"></i>LAMP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/javascript.html">
-        <i class="icon-tag icon-large"></i>JavaScript
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pygenere.html">
-        <i class="icon-tag icon-large"></i>pygenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/telnet.html">
-        <i class="icon-tag icon-large"></i>telnet
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
-        <i class="icon-tag icon-large"></i>pdf-parser
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/chaosreader.html">
-        <i class="icon-tag icon-large"></i>Chaosreader
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/readelf.html">
-        <i class="icon-tag icon-large"></i>readelf
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
     </a>
 </li>
 <li class="tag-4">
@@ -771,8 +701,43 @@ obj 8 0
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
     </a>
 </li>
 <li class="tag-4">
@@ -781,8 +746,43 @@ obj 8 0
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/qpdf.html">
-        <i class="icon-tag icon-large"></i>qpdf
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
     </a>
 </li>
 
