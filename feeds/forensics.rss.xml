@@ -649,7 +649,6 @@ flag&lt;span class="o"&gt;{&lt;/span&gt;security_through_obscurity&lt;span class
 &lt;p&gt;Written by marc&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://ctf.isis.poly.edu/static/uploads/606580b079e73e14ab2751e35d22ad44/firefox.mem.zip"&gt;firefox.mem.zip&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;hr /&gt;
 &lt;h2&gt;Unziping firefox.mem.zip&lt;/h2&gt;
 &lt;p&gt;The given file has a funny extension &lt;em&gt;.mem.zip&lt;/em&gt;. Before we go ahead and unzip it, let's try to learn more about this file. To do this we choose to use the Linux's command &lt;a href="http://en.wikipedia.org/wiki/File_(command)"&gt;file&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;file --help
