@@ -508,7 +508,7 @@ obj 8 0
 
 
 &lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt;That's it! Hack all the things!&lt;/strong&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="CSAW"></category><category term="hashcat"></category><category term="pdf-parser"></category><category term="qpdf"></category><category term="LAMP"></category><category term="JS"></category></entry><entry><title>The Sharif University CTF 2014</title><link href="http://bt3gl.github.io/the-sharif-university-ctf-2014.html" rel="alternate"></link><updated>2014-09-26T04:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-26:the-sharif-university-ctf-2014.html</id><summary type="html">&lt;p&gt;It looked like a fun CTF, but I did not have the chance to play for too long. I managed to solve a few problems in the morning and the solutions are bellow:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;That's it! Hack all the things!&lt;/strong&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="CSAW"></category><category term="hashcat"></category><category term="pdf-parser"></category><category term="qpdf"></category><category term="LAMP"></category><category term="JS"></category></entry><entry><title>The Sharif University CTF 2014</title><link href="http://bt3gl.github.io/the-sharif-university-ctf-2014.html" rel="alternate"></link><updated>2014-09-26T04:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-26:the-sharif-university-ctf-2014.html</id><summary type="html">&lt;p&gt;It looked like a fun CTF, but I did not have the chance to play for too long. I managed to solve a few problems in the morning and the solutions are bellow.&lt;/p&gt;
 &lt;h2&gt;Avatar: Steganography&lt;/h2&gt;
 &lt;p&gt;The challenge starts with:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -516,14 +516,14 @@ obj 8 0
 &lt;/blockquote&gt;
 &lt;p&gt;And the following image:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/6NIu64us.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;For this problem, I use &lt;a href="http://www.outguess.org/download.php"&gt;OutGuess&lt;/a&gt;, which can be installed as bellow:&lt;/p&gt;
+&lt;p&gt;For this problem, I use &lt;a href="http://www.outguess.org/download.php"&gt;OutGuess&lt;/a&gt;, which can be installed as:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tar -zxvf outguess-0.2.tar.gz
 &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;outguess
 &lt;span class="nv"&gt;$ &lt;/span&gt;./configure &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; make
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Running it, give our flag:&lt;/p&gt;
+&lt;p&gt;Running it will give us the flag:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./outguess -r lamb.jpg pass.txt
 Reading ../lamb.jpg....
 Extracting usable bits:   28734 bits
@@ -535,14 +535,14 @@ We should blow up the bridge at midnight
 
 &lt;hr /&gt;
 &lt;h2&gt;What is this: Steganography&lt;/h2&gt;
-&lt;p&gt;This problem only says:&lt;/p&gt;
+&lt;p&gt;This challenge has a very short text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Find the flag.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;And then give us two pictures:&lt;/p&gt;
+&lt;p&gt;Together with two pictures:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/sbSwBju.jpg" /&gt;
 &lt;img alt="" src="http://i.imgur.com/mpcIKWt.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;After the usual inspection (tail, file, diff, compare), I used my knowledge of a former astrophysicist to inspect what would happen if I added or subtracted them. I wrote the following script:&lt;/p&gt;
+&lt;p&gt;After the usual inspection (tail, file, diff, compare), I applied my knowledge of a former astrophysicist to inspect what would happen if I added or subtracted the picture. I wrote the following script:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy.misc&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;imread&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;imsave&lt;/span&gt;
@@ -569,8 +569,8 @@ We should blow up the bridge at midnight
 &lt;blockquote&gt;
 &lt;p&gt;Guess the number and find the flag.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;The problem gives us a &lt;em&gt;java class&lt;/em&gt; file. It was clear that we needed decompile it. I'm using
-[jad]: http://varaneckas.com/jad/ for this task:&lt;/p&gt;
+&lt;p&gt;Then it gives us a &lt;em&gt;java class&lt;/em&gt; file. It was clear that we needed to decompile it. I'm using
+&lt;a href="http://varaneckas.com/jad/"&gt;jad&lt;/a&gt;for this task:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;jad guess.class
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -603,9 +603,10 @@ We should blow up the bridge at midnight
 &lt;blockquote&gt;
 &lt;p&gt;Row Major Order&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;And it gives us two pictures, a map and a sudoku. Solving the sudoku leads to the flag:&lt;/p&gt;
+&lt;p&gt;And it gives us two pictures: a map and a sudoku. Solving the sudoku leads to the flag:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/nNMm64M.png" /&gt;
-&lt;img alt="" src="http://i.imgur.com/1IXD8tIs.png" /&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="Steganography"></category><category term="jad"></category></entry><entry><title>CSAW CTF 2014 - Crypto 200: "psifer school"</title><link href="http://bt3gl.github.io/csaw-ctf-2014-crypto-200-psifer-school.html" rel="alternate"></link><updated>2014-09-22T10:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-22:csaw-ctf-2014-crypto-200-psifer-school.html</id><summary type="html">&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
+&lt;img alt="" src="http://i.imgur.com/1IXD8tIs.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; Hack all the things! &lt;/strong&gt;&lt;/p&gt;</summary><category term="CTF"></category><category term="Steganography"></category><category term="jad"></category><category term="OutGuess"></category></entry><entry><title>CSAW CTF 2014 - Crypto 200: "psifer school"</title><link href="http://bt3gl.github.io/csaw-ctf-2014-crypto-200-psifer-school.html" rel="alternate"></link><updated>2014-09-22T10:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-22:csaw-ctf-2014-crypto-200-psifer-school.html</id><summary type="html">&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
 &lt;p&gt;The problem starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;There's no heartbleed here. Why don't we use these ciphers?&lt;/p&gt;

@@ -106,8 +106,9 @@
 	<a href="./tag/ctf.html"><i class="icon-tag"></i>CTF</a>
 	<a href="./tag/steganography.html"><i class="icon-tag"></i>Steganography</a>
 	<a href="./tag/jad.html"><i class="icon-tag"></i>jad</a>
+	<a href="./tag/outguess.html"><i class="icon-tag"></i>OutGuess</a>
 </footer><!-- /.post-info -->                </div>
-                <p>It looked like a fun CTF, but I did not have the chance to play for too long. I managed to solve a few problems in the morning and the solutions are bellow:</p>
+                <p>It looked like a fun CTF, but I did not have the chance to play for too long. I managed to solve a few problems in the morning and the solutions are bellow.</p>
 <h2>Avatar: Steganography</h2>
 <p>The challenge starts with:</p>
 <blockquote>
@@ -115,14 +116,14 @@
 </blockquote>
 <p>And the following image:</p>
 <p><img alt="" src="http://i.imgur.com/6NIu64us.jpg" /></p>
-<p>For this problem, I use <a href="http://www.outguess.org/download.php">OutGuess</a>, which can be installed as bellow:</p>
+<p>For this problem, I use <a href="http://www.outguess.org/download.php">OutGuess</a>, which can be installed as:</p>
 <div class="highlight"><pre><span class="nv">$ </span>tar -zxvf outguess-0.2.tar.gz
 <span class="nv">$ </span><span class="nb">cd </span>outguess
 <span class="nv">$ </span>./configure <span class="o">&amp;&amp;</span> make
 </pre></div>
 
 
-<p>Running it, give our flag:</p>
+<p>Running it will give us the flag:</p>
 <div class="highlight"><pre><span class="nv">$ </span>./outguess -r lamb.jpg pass.txt
 Reading ../lamb.jpg....
 Extracting usable bits:   28734 bits
@@ -134,14 +135,14 @@ We should blow up the bridge at midnight
 
 <hr />
 <h2>What is this: Steganography</h2>
-<p>This problem only says:</p>
+<p>This challenge has a very short text:</p>
 <blockquote>
 <p>Find the flag.</p>
 </blockquote>
-<p>And then give us two pictures:</p>
+<p>Together with two pictures:</p>
 <p><img alt="" src="http://i.imgur.com/sbSwBju.jpg" />
 <img alt="" src="http://i.imgur.com/mpcIKWt.jpg" /></p>
-<p>After the usual inspection (tail, file, diff, compare), I used my knowledge of a former astrophysicist to inspect what would happen if I added or subtracted them. I wrote the following script:</p>
+<p>After the usual inspection (tail, file, diff, compare), I applied my knowledge of a former astrophysicist to inspect what would happen if I added or subtracted the picture. I wrote the following script:</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">from</span> <span class="nn">scipy.misc</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imsave</span>
@@ -168,8 +169,8 @@ We should blow up the bridge at midnight
 <blockquote>
 <p>Guess the number and find the flag.</p>
 </blockquote>
-<p>The problem gives us a <em>java class</em> file. It was clear that we needed decompile it. I'm using
-[jad]: http://varaneckas.com/jad/ for this task:</p>
+<p>Then it gives us a <em>java class</em> file. It was clear that we needed to decompile it. I'm using
+<a href="http://varaneckas.com/jad/">jad</a>for this task:</p>
 <div class="highlight"><pre><span class="nv">$ </span>jad guess.class
 </pre></div>
 
@@ -202,9 +203,10 @@ We should blow up the bridge at midnight
 <blockquote>
 <p>Row Major Order</p>
 </blockquote>
-<p>And it gives us two pictures, a map and a sudoku. Solving the sudoku leads to the flag:</p>
+<p>And it gives us two pictures: a map and a sudoku. Solving the sudoku leads to the flag:</p>
 <p><img alt="" src="http://i.imgur.com/nNMm64M.png" />
 <img alt="" src="http://i.imgur.com/1IXD8tIs.png" /></p>
+<p><strong> Hack all the things! </strong></p>
                 </div><!-- /.entry-content -->
         </article>
 </section>
@@ -241,28 +243,8 @@ We should blow up the bridge at midnight
 
 <li class="nav-header"><h4>Tags</h4></li>
 <li class="tag-4">
-    <a href="./tag/reverse-engineering.html">
-        <i class="icon-tag icon-large"></i>Reverse Engineering
-    </a>
-</li>
-<li class="tag-4">
     <a href="./tag/pdf-parser.html">
         <i class="icon-tag icon-large"></i>pdf-parser
-    </a>
-</li>
-<li class="tag-3">
-    <a href="./tag/forensics.html">
-        <i class="icon-tag icon-large"></i>Forensics
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/lamp.html">
-        <i class="icon-tag icon-large"></i>LAMP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
     </a>
 </li>
 <li class="tag-4">
@@ -271,13 +253,18 @@ We should blow up the bridge at midnight
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/socket.html">
-        <i class="icon-tag icon-large"></i>socket
+    <a href="./tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
+    <a href="./tag/reverse-engineering.html">
+        <i class="icon-tag icon-large"></i>Reverse Engineering
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
     </a>
 </li>
 <li class="tag-1">
@@ -286,38 +273,18 @@ We should blow up the bridge at midnight
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
+    <a href="./tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/hashcat.html">
-        <i class="icon-tag icon-large"></i>hashcat
+    <a href="./tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
     </a>
 </li>
 <li class="tag-4">
     <a href="./tag/telnet.html">
         <i class="icon-tag icon-large"></i>telnet
-    </a>
-</li>
-<li class="tag-1">
-    <a href="./tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/networking.html">
-        <i class="icon-tag icon-large"></i>Networking
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/pygenere.html">
-        <i class="icon-tag icon-large"></i>pygenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
     </a>
 </li>
 <li class="tag-4">
@@ -326,13 +293,53 @@ We should blow up the bridge at midnight
     </a>
 </li>
 <li class="tag-4">
+    <a href="./tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-1">
+    <a href="./tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-3">
+    <a href="./tag/forensics.html">
+        <i class="icon-tag icon-large"></i>Forensics
+    </a>
+</li>
+<li class="tag-4">
     <a href="./tag/js.html">
         <i class="icon-tag icon-large"></i>JS
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/ftp.html">
-        <i class="icon-tag icon-large"></i>FTP
+    <a href="./tag/networking.html">
+        <i class="icon-tag icon-large"></i>Networking
     </a>
 </li>
 
