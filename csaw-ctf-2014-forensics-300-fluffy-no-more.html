@@ -386,7 +386,7 @@ Stopped: Thu Sep 25 18:25:50 2014
 <p>Let's move on.</p>
 <hr />
 <h2>Inspecting /var/logs/apache2</h2>
-<p>The next item in the list is log inspection. We need to choose it wisely, there are many of them:</p>
+<p>The next item in the list is log inspection. We need wisely choose where to start because there are many of them:</p>
 <div class="highlight"><pre><span class="nv">$ </span>find . -type f  -name <span class="s1">&#39;*.log&#39;</span>
 ./apache2/error.log
 ./apache2/access.log
@@ -423,11 +423,11 @@ Stopped: Thu Sep 25 18:25:50 2014
 </pre></div>
 
 
-<p>If there is any important information in the log files, it should appears in the end, because the attack should be one of the last things that were logged.</p>
-<p><a href="http://en.wikipedia.org/wiki/Tail_(Unix)">Tailing</a> the <em>apache</em> logs did not reveal anything useful. Maybe it is interesting to know that we see the IP <em>192.168.127.137</em> in the file <em>/apache2/access.log</em>, which belongs to <em>MASTER OF DISASTER</em> (see above). So <em>hacker</em> was not the attacker?</p>
+<p>We start with the Apache's log, because they carry the connection information. If there is any important information in the log files, it should appears in the end, because the attack should be one of the last things that were logged.</p>
+<p>It turned out that <a href="http://en.wikipedia.org/wiki/Tail_(Unix)">Tailing</a> the <em>apache</em> logs did not reveal anything useful. Maybe it is interesting to know that we see the IP <em>192.168.127.137</em> in the file <em>/apache2/access.log</em> (which belongs to <em>MASTER OF DISASTER</em>, as we see above, so <em>hacker</em> might not be the only attacker...). But we don't have anything really helpful.</p>
 <hr />
 <h2>Inspecting var/logs/auth.log</h2>
-<p>Now, considering that the password <strong>fluffybunnies</strong> was very easy to guess, we are going to take a leap and suppose that this was how the attack was crafted.</p>
+<p>Considering that the password <strong>fluffybunnies</strong> was very easy to guess, we are going to take a leap and suppose that this was how the attack was crafted.</p>
 <p>Tailing <code>auth.log</code> shows something interesting:</p>
 <div class="highlight"><pre>Sep 17 19:18:53 ubuntu sudo:   ubuntu : <span class="nv">TTY</span><span class="o">=</span>pts/0 ; <span class="nv">PWD</span><span class="o">=</span>/home/ubuntu/CSAW2014-WordPress/var/www ; <span class="nv">USER</span><span class="o">=</span>root ; <span class="nv">COMMAND</span><span class="o">=</span>/bin/chmod -R 775 /var/www/
 Sep 17 19:20:09 ubuntu sudo:   ubuntu : <span class="nv">TTY</span><span class="o">=</span>pts/0 ; <span class="nv">PWD</span><span class="o">=</span>/home/ubuntu/CSAW2014-WordPress/var/www ; <span class="nv">USER</span><span class="o">=</span>root ; <span class="nv">COMMAND</span><span class="o">=</span>/usr/bin/vi /var/www/html/wp-content/themes/twentythirteen/js/html5.js
@@ -675,64 +675,9 @@ obj 8 0
 <br>
 
 <li class="nav-header"><h4>Tags</h4></li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pygenere.html">
-        <i class="icon-tag icon-large"></i>pygenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hashcat.html">
-        <i class="icon-tag icon-large"></i>hashcat
-    </a>
-</li>
 <li class="tag-1">
     <a href="http://bt3gl.github.io/tag/csaw.html">
         <i class="icon-tag icon-large"></i>CSAW
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/socket.html">
-        <i class="icon-tag icon-large"></i>socket
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/qpdf.html">
-        <i class="icon-tag icon-large"></i>qpdf
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/javascript.html">
-        <i class="icon-tag icon-large"></i>JavaScript
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/telnet.html">
-        <i class="icon-tag icon-large"></i>telnet
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
-        <i class="icon-tag icon-large"></i>uncompyle2
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/chaosreader.html">
-        <i class="icon-tag icon-large"></i>Chaosreader
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
     </a>
 </li>
 <li class="tag-4">
@@ -741,23 +686,13 @@ obj 8 0
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/outguess.html">
-        <i class="icon-tag icon-large"></i>OutGuess
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
-    </a>
-</li>
-<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/ftp.html">
         <i class="icon-tag icon-large"></i>FTP
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
+    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
     </a>
 </li>
 <li class="tag-3">
@@ -765,9 +700,59 @@ obj 8 0
         <i class="icon-tag icon-large"></i>Wireshark
     </a>
 </li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
 <li class="tag-3">
     <a href="http://bt3gl.github.io/tag/pdf-parser.html">
         <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
     </a>
 </li>
 <li class="tag-4">
@@ -776,13 +761,28 @@ obj 8 0
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pdftotext.html">
-        <i class="icon-tag icon-large"></i>pdftotext
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
     </a>
 </li>
 
