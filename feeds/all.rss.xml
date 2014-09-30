@@ -261,7 +261,7 @@ ssh &lt;span class="nv"&gt;$server&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;
 &lt;p&gt;If you are running production systems that don't need exported functions at all, take a look at &lt;a href="https://github.com/dlitz/bash-shellshock"&gt;this wrapper&lt;/a&gt; that refuses to run bash if any environment variable's value starts with a left-parent.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4&gt;&lt;a href="soon"&gt;Want to learn even more? Check  Part II&lt;/a&gt;.&lt;/h4&gt;
+&lt;h4&gt;&lt;a href=""&gt;Want to learn even more? Check  Part II&lt;/a&gt;.&lt;/h4&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Some  References&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://stephane.chazelas.free.fr"&gt;http://stephane.chazelas.free.fr/&lt;/a&gt;&lt;/p&gt;
