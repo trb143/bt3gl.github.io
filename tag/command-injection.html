@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>High Bytes by bt3gl - Networking</title>
+    <title>High Bytes by bt3gl - Command Injection</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="bt3gl">
@@ -87,31 +87,25 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
-                <h1><a href="http://bt3gl.github.io/csaw-ctf-2014-networking-100-big-data.html">CSAW CTF 2014 - Networking 100: "Big Data"</a></h1>
+                <h1><a href="http://bt3gl.github.io/understanding-the-shellshock-vulnerability-part-i.html">Understanding the Shellshock Vulnerability - Part I</a></h1>
                 <div class="well small"><footer class="post-info">
-<abbr class="published" title="2014-09-22T08:20:00">
-      Mon 22 September 2014 </abbr>
+<abbr class="published" title="2014-09-30T05:21:00">
+      Tue 30 September 2014 </abbr>
 
 <span class="label"> Category</span>
-<a href="http://bt3gl.github.io/category/networking.html"><i class="icon-folder-open"></i>Networking</a>
+<a href="http://bt3gl.github.io/category/vulnerabilities.html"><i class="icon-folder-open"></i>Vulnerabilities</a>
 
 
 <span class="label">Tags</span>
-	<a href="http://bt3gl.github.io/tag/ctf.html"><i class="icon-tag"></i>CTF</a>
-	<a href="http://bt3gl.github.io/tag/csaw.html"><i class="icon-tag"></i>CSAW</a>
-	<a href="http://bt3gl.github.io/tag/wireshark.html"><i class="icon-tag"></i>Wireshark</a>
-	<a href="http://bt3gl.github.io/tag/chaosreader.html"><i class="icon-tag"></i>Chaosreader</a>
+	<a href="http://bt3gl.github.io/tag/shellshock.html"><i class="icon-tag"></i>Shellshock</a>
+	<a href="http://bt3gl.github.io/tag/bash.html"><i class="icon-tag"></i>Bash</a>
+	<a href="http://bt3gl.github.io/tag/command-injection.html"><i class="icon-tag"></i>Command Injection</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p>This is the only networking problem, and it is only 100 points, so it turned out to be very easy.</p>
-<p>The problem starts with the following text:</p>
-<blockquote>
-<p>Something, something, data, something, something, big</p>
-<p>Written by HockeyInJune</p>
-<p><a href="https://github.com/ctfs/write-ups/blob/master/csaw-ctf-2014/big-data/pcap.pcapng">pcap.pcapng</a></p>
-</blockquote>
-<h2>Inspecting the Wireshark File</h2>
-<p>The file extension <a href="https://appliance.cloudshark.org/blog/5-reasons-to-move-to-pcapng/">.pcapng</a> correspond to files for ...</p>
-                        <a class="btn primary xsmall" href="http://bt3gl.github.io/csaw-ctf-2014-networking-100-big-data.html">more ...</a>
+                <div class="summary"><p><img alt="" src="http://i.imgur.com/kjkWTWV.png" /></p>
+<p>Almost a week ago, a new (<a href="http://blog.erratasec.com/2014/09/shellshock-is-20-years-old-get-off-my.html">old</a>) type of <a href="http://cwe.mitre.org/data/definitions/78.html">OS command Injection</a> was reported. The <a href="http://cwe.mitre.org/index.html">CWE (Common Weakness Enumeration)</a> describes this type of vulnerability as:</p>
+<div class="highlight"><pre>    <span class="o">&gt;</span> <span class="p">(...)</span> <span class="n">The</span> <span class="n">software</span> <span class="n">constructs</span> <span class="n">all</span> <span class="n">or</span> <span class="n">part</span> <span class="n">of</span> <span class="n">an</span> <span class="n">OS</span> <span class="n">command</span> <span class="n">using</span> <span class="n">externally</span><span class="o">-</span><span class="n">influenced</span>
+    <span class="o">&gt;</span> <span class="n">input</span> <span class="n">from</span> <span class="n">an</span> <span class="n">upstream</span> <span class="n">component</span><span class="p">,</span>  <span class="n">but</span> <span class="n">it</span> <span class="n">does</span> <span class="n">not</span> <span class="n">neutralize</span> <span class="n">or</span> <span class="n">incorrectly ...</span></pre></div>
+                        <a class="btn primary xsmall" href="http://bt3gl.github.io/understanding-the-shellshock-vulnerability-part-i.html">more ...</a>
                 </div>
         </div>
         <hr />
