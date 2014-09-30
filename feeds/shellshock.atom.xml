@@ -76,7 +76,7 @@ DESCRIPTION
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Of course, there are &lt;a href="http://en.wikipedia.org/wiki/Comparison_of_command_shells"&gt;other command shells out there&lt;/a&gt;. However, Bash is the default shell for most of the Linux systems (and Linux-based systems), including any Debian-based and Red Hat &amp;amp; Fedora.&lt;/p&gt;
+&lt;p&gt;Of course, there are &lt;a href="http://en.wikipedia.org/wiki/Comparison_of_command_shells"&gt;other command shells out there&lt;/a&gt;. However, Bash is the default shell for most of the Linux systems (and Linux-based systems), including many Debian-based distributions and the Red Hat &amp;amp; Fedora &amp;amp; CentOS combo.&lt;/p&gt;
 &lt;h3&gt;Functions in Bash&lt;/h3&gt;
 &lt;p&gt;The interesting stuff comes from the fact that Bash  is also a scripting language, with the ability to define functions. This is super useful when you are writing scripts. For example, &lt;code&gt;hello.sh&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
