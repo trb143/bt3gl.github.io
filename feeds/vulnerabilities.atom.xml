@@ -176,7 +176,7 @@ file.txt:bash can be dangerous
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Since the things we added are strange when parsed to the command &lt;code&gt;grep&lt;/code&gt;, it won't understand them.&lt;/p&gt;
+&lt;p&gt;Since the things we added are strange when parsed to the command &lt;code&gt;grep&lt;/code&gt;, it won't understand them. But did you notice the confusion? &lt;em&gt;Both&lt;/em&gt; matches and non-matches were printed! Ugh...&lt;/p&gt;
 &lt;p&gt;Now, what if we add some stuff after the function?&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;GREP_OPTIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;() { :;}; echo NOOOOOOOOOOOOOOO!&amp;#39;&lt;/span&gt; bash -c &lt;span class="s1"&gt;&amp;#39;grep fun file.txt&amp;#39;&lt;/span&gt;
 NOOOOOOOOOOOOOOO!
