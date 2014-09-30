@@ -138,7 +138,7 @@ Bash is actually Fun
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;To update or create a new environment variable it is not enough to use the Bash syntax &lt;code&gt;GREP_OPTIONS='-v'&lt;/code&gt;, but instead we  need to call the &lt;em&gt;builtin&lt;/em&gt; &lt;code&gt;export&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;To update or create a new environment variable, it is not enough to use the Bash syntax &lt;code&gt;GREP_OPTIONS='-v'&lt;/code&gt;, but instead we  need to call the &lt;em&gt;builtin&lt;/em&gt; &lt;code&gt;export&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ GREP_OPTIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-v&amp;#39;&lt;/span&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;grep fun file.txt
  bash can be super fun
