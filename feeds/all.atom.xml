@@ -175,7 +175,7 @@ grep: fun: No such file or directory
 
 
 &lt;p&gt;Since the things we added are strange when parsed to the command &lt;code&gt;grep&lt;/code&gt;, it won't understand them.&lt;/p&gt;
-&lt;p&gt;If we add stuff &lt;em&gt;after&lt;/em&gt; the function, things start to get weirder:&lt;/p&gt;
+&lt;p&gt;What if we add stuff &lt;em&gt;after&lt;/em&gt; the function? Things start to get weirder:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;GREP_OPTIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-v () { :;}; echo NOOOOOOOOOOOOOOO!&amp;#39;&lt;/span&gt; bash -c &lt;span class="s1"&gt;&amp;#39;grep fun file.txt&amp;#39;&lt;/span&gt;
 grep: &lt;span class="o"&gt;{&lt;/span&gt;: No such file or directory
 grep: :;&lt;span class="o"&gt;}&lt;/span&gt;;: No such file or directory
