@@ -249,7 +249,7 @@ ssh &lt;span class="nv"&gt;$server&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;
 
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Update firmware on your router or any other web-enabled devices, as soon as they become available. Remember  to only download patches  from reputable sites, since scammers will likely try to take advantage of Shellshock reports.&lt;/p&gt;
+&lt;p&gt;Update firmware on your router or any other web-enabled devices, as soon as they become available. Remember  to only download patches  from reputable sites (only HTTPS please!), since scammers will likely try to take advantage of Shellshock reports.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;If you are on a managed hosting subscription, check your company's status. For example: &lt;a href="https://docs.acquia.com/articles/september-2014-gnu-bash-upstream-security-vulnerability"&gt;Acquia&lt;/a&gt;, &lt;a href="https://status.heroku.com/incidents/665"&gt;Heroku&lt;/a&gt;, &lt;a href="http://status.mediatemple.net/"&gt;Mediatemple&lt;/a&gt;, and &lt;a href="https://status.rackspace.com/"&gt;Rackspace&lt;/a&gt;.&lt;/p&gt;
