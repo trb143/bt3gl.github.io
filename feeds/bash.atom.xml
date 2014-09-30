@@ -240,7 +240,7 @@ ssh &lt;span class="nv"&gt;$server&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;
 &lt;p&gt;Because the HTTP requests used by Shellshock exploits are quite unique, monitor logs with keywords such as &lt;code&gt;grep '() {'  access_log&lt;/code&gt;or &lt;code&gt;cat access_log |grep "{ :;};"&lt;/code&gt;. Some common places for http logs are: &lt;code&gt;cPanel: /usr/local/apache/domlogs/&lt;/code&gt;, &lt;code&gt;Debian/Apache: /var/log/apache2/&lt;/code&gt;, or &lt;code&gt;CentOS: /var/log/httpd/&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;If case of an attack, you can get the attacker's IP, you can use &lt;a href="http://www.grymoire.com/Unix/Awk.html"&gt;awk&lt;/a&gt;  and  &lt;a href="http://en.wikipedia.org/wiki/Uniq"&gt;uniq&lt;/a&gt; (where &lt;em&gt;print $1&lt;/em&gt; means print the first column):&lt;/p&gt;
+&lt;p&gt;If case of an attack, publish the attacker's information! You can use &lt;a href="http://www.grymoire.com/Unix/Awk.html"&gt;awk&lt;/a&gt;  and  &lt;a href="http://en.wikipedia.org/wiki/Uniq"&gt;uniq&lt;/a&gt; (where &lt;em&gt;print $1&lt;/em&gt; means print the first column) to get its IP, for example:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat log_file |grep &lt;span class="s2"&gt;&amp;quot;{ :;};&amp;quot;&lt;/span&gt; | awk &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;|uniq
