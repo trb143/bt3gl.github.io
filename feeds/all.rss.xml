@@ -189,7 +189,7 @@ grep: fun: No such file or directory
 
 &lt;p&gt;Did you notice that &lt;code&gt;echo NOOOOOOOOOOOOOOO!&lt;/code&gt; was executed normally? &lt;strong&gt;This is the Shellshock bug!&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This works because when the new shell sees an environment variable beginning with &lt;code&gt;()&lt;/code&gt;, it gets the variable name and executes the following string. This  includes executing anything after the function, &lt;em&gt;i.e&lt;/em&gt;, the evaluation does not stop when the end of the function definition is reached!&lt;/p&gt;
-&lt;p&gt;Remember that &lt;code&gt;echo&lt;/code&gt; is not the only thing we can do. The possibilities are unlimited! For example, we can issue any &lt;code&gt;/bin/&lt;/code&gt; command:&lt;/p&gt;
+&lt;p&gt;Remember that &lt;code&gt;echo&lt;/code&gt; is not the only thing we can do. The possibilities are unlimited! For example, we can issue any &lt;code&gt;/bin&lt;/code&gt; command:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;GREP_OPTIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;() { :;}; /bin/ls&amp;#39;&lt;/span&gt; bash -c &lt;span class="s1"&gt;&amp;#39;grep fun file.txt&amp;#39;&lt;/span&gt;
 anaconda  certificates  file.txt  IPython
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
@@ -203,7 +203,7 @@ STILL NOOOOOOOO!!!!
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;code&gt;env&lt;/code&gt; runs a command with a given variable set (test) to some function (in this case is just a single &lt;code&gt;:&lt;/code&gt;, a Bash command defined as doing nothing). The semi-colon signals the end of the function definition. Again, the bug is in the fact that there's nothing stopping the parsing of what is after the semi-colon!&lt;/p&gt;
+&lt;p&gt;In the example above, &lt;code&gt;env&lt;/code&gt; runs a command with a given variable set (test) to some function (in this case is just a single &lt;code&gt;:&lt;/code&gt;, a Bash command defined as doing nothing). The semi-colon signals the end of the function definition. Again, the bug is in the fact that there's nothing stopping the parsing of what is after the semi-colon!&lt;/p&gt;
 &lt;p&gt;Now it's easy to see if your system is vulnerable, all you need to do is run:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;() { :;}; echo The system is vulnerable!&amp;#39;&lt;/span&gt; bash -c :
 &lt;/pre&gt;&lt;/div&gt;
