@@ -103,13 +103,13 @@ Bash is actually Fun
 
 
 &lt;h3&gt;Child Processes   and the  &lt;code&gt;export&lt;/code&gt;  command&lt;/h3&gt;
-&lt;p&gt;We can make things even more interesting. The statement &lt;code&gt;bash -c&lt;/code&gt; can be used to execute a new instance of Bash, as a subprocess,  to run new commands. The catch is that the child process does not inherit the function we defined in the parent:&lt;/p&gt;
+&lt;p&gt;We can make things even more interesting. The statement &lt;code&gt;bash -c&lt;/code&gt; can be used to execute a new instance of Bash, as a subprocess,  to run new commands. The catch is that the child process does not inherit the functions  or variables that we defined in the parent:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;bash -c bashiscool &lt;span class="c"&gt;# spawn nested shell&lt;/span&gt;
 bash: bashiscool: &lt;span class="nb"&gt;command &lt;/span&gt;not found
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;So before executing a new instance of Bash, we need to export the &lt;strong&gt;environment variables&lt;/strong&gt; to the child. For this we use the command &lt;code&gt;export&lt;/code&gt;. The flag &lt;code&gt;-f&lt;/code&gt; means &lt;em&gt;read key bindings from filename&lt;/em&gt;:&lt;/p&gt;
+&lt;p&gt;So before executing a new instance of Bash, we need to export the &lt;strong&gt;environment variables&lt;/strong&gt; to the child. That's why we need the &lt;code&gt;export&lt;/code&gt; command. In the example bellow, the flag &lt;code&gt;-f&lt;/code&gt; means &lt;em&gt;read key bindings from filename&lt;/em&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export&lt;/span&gt; -f bashiscool
 &lt;span class="nv"&gt;$ &lt;/span&gt;bash -c bashiscool &lt;span class="c"&gt;# spawn nested shell&lt;/span&gt;
 Bash is actually Fun
