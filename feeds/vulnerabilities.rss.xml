@@ -242,10 +242,13 @@ ssh &lt;span class="nv"&gt;$server&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;
 
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;HTTP requests to CGI scripts have been identified as the major attack vector (I will show more  details in the part II). If you are one of the two people who still use CGI, disable any  scripts that call on the shell (however, it does not fully mitigate the vulnerability). To check if your system is vulnerable you can use &lt;a href="http://milankragujevic.com/projects/shellshock/"&gt;this online scanner&lt;/a&gt;. Consider &lt;a href="https://www.modsecurity.org/"&gt;mod_security&lt;/a&gt; if you're not already using it.&lt;/p&gt;
+&lt;p&gt;Update firmware on your router or any other web-enabled devices, as soon as they become available. Remember  to only download patches  from reputable sites (only HTTPS please!), since scammers will likely try to take advantage of Shellshock reports.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Keep an eye on all of your accounts for signs of unusual activity. Consider changing important passwords.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HTTP requests to CGI scripts have been identified as the major attack vector (I will show more  details in the part II). If you are one of the two people who still use CGI, disable any  scripts that call on the shell (however, it does not fully mitigate the vulnerability). To check if your system is vulnerable you can use &lt;a href="http://milankragujevic.com/projects/shellshock/"&gt;this online scanner&lt;/a&gt;. Consider &lt;a href="https://www.modsecurity.org/"&gt;mod_security&lt;/a&gt; if you're not already using it.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Because the HTTP requests used by Shellshock exploits are quite unique, monitor logs with keywords such as &lt;code&gt;grep '() {'  access_log&lt;/code&gt;or &lt;code&gt;cat access_log |grep "{ :;};"&lt;/code&gt;. Some common places for http logs are: &lt;code&gt;cPanel: /usr/local/apache/domlogs/&lt;/code&gt;, &lt;code&gt;Debian/Apache: /var/log/apache2/&lt;/code&gt;, or &lt;code&gt;CentOS: /var/log/httpd/&lt;/code&gt;.&lt;/p&gt;
@@ -259,9 +262,6 @@ ssh &lt;span class="nv"&gt;$server&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;
 
 
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Update firmware on your router or any other web-enabled devices, as soon as they become available. Remember  to only download patches  from reputable sites (only HTTPS please!), since scammers will likely try to take advantage of Shellshock reports.&lt;/p&gt;
-&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;If you are on a managed hosting subscription, check your company's status. For example: &lt;a href="https://docs.acquia.com/articles/september-2014-gnu-bash-upstream-security-vulnerability"&gt;Acquia&lt;/a&gt;, &lt;a href="https://status.heroku.com/incidents/665"&gt;Heroku&lt;/a&gt;, &lt;a href="http://status.mediatemple.net/"&gt;Mediatemple&lt;/a&gt;, and &lt;a href="https://status.rackspace.com/"&gt;Rackspace&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
