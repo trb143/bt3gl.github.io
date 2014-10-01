@@ -188,7 +188,7 @@ file.txt:bash can be dangerous
 
 
 &lt;p&gt;Did you notice the confusion? &lt;em&gt;Both&lt;/em&gt; matches and non-matches were printed! It means that some stuff was parsed well, and some other was not. In doubt, Bash does &lt;em&gt;everything&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Now, what if we just week the function, taking out the only thing that makes sense, &lt;code&gt;-v&lt;/code&gt;?&lt;/p&gt;
+&lt;p&gt;Now, what if we just keep the function, taking out the only thing that makes sense, &lt;code&gt;-v&lt;/code&gt;?&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;GREP_OPTIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;() { :;}; echo NOOOOOOOOOOOOOOO!&amp;#39;&lt;/span&gt; bash -c &lt;span class="s1"&gt;&amp;#39;grep fun file.txt&amp;#39;&lt;/span&gt;
 NOOOOOOOOOOOOOOO!
 grep: &lt;span class="o"&gt;{&lt;/span&gt;: No such file or directory
