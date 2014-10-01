@@ -219,7 +219,7 @@ vulnerable
 &lt;p&gt;&lt;a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6277"&gt;CVE 2014-6277&lt;/a&gt; and &lt;a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6278"&gt;CVE 2014-6278&lt;/a&gt;: A couple of days ago, these new bugs were found by &lt;a href="http://lcamtuf.blogspot.de/2014/09/bash-bug-apply-unofficial-patch-now.html"&gt;Michal Zalewski&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Is Shellshock just a blip?&lt;/p&gt;
+&lt;p&gt;What you think, is Shellshock &lt;a href="http://blog.erratasec.com/2014/09/the-shockingly-bad-code-of-bash.html"&gt;just a blip&lt;/a&gt;?&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Suggestions to Protect Your System&lt;/h2&gt;
 &lt;p&gt;Several patches have been released since the Shellshock vulnerabilities were found. Although at this point they &lt;a href="https://securityblog.redhat.com/2014/09/24/bash-specially-crafted-environment-variables-code-injection-attack/"&gt;seem to solve most of the problem&lt;/a&gt;, bellow are some  recommendations to keep your system safer:&lt;/p&gt;
