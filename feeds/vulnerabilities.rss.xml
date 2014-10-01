@@ -214,7 +214,7 @@ STILL NOOOOOOOO!!!!
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In the example above, &lt;code&gt;env&lt;/code&gt; runs a command with an arbitrary  variable set (test) to some function (in this case is just a single &lt;code&gt;:&lt;/code&gt;, a Bash command defined as doing nothing). The semi-colon signals the end of the function definition. Again, the bug is in the fact that there's nothing stopping the parsing of what is after the semi-colon!&lt;/p&gt;
+&lt;p&gt;In the example above, &lt;code&gt;env&lt;/code&gt; runs a command with an arbitrary  variable  (test)  set to some function (in this case is just a single &lt;code&gt;:&lt;/code&gt;, a Bash command defined as doing nothing). The semi-colon signals the end of the function definition. Again, the bug is in the fact that there's nothing stopping the parsing of what is after the semi-colon!&lt;/p&gt;
 &lt;p&gt;Now it's easy to see if your system is vulnerable, all you need to do is run:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;() { :;}; echo The system is vulnerable!&amp;#39;&lt;/span&gt; bash -c :
 &lt;/pre&gt;&lt;/div&gt;
