@@ -199,7 +199,7 @@ grep: fun: No such file or directory
 
 
 &lt;p&gt;Did you notice that &lt;code&gt;echo NOOOOOOOOOOOOOOO!&lt;/code&gt; was executed normally? &lt;strong&gt;This is the Shellshock bug!&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This works because when the new shell sees an environment variable beginning with &lt;code&gt;()&lt;/code&gt;, it gets the variable name and executes the following string. This  includes executing anything after the function, &lt;em&gt;i.e&lt;/em&gt;, the evaluation does not stop when the end of the function definition is reached!&lt;/p&gt;
+&lt;p&gt;This works because when the new shell sees an environment variable beginning with &lt;code&gt;()&lt;/code&gt;, it gets the variable name and executes the  string following it. This  includes executing anything after the function, &lt;em&gt;i.e&lt;/em&gt;, the evaluation does not stop when the end of the function definition is reached!&lt;/p&gt;
 &lt;p&gt;Remember that &lt;code&gt;echo&lt;/code&gt; is not the only thing we can do. The possibilities are unlimited! For example, we can issue any &lt;code&gt;/bin&lt;/code&gt; command:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;GREP_OPTIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;() { :;}; /bin/ls&amp;#39;&lt;/span&gt; bash -c &lt;span class="s1"&gt;&amp;#39;grep fun file.txt&amp;#39;&lt;/span&gt;
 anaconda  certificates  file.txt  IPython
