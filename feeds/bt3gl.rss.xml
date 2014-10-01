@@ -118,7 +118,7 @@ Bash is actually Fun
 
 &lt;p&gt;In other words, first the &lt;code&gt;export&lt;/code&gt; command creates a &lt;strong&gt;regular environment variable&lt;/strong&gt; containing the function definition. Then, the second shell reads the environment. If it sees a variable that look like a function, it evaluates this function!&lt;/p&gt;
 &lt;h3&gt;A Simple Example of an Environment Variable&lt;/h3&gt;
-&lt;p&gt;Let's  see how environment variables work examining some builtin Bash command. For instance, a very popular one,  &lt;code&gt;grep&lt;/code&gt;, is used to search for pattern in files (or the standard input).&lt;/p&gt;
+&lt;p&gt;Let's  see how environment variables work examining some &lt;em&gt;builtin&lt;/em&gt; Bash command. For instance, a very popular one,  &lt;code&gt;grep&lt;/code&gt;, is used to search for pattern in files (or the standard input).&lt;/p&gt;
 &lt;p&gt;Running &lt;code&gt;grep&lt;/code&gt; in a file that contains the word 'fun' will return the line where this word is. Running &lt;code&gt;grep&lt;/code&gt; with a flag &lt;code&gt;-v&lt;/code&gt; will return the non-matching lines, &lt;em&gt;i.e.&lt;/em&gt; the lines where the word 'fun' does not appear:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;bash can be super fun&amp;#39;&lt;/span&gt; &amp;gt; file.txt
 &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;bash can be dangerous&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; file.txt
@@ -149,7 +149,7 @@ Bash is actually Fun
 
 
 &lt;h3&gt;The  &lt;code&gt;env&lt;/code&gt;  command&lt;/h3&gt;
-&lt;p&gt;Another Bash builtin, the &lt;code&gt;env&lt;/code&gt;  prints the environment variables. But it can also  be used to run a single command with an exported variable (or variables) given to that command. In this case, &lt;code&gt;env&lt;/code&gt; starts a new process, then it modifies the environment, and then it calls the command that was provided as an argument (the &lt;code&gt;env&lt;/code&gt; process is  replaced by the command process).&lt;/p&gt;
+&lt;p&gt;Another Bash &lt;em&gt;builtin&lt;/em&gt;, the &lt;code&gt;env&lt;/code&gt;  prints the environment variables. But it can also  be used to run a single command with an exported variable (or variables) given to that command. In this case, &lt;code&gt;env&lt;/code&gt; starts a new process, then it modifies the environment, and then it calls the command that was provided as an argument (the &lt;code&gt;env&lt;/code&gt; process is  replaced by the command process).&lt;/p&gt;
 &lt;p&gt;In practice, to use &lt;code&gt;env&lt;/code&gt;  to run commands, we:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="nx"&gt;set&lt;/span&gt; &lt;span class="nx"&gt;the&lt;/span&gt; &lt;span class="nx"&gt;environment&lt;/span&gt; &lt;span class="nx"&gt;variable&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt; &lt;span class="kd"&gt;with&lt;/span&gt; &lt;span class="nx"&gt;env&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="nx"&gt;spawn&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;shell&lt;/span&gt; &lt;span class="nx"&gt;using&lt;/span&gt; &lt;span class="nx"&gt;bash&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -272,7 +272,6 @@ ssh &lt;span class="nv"&gt;$server&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;
 &lt;p&gt;If you are running production systems that don't need exported functions at all, take a look at &lt;a href="https://github.com/dlitz/bash-shellshock"&gt;this wrapper&lt;/a&gt; that refuses to run bash if any environment variable's value starts with a left-parent.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4&gt;&lt;a href=""&gt;Want to learn even more? Check  Part II&lt;/a&gt;.&lt;/h4&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Further  References&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://stephane.chazelas.free.fr"&gt;http://stephane.chazelas.free.fr/&lt;/a&gt;&lt;/p&gt;
