@@ -222,9 +222,9 @@ vulnerable
 &lt;p&gt;What do you think, is Shellshock &lt;a href="http://blog.erratasec.com/2014/09/the-shockingly-bad-code-of-bash.html"&gt;just a blip&lt;/a&gt;?&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Suggestions to Protect Your System&lt;/h2&gt;
-&lt;p&gt;Several patches have been released since the Shellshock vulnerabilities were found. Although at this point they &lt;a href="https://securityblog.redhat.com/2014/09/24/bash-specially-crafted-environment-variables-code-injection-attack/"&gt;seem to solve most of the problem&lt;/a&gt;, bellow are some  recommendations to keep your system safer:&lt;/p&gt;
+&lt;p&gt;Several patches have been released since the Shellshock vulnerabilities were found. Although at this point they &lt;a href="https://securityblog.redhat.com/2014/09/24/bash-specially-crafted-environment-variables-code-injection-attack/"&gt;seem to solve most of the problem&lt;/a&gt;, below are some  recommendations to keep your system safer:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Update your system!  And keep updating it... Many Linux distributions have released new Bash software versions, so follow the instructions of your distribution. In most of the cases, a simple &lt;code&gt;yum update&lt;/code&gt; or &lt;code&gt;apt-get update&lt;/code&gt; or similar will do it. If you have several servers, the script bellow can be helpful:&lt;/li&gt;
+&lt;li&gt;Update your system!  And keep updating it... Many Linux distributions have released new Bash software versions, so follow the instructions of your distribution. In most of the cases, a simple &lt;code&gt;yum update&lt;/code&gt; or &lt;code&gt;apt-get update&lt;/code&gt; or similar will do it. If you have several servers, the script below can be helpful:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
 &lt;span class="nv"&gt;servers&lt;/span&gt;&lt;span class="o"&gt;=(&lt;/span&gt;
