@@ -1,5 +1,5 @@
 // **************************************************************//
-//              Marina Wahl - dev.mariwahl.us  - 2014            //
+//              bt3gl       - 2014                               //
 //                    GAME OF LIFE IN JAVASCRIPT                 //
 //                                                               //
 //    Rules:                                                     //
