@@ -34,22 +34,14 @@
 &lt;p&gt;To understand this vulnerability, we need to understand how Bash handles functions and environment variables.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="http://www.gnu.org/software/bash/"&gt;GNU Bourne Again shell (BASH)&lt;/a&gt; is a &lt;a href="http://en.wikipedia.org/wiki/Bash_(Unix_shell)"&gt;Unix shell&lt;/a&gt; and &lt;a href="http://en.wikipedia.org/wiki/Command-line_interface"&gt;command language interpreter&lt;/a&gt;. It was released in 1989  by &lt;a href="http://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)"&gt;Brian Fox&lt;/a&gt; for the &lt;a href="http://www.gnu.org/gnu/thegnuproject.html"&gt;GNU Project&lt;/a&gt; as a free software replacement for the &lt;a href="http://en.wikipedia.org/wiki/Bourne_shell"&gt;Bourne shell&lt;/a&gt; (which was born back in 1977).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;man bash
-
-BASH&lt;span class="o"&gt;(&lt;/span&gt;1&lt;span class="o"&gt;)&lt;/span&gt;                      General Commands Manual                      BASH&lt;span class="o"&gt;(&lt;/span&gt;1&lt;span class="o"&gt;)&lt;/span&gt;
-
 NAME
        bash - GNU Bourne-Again SHell
-
 SYNOPSIS
        bash &lt;span class="o"&gt;[&lt;/span&gt;options&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;file&lt;span class="o"&gt;]&lt;/span&gt;
-
 COPYRIGHT
        Bash is Copyright &lt;span class="o"&gt;(&lt;/span&gt;C&lt;span class="o"&gt;)&lt;/span&gt; 1989-2011 by the Free Software Foundation, Inc.
-
 DESCRIPTION
-       Bash  is  an sh-compatible &lt;span class="nb"&gt;command &lt;/span&gt;language interpreter that executes com‐
-       mands &lt;span class="nb"&gt;read &lt;/span&gt;from the standard input or from a file.  Bash also incorporates
-       useful features from the Korn and C shells &lt;span class="o"&gt;(&lt;/span&gt;ksh and csh&lt;span class="o"&gt;)&lt;/span&gt;.
+       Bash  is  an sh-compatible &lt;span class="nb"&gt;command &lt;/span&gt;language interpreter that executes commands &lt;span class="nb"&gt;read &lt;/span&gt;from the standard input or from a file.  Bash also incorporates useful features from the Korn and C shells &lt;span class="o"&gt;(&lt;/span&gt;ksh and csh&lt;span class="o"&gt;)&lt;/span&gt;.
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
