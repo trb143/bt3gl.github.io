@@ -220,17 +220,7 @@ NOTE: press enter &lt;span class="k"&gt;for &lt;/span&gt;status-screen
 
 
 All hashes have been recovered
-
-Input.Mode: Dict &lt;span class="o"&gt;(&lt;/span&gt;500_passwords.txt&lt;span class="o"&gt;)&lt;/span&gt;
-Index.....: 1/1 &lt;span class="o"&gt;(&lt;/span&gt;segment&lt;span class="o"&gt;)&lt;/span&gt;, 1 &lt;span class="o"&gt;(&lt;/span&gt;words&lt;span class="o"&gt;)&lt;/span&gt;, 14 &lt;span class="o"&gt;(&lt;/span&gt;bytes&lt;span class="o"&gt;)&lt;/span&gt;
-Recovered.: 1/1 hashes, 1/1 salts
-Speed/sec.: - plains, - words
-Progress..: 1/1 &lt;span class="o"&gt;(&lt;/span&gt;100.00%&lt;span class="o"&gt;)&lt;/span&gt;
-Running...: 00:00:00:01
-Estimated.: --:--:--:--
-
-Started: Thu Sep 25 18:25:49 2014
-Stopped: Thu Sep 25 18:25:50 2014
+&lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
