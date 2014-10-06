@@ -491,14 +491,6 @@ mustang
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./hashcat-cli64.bin -m 400 -a 0 -o cracked.txt --remove  pass.hash word_list.txt
 
 Initializing hashcat v0.47 by atom with 8 threads and 32mb segment-size...
-
-Added hashes from file crack1.hash: 1 &lt;span class="o"&gt;(&lt;/span&gt;1 salts&lt;span class="o"&gt;)&lt;/span&gt;
-Activating quick-digest mode &lt;span class="k"&gt;for &lt;/span&gt;single-hash with salt
-
-NOTE: press enter &lt;span class="k"&gt;for &lt;/span&gt;status-screen
-
-
-All hashes have been recovered
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
