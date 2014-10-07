@@ -148,7 +148,7 @@
 </pre></div>
 
 
-<p>In the first line of this code, the <strong>frame pointer</strong> (ebp) is pushed onto the Stack. Then, the current <strong>esp</strong> is copied into <strong>ebp</strong>, making it the new frame pointer.  Then space is allocated for the local variables, subtracting their size from esp (remember that memory can only be addressed in multiples of the word size, for example 4 bytes, or 32 bits).</p>
+<p>The two first lines are the prologue. In the first line of this code, the (old) <strong>frame pointer</strong> (ebp) is pushed onto the Stack (so we have it for when we leave). Then, the current <strong>esp</strong> is copied into <strong>ebp</strong>, making it the new frame pointer. This is the base of the Stack frame.  In the last line, the space is allocated for the local variables, subtracting their size from esp (remember that memory can only be addressed in multiples of the word size, for example 4 bytes, or 32 bits).</p>
 <p>After this point, the Assembly code will show each operation step in the program. We will learn more about this  during the challenges. It's a good skill to understand the basics of Assembly, but this is outside the context of this review. Check out  this <a href="http://www.drpaulcarter.com/pcasm/">nice Assembly guide</a> if you need to.</p>
 <p>Ah, by  the way, you can look to the Assembly output in a C program by  using the flag <code>-S</code>:</p>
 <div class="highlight"><pre><span class="nv">$ </span>gcc -S -o example1.s example1.c
@@ -963,28 +963,18 @@ Stack level 0, frame at 0xffffd5e0:
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/gdb.html">
-        <i class="icon-tag icon-large"></i>gdb
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/javascript.html">
-        <i class="icon-tag icon-large"></i>JavaScript
+    <a href="http://bt3gl.github.io/tag/nop.html">
+        <i class="icon-tag icon-large"></i>NOP
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/lamp.html">
-        <i class="icon-tag icon-large"></i>LAMP
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/csaw.html">
-        <i class="icon-tag icon-large"></i>CSAW
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bash.html">
-        <i class="icon-tag icon-large"></i>Bash
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
     </a>
 </li>
 <li class="tag-4">
@@ -993,23 +983,8 @@ Stack level 0, frame at 0xffffd5e0:
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/overflow.html">
-        <i class="icon-tag icon-large"></i>Overflow
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
-        <i class="icon-tag icon-large"></i>pdf-parser
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hope.html">
-        <i class="icon-tag icon-large"></i>Hope
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/nop.html">
-        <i class="icon-tag icon-large"></i>NOP
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
     </a>
 </li>
 <li class="tag-4">
@@ -1023,18 +998,8 @@ Stack level 0, frame at 0xffffd5e0:
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/stack.html">
-        <i class="icon-tag icon-large"></i>Stack
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/readelf.html">
-        <i class="icon-tag icon-large"></i>readelf
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>Assembly
     </a>
 </li>
 <li class="tag-4">
@@ -1043,53 +1008,8 @@ Stack level 0, frame at 0xffffd5e0:
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/chaosreader.html">
-        <i class="icon-tag icon-large"></i>Chaosreader
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/wargames.html">
-        <i class="icon-tag icon-large"></i>Wargames
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/assembly.html">
-        <i class="icon-tag icon-large"></i>Assembly
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/qpdf.html">
-        <i class="icon-tag icon-large"></i>qpdf
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/linux.html">
-        <i class="icon-tag icon-large"></i>Linux
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/socket.html">
-        <i class="icon-tag icon-large"></i>socket
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/c.html">
-        <i class="icon-tag icon-large"></i>C
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
     </a>
 </li>
 <li class="tag-1">
@@ -1098,38 +1018,58 @@ Stack level 0, frame at 0xffffd5e0:
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hashcat.html">
-        <i class="icon-tag icon-large"></i>hashcat
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pdftotext.html">
-        <i class="icon-tag icon-large"></i>pdftotext
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pygenere.html">
-        <i class="icon-tag icon-large"></i>pygenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/shellshock.html">
-        <i class="icon-tag icon-large"></i>Shellshock
-    </a>
-</li>
-<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/buffer.html">
         <i class="icon-tag icon-large"></i>Buffer
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hope.html">
+        <i class="icon-tag icon-large"></i>Hope
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack.html">
+        <i class="icon-tag icon-large"></i>Stack
     </a>
 </li>
 <li class="tag-4">
@@ -1138,8 +1078,68 @@ Stack level 0, frame at 0xffffd5e0:
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
-        <i class="icon-tag icon-large"></i>uncompyle2
+    <a href="http://bt3gl.github.io/tag/overflow.html">
+        <i class="icon-tag icon-large"></i>Overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
     </a>
 </li>
 

@@ -29,7 +29,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In the first line of this code, the &lt;strong&gt;frame pointer&lt;/strong&gt; (ebp) is pushed onto the Stack. Then, the current &lt;strong&gt;esp&lt;/strong&gt; is copied into &lt;strong&gt;ebp&lt;/strong&gt;, making it the new frame pointer.  Then space is allocated for the local variables, subtracting their size from esp (remember that memory can only be addressed in multiples of the word size, for example 4 bytes, or 32 bits).&lt;/p&gt;
+&lt;p&gt;The two first lines are the prologue. In the first line of this code, the (old) &lt;strong&gt;frame pointer&lt;/strong&gt; (ebp) is pushed onto the Stack (so we have it for when we leave). Then, the current &lt;strong&gt;esp&lt;/strong&gt; is copied into &lt;strong&gt;ebp&lt;/strong&gt;, making it the new frame pointer. This is the base of the Stack frame.  In the last line, the space is allocated for the local variables, subtracting their size from esp (remember that memory can only be addressed in multiples of the word size, for example 4 bytes, or 32 bits).&lt;/p&gt;
 &lt;p&gt;After this point, the Assembly code will show each operation step in the program. We will learn more about this  during the challenges. It's a good skill to understand the basics of Assembly, but this is outside the context of this review. Check out  this &lt;a href="http://www.drpaulcarter.com/pcasm/"&gt;nice Assembly guide&lt;/a&gt; if you need to.&lt;/p&gt;
 &lt;p&gt;Ah, by  the way, you can look to the Assembly output in a C program by  using the flag &lt;code&gt;-S&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gcc -S -o example1.s example1.c
