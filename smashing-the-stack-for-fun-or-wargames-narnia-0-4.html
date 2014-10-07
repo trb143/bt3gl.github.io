@@ -140,7 +140,7 @@
 <p>Buffer overflows happen when we give a buffer more information than it is meant to hold.  For example, the <strong>standard C library</strong> has several functions for copying or appending strings with no bounds checking: <code>strcat()</code>, <code>strcpy()</code>, <code>sprintf()</code>, <code>vsprintf()</code>, <code>gets()</code>, and <code>scanf()</code>. These functions can  easily overflow a buffer if there the input is not validated first.</p>
 <p>To  better understand this subject, I recommend the classic <a href="http://insecure.org/stf/smashStack.html">Smashing the Stack for Fun or Profit</a> from <a href="http://en.wikipedia.org/wiki/Elias_Levy">Aleph One</a> , which was published in 1996 in the <a href="http://www.phrack.org/">Phrack magazine</a> number 49.</p>
 <h3>Assembly and the  Stack Registers</h3>
-<p>When the process enters the Stack,  a register called the <strong>Stack pointer</strong> (esp) points to the top of the Stack (lowest memory address) .  The bottom of the Stack (higher memory address) is at a fixed address (adjusted by the kernel at run time). The CPU will implement instructions to push onto and pop stuff of the Stack.</p>
+<p>Registers are the location of the data storage on the CPU. When the process enters the Stack,  a register called the <strong>Stack pointer</strong> (esp) points to the top of the Stack (lowest memory address) .  The bottom of the Stack (higher memory address) is at a fixed address (adjusted by the kernel at run time). The CPU will implement instructions to push onto and pop stuff of the Stack.</p>
 <p>In Assembly code this looks like this:</p>
 <div class="highlight"><pre><span class="n">pushl</span> <span class="o">%</span><span class="n">ebp</span>
 <span class="n">movl</span> <span class="o">%</span><span class="n">esp</span><span class="p">,</span><span class="o">%</span><span class="n">ebp</span>
@@ -210,7 +210,7 @@ AAAAAAAAAAAAAAAAAAAA
 <p>To learn more about gdb, you might want to check this <a href="http://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb/">very introductory guide</a> or  this <a href="http://www.dirac.org/linux/gdb/">comprehensive guide</a>. However, in any problem in Narnia these steps are enough:</p>
 <ol>
 <li>To start a gdb instance: <code>gdb -q &lt;EXECUTABLE&gt;</code>.</li>
-<li>To get the Assembly code:</li>
+<li>To get the Assembly code we use the <code>disassemble</code> command. Constants are prefixed with a $ and registers with a %:</li>
 </ol>
 <div class="highlight"><pre><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">set</span> <span class="n">disassembly</span><span class="o">-</span><span class="n">flavor</span> <span class="n">intel</span>
 <span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">disas</span> <span class="n">main</span>
@@ -583,7 +583,7 @@ End of assembler dump.
 </pre></div>
 
 
-<p>We run our program, feeding it with an argument of size 30 and we look to the memory (esp is the Stack pointer). The first address, at <strong>0xffffd610</strong>, is the start of the frame:</p>
+<p>We run our program, feeding it with an argument of size 30 and we look to the memory (esp is the Stack pointer). The second value, <strong>0xffffd610</strong>, indicates the start of the frame:</p>
 <div class="highlight"><pre><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">r</span> <span class="err">`</span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="err">&#39;</span><span class="n">print</span> <span class="s">&quot;B&quot;</span><span class="o">*</span><span class="mi">30</span><span class="err">&#39;`</span>
 <span class="p">(</span><span class="n">gdb</span><span class="p">)</span>  <span class="n">x</span><span class="o">/</span><span class="mi">30</span><span class="n">xw</span> <span class="err">$</span><span class="n">esp</span>
 <span class="mh">0xffffd600</span><span class="o">:</span> <span class="mh">0x08048574</span>  <span class="mh">0xffffd610</span>  <span class="mh">0x00000001</span>  <span class="mh">0xf7ebf729</span>
@@ -963,23 +963,8 @@ Stack level 0, frame at 0xffffd5e0:
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/command-injection.html">
-        <i class="icon-tag icon-large"></i>Command Injection
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hashcat.html">
-        <i class="icon-tag icon-large"></i>hashcat
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pygenere.html">
-        <i class="icon-tag icon-large"></i>pygenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
     </a>
 </li>
 <li class="tag-4">
@@ -988,103 +973,8 @@ Stack level 0, frame at 0xffffd5e0:
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bash.html">
-        <i class="icon-tag icon-large"></i>Bash
-    </a>
-</li>
-<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/lamp.html">
         <i class="icon-tag icon-large"></i>LAMP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/outguess.html">
-        <i class="icon-tag icon-large"></i>OutGuess
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/wargames.html">
-        <i class="icon-tag icon-large"></i>Wargames
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ftp.html">
-        <i class="icon-tag icon-large"></i>FTP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/stack.html">
-        <i class="icon-tag icon-large"></i>Stack
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/assembly.html">
-        <i class="icon-tag icon-large"></i>Assembly
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/readelf.html">
-        <i class="icon-tag icon-large"></i>readelf
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pdftotext.html">
-        <i class="icon-tag icon-large"></i>pdftotext
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/buffer.html">
-        <i class="icon-tag icon-large"></i>Buffer
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/telnet.html">
-        <i class="icon-tag icon-large"></i>telnet
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
-        <i class="icon-tag icon-large"></i>uncompyle2
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/nop.html">
-        <i class="icon-tag icon-large"></i>NOP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/overflow.html">
-        <i class="icon-tag icon-large"></i>Overflow
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/c.html">
-        <i class="icon-tag icon-large"></i>C
     </a>
 </li>
 <li class="tag-1">
@@ -1093,8 +983,8 @@ Stack level 0, frame at 0xffffd5e0:
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/chaosreader.html">
-        <i class="icon-tag icon-large"></i>Chaosreader
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
     </a>
 </li>
 <li class="tag-4">
@@ -1103,18 +993,83 @@ Stack level 0, frame at 0xffffd5e0:
     </a>
 </li>
 <li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/overflow.html">
+        <i class="icon-tag icon-large"></i>Overflow
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/hope.html">
         <i class="icon-tag icon-large"></i>Hope
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/qpdf.html">
-        <i class="icon-tag icon-large"></i>qpdf
+    <a href="http://bt3gl.github.io/tag/nop.html">
+        <i class="icon-tag icon-large"></i>NOP
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/gdb.html">
-        <i class="icon-tag icon-large"></i>gdb
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack.html">
+        <i class="icon-tag icon-large"></i>Stack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>Assembly
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
     </a>
 </li>
 <li class="tag-4">
@@ -1127,9 +1082,14 @@ Stack level 0, frame at 0xffffd5e0:
         <i class="icon-tag icon-large"></i>socket
     </a>
 </li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
-        <i class="icon-tag icon-large"></i>pdf-parser
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
     </a>
 </li>
 <li class="tag-1">
@@ -1138,8 +1098,48 @@ Stack level 0, frame at 0xffffd5e0:
     </a>
 </li>
 <li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/shellshock.html">
         <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/buffer.html">
+        <i class="icon-tag icon-large"></i>Buffer
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/command-injection.html">
+        <i class="icon-tag icon-large"></i>Command Injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
     </a>
 </li>
 

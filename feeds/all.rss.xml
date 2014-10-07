@@ -21,7 +21,7 @@
 &lt;p&gt;Buffer overflows happen when we give a buffer more information than it is meant to hold.  For example, the &lt;strong&gt;standard C library&lt;/strong&gt; has several functions for copying or appending strings with no bounds checking: &lt;code&gt;strcat()&lt;/code&gt;, &lt;code&gt;strcpy()&lt;/code&gt;, &lt;code&gt;sprintf()&lt;/code&gt;, &lt;code&gt;vsprintf()&lt;/code&gt;, &lt;code&gt;gets()&lt;/code&gt;, and &lt;code&gt;scanf()&lt;/code&gt;. These functions can  easily overflow a buffer if there the input is not validated first.&lt;/p&gt;
 &lt;p&gt;To  better understand this subject, I recommend the classic &lt;a href="http://insecure.org/stf/smashStack.html"&gt;Smashing the Stack for Fun or Profit&lt;/a&gt; from &lt;a href="http://en.wikipedia.org/wiki/Elias_Levy"&gt;Aleph One&lt;/a&gt; , which was published in 1996 in the &lt;a href="http://www.phrack.org/"&gt;Phrack magazine&lt;/a&gt; number 49.&lt;/p&gt;
 &lt;h3&gt;Assembly and the  Stack Registers&lt;/h3&gt;
-&lt;p&gt;When the process enters the Stack,  a register called the &lt;strong&gt;Stack pointer&lt;/strong&gt; (esp) points to the top of the Stack (lowest memory address) .  The bottom of the Stack (higher memory address) is at a fixed address (adjusted by the kernel at run time). The CPU will implement instructions to push onto and pop stuff of the Stack.&lt;/p&gt;
+&lt;p&gt;Registers are the location of the data storage on the CPU. When the process enters the Stack,  a register called the &lt;strong&gt;Stack pointer&lt;/strong&gt; (esp) points to the top of the Stack (lowest memory address) .  The bottom of the Stack (higher memory address) is at a fixed address (adjusted by the kernel at run time). The CPU will implement instructions to push onto and pop stuff of the Stack.&lt;/p&gt;
 &lt;p&gt;In Assembly code this looks like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pushl&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;ebp&lt;/span&gt;
 &lt;span class="n"&gt;movl&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;esp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;ebp&lt;/span&gt;
@@ -91,7 +91,7 @@ AAAAAAAAAAAAAAAAAAAA
 &lt;p&gt;To learn more about gdb, you might want to check this &lt;a href="http://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb/"&gt;very introductory guide&lt;/a&gt; or  this &lt;a href="http://www.dirac.org/linux/gdb/"&gt;comprehensive guide&lt;/a&gt;. However, in any problem in Narnia these steps are enough:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;To start a gdb instance: &lt;code&gt;gdb -q &amp;lt;EXECUTABLE&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;To get the Assembly code:&lt;/li&gt;
+&lt;li&gt;To get the Assembly code we use the &lt;code&gt;disassemble&lt;/code&gt; command. Constants are prefixed with a $ and registers with a %:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;disassembly&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;flavor&lt;/span&gt; &lt;span class="n"&gt;intel&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;disas&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;
@@ -464,7 +464,7 @@ End of assembler dump.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We run our program, feeding it with an argument of size 30 and we look to the memory (esp is the Stack pointer). The first address, at &lt;strong&gt;0xffffd610&lt;/strong&gt;, is the start of the frame:&lt;/p&gt;
+&lt;p&gt;We run our program, feeding it with an argument of size 30 and we look to the memory (esp is the Stack pointer). The second value, &lt;strong&gt;0xffffd610&lt;/strong&gt;, indicates the start of the frame:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;B&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;`&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="n"&gt;xw&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;esp&lt;/span&gt;
 &lt;span class="mh"&gt;0xffffd600&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0x08048574&lt;/span&gt;  &lt;span class="mh"&gt;0xffffd610&lt;/span&gt;  &lt;span class="mh"&gt;0x00000001&lt;/span&gt;  &lt;span class="mh"&gt;0xf7ebf729&lt;/span&gt;
