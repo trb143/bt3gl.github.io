@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Smashing the Stack for Fun or WarGames - Bandit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="bt3gl">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://bt3gl.github.io/theme/css/bootstrap.dark.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 11pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-4 {
+        font-size: 8pt;
+     }
+    </style>
+    <link href="http://bt3gl.github.io/theme/css/bootstrap-responsive.dark.css" rel="stylesheet">
+        <link href="http://bt3gl.github.io/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://bt3gl.github.io/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://bt3gl.github.io/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://bt3gl.github.io/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://bt3gl.github.io/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://bt3gl.github.io/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://bt3gl.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="High Bytes by bt3gl ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://bt3gl.github.io/index.html">High Bytes by bt3gl </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://bt3gl.github.io/authors.html">About</a></li>
+                                <li><a href="https://github.com/bt3gl">GitHub</a></li>
+                                <li><a href="https://twitter.com/bt3gl">Twitter</a></li>
+                                <li><a href="https://coderwall.com/p/kubxjq?i=11&p=2&q=author%3Abt3gl&t%5B%5D=bt3gl">CodeWall</a></li>
+                                <li><a href="projects_page/index.html">Projects</a></li>
+                                <li><a href="http://bt3gl.github.io/archives.html"><b>Archives</b></a></li>
+
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Smashing the Stack for Fun or WarGames - Bandit">
+                                        Smashing the Stack for Fun or WarGames - Bandit
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<abbr class="published" title="2014-10-06T06:30:00">
+      Mon 06 October 2014 </abbr>
+
+<span class="label"> Category</span>
+<a href="http://bt3gl.github.io/category/vulnerabilities.html"><i class="icon-folder-open"></i>Vulnerabilities</a>
+
+
+<span class="label">Tags</span>
+	<a href="http://bt3gl.github.io/tag/buffer.html"><i class="icon-tag"></i>Buffer</a>
+	<a href="http://bt3gl.github.io/tag/overflow.html"><i class="icon-tag"></i>Overflow</a>
+	<a href="http://bt3gl.github.io/tag/stack.html"><i class="icon-tag"></i>Stack</a>
+	<a href="http://bt3gl.github.io/tag/nop.html"><i class="icon-tag"></i>NOP</a>
+	<a href="http://bt3gl.github.io/tag/c.html"><i class="icon-tag"></i>C</a>
+	<a href="http://bt3gl.github.io/tag/assembly.html"><i class="icon-tag"></i>Assembly</a>
+	<a href="http://bt3gl.github.io/tag/gdb.html"><i class="icon-tag"></i>gdb</a>
+	<a href="http://bt3gl.github.io/tag/wargames.html"><i class="icon-tag"></i>Wargames</a>
+	<a href="http://bt3gl.github.io/tag/linux.html"><i class="icon-tag"></i>Linux</a>
+</footer><!-- /.post-info -->                </div>
+                <p><img alt="" src="http://i.imgur.com/3N2pUBJ.jpg" /></p>
+<p>bandit 5
+ls -ldh  <em>/</em> | grep -v 'x' | sort -n
+ls -ld  <em>/</em> | grep -v 'x' | sort -n
+ls -la  $PWD/* | grep 1033
+cat maybehere07/.file2
+DXjZPULLxYr17uwoI01bNLQbtFemEgo7</p>
+<p>find -size 1000c
+b is 512-byte-block</p>
+<p>bandit 6
+find / -group bandit6 | grep bandit7
+cat /var/lib/dpkg/info/bandit7.password
+HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs</p>
+<p>bandit 7
+cvX2JJa4CFALtqS87jk27qwqGhBM9plV</p>
+<p>bandit 8
+sort data.txt | uniq -u
+UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR</p>
+<p>bandit 9
+strings data.txt | grep =
+truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk</p>
+<p>bandit 10
+base64 -d data.txt
+IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR</p>
+<p>bandit 11
+VAR=$(cat data.txt)
+echo "$VAR"
+alias rot13="tr A-Za-z N-ZA-Mn-za-m"
+echo "$VVAR" | rot13
+5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu</p>
+<p>bandit 12
+http://en.wikipedia.org/wiki/Hex_dump
+xxd -r data.txt &gt; file1
+file1 file1.gz
+gzip -d file1.gz
+bzip2 -d file1.bzip2
+tar -xvf file1.tar
+cat data8</p>
+<p>badndit 13
+copy the key locally
+chmod 400 key.pem
+ssh -i key.pem bandit14@
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e</p>
+<p>bandit 14
+echo "4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e" | nc localhost 3000
+BfMYroe26WYalil77FoDi9qh59eK5xNr</p>
+<p>or</p>
+<p>telnet localhost 3000</p>
+<p>bandit 15
+openssl s_client -connect localhost:30001 -quiet</p>
+<p>CONNECTED(00000003)
+depth=0 CN = localhost
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = localhost
+verify return:1</p>
+<hr />
+<p>Certificate chain
+ 0 s:/CN=localhost
+   i:/CN=localhost</p>
+<hr />
+<p>Server certificate
+-----BEGIN CERTIFICATE-----
+MIICpDCCAYwCCQDDVcPYicjxQjANBgkqhkiG9w0BAQUFADAUMRIwEAYDVQQDEwls
+b2NhbGhvc3QwHhcNMTMwNjA2MTM1ODM3WhcNMjMwNjA0MTM1ODM3WjAUMRIwEAYD
+VQQDEwlsb2NhbGhvc3QwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDF
+Id/8XRfPayS8u+XfqkXQq3QawTEmxcxQw4TiLKlnqLqsl02U3dUIBqSJu1LQE8lf
+/eez2KF9Nse9cXqty6M6J9/515b+xaLfkAV1q97JwO1BfciJDiWqjPerMcikUb0d
+zTnDFSpWpnrTjLqlquSWrgRxMffmGi+6x7lsWp8EOAIrFhxadYgTskVUslsgtwBP
+dVtDG3OZSa8uyD6LJMCgMpaIs0nI1AS8yWWRnBPP6tujJV9x5JI8GYuC1OB9hsYT
++J7ZMkQ5soOXi9TIuyQSfavH27z44uMF3g4fB6i9l2KNFeKkuq1JVM+HbrXfSlf3
++Gtm/+hO/jlKzGw+pmobAgMBAAEwDQYJKoZIhvcNAQEFBQADggEBAF0ah9QUPxRM
+cCNaZ2Bb+IkBXbj1esk92Hv7H4uYIionJl2f+8M6/YgGNhBI4C1r82Hwbi9DwVYs
+kztth6DQIBw3KnNLyoKfYmEz6+Azko5rIefeJoHEBdD41tMqmBd8jWi5+hUbkeLr
+8A0wzwi/mVQP4xBZ5cELDEaC2MFCi20X4APFFYeXEMjEYwTwADdADiQ52ezle0zr
+iSZ10PUmxqjE4NCYo8feZ7emRcAozZElyF9JjoHfXSSiEViELPU2Wb9ygljYz2Hy
+AGDcpE2FIGZRiHk+PT2tHD92bp4BeyZsh52pYvItJie3owdIQoQASfperclRvcyn
+mNrjHPUubAc=
+-----END CERTIFICATE-----
+subject=/CN=localhost
+issuer=/CN=localhost
+---
+No client certificate CA names sent
+---
+SSL handshake has read 1272 bytes and written 363 bytes
+---
+New, TLSv1/SSLv3, Cipher is DHE-RSA-AES256-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+SSL-Session:
+    Protocol  : SSLv3
+    Cipher    : DHE-RSA-AES256-SHA
+    Session-ID: 96778B6A150D3673FE41D76754EB967BC4F36820D0316A58E6C22CF3A4520DBB
+    Session-ID-ctx:
+    Master-Key: 99F41362FB8A6229740975456A6B1D76CB65FDB5BDEB70EF8E1828849E749057BD54FA0BA4C6D3AF985A828EA0B74DA6
+    Key-Arg   : None
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    Start Time: 1412266308
+    Timeout   : 300 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+cluFn7wTiGryunymYOu4RcffSxQluehd</p>
+<p>bandit 16
+nmap -A -T4 localhost -p 31000-32000
+openssl s_client -connect localhost:31790
+cluFn7wTiGryunymYOu4RcffSxQluehd</p>
+<p>get ssh keyl, copy to a file
+mkdir /tmp/ssh_16 &amp; cd
+/tmp/ssh_16$ openssl s_client -connect localhost:31790 -quiet &gt; key.pub</p>
+<p>vi key.pub
+bandit16@melinda:/tmp/ssh_16$ chmod 400 key.pub
+bandit16@melinda:/tmp/ssh_16$ ssh -i key.pub  bandit17@localhost</p>
+<p>bandit 17
+diff passwords
+kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd</p>
+<p>bandit 18
+ssh -p 22 bandit18@bandit.labs.overthewire.org  cat readme
+IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x</p>
+<p>bandit 19
+bandit19@melinda:~$ ./bandit20-do
+Run a command as another user.
+  Example: ./bandit20-do id
+bandit19@melinda:~$ ./bandit20-do bandit21
+env: bandit21: No such file or directory
+bandit19@melinda:~$ ls /etc/bandit_pass/bandit20
+/etc/bandit_pass/bandit20
+bandit19@melinda:~$ cat /etc/bandit_pass/bandit20
+cat: /etc/bandit_pass/bandit20: Permission denied
+bandit19@melinda:~$ users
+bandit0 bandit0 bandit0 bandit0 bandit0 bandit0 bandit1 bandit16 bandit16 bandit17 bandit19 bandit5 bandit5 bandit5 bandit5 bandit6 bandit8 behemoth3 narnia0 narnia2 narnia2 vortex1 vortex8
+bandit19@melinda:~$ ./bandit20-do bandit21
+env: bandit21: No such file or directory
+bandit19@melinda:~$ id -u bandit21
+11021
+bandit19@melinda:~$ ./bandit20-do 11021 /etc/bandit_pass/bandit20
+env: 11021: No such file or directory
+bandit19@melinda:~$ id -u bandit20
+11020
+bandit19@melinda:~$ ./bandit20-do 11020
+env: 11020: No such file or directory
+bandit19@melinda:~$ ./bandit20-do id
+uid=11019(bandit19) gid=11019(bandit19) euid=11020(bandit20) groups=11020(bandit20),11019(bandit19)
+bandit19@melinda:~$ ./bandit20-do whoami
+bandit20
+bandit19@melinda:~$ ./bandit20-do 11021 cat /etc/bandit_pass/bandit20
+env: 11021: No such file or directory
+bandit19@melinda:~$ ./bandit20-do cat /etc/bandit_pass/bandit20
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j</p>
+<p>http://en.wikipedia.org/wiki/Setuid</p>
+<p>bandit 20</p>
+<p>in one terminal:
+nc -l 8881</p>
+<p>in the other:
+./suconnect 8881</p>
+<p>now send the password in the first
+and get
+gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr</p>
+<p>bandit 21
+Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI</p>
+<p>bandit21@melinda:~$ ls /etc/cron.d/
+boobiesbot-check  eloi1                  natas25_cleanup  semtex10  sysstat
+cron-apt          hintbot-check          natas26_cleanup  semtex12  vortex0
+cronjob_bandit22  manpage3_resetpw_job   php5             semtex5   vortex20
+cronjob_bandit23  melinda-stats          semtex0-32       semtex6   vulnbot0-check
+cronjob_bandit24  natas-session-toucher  semtex0-64       semtex8   vulnbot1-check
+eloi0             natas-stats            semtex0-ppc      semtex9
+bandit21@melinda:~$
+bandit21@melinda:~$ ls /etc/cron.d/cronjob_bandit2
+cronjob_bandit22  cronjob_bandit23  cronjob_bandit24
+bandit21@melinda:~$ ls /etc/cron.d/cronjob_bandit2
+cronjob_bandit22  cronjob_bandit23  cronjob_bandit24
+bandit21@melinda:~$ cat /etc/cron.d/cronjob_bandit2
+cat: /etc/cron.d/cronjob_bandit2: No such file or directory
+bandit21@melinda:~$ cat /etc/cron.d/cronjob_bandit22
+<em> * </em> * * bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null
+bandit21@melinda:~$ cat /usr/bin/cronjob_bandit22.sh</p>
+<h1>!/bin/bash</h1>
+<p>chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+cat /etc/bandit_pass/bandit22 &gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+bandit21@melinda:~$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI</p>
+<p>bandit 22</p>
+<p>bandit22@melinda:~$ /usr/bin/./cronjob_bandit23.sh
+Copying passwordfile /etc/bandit_pass/bandit22 to /tmp/8169b67bd894ddbb4412f91573b38db3
+bandit22@melinda:~$ cat /usr/bin/cronjob_bandit23.sh</p>
+<h1>!/bin/bash</h1>
+<p>myname=$(whoami)
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)</p>
+<p>echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"</p>
+<p>cat /etc/bandit_pass/$myname &gt; /tmp/$mytarget
+bandit22@melinda:~$ myname=$(whoami)
+bandit22@melinda:~$ myname
+myname: command not found
+bandit22@melinda:~$ $myname
+bandit22: command not found
+bandit22@melinda:~$ echo '$myname'
+$myname
+bandit22@melinda:~$ echo $myname
+bandit22
+bandit22@melinda:~$ mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+bandit22@melinda:~$ echo $target</p>
+<p>bandit22@melinda:~$ echo $mytarget
+8169b67bd894ddbb4412f91573b38db3
+bandit22@melinda:~$ mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+bandit22@melinda:~$ echo $mytarget
+8169b67bd894ddbb4412f91573b38db3
+bandit22@melinda:~$ mytarget=$(echo I am user bandit23 | md5sum | cut -d ' ' -f 1)
+bandit22@melinda:~$ echo $mytarget
+8ca319486bfbbc3663ea0fbe81326349
+bandit22@melinda:~$ cat /tmp/8ca319486bfbbc3663ea0fbe81326349</p>
+<p>jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n</p>
+<p>bandit 23</p>
+<p>cat script.sh</p>
+<h1>!/bin/bash</h1>
+<p>cat ~/README.txt &gt;&gt; /tmp/yay/read.txt
+ls -la ~ &gt;&gt; /tmp/yay/file2.txt
+ls -la /* &gt;&gt; /tmp/yay/file.txt</p>
+<p>chmod everything
+cp script.sh /var/spool/bandit24/</p>
+<p>cat file2.txt
+total 24
+drwxr-xr-x   2 root     root     4096 Jun  6  2013 .
+drwxr-xr-x 160 root     root     4096 Jul 28 17:05 ..
+-rw-r--r--   1 root     root      220 Apr  3  2012 .bash_logout
+-rw-r--r--   1 root     root     3486 Apr  3  2012 .bashrc
+-rw-r--r--   1 root     root      675 Apr  3  2012 .profile
+-rw-------   1 bandit24 bandit24  430 Jun  6  2013 README.txt</p>
+<p>Congratulations on solving the last level of this game!</p>
+<p>At this moment, there are no more levels to play in this game. However, we are constantly working
+on new levels and will most likely expand this game with more levels soon.
+Keep an eye out for an announcement on our usual communication channels!
+In the meantime, you could play some of our other wargames.</p>
+<p>If you have an idea for an awesome new level, please let us know!</p>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "smashing-the-stack-for-fun-or-wargames-bandit.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://bt3gl.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
+                </div>
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+
+
+<li class="nav-header"><h4>Categories</h4></li>
+<li>
+<a href="http://bt3gl.github.io/category/vulnerabilities.html">
+    <i class="icon-folder-open icon-large"></i>Vulnerabilities
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/reverse-engineering.html">
+    <i class="icon-folder-open icon-large"></i>Reverse Engineering
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/networking.html">
+    <i class="icon-folder-open icon-large"></i>Networking
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/life.html">
+    <i class="icon-folder-open icon-large"></i>Life
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/forensics.html">
+    <i class="icon-folder-open icon-large"></i>Forensics
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/cryptography.html">
+    <i class="icon-folder-open icon-large"></i>Cryptography
+</a>
+</li>
+
+<br>
+
+<li class="nav-header"><h4>Tags</h4></li>
+<ul class="tagcloud">
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/overflow.html">
+        <i class="icon-tag icon-large"></i>Overflow
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/command-injection.html">
+        <i class="icon-tag icon-large"></i>Command Injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/stack.html">
+        <i class="icon-tag icon-large"></i>Stack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>Assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/nop.html">
+        <i class="icon-tag icon-large"></i>NOP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hope.html">
+        <i class="icon-tag icon-large"></i>Hope
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/buffer.html">
+        <i class="icon-tag icon-large"></i>Buffer
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
+    </a>
+</li>
+
+
+</ul>
+
+        </div><!--/.well -->
+
+      </div><!--/row-->
+
+
+
+      <footer>
+        <address id="about">
+
+        </address><!-- /#about -->
+
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+    <script src="http://bt3gl.github.io/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://bt3gl.github.io/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
