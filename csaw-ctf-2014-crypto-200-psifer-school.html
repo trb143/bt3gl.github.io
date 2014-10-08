@@ -100,8 +100,8 @@
                 <div class="entry-content">
                 <div class="well">
 <footer class="post-info">
-<abbr class="published" title="2014-09-22T10:20:00">
-      Mon 22 September 2014 </abbr>
+<abbr class="published" title="2014-10-07T10:20:00">
+      Tue 07 October 2014 </abbr>
 
 <span class="label"> Category</span>
 <a href="http://bt3gl.github.io/category/cryptography.html"><i class="icon-folder-open"></i>Cryptography</a>
@@ -146,38 +146,43 @@
 <p>To count the frequency of characters in our cipher, we write a snippet that creates a counter <a href="https://docs.python.org/2/tutorial/datastructures.html#dictionaries">dictionary (hash table)</a> with all the (lowercase) characters as the dictionary's keys. Note that we could have used Python's <a href="https://docs.python.org/2/library/collections.html#collections.Counter">Counter() data-structure</a> as well. We then iterate through each character in the message, counting their frequency, and returning a sorted list of these values:</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span>
 
-<span class="k">def</span> <span class="nf">find_frequency</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
-    <span class="n">dict_freq</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">])</span>
-    <span class="n">total_letters</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="k">for</span> <span class="nb">chr</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s">&#39;a&#39;</span><span class="o">&lt;=</span> <span class="nb">chr</span> <span class="o">&lt;=</span> <span class="s">&#39;z&#39;</span><span class="p">:</span>
-            <span class="n">dict_freq</span><span class="p">[</span><span class="nb">chr</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">total_letters</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">def</span> <span class="nf">frequency</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="c"># Compute the word frequencies</span>
+    <span class="n">dict_freq</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">])</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">msg</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+        <span class="k">if</span> <span class="s">&#39;a&#39;</span><span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="s">&#39;z&#39;</span><span class="p">:</span>
+            <span class="n">diff</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">dict_freq</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="n">list_freq</span> <span class="o">=</span> <span class="n">dict_freq</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
     <span class="n">list_freq</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">freq_c</span> <span class="o">/</span> <span class="n">total_letters</span> <span class="k">for</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">freq_c</span><span class="p">)</span> <span class="ow">in</span> <span class="n">list_freq</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">b</span> <span class="o">/</span> <span class="n">diff</span> <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="n">list_freq</span><span class="p">]</span>
 </pre></div>
 
 
 <h4>Deciphering the Cipher</h4>
-<p>Using a <a href="http://en.wikipedia.org/wiki/Letter_frequency">well-known table of word frequency values</a>, we write a snippet that does the following:
- 1. First, for each of the 26 letters, we subtract its known frequency value from the its frequency obtained from our message.
- 2. Then we find what is the minimum value from those subtractions. The closest value is the most probable value for the rotation key.</p>
+<p>Using a <a href="http://en.wikipedia.org/wiki/Letter_frequency">well-known table of word frequency values</a>, we write a snippet that does the following:</p>
+<ol>
+<li>First, for each of the 26 letters, we subtract its known frequency value from the  frequency obtained from our message.</li>
+<li>Second, we find what is the minimum value from those subtractions. The closest value is the most probable value for the rotation key.</li>
+</ol>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">delta</span><span class="p">(</span><span class="n">freq_word</span><span class="p">,</span> <span class="n">freq_eng</span><span class="p">):</span>
+    <span class="c"># zip together the value from the text and the value from FREQ</span>
     <span class="n">diff</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">freq_word</span><span class="p">,</span> <span class="n">freq_eng</span><span class="p">):</span>
         <span class="n">diff</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">diff</span>
 
 <span class="k">def</span> <span class="nf">decipher</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
-    <span class="n">min_delta</span><span class="p">,</span> <span class="n">best_rotation</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="c"># Decipher by frequency</span>
+    <span class="n">min_delta</span><span class="p">,</span> <span class="n">best_rotation</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">0.0</span>
     <span class="n">freq</span> <span class="o">=</span> <span class="n">frequency</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
-        <span class="n">d</span> <span class="o">=</span> <span class="n">delta</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">FREQ_ENGLISH</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
+      <span class="n">d</span> <span class="o">=</span> <span class="n">delta</span><span class="p">(</span><span class="n">freq</span><span class="p">[</span><span class="n">key</span><span class="p">:]</span> <span class="o">+</span> <span class="n">freq</span><span class="p">[:</span><span class="n">key</span><span class="p">],</span> <span class="n">FREQ_ENGLISH</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="n">min_delta</span><span class="p">:</span>
             <span class="n">min_delta</span> <span class="o">=</span> <span class="n">d</span>
-            <span class="n">best_rotation</span> <span class="o">=</span> <span class="n">k</span>
-    <span class="k">return</span> <span class="n">best_rotation</span>
+            <span class="n">best_rotation</span> <span class="o">=</span> <span class="n">key</span>
+    <span class="k">return</span> <span class="n">cipher</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="o">-</span><span class="n">best_rotation</span><span class="p">)</span>
 </pre></div>
 
 
@@ -191,6 +196,7 @@
 <li>Remember we are using <em>-key</em>, so instead of making a new cipher we are using the same steps to rotate the cipher to the other side to recover the message.</li>
 </ol>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">cipher</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="c"># Make the cipher</span>
     <span class="n">dec</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">msg</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
         <span class="k">if</span> <span class="s">&#39;a&#39;</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="s">&#39;z&#39;</span><span class="p">:</span>
@@ -320,7 +326,7 @@ Last one.</p>
 
 <p>Reading it carefully give us thee last answer for the flag: <strong>NORMALWORD</strong>. Sweet!</p>
 <h2>Final Words</h2>
-<p>If you like this solution, take a look at my  <a href="https://github.com/bt3gl/CTFs-and-Hacking-Scripts-and-Tutorials/blob/master/2014-CSAW-CTF/cryptography/crypto-200/psifer-school.py">exploit for this problem</a> (Python).</p>
+<p>If you like this solution, take a look at my  <a href="https://github.com/bt3gl/Gray-Hacker-and-PenTesting/blob/master/CTFs/2014-CSAW-CTF/cryptography/crypto-200/psifer-school.py">exploit for this problem</a>.</p>
 <p>If Python is not your thing, check out <a href="https://github.com/bt3gl/CTFs-and-Hacking-Scripts-and-Tutorials/tree/master/2014-CSAW-CTF/cryptography/crypto-200/from_the_net">scripts from other authors</a>, in Pearl and in PHP.</p>
 <p><strong>Hack all the things!</strong></p>
                 </div><!-- /.entry-content -->
@@ -384,73 +390,28 @@ Last one.</p>
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ftp.html">
-        <i class="icon-tag icon-large"></i>FTP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/wargames.html">
-        <i class="icon-tag icon-large"></i>Wargames
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/overflow.html">
-        <i class="icon-tag icon-large"></i>Overflow
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/linux.html">
-        <i class="icon-tag icon-large"></i>Linux
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pdftotext.html">
-        <i class="icon-tag icon-large"></i>pdftotext
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/socket.html">
-        <i class="icon-tag icon-large"></i>socket
-    </a>
-</li>
-<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/qpdf.html">
         <i class="icon-tag icon-large"></i>qpdf
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/chaosreader.html">
-        <i class="icon-tag icon-large"></i>Chaosreader
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hope.html">
-        <i class="icon-tag icon-large"></i>Hope
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/telnet.html">
-        <i class="icon-tag icon-large"></i>telnet
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/command-injection.html">
-        <i class="icon-tag icon-large"></i>Command Injection
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/c.html">
-        <i class="icon-tag icon-large"></i>C
+    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
     </a>
 </li>
 <li class="tag-4">
     <a href="http://bt3gl.github.io/tag/love.html">
         <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
     </a>
 </li>
 <li class="tag-3">
@@ -459,8 +420,118 @@ Last one.</p>
     </a>
 </li>
 <li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack.html">
+        <i class="icon-tag icon-large"></i>Stack
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/command-injection.html">
+        <i class="icon-tag icon-large"></i>Command Injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hope.html">
+        <i class="icon-tag icon-large"></i>Hope
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>Assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/vigenere.html">
         <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/overflow.html">
+        <i class="icon-tag icon-large"></i>Overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/buffer.html">
+        <i class="icon-tag icon-large"></i>Buffer
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
     </a>
 </li>
 <li class="tag-4">
@@ -469,8 +540,13 @@ Last one.</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/lamp.html">
-        <i class="icon-tag icon-large"></i>LAMP
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
     </a>
 </li>
 <li class="tag-4">
@@ -484,83 +560,13 @@ Last one.</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/shellshock.html">
-        <i class="icon-tag icon-large"></i>Shellshock
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/stack.html">
-        <i class="icon-tag icon-large"></i>Stack
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/assembly.html">
-        <i class="icon-tag icon-large"></i>Assembly
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bash.html">
-        <i class="icon-tag icon-large"></i>Bash
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/javascript.html">
-        <i class="icon-tag icon-large"></i>JavaScript
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
-        <i class="icon-tag icon-large"></i>uncompyle2
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hashcat.html">
-        <i class="icon-tag icon-large"></i>hashcat
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/csaw.html">
-        <i class="icon-tag icon-large"></i>CSAW
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/buffer.html">
-        <i class="icon-tag icon-large"></i>Buffer
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/outguess.html">
-        <i class="icon-tag icon-large"></i>OutGuess
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/readelf.html">
-        <i class="icon-tag icon-large"></i>readelf
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
     </a>
 </li>
 

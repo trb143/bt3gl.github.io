@@ -22,16 +22,16 @@
 &lt;p&gt;Buffer overflows happen when we give a buffer more information than it is meant to hold.  For example, the &lt;strong&gt;standard C library&lt;/strong&gt; has several functions for copying or appending strings with no bounds checking: &lt;code&gt;strcat()&lt;/code&gt;, &lt;code&gt;strcpy()&lt;/code&gt;, &lt;code&gt;sprintf()&lt;/code&gt;, &lt;code&gt;vsprintf()&lt;/code&gt;, &lt;code&gt;gets()&lt;/code&gt;, and &lt;code&gt;scanf()&lt;/code&gt;. These functions can  easily overflow a buffer if there the input is not validated first.&lt;/p&gt;
 &lt;p&gt;To  better understand this subject, I recommend the classic &lt;a href="http://insecure.org/stf/smashStack.html"&gt;Smashing the Stack for Fun or Profit&lt;/a&gt; from &lt;a href="http://en.wikipedia.org/wiki/Elias_Levy"&gt;Aleph One&lt;/a&gt; , which was published in 1996 in the &lt;a href="http://www.phrack.org/"&gt;Phrack magazine&lt;/a&gt; number 49.&lt;/p&gt;
 &lt;h3&gt;Assembly and the  Stack Registers&lt;/h3&gt;
-&lt;p&gt;Registers are the location of the data storage on the CPU. When the process enters the Stack,  a register called the &lt;strong&gt;Stack pointer&lt;/strong&gt; (esp) points to the top of the Stack (lowest memory address).  The bottom of the Stack (higher memory address) is at a fixed address (adjusted by the kernel at run time). The CPU will implement instructions to push onto and pop stuff of the Stack.&lt;/p&gt;
-&lt;p&gt;In Assembly code this looks like this:&lt;/p&gt;
+&lt;p&gt;Registers are small memory storage areas built into the CPU. When the process enters the Stack,  a register called the &lt;strong&gt;Stack pointer&lt;/strong&gt; (esp) points to the top of the Stack (lowest memory address).  The bottom of the Stack (higher memory address) is at a fixed address (adjusted by the kernel at run time). The CPU will implement instructions to push onto and pop stuff of the Stack.&lt;/p&gt;
+&lt;p&gt;In Assembly code this looks like:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pushl&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;ebp&lt;/span&gt;
 &lt;span class="n"&gt;movl&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;esp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;ebp&lt;/span&gt;
 &lt;span class="n"&gt;subl&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;esp&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The two first lines are the prologue. In the first line of this code, the (old) &lt;strong&gt;frame pointer&lt;/strong&gt; (ebp) is pushed onto the Stack (so we have it for when we leave). Then, the current &lt;strong&gt;esp&lt;/strong&gt; is copied into &lt;strong&gt;ebp&lt;/strong&gt;, making it the new frame pointer. This is the base of the Stack frame.  In the last line, the space is allocated for the local variables, subtracting their size from esp (remember that memory can only be addressed in multiples of the word size, for example 4 bytes, or 32 bits).&lt;/p&gt;
-&lt;p&gt;After this point, the Assembly code will show each operation step in the program. We will learn more about this  during the challenges. It's a good skill to understand the basics of Assembly, but this is outside the context of this review. Check out  this &lt;a href="http://www.drpaulcarter.com/pcasm/"&gt;nice Assembly guide&lt;/a&gt; if you need to.&lt;/p&gt;
+&lt;p&gt;The two first lines are the prologue. In the first line of this code, the (old) &lt;strong&gt;frame pointer&lt;/strong&gt; (ebp) is pushed onto the top of the Stack (lowest memory). Then, the current &lt;strong&gt;esp&lt;/strong&gt; is copied into the &lt;strong&gt;stack frame base pointer&lt;/strong&gt; (ebp), making it the new frame pointer.  In the last line, the space is allocated for the local variables, subtracting their size from esp (remember that memory can only be addressed in multiples of the word size, for example 4 bytes, or 32 bits).&lt;/p&gt;
+&lt;p&gt;After this point, the Assembly code will show each operation step in the program. We will learn more about this  during the challenges. It's a good skill to understand the basics of Assembly, but this is outside the context of this review. Check out  this &lt;a href="http://www.drpaulcarter.com/pcasm/"&gt;nice Assembly guide&lt;/a&gt; if you need to. Also, &lt;a href="http://darkdust.net/files/GDB%20Cheat%20Sheet.pdf"&gt;this cheat sheet&lt;/a&gt; is awesome.&lt;/p&gt;
 &lt;p&gt;Ah, by  the way, you can look to the Assembly output in a C program by  using the flag &lt;code&gt;-S&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gcc -S -o example1.s example1.c
 &lt;/pre&gt;&lt;/div&gt;
@@ -111,7 +111,7 @@ AAAAAAAAAAAAAAAAAAAA
 &lt;p&gt;To run the program: &lt;code&gt;(gdb) r&lt;/code&gt;. We also can use &lt;code&gt;c&lt;/code&gt; to continue to run it after breakpoint.  We can  use &lt;code&gt;n&lt;/code&gt; for next program line. We can print things using &lt;code&gt;p&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;To examine some memory address, we can use &lt;code&gt;(gdb) x/30xw A&lt;/code&gt;, where &lt;strong&gt;A&lt;/strong&gt; is the address (&lt;em&gt;e.g.&lt;/em&gt;, &lt;code&gt;`$esp&lt;/code&gt;) and 30 is the number of outputs we want to see (the repeat count).&lt;/p&gt;
+&lt;p&gt;To examine some memory address, we can use &lt;code&gt;(gdb) x/nfu A&lt;/code&gt;, where &lt;strong&gt;A&lt;/strong&gt; is the address (&lt;em&gt;e.g.&lt;/em&gt;, &lt;code&gt;`$esp&lt;/code&gt;), n is the number of units to print, f is the format character, and u is the unit.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;To examine the Stack frame: &lt;code&gt;(gdb) i f&lt;/code&gt;. We can also look at the Stack by using &lt;code&gt;bt&lt;/code&gt; (backtrace).&lt;/p&gt;
@@ -673,7 +673,7 @@ int main&lt;span class="o"&gt;(&lt;/span&gt;int argc,char **argv&lt;span class="
 &lt;ol&gt;
 &lt;li&gt;Find out the size of the Stack.  Just having the return address won't help  since we can't point it to anywhere outside the code.&lt;/li&gt;
 &lt;li&gt;Create a shellcode with the return address minus some value we define so that the return address points to somewhere inside the Stack.&lt;/li&gt;
-&lt;li&gt;Fill the beginning of the Stack with a lots of &lt;a href="http://en.wikipedia.org/wiki/NOP"&gt;NOPs&lt;/a&gt; (No Operations), which in the x86 CPU family is represented with &lt;code&gt;0x90&lt;/code&gt;. If the pointer hits these places, it just keeps advancing until it finds our shell.&lt;/li&gt;
+&lt;li&gt;Fill the beginning of the Stack with a lots of &lt;a href="http://en.wikipedia.org/wiki/NOP"&gt;NOPs&lt;/a&gt; (No Operations, used to pad/align bytes or to delay time), which in the x86 CPU family is represented with &lt;code&gt;0x90&lt;/code&gt;. If the pointer hits these places, it just keeps advancing until it finds our shell.&lt;/li&gt;
 &lt;li&gt;To make everything fit right in the Stack frame, we pad the end of the shell code with junk.
 .&lt;/li&gt;
 &lt;/ol&gt;
