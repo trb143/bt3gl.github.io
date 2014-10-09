@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>High Bytes by bt3gl</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/overflow.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-10-06T06:30:00-04:00</updated><entry><title>Smashing the Stack for Fun or WarGames - Narnia 0-4</title><link href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html" rel="alternate"></link><updated>2014-10-06T06:30:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-10-06:smashing-the-stack-for-fun-or-wargames-narnia-0-4.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="http://i.imgur.com/3N2pUBJ.jpg" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>High Bytes by bt3gl</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/overflow.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-10-06T06:30:00-04:00</updated><entry><title>Smashing the Stack for Fun or WarGames - Narnia 0-4</title><link href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html" rel="alternate"></link><updated>2014-10-06T06:30:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-10-06:smashing-the-stack-for-fun-or-wargames-narnia-0-4.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="http://i.imgur.com/M4axH0o.png" /&gt;&lt;/p&gt;
 &lt;p&gt;One of my mentors, &lt;a href="https://twitter.com/OwariDa"&gt; &lt;strong&gt;Joel Eriksson&lt;/strong&gt;&lt;/a&gt;, suggested me the quintessential &lt;strong&gt;&lt;a href="http://overthewire.org/wargames"&gt;WarGames&lt;/a&gt;&lt;/strong&gt;, a collection of &lt;strong&gt;Security problems&lt;/strong&gt;, divided into 14 interesting titles. I have been playing the games since last week and they are awesome! To play the WarGames you SSH to their servers with a login that indicates your current level. The purpose of the game is to solve  the current level's challenge to find the password for the next level.&lt;/p&gt;
 &lt;p&gt;Today I am talking about the first five levels of &lt;strong&gt;&lt;a href="http://overthewire.org/wargames/narnia"&gt;Narnia&lt;/a&gt;&lt;/strong&gt;, which is all about &lt;strong&gt;&lt;a href="http://en.wikipedia.org/wiki/Buffer_overflow"&gt;buffer overflow&lt;/a&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;a href="http://en.wikipedia.org/wiki/Bounds_checking"&gt;inputs with no bounds checking&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;You will see that this war is not so bad when you know your weapons.&lt;/p&gt;
@@ -87,7 +87,7 @@ AAAAAAAAAAAAAAAAAAAA
 &lt;p&gt;&lt;code&gt;whoami&lt;/code&gt;: Shows the current user, good to see whether the exploit worked!&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3&gt;gdb&lt;/h3&gt;
+&lt;h3&gt;gdb and objdump&lt;/h3&gt;
 &lt;p&gt;In most of the problems in Narnia, it's fundamental do understand how to debug the binary  with &lt;strong&gt;gdb&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;To learn more about gdb, you might want to check this &lt;a href="http://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb/"&gt;very introductory guide&lt;/a&gt; or  this &lt;a href="http://www.dirac.org/linux/gdb/"&gt;comprehensive guide&lt;/a&gt;. However, in any problem in Narnia these steps are enough:&lt;/p&gt;
 &lt;ol&gt;
@@ -99,53 +99,71 @@ AAAAAAAAAAAAAAAAAAAA
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;ol&gt;
-&lt;li&gt;To set breakpoints to the address to inspect, based on the values from the output above:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;+&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;SOME&lt;/span&gt; &lt;span class="n"&gt;NUMBER&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;p&gt;As a note, when you start using gdb frequently, it's useful to have a file with starting commands. For example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gdb &amp;lt;program name&amp;gt; -x &amp;lt;&lt;span class="nb"&gt;command &lt;/span&gt;file&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;To run the program: &lt;code&gt;(gdb) r&lt;/code&gt;. We also can use &lt;code&gt;c&lt;/code&gt; to continue to run it after breakpoint.  We can  use &lt;code&gt;n&lt;/code&gt; for next program line. We can print things using &lt;code&gt;p&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;To examine some memory address, we can use &lt;code&gt;(gdb) x/nfu A&lt;/code&gt;, where &lt;strong&gt;A&lt;/strong&gt; is the address (&lt;em&gt;e.g.&lt;/em&gt;, &lt;code&gt;`$esp&lt;/code&gt;), n is the number of units to print, f is the format character, and u is the unit.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;To examine the Stack frame: &lt;code&gt;(gdb) i f&lt;/code&gt;. We can also look at the Stack by using &lt;code&gt;bt&lt;/code&gt; (backtrace).&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr /&gt;
-&lt;h2&gt;Level 0: Classic Stack Overflow to rewrite a Variable&lt;/h2&gt;
-&lt;h3&gt;Step 1: Understanding the Problem&lt;/h3&gt;
-&lt;p&gt;The first level starts with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;cat narnia0.c
+&lt;p&gt;Where&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat command.txt
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;span class="c"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
-&lt;span class="c"&gt;#include &amp;lt;stdlib.h&amp;gt;&lt;/span&gt;
 
-int main&lt;span class="o"&gt;(){&lt;/span&gt;
-  long &lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x41414141;
-  char buf&lt;span class="o"&gt;[&lt;/span&gt;20&lt;span class="o"&gt;]&lt;/span&gt;;
+&lt;p&gt;set disassembly-flavor intel
+disas main&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="n"&gt;To&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;breakpoints&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;address&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;inspect&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;based&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="n"&gt;above&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Correct val&amp;#39;s value from 0x41414141 -&amp;gt; 0xdeadbeef!\n&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;;
-  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Here is your chance: &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;;
-  scanf&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;%24s&amp;quot;&lt;/span&gt;,&amp;amp;buf&lt;span class="o"&gt;)&lt;/span&gt;;
 
-  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;buf: %s\n&amp;quot;&lt;/span&gt;,buf&lt;span class="o"&gt;)&lt;/span&gt;;
-  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;val: 0x%08x\n&amp;quot;&lt;/span&gt;,val&lt;span class="o"&gt;)&lt;/span&gt;;
+&lt;p&gt;(gdb) b *main+&lt;SOME NUMBER&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;4.&lt;/span&gt; &lt;span class="n"&gt;To&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;We&lt;/span&gt; &lt;span class="n"&gt;also&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="err"&gt;```&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="k"&gt;continue&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt; &lt;span class="n"&gt;breakpoint&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;  &lt;span class="n"&gt;We&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt;  &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="err"&gt;```&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;We&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="n"&gt;things&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 
-  &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0xdeadbeef&lt;span class="o"&gt;)&lt;/span&gt;
-    system&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/bin/sh&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
-    &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WAY OFF!!!!\n&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;;
-    &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;1&lt;span class="o"&gt;)&lt;/span&gt;;
-  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="mf"&gt;5.&lt;/span&gt; &lt;span class="n"&gt;To&lt;/span&gt; &lt;span class="n"&gt;examine&lt;/span&gt; &lt;span class="n"&gt;some&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nfu&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;where&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;address&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;```$&lt;/span&gt;&lt;span class="n"&gt;esp&lt;/span&gt;&lt;span class="err"&gt;``&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;format&lt;/span&gt; &lt;span class="n"&gt;character&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 
-  &lt;span class="k"&gt;return &lt;/span&gt;0;
-&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="mf"&gt;6.&lt;/span&gt; &lt;span class="n"&gt;To&lt;/span&gt; &lt;span class="n"&gt;examine&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;Stack&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;We&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;also&lt;/span&gt; &lt;span class="n"&gt;look&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;Stack&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="n"&gt;bt&lt;/span&gt;&lt;span class="err"&gt;```&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;backtrace&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
+
+
+
+&lt;span class="n"&gt;Finally&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;although&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;here&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;alternative&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;  &lt;span class="n"&gt;gdb&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;objdump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;which&lt;/span&gt; &lt;span class="n"&gt;display&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+
+
+
+&lt;span class="o"&gt;--------------&lt;/span&gt;
+
+&lt;span class="cp"&gt;## Level 0: Classic Stack Overflow to rewrite a Variable&lt;/span&gt;
+
+
+&lt;span class="cp"&gt;### Step 1: Understanding the Problem&lt;/span&gt;
+
+&lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt; &lt;span class="n"&gt;starts&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+
+&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
+&lt;span class="n"&gt;narnia0&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;narnia0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
+
+&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include &amp;lt;stdlib.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+  &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mh"&gt;0x41414141&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;buf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Correct val&amp;#39;s value from 0x41414141 -&amp;gt; 0xdeadbeef!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Here is your chance: &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;scanf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%24s&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;buf&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;buf: %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;buf&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;val: 0x%08x&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mh"&gt;0xdeadbeef&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/bin/sh&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;WAY OFF!!!!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
