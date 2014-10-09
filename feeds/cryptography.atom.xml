@@ -61,7 +61,7 @@ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n 
 
 
 &lt;p&gt;We see a ROT14 (since ROT13 starts in N).&lt;/p&gt;
-&lt;p&gt;As as second way to find the rotation, we could use &lt;a href="http://linux.die.net/man/1/ltrace"&gt;ltrace&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;As a second way to find the rotation, we could use &lt;a href="http://linux.die.net/man/1/ltrace"&gt;ltrace&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ltrace&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;encrypt&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;less&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -170,7 +170,7 @@ So, we get a ciphertext of:&lt;/p&gt;
 This level is a Vigenère Cipher. You have intercepted two longer, english language messages. You also have a key piece of information. You know the key length!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;This is a classical case of &lt;a href="http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher"&gt;Vigenere cipher&lt;/a&gt;, which  is a variation on the Caesar’s cipher. In this case, one uses multiple shift amounts according to a keyword.&lt;/p&gt;
-&lt;p&gt;To solve this I use the &lt;a href="http://smurfoncrack.com/pygenere/pygenere.py"&gt;pygenere&lt;/a&gt; library in Python. First we need to find the key:&lt;/p&gt;
+&lt;p&gt;To solve this we use the &lt;a href="http://smurfoncrack.com/pygenere/pygenere.py"&gt;pygenere&lt;/a&gt; library in Python. First we need to find the key:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;
 &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;pygenere&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Vigenere&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;VigCrack&lt;/span&gt;
 
@@ -239,7 +239,7 @@ ETIREDANDLAYDOWNUPONTHEGRASSANDFELLASLEEPWITHTHEWOODMANANDTHESCARECROWKEEPINGWAT
 &lt;/blockquote&gt;
 &lt;p&gt;This is another example of Vigenere Cipher. Using the same method as before we first get the key and then the password.&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;Fun!&lt;/p&gt;</summary><category term="Wargames"></category><category term="ROT13"></category><category term="Vigenere"></category><category term="pygenere"></category></entry><entry><title>CSAW CTF 2014 - Cryptography: 200</title><link href="http://bt3gl.github.io/csaw-ctf-2014-cryptography-200.html" rel="alternate"></link><updated>2014-09-08T00:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-08:csaw-ctf-2014-cryptography-200.html</id><summary type="html">&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
+&lt;h3&gt;Fun, isn't?&lt;/h3&gt;</summary><category term="Wargames"></category><category term="ROT13"></category><category term="Vigenere"></category><category term="pygenere"></category></entry><entry><title>CSAW CTF 2014 - Cryptography: 200</title><link href="http://bt3gl.github.io/csaw-ctf-2014-cryptography-200.html" rel="alternate"></link><updated>2014-09-08T00:20:00-04:00</updated><author><name>bt3gl</name></author><id>tag:bt3gl.github.io,2014-09-08:csaw-ctf-2014-cryptography-200.html</id><summary type="html">&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
 &lt;p&gt;The problem starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;There's no heartbleed here. Why don't we use these ciphers?&lt;/p&gt;
