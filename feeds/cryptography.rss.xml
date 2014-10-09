@@ -16,12 +16,12 @@ Use this password to log in to krypton.labs.overthewire.org with username krypto
 
 
 &lt;hr /&gt;
-&lt;h2&gt;Level 1: Classical Caesar Cypher&lt;/h2&gt;
+&lt;h2&gt;Level 1: Classic Caesar Cypher&lt;/h2&gt;
 &lt;p&gt;The second level starts with:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The password for level 2 is in the file ‘krypton2’. It is ‘encrypted’ using a simple rotation. It is also in non standard ciphertext format. When using alpha characters for cipher text it is normal to group the letters into 5 letter clusters, regardless of word boundaries. This helps obfuscate any patterns. This file has kept the plain text word boundaries and carried them to the cipher text. Enjoy!&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This is the classic &lt;a href="http://en.wikipedia.org/wiki/Caesar_cipher"&gt;Caesar Cypher&lt;/a&gt; (they really love this thing.:) ).&lt;/p&gt;
+&lt;p&gt;This is the classic &lt;a href="http://en.wikipedia.org/wiki/Caesar_cipher"&gt;Caesar Cypher&lt;/a&gt; (they really love this thing :).&lt;/p&gt;
 &lt;p&gt;In the Caesar’s cipher, the letters in the plaintext are shifted by a fixed number of elements down the alphabet. For example, if the shift is 3, A becomes D , B becomes E , and so on. Once we run out of letters, we circle back to A.&lt;/p&gt;
 &lt;p&gt;We can solve this challenge in a few lines using Linux's built-in &lt;a href="http://linux.die.net/man/1/tr"&gt;tr&lt;/a&gt; (translate tool):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;VAR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;krypton2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -231,8 +231,8 @@ ETIREDANDLAYDOWNUPONTHEGRASSANDFELLASLEEPWITHTHEWOODMANANDTHESCARECROWKEEPINGWAT
 &lt;p&gt;Frequency analysis can break a known key length as well.  Lets try one last polyalphabetic cipher, but this time the key length is unknown.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;This is another example of Vigenere Cipher. Using the same method as before we first get the key and then the password.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3&gt;Fun, isn't?&lt;/h3&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3gl</dc:creator><pubDate>Thu, 09 Oct 2014 01:30:00 -0400</pubDate><guid>tag:bt3gl.github.io,2014-10-09:cryptography-war-beating-krypton.html</guid><category>Wargames</category><category>ROT13</category><category>Vigenere</category><category>pygenere</category><category>ltrace</category><category>base64</category><category>tr</category><category>Python</category></item><item><title>CSAW CTF 2014 - Cryptography: 200</title><link>http://bt3gl.github.io/csaw-ctf-2014-cryptography-200.html</link><description>&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
+&lt;h3&gt;Fun, isn't?&lt;/h3&gt;
+&lt;hr /&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3gl</dc:creator><pubDate>Thu, 09 Oct 2014 01:30:00 -0400</pubDate><guid>tag:bt3gl.github.io,2014-10-09:cryptography-war-beating-krypton.html</guid><category>Wargames</category><category>ROT13</category><category>Vigenere</category><category>pygenere</category><category>ltrace</category><category>base64</category><category>tr</category><category>Python</category></item><item><title>CSAW CTF 2014 - Cryptography: 200</title><link>http://bt3gl.github.io/csaw-ctf-2014-cryptography-200.html</link><description>&lt;p&gt;This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.&lt;/p&gt;
 &lt;p&gt;The problem starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;There's no heartbleed here. Why don't we use these ciphers?&lt;/p&gt;
