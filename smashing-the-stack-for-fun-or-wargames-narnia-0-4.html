@@ -119,7 +119,7 @@
 	<a href="http://bt3gl.github.io/tag/linux.html"><i class="icon-tag"></i>Linux</a>
 </footer><!-- /.post-info -->                </div>
                 <p><img alt="" src="http://i.imgur.com/M4axH0o.png" /></p>
-<p>One of my mentors, <a href="https://twitter.com/OwariDa"> <strong>Joel Eriksson</strong></a>, suggested me the quintessential <strong><a href="http://overthewire.org/wargames">WarGames</a></strong>, a collection of <strong>Security problems</strong>, divided into 14 interesting titles. I have been playing the games since last week and they are awesome! To play the WarGames you SSH to their servers with a login that indicates your current level. The purpose of the game is to solve  the current level's challenge to find the password for the next level.</p>
+<p>One of my mentors, <a href="https://twitter.com/OwariDa"> <strong>Joel Eriksson</strong></a>, suggested  the quintessential <strong><a href="http://overthewire.org/wargames">WarGames</a></strong>, a collection of <strong>Security problems</strong>, divided into 14 interesting titles. I have been playing the games since last week and they are awesome! To play the WarGames you SSH to their servers with a login that indicates your current level. The purpose of the game is to solve  the current level's challenge to find the password for the next level.</p>
 <p>Today I am talking about the first five levels of <strong><a href="http://overthewire.org/wargames/narnia">Narnia</a></strong>, which is all about <strong><a href="http://en.wikipedia.org/wiki/Buffer_overflow">buffer overflow</a></strong> and <strong><a href="http://en.wikipedia.org/wiki/Bounds_checking">inputs with no bounds checking</a></strong>.</p>
 <p>You will see that this war is not so bad when you know your weapons.</p>
 <p><strong>Disclaimer</strong>: if you haven't played WarGames but you are planing to, PLEASE DON'T READY ANY FURTHER. If you don't try to solve the problems by yourself first, you will be wasting your time.</p>
@@ -225,64 +225,59 @@ AAAAAAAAAAAAAAAAAAAA
 
 <p>Where</p>
 <div class="highlight"><pre><span class="nv">$ </span>cat command.txt
+<span class="nb">set </span>disassembly-flavor intel
+disas main
 </pre></div>
 
 
-<p>set disassembly-flavor intel
-disas main</p>
-<div class="highlight"><pre><span class="mf">3.</span> <span class="n">To</span> <span class="n">set</span> <span class="n">breakpoints</span> <span class="n">to</span> <span class="n">the</span> <span class="n">address</span> <span class="n">to</span> <span class="n">inspect</span><span class="p">,</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">values</span> <span class="n">from</span> <span class="n">the</span> <span class="n">output</span> <span class="n">above</span><span class="o">:</span>
+<ol>
+<li>To set breakpoints to the address to inspect, based on the values from the output above:</li>
+</ol>
+<div class="highlight"><pre><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">b</span> <span class="o">*</span><span class="n">main</span><span class="o">+&lt;</span><span class="n">SOME</span> <span class="n">NUMBER</span><span class="o">&gt;</span>
 </pre></div>
 
 
-<p>(gdb) b *main+<SOME NUMBER></p>
-<div class="highlight"><pre><span class="mf">4.</span> <span class="n">To</span> <span class="n">run</span> <span class="n">the</span> <span class="n">program</span><span class="o">:</span> <span class="err">```</span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">r</span><span class="err">```</span><span class="p">.</span> <span class="n">We</span> <span class="n">also</span> <span class="n">can</span> <span class="n">use</span> <span class="err">```</span><span class="n">c</span><span class="err">```</span> <span class="n">to</span> <span class="k">continue</span> <span class="n">to</span> <span class="n">run</span> <span class="n">it</span> <span class="n">after</span> <span class="n">breakpoint</span><span class="p">.</span>  <span class="n">We</span> <span class="n">can</span>  <span class="n">use</span> <span class="err">```</span><span class="n">n</span><span class="err">```</span> <span class="k">for</span> <span class="n">next</span> <span class="n">program</span> <span class="n">line</span><span class="p">.</span> <span class="n">We</span> <span class="n">can</span> <span class="n">print</span> <span class="n">things</span> <span class="n">using</span> <span class="err">```</span><span class="n">p</span><span class="err">```</span><span class="p">.</span>
+<ol>
+<li>
+<p>To run the program: <code>(gdb) r</code>. We also can use <code>c</code> to continue to run it after breakpoint.  We can  use <code>n</code> for next program line. We can print things using <code>p</code>.</p>
+</li>
+<li>
+<p>To examine some memory address, we can use <code>(gdb) x/nfu A</code>, where <strong>A</strong> is the address (<em>e.g.</em>, <code>`$esp</code>), n is the number of units to print, f is the format character, and u is the unit.</p>
+</li>
+<li>
+<p>To examine the Stack frame: <code>(gdb) i f</code>. We can also look at the Stack by using <code>bt</code> (backtrace).</p>
+</li>
+</ol>
+<p>Finally, although we are not using it here, an alternative to  gdb is the command <strong>objdump -d</strong>, which display information from object files.</p>
+<hr />
+<h2>Level 0: Classic Stack Overflow to rewrite a Variable</h2>
+<h3>Step 1: Understanding the Problem</h3>
+<p>The first level starts with:</p>
+<div class="highlight"><pre>narnia0@melinda:/narnia<span class="nv">$ </span>cat narnia0.c
 
-<span class="mf">5.</span> <span class="n">To</span> <span class="n">examine</span> <span class="n">some</span> <span class="n">memory</span> <span class="n">address</span><span class="p">,</span> <span class="n">we</span> <span class="n">can</span> <span class="n">use</span> <span class="err">```</span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">x</span><span class="o">/</span><span class="n">nfu</span> <span class="n">A</span><span class="err">```</span><span class="p">,</span> <span class="n">where</span> <span class="o">**</span><span class="n">A</span><span class="o">**</span> <span class="n">is</span> <span class="n">the</span> <span class="n">address</span> <span class="p">(</span><span class="o">*</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="o">*</span><span class="p">,</span> <span class="err">```$</span><span class="n">esp</span><span class="err">``</span><span class="p">),</span> <span class="n">n</span> <span class="n">is</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">units</span> <span class="n">to</span> <span class="n">print</span><span class="p">,</span> <span class="n">f</span> <span class="n">is</span> <span class="n">the</span> <span class="n">format</span> <span class="n">character</span><span class="p">,</span> <span class="n">and</span> <span class="n">u</span> <span class="n">is</span> <span class="n">the</span> <span class="n">unit</span><span class="p">.</span>
+<span class="c">#include &lt;stdio.h&gt;</span>
+<span class="c">#include &lt;stdlib.h&gt;</span>
 
-<span class="mf">6.</span> <span class="n">To</span> <span class="n">examine</span> <span class="n">the</span> <span class="n">Stack</span> <span class="n">frame</span><span class="o">:</span> <span class="err">```</span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">i</span> <span class="n">f</span><span class="err">```</span><span class="p">.</span> <span class="n">We</span> <span class="n">can</span> <span class="n">also</span> <span class="n">look</span> <span class="n">at</span> <span class="n">the</span> <span class="n">Stack</span> <span class="n">by</span> <span class="n">using</span> <span class="err">```</span><span class="n">bt</span><span class="err">```</span> <span class="p">(</span><span class="n">backtrace</span><span class="p">).</span>
+int main<span class="o">(){</span>
+  long <span class="nv">val</span><span class="o">=</span>0x41414141;
+  char buf<span class="o">[</span>20<span class="o">]</span>;
 
+  <span class="nb">printf</span><span class="o">(</span><span class="s2">&quot;Correct val&#39;s value from 0x41414141 -&gt; 0xdeadbeef!\n&quot;</span><span class="o">)</span>;
+  <span class="nb">printf</span><span class="o">(</span><span class="s2">&quot;Here is your chance: &quot;</span><span class="o">)</span>;
+  scanf<span class="o">(</span><span class="s2">&quot;%24s&quot;</span>,&amp;buf<span class="o">)</span>;
 
+  <span class="nb">printf</span><span class="o">(</span><span class="s2">&quot;buf: %s\n&quot;</span>,buf<span class="o">)</span>;
+  <span class="nb">printf</span><span class="o">(</span><span class="s2">&quot;val: 0x%08x\n&quot;</span>,val<span class="o">)</span>;
 
-<span class="n">Finally</span><span class="p">,</span> <span class="n">although</span> <span class="n">we</span> <span class="n">are</span> <span class="n">not</span> <span class="n">using</span> <span class="n">it</span> <span class="n">here</span><span class="p">,</span> <span class="n">an</span> <span class="n">alternative</span> <span class="n">to</span>  <span class="n">gdb</span> <span class="n">is</span> <span class="n">the</span> <span class="n">command</span> <span class="o">**</span><span class="n">objdump</span> <span class="o">-</span><span class="n">d</span><span class="o">**</span><span class="p">,</span> <span class="n">which</span> <span class="n">display</span> <span class="n">information</span> <span class="n">from</span> <span class="n">object</span> <span class="n">files</span><span class="p">.</span>
+  <span class="k">if</span><span class="o">(</span><span class="nv">val</span><span class="o">==</span>0xdeadbeef<span class="o">)</span>
+    system<span class="o">(</span><span class="s2">&quot;/bin/sh&quot;</span><span class="o">)</span>;
+  <span class="k">else</span> <span class="o">{</span>
+    <span class="nb">printf</span><span class="o">(</span><span class="s2">&quot;WAY OFF!!!!\n&quot;</span><span class="o">)</span>;
+    <span class="nb">exit</span><span class="o">(</span>1<span class="o">)</span>;
+  <span class="o">}</span>
 
-
-
-
-<span class="o">--------------</span>
-
-<span class="cp">## Level 0: Classic Stack Overflow to rewrite a Variable</span>
-
-
-<span class="cp">### Step 1: Understanding the Problem</span>
-
-<span class="n">The</span> <span class="n">first</span> <span class="n">level</span> <span class="n">starts</span> <span class="n">with</span><span class="o">:</span>
-
-<span class="err">```</span><span class="n">sh</span>
-<span class="n">narnia0</span><span class="err">@</span><span class="n">melinda</span><span class="o">:/</span><span class="n">narnia</span><span class="err">$</span> <span class="n">cat</span> <span class="n">narnia0</span><span class="p">.</span><span class="n">c</span>
-
-<span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
-
-<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
-  <span class="kt">long</span> <span class="n">val</span><span class="o">=</span><span class="mh">0x41414141</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
-
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Correct val&#39;s value from 0x41414141 -&gt; 0xdeadbeef!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Here is your chance: &quot;</span><span class="p">);</span>
-  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%24s&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
-
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;buf: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">buf</span><span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;val: 0x%08x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">val</span><span class="p">);</span>
-
-  <span class="k">if</span><span class="p">(</span><span class="n">val</span><span class="o">==</span><span class="mh">0xdeadbeef</span><span class="p">)</span>
-    <span class="n">system</span><span class="p">(</span><span class="s">&quot;/bin/sh&quot;</span><span class="p">);</span>
-  <span class="k">else</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;WAY OFF!!!!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+  <span class="k">return </span>0;
+<span class="o">}</span>
 </pre></div>
 
 
@@ -981,174 +976,14 @@ Stack level 0, frame at 0xffffd5e0:
 
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bash.html">
-        <i class="icon-tag icon-large"></i>Bash
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/shellshock.html">
-        <i class="icon-tag icon-large"></i>Shellshock
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/gdb.html">
-        <i class="icon-tag icon-large"></i>gdb
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/cryptol.html">
-        <i class="icon-tag icon-large"></i>Cryptol
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/command-injection.html">
-        <i class="icon-tag icon-large"></i>Command Injection
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/csaw.html">
-        <i class="icon-tag icon-large"></i>CSAW
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/wargames.html">
-        <i class="icon-tag icon-large"></i>Wargames
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/socket.html">
-        <i class="icon-tag icon-large"></i>socket
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/assembly.html">
-        <i class="icon-tag icon-large"></i>Assembly
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/buffer.html">
-        <i class="icon-tag icon-large"></i>Buffer
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/c.html">
-        <i class="icon-tag icon-large"></i>C
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/linux.html">
-        <i class="icon-tag icon-large"></i>Linux
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/outguess.html">
-        <i class="icon-tag icon-large"></i>OutGuess
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/javascript.html">
-        <i class="icon-tag icon-large"></i>JavaScript
-    </a>
-</li>
 <li class="tag-4">
     <a href="http://bt3gl.github.io/tag/telnet.html">
         <i class="icon-tag icon-large"></i>telnet
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ftp.html">
-        <i class="icon-tag icon-large"></i>FTP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
-    </a>
-</li>
-<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/nop.html">
         <i class="icon-tag icon-large"></i>NOP
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pdftotext.html">
-        <i class="icon-tag icon-large"></i>pdftotext
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/love.html">
-        <i class="icon-tag icon-large"></i>Love
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
-        <i class="icon-tag icon-large"></i>pdf-parser
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/lamp.html">
-        <i class="icon-tag icon-large"></i>LAMP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/stack.html">
-        <i class="icon-tag icon-large"></i>Stack
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pygenere.html">
-        <i class="icon-tag icon-large"></i>pygenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hashcat.html">
-        <i class="icon-tag icon-large"></i>hashcat
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/chaosreader.html">
-        <i class="icon-tag icon-large"></i>Chaosreader
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/qpdf.html">
-        <i class="icon-tag icon-large"></i>qpdf
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/readelf.html">
-        <i class="icon-tag icon-large"></i>readelf
     </a>
 </li>
 <li class="tag-4">
@@ -1157,13 +992,168 @@ Stack level 0, frame at 0xffffd5e0:
     </a>
 </li>
 <li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack.html">
+        <i class="icon-tag icon-large"></i>Stack
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
+    </a>
+</li>
+<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/hope.html">
         <i class="icon-tag icon-large"></i>Hope
     </a>
 </li>
 <li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/overflow.html">
         <i class="icon-tag icon-large"></i>Overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>Assembly
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/command-injection.html">
+        <i class="icon-tag icon-large"></i>Command Injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/buffer.html">
+        <i class="icon-tag icon-large"></i>Buffer
     </a>
 </li>
 
