@@ -324,23 +324,23 @@ AAAAAAAAAAAAAAAAAAAA
 &lt;h3&gt;gdb and objdump&lt;/h3&gt;
 &lt;p&gt;In most of the problems in Narnia, it's fundamental do understand how to debug the binary  with &lt;strong&gt;gdb&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;To learn more about gdb, you might want to check this &lt;a href="http://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb/"&gt;very introductory guide&lt;/a&gt; or  this &lt;a href="http://www.dirac.org/linux/gdb/"&gt;comprehensive guide&lt;/a&gt;. However, in any problem in Narnia these steps are enough:&lt;/p&gt;
-&lt;ol&gt;
+&lt;ul&gt;
 &lt;li&gt;To start a gdb instance: &lt;code&gt;gdb -q &amp;lt;EXECUTABLE&amp;gt;&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;To get the Assembly code we use the &lt;code&gt;disassemble&lt;/code&gt; command. Constants are prefixed with a $ and registers with a %:&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;disassembly&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;flavor&lt;/span&gt; &lt;span class="n"&gt;intel&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;disas&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;ol&gt;
+&lt;ul&gt;
 &lt;li&gt;To set breakpoints to the address to inspect, based on the values from the output above:&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;+&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;SOME&lt;/span&gt; &lt;span class="n"&gt;NUMBER&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;ol&gt;
+&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;To run the program: &lt;code&gt;(gdb) r&lt;/code&gt;. We also can use &lt;code&gt;c&lt;/code&gt; to continue to run it after breakpoint.  We can  use &lt;code&gt;n&lt;/code&gt; for next program line. We can print things using &lt;code&gt;p&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
@@ -350,8 +350,10 @@ AAAAAAAAAAAAAAAAAAAA
 &lt;li&gt;
 &lt;p&gt;To examine the Stack frame: &lt;code&gt;(gdb) i f&lt;/code&gt;. We can also look at the Stack by using &lt;code&gt;bt&lt;/code&gt; (backtrace).&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;
 &lt;p&gt;As a note, when you start using gdb frequently, it's useful to have a file with starting commands. For example:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gdb &amp;lt;program name&amp;gt; -x &amp;lt;&lt;span class="nb"&gt;command &lt;/span&gt;file&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
