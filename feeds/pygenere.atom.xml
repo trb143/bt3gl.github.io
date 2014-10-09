@@ -21,7 +21,7 @@ Use this password to log in to krypton.labs.overthewire.org with username krypto
 &lt;blockquote&gt;
 &lt;p&gt;The password for level 2 is in the file ‘krypton2’. It is ‘encrypted’ using a simple rotation. It is also in non standard ciphertext format. When using alpha characters for cipher text it is normal to group the letters into 5 letter clusters, regardless of word boundaries. This helps obfuscate any patterns. This file has kept the plain text word boundaries and carried them to the cipher text. Enjoy!&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This is the classic &lt;a href="http://en.wikipedia.org/wiki/Caesar_cipher"&gt;Caesar Cypher&lt;/a&gt; (they really love this thing :)...).&lt;/p&gt;
+&lt;p&gt;This is the classic &lt;a href="http://en.wikipedia.org/wiki/Caesar_cipher"&gt;Caesar Cypher&lt;/a&gt; (they really love this thing.:) ).&lt;/p&gt;
 &lt;p&gt;In the Caesar’s cipher, the letters in the plaintext are shifted by a fixed number of elements down the alphabet. For example, if the shift is 3, A becomes D , B becomes E , and so on. Once we run out of letters, we circle back to A.&lt;/p&gt;
 &lt;p&gt;We can solve this challenge in a few lines using Linux's built-in &lt;a href="http://linux.die.net/man/1/tr"&gt;tr&lt;/a&gt; (translate tool):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;VAR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;krypton2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -45,19 +45,23 @@ cipher: G H I J K L M N O P Q ...&lt;/p&gt;
 &lt;p&gt;In this example, the letter 'a' in plaintext is replaced by a 'G' in the ciphertext so, for example, the plaintext 'bad' becomes 'HGJ' in ciphertext.&lt;/p&gt;
 &lt;p&gt;The password for level 3 is in the file krypton3.  It is in 5 letter group ciphertext.  It is encrypted with a Caesar Cipher.  Without any  further information, this cipher text may be difficult to break.  You do not have direct access to the key, however you do have access to a program  that will encrypt anything you wish to give it using the key.  If you think logically, this is completely easy.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;First, let's make a file filled with the alphabet so we can test  the binary:&lt;/p&gt;
+&lt;p&gt;First, we make a file filled with the alphabet, so we can test  the binary:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ln -s /krypton/krypton2/keyfile.dat keyfile.dat
 &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;A..Z&lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;a..z&lt;span class="o"&gt;}&lt;/span&gt; &amp;gt; file
 &lt;span class="nv"&gt;$ &lt;/span&gt;cat file
 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z
-&lt;span class="nv"&gt;$ &lt;/span&gt;/krypton/krypton2/encrypt file
-&lt;span class="nv"&gt;$ &lt;/span&gt;cat ciphertext
-MNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKL
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We see that we have a ROT14 (since ROT13 starts in N).&lt;/p&gt;
-&lt;p&gt;Another way to find it is  by using &lt;a href="http://linux.die.net/man/1/ltrace"&gt;ltrace&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;Running the binary:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;encrypt&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;ciphertext&lt;/span&gt;
+&lt;span class="n"&gt;MNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKL&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We see a ROT14 (since ROT13 starts in N).&lt;/p&gt;
+&lt;p&gt;As as second way to find the rotation, we could use &lt;a href="http://linux.die.net/man/1/ltrace"&gt;ltrace&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ltrace&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;encrypt&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;less&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -85,7 +89,7 @@ krypton2@melinda:/tmp&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&g
 &lt;p&gt;The main weakness of a simple substitution cipher is repeated use of a simple key.  In the previous exercise you were able to introduce arbitrary plaintext to expose the key.  In this example, the cipher mechanism is not available to you, the attacker.&lt;/p&gt;
 &lt;p&gt;However, you have been lucky.  You have intercepted more than one message.  The password to the next level is found in the file 'krypton4'.  You have also found 3 other files. (found1, found2, found3)&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This time we  have to use &lt;a href="http://en.wikipedia.org/wiki/Frequency_analysis"&gt;frequency analysis&lt;/a&gt; to count the number of times each letters appears in our message. Then we just compare to the frequency the letters appears in English and we are able to translate our cipher.&lt;/p&gt;
+&lt;p&gt;This time we  have to use &lt;a href="http://en.wikipedia.org/wiki/Frequency_analysis"&gt;frequency analysis&lt;/a&gt; to count the number of times each letters appears in our message. The results are compared to the frequency in each we see letters in English. This is enough to break this type of cipher.&lt;/p&gt;
 &lt;p&gt;For this purpose I wrote the following script:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;string&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
