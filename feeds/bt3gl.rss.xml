@@ -364,7 +364,14 @@ disas main
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Finally, although we are not using it here, an alternative to  gdb is the command &lt;strong&gt;objdump -d&lt;/strong&gt;, which display the Assembly information from object files.&lt;/p&gt;
+&lt;p&gt;As a note,  there are other &lt;strong&gt;disassembles&lt;/strong&gt; that you might want to try instead of gdb:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The shell command &lt;strong&gt;objdump -d&lt;/strong&gt;, which display the Assembly information from object files.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.hex-rays.com/products/ida/index.shtml"&gt; IDA Pro&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.zynamics.com/binnavi.html"&gt;BinNavi&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.hopperapp.com/"&gt;Hopper Disassembler&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://linux.die.net/man/1/readelf"&gt;readelf&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Level 0: Classic Stack Overflow to rewrite a Variable&lt;/h2&gt;
 &lt;h3&gt;Step 1: Understanding the Problem&lt;/h3&gt;
