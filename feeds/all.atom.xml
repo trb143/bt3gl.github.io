@@ -26,8 +26,8 @@ Tell us your choice:
 &lt;p&gt;In other words, if we know only the public key (which is the &lt;a href="http://en.wikipedia.org/wiki/Modulo_operation"&gt;modulo&lt;/a&gt;m &lt;strong&gt;n&lt;/strong&gt;, a multiplication of two large prime numbers), we can manipulate the cipher and still get the original content of the plain message.&lt;/p&gt;
 &lt;p&gt;For example, the multiplication of a &lt;strong&gt;cipher 1&lt;/strong&gt; by a &lt;strong&gt;cipher 2&lt;/strong&gt; is decrypted as a sum of the &lt;strong&gt;message 1&lt;/strong&gt; to &lt;strong&gt;message 2&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="equation" src="http://www.sciweavers.org/tex2img.php?eq=D%5CBigg%5B%20%5CBig%28E%28m_1%29%20%2A%20E%28m_2%29%20%20%20%5CBig%29%20%5C%25%20n%5E2%20%5CBigg%20%5D%3D%20%5CBig%20%28m_1%20%2B%20m_2%20%5CBig%20%29%20%5C%25%20n&amp;amp;bc=White&amp;amp;fc=Black&amp;amp;im=jpg&amp;amp;fs=12&amp;amp;ff=arev&amp;amp;edit=0" /&gt;&lt;/p&gt;
-&lt;p&gt;And, look at this: we can also exponentiate the cipher by some constant &lt;strong&gt;k&lt;/strong&gt;!
-&lt;img alt="equation" src="http://bit.ly/1z5KmHi" /&gt;&lt;/p&gt;
+&lt;p&gt;And, look at this: we can also exponentiate the cipher by some constant &lt;strong&gt;k&lt;/strong&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="equation" src="http://bit.ly/1z5KmHi" /&gt;&lt;/p&gt;
 &lt;p&gt;Pretty cool, huh? I think so... :)&lt;/p&gt;
 &lt;h3&gt;Simple implementation of a Paillier system&lt;/h3&gt;
 &lt;p&gt;Let's highlight the implementation of this system in Python. All we need is a large prime number generator, which we can borrow from &lt;a href="https://www.dlitz.net/software/pycrypto/"&gt;pyCrypto&lt;/a&gt;.&lt;/p&gt;
@@ -115,13 +115,13 @@ Tell us your choice:
 &lt;p&gt;... but &lt;strong&gt;up to a size&lt;/strong&gt;! I tried to input a ridiculous large number and it was rejected. Anything a bit larger than an encrypted message was rejected. This is important! It means that the we might have a &lt;a href="http://en.wikipedia.org/wiki/Modulo_operation"&gt;modulo&lt;/a&gt; here. It also means that we cannot just multiply two ciphers and ask the oracle, since the message would be too large.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;The secret was changing periodically (probably each hour). It means that the keys (the module) were changing too. This ruins any plan of brute forcing it.&lt;/p&gt;
+&lt;p&gt;The secret was &lt;strong&gt;changing periodically&lt;/strong&gt; (probably each hour). It means that the keys (the module) were changing too. This ruins any plan of &lt;strong&gt;brute forcing&lt;/strong&gt; it.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Remember I said that the Paillier encryption is &lt;a href="http://en.wikipedia.org/wiki/Probabilistic_encryption"&gt;probabilistic&lt;/a&gt;, &lt;em&gt;i.e.&lt;/em&gt;, different ciphers can map back to the same value? This was clear from the oracle: if you asked repetitively to encrypt some number, say &lt;em&gt;1&lt;/em&gt;, it would return different messages each time.  Interesting enough, however, if you restarted the system (leaving the session and netcating again), the &lt;em&gt;same order&lt;/em&gt; of different ciphers would appear again. Completely deterministic.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Everything that is not an integer number was rejected by the oracle (no shortcuts here).&lt;/p&gt;
+&lt;p&gt;Everything that is &lt;strong&gt;not an integer&lt;/strong&gt; number was rejected by the oracle (no shortcuts here).&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Automatizing Responses&lt;/h3&gt;
@@ -268,7 +268,7 @@ Tell us your choice:
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Sending it back with the decrypting option returns our (possible) flag minus 1 (remember, it's the message 2).&lt;/p&gt;
+&lt;p&gt;Sending it back with the decrypting option returns our (possible) &lt;strong&gt;flag minus 1&lt;/strong&gt; (remember, &lt;strong&gt;this is the message 2&lt;/strong&gt;).&lt;/p&gt;
 &lt;h3&gt;Getting the Flag!&lt;/h3&gt;
 &lt;p&gt;Of all the possible options of decoding our flag, it was obvious that they were hexadecimal values that should be converted to ASCII.&lt;/p&gt;
 &lt;p&gt;It also helped the fact that I had in mind the ASCII representation of the word &lt;em&gt;ASIS&lt;/em&gt;, which is given by &lt;em&gt;41 53 49 53&lt;/em&gt;:&lt;/p&gt;
