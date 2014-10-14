@@ -655,7 +655,7 @@ AAAAAAAAAAAAAAAAAAAA
 &lt;p&gt;To examine the Stack frame: &lt;code&gt;(gdb) i f&lt;/code&gt;. We can also look at the Stack by using &lt;code&gt;bt&lt;/code&gt; (backtrace).&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;As a note, when you start using gdb frequently, it's useful to have a file with starting commands. For example:&lt;/p&gt;
+&lt;p&gt;When you start using gdb frequently, it's useful to have a file with starting commands. For example:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gdb &amp;lt;program name&amp;gt; -x &amp;lt;&lt;span class="nb"&gt;command &lt;/span&gt;file&amp;gt;
