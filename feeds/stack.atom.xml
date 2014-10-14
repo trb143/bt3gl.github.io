@@ -131,6 +131,12 @@ disas main
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;Or you can have a nice &lt;strong&gt;.gdbinit&lt;/strong&gt; setup with lines such as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;disassembly&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;flavor&lt;/span&gt; &lt;span class="n"&gt;intel&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;follow&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fork&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mode&lt;/span&gt; &lt;span class="n"&gt;child&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;As a note,  there are other &lt;strong&gt;disassembles&lt;/strong&gt; that you might want to try instead of gdb:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The shell command &lt;strong&gt;objdump -d&lt;/strong&gt;, which display the Assembly information from object files.&lt;/li&gt;
