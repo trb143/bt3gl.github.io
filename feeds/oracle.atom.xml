@@ -292,7 +292,12 @@ ASIS
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;And its ASCII decoding returns the flag:&lt;/p&gt;
+&lt;p&gt;And its ASCII decoding,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mh"&gt;0x415349535f3835633966656264346331353935306162316631396136626437613934663836&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Returns the flag:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;The flag is:
 ASIS_85c9febd4c15950ab1f19a6bd7a94f87
 &lt;/pre&gt;&lt;/div&gt;
