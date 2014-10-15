@@ -206,7 +206,8 @@ Tell us your choice:
 &lt;h3&gt;Finding out the Modulo&lt;/h3&gt;
 &lt;p&gt;At this point we know that we cannot do anything in the Paillier system without knowing the modulo, &lt;strong&gt;n&lt;/strong&gt;. Of course, this value was not given. However, from the recon we have learned that we can find it from the oracle.&lt;/p&gt;
 &lt;p&gt;The exactly value when the oracle cycles back to the beginning is our &lt;strong&gt;n&lt;/strong&gt;. This value should not return any message since &lt;strong&gt;n%n = 0&lt;/strong&gt;. So, we are looking for this &lt;strong&gt;None&lt;/strong&gt; result.&lt;/p&gt;
-&lt;p&gt;What's the 101 way to search for a number? &lt;a href="http://en.wikipedia.org/wiki/Binary_search_algorithm"&gt;Binary search&lt;/a&gt;, of course! Adapting one of &lt;a href="https://github.com/bt3gl/Python-and-Algorithms-and-Data-Structures/tree/master/src/searching_and_sorting/searching"&gt;my scripts&lt;/a&gt;, I wrote the snippet below to look for this number:&lt;/p&gt;
+&lt;p&gt;What's the 101 way to search for a number? &lt;a href="http://en.wikipedia.org/wiki/Binary_search_algorithm"&gt;Binary search&lt;/a&gt;, of course! Adapting one of &lt;a href="https://github.com/bt3gl/Python-and-Algorithms-and-Data-Structures/tree/master/src/searching_and_sorting/searching"&gt;my scripts&lt;/a&gt;, I wrote the snippet below to look for this number.&lt;/p&gt;
+&lt;p&gt;The only problem is, the secret has 614 chars and we cannot scan all the 10&lt;strong&gt;614 numbers! Well, but the only way that adding two encrypted messages would work is if the module &lt;/strong&gt;n&lt;strong&gt; lied at somewhere around 614/2. For this reason we set our low and high limit in around 10&lt;/strong&gt;306 and 10**308:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;decimal&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 
@@ -241,7 +242,7 @@ Tell us your choice:
     &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;recv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4096&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
     &lt;span class="c"&gt;# start binary search&lt;/span&gt;
-    &lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;307&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;307&lt;/span&gt;
+    &lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;306&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;308&lt;/span&gt;
     &lt;span class="n"&gt;mod&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bs_paillier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;mod&lt;/span&gt;
 
@@ -254,7 +255,12 @@ Tell us your choice:
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The script took around 5 minutes to be finished, returning our &lt;strong&gt;n&lt;/strong&gt;. We are ready to break this system!&lt;/p&gt;
+&lt;p&gt;The script took around 5 minutes to be finished, returning our &lt;strong&gt;n&lt;/strong&gt; for the round:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;17671943390317527594740575037779239788090749028363849573873871285525785364877468659238291287413782918855995881353189626069716161186805808731291508724925847487655603905895106750055611619881911787280882269077856999823769344599404478814635216943095238063240285592085964648122007040660676934950342692770738186633&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We are ready to break this system!&lt;/p&gt;
 &lt;h3&gt;Convoluting and Decrypting the Answer&lt;/h3&gt;
 &lt;p&gt;We use the first &lt;strong&gt;homomorphic&lt;/strong&gt; propriety to craft a message which will give us the flag:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;convolution&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mod&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
