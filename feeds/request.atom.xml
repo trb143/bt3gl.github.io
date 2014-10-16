@@ -173,8 +173,8 @@ this is the front page
 &lt;h2&gt;I'm bored. Can we do something actually cool?&lt;/h2&gt;
 &lt;p&gt;Yes, we can.&lt;/p&gt;
 &lt;h3&gt;Level 9: OS Command Injection&lt;/h3&gt;
-&lt;p&gt;This level's page has a search form. If we try to submit a word, for example &lt;em&gt;secret&lt;/em&gt;, we get several variations of this word:
-&lt;img alt="" src="http://i.imgur.com/ZQwlqsQl.png" /&gt;&lt;/p&gt;
+&lt;p&gt;This level's page has a search form. If we try to submit a word, for example &lt;em&gt;secret&lt;/em&gt;, we get several variations of this word:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.imgur.com/ZQwlqsQl.png" /&gt;&lt;/p&gt;
 &lt;p&gt;We inspect the source code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;natas9&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
