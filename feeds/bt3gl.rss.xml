@@ -849,7 +849,7 @@ Wed Oct 14 20:23:41 EDT 2014
 
 
 &lt;p&gt;Around 15 minutes later I got the password.&lt;/p&gt;
-&lt;h3&gt;Level 18:&lt;/h3&gt;
+&lt;h3&gt;Level 18: Hijacking Session ID&lt;/h3&gt;
 &lt;p&gt;The 18th level starts with a login form, just like the levels before it. The source code is much more intricate though.&lt;/p&gt;
 &lt;p&gt;First, we see the declaration of the size of the id. This is important if we want to brute force the solution:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;maxid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;640&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 640 should be enough for everyone&lt;/span&gt;
@@ -964,8 +964,7 @@ Wed Oct 14 20:23:41 EDT 2014
 
 
 &lt;p&gt;After a few minutes, we get our password.&lt;/p&gt;
-&lt;h3&gt;Level 19:&lt;/h3&gt;
-&lt;h3&gt;Understanding the problem&lt;/h3&gt;
+&lt;h3&gt;Level 19: Hijacking Session ID II&lt;/h3&gt;
 &lt;p&gt;This level looks exactly like the previous except that it has the following message:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;This page uses mostly the same code as the previous level, but session IDs are no longer sequential...&lt;/p&gt;
