@@ -103,7 +103,7 @@
 
 
 &lt;p&gt;Double LOL.&lt;/p&gt;
-&lt;p&gt;We  just need toinspect that first URL to get the value of &lt;em&gt;$secret&lt;/em&gt;:&lt;/p&gt;
+&lt;p&gt;We  just need to inspect that first URL to get the value of &lt;em&gt;$secret&lt;/em&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;http://natas6.natas.labs.overthewire.org/includes/secret.inc&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -721,7 +721,7 @@ Wed Oct 14 20:23:41 EDT 2014
 &lt;p&gt;We are going to add another grep! Let's call it &lt;em&gt;grep II&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;This time we will give it the flag &lt;code&gt;-E&lt;/code&gt; to allow the use of regular expressions.&lt;/p&gt;
 &lt;p&gt;So, for example, we can use the &lt;em&gt;regex wildcard&lt;/em&gt; &lt;strong&gt;.*&lt;/strong&gt; to search for a char (say &lt;em&gt;a&lt;/em&gt;) in the password string:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;natas_webpass&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;natas17&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;bananas&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;natas_webpass&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;natas17&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;banana&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -856,7 +856,7 @@ Wed Oct 14 20:23:41 EDT 2014
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Then we have a function that checks whether a variable *$id$ is a number with the PHP function &lt;a href="http://php.net/manual/en/function.is-numeric.php"&gt;is_numeric&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;Then we have a function that checks whether a variable &lt;em&gt;$id&lt;/em&gt; is a number with the PHP function &lt;a href="http://php.net/manual/en/function.is-numeric.php"&gt;is_numeric&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;isValidID&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="cm"&gt;/* {{{ */&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;is_numeric&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
