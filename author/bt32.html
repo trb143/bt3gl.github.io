@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>High Bytes by bt3 - jad</title>
+    <title>High Bytes by bt3 - bt3</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="bt3">
@@ -87,30 +87,124 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
-                <h1><a href="http://bt3gl.github.io/the-sharif-university-ctf-2014.html">The Sharif University CTF 2014</a></h1>
+                <h1><a href="http://bt3gl.github.io/csaw-ctf-2014-forensics-200-obscurity.html">CSAW CTF 2014 - Forensics 200: "Obscurity"</a></h1>
                 <div class="well small"><footer class="post-info">
-<abbr class="published" title="2014-09-26T04:20:00">
-      Fri 26 September 2014 </abbr>
+<abbr class="published" title="2014-09-22T07:20:00">
+      Mon 22 September 2014 </abbr>
 
 <span class="label"> Category</span>
-<a href="http://bt3gl.github.io/category/reverse-engineering.html"><i class="icon-folder-open"></i>Reverse Engineering</a>
+<a href="http://bt3gl.github.io/category/forensics.html"><i class="icon-folder-open"></i>Forensics</a>
 
 
 <span class="label">Tags</span>
 	<a href="http://bt3gl.github.io/tag/ctf.html"><i class="icon-tag"></i>CTF</a>
-	<a href="http://bt3gl.github.io/tag/steganography.html"><i class="icon-tag"></i>Steganography</a>
-	<a href="http://bt3gl.github.io/tag/jad.html"><i class="icon-tag"></i>jad</a>
-	<a href="http://bt3gl.github.io/tag/outguess.html"><i class="icon-tag"></i>OutGuess</a>
+	<a href="http://bt3gl.github.io/tag/csaw.html"><i class="icon-tag"></i>CSAW</a>
+	<a href="http://bt3gl.github.io/tag/pdf-parser.html"><i class="icon-tag"></i>pdf-parser</a>
+	<a href="http://bt3gl.github.io/tag/pdftotext.html"><i class="icon-tag"></i>pdftotext</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p>It looked like a fun CTF, but I did not have the chance to play for too long. I managed to solve a few problems in the morning and the solutions are bellow.</p>
-<h2>Avatar: Steganography</h2>
-<p>The challenge starts with:</p>
+                <div class="summary"><p>The third forensics challenge starts with the following text:</p>
 <blockquote>
-<p>A terrorist has changed his picture in a social network. What ...</p></blockquote>
-                        <a class="btn primary xsmall" href="http://bt3gl.github.io/the-sharif-university-ctf-2014.html">more ...</a>
+<p>see or do not see</p>
+<p>Written by marc</p>
+<p><a href="https://ctf.isis.poly.edu/static/uploads/883c7046854e04138c55680ffde90a61/pdf.pdf">pdf.pdf</a></p>
+</blockquote>
+<p>Hacking PDFs, what fun!</p>
+<p>In general, when dealing with reverse-engineering malicious documents, we follow these steps:</p>
+<div class="highlight"><pre> <span class="mf">1.</span> <span class="n">We</span> <span class="n">search</span> <span class="k">for</span> <span class="n">malicious</span> <span class="n">embedded</span> <span class="n">code</span> <span class="p">(</span><span class="n">shell</span> <span class="n">code</span><span class="p">,</span> <span class="n">JavaScript</span><span class="p">).</span>
+
+ <span class="mf">2.</span> <span class="n">We</span> <span class="n">extract</span> <span class="n">any</span> <span class="n">suspicious ...</span></pre></div>
+                        <a class="btn primary xsmall" href="http://bt3gl.github.io/csaw-ctf-2014-forensics-200-obscurity.html">more ...</a>
                 </div>
         </div>
         <hr />
+        <div class="article">
+                <h1><a href="http://bt3gl.github.io/csaw-ctf-2014-forensics-100-dumpster-diving.html">CSAW CTF 2014 - Forensics 100: "dumpster diving"</a></h1>
+                <div class="well small"><footer class="post-info">
+<abbr class="published" title="2014-09-22T06:20:00">
+      Mon 22 September 2014 </abbr>
+
+<span class="label"> Category</span>
+<a href="http://bt3gl.github.io/category/forensics.html"><i class="icon-folder-open"></i>Forensics</a>
+
+
+<span class="label">Tags</span>
+	<a href="http://bt3gl.github.io/tag/ctf.html"><i class="icon-tag"></i>CTF</a>
+	<a href="http://bt3gl.github.io/tag/csaw.html"><i class="icon-tag"></i>CSAW</a>
+	<a href="http://bt3gl.github.io/tag/readelf.html"><i class="icon-tag"></i>readelf</a>
+	<a href="http://bt3gl.github.io/tag/mem.html"><i class="icon-tag"></i>mem</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>This was the first forensic challenge. It starts with the following text:</p>
+<blockquote>
+<p>dumpsters are cool, but cores are cooler</p>
+<p>Written by marc</p>
+<p><a href="https://ctf.isis.poly.edu/static/uploads/606580b079e73e14ab2751e35d22ad44/firefox.mem.zip">firefox.mem.zip</a></p>
+</blockquote>
+<h2>Unziping firefox.mem.zip</h2>
+<p>The given file has a funny extension <em>.mem.zip</em>. Before we go ahead and unzip it, let's try to learn ...</p>
+                        <a class="btn primary xsmall" href="http://bt3gl.github.io/csaw-ctf-2014-forensics-100-dumpster-diving.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://bt3gl.github.io/csaw-ctf-2014-forensics-200-why-not-sftp.html">CSAW CTF 2014 - Forensics 200: "why not sftp?"</a></h1>
+                <div class="well small"><footer class="post-info">
+<abbr class="published" title="2014-09-22T05:20:00">
+      Mon 22 September 2014 </abbr>
+
+<span class="label"> Category</span>
+<a href="http://bt3gl.github.io/category/forensics.html"><i class="icon-folder-open"></i>Forensics</a>
+
+
+<span class="label">Tags</span>
+	<a href="http://bt3gl.github.io/tag/ctf.html"><i class="icon-tag"></i>CTF</a>
+	<a href="http://bt3gl.github.io/tag/csaw.html"><i class="icon-tag"></i>CSAW</a>
+	<a href="http://bt3gl.github.io/tag/wireshark.html"><i class="icon-tag"></i>Wireshark</a>
+	<a href="http://bt3gl.github.io/tag/ftp.html"><i class="icon-tag"></i>FTP</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>The purpose of this problem is to teach about the need of encrypting your data. The <a href="http://en.wikipedia.org/wiki/File_Transfer_Protocol">FTP</a>  protocol sends clear text over the wire, <em>i.e</em>  the  data is transmitted without any encryption.
+ <a href="http://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol">SSH/Secure File Transfer Protocol</a> is a network protocol providing secure file transfer. Using SFTP, instead of ...</p>
+                        <a class="btn primary xsmall" href="http://bt3gl.github.io/csaw-ctf-2014-forensics-200-why-not-sftp.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://bt3gl.github.io/csaw-ctf-2014-cryptography-200-psifer-school.html">CSAW CTF 2014 - Cryptography 200 - Psifer School</a></h1>
+                <div class="well small"><footer class="post-info">
+<abbr class="published" title="2014-09-21T00:20:00">
+      Sun 21 September 2014 </abbr>
+
+<span class="label"> Category</span>
+<a href="http://bt3gl.github.io/category/cryptography.html"><i class="icon-folder-open"></i>Cryptography</a>
+
+
+<span class="label">Tags</span>
+	<a href="http://bt3gl.github.io/tag/ctf.html"><i class="icon-tag"></i>CTF</a>
+	<a href="http://bt3gl.github.io/tag/csaw.html"><i class="icon-tag"></i>CSAW</a>
+	<a href="http://bt3gl.github.io/tag/rot13.html"><i class="icon-tag"></i>ROT13</a>
+	<a href="http://bt3gl.github.io/tag/telnet.html"><i class="icon-tag"></i>telnet</a>
+	<a href="http://bt3gl.github.io/tag/socket.html"><i class="icon-tag"></i>socket</a>
+	<a href="http://bt3gl.github.io/tag/vigenere.html"><i class="icon-tag"></i>Vigenere</a>
+	<a href="http://bt3gl.github.io/tag/pygenere.html"><i class="icon-tag"></i>pygenere</a>
+	<a href="http://bt3gl.github.io/tag/python.html"><i class="icon-tag"></i>Python</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>This is the first crypto-problem, and it was supposed to be the easiest one. For this reason I was expecting simple cryptographic algorithms, which turned out to be true.</p>
+<p>The problem starts with the following text:</p>
+<blockquote>
+<p>There's no heartbleed here. Why don't we use these ciphers?</p>
+<p>nc 54 ...</p></blockquote>
+                        <a class="btn primary xsmall" href="http://bt3gl.github.io/csaw-ctf-2014-cryptography-200-psifer-school.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+
+        <div class="pagination">
+        <ul>
+                        <li class="prev"><a href="http://bt3gl.github.io/author/bt3.html">&larr; Previous</a></li>
+                        <li class=""><a href="http://bt3gl.github.io/author/bt3.html">1</a></li>
+                        <li class="active"><a href="http://bt3gl.github.io/author/bt32.html">2</a></li>
+                        <li class="next disabled"><a href="#">&rarr; Next</a></li>
+        </ul>
+        </div>
 
         </div><!--/span-->
 
