@@ -577,7 +577,7 @@ Initializing hashcat v0.47 by atom with 8 threads and 32mb segment-size...
 
 
 &lt;p&gt;We start with the Apache's log, because they carry the connection information. If there is any important information in the log files, it should appears in the end, because the attack should be one of the last things that were logged.&lt;/p&gt;
-&lt;p&gt;It turned out that &lt;a href="http://en.wikipedia.org/wiki/Tail_(Unix)"&gt;Tailing&lt;/a&gt; the &lt;em&gt;apache&lt;/em&gt; logs did not reveal anything useful. Maybe it is interesting to know that we see the IP &lt;em&gt;192.168.127.137&lt;/em&gt; in the file &lt;em&gt;/apache2/access.log&lt;/em&gt; (which belongs to &lt;em&gt;MASTER OF DISASTER&lt;/em&gt;, as we see above, so &lt;em&gt;hacker&lt;/em&gt; might not be the only attacker...). But we don't have anything really helpful.&lt;/p&gt;
+&lt;p&gt;It turned out that &lt;a href="http://en.wikipedia.org/wiki/Tail_(Unix)"&gt;Tailing&lt;/a&gt; the &lt;em&gt;apache&lt;/em&gt; logs did not reveal anything useful.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Inspecting var/logs/auth.log&lt;/h2&gt;
 &lt;p&gt;Considering that the password &lt;strong&gt;fluffybunnies&lt;/strong&gt; was very easy to guess, we are going to take a leap and suppose that this was how the attack was crafted.&lt;/p&gt;
