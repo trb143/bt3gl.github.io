@@ -90,29 +90,6 @@ webroot.tar.bz2-extracted/var/www/html/wp-content/plugins/contact-form-7/include
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;So we have the (possible) &lt;strong&gt;attacker's email&lt;/strong&gt; and &lt;strong&gt;IP address&lt;/strong&gt;. Maybe we can try to find a bit more about  her.&lt;/p&gt;
-&lt;p&gt;Unfortunately the IP  leads to nowhere:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ping 192.168.127.130
-PING 192.168.127.130 &lt;span class="o"&gt;(&lt;/span&gt;192.168.127.130&lt;span class="o"&gt;)&lt;/span&gt; 56&lt;span class="o"&gt;(&lt;/span&gt;84&lt;span class="o"&gt;)&lt;/span&gt; bytes of data.
-^C
---- 192.168.127.130 ping statistics ---
-160 packets transmitted, 0 received, 100% packet loss, &lt;span class="nb"&gt;time &lt;/span&gt;158999ms
-
-&lt;span class="nv"&gt;$ &lt;/span&gt;nmap -A -v 192.168.127.130
-Starting Nmap 6.45 &lt;span class="o"&gt;(&lt;/span&gt; http://nmap.org &lt;span class="o"&gt;)&lt;/span&gt; at 2014-09-25 15:43 EDT
-NSE: Loaded 118 scripts &lt;span class="k"&gt;for &lt;/span&gt;scanning.
-NSE: Script Pre-scanning.
-Initiating Ping Scan at 15:43
-Scanning 192.168.127.130 &lt;span class="o"&gt;[&lt;/span&gt;2 ports&lt;span class="o"&gt;]&lt;/span&gt;
-Completed Ping Scan at 15:43, 3.00s elapsed &lt;span class="o"&gt;(&lt;/span&gt;1 total hosts&lt;span class="o"&gt;)&lt;/span&gt;
-Nmap scan report &lt;span class="k"&gt;for &lt;/span&gt;192.168.127.130 &lt;span class="o"&gt;[&lt;/span&gt;host down&lt;span class="o"&gt;]&lt;/span&gt;
-NSE: Script Post-scanning.
-Read data files from: /usr/bin/../share/nmap
-Note: Host seems down. If it is really up, but blocking our ping probes, try -Pn
-Nmap &lt;span class="k"&gt;done&lt;/span&gt;: 1 IP address &lt;span class="o"&gt;(&lt;/span&gt;0 hosts up&lt;span class="o"&gt;)&lt;/span&gt; scanned in 3.13 seconds
-&lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;Searching for the host &lt;strong&gt;secretspace.com&lt;/strong&gt; leads to some generic website. Inspecting its source code does not give us any hint either. Maybe its IP address?&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;dig secretspace.com
 
