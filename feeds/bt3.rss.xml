@@ -33,7 +33,7 @@
 
 
 &lt;h3&gt;Gitlist and Remote Command Execution&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://gitlist.org/"&gt;Gitlist&lt;/a&gt; is an application to browse repositories in a browser. The  versions up to 5.0 are known for &lt;a href="http://www.websecuritywatch.com/arbitrary-command-execution-in-gitlist/"&gt;allowing remote attackers to execute arbitrary commands via shell&lt;/a&gt;, a type of &lt;a href="http://cwe.mitre.org/data/definitions/77.html"&gt;command injection&lt;/a&gt;. Exploits for this vulnerability can be seen at &lt;a href="http://hatriot.github.io/blog/2014/06/29/gitlist-rce/"&gt;hatriot&lt;/a&gt;, at &lt;a href="http://packetstormsecurity.com/files/127364/Gitlist-Unauthenticated-Remote-Command-Execution.html"&gt;packet storm&lt;/a&gt;, at &lt;a href="http://en.1337day.com/exploit/22391"&gt;1337day&lt;/a&gt;, and at &lt;a href="http://www.exploit-db.com/exploits/33990/"&gt;exploit-db&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://gitlist.org/"&gt;Gitlist&lt;/a&gt; is an application to browse github repositories in a browser. The  versions up to 5.0 are known for &lt;a href="http://www.websecuritywatch.com/arbitrary-command-execution-in-gitlist/"&gt;allowing remote attackers to execute arbitrary commands via shell&lt;/a&gt;, a type of &lt;a href="http://cwe.mitre.org/data/definitions/77.html"&gt;command injection&lt;/a&gt;. Exploits for this vulnerability can be seen at &lt;a href="http://hatriot.github.io/blog/2014/06/29/gitlist-rce/"&gt;hatriot&lt;/a&gt;, at &lt;a href="http://packetstormsecurity.com/files/127364/Gitlist-Unauthenticated-Remote-Command-Execution.html"&gt;packet storm&lt;/a&gt;, at &lt;a href="http://en.1337day.com/exploit/22391"&gt;1337day&lt;/a&gt;, and at &lt;a href="http://www.exploit-db.com/exploits/33990/"&gt;exploit-db&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In this CTF, the following command could be used to look for the flag:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;http://10.13.37.33/gitlist/redis/blame/unstable/README%22%22%60ls%20-al%60&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -54,8 +54,9 @@
 
 &lt;p&gt;An example of payload can be seen &lt;a href="https://github.com/ctfs/write-ups/tree/master/d-ctf-2014/web-400"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;ColdFusion and Local File Disclosure&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Adobe_ColdFusion"&gt;ColdFusion&lt;/a&gt; is an old web application development platform. It carries its own (interpreted) language, &lt;strong&gt;CFM&lt;/strong&gt;, with a Java backend. CFM has scripting features like ASP and PHP, and syntax resembling HTML and JavaScript.  ColdFusion scripts  have &lt;strong&gt;cfm&lt;/strong&gt; and &lt;strong&gt;cfc&lt;/strong&gt; file extension. &lt;a href="http://www.adobe.com/products/coldfusion-family.html"&gt;Adobe ColdFusion 11&lt;/a&gt; and &lt;a href="http://www.getrailo.org/"&gt;Railio 4.2&lt;/a&gt;, the two platform accepting CFM,  were both released in the beginning of 2014.&lt;/p&gt;
-&lt;p&gt;The problem is that CML is &lt;a href="http://www.intelligentexploit.com/view-details.html?id=12750"&gt;vulnerable to a variety of attacks&lt;/a&gt;, including &lt;a href="https://www.owasp.org/index.php/Full_Path_Disclosure"&gt;Local File Disclosure&lt;/a&gt; (LFD) and SQL injection (SQLi). Adding this to the fact that ColdFusion scripts  usually run on elevated privileged users, we have a very vulnerable platform.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Adobe_ColdFusion"&gt;ColdFusion&lt;/a&gt; is an old web application development platform. It carries its own (interpreted) language, &lt;strong&gt;CFM&lt;/strong&gt;, with a Java backend.&lt;/p&gt;
+&lt;p&gt;CFM has scripting features like ASP and PHP, and syntax resembling HTML and JavaScript.  ColdFusion scripts  have &lt;strong&gt;cfm&lt;/strong&gt; and &lt;strong&gt;cfc&lt;/strong&gt; file extension. For instance,  &lt;a href="http://www.adobe.com/products/coldfusion-family.html"&gt;Adobe ColdFusion 11&lt;/a&gt; and &lt;a href="http://www.getrailo.org/"&gt;Railio 4.2&lt;/a&gt;, the two platform accepting CFM,  were both released in the beginning of 2014.&lt;/p&gt;
+&lt;p&gt;The problem is that CFM is &lt;a href="http://www.intelligentexploit.com/view-details.html?id=12750"&gt;vulnerable to a variety of attacks&lt;/a&gt;, including &lt;a href="https://www.owasp.org/index.php/Full_Path_Disclosure"&gt;Local File Disclosure&lt;/a&gt; (LFD) and SQL injection (SQLi). Adding this to the fact that ColdFusion scripts  usually run on elevated privileged users, we have a very vulnerable platform.&lt;/p&gt;
 &lt;h4&gt;SQL Injection (SQLi)&lt;/h4&gt;
 &lt;p&gt;&lt;a href="https://www.owasp.org/index.php/SQL_Injection"&gt;SQL Injection&lt;/a&gt; is a classic attack where one injects exploits in a &lt;a href="http://technet.microsoft.com/en-us/library/bb264565(v=sql.90).aspx"&gt;SQL query&lt;/a&gt;. Vulnerabilities of this type can be spot in queries such as &lt;strong&gt;index.php?id=1&lt;/strong&gt;. I showed some of these exploits in my &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Natas post&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In this CTF, these were  some of the  exploits that could be used:&lt;/p&gt;
@@ -106,13 +107,13 @@
 
 
 &lt;ul&gt;
-&lt;li&gt;Now a shell can be written to a file and added in &lt;strong&gt;Schedule New Task&lt;/strong&gt;. See detailed instructions at &lt;a href="http://www.blackhatlibrary.net/Coldfusion_hacking"&gt;blackhatlib&lt;/a&gt;. at &lt;a href="http://www.infointox.net/?p=59"&gt;infointox&lt;/a&gt;, at &lt;a href="http://www.gnucitizen.org/blog/coldfusion-directory-traversal-faq-cve-2010-2861/"&gt;gnucitizen&lt;/a&gt;, at &lt;a href="http://kaoticcreations.blogspot.com/2012/11/hacking-cold-fusion-servers-part-i.html"&gt;kaoticcreations&lt;/a&gt;, at &lt;a href="https://www.cyberguerrilla.org/blog/?p=18275"&gt;cyberguerilla&lt;/a&gt;, at &lt;a href="http://jumpespjump.blogspot.com/2014/03/attacking-adobe-coldfusion.html"&gt;jumpespjump&lt;/a&gt;, and at &lt;a href="http://hexale.blogspot.com/2008/07/how-to-decrypt-coldfusion-datasource.html"&gt;hexale&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Now a shell can be written to a file and added in &lt;strong&gt;Schedule New Task&lt;/strong&gt;. See detailed instructions at &lt;a href="http://www.blackhatlibrary.net/Coldfusion_hacking"&gt;blackhatlib&lt;/a&gt;, at &lt;a href="http://www.infointox.net/?p=59"&gt;infointox&lt;/a&gt;, at &lt;a href="http://www.gnucitizen.org/blog/coldfusion-directory-traversal-faq-cve-2010-2861/"&gt;gnucitizen&lt;/a&gt;, at &lt;a href="http://kaoticcreations.blogspot.com/2012/11/hacking-cold-fusion-servers-part-i.html"&gt;kaoticcreations&lt;/a&gt;, at &lt;a href="https://www.cyberguerrilla.org/blog/?p=18275"&gt;cyberguerilla&lt;/a&gt;, at &lt;a href="http://jumpespjump.blogspot.com/2014/03/attacking-adobe-coldfusion.html"&gt;jumpespjump&lt;/a&gt;, and at &lt;a href="http://hexale.blogspot.com/2008/07/how-to-decrypt-coldfusion-datasource.html"&gt;hexale&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Useful Tools&lt;/h2&gt;
 &lt;h3&gt;Steganography&lt;/h3&gt;
 &lt;p&gt;One of the questions had a reference to the &lt;a href="https://ccrma.stanford.edu/~eberdahl/Projects/Paranoia/"&gt;paranoia.jar&lt;/a&gt; tool, which hides text in an image file using &lt;a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard"&gt;128 bit AES&lt;/a&gt; encryption.&lt;/p&gt;
-&lt;p&gt;To run the tool just do:&lt;/p&gt;
+&lt;p&gt;To run the tool (after downloading it) just do:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;java -jar paranoia.jar
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -124,7 +125,7 @@
 &lt;li&gt;&lt;a href="http://portswigger.net/burp/"&gt;Burp&lt;/a&gt;: a Java application to secure or penetrate web applications.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Wireshark&lt;/h3&gt;
-&lt;p&gt;At some point I'm going to dedicate an entire post for Wireshark, but for this CTF the important things to know were:&lt;/p&gt;
+&lt;p&gt;At some point I'm going to dedicate an entire post for &lt;a href="https://www.wireshark.org/"&gt;Wireshark&lt;/a&gt;, but for this CTF the important things to know were:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Look for POST requests:&lt;/li&gt;
 &lt;/ul&gt;
@@ -156,8 +157,8 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Hexadecimal decoders&lt;/strong&gt; are essential. You can use Python's &lt;a href="https://docs.python.org/2/library/functions.html#hex"&gt;hex&lt;/a&gt;:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2f722f6e6574736563&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hex&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
-&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;netsec&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python -c &lt;span class="s1"&gt;&amp;#39;print &amp;quot;2f722f6e6574736563&amp;quot;.decode(&amp;quot;hex&amp;quot;)&amp;#39;&lt;/span&gt;
+/r/netsec
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -171,21 +172,20 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Base64 decoders&lt;/strong&gt; are also essential:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;base64&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;BASE64STRING&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;OUTPUT&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;base64 --decode &lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt; BASE64STRING &amp;gt; OUTPUT
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;tee&lt;/strong&gt; is nice to store and view the output of another command. For example:&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;tee&lt;/strong&gt; is nice to store and view the output of another command. It can be very useful with &lt;em&gt;curl&lt;/em&gt;. A simple  example:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ls&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;tee&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ls | tee file
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;It's also very useful with &lt;em&gt;curl&lt;/em&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;chattr&lt;/strong&gt; is used to change the file attributes of a Linux file system. For example, the command &lt;code&gt;chattr +i&lt;/code&gt; on a file make it not be removed (useful for &lt;em&gt;zombie&lt;/em&gt; processes hunting).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;chattr&lt;/strong&gt; is used to change the file attributes of a Linux file system. For example, the command &lt;code&gt;chattr +i&lt;/code&gt; on a file make it not be able to be removed (useful for &lt;em&gt;zombie&lt;/em&gt; processes hunting).&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;nm&lt;/strong&gt; is useful for listing symbols from object files&lt;/p&gt;
@@ -194,8 +194,8 @@
 &lt;p&gt;&lt;strong&gt;md5 hashing&lt;/strong&gt; is used all the time:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;md5sum&lt;/span&gt;
-&lt;span class="mf"&gt;5f&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;dcc3b5aa765d61d8327deb882cf99&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; -n password | md5sum
+5f4dcc3b5aa765d61d8327deb882cf99
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -207,9 +207,9 @@
 
 
 &lt;ul&gt;
-&lt;li&gt;Now a special one:  one of the trivia questions in this CTF. How to disable the Windows XP Firewall from command line:&lt;/li&gt;
+&lt;li&gt;Now a special one: Windows! One of the trivia questions in this CTF. How to disable the Windows XP Firewall from command line:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;netsh&lt;/span&gt; &lt;span class="n"&gt;firewall&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;opmode&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;DISABLE&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;netsh firewall &lt;span class="nb"&gt;set &lt;/span&gt;opmode &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;DISABLE.
 &lt;/pre&gt;&lt;/div&gt;
 
 
