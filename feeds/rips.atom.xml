@@ -181,7 +181,7 @@
 
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;nmap&lt;/strong&gt;, obviously. You can use it in Python scripts, using the [subprocess] library:&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;nmap&lt;/strong&gt;, obviously. You can use it in Python scripts, using the &lt;a href="https://docs.python.org/2/library/subprocess.html"&gt;subprocess&lt;/a&gt; library:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[*] Scanning for open ports using nmap&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;nmap -sS -sV -T4 -p 22-2048 &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;base_URL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
