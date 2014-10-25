@@ -143,7 +143,7 @@
 &lt;p&gt;Now it's time for something slightly more difficult. Hint, everybody knows it's
 not length that matters.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Together with the hint &lt;em&gt;length doesn't matter&lt;/em&gt;, we get the following cipher:&lt;/p&gt;
+&lt;p&gt;Together with the hint &lt;em&gt;length doesn't matter&lt;/em&gt;, we get the following cipher (translated as a Python string variable because of the special characters):&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;I'lcslraooh o rga tehhywvf.retFtelh mao ae  af ostloh lusr bTsfnr, epawlltddaheoo  aneviedr ose rtyyng etn aini ft oooey hgbifecmoswuut!oa eeg   ar rr h.u t. hylcg io we ph ftooriysneirdriIa utyco gfl oostif sp u"+'""'+"flcnb  roh tprn.o h&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;To crack this cipher we need to deal with special characters to find the rotation shift. We proceed with the following steps:&lt;/p&gt;
 &lt;ol&gt;
