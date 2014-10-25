@@ -110,8 +110,11 @@
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Useful Tools&lt;/h2&gt;
+&lt;h3&gt;Vulnerability Scanners&lt;/h3&gt;
+&lt;p&gt;Vulnerability scanners can be useful for several problems. For instance, for a PHP static source code analyser, we can use &lt;a href="http://rips-scanner.sourceforge.net/"&gt;RIPS&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In this CTF we had to scan for &lt;a href="http://en.wikipedia.org/wiki/Heartbleed"&gt;Heartbleed&lt;/a&gt;, and we used &lt;a href="https://gist.githubusercontent.com/eelsivart/10174134/raw/5c4306a11fadeba9d9f9385cdda689754ca4d362/heartbleed.py"&gt;this script&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Scapy&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://packetlife.net/blog/2011/may/23/introduction-scapy/"&gt;Scapy&lt;/a&gt; is a Python lib for crafting packets. It can be useful for problems such as &lt;a href="http://en.wikipedia.org/wiki/Port_knocking"&gt;port knocking&lt;/a&gt;. Here are &lt;a href="http://www.secdev.org/projects/scapy/build_your_own_tools.html"&gt;some examples&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://packetlife.net/blog/2011/may/23/introduction-scapy/"&gt;Scapy&lt;/a&gt; is a Python lib for crafting packets. It can be useful for problems such as &lt;a href="http://en.wikipedia.org/wiki/Port_knocking"&gt;port knocking&lt;/a&gt;. For examples, an &lt;a href="http://eindbazen.net/2011/12/phd-ctf-quals-2011-%E2%80%93-port-knocking/"&gt;example from PHD CTF 2011&lt;/a&gt; and from &lt;a href="http://blog.dul.ac/2014/05/ASISCTF14/"&gt;ASIS CTF 2014&lt;/a&gt;. Check &lt;a href="https://code.google.com/p/pypk/source/browse/branches/release-0.1.0/knocker.py?r=3"&gt;this project&lt;/a&gt; too.&lt;/p&gt;
 &lt;p&gt;Although this ended up not being the solution, here is an example of scapy script I used for this CTF:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/python&lt;/span&gt;
 
