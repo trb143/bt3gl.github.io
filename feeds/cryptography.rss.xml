@@ -158,15 +158,10 @@ Disguise does not &lt;span class="nb"&gt;help&lt;/span&gt;
 &lt;p&gt;Notice again that since these messages are generated with random numbers, they will differ each time. However, we know from above that they carry unique information that leads to a common key (and the flag).&lt;/p&gt;
 &lt;p&gt;So to make our  lives easier I write the following script to automatize the process:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 
-&lt;span class="n"&gt;PORTc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1432&lt;/span&gt;
 &lt;span class="n"&gt;PORTm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1434&lt;/span&gt;
 &lt;span class="n"&gt;PORTw&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1433&lt;/span&gt;
 &lt;span class="n"&gt;HOST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;wildwildweb.fluxfingers.net&amp;#39;&lt;/span&gt;
-
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;binascii&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;base64&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;peace_pipe&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
 
