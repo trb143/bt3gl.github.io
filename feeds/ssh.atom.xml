@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/ssh.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-10-23T06:30:00-04:00</updated><entry><title>The Peace Pipe at Hack.lu's Final CTF 2014</title><link href="http://bt3gl.github.io/the-peace-pipe-at-hacklus-final-ctf-2014.html" rel="alternate"></link><updated>2014-10-23T06:30:00-04:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-10-23:the-peace-pipe-at-hacklus-final-ctf-2014.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="http://i.imgur.com/LXaaRsf.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Last week was the &lt;a href="https://wildwildweb.fluxfingers.net/scoreboard"&gt;Hack.lu&lt;/a&gt; Final CTF. In this post I  discuss  one of my favorite  crypto problems: the "Peace Pipe".&lt;/p&gt;
+&lt;p&gt;Last week was the &lt;a href="https://wildwildweb.fluxfingers.net/scoreboard"&gt;Hack.lu&lt;/a&gt; Final CTF. In this post I  discuss  one of my favorite  crypto problems in that CTF: the "Peace Pipe".&lt;/p&gt;
 &lt;h2&gt;Understanding the Problem&lt;/h2&gt;
-&lt;p&gt;The problem started with this weird story:&lt;/p&gt;
+&lt;p&gt;The problem starts with this weird story:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;After&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;sit&lt;/span&gt; &lt;span class="n"&gt;around&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;campfire&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;wild&lt;/span&gt; &lt;span class="n"&gt;wild&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;few&lt;/span&gt; &lt;span class="n"&gt;Sioux&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;met&lt;/span&gt; &lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 &lt;span class="n"&gt;To&lt;/span&gt; &lt;span class="n"&gt;celebrate&lt;/span&gt; &lt;span class="n"&gt;friendship&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;them&lt;/span&gt; &lt;span class="n"&gt;takes&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt; &lt;span class="n"&gt;his&lt;/span&gt; &lt;span class="n"&gt;wooden&lt;/span&gt; &lt;span class="n"&gt;peace&lt;/span&gt; &lt;span class="n"&gt;pipe&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;minutes&lt;/span&gt; &lt;span class="n"&gt;later&lt;/span&gt; &lt;span class="n"&gt;everyone&lt;/span&gt; &lt;span class="n"&gt;seems&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;pretty&lt;/span&gt; &lt;span class="n"&gt;dizzy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 &lt;span class="n"&gt;You&lt;/span&gt; &lt;span class="n"&gt;remember&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;their&lt;/span&gt; &lt;span class="n"&gt;war&lt;/span&gt; &lt;span class="n"&gt;chief&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Makawee&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;started&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;say&lt;/span&gt; &lt;span class="n"&gt;about&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;secret&lt;/span&gt; &lt;span class="n"&gt;tipi&lt;/span&gt; &lt;span class="n"&gt;filled&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;fire&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;water&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;good&lt;/span&gt; &lt;span class="n"&gt;stuff&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt; &lt;span class="n"&gt;But&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;he&lt;/span&gt; &lt;span class="n"&gt;noticed&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;interest&lt;/span&gt; &lt;span class="n"&gt;he&lt;/span&gt; &lt;span class="n"&gt;immediately&lt;/span&gt; &lt;span class="n"&gt;stopped&lt;/span&gt; &lt;span class="n"&gt;talking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
@@ -12,7 +12,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Then it gives three &lt;em&gt;ports&lt;/em&gt; in the &lt;em&gt;host&lt;/em&gt;. With the first one, we  talk to &lt;strong&gt;Chapawee&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Then it gives us three &lt;em&gt;ports&lt;/em&gt; in the &lt;em&gt;host&lt;/em&gt;. With the first one, we  talk to &lt;strong&gt;Chapawee&lt;/strong&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wildwildweb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fluxfingers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="mi"&gt;1432&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -27,7 +27,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;It was obvious that  this game was about fooling our fellow &lt;em&gt;stoned&lt;/em&gt; native-americans.&lt;/p&gt;
+&lt;p&gt;It was obvious that  this game was about fooling our fellow &lt;em&gt;stoned&lt;/em&gt; native-Americans.&lt;/p&gt;
 &lt;h3&gt;A Dialogue with Chapawee&lt;/h3&gt;
 &lt;p&gt;When we &lt;em&gt;netcat&lt;/em&gt; to &lt;strong&gt;Chapawee&lt;/strong&gt; he answers:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; nc wildwildweb.fluxfingers.net 1432
@@ -65,7 +65,7 @@ Say stars &lt;span class="k"&gt;for &lt;/span&gt;more
 &lt;/ol&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/TwxShK9.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;In the above, notice that we can move the multiplications' modulus operation to the end, due to &lt;a href="http://en.wikipedia.org/wiki/Modular_arithmetic#Congruence_relation"&gt;this proprietyy&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In conclusion, all we need to do is to convince Wahkoowah believe that we are Makawee (by sending possing Makawee's public key and sending him a correct &lt;em&gt;t_m&lt;/em&gt;). In this case, he will give us a token. If we send this token to Makawee, we get our flag.&lt;/p&gt;
+&lt;p&gt;In conclusion, all we need to do is to convince Wahkoowah believe that we are Makawee (by telling him we are Makawee, so he can use his public key, and by sending him a correct &lt;em&gt;t_m&lt;/em&gt;). If this works, he will give us a token. Then, if we send this token to Makawee, we get our flag.&lt;/p&gt;
 &lt;h3&gt;A Dialogue with Wankoowah&lt;/h3&gt;
 &lt;p&gt;Now, let's see what Wankoowah has to say:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;nc wildwildweb.fluxfingers.net 1433
