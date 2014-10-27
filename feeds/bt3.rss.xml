@@ -54,7 +54,7 @@ Say stars &lt;span class="k"&gt;for &lt;/span&gt;more
 &lt;p&gt;So, from the above scheme, we know:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;How a &lt;strong&gt;message&lt;/strong&gt; (t) is created with someone's public key, a &lt;strong&gt;random rational number&lt;/strong&gt; (r_w), and a given &lt;strong&gt;modulus number&lt;/strong&gt; (p). The only unknown here is r_w, which is a rational number (Q). This mean that any plans of brute force the messages wouldn't work (however, if r_w was an integer, this task could be achieved).&lt;/p&gt;
+&lt;p&gt;How a &lt;strong&gt;message&lt;/strong&gt; (t) is created with someone's public key, a &lt;strong&gt;random rational number&lt;/strong&gt; (r_w), and a given &lt;strong&gt;modulus number&lt;/strong&gt; (p). The only unknown here is r_w, which is a rational number (Q). This mean that any plans to brute force the messages wouldn't work (however, if r_w was an integer, this task could be achieved).&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Everyone has a private key that is modulus p. We never learn anything about anyone's private keys. We just know that they could be of the order of p (which is a really large number, ~1E2048).&lt;/p&gt;
