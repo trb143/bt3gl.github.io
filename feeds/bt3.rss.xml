@@ -210,7 +210,7 @@ Disguise does not &lt;span class="nb"&gt;help&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Running it lead us to the flag:&lt;/p&gt;
+&lt;p&gt;Running it leads us to the flag:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;python 300_peace_pipe.py
 
 Magic from w to m: 2f2f5d280871947836e9b5665986c1b75e732d88ae3d464b65d24ea7e41c33c491060379ac4f3dc4a7231f43d6a11b5bfd3a780d8ac46bd1a4cfd99ac041434cb82c5941f17e68a4f180101ece166a1b4da6ea32d62455bd7472892ed9b67fe2122e0b331048e4a11d98422f04ec3063a3652a0e1a90e13a740905bb3a22c9b5e39d1e0fa97f10bff34d76243b9211afd1131b0f6e33d4d99c8069c462677ce67401214c943fee13252060aa02b8b1525ed0af8c9aa5ad5dee64dbb0c275dd6147754c7dfaf3218caf35d7837925215a04bb315e91441306ef0d29f0da733b7e4ac92b500dc522de11c5f5af58248ed5f762b854f40f0adf4b681a937d17a1c0
