@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Higher Bytes by bt3</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/cryptography.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 23 Oct 2014 06:30:00 -0400</lastBuildDate><item><title>The Peace Pipe at Hack.lu's Final CTF 2014</title><link>http://bt3gl.github.io/the-peace-pipe-at-hacklus-final-ctf-2014.html</link><description>&lt;p&gt;&lt;img alt="" src="http://i.imgur.com/LXaaRsf.png" /&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Higher Bytes by bt3</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/cryptography.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 27 Oct 2014 08:30:00 -0400</lastBuildDate><item><title>The Peace Pipe at Hack.lu's Final CTF 2014</title><link>http://bt3gl.github.io/the-peace-pipe-at-hacklus-final-ctf-2014.html</link><description>&lt;p&gt;&lt;img alt="" src="http://i.imgur.com/LXaaRsf.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Last week was the &lt;a href="https://wildwildweb.fluxfingers.net/scoreboard"&gt;Hack.lu&lt;/a&gt; Final CTF. In this post I  discuss  one of my favorite  crypto problems in that CTF: the "Peace Pipe".&lt;/p&gt;
 &lt;h2&gt;Understanding the Problem&lt;/h2&gt;
 &lt;p&gt;The problem starts with this weird story:&lt;/p&gt;
@@ -60,12 +60,12 @@ Say stars &lt;span class="k"&gt;for &lt;/span&gt;more
 &lt;p&gt;Everyone has a private key that is modulus p. We never learn anything about anyone's private keys. We just know that they could be of the order of p (which is a really large number, ~1E2048).&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Wahkoowah and Makawee have a shared secret key. The way the share this key without knowing each other's private key is by this tricky transformation:&lt;/p&gt;
+&lt;p&gt;Wahkoowah and Makawee have a shared secret key. The way they share this key without knowing each other's private key is by this tricky transformation:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/TwxShK9.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;In the above, notice that we can move the multiplications' modulus operation to the end, due to &lt;a href="http://en.wikipedia.org/wiki/Modular_arithmetic#Congruence_relation"&gt;this propriety&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In conclusion, all we need to do is to convince Wahkoowah believe that we are Makawee (by telling him we are Makawee, so he can use his public key, and by sending him a correct &lt;em&gt;t_m&lt;/em&gt;). If this works, he will give us a token. Then, if we send this token to Makawee, we get our flag.&lt;/p&gt;
+&lt;p&gt;Notice that we can move the multiplications' modulus operation to the end, due to &lt;a href="http://en.wikipedia.org/wiki/Modular_arithmetic#Congruence_relation"&gt;this propriety&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In conclusion, all we need to do is to convince Wahkoowah  that we are Makawee (by telling him we are Makawee, so he can use his public key, and by sending him a correct &lt;em&gt;t_m&lt;/em&gt;). If this works, he will give us a token. Then, if we send this token to Makawee, we get our flag.&lt;/p&gt;
 &lt;h3&gt;A Dialogue with Wankoowah&lt;/h3&gt;
 &lt;p&gt;Now, let's see what Wankoowah has to say:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;nc wildwildweb.fluxfingers.net 1433
@@ -148,7 +148,7 @@ Disguise does not &lt;span class="nb"&gt;help&lt;/span&gt;
 &lt;p&gt;Oh no, the plan didn't not work. We can't send &lt;strong&gt;exactly&lt;/strong&gt; Wahkoowah's key! We need to be even more tricky...&lt;/p&gt;
 &lt;h2&gt;Crafting a Solution&lt;/h2&gt;
 &lt;h3&gt;Master in Disguising&lt;/h3&gt;
-&lt;p&gt;Every key in this problem is given by &lt;em&gt;mudulus p&lt;/em&gt;. This means that we infinite values that map to the same original key. My first attempt was to multiply the original key by p, so that, when it receives the modulus operation, it circles once more but it returns to the original value.&lt;/p&gt;
+&lt;p&gt;Every key in this problem is given by &lt;em&gt;mudulus p&lt;/em&gt;. This means that we have infinite values that map to the same original key. My first attempt was to multiply the original key by p, so that, when it receives the modulus operation, it circles once more but it returns to the original value.&lt;/p&gt;
 &lt;p&gt;It didn't work. The reason is that p is too large. When multiplied to the key (that is large itself) we loose precision and we don't go back to the original value. We need to keep the values in the same scale.&lt;/p&gt;
 &lt;p&gt;Let's take a look again at the way the messages are generated:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/Hz5uf7X.jpg" /&gt;&lt;/p&gt;
@@ -225,7 +225,7 @@ flag&lt;span class="o"&gt;{&lt;/span&gt;FreeBoozeForEverone-Party!&lt;span class
 
 
 &lt;hr /&gt;
-&lt;p&gt;That's it! Hack all the things!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Thu, 23 Oct 2014 06:30:00 -0400</pubDate><guid>tag:bt3gl.github.io,2014-10-23:the-peace-pipe-at-hacklus-final-ctf-2014.html</guid><category>SSH</category></item><item><title>On Paillier Ciphersystem, Binary Search and the ASIS CTF 2014</title><link>http://bt3gl.github.io/on-paillier-ciphersystem-binary-search-and-the-asis-ctf-2014.html</link><description>&lt;p&gt;&lt;img alt="" src="http://i.imgur.com/7LMyBGx.png" /&gt;&lt;/p&gt;
+&lt;p&gt;That's it! Hack all the things!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Mon, 27 Oct 2014 08:30:00 -0400</pubDate><guid>tag:bt3gl.github.io,2014-10-27:the-peace-pipe-at-hacklus-final-ctf-2014.html</guid><category>SSH</category></item><item><title>On Paillier Ciphersystem, Binary Search and the ASIS CTF 2014</title><link>http://bt3gl.github.io/on-paillier-ciphersystem-binary-search-and-the-asis-ctf-2014.html</link><description>&lt;p&gt;&lt;img alt="" src="http://i.imgur.com/7LMyBGx.png" /&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;a href="http://asis-ctf.ir/home/"&gt;ASIS CTF&lt;/a&gt; happened last weekend. Although I ended up not playing all I wanted, I did spend some time working on a crypto challenge that was worth a lot of points in the game. The challenge was about a sort of not well-known system, the &lt;a href="http://en.wikipedia.org/wiki/Paillier_cryptosystem"&gt;Paillier cryptosystem&lt;/a&gt;.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;The Cryptosystem&lt;/h2&gt;
