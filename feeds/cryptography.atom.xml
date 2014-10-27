@@ -114,7 +114,7 @@ Ncat: Broken pipe.
 
 
 &lt;p&gt;Mmmm, we need to make Makawee use Wankoowah's key without him knowing it!&lt;/p&gt;
-&lt;p&gt;Since Chapawee allows us to add keys to names, let's create some name with Wahkoowah's key (say "mrwrite") and send this to Makawee:&lt;/p&gt;
+&lt;p&gt;Since Chapawee allows us to add keys to names, let's create some name with Wahkoowah's key (say "mrwhite") and send this to Makawee:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;nc wildwildweb.fluxfingers.net 1432
 Hi I&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;m Chapawee. I know the truth about the stars
 Say stars &lt;span class="k"&gt;for &lt;/span&gt;more
