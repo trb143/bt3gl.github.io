@@ -148,7 +148,7 @@ Disguise does not &lt;span class="nb"&gt;help&lt;/span&gt;
 &lt;p&gt;Oh no, the plan did not work! We can't send &lt;strong&gt;exactly&lt;/strong&gt; Wahkoowah's key! We need to be even more tricky...&lt;/p&gt;
 &lt;h2&gt;Crafting a Solution&lt;/h2&gt;
 &lt;h3&gt;Master in Disguising&lt;/h3&gt;
-&lt;p&gt;Every key in this problem is given by &lt;em&gt;mudulus p&lt;/em&gt;. This means that we have infinite values that map to the same original key. My first attempt was to multiply the original key by p, so that, when it receives the modulus operation, it circles once more but it returns to the original value.&lt;/p&gt;
+&lt;p&gt;Every key in this problem is given by &lt;em&gt;mudulus p&lt;/em&gt;. This means that we have infinite values that map to the same original key. My first attempt was to multiply the original key by p, so that, when it receives the modulus operation, it circles once more returning to the original value.&lt;/p&gt;
 &lt;p&gt;It didn't work. The reason is that p is too large. When multiplied to the key (that is large itself) we loose precision and we don't go back to the original value. We need to keep the values in the same scale.&lt;/p&gt;
 &lt;p&gt;Let's take a look again at the way the messages are generated:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/Hz5uf7X.jpg" /&gt;&lt;/p&gt;
