@@ -156,8 +156,7 @@ Disguise does not &lt;span class="nb"&gt;help&lt;/span&gt;
 &lt;p&gt;That's all we need! We are going to disguise Makawee by creating a &lt;em&gt;star&lt;/em&gt; with the negative value of Wahkoowah's key.&lt;/p&gt;
 &lt;h3&gt;Automatizing the Process and getting the Flag!&lt;/h3&gt;
 &lt;p&gt;All right, now we know how to make Wahkoowah and Makawee talk and how to get &lt;em&gt;t_m&lt;/em&gt; and &lt;em&gt;t_w&lt;/em&gt;. We are ready to generate the token that will lead us to the flag.&lt;/p&gt;
-&lt;p&gt;Notice again that since these messages are generated with random numbers, they will differ each time. However, we know from above that they carry unique information that leads to a common key (and the flag).&lt;/p&gt;
-&lt;p&gt;So to make our  lives easier I wrote the following script to automatize the process:&lt;/p&gt;
+&lt;p&gt;Notice again that since these messages are generated with random numbers, they will differ each time. However, we know from above that they carry unique information that leads to a common key (and the flag). I wrote the following script to automatize the process:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 
 &lt;span class="n"&gt;PORTm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1434&lt;/span&gt;
