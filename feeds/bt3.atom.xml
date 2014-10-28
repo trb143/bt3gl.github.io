@@ -307,6 +307,7 @@ flag&lt;span class="o"&gt;{&lt;/span&gt;FreeBoozeForEverone-Party!&lt;span class
 
 
 &lt;p&gt;By the way, it's useful in general to know &lt;a href="http://www.w3schools.com/tags/ref_urlencode.asp"&gt;HTML URL Encoding&lt;/a&gt; to craft these URLs.&lt;/p&gt;
+&lt;p&gt;Finally, I like &lt;a href="http://owtf.github.io/boilerplate-templates/SQLinjection.html"&gt;this nice guide for SQLi mitigation&lt;/a&gt; by OWSAP OWTF.&lt;/p&gt;
 &lt;h3&gt;CesarFTP 0.99g and Buffer Overflow&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://www.softpedia.com/get/Internet/Servers/FTP-Servers/Cesar-FTP.shtml"&gt;CesarFTP 0.99g&lt;/a&gt; is an easy-to-use  FTP server. It is also known for having several vulnerabities, including &lt;a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-2961"&gt;buffer overflow&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For example, see this exploit for &lt;strong&gt;Metasploit&lt;/strong&gt; from &lt;a href="http://www.exploit-db.com/exploits/16713/"&gt;exploit-db&lt;/a&gt; (or &lt;a href="http://www.exploit-db.com/exploits/1906/"&gt;an older one here&lt;/a&gt;).&lt;/p&gt;
