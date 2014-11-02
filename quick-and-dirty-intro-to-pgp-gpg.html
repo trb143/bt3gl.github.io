@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Higher Bytes by bt3 - CMS</title>
+    <title>Quick and Dirty intro to PGP & GPG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="bt3">
@@ -86,46 +86,193 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="http://bt3gl.github.io/exploring-d-ctf-quals-2014s-exploits.html">Exploring D-CTF Quals 2014's Exploits</a></h1>
-                <div class="well small"><footer class="post-info">
-<abbr class="published" title="2014-10-22T06:30:00">
-      Wed 22 October 2014 </abbr>
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Quick and Dirty intro to PGP & GPG">
+                                        Quick and Dirty intro to PGP & GPG
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<abbr class="published" title="2014-10-30T05:20:00">
+      Thu 30 October 2014 </abbr>
 
 <span class="label"> Category</span>
-<a href="http://bt3gl.github.io/category/web-exploitation.html"><i class="icon-folder-open"></i>Web Exploitation</a>
+<a href="http://bt3gl.github.io/category/cryptography.html"><i class="icon-folder-open"></i>Cryptography</a>
 
 
 <span class="label">Tags</span>
-	<a href="http://bt3gl.github.io/tag/linux.html"><i class="icon-tag"></i>Linux</a>
-	<a href="http://bt3gl.github.io/tag/rfi.html"><i class="icon-tag"></i>RFI</a>
-	<a href="http://bt3gl.github.io/tag/sql_injection.html"><i class="icon-tag"></i>SQL_injection</a>
-	<a href="http://bt3gl.github.io/tag/lfi.html"><i class="icon-tag"></i>LFI</a>
-	<a href="http://bt3gl.github.io/tag/rce.html"><i class="icon-tag"></i>RCE</a>
-	<a href="http://bt3gl.github.io/tag/php.html"><i class="icon-tag"></i>PHP</a>
-	<a href="http://bt3gl.github.io/tag/cms.html"><i class="icon-tag"></i>CMS</a>
-	<a href="http://bt3gl.github.io/tag/apphp.html"><i class="icon-tag"></i>ApPHP</a>
-	<a href="http://bt3gl.github.io/tag/unoconv.html"><i class="icon-tag"></i>unoconv</a>
-	<a href="http://bt3gl.github.io/tag/coldfusion.html"><i class="icon-tag"></i>ColdFusion</a>
-	<a href="http://bt3gl.github.io/tag/buffer_overflow.html"><i class="icon-tag"></i>Buffer_Overflow</a>
-	<a href="http://bt3gl.github.io/tag/steganography.html"><i class="icon-tag"></i>Steganography</a>
-	<a href="http://bt3gl.github.io/tag/wireshark.html"><i class="icon-tag"></i>Wireshark</a>
-	<a href="http://bt3gl.github.io/tag/exiftool.html"><i class="icon-tag"></i>ExifTool</a>
-	<a href="http://bt3gl.github.io/tag/netsh.html"><i class="icon-tag"></i>netsh</a>
-	<a href="http://bt3gl.github.io/tag/ctf.html"><i class="icon-tag"></i>CTF</a>
-	<a href="http://bt3gl.github.io/tag/scapy.html"><i class="icon-tag"></i>scapy</a>
-	<a href="http://bt3gl.github.io/tag/rips.html"><i class="icon-tag"></i>RIPS</a>
-	<a href="http://bt3gl.github.io/tag/heartbleed.html"><i class="icon-tag"></i>Heartbleed</a>
-	<a href="http://bt3gl.github.io/tag/nmap.html"><i class="icon-tag"></i>nmap</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>Last weekend I played some of the <a href="http://dctf.defcamp.ro/challs">DEFCAMP CTF Quals</a>. It was pretty intense. For (my own)  organizational purposes, I made a list of all the technologies and vulnerabilities  found in this CTF, some based on my team's game, some based on the <a href="https://github.com/ctfs/write-ups/tree/master/d-ctf-2014/">CTF write-ups git repo</a>.</p>
-<h2>Vulnerabilities</h2>
-<h3>Remote ...</h3>
-                        <a class="btn primary xsmall" href="http://bt3gl.github.io/exploring-d-ctf-quals-2014s-exploits.html">more ...</a>
-                </div>
-        </div>
-        <hr />
+	<a href="http://bt3gl.github.io/tag/pgp.html"><i class="icon-tag"></i>PGP</a>
+	<a href="http://bt3gl.github.io/tag/gpg.html"><i class="icon-tag"></i>GPG</a>
+</footer><!-- /.post-info -->                </div>
+                <p><a href="http://en.wikipedia.org/wiki/Pretty_Good_Privacy">Pretty Good Privacy</a> (PGP) is a model that provides cryptographic privacy and authentication for data communication. It was created by <a href="http://en.wikipedia.org/wiki/Phil_Zimmermann">Phil Zimmermann</a> in 1991.</p>
+<p>The PGP model is based in the <a href="http://en.wikipedia.org/wiki/Web_of_trust">web of trust</a> to establish the authenticity  of a public key and its owner. If you want a cute (ludic) picture of the web of trust, check <a href="https://twitter.com/doctorow">Cory Doctorow</a>'s book <a href="http://craphound.com/littlebrother/">Little Brother</a>.</p>
+<p>Almost 15 years after the creation of the PGP paradigm, we are living a generalized search for privacy and confidentiality (some like to name this time as the <em>post-snowden</em> era...). Although the PGP model has been working so far, there is a <a href="http://blog.cryptographyengineering.com/2014/08/whats-matter-with-pgp.html">need for new solutions</a>.</p>
+<p>Since PGP is the best we have right now, I wrote a tutorial to get Linux users started. You can create and manage PGP keys from the command line in any Linux distribution, using <a href="https://www.gnupg.org/">GnuGP</a>.  It's easy and fun.</p>
+<h2>Getting Started</h2>
+<h3>I. Creating  GPG keys</h3>
+<p>Simply type the following in the terminal:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --gen-key
+</pre></div>
 
+
+<p>Chose <a href="http://en.wikipedia.org/wiki/RSA_(cryptosystem)">RSA</a> with  4096 bits long and expiration up to 5 years. Use a strong passphrase (keep it safe since it cannot be recovered).</p>
+<h3>II. Backup your Private Key</h3>
+<p>Save it with your soul:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --export-secret-keys --armor YOUR_EMAIL &gt; YOUR_NAME-privkey.asc
+<span class="sb">````</span>
+<span class="c">### III. Sharing your key</span>
+
+There are several ways you can share or publish your public key:
+
+<span class="c">#### By sharing the key&#39;s fingerprint</span>
+
+The key<span class="err">&#39;</span>s fingerprint is the same as its signature. It allows you to confirm to others that they have received your actual public key without tampering.
+
+To check the fingerprint of any key that you have in your keyring, <span class="nb">type</span>:
+
+<span class="sb">```</span>sh
+<span class="nv">$ </span>gpg --fingerprint EMAIL
+</pre></div>
+
+
+<h4>By sending the ASCII file</h4>
+<p>You can copy your key to an file to be shared:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --export --armor  YOUR_EMAIL &gt; YOUR_NAME-pubkey.asc
+</pre></div>
+
+
+<h4>By  publishing it in a public key servers</h4>
+<p>You can export your key to the <a href="keys.gnupg.net">GnuPG public key server</a>. For this,  use your key's name (the hexadecimal number in front of the key):</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --send-key KEY_NAME
+</pre></div>
+
+
+<p>You can also export it to  <a href="pgp.mit.edu">pgp.mit.edu</a>:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --keyserver hkp://pgp.mit.edu --send-key KEY_NAME
+</pre></div>
+
+
+<h3>V. Importing Someone's Key</h3>
+<p>There are many ways you can import someone's public key:</p>
+<h4>By a shared file</h4>
+<p>If you have the ASCII file, you can type:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --import PUBKEY_FILE
+</pre></div>
+
+
+<h4>By Public Key Server</h4>
+<p>To search for someone's key in the public key server,  type :</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --search-keys NAME
+</pre></div>
+
+
+<p>Note: this not very safe since you can't be sure of the key's authenticity.</p>
+<h3>V. Signing a key: The Web of Trust</h3>
+<p>Signing a key tells your software that you trust the key that you have been provided (you have verified that it is associated with the person in question).</p>
+<p>To sign a key type:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --sign-key  PERSON_EMAIL
+</pre></div>
+
+
+<p>You should allow the person whose key you are signing to enjoy the advantages of your trusted relationship. This is done by sending her back the signed key:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --export --armor PERSON_EMAIL
+</pre></div>
+
+
+<p>When you received similar <em>trusted</em> key, you can import it  into your GPG database:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --import FILENAME
+</pre></div>
+
+
+<h3>VI. Other Useful Commands</h3>
+<h4>To delete a key from your keyring:</h4>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --delete-key-name KEY_NAME
+</pre></div>
+
+
+<h4>To  edit a key (for example, the expiration date):</h4>
+<div class="highlight"><pre><span class="nv">$ </span> gpg --edit KEY_NAME
+</pre></div>
+
+
+<h4>If you have more than one key:</h4>
+<p>Edit <code>~/.gnupg/gpg.conf</code> with your favorite key:</p>
+<div class="highlight"><pre><span class="k">default</span><span class="o">-</span><span class="n">key</span> <span class="n">KEY_NAME</span>
+</pre></div>
+
+
+<h4>Keep your keys fresh:</h4>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --refresh-keys
+</pre></div>
+
+
+<h4>To list your keys:</h4>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --list-keys
+</pre></div>
+
+
+<h4>And of course:</h4>
+<div class="highlight"><pre><span class="nv">$ </span>man gpg
+</pre></div>
+
+
+<h3>VII. Encrypting and Decryptying Messages</h3>
+<p>You can encrypt messages using the <code>--encrypt</code> flag.</p>
+<p>The command below encrypts the message signing with your private key (to guarantee that is coming from you). It also generates the message in a text format, instead of raw bytes:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --encrypt --sign --armor -r OTHER_PERSONS_EMAIL FILE_TO_BE_ENCRYPTED
+</pre></div>
+
+
+<p>If you want to be able to read this message with your own email address, you should add another recipient flag <code>-r</code> with your email address.</p>
+<p>To decrypt a message, type:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg FILENAME
+</pre></div>
+
+
+<h3>VIII. Revoking a key</h3>
+<p>Whenever you need to revoke a key (because it might be compromised, for example), you can generate a revocation certificate with:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --output my_revocation.asc --gen-revoke KEY_NAME
+</pre></div>
+
+
+<p>To import the revocation into your keyring:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --import my_revocation.asc
+</pre></div>
+
+
+<p>Finally, this command sends the revoked key to the public key server:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gpg --keyserver pgp.mit.edu --send-keys KEY_NAME
+</pre></div>
+
+
+<h2>Final Comments</h2>
+<p>If you prefer a GUI instead of command line, I strongly recommend  <a href="https://apps.fedoraproject.org/packages/seahorse/bugs">seahorse</a>. It makes it really easy to manage all your keys (not only PGP) and passwords.</p>
+<p>Finally, although there are several browser plugins that offer easy solutions to encrypt webmail with PGP,  such as <a href="https://chrome.google.com/webstore/detail/mymail-crypt-for-gmail/jcaobjhdnlpmopmjhijplpjhlplfkhba?hl=en-US">mymail-crypt</a>  or <a href="https://www.mailvelope.com/">Mailvelope</a>, I particularly don't recommend them.</p>
+<p>If you are serious about ensuring your long-term privacy I recommend using a text editor to write your email message, encrypting the message outside of the web browser before cutting and pasting into your webmail interface. This will guarantee that only the recipient will be able to read your email. The choice is yours.</p>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "quick-and-dirty-intro-to-pgp-gpg.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://bt3gl.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
+                </div>
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
