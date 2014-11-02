@@ -14,19 +14,15 @@
 &lt;h3&gt;II. Backup your Private Key&lt;/h3&gt;
 &lt;p&gt;Save it with your soul:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gpg --export-secret-keys --armor YOUR_EMAIL &amp;gt; YOUR_NAME-privkey.asc
-&lt;span class="sb"&gt;````&lt;/span&gt;
-&lt;span class="c"&gt;### III. Sharing your key&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-There are several ways you can share or publish your public key:
 
-&lt;span class="c"&gt;#### By sharing the key&amp;#39;s fingerprint&lt;/span&gt;
-
-The key&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s fingerprint is the same as its signature. It allows you to confirm to others that they have received your actual public key without tampering.
-
-To check the fingerprint of any key that you have in your keyring, &lt;span class="nb"&gt;type&lt;/span&gt;:
-
-&lt;span class="sb"&gt;```&lt;/span&gt;sh
-&lt;span class="nv"&gt;$ &lt;/span&gt;gpg --fingerprint EMAIL
+&lt;h3&gt;III. Sharing your key&lt;/h3&gt;
+&lt;p&gt;There are several ways you can share or publish your public key:&lt;/p&gt;
+&lt;h4&gt;By sharing the key's fingerprint&lt;/h4&gt;
+&lt;p&gt;The key's fingerprint is the same as its signature. It allows you to confirm to others that they have received your actual public key without tampering.&lt;/p&gt;
+&lt;p&gt;To check the fingerprint of any key that you have in your keyring, type:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gpg --fingerprint EMAIL
 &lt;/pre&gt;&lt;/div&gt;
 
 
