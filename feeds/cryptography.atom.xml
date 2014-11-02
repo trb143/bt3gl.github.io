@@ -32,7 +32,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;By  publishing it in a public key servers&lt;/h4&gt;
+&lt;h4&gt;By  publishing it in a public key server&lt;/h4&gt;
 &lt;p&gt;You can export your key to the &lt;a href="keys.gnupg.net"&gt;GnuPG public key server&lt;/a&gt;. For this,  use your key's name (the hexadecimal number in front of the key):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gpg --send-key KEY_NAME
 &lt;/pre&gt;&lt;/div&gt;
@@ -52,12 +52,12 @@
 
 
 &lt;h4&gt;By Public Key Server&lt;/h4&gt;
-&lt;p&gt;To search for someone's key in the public key server,  type :&lt;/p&gt;
+&lt;p&gt;To search for someone's key in the public key server,  type:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gpg --search-keys NAME
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Note: this not very safe since you can't be sure of the key's authenticity.&lt;/p&gt;
+&lt;p&gt;Note: this is &lt;strong&gt;not&lt;/strong&gt; very safe since you can't be sure of the key's authenticity.&lt;/p&gt;
 &lt;h3&gt;V. Signing a key: The Web of Trust&lt;/h3&gt;
 &lt;p&gt;Signing a key tells your software that you trust the key that you have been provided (you have verified that it is associated with the person in question).&lt;/p&gt;
 &lt;p&gt;To sign a key type:&lt;/p&gt;
