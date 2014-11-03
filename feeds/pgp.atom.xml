@@ -107,7 +107,9 @@
 
 
 &lt;h3&gt;VII. Encrypting and Decryptying Messages&lt;/h3&gt;
-&lt;p&gt;You can encrypt messages using the &lt;code&gt;--encrypt&lt;/code&gt; flag.&lt;/p&gt;
+&lt;p&gt;With someone's &lt;strong&gt;public key&lt;/strong&gt;, you can &lt;strong&gt;encrypt&lt;/strong&gt; messages that can only be decrypted with her secret key. You can also &lt;strong&gt;verify signatures&lt;/strong&gt; that were generated with her secret key.&lt;/p&gt;
+&lt;p&gt;In the other hand, with your secret key you can &lt;strong&gt;decrypt&lt;/strong&gt; messages that were encrypted using your public key. You can also and  &lt;strong&gt;sign messages&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;With GPG, you can encrypt messages using the &lt;code&gt;--encrypt&lt;/code&gt; flag.&lt;/p&gt;
 &lt;p&gt;The command below encrypts the message signing with your private key (to guarantee that is coming from you). It also generates the message in a text format, instead of raw bytes:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gpg --encrypt --sign --armor -r PERSON_EMAIL FILE_TO_BE_ENCRYPTED
 &lt;/pre&gt;&lt;/div&gt;
