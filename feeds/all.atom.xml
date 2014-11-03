@@ -9,7 +9,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Chose &lt;a href="http://en.wikipedia.org/wiki/RSA_(cryptosystem)"&gt;RSA&lt;/a&gt; with  4096 bits long and expiration up to 5 years. Use a strong passphrase (keep it safe since it cannot be recovered).&lt;/p&gt;
+&lt;p&gt;Chose &lt;a href="http://en.wikipedia.org/wiki/RSA_(cryptosystem)"&gt;RSA&lt;/a&gt; with  4096 bits long and expiration up to 5 years. Use a strong &lt;a href="https://www.eff.org/wp/defending-privacy-us-border-guide-travelers-carrying-digital-devices#passphrase"&gt;passphrase&lt;/a&gt; (keep it safe since it cannot be recovered).&lt;/p&gt;
 &lt;h3&gt;II. Backup your Private Key&lt;/h3&gt;
 &lt;p&gt;Save it with your soul:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gpg --export-secret-keys --armor YOUR_EMAIL &amp;gt; YOUR_NAME-privkey.asc
@@ -19,7 +19,7 @@
 &lt;h3&gt;III. Sharing your key&lt;/h3&gt;
 &lt;p&gt;There are several ways you can share or publish your public key:&lt;/p&gt;
 &lt;h4&gt;By sharing the key's fingerprint&lt;/h4&gt;
-&lt;p&gt;The key's fingerprint is the same as its signature. It allows you to confirm to others that they have received your actual public key without tampering.&lt;/p&gt;
+&lt;p&gt;The key's fingerprint is the same as its signature. Each PGP key has a unique fingerprint that allows you to confirm to others that they have received your actual public key without tampering. A fingerprint is a more convenient way to uniquely represent a key.&lt;/p&gt;
 &lt;p&gt;To check the fingerprint of any key that you have in your keyring, type:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gpg --fingerprint EMAIL
 &lt;/pre&gt;&lt;/div&gt;
