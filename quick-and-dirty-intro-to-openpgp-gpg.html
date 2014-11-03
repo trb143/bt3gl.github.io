@@ -111,9 +111,9 @@
 	<a href="http://bt3gl.github.io/tag/pgp.html"><i class="icon-tag"></i>PGP</a>
 	<a href="http://bt3gl.github.io/tag/gpg.html"><i class="icon-tag"></i>GPG</a>
 </footer><!-- /.post-info -->                </div>
-                <p><a href="http://en.wikipedia.org/wiki/Pretty_Good_Privacy">Pretty Good Privacy</a> (PGP) is a model that provides cryptographic privacy and authentication for data communication. It was created by <a href="http://en.wikipedia.org/wiki/Phil_Zimmermann">Phil Zimmermann</a> in 1991. Today, PGP is a <a href="http://www.symantec.com/encryption">company</a> that sells a proprietary encryption program. <a href="http://www.openpgp.org/">OpenPGP</a> is the open protocol that defines how PGP encryption works, and <a href="https://www.gnupg.org/">GnuGP</a> is the free software.</p>
+                <p><a href="http://en.wikipedia.org/wiki/Pretty_Good_Privacy">Pretty Good Privacy</a> (PGP) is a model that provides cryptographic privacy and authentication for data communication. It was created by <a href="http://en.wikipedia.org/wiki/Phil_Zimmermann">Phil Zimmermann</a> in 1991. Today, PGP is a <a href="http://en.wikipedia.org/wiki/PGP_Corporation">company</a> that sells a proprietary encryption program. <a href="http://www.openpgp.org/">OpenPGP</a> is the open protocol that defines how PGP encryption works, and <a href="https://www.gnupg.org/">GnuGP</a> is the free software.</p>
 <p>The distribution of PGP keys can be done using the concept of <a href="http://en.wikipedia.org/wiki/Web_of_trust">web of trust</a>. This is a decentralized way of establishing the authenticity  of a public key and its owner. If you want a cute (ludic) picture of the web of trust, check <a href="https://twitter.com/doctorow">Cory Doctorow</a>'s book <a href="http://craphound.com/littlebrother/">Little Brother</a>.</p>
-<p>Almost 15 years after its creation, we frequently find  important <a href="https://firstlook.org/theintercept/2014/10/28/smuggling-snowden-secrets/">roles in our society</a> for OpenPGP. Still, although this protocol has been working so far, there is a <a href="http://blog.cryptographyengineering.com/2014/08/whats-matter-with-pgp.html">need for new solutions</a>. While we <a href="http://googleonlinesecurity.blogspot.com/2014/06/making-end-to-end-encryption-easier-to.html">wait for them</a>, we can still enjoy OpenPGP. I wrote a tutorial to get Linux users started and  I hope you find it fun.</p>
+<p>Almost 15 years after its creation, <a href="https://firstlook.org/theintercept/2014/10/28/smuggling-snowden-secrets/">PGP continues to be <em>pretty good</em></a>. But there is  still a <a href="http://blog.cryptographyengineering.com/2014/08/whats-matter-with-pgp.html">need for new solutions</a> (and they appear to be <a href="http://googleonlinesecurity.blogspot.com/2014/06/making-end-to-end-encryption-easier-to.html">coming soon</a>). Meanwhile, I wrote this tutorial and I hope you find it fun.</p>
 <h2>Getting Started</h2>
 <h3>I. Creating  GPG keys</h3>
 <p>Simply type the following in the terminal:</p>
@@ -221,7 +221,7 @@
 <h3>VII. Encrypting and Decryptying Messages</h3>
 <p>With someone's <strong>public key</strong>, you can <strong>encrypt</strong> messages that can only be decrypted with her secret key. You can also <strong>verify signatures</strong> that were generated with her secret key.</p>
 <p>In the other hand, with your secret key you can <strong>decrypt</strong> messages that were encrypted using your public key. You can also and  <strong>sign messages</strong>.</p>
-<p>With GPG, you can encrypt messages using the <code>--encrypt</code> flag.</p>
+<p>With GPG, you  encrypt messages using the <code>--encrypt</code> flag.</p>
 <p>The command below encrypts the message signing with your private key (to guarantee that is coming from you). It also generates the message in a text format, instead of raw bytes:</p>
 <div class="highlight"><pre><span class="nv">$ </span>gpg --encrypt --sign --armor -r PERSON_EMAIL FILE_TO_BE_ENCRYPTED
 </pre></div>
@@ -253,7 +253,7 @@
 <p>If you prefer a GUI instead of command line, I strongly recommend  <a href="https://apps.fedoraproject.org/packages/seahorse/bugs">seahorse</a>. It makes really easy to manage all your keys (not only PGP) and passwords.</p>
 <p>Although there are several browser plugins that offer easy solutions to encrypt webmail with PGP,  such as <a href="https://chrome.google.com/webstore/detail/mymail-crypt-for-gmail/jcaobjhdnlpmopmjhijplpjhlplfkhba?hl=en-US">mymail-crypt</a>  or <a href="https://www.mailvelope.com/">Mailvelope</a>, I particularly don't recommend them.</p>
 <p>If you are serious about ensuring your long-term privacy I recommend using a text editor to write your email message, encrypting the message outside of the web browser before cutting and pasting into your webmail interface. This will guarantee that only the recipient will be able to read your email. The choice is yours.</p>
-<p>A final note: recently the creator of <a href="https://crypto.cat/">Cryptocat</a>, Nadim Kobeissi, released <a href="https://minilock.io/">minilock</a>, which uses  <a href="http://en.wikipedia.org/wiki/Curve25519">Curve25519 elliptic curve cryptography</a> (the sames as in Cryptocat). In this tool, the public keys are much shorter (and easier to share). It's a new app, so it might not yet be the best choice for high-stakes environment, however it's definitely worth keeping tabs on this project.</p>
+<p>A final note: recently the creator of <a href="https://crypto.cat/">Cryptocat</a>, Nadim Kobeissi, released <a href="https://minilock.io/">minilock</a>, which uses  <a href="http://en.wikipedia.org/wiki/Curve25519">Curve25519 elliptic curve cryptography</a> (the sames as in Cryptocat). In his tool, the public keys are much shorter (and easier to share). Remember,  it's a new app, so it might not yet be the best choice for high-stakes environment. In any case, it's definitely worth keeping tabs on this project.</p>
                 </div><!-- /.entry-content -->
                 <div class="comments">
                 <h2>Comments !</h2>
@@ -319,344 +319,14 @@
 
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pygenere.html">
-        <i class="icon-tag icon-large"></i>pygenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ltrace.html">
-        <i class="icon-tag icon-large"></i>ltrace
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/command_injection.html">
-        <i class="icon-tag icon-large"></i>Command_Injection
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rfi.html">
-        <i class="icon-tag icon-large"></i>RFI
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/sqli.html">
-        <i class="icon-tag icon-large"></i>SQLi
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/stack.html">
-        <i class="icon-tag icon-large"></i>Stack
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rce.html">
-        <i class="icon-tag icon-large"></i>RCE
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
-        <i class="icon-tag icon-large"></i>pdf-parser
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/decimal.html">
-        <i class="icon-tag icon-large"></i>Decimal
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/wargames.html">
-        <i class="icon-tag icon-large"></i>Wargames
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bash.html">
-        <i class="icon-tag icon-large"></i>Bash
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/nmap.html">
-        <i class="icon-tag icon-large"></i>nmap
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ssh.html">
-        <i class="icon-tag icon-large"></i>SSH
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ftp.html">
-        <i class="icon-tag icon-large"></i>FTP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/overflow.html">
-        <i class="icon-tag icon-large"></i>Overflow
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/python.html">
-        <i class="icon-tag icon-large"></i>Python
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/heartbleed.html">
-        <i class="icon-tag icon-large"></i>Heartbleed
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/lamp.html">
-        <i class="icon-tag icon-large"></i>LAMP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hope.html">
-        <i class="icon-tag icon-large"></i>Hope
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/coldfusion.html">
-        <i class="icon-tag icon-large"></i>ColdFusion
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/socket.html">
-        <i class="icon-tag icon-large"></i>socket
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/request.html">
-        <i class="icon-tag icon-large"></i>request
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/qpdf.html">
-        <i class="icon-tag icon-large"></i>qpdf
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/apphp.html">
-        <i class="icon-tag icon-large"></i>ApPHP
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/base64.html">
-        <i class="icon-tag icon-large"></i>base64
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rips.html">
-        <i class="icon-tag icon-large"></i>RIPS
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/javascript.html">
-        <i class="icon-tag icon-large"></i>JavaScript
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/exiftool.html">
-        <i class="icon-tag icon-large"></i>ExifTool
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pgp.html">
-        <i class="icon-tag icon-large"></i>PGP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/oracle.html">
-        <i class="icon-tag icon-large"></i>Oracle
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
-        <i class="icon-tag icon-large"></i>Buffer_Overflow
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/buffer.html">
-        <i class="icon-tag icon-large"></i>Buffer
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/gdb.html">
-        <i class="icon-tag icon-large"></i>gdb
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/readelf.html">
-        <i class="icon-tag icon-large"></i>readelf
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/outguess.html">
-        <i class="icon-tag icon-large"></i>OutGuess
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hashcat.html">
-        <i class="icon-tag icon-large"></i>hashcat
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/gpg.html">
-        <i class="icon-tag icon-large"></i>GPG
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/chaosreader.html">
-        <i class="icon-tag icon-large"></i>Chaosreader
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/scapy.html">
-        <i class="icon-tag icon-large"></i>scapy
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/command-injection.html">
-        <i class="icon-tag icon-large"></i>Command Injection
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
-        <i class="icon-tag icon-large"></i>uncompyle2
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/linux.html">
-        <i class="icon-tag icon-large"></i>Linux
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/sql_injection.html">
-        <i class="icon-tag icon-large"></i>SQL_injection
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/unoconv.html">
-        <i class="icon-tag icon-large"></i>unoconv
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/brute_force.html">
-        <i class="icon-tag icon-large"></i>Brute_Force
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/php.html">
-        <i class="icon-tag icon-large"></i>PHP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/burpsuite.html">
-        <i class="icon-tag icon-large"></i>BurpSuite
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/telnet.html">
-        <i class="icon-tag icon-large"></i>telnet
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/assembly.html">
-        <i class="icon-tag icon-large"></i>Assembly
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/binary_search.html">
-        <i class="icon-tag icon-large"></i>Binary_Search
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/tr.html">
-        <i class="icon-tag icon-large"></i>tr
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/cms.html">
-        <i class="icon-tag icon-large"></i>CMS
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/xor.html">
-        <i class="icon-tag icon-large"></i>XOR
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/nop.html">
-        <i class="icon-tag icon-large"></i>NOP
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/csaw.html">
-        <i class="icon-tag icon-large"></i>CSAW
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/c.html">
-        <i class="icon-tag icon-large"></i>C
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
 <li class="tag-4">
     <a href="http://bt3gl.github.io/tag/paillier.html">
         <i class="icon-tag icon-large"></i>Paillier
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/shellshock.html">
-        <i class="icon-tag icon-large"></i>Shellshock
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mysql.html">
-        <i class="icon-tag icon-large"></i>MySQL
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/lfi.html">
-        <i class="icon-tag icon-large"></i>LFI
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/love.html">
-        <i class="icon-tag icon-large"></i>Love
+    <a href="http://bt3gl.github.io/tag/overflow.html">
+        <i class="icon-tag icon-large"></i>Overflow
     </a>
 </li>
 <li class="tag-4">
@@ -665,8 +335,338 @@
     </a>
 </li>
 <li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/binary_search.html">
+        <i class="icon-tag icon-large"></i>Binary_Search
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack.html">
+        <i class="icon-tag icon-large"></i>Stack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rips.html">
+        <i class="icon-tag icon-large"></i>RIPS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rce.html">
+        <i class="icon-tag icon-large"></i>RCE
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>nmap
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/oracle.html">
+        <i class="icon-tag icon-large"></i>Oracle
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gpg.html">
+        <i class="icon-tag icon-large"></i>GPG
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/heartbleed.html">
+        <i class="icon-tag icon-large"></i>Heartbleed
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/request.html">
+        <i class="icon-tag icon-large"></i>request
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/nop.html">
+        <i class="icon-tag icon-large"></i>NOP
+    </a>
+</li>
+<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/pdftotext.html">
         <i class="icon-tag icon-large"></i>pdftotext
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/command-injection.html">
+        <i class="icon-tag icon-large"></i>Command Injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cms.html">
+        <i class="icon-tag icon-large"></i>CMS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/exiftool.html">
+        <i class="icon-tag icon-large"></i>ExifTool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/brute_force.html">
+        <i class="icon-tag icon-large"></i>Brute_Force
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/buffer.html">
+        <i class="icon-tag icon-large"></i>Buffer
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ltrace.html">
+        <i class="icon-tag icon-large"></i>ltrace
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>SSH
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>Assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/unoconv.html">
+        <i class="icon-tag icon-large"></i>unoconv
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hope.html">
+        <i class="icon-tag icon-large"></i>Hope
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_Overflow
     </a>
 </li>
 
