@@ -46,7 +46,7 @@
 &lt;p&gt;If the stapled OCSP has the &lt;a href="http://tools.ietf.org/html/draft-hallambaker-muststaple-00"&gt;Must Staple&lt;/a&gt; capability, it becomes hard-fail if a valid OCSP response is not stapled. To make a browser know this option, one can add a "must staple" assertion to the site's security certificate and/or create a new HTTP response header similar to &lt;a href="http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"&gt;HSTS&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Some fixable issue is that OCSP stapling supports only one response at a time. This is insufficient for sites that use several different certificates for a single page. Nevertheless, OCSP stapling is the most promising solution for the problem for now.&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt;tl;dr&lt;/strong&gt; There is definitely a need for rethinking the way things have been done and searching for realistic solutions to today's Internet status quo.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;tl;dr&lt;/strong&gt; There is definitely a need for rethinking the way things have been done, searching for realistic solutions to today's status quo.&lt;/p&gt;
 &lt;h3&gt;References:&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://www.imperialviolet.org/2011/03/18/revocation.html"&gt;Imperial Violet: Revocation Doesn't work&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.imperialviolet.org/2014/04/19/revchecking.html"&gt;Imperial Violet: Don't Enable Revocation Checking&lt;/a&gt;&lt;/p&gt;
