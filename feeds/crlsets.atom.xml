@@ -38,7 +38,7 @@
 &lt;hr /&gt;
 &lt;h2&gt;Some Light in a Solution&lt;/h2&gt;
 &lt;h3&gt;CRLSets&lt;/h3&gt;
-&lt;p&gt;Google Chrome uses a update mechanism to send lists of serial numbers of revoked certificates which are constantly added by crawling the CAs: the&lt;a href="https://dev.chromium.org/Home/chromium-security/crlsets"&gt;&lt;strong&gt;CRLSets&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Google Chrome uses &lt;a href="https://dev.chromium.org/Home/chromium-security/crlsets"&gt;&lt;strong&gt;CRLSets&lt;/strong&gt;&lt;/a&gt; to update mechanism to send lists of serial numbers of revoked certificates which are constantly added by crawling the CAs.&lt;/p&gt;
 &lt;p&gt;This method brings  more performance and reliability to the browser and, in addition, CRLSet updates occur at least daily, which is faster than most OCSP validity periods.&lt;/p&gt;
 &lt;h3&gt;OCSP stapling&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;OCSP Stapling&lt;/strong&gt; (TLS Certificate Status Request extension) is an alternative approach for checking the revocation status of certificates. It allows the presenter of a certificate to bear the resource cost involved in providing OCSP responses, instead of the CA, in a fashion reminiscent of the &lt;a href="http://en.wikipedia.org/wiki/Kerberos_(protocol)"&gt;Kerberos Ticket&lt;/a&gt;.&lt;/p&gt;
