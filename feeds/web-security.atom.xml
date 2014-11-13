@@ -16,9 +16,9 @@
 &lt;hr /&gt;
 &lt;h2&gt;Broken Models&lt;/h2&gt;
 &lt;h3&gt;Certificate Revocation Lists (CRLs)&lt;/h3&gt;
-&lt;p&gt;A CRL is a list of the serial numbers (such as 54:99:05:bd:ca:2a:ad:e3:82:21:95:d6:aa:ee:b6:5a) of unexpired security certificates which have been revoked by their issuer and should not be trusted.&lt;/p&gt;
+&lt;p&gt;A CRL is a list of  serial numbers (such as 54:99:05:bd:ca:2a:ad:e3:82:21:95:d6:aa:ee:b6:5a) of unexpired security certificates which have been revoked by their issuer and should not be trusted.&lt;/p&gt;
 &lt;p&gt;Each CA maintains and publishes its own CRL. CRLs are in continuous changes: old certificates expire due to their age and serial numbers of newly revoked certificates are added.&lt;/p&gt;
-&lt;p&gt;The main issue here is that the original public key infrastructure (PKI) scheme does not scale since users all over the Internet are checking for  revocation and having to download files that can be many MB.  Although CRL can be cached, they are still very volatile, turning CAs into a major performance bottleneck on the Internet.&lt;/p&gt;
+&lt;p&gt;The main issue here is that the original &lt;em&gt;public key infrastructure&lt;/em&gt; (PKI) scheme does not scale. Users all over the Internet are constantly checking for  revocation and having to download files that can be many MB.  In addition, although CRL can be cached, they are still very volatile, turning CAs into a major performance bottleneck on the Internet.&lt;/p&gt;
 &lt;h3&gt;Online Certificate Status Protocol (OCSP)&lt;/h3&gt;
 &lt;p&gt;OCSP was intended to replace the CRL system, however it presented several issues:&lt;/p&gt;
 &lt;ul&gt;
