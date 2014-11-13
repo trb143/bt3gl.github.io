@@ -33,7 +33,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;One attempt to circumvent the lack of assurance of a server's reliability was issuing OCSP checks with a &lt;strong&gt;soft-fail&lt;/strong&gt; option. In this case, online revocation checks which result in a &lt;em&gt;network error would be ignored&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;This brings serious issues. A simple example is when an &lt;a href="http://www.thoughtcrime.org/papers/ocsp-attack.pdf"&gt;attacker who can intercept HTTPS traffic can make online revocation checks appear to fail and bypass them&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This brings serious issues. A simple example is when an &lt;a href="http://www.thoughtcrime.org/papers/ocsp-attack.pdf"&gt;attacker can intercept HTTPS traffic and make online revocation checks appear to fail, bypassing OCSP checks&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;On the flip side, it's also not a good idea to enforce a &lt;strong&gt;hard-fail&lt;/strong&gt; check:  OCSP servers are pretty flaky/slow and you do not want to relay on their capabilities.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Some Light in a Solution&lt;/h2&gt;
