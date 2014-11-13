@@ -12,7 +12,7 @@
 &lt;p&gt;by a communication protocol named &lt;strong&gt;Online Certificate Status Protocol&lt;/strong&gt; (OCSP), which allows a system to check with a CA for the status of a single certificate without pulling the entire CRL.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;While CRLs are long lists and OCSP only deals with a single certificate, they are both methods of getting signed statements about the status of a certificate, and they both present concerning privacy, integrity, and availability. In this post I discuss some of these issues and I review possible alternatives.&lt;/p&gt;
+&lt;p&gt;While CRLs are long lists and OCSP only deals with a single certificate, they are both methods of getting signed statements about the status of a certificate; and they both present issues concerning privacy, integrity, and availability. In this post I discuss some of these issues and I review possible alternatives.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Broken Models&lt;/h2&gt;
 &lt;h3&gt;Certificate Revocation Lists (CRLs)&lt;/h3&gt;
