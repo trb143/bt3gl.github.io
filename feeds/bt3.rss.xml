@@ -150,7 +150,7 @@
 
 &lt;p&gt;Instead of a complicated lookup at the propriety, the propriety reading translates into three machine operations!&lt;/p&gt;
 &lt;p&gt;It might seem inefficient to create a new hidden class whenever a property is added. However, because of the class transitions the hidden classes can be reused several times. It turns out that most of the access to objects are within the same hidden class.&lt;/p&gt;
-&lt;h3&gt;V8's In-line caching&lt;/h3&gt;
+&lt;h3&gt;V8's Inline caching&lt;/h3&gt;
 &lt;p&gt;When the engine runs the code, it does not know about the hidden class. V8 optimizes property access by predicting that the class will also be used for all future objects accessed in the same section of code, and uses the information to the &lt;strong&gt;inline cache code&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Inline caching is a class-based object-oriented optimization technique employed by some language runtimes.  The concept of inline caching is based on the  observation that the objects that occur at a particular call site are often of the same type. Therefore, performance can be increased by storing the result of a method lookup &lt;em&gt;inline&lt;/em&gt; (at the call site).&lt;/p&gt;
 &lt;p&gt;If V8 has predicted correctly the property's value is assigned in a single operation. If the prediction is incorrect, V8 patches the code to remove the optimization. To facilitate this process, call sites are assigned different states:&lt;/p&gt;
