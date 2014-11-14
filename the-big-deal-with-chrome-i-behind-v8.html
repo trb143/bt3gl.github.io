@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The Big Deal with Chrome I: Behind V8</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="bt3">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://bt3gl.github.io/theme/css/bootstrap.dark.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 11pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-4 {
+        font-size: 8pt;
+     }
+    </style>
+    <link href="http://bt3gl.github.io/theme/css/bootstrap-responsive.dark.css" rel="stylesheet">
+        <link href="http://bt3gl.github.io/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://bt3gl.github.io/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://bt3gl.github.io/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://bt3gl.github.io/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://bt3gl.github.io/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://bt3gl.github.io/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://bt3gl.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Higher Bytes by bt3 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://bt3gl.github.io/index.html">Higher Bytes by bt3 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://bt3gl.github.io/authors.html">About</a></li>
+                                <li><a href="https://github.com/bt3gl">GitHub</a></li>
+                                <li><a href="https://twitter.com/_b_t_3_">Twitter</a></li>
+                                <li><a href="https://coderwall.com/p/kubxjq?i=11&p=2&q=author%3Abt3gl&t%5B%5D=bt3gl">CodeWall</a></li>
+                                <li><a href="projects_page/index.html">Projects</a></li>
+                                <li><a href="http://bt3gl.github.io/archives.html"><b>Archives</b></a></li>
+
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to The Big Deal with Chrome I: Behind V8">
+                                        The Big Deal with Chrome I: Behind V8
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<abbr class="published" title="2014-11-01T04:20:00">
+      Sat 01 November 2014 </abbr>
+
+<span class="label"> Category</span>
+<a href="http://bt3gl.github.io/category/web-security.html"><i class="icon-folder-open"></i>Web Security</a>
+
+
+<span class="label">Tags</span>
+	<a href="http://bt3gl.github.io/tag/v8.html"><i class="icon-tag"></i>V8</a>
+	<a href="http://bt3gl.github.io/tag/jit.html"><i class="icon-tag"></i>JIT</a>
+	<a href="http://bt3gl.github.io/tag/javascript.html"><i class="icon-tag"></i>JavaScript</a>
+</footer><!-- /.post-info -->                </div>
+                <p>In 2008, Google released a totally new browser, made mostly from scratch (it did use the open source  <a href="https://www.webkit.org/">Webkit layout engine</a> for rendering, until it started with <a href="http://en.wikipedia.org/wiki/Blink_(layout_engine)">Blink</a> in 2013).  Six years later, Chrome is the preferred <a href="http://en.wikipedia.org/wiki/Google_Chrome">browser for half of users in the Internet</a>.</p>
+<p>Recently, I've spent some time learning more about the project that is behind the Chrome browner, more specifically, the <a href="http://www.chromium.org/Home">The Chromium Project</a>. As a result, in  this first post I am briefly talking about Chrome's guts: the <strong>V8 engine</strong>.</p>
+<h3>They way things were understood...</h3>
+<p>In mainstream computer languages, a source code can either be <strong>compiled</strong> or <strong>interpreted</strong> (<a href="https://www.youtube.com/watch?v=_C5AHaS1mOA">very simple concept...</a>).   </p>
+<p><strong>Compilers</strong>  produce  an intermediate form called <strong>object code</strong>, which are machine code  augmented with symbols tables  to make executable blocks (library files, with file objects). A linker is used to finally combine them to form executables. Object code is <em>almost</em> machine code.</p>
+<p><strong>Interpreters</strong> execute instructions without compiling into machine language first. They can either parse and execute the instructions (<em>e.g.</em> Lisp), translate into intermediate representation such as <strong>bytecode</strong> (<em>e.g.</em> Java, <a href="http://akaptur.com/blog/2013/11/17/introduction-to-the-python-interpreter-3/">Python</a>) or <em>abstract syntax trees</em> or ASTs (<em>e.g.</em> Ruby),  or store precompiled code by a compiler (<em>e.g.</em> Pascal).</p>
+<h3>Traditional Just-in-Time compilation (JIT)</h3>
+<p>We are interested in this intermediate representation given by bytecode or AST.  Their destiny is to  either be executed in a <em>virtual machine</em> or further compiled into machine code. Most interestingly, they can be either parsed and then executed (<a href="http://en.wikipedia.org/wiki/Ahead-of-time_compilation">one at time</a>)) or use <strong>dynamic translators</strong>  (JIT), which <em>translate them into machine language as necessary at runtime</em>.</p>
+<p>JIT is a  technique in which the intermediate representation is compiled to native machine code at runtime. It has the efficiency of running native code with the cost of startup time and increased memory when the bytecode or AST is first compiled.</p>
+<p>Different engines follow different policies on code generation that can roughly be grouped into types: <strong>tracing</strong> and <strong>method</strong>. </p>
+<p>Method JITs always emit native code for every block (or method) of code reached and update references dynamically.</p>
+<p>Tracing JIT hit counts are kept for each method invocation and native code is only emitted when a certain block or method is considered <em>hot</em>. This attempts to reduce superfluous emission for code rarely invoked, such as initialization routines.</p>
+<p>A property cache is typically implemented for languages like JavaScript due to the nature of its dynamic typing system. Tracing JITs often implement an interface that watches and records the execution of bytecode. Method JITs can implement an inline cache for rewriting type lookups at runtime</p>
+<p>V8 perform's Direct JIT compilation from source code to machine code without bytecode.</p>
+<p>Most languages with a managed code runtime that can be compiled to an intermediate language take advantage of just-in-time (JIT)[citation needed]. This, briefly, compiles intermediate code into machine code for a native run while the intermediate code is executing, which may decrease an application's performance. Ahead-of-time compilation eliminates the need for this step by performing the compilation before execution rather than during execution.</p>
+<p>JIT compilation is a combination of the two traditional approaches to translation to machine code – ahead of time compilation (AOT), and interpretation</p>
+<p>A common implementation of JIT compilation is to first have AOT compilation to bytecode (virtual machine code), known as bytecode compilation, and then have JIT compilation to machine code (dynamic compilation), rather than interpretation of the bytecode. </p>
+<p>This improves the runtime performance compared to interpretation, at the cost of lag due to compilation. JIT compilers translate continuously, as with interpreters, but caching of compiled code minimizes lag on future execution of the same code during a given run. Since only part of the program is compiled, there is significantly less lag than if the entire program were compiled prior to execution.</p>
+<p>In contrast, a traditional interpreted virtual machine will simply interpret the bytecode, generally with much lower performance. </p>
+<p>Some interpreters even interpret source code, without the step of first compiling to bytecode, with even worse performance. </p>
+<p>or example, translation to machine code was done on demand, and the result was cached for later use. When memory became scarce, the system would delete some of this code and regenerate it when it was needed again.</p>
+<h3>Improving JavaScript</h3>
+<p>JavaScript's integration with Netscape Navigator in the mid 90s made it much easier for web developers to access HTML page elements such as forms, frames, and images.</p>
+<p>JavaScript is classless. You can create a new object, dynamically add proprieties and go on. Objects with same type can appear in the same sites in the program, no constraints in the type of object you might find in a propriety object site. Proprieties can be added and removed in fly, functions can moved from an object to another.</p>
+<p>However, the status quo in 2006 is that browser had very slow JavaScript implementations that did not scale with code size or object allocation.  They even had memory leaks when running web apps. A new JavaScript engine was necessary.</p>
+<p>For instance, most JavaScript engines use a dictionary-like data structure as storage for object properties - each property access requires a dynamic lookup to resolve the property's location in memory. This approach makes accessing properties in JavaScript typically much slower than accessing instance variables in programming languages like Java and Smalltalk. In these languages, instance variables are located at fixed offsets determined by the compiler due to the fixed object layout defined by the object's class. Access is simply a matter of a memory load or store, often requiring only a single instruction.</p>
+<h3>Introducing V8</h3>
+<p>The new engine delivered was named <strong>V8</strong> and it had a way to categorize this dynamic JavaScript objects into classes, bringing techniques from static class-based languages (such as Java).</p>
+<p>V8 is <a href="https://code.google.com/p/v8/">Google's open source JavaScript engine</a>. V8 is written in C++ and is used in Google Chrome, the open source browser from Google.</p>
+<p>V8 compiles JavaScript to native machine code before executing it. This is an improvement from teh more traditional techiniques such as interpreting bytecode or compiling the entire program to machine code and executing it from the filesystem.</p>
+<p>The head is <a href="https://www.youtube.com/watch?v=hWhMKalEicY">Lars Bak</a>.</p>
+<p>The goal was to raise the performance bar for JS execution. Key ideas:
+- hidden classes and hidden classes transitions
+- in-line caching: optimization technique
+- compilation to native code
+- efficient memory management system</p>
+<h3>V8's Hidden Class</h3>
+<p>In V8, as execution goes on, objects that end up with the same properties will share the same <strong>hidden class</strong>, and we can start applying dynamic optimizations based on that.</p>
+<p>For example, we have an application that uses an point, we can get the propriety <code>x</code> from point:</p>
+<div class="highlight"><pre><span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+</pre></div>
+
+
+<p>This is the machine code that actually generates it:</p>
+<div class="highlight"><pre><span class="n">cmp</span><span class="p">[</span><span class="n">ebx</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">class</span> <span class="n">offset</span><span class="o">&gt;</span><span class="p">],</span> <span class="o">&lt;</span><span class="n">cached</span> <span class="n">class</span><span class="o">&gt;</span>
+<span class="n">jne</span> <span class="o">&lt;</span><span class="kr">inline</span> <span class="n">cache</span> <span class="n">miss</span><span class="o">&gt;</span>
+<span class="n">mv</span> <span class="n">eax</span><span class="p">,</span> <span class="p">[</span><span class="n">ebx</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">cached</span> <span class="n">x</span> <span class="n">offset</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Instead of having a complicated lookup at the propriety, V8 does much better with a hidden class structure.  In the case above, reading the propriety will translate into three machine approaches. The first structure checks if the ? has a certain hidden class. If it has it, it will continue to the third instruction and read the x propriety. Otherwise,  it will call the runtime ???. </p>
+<p>Introducing hidden classes allows to measure how many different classes are seen at the site in th code. 90% of the all access sites see object with the same hidden class. Conclusion: JS is not as dunamic at runtime as you might thing. We can use class-based OO optimization techiqniques.
+When we  run the code we don't kmow about the hidden class. This is a classic example of inline caching and we captilize in the hidden classes to make it run faster.</p>
+<p>In essence, intead of having a generic lookup for a propriety, we can actually  generate efficient machine code to search the propriety out of the ???.</p>
+<p>In these implementations, we would have two different objects that doesn't share any structure. However, in V8, we would have two different objects, a and b,  and instead of having them completely independent, V8 make them share a hidden class. So instead of creating two objects, we have three. The hidden class shows that both objects have the same proprieties.</p>
+<p>V8 compiles JavaScript source code directly into machine code when it is first executed. There are no intermediate byte codes, no interpreter. Property access is handled by inline cache code that may be patched with other machine instructions as V8 executes.</p>
+<p>During initial execution of the code for accessing a property of a given object, V8 determines the object's current hidden class. V8 optimizes property access by predicting that this class will also be used for all future objects accessed in the same section of code and uses the information in the class to patch the inline cache code to use the hidden class. If V8 has predicted correctly the property's value is assigned (or fetched) in a single operation. If the prediction is incorrect, V8 patches the code to remove the optimisation.</p>
+<p>For example, the JavaScript code to access property x from a Point object is:</p>
+<p>point.x
+In V8, the machine code generated for accessing x is:</p>
+<h1>ebx = the point object</h1>
+<p>cmp [ebx,<hidden class offset>],<cached hidden class>
+jne <inline cache miss>
+mov eax,[ebx, <cached x offset>]</p>
+<p>If the object's hidden class does not match the cached hidden class, execution jumps to the V8 runtime system that handles inline cache misses and patches the inline cache code. If there is a match, which is the common case, the value of the x property is simply retrieved.</p>
+<p>When there are many objects with the same hidden class the same benefits are obtained as for most static languages. The combination of using hidden classes to access properties with inline caching and machine code generation optimises for cases where the same type of object is frequently created and accessed in a similar way. This greatly improves the speed at which most JavaScript code can be executed.</p>
+<p>In V8, an object changes its hidden class when a new property is added.</p>
+<p>When new Point(x, y) is executed a new Point object is created. When V8 does this for the first time, V8 creates an initial hidden class of Point, called C0 in this example. As the object does not yet have any properties defined the initial class is empty. At this stage the Point object's hidden class is C0.</p>
+<p>Executing the first statement in Point (this.x = x;) creates a new property, x, in the Point object. In this case, V8:</p>
+<p>creates another hidden class C1, based on C0, then adds information to C1 that describes the object as having one property, x, the value of which is stored at offset 0 (zero) in the Point object.
+updates C0 with a class transition indicating that if a property x is added to an object described by C0 then the hidden class C1 should be used instead of C0. At this stage the Point object's hidden class is C1.</p>
+<p>Executing the second statement in Point (this.y = y;) creates a new property, y, in the Point object. In this case, V8:</p>
+<p>creates another hidden class C2, based on C1, then adds information to C2 that describes the object as also having property y stored at offset 1 (one) in the Point object.
+updates C1 with a class transition indicating that if a property y is added to an object described by C1 then the hidden class C2 should be used instead of C1. At this stage the Point object's hidden class is C2.</p>
+<p>it might seem inefficient to create a new hidden class whenever a property is added. However, because of the class transitions the hidden classes can be reused. </p>
+<p>For example, if another Point object is created:</p>
+<p>initially the Point object has no properties so the newly created object refers to the intial class C0.
+when property x is added, V8 follows the hidden class transition from C0 to C1 and writes the value of x at the offset specified by C1.
+when property y is added, V8 follows the hidden class transition from C1 to C2 and writes the value of y at the offset specified by C2.</p>
+<p>Encode object layout and shared structure
+- in a static OO language, a particular propertu us always found at a know offsset in instances of a particular  class
+- thios is fast
+ the layout of the object is always know at runtime, propriety is found at particular fixed offset from the object, like an array access
+same for method calls, the method themselves are indiretion because they are virtual,  they look up at runtime, but the pointer for that method is found is in a known offset.</p>
+<ul>
+<li>in js there are no classes
+if we see a object propriety we need to find if this object actually has this propriet, and if does, we dont know where is it, we could have objects with internal layout so we need to make a dynamic dictionary lookup some sort of associative array lookup -&gt; we do this to every property</li>
+<li>object appearing at properiety access site may have a given property or not, found at various places in the object, this is slow </li>
+</ul>
+<p>In a regular JavaScript, we have prototypes. So if we have a function such as</p>
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">Point</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>allocates space to the protpiety, such as a java array</p>
+<p>whwere we create a new object and assign x and y to the parameters. The last two lines create two different points:</p>
+<div class="highlight"><pre><span class="n">var</span> <span class="n">a</span> <span class="o">=</span> <span class="n">newPoint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">b</span> <span class="o">=</span> <span class="n">newPoint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</pre></div>
+
+
+<h3>V8's   Dynamical Code Generation</h3>
+<ul>
+<li>Dynamic Code Generation: how to use this?  The idea of V8 is that we translate JavaScript code into machine code, instead of just using an interpreter.</li>
+</ul>
+<p>Another component for V8's speed is <strong>dynamic code generation</strong>: when other JavaScript engines run, they look at the JavaScript source code and generate an internal representation of it they can interpret but when you have to do interpretation, you have to look at the structure of your internal representation over and over again. Instead, V8 looks at the JavaScript source code an generate machine code that can run directly on the CPU thats running in the browser.</p>
+<h3>V8's Garbage Collecting</h3>
+<p>Finally, the core design flaw of current JavaScript engines is bad garbage collection behavior. JavaScript and other programing languages have automatic memory management. If you don't have a reference to an object anymore, its memory is reclaimed in existing js virtual machines, they use conservative garbage collection because you don't know exactly where all the pointers are, you start searching through the execution stack to see which words look like pointers but the ones that sort of look like  pointers could also be integer that have the same address as an object in the heap.</p>
+<p>In V8 we use <strong>precise garbage collection</strong>, so we know precisely where all of the pointers are on the stack, which gives advantages. for example, we can migrate an object to another place and just rewire the pointer.</p>
+<p>Because we know where are the pointers are, we can implement incremental garbage collection meaning quick garbage collection round trips that are close to a few milliseconds compared to processing all 100mb data .</p>
+<p>V8 is designed with embedding in mind: find a way to categorize the internal structure of objects to have efficient access to their proprieties.</p>
+<ul>
+<li>Precise Garbage College: They want to eliminate garbage collection.
+The garbage collector of V8 is a generational incremental collector.</li>
+</ul>
+<p>Allow fast allocation, minimize  process?? when running js.  The user dont get any hicups. If the app is big, there is lots of processes. We implemente two generative?  garbage collectors. The cleanign is done in small pieces.</p>
+<p>when we do a full garbage collection, we through out all the stubs and we can regenerate that</p>
+<p>Native-code Complier:</p>
+<ul>
+<li>javaScript source code is tranlated idreclty into machine code</li>
+<li>there is no intermediate bytecode because ther eis no interpreter</li>
+<li>functions are complied JIT-style<ul>
+<li>source ode is parsed into syntax trees</li>
+<li>simple one-pass code generator is used</li>
+<li>only few optimizations are applied</li>
+</ul>
+</li>
+<li>Code generators are implemented for x86 and ARM</li>
+</ul>
+<p>if you load js script with functions that are never used, it is never compiled</p>
+<p>Garbage collection is a form of automatic memory management: it attempts to reclaim memory occupied by objects that are not in use anumore. As the opposite of manual memory managemte, which requires the programmer to specify which objects to deallocate and return to the memory system.</p>
+<p>Garbage collection frees the programmer from manually dealing with memory  deallocation, reducing the following bugs:
+- dangling pointers (when a piece of memroy is freed while is still pointers to it)
+- double free bugs (when the proghrams tries to free a region of memory that has alread freend)
+- memory leaks (program fails to free memory occuped by an object that have become unrechame, leading to memory exaustiaon)</p>
+<p>It consumes computing resources in deciding which memory to free, even though the programmer have this information. The moment when the garbage is collected can be unpreditable, resultin in stalls.</p>
+<p>Efficient memory management:
+- design goals:
+    * fast object allocation
+    * scalable object heap
+    * small garbage collection pauses times
+V8 uses a generational garbahe collection</p>
+<p>avoid to collect the entire heap at once
+Object Heap Organization:
+- Young Generation:
+    - new space nearly allocated objects, collected frequently
+- Old Generation
+    - code space: executable code objects
+    - old data space: obkects with no pojtner to the young gen
+    - large object space: to avoid moving objects (8KB)
+    -hidden class space: rqures special GC processing
+    - older pojtner spaceL the rest of the old objects</p>
+<p>Three types of garbage colelction:
+- Scavenge collections are most frequent
+    - copying colector oprating on the young generation
+    - always single pointer allocation
+    - pause times bounded by live data in young gen
+    - typical pause times 1-2ms</p>
+<ul>
+<li>
+<p>mark-sweep collections for most full colletcions</p>
+<ul>
+<li>proces all spaces</li>
+<li>uses single pointer and free list allocation</li>
+<li>pauses times bound by size of heap</li>
+<li>typical pause times 30-50 min</li>
+</ul>
+</li>
+<li>
+<p>mark-sweep-comapct to eliminate fragmentation</p>
+<ul>
+<li>typical pause times: 50-150ms</li>
+</ul>
+</li>
+</ul>
+<p>Efficient Garbage Collection</p>
+<p>V8 reclaims memory used by objects that are no longer required in a process known as garbage collection. To ensure fast object allocation, short garbage collection pauses, and no memory fragmentation V8 employs a stop-the-world, generational, accurate, garbage collector. This means that V8:</p>
+<p>stops program execution when performing a garbage collection cycle.
+processes only part of the object heap in most garbage collection cycles. This minimizes the impact of stopping the application.
+always knows exactly where all objects and pointers are in memory. This avoids falsely identifying objects as pointers which can result in memory leaks.
+In V8, the object heap is segmented into two parts: new space where objects are created, and old space to which objects surviving a garbage collection cycle are promoted. If an object is moved in a garbage collection cycle, V8 updates all pointers to the object.</p>
+<p>Sandboxing: prevent malware from installing itself on the computer or using what happens in one tab to affect what happens in another. The process have less rights: they can compute but they cant write files to the hard drive or read files form sensitive areas</p>
+<p>taking the existing processing boudnaiy and make it a jail</p>
+<p>in terms of permisions on the system, chrome's renderer may run at very low privileges, but there are plugins that run at the same level or even higher than the browser</p>
+<p>plugins have capabilites that arent public standard so we cant sanbox yet
+when a plugin combines with html and js, it all runs in the same process
+if any part crashes, or starts corrupting memory, they are hosed</p>
+<p>ripping plugins out of the rendering pricess and putting them in a spearated process all their own so the page can still be sandboxed, even if the plugin cant</p>
+<h3>V8's In-line caching</h3>
+<ul>
+<li>inline caching: key to perfomance:
+Each property access and function call is governed by an inline cache stub. Stubs are in one of four states: --&gt; mmachine code/ block of machine code that we jump to to access a propriety</li>
+<li>unitilized - initial (never seen any object with this property)</li>
+<li>pre-monomorphic - behave like an unitilized but in this case we do an one time lookup and we re-write it to a customized monophorfic. the reason is that in js there are a lot of code exectued only once (initializaiton, setup) and this case we dont want to go to the trouble of generate customized and optimize machine code: dont generate optmize code until seem the second propertioes and the third one will be fast</li>
+<li>monomphorpic (very fast): recoded the hidden class of the object we seem there (second time, now remember the object you saw the second time)</li>
+<li>megamorphic: if we see a different object ever in that site, we replace it with megamorphic, which is like the initialized one, it always does runtime lookup, except that it never replaces itself</li>
+</ul>
+<p>inline chaching
+Inline caching is an optimization technique employed by some language runtimes
+The concept of inline caching is based on the empirical observation that the objects that occur at a particular call site are often of the same type. In those cases, performance can be increased greatly by storing the result of a method lookup "inline", i.e. directly at the call site. To facilitate this process, call sites are assigned different states. Initially, a call site is considered to be "uninitialized". Once the language runtime reaches a particular uninitialized call site, it performs the dynamic lookup, stores the result at the call site and changes its state to "monomorphic". If the language runtime reaches the same call site again, it retrieves the callee from it and invokes it directly without performing any more lookups. To account for the possibility that objects of different types may occur at the same call site, the language runtime also has to insert guard conditions into the code. Most commonly, these are inserted into the preamble of the callee rather than at the call site to better exploit branch prediction and to save space due to one copy in the preamble versus multiple copies at each call site. If a call site that is in the "monomorphic" state encounters a type other than the one it expects, it has to change back to the "uninitialized" state and perform a full dynamic lookup again.</p>
+<hr />
+<p><strong>tl;dr</strong>: Chrome came with <a href="http://blogoscoped.com/google-chrome/">pretty awesome stuff</a>.</p>
+<hr />
+<h3>References:</h3>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "the-big-deal-with-chrome-i-behind-v8.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://bt3gl.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
+                </div>
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+
+
+<li class="nav-header"><h4>Categories</h4></li>
+<li>
+<a href="http://bt3gl.github.io/category/web-security.html">
+    <i class="icon-folder-open icon-large"></i>Web Security
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/vulnerabilities.html">
+    <i class="icon-folder-open icon-large"></i>Vulnerabilities
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/reverse-engineering.html">
+    <i class="icon-folder-open icon-large"></i>Reverse Engineering
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/networking.html">
+    <i class="icon-folder-open icon-large"></i>Networking
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/lifeuniverseeverything.html">
+    <i class="icon-folder-open icon-large"></i>Life,Universe,Everything
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/forensics.html">
+    <i class="icon-folder-open icon-large"></i>Forensics
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/cryptography.html">
+    <i class="icon-folder-open icon-large"></i>Cryptography
+</a>
+</li>
+
+<br>
+
+<li class="nav-header"><h4>Tags</h4></li>
+<ul class="tagcloud">
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xss.html">
+        <i class="icon-tag icon-large"></i>XSS
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/brute_force.html">
+        <i class="icon-tag icon-large"></i>Brute_Force
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ocsp.html">
+        <i class="icon-tag icon-large"></i>OCSP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/exiftool.html">
+        <i class="icon-tag icon-large"></i>ExifTool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crlsets.html">
+        <i class="icon-tag icon-large"></i>CRLSets
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/unoconv.html">
+        <i class="icon-tag icon-large"></i>unoconv
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jit.html">
+        <i class="icon-tag icon-large"></i>JIT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/v8.html">
+        <i class="icon-tag icon-large"></i>V8
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/oracle.html">
+        <i class="icon-tag icon-large"></i>Oracle
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crl.html">
+        <i class="icon-tag icon-large"></i>CRL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/heartbleed.html">
+        <i class="icon-tag icon-large"></i>Heartbleed
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ltrace.html">
+        <i class="icon-tag icon-large"></i>ltrace
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/paillier.html">
+        <i class="icon-tag icon-large"></i>Paillier
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>Assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/csrf.html">
+        <i class="icon-tag icon-large"></i>CSRF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hope.html">
+        <i class="icon-tag icon-large"></i>Hope
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/netsh.html">
+        <i class="icon-tag icon-large"></i>netsh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>nmap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gpg.html">
+        <i class="icon-tag icon-large"></i>GPG
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tls.html">
+        <i class="icon-tag icon-large"></i>TLS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/request.html">
+        <i class="icon-tag icon-large"></i>request
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rce.html">
+        <i class="icon-tag icon-large"></i>RCE
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>SSH
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_Overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
+        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rips.html">
+        <i class="icon-tag icon-large"></i>RIPS
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cms.html">
+        <i class="icon-tag icon-large"></i>CMS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/binary_search.html">
+        <i class="icon-tag icon-large"></i>Binary_Search
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xssi.html">
+        <i class="icon-tag icon-large"></i>XSSI
+    </a>
+</li>
+
+
+</ul>
+
+        </div><!--/.well -->
+
+      </div><!--/row-->
+
+
+
+      <footer>
+        <address id="about">
+
+        </address><!-- /#about -->
+
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+    <script src="http://bt3gl.github.io/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://bt3gl.github.io/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
