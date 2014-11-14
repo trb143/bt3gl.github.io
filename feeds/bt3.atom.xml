@@ -164,7 +164,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In conclusion, the combination of using hidden classes to access properties with inline caching and machine code generation optimizes for cases where the same type of object is frequently created and accessed in a similar way. This greatly improves the speed at which most JavaScript code can be executed.&lt;/p&gt;
+&lt;p&gt;In conclusion, the combination of using hidden classes to access properties with inline caching (plus  machine code generation) does optimize in cases where  type of objects are frequently created and accessed in a similar way. This greatly improves the speed at which most JavaScript code can be executed.&lt;/p&gt;
 &lt;h3&gt;V8's Efficient Garbage Collecting&lt;/h3&gt;
 &lt;p&gt;In V8, a &lt;strong&gt;precise garbage collection&lt;/strong&gt; is used. &lt;em&gt;Every pointer's location are known on the execution stack&lt;/em&gt;, so it can implement incremental garbage collection. V8 can migrate an object to another place and just rewire the pointer.&lt;/p&gt;
 &lt;p&gt;In summary, V8's garbage collection:&lt;/p&gt;
