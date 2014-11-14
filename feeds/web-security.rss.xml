@@ -98,7 +98,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In the above implementation, we would have two different Point objects that do not share any structure. This is because JavaScript is &lt;em&gt;classless&lt;/em&gt;: you create  new objects on the fly and dynamically add or remove proprieties. Functions can move from an object to another. Objects with same type can appear in the same sites in the program with no constraints.&lt;/p&gt;
+&lt;p&gt;In the above implementation, we would have two different Point objects that do not share any structure. This is because JavaScript is &lt;strong&gt;classless&lt;/strong&gt;: you create  new objects on the fly and dynamically add or remove proprieties. Functions can move from an object to another. Objects with same type can appear in the same sites in the program with no constraints.&lt;/p&gt;
 &lt;p&gt;Furthermore, to store their object proprieties, most JavaScript engines use a &lt;em&gt;dictionary-like data structure&lt;/em&gt;. Each property access demands a dynamic lookup to resolve their location in memory. This is opposed as &lt;em&gt;static&lt;/em&gt; languages such Java, where instance variables are located at fixed offsets determined by the compiler (due to the &lt;em&gt;fixed&lt;/em&gt; object layout by the &lt;em&gt;object's class&lt;/em&gt;). In this case, access is given by a simple memory load or store (a single instruction).&lt;/p&gt;
 &lt;h3&gt;JavaScript Garbage Collection&lt;/h3&gt;
 &lt;p&gt;The core design flaw of traditional JavaScript engines is &lt;strong&gt;bad garbage collection behavior&lt;/strong&gt;.  Garbage collection is a form of &lt;em&gt;automatic memory management&lt;/em&gt;: the attempt of reclaiming memory occupied by objects that are not being used any longer.&lt;/p&gt;
