@@ -51,7 +51,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;As one could guess, JavaScript has automatic memory management. Actually, the core design flaw of traditional JavaScript engines is &lt;strong&gt;bad garbage collection behavior&lt;/strong&gt;. The problem is that JavaScript engines do not know exactly where all the pointers are and they will search through the entire execution stack to see which data looks like pointers (for instance, integers can look like a pointer to an address in the heap).&lt;/p&gt;
+&lt;p&gt;As one could guess, JavaScript has automatic memory management. Actually, the core design flaw of traditional JavaScript engines is &lt;strong&gt;bad garbage collection behavior&lt;/strong&gt;. The problem is that JavaScript engines do not know exactly where all the pointers are, and they will search through the entire execution stack to see which data looks like pointers (for instance, integers can look like a pointer to an address in the heap).&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Introducing V8&lt;/h2&gt;
 &lt;p&gt;A solution for the issues presented above came from Google,  with  the &lt;strong&gt;V8 Engine&lt;/strong&gt;. V8 is an &lt;a href="https://code.google.com/p/v8/"&gt;open source JavaScript engine&lt;/a&gt; written in C++ that gave birth to Chrome. V8 has a way to categorize the highly-dynamic JavaScript objects into classes, bringing techniques from static class-based languages. In addition, as I mentioned in the the beginning, V8 compiles JavaScript to native machine code before executing it.&lt;/p&gt;
@@ -88,7 +88,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Instead of a complicated lookup at the propriety, V8 reading the propriety translates into three machine operations!&lt;/p&gt;
+&lt;p&gt;Instead of a complicated lookup at the propriety, the propriety reading translates into three machine operations!&lt;/p&gt;
 &lt;p&gt;It might seem inefficient to create a new hidden class whenever a property is added. However, because of the class transitions the hidden classes can be reused several times. It turns out that most of the access to objects are within the same hidden class.&lt;/p&gt;
 &lt;h3&gt;V8's In-line caching&lt;/h3&gt;
 &lt;p&gt;When the engine runs the code, it does not know about the hidden class. V8 optimizes property access by predicting that the class will also be used for all future objects accessed in the same section of code, and uses the information to the &lt;strong&gt;inline cache code&lt;/strong&gt;.&lt;/p&gt;
