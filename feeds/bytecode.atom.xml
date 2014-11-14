@@ -14,7 +14,8 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Modern languages have their similar way to do things. When languages choose the way they compile or interpret code, they are trading off with the speed they want things to run. Since browsers are preoccupied in deliver content the faster they can,  this is a fundamental concept.&lt;/p&gt;
+&lt;p&gt;As a note, when JavaScript executes code it performs similar steps: &lt;em&gt;parsing&lt;/em&gt; and &lt;em&gt;preprocessing&lt;/em&gt;, &lt;em&gt;analysis&lt;/em&gt;, and &lt;em&gt;execution&lt;/em&gt;. In addition, the JavaScript engine represents bytecode using &lt;a href="http://en.wikipedia.org/wiki/SpiderMonkey_(software)"&gt;SpiderMonkey&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So we see that modern languages choose the way they compile or interpret code, they are trading off with the speed they want things to run. Since browsers are preoccupied in deliver content the faster they can,  this is a fundamental concept.&lt;/p&gt;
 &lt;p&gt;In traditional JavaScript machineries, code is represented by bytecode or AST and then executed in a &lt;em&gt;virtual machine&lt;/em&gt; or further compiled into machine code. To speed things up, instead of being parsed and then executed (&lt;a href="http://en.wikipedia.org/wiki/Ahead-of-time_compilation"&gt;one at time&lt;/a&gt;),  &lt;strong&gt;dynamic translators&lt;/strong&gt;  (&lt;em&gt;Just-in-time&lt;/em&gt; translators, or JIT) are used. JITs &lt;em&gt;translate intermediate representation into machine language  at runtime&lt;/em&gt;. It has the efficiency of running native code with the cost of startup time plus increased memory (when the bytecode or AST are first compiled).&lt;/p&gt;
 &lt;h3&gt;Method JITs and Tracing JITs&lt;/h3&gt;
 &lt;p&gt;Engines have different policies on code generation, which can roughly be grouped into types: &lt;strong&gt;tracing&lt;/strong&gt; and &lt;strong&gt;method&lt;/strong&gt;.&lt;/p&gt;
