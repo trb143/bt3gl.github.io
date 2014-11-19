@@ -37,7 +37,7 @@
 &lt;p&gt;On the flip side, it's also not a good idea to enforce a &lt;strong&gt;hard-fail&lt;/strong&gt; check:  OCSP servers are pretty flaky/slow and you do not want to relay on their capabilities (DDoS attackers would love this though).&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Some Light in a Solution&lt;/h2&gt;
-&lt;p&gt;There are several attempts of solution for the revocation problem but none of them has been regarded as the definitive one. Here some of them:&lt;/p&gt;
+&lt;p&gt;There are several attempts of a solution for the revocation problem but none of them has been regarded as the definitive one. Here some of them:&lt;/p&gt;
 &lt;h3&gt;CRLSets&lt;/h3&gt;
 &lt;p&gt;Google Chrome uses &lt;a href="https://dev.chromium.org/Home/chromium-security/crlsets"&gt;&lt;strong&gt;CRLSets&lt;/strong&gt;&lt;/a&gt; int its update mechanism to send lists of serial numbers of revoked certificates which are constantly added by crawling the CAs.&lt;/p&gt;
 &lt;p&gt;This method brings  more performance and reliability to the browser and, in addition, &lt;a href="https://www.imperialviolet.org/2014/04/19/revchecking.html"&gt;CRLSet updates occur at least daily&lt;/a&gt;, which is faster than most OCSP validity periods.&lt;/p&gt;
