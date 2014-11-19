@@ -48,7 +48,7 @@
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;tl;dr:&lt;/strong&gt; The security of the Internet depends on the agent's ability to revoke compromised certificates, but the status quo is broken. There is  a urgent  need for rethinking the way things have been done!&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;(Edited, 11/19/2014)The &lt;em&gt;EFF&lt;/em&gt; just announced an attempt to help this problem, the &lt;a href="https://www.eff.org/deeplinks/2014/11/certificate-authority-encrypt-entire-web"&gt;Let's Encrypt&lt;/a&gt; to be released in 2015. These are really great news, and I can't wait for it!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Edited, 11/19/2014:&lt;/strong&gt; The &lt;em&gt;EFF&lt;/em&gt; just announced an attempt to help this problem, the &lt;a href="https://www.eff.org/deeplinks/2014/11/certificate-authority-encrypt-entire-web"&gt;Let's Encrypt&lt;/a&gt; to be released in 2015. These are really great news, and I can't wait for it!&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h3&gt;References:&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://www.imperialviolet.org/2011/03/18/revocation.html"&gt;Imperial Violet: Revocation Doesn't work&lt;/a&gt;&lt;/p&gt;
