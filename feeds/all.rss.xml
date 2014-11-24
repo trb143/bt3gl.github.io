@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Higher Bytes by bt3</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 10 Nov 2014 04:20:00 -0500</lastBuildDate><item><title>My Cute and Fluffy Intro to Linux (aka Yet Another Linux Guide)</title><link>http://bt3gl.github.io/my-cute-and-fluffy-intro-to-linux-aka-yet-another-linux-guide.html</link><description>&lt;p&gt;Being a Linux user is, above all, a &lt;em&gt;life style&lt;/em&gt;. Interestingly, more and more people have been joining this community, keeping it dynamic and organic.&lt;/p&gt;
 &lt;p&gt;Linux has been in my life since my high school  years  and  I'm still constantly amused by the fact that it has not lost any of its appeal. There is always something new or deeper to be learned. Linux is &lt;em&gt;the&lt;/em&gt; tool for those who choose to spend their excess of curiosity flying around bytes.&lt;/p&gt;
 &lt;p&gt;With the novice in mind, this blog post is my introduction to the Linux machinery, containing some of my favorite tricks. I hope you enjoy this exciting adventure of taking control of &lt;em&gt;The Machine&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Disclaimer I&lt;/strong&gt;: Keep in mind that the truly way for mastering Linux is to make the &lt;strong&gt;man&lt;/strong&gt; and &lt;strong&gt;help&lt;/strong&gt; pages in the command line your best friends:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer I&lt;/strong&gt;: Keep in mind that the truly way for mastering Linux is making the &lt;strong&gt;man&lt;/strong&gt; and &lt;strong&gt;help&lt;/strong&gt; pages in the command line your best friends:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="nx"&gt;man&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;COMMAND&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -53,7 +53,7 @@
 &lt;h3&gt;/var&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;/var&lt;/strong&gt; stands for variable and  contains files that are expected to be changing in size and content as the system is running.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;/var&lt;/strong&gt; stands for &lt;em&gt;variable&lt;/em&gt; and  contains files that are expected to be changing in size and content as the system is running.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;For example, the system log files are located at &lt;strong&gt;/var/log&lt;/strong&gt;, the packages and database files are located at &lt;strong&gt;/var/lib&lt;/strong&gt;, the print queues are located at &lt;strong&gt;/var/spool&lt;/strong&gt;, temporary files stay inside &lt;strong&gt;/var/tmp&lt;/strong&gt;, and networks services can be found in subdirectories such as &lt;strong&gt;/var/ftp&lt;/strong&gt; and &lt;strong&gt;/var/www&lt;/strong&gt;.&lt;/p&gt;
@@ -938,7 +938,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;tcptrack&lt;/h2&gt;
+&lt;h3&gt;tcptrack&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;tcptrack&lt;/strong&gt; displays information about TCP connections it sees on a network and display bandwidth usage on some interface by a host.&lt;/li&gt;
 &lt;/ul&gt;
