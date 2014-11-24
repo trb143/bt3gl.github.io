@@ -1015,9 +1015,21 @@
 
 
 &lt;ul&gt;
-&lt;li&gt;Fir example, we can send the current date information to a file:&lt;/li&gt;
+&lt;li&gt;For example, we can send the current date information to a file:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;Completed&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;MD5 and SHA Hashing&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;You can calculate hashes straight from the command line:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;awesome&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;md5sum&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;awesome&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;sha1sum&lt;/span&gt;
+&lt;span class="mo"&gt;03&lt;/span&gt;&lt;span class="n"&gt;d67c263c27a453ef65b29e30334727333ccbcd&lt;/span&gt;  &lt;span class="o"&gt;-&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;awesome&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;sha256sum&lt;/span&gt;
+&lt;span class="mi"&gt;705&lt;/span&gt;&lt;span class="n"&gt;db0603fd5431451dab1171b964b4bd575e2230f40f4c300d70df6e65f5f1c&lt;/span&gt;  &lt;span class="o"&gt;-&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1412,6 +1424,29 @@ c_yhmaXt
 FZI2wz2LzyVQ
 &lt;span class="nv"&gt;$ &lt;/span&gt;genpass 14
 ZEfgQvpY4ixePt
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;h2&gt;Most Common words plus Frequency&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;We can use the commands we learned to build a script that print the most common words plus their frequency:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tr -cs A-Za-z &amp;#39;\n&amp;#39; |
+tr A-Z a-z |
+sort |
+uniq -c |
+sort -rn |
+sed &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;q
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;This is the same as splitting and tokenizing the file using Python:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;collections&lt;/span&gt;
+&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;common_words&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;collections&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdin&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()).&lt;/span&gt;&lt;span class="n"&gt;most_common&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
