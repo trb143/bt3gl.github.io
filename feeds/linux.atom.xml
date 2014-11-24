@@ -1355,6 +1355,7 @@ ZEfgQvpY4ixePt
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;hr /&gt;
 &lt;h2&gt;imagemagick&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;You can create a gif file from terminal with  &lt;strong&gt;&lt;em&gt;imagemagick&lt;/em&gt;&lt;/strong&gt;:&lt;/li&gt;
@@ -1364,6 +1365,7 @@ ZEfgQvpY4ixePt
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;hr /&gt;
 &lt;h2&gt;Easy access to the History&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Type &lt;code&gt;!!&lt;/code&gt; to run the last command in the history, &lt;code&gt;!-2&lt;/code&gt; for the command before that, and so on.&lt;/li&gt;
