@@ -62,13 +62,16 @@
 &lt;h3&gt;/etc&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;/etc&lt;/strong&gt; stands for the system configuration files. It contains no binary programs, but it might have some executable scripts.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;/etc&lt;/strong&gt; is short for &lt;em&gt;et cetera&lt;/em&gt; and contains the system configuration files. It contains no binary programs, but it might have some executable scripts.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;For instance, the file &lt;strong&gt;/etc/resolv.conf&lt;/strong&gt; tells the system where to go on the network to obtain the host name of some IP address (&lt;em&gt;i.e.&lt;/em&gt; DNS).&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Additionally, the &lt;strong&gt;/etc/passwd&lt;/strong&gt; file is the authoritative list of users on any Unix system. It does not contain the passwords: the encrypted password information was migrated into &lt;strong&gt;/etc/shadow&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;/etc/passwd&lt;/strong&gt; file is the authoritative list of users on any Unix system. It does not contain the passwords: the encrypted password information was migrated into &lt;strong&gt;/etc/shadow&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The &lt;strong&gt;/etc/hosts&lt;/strong&gt; contains  a list of hostname to IP address mappings, which can be used to assign names to servers,  independently of the public DNS service.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;/lib&lt;/h3&gt;
@@ -138,10 +141,14 @@
 &lt;p&gt;&lt;strong&gt;usr/src&lt;/strong&gt;: source code, usually for the Linux kernel.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;usr/local&lt;/strong&gt;: data and programs specific to the local machine.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;usr/local&lt;/strong&gt;: data and programs specific to the local machine,  things that apply to computer rather than things provided by the operating system go.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;/proc&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/proc&lt;/strong&gt; contains dynamically-created virtual filesystem that contains data about each running process and about the system as a whole.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h2&gt;/dev Specials&lt;/h2&gt;
@@ -888,7 +895,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;ss&lt;/h2&gt;
+&lt;h3&gt;ss&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;ss&lt;/strong&gt; dumps socket (network connection) statistics such as all TCP/UDP connections, established connection per protocol, etc.&lt;/li&gt;
 &lt;/ul&gt;
