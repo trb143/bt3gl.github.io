@@ -101,7 +101,7 @@
 &lt;p&gt;&lt;code&gt;system.map&lt;/code&gt;: the kernel symbol table.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="http://www.gnu.org/software/grub/"&gt;GRUB&lt;/a&gt; files can also be found here.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://null-byte.wonderhowto.com/how-to/hack-like-pro-linux-basics-for-aspiring-hacker-part-21-grub-bootloader-0154965/"&gt;GRUB&lt;/a&gt; files can also be found here (in /boot/grub/grub.cfg)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -870,7 +870,72 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;netstat&lt;/strong&gt; prints the network connections, routing tables, interface statistics, among others. Useful  flags are &lt;strong&gt;-t&lt;/strong&gt; for TCP, &lt;strong&gt;-u&lt;/strong&gt; for UDP, &lt;strong&gt;-l&lt;/strong&gt; for listening, &lt;strong&gt;-p&lt;/strong&gt; for program, &lt;strong&gt;-n&lt;/strong&gt; for numeric. For example:&lt;/li&gt;
 &lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;netstat&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;To display all open network ports:&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;netstat&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tulpn&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display all TCP sockets:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;netstat&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;nat&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;ss&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ss&lt;/strong&gt; dumps socket (network connection) statistics such as all TCP/UDP connections, established connection per protocol, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;To display all open network ports:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;To display all TCP sockets:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;To display all UCP sockets:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display all UDP sockets:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;netstat&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;nau&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;View established connections only:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;netstat&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;natu&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;ESTABLISHED&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;tcptrack&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;tcptrack&lt;/strong&gt; displays information about TCP connections it sees on a network and display bandwidth usage on some interface by a host.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt;  &lt;span class="n"&gt;tcptrack&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;eth0&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1377,8 +1442,14 @@ ZEfgQvpY4ixePt
 &lt;ul&gt;
 &lt;li&gt;Unix: Culture and Command Line, Seth Schoen&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://null-byte.wonderhowto.com/how-to/hack-like-pro-linux-basics-for-aspiring-hacker-part-16-stdin-stdout-stderror-0150693/"&gt;Understand STDERROR, STDOUT, STDIN&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.howtogeek.com/196051/htg-explains-what-is-a-file-system-and-why-are-there-so-many-of-them"&gt;Introduction to  filesytems&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://null-byte.wonderhowto.com/how-to/hack-like-pro-linux-basics-for-aspiring-hacker-part-18-scheduling-jobs-0154969/"&gt;Guide to Crontab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.tecmint.com/scp-commands-examples/"&gt;10 Useful scp commands&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.skorks.com/2009/09/bash-shortcuts-for-maximum-productivity/"&gt;Bash shortcuts for productivity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://cli.learncodethehardway.org/bash_cheat_sheet.pdf"&gt;Linux Bash Shell Cheat Sheet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.linuxuser.co.uk/features/rise-of-linux-a-hackers-history"&gt;Rise of Linux, a Hacker History&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="http://www.howtogeek.com/196051/htg-explains-what-is-a-file-system-and-why-are-there-so-many-of-them"&gt;Introduction to  filesytems&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.tecmint.com/usermod-command-examples/"&gt;Usermode commands example&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[1] Encoding is a problem between Python 2 and Python 3:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
