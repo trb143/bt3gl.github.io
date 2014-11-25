@@ -5,7 +5,7 @@
 &lt;p&gt;In this blog post I introduce Wireshark and I talk about my favorite features in the tool.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h1&gt;The Network Architecture&lt;/h1&gt;
-&lt;p&gt;Before we are able to understand and analyses network traffic packets, we must have an insight of how the network stack works.&lt;/p&gt;
+&lt;p&gt;Before we are able to understand and analyse network traffic packets, we must have an insight of how the network stack works.&lt;/p&gt;
 &lt;h2&gt;The OSI Model&lt;/h2&gt;
 &lt;p&gt;The &lt;em&gt;Open Systems Interconnection&lt;/em&gt; (OSI) model  was published in 1983 and is a conceptual model that characterizes and standardizes the internal functions of a communication system by partitioning it into abstraction layers.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/dZyiOTX.png" /&gt;&lt;/p&gt;
