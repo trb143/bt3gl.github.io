@@ -161,7 +161,7 @@
 &lt;p&gt;&lt;strong&gt;/dev/null&lt;/strong&gt; ignores everything written to it. It's convenient for discarding unwanted output.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;/dev/zero&lt;/strong&gt; contains an &lt;em&gt;infinite&lt;/em&gt; numbers of zero bytes, which can be useful for creating files of a specified length.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;/dev/zero&lt;/strong&gt; contains an &lt;em&gt;infinite&lt;/em&gt; number of zero bytes, which can be useful for creating files of a specified length.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;/dev/urandom&lt;/strong&gt; and &lt;strong&gt;/dev/random&lt;/strong&gt; contain infinite stream of operating-system-generated random numbers, available to any application that wants to read them. The difference between them is that the second guarantees strong randomness (it will wait until enough is available) and so it should used for encryption, while the former can be used for games.&lt;/p&gt;
@@ -1260,7 +1260,7 @@
 &lt;li&gt;
 &lt;p&gt;Standard logging facility can be found  at &lt;code&gt;/var/log&lt;/code&gt;. For instance:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;/var/log/boot.log&lt;/code&gt; contains information that are logged when the system boots.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/var/log/boot.log&lt;/code&gt; contains information that is logged when the system boots.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;/var/log/auth.log&lt;/code&gt; contains system authorization information.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;/var/log/dmesg&lt;/code&gt; contains kernel ring buffer information.&lt;/li&gt;
 &lt;/ul&gt;
@@ -1334,7 +1334,7 @@
 &lt;h2&gt;Text, Hexdump, and Encodings&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;A Linux text file contains lines consisting of zero of more text characters, followed by the &lt;strong&gt;newline character&lt;/strong&gt; (ASCII 10, also referred to as hexadecimal 0x0A or '\n').&lt;/p&gt;
+&lt;p&gt;A Linux text file contains lines consisting of zero or more text characters, followed by the &lt;strong&gt;newline character&lt;/strong&gt; (ASCII 10, also referred to as hexadecimal 0x0A or '\n').&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;A text with a single line containing the word 'Hello' in  ASCII would be 6 bytes (one for each letter, and one for the trailing newline). For example, the text below:&lt;/p&gt;
@@ -1362,10 +1362,10 @@
 &lt;p&gt;The numbers displayed at left are the hexadecimal byte offsets of each output line in the file.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Unlike text files on other operating systems, Linux files does not end with a special end-of-file character.&lt;/p&gt;
+&lt;p&gt;Unlike text files on other operating systems, Linux files do not end with a special end-of-file character.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Linux text files were traditionally always interpreted as &lt;strong&gt;ASCII&lt;/strong&gt;. In ASCII, each character is a single byte, the ASCII standard as such defines exactly &lt;strong&gt;128 characters&lt;/strong&gt; from &lt;strong&gt;ASCII 0 to ASCII 127&lt;/strong&gt;. Some of them are non-printable (such as newline). The printable stats at &lt;strong&gt;32&lt;/strong&gt;. In that case, &lt;strong&gt;ISO 8859&lt;/strong&gt; standards were  extensions to ASCII where the character positions &lt;strong&gt;128 to 255&lt;/strong&gt; are given foreign-language interpretation.&lt;/p&gt;
+&lt;p&gt;Linux text files were traditionally always interpreted as &lt;strong&gt;ASCII&lt;/strong&gt;. In ASCII, each character is a single byte, the ASCII standard as such defines exactly &lt;strong&gt;128 characters&lt;/strong&gt; from &lt;strong&gt;ASCII 0 to ASCII 127&lt;/strong&gt;. Some of them are non-printable (such as newline). The printable starts at &lt;strong&gt;32&lt;/strong&gt;. In that case, &lt;strong&gt;ISO 8859&lt;/strong&gt; standards were  extensions to ASCII where the character positions &lt;strong&gt;128 to 255&lt;/strong&gt; are given foreign-language interpretation.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Nowadays, Linux files are most often interpreted as &lt;strong&gt;UTF-8&lt;/strong&gt;, which is an encoding of &lt;strong&gt;Unicode&lt;/strong&gt;, a character set standard able to represent a very large number of languages.&lt;/p&gt;
