@@ -720,11 +720,12 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 
 
 &lt;hr /&gt;
-&lt;h2&gt;References:&lt;/h2&gt;
+&lt;h2&gt;Further References:&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://wiki.wireshark.org/"&gt;Wireshark wiki&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://wiki.wireshark.org/"&gt;Practical Packet Analysis, &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/ashdnazg/pyreshark"&gt;Wireshark plugin  for writing dissectors in Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://lilithlela.cyberguerrilla.org/?p=76081"&gt;Using Wireshark ti check for DNS Leaks&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Wireshark"></category><category term="ARP"></category><category term="OSI_Model"></category></entry><entry><title>Exploring D-CTF Quals 2014's Exploits</title><link href="http://bt3gl.github.io/exploring-d-ctf-quals-2014s-exploits.html" rel="alternate"></link><updated>2014-10-22T06:30:00-04:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-10-22:exploring-d-ctf-quals-2014s-exploits.html</id><summary type="html">&lt;p&gt;Last weekend I played some of the &lt;a href="http://dctf.defcamp.ro/challs"&gt;DEFCAMP CTF Quals&lt;/a&gt;. It was pretty intense. For (my own)  organizational purposes, I made a list of all the technologies and vulnerabilities  found in this CTF, some based on my team's game, some based on the &lt;a href="https://github.com/ctfs/write-ups/tree/master/d-ctf-2014/"&gt;CTF write-ups git repo&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Vulnerabilities&lt;/h2&gt;
 &lt;h3&gt;Remote File Inclusion and Local File Inclusion Vulnerabilities&lt;/h3&gt;
@@ -1035,7 +1036,7 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Solution 2: Looking for the FTP Protocols&lt;/h2&gt;
 &lt;p&gt;All right, let's use another information we have: it should be something related to the FTP protocol. In Wireshark, we can find specific protocol with filters. We want to filter for FTP with some data. We start trying the usual FTP-DATA port:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

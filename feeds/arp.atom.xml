@@ -720,9 +720,10 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 
 
 &lt;hr /&gt;
-&lt;h2&gt;References:&lt;/h2&gt;
+&lt;h2&gt;Further References:&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://wiki.wireshark.org/"&gt;Wireshark wiki&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://wiki.wireshark.org/"&gt;Practical Packet Analysis, &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/ashdnazg/pyreshark"&gt;Wireshark plugin  for writing dissectors in Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://lilithlela.cyberguerrilla.org/?p=76081"&gt;Using Wireshark ti check for DNS Leaks&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Wireshark"></category><category term="ARP"></category><category term="OSI_Model"></category></entry></feed>
