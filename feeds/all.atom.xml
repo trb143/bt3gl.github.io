@@ -2350,14 +2350,17 @@ sed &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&
 &lt;h3&gt;JavaScript's Garbage Collection&lt;/h3&gt;
 &lt;p&gt;Garbage collection is a form of &lt;em&gt;automatic memory management&lt;/em&gt;: an attempt to reclaim the memory occupied by objects that are not being used any longer (&lt;em&gt;i.e.&lt;/em&gt;, if an object loses its reference, the object's memory has to be reclaimed).&lt;/p&gt;
 &lt;p&gt;The other possibility is &lt;em&gt;manual memory management&lt;/em&gt;, which requires the developer to specify which objects need to be deallocated. However, manual garbage collection can result in bugs such as:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="n"&gt;Dangling&lt;/span&gt; &lt;span class="n"&gt;pointers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;piece&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;freed&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;there&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;still&lt;/span&gt; &lt;span class="n"&gt;pointers&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-
-&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="n"&gt;Double&lt;/span&gt; &lt;span class="n"&gt;free&lt;/span&gt; &lt;span class="n"&gt;bugs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="n"&gt;tries&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;free&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;region&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;had&lt;/span&gt; &lt;span class="n"&gt;already&lt;/span&gt; &lt;span class="n"&gt;freed&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-
-&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="n"&gt;Memory&lt;/span&gt; &lt;span class="n"&gt;leaks&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="n"&gt;fails&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;free&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;occupied&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;had&lt;/span&gt; &lt;span class="n"&gt;became&lt;/span&gt; &lt;span class="n"&gt;unreachable&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;leading&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;exhaustion&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Dangling pointers&lt;/strong&gt;: when a piece of memory is freed while there are still pointers to it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Double free bugs&lt;/strong&gt;: when the program tries to free a region of memory that it had already freed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Memory leaks&lt;/strong&gt;: when the program fails to free memory occupied by an object that had became unreachable, leading to memory exhaustion.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;As one could guess, JavaScript has automatic memory management. Actually, the core design flaw of traditional JavaScript engines is &lt;strong&gt;bad garbage collection behavior&lt;/strong&gt;. The problem is that JavaScript engines do not know exactly where all the pointers are, and they will search through the entire execution stack to see what data looks like pointers (for instance, integers can look like a pointer to an address in the heap).&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Introducing V8&lt;/h2&gt;
