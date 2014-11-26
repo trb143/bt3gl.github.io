@@ -221,7 +221,7 @@
 &lt;ul&gt;
 &lt;li&gt;The &lt;strong&gt;Error template type of malware infection&lt;/strong&gt; occurs when the template used for error messages, such as 404 File not Found, is configured to distribute malware. In this way, attackers can launch attacks on URLs that do not even exist on the victim's website.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Attempts of mitigation:&lt;/h2&gt;
+&lt;h3&gt;Attempts of mitigation:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Investigate all possible harmful code on the website. It may be helpful to search for words like [iframe] to find iframe code. Other helpful keywords are "script", "eval", and "unescape." For example, on Unix-based systems:&lt;/li&gt;
 &lt;/ul&gt;
