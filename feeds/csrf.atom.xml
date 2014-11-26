@@ -80,7 +80,6 @@
 &lt;h2&gt;Cross-site Request Forgery (CSRF, XSRF)&lt;/h2&gt;
 &lt;p&gt;CSRF allows attackers to execute actions using the credentials of another user without that user's knowledge or consent. It is  the failure to verify that a particular state-changing HTTP request received by the &lt;strong&gt;server-side&lt;/strong&gt; portion of the application was initiated from the expected &lt;strong&gt;client-side&lt;/strong&gt; origin. Any third-party website loaded in the browser can perform actions in behalf of the victim.&lt;/p&gt;
 &lt;p&gt;On cross-domain navigation, the browser includes any ambient credentials. To the server, a request originating from its own client-side code will appear as the same as the request from a rogue third-party site and  it might be granted the same privilege.&lt;/p&gt;
-&lt;p&gt;In cross-domain navigation, browsers include any ambient credentials. To the server, a request legitimately originating from tis own client-side code will appear the same as a rogue site with same credentials. Applications that fail to account for the possibility when processing any sensitive state-changing requests are vulnerablle.&lt;/p&gt;
 &lt;h3&gt;Examples of exploitation:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
