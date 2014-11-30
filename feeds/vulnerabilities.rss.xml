@@ -440,8 +440,8 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;So, the program serializes jobs with pickle, and  sends them to a series of workers to deserialize and process the job. Once again, the attack surface is in the user input, which is not properly sanitized here. This function allows arbitrary data to  be sent to &lt;strong&gt;; job&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;We can exploit it by making the serialization code execute arbitrary commands. All we need to do is supply a string such as &lt;strong&gt;; job: &lt;pickled&gt;&lt;/strong&gt;, that when unpickled, runs some Python code that will give us the password. A great module for this is &lt;a href="https://docs.python.org/2/library/os.html#os.system"&gt;Python's os.system&lt;/a&gt;, which executes a command in a subshell.&lt;/p&gt;
+&lt;p&gt;So, the program serializes jobs with pickle, and  sends them to a series of workers to deserialize and process the job. Once again, the attack surface is in the user input, which is not properly sanitized: this function allows arbitrary data to  be sent to &lt;strong&gt;; job&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;We can exploit it by making the serialization code to execute arbitrary commands by supplying a string such as &lt;strong&gt;; job: &lt;pickled&gt;&lt;/strong&gt;, that when unpickled, runs some Python code that will give us the password. A great module for this is &lt;a href="https://docs.python.org/2/library/os.html#os.system"&gt;Python's os.system&lt;/a&gt;, which executes a command in a subshell.&lt;/p&gt;
 &lt;p&gt;An example of  exploit in Python:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pickle&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="n"&gt;HOST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;localhost:9020&amp;#39;&lt;/span&gt;
