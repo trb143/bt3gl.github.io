@@ -128,19 +128,19 @@ a:hover {
     margin-left: 20px;
 }
 .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-    width: 940px;
+    width: 1040px;
 }
 .span12 {
-    width: 940px;
+    width: 1040px;
 }
 .span11 {
-    width: 900px;
+    width: 1000px;
 }
 .span10 {
-    width: 880px;
+    width: 980px;
 }
 .span9 {
-    width: 850px;
+    width: 950px;
 }
 .span8 {
     width: 620px;
