@@ -76,13 +76,13 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Interestingly, it is also possible to solve this problem with one instruction in the command line:&lt;/p&gt;
+&lt;p&gt;Interestingly, it is also possible to solve this problem with just one instruction in the command line:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;curl&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;level01&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;level01&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;digest&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;user_details=../../home/level02/.password&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8002&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;level02&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Where the flag &lt;strong&gt;--digest&lt;/strong&gt; enables HTTP authentication, and the flags &lt;strong&gt;-b&lt;/strong&gt; or &lt;strong&gt;--cookie&lt;/strong&gt; let us determine the cookie to be sent.&lt;/p&gt;
-&lt;p&gt;In the LiveCD this level is modified to use Python and Flask. Luckly, I had some previous experience in Flask (check out my &lt;a href=""&gt;Anti-Social Network&lt;/a&gt;) and it was pretty easy to spot that the Pyhton code does &lt;em&gt;exactly&lt;/em&gt; the same thing as the one above.&lt;/p&gt;
+&lt;p&gt;Note: In the LiveCD this level is modified to use Python and &lt;a href="http://flask.pocoo.org/docs/0.10/"&gt;Flask&lt;/a&gt;. Luckily, I had some previous experience in Flask (check out my &lt;a href=""&gt;Anti-Social Network&lt;/a&gt;) and it was pretty easy to spot that the Pyhton code does &lt;em&gt;exactly&lt;/em&gt; the same thing as the one above.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Level 3: Failure in Input Validation&lt;/h2&gt;
 &lt;p&gt;The third level comes with another &lt;em&gt;setuid&lt;/em&gt; binary that is used to modify  strings:&lt;/p&gt;
