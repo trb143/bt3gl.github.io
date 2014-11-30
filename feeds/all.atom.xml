@@ -27,10 +27,10 @@
 
 
 &lt;p&gt;The vulnerability becomes quite obvious!&lt;/p&gt;
-&lt;p&gt;First, if you use &lt;code&gt;printf&lt;/code&gt; to send text without a trailing &lt;code&gt;\n&lt;/code&gt; to &lt;strong&gt;stdout&lt;/strong&gt; (the screen), there is no guarantee that any of the text will appear, so &lt;a href="http://man7.org/linux/man-pages/man3/fflush.3.html"&gt;fflush&lt;/a&gt; is used to write everything that is buffered  to &lt;strong&gt;stdout&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;First, if you use &lt;code&gt;printf&lt;/code&gt; to send text without a trailing &lt;code&gt;\n&lt;/code&gt; to &lt;strong&gt;stdout&lt;/strong&gt; (the screen), there is no guarantee that any of the text will appear so &lt;a href="http://man7.org/linux/man-pages/man3/fflush.3.html"&gt;fflush&lt;/a&gt; is used to write everything that is buffered  to &lt;strong&gt;stdout&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Second, &lt;code&gt;system&lt;/code&gt; executes &lt;a href="http://linux.die.net/man/3/system"&gt;any shell command you pass to it&lt;/a&gt;. In the case above, it will find a command through the &lt;a href="http://en.wikipedia.org/wiki/PATH_%28variable%29"&gt;PATH environment variable&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;It's clear that if we manage to change the variable &lt;code&gt;date&lt;/code&gt; to some controlled exploit (such as &lt;code&gt;cat /home/level01/.password&lt;/code&gt;) we  get the program to print the password.&lt;/p&gt;
-&lt;p&gt;The second ingredient in the exploit is the fact that &lt;code&gt;system&lt;/code&gt; outputs the date using a &lt;strong&gt;relative path&lt;/strong&gt; for the &lt;a href="http://en.wikipedia.org/wiki/Environment_variable"&gt;environment variables&lt;/a&gt; &lt;strong&gt;PATH&lt;/strong&gt;.  We just need to change that to the directory where we keep our exploit (&lt;em&gt;e.g.&lt;/em&gt;, &lt;code&gt;pwd&lt;/code&gt;) to have the system &lt;em&gt;forgetting&lt;/em&gt; about the original date function.&lt;/p&gt;
+&lt;p&gt;Third,  &lt;code&gt;system&lt;/code&gt; outputs the date using a &lt;strong&gt;relative path&lt;/strong&gt; for the &lt;strong&gt;PATH&lt;/strong&gt;.  We just need to change that to the directory where we keep our exploit (&lt;em&gt;e.g.&lt;/em&gt;, &lt;code&gt;pwd&lt;/code&gt;) to have the system &lt;em&gt;forgetting&lt;/em&gt; about the original date function.&lt;/p&gt;
 &lt;p&gt;The final script that leads to the next level's password looks like this:&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
