@@ -464,8 +464,8 @@ chmod +x date
 
 &lt;p&gt;This turns out to be a case of &lt;a href="http://en.wikipedia.org/wiki/Timing_attack"&gt;Timing Attack&lt;/a&gt;, where we are able to detect the output in &lt;strong&gt;stderr&lt;/strong&gt; and in &lt;strong&gt;stdout&lt;/strong&gt; to find the characters that form the password.&lt;/p&gt;
 &lt;p&gt;But there is a twist!&lt;/p&gt;
-&lt;p&gt;The program works as the following: for every input character, a loop is executed. A dot is printed after each character comparison. If the guess is wrong, the system forks a child process and runs a little slower (since each loop has complexity O(n^2) to the guess size n).  The maximum size of a guess is &lt;strong&gt;MAX_ARG_STRLEN&lt;/strong&gt; which is around 0.1 MB.&lt;/p&gt;
-&lt;p&gt;In other words, if &lt;strong&gt;stdout&lt;/strong&gt; and &lt;strong&gt;stderr&lt;/strong&gt; can be blocked, the outputs can be timed to find the wring characters.&lt;/p&gt;
+&lt;p&gt;The program works as the following: for every input character, a loop is executed. A dot is printed after each character comparison. If the guess is wrong, the system forks a child process and runs a little slower (since each loop has complexity O(n^2) to the guess size, where the maximum size  is &lt;strong&gt;MAX_ARG_STRLEN ~ 0.1 MB&lt;/strong&gt;).&lt;/p&gt;
+&lt;p&gt;In other words, if &lt;strong&gt;stdout&lt;/strong&gt; and &lt;strong&gt;stderr&lt;/strong&gt; can be blocked, the outputs can be timed to find the wrong characters.&lt;/p&gt;
 &lt;p&gt;There are several &lt;a href="https://github.com/stripe-ctf/stripe-ctf/blob/master/code/level06/level06.c"&gt;elegant solutions in the Internet&lt;/a&gt;, but a very simple possible shell exploit is the following:&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
