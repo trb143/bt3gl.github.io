@@ -3,16 +3,16 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;This first post is about the first &lt;a href="https://stripe.com/"&gt;Stripe&lt;/a&gt; CTF, which &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;happened in the beginning of 2012&lt;/a&gt;. I was able to fully reproduce the game by using a &lt;a href="http://www.janosgyerik.com/hacking-contest-on-a-live-cd/"&gt;Live CD Image&lt;/a&gt;. Other options were &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;direct download and BitTorrent&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This CTF was composed of 6 levels, and its style was very similar to other Wargames I've talked about in this blog (for instance, check &lt;a href="http://overthewire.org/wargames/"&gt;OverTheWire's&lt;/a&gt; &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Natas&lt;/a&gt;, &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;Narnia&lt;/a&gt;, and &lt;a href="http://bt3gl.github.io/cryptography-war-beating-krypton.html"&gt;Krypton&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;This post is about the first &lt;a href="https://stripe.com/"&gt;Stripe&lt;/a&gt; CTF, which &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;happened in the beginning of 2012&lt;/a&gt;. I was able to fully reproduce the game by using a &lt;a href="http://www.janosgyerik.com/hacking-contest-on-a-live-cd/"&gt;Live CD Image&lt;/a&gt;. Other options were &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;direct download and BitTorrent&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This CTF was composed of 6 levels, and its style was very similar to other Wargames I've talked before in this blog (for instance, check &lt;a href="http://overthewire.org/wargames/"&gt;OverTheWire's&lt;/a&gt; &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Natas&lt;/a&gt;, &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;Narnia&lt;/a&gt;, and &lt;a href="http://bt3gl.github.io/cryptography-war-beating-krypton.html"&gt;Krypton&lt;/a&gt;).&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h2&gt;Level 1: Environment Variables and system()&lt;/h2&gt;
-&lt;p&gt;When I boot the image  I get this first message:&lt;/p&gt;
+&lt;h2&gt;Level 1: Environment Variables&lt;/h2&gt;
+&lt;p&gt;When I booted the image  I got this first message:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/O9ixhUv.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;In the  &lt;em&gt;level01&lt;/em&gt; folder I find:&lt;/p&gt;
+&lt;p&gt;In the  &lt;em&gt;level01&lt;/em&gt; folder I found:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;A &lt;a href="http://linux.die.net/man/2/setuid"&gt;setuid&lt;/a&gt; binary (a binary with access right flags that allow users to run executables with permissions of the owner or group).&lt;/p&gt;
+&lt;p&gt;A &lt;a href="http://linux.die.net/man/2/setuid"&gt;setuid&lt;/a&gt; binary (a binary with access rights that allow users to run executables with permissions of the owner or the group).&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;The C source code of this binary:&lt;/p&gt;
@@ -28,9 +28,9 @@
 
 &lt;p&gt;The vulnerability becomes quite obvious!&lt;/p&gt;
 &lt;p&gt;First, if you use &lt;code&gt;printf&lt;/code&gt; to send text without a trailing &lt;code&gt;\n&lt;/code&gt; to &lt;strong&gt;stdout&lt;/strong&gt; (the screen), there is no guarantee that any of the text will appear, so &lt;a href="http://man7.org/linux/man-pages/man3/fflush.3.html"&gt;fflush&lt;/a&gt; is used to write everything that is buffered  to &lt;strong&gt;stdout&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Second, &lt;code&gt;system()&lt;/code&gt; executes &lt;a href="http://linux.die.net/man/3/system"&gt;any shell command you pass to it&lt;/a&gt;. In the case above, it will find a command through the &lt;a href="http://en.wikipedia.org/wiki/PATH_%28variable%29"&gt;PATH environment variable&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;It's clear that if we manage to change the variable &lt;code&gt;date&lt;/code&gt; to some controlled exploit (such as &lt;code&gt;cat /home/level01/.password&lt;/code&gt;) we  get the password printed.&lt;/p&gt;
-&lt;p&gt;The second ingredient is the fact that &lt;code&gt;system()&lt;/code&gt; outputs the date using &lt;strong&gt;relative paths&lt;/strong&gt; &lt;a href="http://en.wikipedia.org/wiki/Environment_variable"&gt;by the environment variables&lt;/a&gt; PATH).  So, we just need to change it to the directory where we keep our exploit (&lt;code&gt;pwd&lt;/code&gt;) to have the system &lt;em&gt;forgetting&lt;/em&gt; about the original date function.&lt;/p&gt;
+&lt;p&gt;Second, &lt;code&gt;system&lt;/code&gt; executes &lt;a href="http://linux.die.net/man/3/system"&gt;any shell command you pass to it&lt;/a&gt;. In the case above, it will find a command through the &lt;a href="http://en.wikipedia.org/wiki/PATH_%28variable%29"&gt;PATH environment variable&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It's clear that if we manage to change the variable &lt;code&gt;date&lt;/code&gt; to some controlled exploit (such as &lt;code&gt;cat /home/level01/.password&lt;/code&gt;) we  get the program to print the password.&lt;/p&gt;
+&lt;p&gt;The second ingredient in the exploit is the fact that &lt;code&gt;system&lt;/code&gt; outputs the date using a &lt;strong&gt;relative path&lt;/strong&gt; for the &lt;a href="http://en.wikipedia.org/wiki/Environment_variable"&gt;environment variables&lt;/a&gt; &lt;strong&gt;PATH&lt;/strong&gt;.  We just need to change that to the directory where we keep our exploit (&lt;em&gt;e.g.&lt;/em&gt;, &lt;code&gt;pwd&lt;/code&gt;) to have the system &lt;em&gt;forgetting&lt;/em&gt; about the original date function.&lt;/p&gt;
 &lt;p&gt;The final script that leads to the next level's password looks like this:&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
@@ -48,58 +48,8 @@ chmod +x date
 
 &lt;hr /&gt;
 &lt;h2&gt;Level 2: Client's Cookies&lt;/h2&gt;
-&lt;p&gt;This level's goal is about finding a vulnerability in a PHP script  that has a greeting functionality.&lt;/p&gt;
-&lt;p&gt;By setting a cookie with a file path in it, it saves the user's username and age so in future visits to the page, it will print  &lt;em&gt;You’re NAME, and your age is AGE&lt;/em&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
-    &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;random_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-        &lt;span class="nv"&gt;$chars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;abcdefghijklmnopqrstuvwxwz0123456789&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;$i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="nv"&gt;$max&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-            &lt;span class="nv"&gt;$rand_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;mt_rand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;strlen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$chars&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
-            &lt;span class="nv"&gt;$string&lt;/span&gt;  &lt;span class="o"&gt;.=&lt;/span&gt; &lt;span class="nx"&gt;substr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$chars&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$rand_key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;str_shuffle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$string&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="nv"&gt;$out&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nb"&gt;isset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_COOKIE&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;user_details&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="nv"&gt;$out&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;p&amp;gt;Looks like a first time user. Hello, there!&amp;lt;/p&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-      &lt;span class="nv"&gt;$filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;random_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-      &lt;span class="nv"&gt;$f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;fopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/tmp/level02/&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-      &lt;span class="nv"&gt;$str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$_SERVER&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;REMOTE_ADDR&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; using &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nv"&gt;$_SERVER&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;HTTP_USER_AGENT&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-      &lt;span class="nb"&gt;fwrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$str&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-      &lt;span class="nb"&gt;fclose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$f&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-      &lt;span class="nx"&gt;setcookie&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;user_details&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="nv"&gt;$out&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;file_get_contents&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/tmp/level02/&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nv"&gt;$_COOKIE&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;user_details&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
-
-&lt;span class="x"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;  &amp;lt;head&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;    &amp;lt;title&amp;gt;Level02&amp;lt;/title&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;  &amp;lt;/head&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;  &amp;lt;body&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;    &amp;lt;h1&amp;gt;Welcome to the challenge!&amp;lt;/h1&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;    &amp;lt;div class=&amp;quot;main&amp;quot;&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;      &amp;lt;p&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$out&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;      &lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;isset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_POST&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;isset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_POST&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;age&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-          &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;You&amp;#39;re &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nv"&gt;$_POST&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;, and your age is &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nv"&gt;$_POST&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;age&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
-        &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
-&lt;span class="x"&gt;      &amp;lt;form action=&amp;quot;#&amp;quot; method=&amp;quot;post&amp;quot;&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;        Name: &amp;lt;input name=&amp;quot;name&amp;quot; type=&amp;quot;text&amp;quot; length=&amp;quot;40&amp;quot; /&amp;gt;&amp;lt;br /&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;        Age: &amp;lt;input name=&amp;quot;age&amp;quot; type=&amp;quot;text&amp;quot; length=&amp;quot;2&amp;quot; /&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;        &amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;Submit!&amp;quot; /&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;      &amp;lt;/form&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;      &lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;   &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
-&lt;span class="x"&gt;    &amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;  &amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class="x"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;p&gt;This level is about finding a vulnerability in a PHP script  that has a greeting functionality.&lt;/p&gt;
+&lt;p&gt;By setting a cookie with a file path in it, it saves the user's username and age so in future visits to the page, it will print  &lt;em&gt;You’re NAME, and your age is AGE&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Inspecting the code closer we see that it uses the contents of the client's cookie to read data from a file without escaping the contents:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
     &lt;span class="nv"&gt;$out&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -120,9 +70,8 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We can exploit this by building our own &lt;a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html"&gt;request&lt;/a&gt; so that we make the above script to read our password at &lt;em&gt;/home/level02/.password&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;The cookie is set in the client side so we have lots of freedom to exploit it. For instance, we could use &lt;a href="http://portswigger.net/burp/"&gt;Burp Suite&lt;/a&gt; to intercept the quest and add the crafted cookie header. We could also use &lt;a href="https://chrome.google.com/webstore/detail/web-inspector/enibedkmbpadhfofcgjcphipflcbpelf?hl=en"&gt;Chrome Webinspector&lt;/a&gt; to  copy the &lt;a href="http://en.wikipedia.org/wiki/Basic_access_authentication"&gt;Authorization header&lt;/a&gt; for the same purpose.&lt;/p&gt;
-&lt;p&gt;The Cookie header would look like:&lt;/p&gt;
+&lt;p&gt;We can exploit this by building our own &lt;a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html"&gt;request&lt;/a&gt; that make the program to read our password at &lt;em&gt;/home/level02/.password&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The cookie is set in the client side so we have lots of freedom to exploit it. For instance, we could use &lt;a href="http://portswigger.net/burp/"&gt;Burp Suite&lt;/a&gt; to intercept the request and add the crafted cookie header. We could also use &lt;a href="https://chrome.google.com/webstore/detail/web-inspector/enibedkmbpadhfofcgjcphipflcbpelf?hl=en"&gt;Chrome Webinspector&lt;/a&gt; to  copy the &lt;a href="http://en.wikipedia.org/wiki/Basic_access_authentication"&gt;Authorization header&lt;/a&gt; for the same purpose. The Cookie header would look like:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Cookie&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;user_details&lt;/span&gt;&lt;span class="o"&gt;=../../&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="sr"&gt;/level02/&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;password&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -132,8 +81,8 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Where the flag &lt;strong&gt;--digest&lt;/strong&gt; enables HTTP authentication, and the flag &lt;strong&gt;-b&lt;/strong&gt; or &lt;strong&gt;-cookie&lt;/strong&gt; lets us point it a cookie.&lt;/p&gt;
-&lt;p&gt;In the LiveCD this level is modified to use Python and Flask. Luckly, I had some previous playing in Flask (check out my &lt;a href=""&gt;anti-social network&lt;/a&gt;) and it was pretty easy to spot that the Pyhton code does &lt;em&gt;exactly&lt;/em&gt; the same thing as the one above.&lt;/p&gt;
+&lt;p&gt;Where the flag &lt;strong&gt;--digest&lt;/strong&gt; enables HTTP authentication, and the flags &lt;strong&gt;-b&lt;/strong&gt; or &lt;strong&gt;--cookie&lt;/strong&gt; let us determine the cookie to be sent.&lt;/p&gt;
+&lt;p&gt;In the LiveCD this level is modified to use Python and Flask. Luckly, I had some previous experience in Flask (check out my &lt;a href=""&gt;Anti-Social Network&lt;/a&gt;) and it was pretty easy to spot that the Pyhton code does &lt;em&gt;exactly&lt;/em&gt; the same thing as the one above.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Level 3: Failure in Input Validation&lt;/h2&gt;
 &lt;p&gt;The third level comes with another &lt;em&gt;setuid&lt;/em&gt; binary that is used to modify  strings:&lt;/p&gt;
@@ -145,7 +94,7 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;and with  this  C code:&lt;/p&gt;
+&lt;p&gt;and the C code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="nx"&gt;define&lt;/span&gt; &lt;span class="nx"&gt;NUM_FNS&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
 
 &lt;span class="nx"&gt;typedef&lt;/span&gt; &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nx"&gt;fn_ptr&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="kr"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;

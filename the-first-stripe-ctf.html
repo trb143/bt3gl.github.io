@@ -128,16 +128,16 @@
 </pre></div>
 
 
-<p>This first post is about the first <a href="https://stripe.com/">Stripe</a> CTF, which <a href="https://stripe.com/blog/capture-the-flag-wrap-up">happened in the beginning of 2012</a>. I was able to fully reproduce the game by using a <a href="http://www.janosgyerik.com/hacking-contest-on-a-live-cd/">Live CD Image</a>. Other options were <a href="https://stripe.com/blog/capture-the-flag-wrap-up">direct download and BitTorrent</a>.</p>
-<p>This CTF was composed of 6 levels, and its style was very similar to other Wargames I've talked about in this blog (for instance, check <a href="http://overthewire.org/wargames/">OverTheWire's</a> <a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html">Natas</a>, <a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html">Narnia</a>, and <a href="http://bt3gl.github.io/cryptography-war-beating-krypton.html">Krypton</a>).</p>
+<p>This post is about the first <a href="https://stripe.com/">Stripe</a> CTF, which <a href="https://stripe.com/blog/capture-the-flag-wrap-up">happened in the beginning of 2012</a>. I was able to fully reproduce the game by using a <a href="http://www.janosgyerik.com/hacking-contest-on-a-live-cd/">Live CD Image</a>. Other options were <a href="https://stripe.com/blog/capture-the-flag-wrap-up">direct download and BitTorrent</a>.</p>
+<p>This CTF was composed of 6 levels, and its style was very similar to other Wargames I've talked before in this blog (for instance, check <a href="http://overthewire.org/wargames/">OverTheWire's</a> <a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html">Natas</a>, <a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html">Narnia</a>, and <a href="http://bt3gl.github.io/cryptography-war-beating-krypton.html">Krypton</a>).</p>
 <hr />
-<h2>Level 1: Environment Variables and system()</h2>
-<p>When I boot the image  I get this first message:</p>
+<h2>Level 1: Environment Variables</h2>
+<p>When I booted the image  I got this first message:</p>
 <p><img alt="" src="http://i.imgur.com/O9ixhUv.jpg" /></p>
-<p>In the  <em>level01</em> folder I find:</p>
+<p>In the  <em>level01</em> folder I found:</p>
 <ul>
 <li>
-<p>A <a href="http://linux.die.net/man/2/setuid">setuid</a> binary (a binary with access right flags that allow users to run executables with permissions of the owner or group).</p>
+<p>A <a href="http://linux.die.net/man/2/setuid">setuid</a> binary (a binary with access rights that allow users to run executables with permissions of the owner or the group).</p>
 </li>
 <li>
 <p>The C source code of this binary:</p>
@@ -153,9 +153,9 @@
 
 <p>The vulnerability becomes quite obvious!</p>
 <p>First, if you use <code>printf</code> to send text without a trailing <code>\n</code> to <strong>stdout</strong> (the screen), there is no guarantee that any of the text will appear, so <a href="http://man7.org/linux/man-pages/man3/fflush.3.html">fflush</a> is used to write everything that is buffered  to <strong>stdout</strong>.</p>
-<p>Second, <code>system()</code> executes <a href="http://linux.die.net/man/3/system">any shell command you pass to it</a>. In the case above, it will find a command through the <a href="http://en.wikipedia.org/wiki/PATH_%28variable%29">PATH environment variable</a>.</p>
-<p>It's clear that if we manage to change the variable <code>date</code> to some controlled exploit (such as <code>cat /home/level01/.password</code>) we  get the password printed.</p>
-<p>The second ingredient is the fact that <code>system()</code> outputs the date using <strong>relative paths</strong> <a href="http://en.wikipedia.org/wiki/Environment_variable">by the environment variables</a> PATH).  So, we just need to change it to the directory where we keep our exploit (<code>pwd</code>) to have the system <em>forgetting</em> about the original date function.</p>
+<p>Second, <code>system</code> executes <a href="http://linux.die.net/man/3/system">any shell command you pass to it</a>. In the case above, it will find a command through the <a href="http://en.wikipedia.org/wiki/PATH_%28variable%29">PATH environment variable</a>.</p>
+<p>It's clear that if we manage to change the variable <code>date</code> to some controlled exploit (such as <code>cat /home/level01/.password</code>) we  get the program to print the password.</p>
+<p>The second ingredient in the exploit is the fact that <code>system</code> outputs the date using a <strong>relative path</strong> for the <a href="http://en.wikipedia.org/wiki/Environment_variable">environment variables</a> <strong>PATH</strong>.  We just need to change that to the directory where we keep our exploit (<em>e.g.</em>, <code>pwd</code>) to have the system <em>forgetting</em> about the original date function.</p>
 <p>The final script that leads to the next level's password looks like this:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -173,58 +173,8 @@ chmod +x date
 
 <hr />
 <h2>Level 2: Client's Cookies</h2>
-<p>This level's goal is about finding a vulnerability in a PHP script  that has a greeting functionality.</p>
-<p>By setting a cookie with a file path in it, it saves the user's username and age so in future visits to the page, it will print  <em>You’re NAME, and your age is AGE</em>:</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-    <span class="k">function</span> <span class="nf">random_string</span><span class="p">(</span><span class="nv">$max</span> <span class="o">=</span> <span class="mi">20</span><span class="p">){</span>
-        <span class="nv">$chars</span> <span class="o">=</span> <span class="s2">&quot;abcdefghijklmnopqrstuvwxwz0123456789&quot;</span><span class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$max</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">){</span>
-            <span class="nv">$rand_key</span> <span class="o">=</span> <span class="nx">mt_rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">strlen</span><span class="p">(</span><span class="nv">$chars</span><span class="p">));</span>
-            <span class="nv">$string</span>  <span class="o">.=</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$chars</span><span class="p">,</span> <span class="nv">$rand_key</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nb">str_shuffle</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="nv">$out</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">&#39;user_details&#39;</span><span class="p">]))</span> <span class="p">{</span>
-      <span class="nv">$out</span> <span class="o">=</span> <span class="s2">&quot;&lt;p&gt;Looks like a first time user. Hello, there!&lt;/p&gt;&quot;</span><span class="p">;</span>
-      <span class="nv">$filename</span> <span class="o">=</span> <span class="nx">random_string</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot;.txt&quot;</span><span class="p">;</span>
-      <span class="nv">$f</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="s1">&#39;/tmp/level02/&#39;</span> <span class="o">.</span> <span class="nv">$filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">);</span>
-      <span class="nv">$str</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="p">]</span><span class="o">.</span><span class="s2">&quot; using &quot;</span><span class="o">.</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_USER_AGENT&#39;</span><span class="p">];</span>
-      <span class="nb">fwrite</span><span class="p">(</span><span class="nv">$f</span><span class="p">,</span> <span class="nv">$str</span><span class="p">);</span>
-      <span class="nb">fclose</span><span class="p">(</span><span class="nv">$f</span><span class="p">);</span>
-      <span class="nx">setcookie</span><span class="p">(</span><span class="s1">&#39;user_details&#39;</span><span class="p">,</span> <span class="nv">$filename</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span>
-      <span class="nv">$out</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">&#39;/tmp/level02/&#39;</span><span class="o">.</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">&#39;user_details&#39;</span><span class="p">]);</span>
-    <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-
-<span class="x">&lt;html&gt;</span>
-<span class="x">  &lt;head&gt;</span>
-<span class="x">    &lt;title&gt;Level02&lt;/title&gt;</span>
-<span class="x">  &lt;/head&gt;</span>
-<span class="x">  &lt;body&gt;</span>
-<span class="x">    &lt;h1&gt;Welcome to the challenge!&lt;/h1&gt;</span>
-<span class="x">    &lt;div class=&quot;main&quot;&gt;</span>
-<span class="x">      &lt;p&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$out</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
-<span class="x">      </span><span class="cp">&lt;?php</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]))</span> <span class="p">{</span>
-          <span class="k">echo</span> <span class="s2">&quot;You&#39;re &quot;</span><span class="o">.</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="s2">&quot;, and your age is &quot;</span><span class="o">.</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">];</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span>
-      <span class="cp">?&gt;</span><span class="x"></span>
-<span class="x">      &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;</span>
-<span class="x">        Name: &lt;input name=&quot;name&quot; type=&quot;text&quot; length=&quot;40&quot; /&gt;&lt;br /&gt;</span>
-<span class="x">        Age: &lt;input name=&quot;age&quot; type=&quot;text&quot; length=&quot;2&quot; /&gt;&lt;br /&gt;&lt;br /&gt;</span>
-<span class="x">        &lt;input type=&quot;submit&quot; value=&quot;Submit!&quot; /&gt;</span>
-<span class="x">      &lt;/form&gt;</span>
-<span class="x">      </span><span class="cp">&lt;?php</span>   <span class="p">}</span> <span class="cp">?&gt;</span><span class="x"></span>
-<span class="x">    &lt;/div&gt;</span>
-<span class="x">  &lt;/body&gt;</span>
-<span class="x">&lt;/html&gt;</span>
-</pre></div>
-
-
+<p>This level is about finding a vulnerability in a PHP script  that has a greeting functionality.</p>
+<p>By setting a cookie with a file path in it, it saves the user's username and age so in future visits to the page, it will print  <em>You’re NAME, and your age is AGE</em>.</p>
 <p>Inspecting the code closer we see that it uses the contents of the client's cookie to read data from a file without escaping the contents:</p>
 <div class="highlight"><pre><span class="cp">&lt;?php</span>
     <span class="nv">$out</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
@@ -245,9 +195,8 @@ chmod +x date
 </pre></div>
 
 
-<p>We can exploit this by building our own <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html">request</a> so that we make the above script to read our password at <em>/home/level02/.password</em>.</p>
-<p>The cookie is set in the client side so we have lots of freedom to exploit it. For instance, we could use <a href="http://portswigger.net/burp/">Burp Suite</a> to intercept the quest and add the crafted cookie header. We could also use <a href="https://chrome.google.com/webstore/detail/web-inspector/enibedkmbpadhfofcgjcphipflcbpelf?hl=en">Chrome Webinspector</a> to  copy the <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">Authorization header</a> for the same purpose.</p>
-<p>The Cookie header would look like:</p>
+<p>We can exploit this by building our own <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html">request</a> that make the program to read our password at <em>/home/level02/.password</em>.</p>
+<p>The cookie is set in the client side so we have lots of freedom to exploit it. For instance, we could use <a href="http://portswigger.net/burp/">Burp Suite</a> to intercept the request and add the crafted cookie header. We could also use <a href="https://chrome.google.com/webstore/detail/web-inspector/enibedkmbpadhfofcgjcphipflcbpelf?hl=en">Chrome Webinspector</a> to  copy the <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">Authorization header</a> for the same purpose. The Cookie header would look like:</p>
 <div class="highlight"><pre><span class="n">Cookie</span><span class="o">:</span> <span class="n">user_details</span><span class="o">=../../</span><span class="n">home</span><span class="sr">/level02/</span><span class="o">.</span><span class="na">password</span>
 </pre></div>
 
@@ -257,8 +206,8 @@ chmod +x date
 </pre></div>
 
 
-<p>Where the flag <strong>--digest</strong> enables HTTP authentication, and the flag <strong>-b</strong> or <strong>-cookie</strong> lets us point it a cookie.</p>
-<p>In the LiveCD this level is modified to use Python and Flask. Luckly, I had some previous playing in Flask (check out my <a href="">anti-social network</a>) and it was pretty easy to spot that the Pyhton code does <em>exactly</em> the same thing as the one above.</p>
+<p>Where the flag <strong>--digest</strong> enables HTTP authentication, and the flags <strong>-b</strong> or <strong>--cookie</strong> let us determine the cookie to be sent.</p>
+<p>In the LiveCD this level is modified to use Python and Flask. Luckly, I had some previous experience in Flask (check out my <a href="">Anti-Social Network</a>) and it was pretty easy to spot that the Pyhton code does <em>exactly</em> the same thing as the one above.</p>
 <hr />
 <h2>Level 3: Failure in Input Validation</h2>
 <p>The third level comes with another <em>setuid</em> binary that is used to modify  strings:</p>
@@ -270,7 +219,7 @@ chmod +x date
 </pre></div>
 
 
-<p>and with  this  C code:</p>
+<p>and the C code:</p>
 <div class="highlight"><pre><span class="err">#</span><span class="nx">define</span> <span class="nx">NUM_FNS</span> <span class="mi">4</span>
 
 <span class="nx">typedef</span> <span class="kr">int</span> <span class="p">(</span><span class="o">*</span><span class="nx">fn_ptr</span><span class="p">)(</span><span class="kr">const</span> <span class="kr">char</span> <span class="o">*</span><span class="p">);</span>
@@ -738,43 +687,13 @@ chmod +x date
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/apphp.html">
-        <i class="icon-tag icon-large"></i>ApPHP
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
+    <a href="http://bt3gl.github.io/tag/arp_cache_poisining.html">
+        <i class="icon-tag icon-large"></i>ARP_Cache_Poisining
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/iframe.html">
-        <i class="icon-tag icon-large"></i>iframe
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
-        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/chaosreader.html">
-        <i class="icon-tag icon-large"></i>Chaosreader
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/chrome.html">
-        <i class="icon-tag icon-large"></i>Chrome
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/rfi.html">
-        <i class="icon-tag icon-large"></i>RFI
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/gpg.html">
-        <i class="icon-tag icon-large"></i>GPG
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
     </a>
 </li>
 <li class="tag-3">
@@ -783,68 +702,8 @@ chmod +x date
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/socket.html">
-        <i class="icon-tag icon-large"></i>socket
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/v8.html">
-        <i class="icon-tag icon-large"></i>V8
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/php.html">
-        <i class="icon-tag icon-large"></i>PHP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/telnet.html">
-        <i class="icon-tag icon-large"></i>telnet
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/arp.html">
-        <i class="icon-tag icon-large"></i>ARP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/stack_overflow.html">
-        <i class="icon-tag icon-large"></i>Stack_overflow
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/xssi.html">
-        <i class="icon-tag icon-large"></i>XSSI
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/qpdf.html">
-        <i class="icon-tag icon-large"></i>qpdf
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/xor.html">
-        <i class="icon-tag icon-large"></i>XOR
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/assembly.html">
-        <i class="icon-tag icon-large"></i>assembly
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/linux.html">
-        <i class="icon-tag icon-large"></i>Linux
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/ssh.html">
-        <i class="icon-tag icon-large"></i>ssh
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/tr.html">
-        <i class="icon-tag icon-large"></i>tr
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
     </a>
 </li>
 <li class="tag-4">
@@ -853,98 +712,18 @@ chmod +x date
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
-        <i class="icon-tag icon-large"></i>uncompyle2
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/heartbleed.html">
-        <i class="icon-tag icon-large"></i>Heartbleed
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/unicode.html">
-        <i class="icon-tag icon-large"></i>Unicode
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/cache.html">
-        <i class="icon-tag icon-large"></i>cache
+    <a href="http://bt3gl.github.io/tag/oracle.html">
+        <i class="icon-tag icon-large"></i>Oracle
     </a>
 </li>
 <li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/command_injection.html">
-        <i class="icon-tag icon-large"></i>Command_Injection
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
     </a>
 </li>
 <li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/sqli.html">
-        <i class="icon-tag icon-large"></i>SQLi
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rips.html">
-        <i class="icon-tag icon-large"></i>RIPS
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/decimal.html">
-        <i class="icon-tag icon-large"></i>Decimal
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/cain__abel.html">
-        <i class="icon-tag icon-large"></i>Cain_&_Abel
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/wargames.html">
-        <i class="icon-tag icon-large"></i>Wargames
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/hope.html">
-        <i class="icon-tag icon-large"></i>Hope
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pgp.html">
-        <i class="icon-tag icon-large"></i>PGP
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/c.html">
-        <i class="icon-tag icon-large"></i>C
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/lfi.html">
-        <i class="icon-tag icon-large"></i>LFI
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/curl.html">
-        <i class="icon-tag icon-large"></i>curl
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/unoconv.html">
-        <i class="icon-tag icon-large"></i>unoconv
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_overflow
     </a>
 </li>
 <li class="tag-4">
@@ -953,33 +732,73 @@ chmod +x date
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/scapy.html">
-        <i class="icon-tag icon-large"></i>scapy
+    <a href="http://bt3gl.github.io/tag/unicode.html">
+        <i class="icon-tag icon-large"></i>Unicode
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>assembly
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jit.html">
-        <i class="icon-tag icon-large"></i>JIT
+    <a href="http://bt3gl.github.io/tag/crlsets.html">
+        <i class="icon-tag icon-large"></i>CRLSets
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/garbage_collection.html">
-        <i class="icon-tag icon-large"></i>garbage_collection
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mysql.html">
-        <i class="icon-tag icon-large"></i>MySQL
+    <a href="http://bt3gl.github.io/tag/objdump.html">
+        <i class="icon-tag icon-large"></i>objdump
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/paillier.html">
-        <i class="icon-tag icon-large"></i>Paillier
+    <a href="http://bt3gl.github.io/tag/bytecode.html">
+        <i class="icon-tag icon-large"></i>bytecode
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/outguess.html">
-        <i class="icon-tag icon-large"></i>OutGuess
+    <a href="http://bt3gl.github.io/tag/request.html">
+        <i class="icon-tag icon-large"></i>request
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xssi.html">
+        <i class="icon-tag icon-large"></i>XSSI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/heartbleed.html">
+        <i class="icon-tag icon-large"></i>Heartbleed
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow.html">
+        <i class="icon-tag icon-large"></i>Stack_overflow
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rce.html">
+        <i class="icon-tag icon-large"></i>RCE
     </a>
 </li>
 <li class="tag-4">
@@ -992,39 +811,79 @@ chmod +x date
         <i class="icon-tag icon-large"></i>Binary_Search
     </a>
 </li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/javascript.html">
-        <i class="icon-tag icon-large"></i>JavaScript
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gpg.html">
+        <i class="icon-tag icon-large"></i>GPG
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/lamp.html">
-        <i class="icon-tag icon-large"></i>LAMP
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/base64.html">
-        <i class="icon-tag icon-large"></i>base64
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
+    <a href="http://bt3gl.github.io/tag/jit.html">
+        <i class="icon-tag icon-large"></i>JIT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/csrf.html">
+        <i class="icon-tag icon-large"></i>CSRF
     </a>
 </li>
 <li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/python.html">
-        <i class="icon-tag icon-large"></i>Python
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/request.html">
-        <i class="icon-tag icon-large"></i>request
+    <a href="http://bt3gl.github.io/tag/burp.html">
+        <i class="icon-tag icon-large"></i>Burp
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/crl.html">
-        <i class="icon-tag icon-large"></i>CRL
+    <a href="http://bt3gl.github.io/tag/netcat.html">
+        <i class="icon-tag icon-large"></i>netcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hope.html">
+        <i class="icon-tag icon-large"></i>Hope
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ocsp.html">
+        <i class="icon-tag icon-large"></i>OCSP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
     </a>
 </li>
 <li class="tag-4">
@@ -1037,144 +896,19 @@ chmod +x date
         <i class="icon-tag icon-large"></i>TLS
     </a>
 </li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/oracle.html">
-        <i class="icon-tag icon-large"></i>Oracle
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>Chrome
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/love.html">
-        <i class="icon-tag icon-large"></i>Love
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ltrace.html">
-        <i class="icon-tag icon-large"></i>ltrace
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/osi_model.html">
-        <i class="icon-tag icon-large"></i>OSI_Model
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
     </a>
 </li>
 <li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/gdb.html">
-        <i class="icon-tag icon-large"></i>gdb
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/vigenere.html">
-        <i class="icon-tag icon-large"></i>Vigenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/burp.html">
-        <i class="icon-tag icon-large"></i>Burp
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bash.html">
-        <i class="icon-tag icon-large"></i>Bash
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/shellshock.html">
-        <i class="icon-tag icon-large"></i>Shellshock
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/coldfusion.html">
-        <i class="icon-tag icon-large"></i>ColdFusion
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/brute_force.html">
-        <i class="icon-tag icon-large"></i>Brute_Force
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/crlsets.html">
-        <i class="icon-tag icon-large"></i>CRLSets
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ocsp.html">
-        <i class="icon-tag icon-large"></i>OCSP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/csrf.html">
-        <i class="icon-tag icon-large"></i>CSRF
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ftp.html">
-        <i class="icon-tag icon-large"></i>FTP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/objdump.html">
-        <i class="icon-tag icon-large"></i>objdump
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/burpsuite.html">
-        <i class="icon-tag icon-large"></i>BurpSuite
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/csaw.html">
-        <i class="icon-tag icon-large"></i>CSAW
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
-        <i class="icon-tag icon-large"></i>Buffer_overflow
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bytecode.html">
-        <i class="icon-tag icon-large"></i>bytecode
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
-        <i class="icon-tag icon-large"></i>pdf-parser
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/xss.html">
-        <i class="icon-tag icon-large"></i>XSS
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/kismet.html">
-        <i class="icon-tag icon-large"></i>Kismet
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/sql_injection.html">
-        <i class="icon-tag icon-large"></i>SQL_injection
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pdftotext.html">
-        <i class="icon-tag icon-large"></i>pdftotext
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/netcat.html">
-        <i class="icon-tag icon-large"></i>netcat
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pygenere.html">
-        <i class="icon-tag icon-large"></i>pygenere
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
     </a>
 </li>
 <li class="tag-4">
@@ -1183,18 +917,18 @@ chmod +x date
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/arp_cache_poisining.html">
-        <i class="icon-tag icon-large"></i>ARP_Cache_Poisining
+    <a href="http://bt3gl.github.io/tag/unoconv.html">
+        <i class="icon-tag icon-large"></i>unoconv
     </a>
 </li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rce.html">
-        <i class="icon-tag icon-large"></i>RCE
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
     </a>
 </li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/timing_attack.html">
-        <i class="icon-tag icon-large"></i>Timing_attack
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
     </a>
 </li>
 <li class="tag-4">
@@ -1203,13 +937,228 @@ chmod +x date
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/iwconfig.html">
-        <i class="icon-tag icon-large"></i>iwconfig
+    <a href="http://bt3gl.github.io/tag/osi_model.html">
+        <i class="icon-tag icon-large"></i>OSI_Model
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
     </a>
 </li>
 <li class="tag-4">
     <a href="http://bt3gl.github.io/tag/netsh.html">
         <i class="icon-tag icon-large"></i>netsh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/paillier.html">
+        <i class="icon-tag icon-large"></i>Paillier
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iwconfig.html">
+        <i class="icon-tag icon-large"></i>iwconfig
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/curl.html">
+        <i class="icon-tag icon-large"></i>curl
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rips.html">
+        <i class="icon-tag icon-large"></i>RIPS
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/garbage_collection.html">
+        <i class="icon-tag icon-large"></i>garbage_collection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xss.html">
+        <i class="icon-tag icon-large"></i>XSS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/v8.html">
+        <i class="icon-tag icon-large"></i>V8
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crl.html">
+        <i class="icon-tag icon-large"></i>CRL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/kismet.html">
+        <i class="icon-tag icon-large"></i>Kismet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
+        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp.html">
+        <i class="icon-tag icon-large"></i>ARP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cain__abel.html">
+        <i class="icon-tag icon-large"></i>Cain_&_Abel
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cache.html">
+        <i class="icon-tag icon-large"></i>cache
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>ssh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ltrace.html">
+        <i class="icon-tag icon-large"></i>ltrace
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/brute_force.html">
+        <i class="icon-tag icon-large"></i>Brute_Force
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iframe.html">
+        <i class="icon-tag icon-large"></i>iframe
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/timing_attack.html">
+        <i class="icon-tag icon-large"></i>Timing_attack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
     </a>
 </li>
 
