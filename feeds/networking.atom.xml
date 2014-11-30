@@ -725,6 +725,8 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://wiki.wireshark.org/"&gt;Practical Packet Analysis, &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/ashdnazg/pyreshark"&gt;Wireshark plugin  for writing dissectors in Python&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://lilithlela.cyberguerrilla.org/?p=76081"&gt;Using Wireshark ti check for DNS Leaks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.netresec.com/?page=PcapFiles"&gt;Publicly available PCAP files&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://contagiodump.blogspot.se/2013/08/deepend-research-list-of-malware-pcaps.html"&gt;Malware PCAP files&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Wireshark"></category><category term="ARP"></category><category term="OSI_Model"></category><category term="ARP_Cache_Poisining"></category><category term="Kismet"></category><category term="Nmap"></category><category term="iwconfig"></category><category term="Cain_&amp;_Abel"></category></entry><entry><title>CSAW CTF 2014 - Networking 100: "Big Data"</title><link href="http://bt3gl.github.io/csaw-ctf-2014-networking-100-big-data.html" rel="alternate"></link><updated>2014-09-22T08:20:00-04:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-09-22:csaw-ctf-2014-networking-100-big-data.html</id><summary type="html">&lt;p&gt;This is the only networking problem, and it is only 100 points, so it turned out to be very easy.&lt;/p&gt;
 &lt;p&gt;The problem starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;

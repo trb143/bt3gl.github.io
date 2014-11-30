@@ -725,6 +725,8 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://wiki.wireshark.org/"&gt;Practical Packet Analysis, &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/ashdnazg/pyreshark"&gt;Wireshark plugin  for writing dissectors in Python&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://lilithlela.cyberguerrilla.org/?p=76081"&gt;Using Wireshark ti check for DNS Leaks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.netresec.com/?page=PcapFiles"&gt;Publicly available PCAP files&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://contagiodump.blogspot.se/2013/08/deepend-research-list-of-malware-pcaps.html"&gt;Malware PCAP files&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Wed, 12 Nov 2014 04:20:00 -0500</pubDate><guid>tag:bt3gl.github.io,2014-11-12:wiresharking-for-fun-or-profit.html</guid><category>Wireshark</category><category>ARP</category><category>OSI_Model</category><category>ARP_Cache_Poisining</category><category>Kismet</category><category>Nmap</category><category>iwconfig</category><category>Cain_&amp;_Abel</category></item><item><title>CSAW CTF 2014 - Networking 100: "Big Data"</title><link>http://bt3gl.github.io/csaw-ctf-2014-networking-100-big-data.html</link><description>&lt;p&gt;This is the only networking problem, and it is only 100 points, so it turned out to be very easy.&lt;/p&gt;
 &lt;p&gt;The problem starts with the following text:&lt;/p&gt;
 &lt;blockquote&gt;
