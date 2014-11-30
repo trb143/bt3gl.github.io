@@ -48,8 +48,8 @@ chmod +x date
 
 &lt;hr /&gt;
 &lt;h2&gt;Level 2: Client's Cookies&lt;/h2&gt;
-&lt;p&gt;This level is about finding a vulnerability in a PHP script  that has a greeting functionality.&lt;/p&gt;
-&lt;p&gt;By setting a cookie with a file path in it, it saves the user's username and age so in future visits to the page, it will print  &lt;em&gt;You’re NAME, and your age is AGE&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;This level is about finding a vulnerability in a PHP script  that  greets the user with her/his saved data.&lt;/p&gt;
+&lt;p&gt;The program implements this functionality by setting a cookie that saves the user's username and age. In future visits to the page, the program is then able to print  &lt;em&gt;You’re NAME, and your age is AGE&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Inspecting the code closer we see that it uses the contents of the client's cookie to read data from a file without escaping the contents:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
     &lt;span class="nv"&gt;$out&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
