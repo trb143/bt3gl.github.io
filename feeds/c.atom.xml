@@ -50,7 +50,7 @@ chmod +x date
 &lt;h2&gt;Level 2: Client's Cookies&lt;/h2&gt;
 &lt;p&gt;This level is about finding a vulnerability in a PHP script  that  greets the user with her/his saved data.&lt;/p&gt;
 &lt;p&gt;The program implements this functionality by setting a cookie that saves the user's username and age. In future visits to the page, the program is then able to print  &lt;em&gt;You’re NAME, and your age is AGE&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Inspecting the code closer we see that it uses the contents of the client's cookie to read data from a file without escaping the contents:&lt;/p&gt;
+&lt;p&gt;Inspecting closely the code we see that the client's cookie is read without sanitizing its content:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
     &lt;span class="nv"&gt;$out&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nb"&gt;isset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_COOKIE&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;user_details&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -63,14 +63,14 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;And then it prints the result:&lt;/p&gt;
+&lt;p&gt;And then the results of this reading is printed:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
     &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php echo $out ?&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We can exploit this by building our own &lt;a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html"&gt;request&lt;/a&gt; that make the program to read our password at &lt;em&gt;/home/level02/.password&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;An obvious way to exploit this vulnerability is by building our own &lt;a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html"&gt;request&lt;/a&gt; that makes the program read the password at &lt;em&gt;/home/level02/.password&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The cookie is set in the client side so we have lots of freedom to exploit it. For instance, we could use &lt;a href="http://portswigger.net/burp/"&gt;Burp Suite&lt;/a&gt; to intercept the request and add the crafted cookie header. We could also use &lt;a href="https://chrome.google.com/webstore/detail/web-inspector/enibedkmbpadhfofcgjcphipflcbpelf?hl=en"&gt;Chrome Webinspector&lt;/a&gt; to  copy the &lt;a href="http://en.wikipedia.org/wiki/Basic_access_authentication"&gt;Authorization header&lt;/a&gt; for the same purpose. The Cookie header would look like:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Cookie&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;user_details&lt;/span&gt;&lt;span class="o"&gt;=../../&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="sr"&gt;/level02/&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;password&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
