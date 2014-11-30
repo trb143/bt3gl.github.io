@@ -3,7 +3,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;This first post is about the first Stripe CTF, which happened in the beginning of 2012. I was able to fully reproduce the game by using a &lt;a href="http://www.janosgyerik.com/hacking-contest-on-a-live-cd/"&gt;Live CD Image&lt;/a&gt;. Other options were &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;direct download and BitTorrent&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This first post is about the first &lt;a href="https://stripe.com/"&gt;Stripe&lt;/a&gt; CTF, which &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;happened in the beginning of 2012&lt;/a&gt;. I was able to fully reproduce the game by using a &lt;a href="http://www.janosgyerik.com/hacking-contest-on-a-live-cd/"&gt;Live CD Image&lt;/a&gt;. Other options were &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;direct download and BitTorrent&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This CTF was composed of 6 levels, and its style was very similar to other Wargames I've talked about in this blog (for instance, check &lt;a href="http://overthewire.org/wargames/"&gt;OverTheWire's&lt;/a&gt; &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Natas&lt;/a&gt;, &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;Narnia&lt;/a&gt;, and &lt;a href="http://bt3gl.github.io/cryptography-war-beating-krypton.html"&gt;Krypton&lt;/a&gt;).&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Level 1: Environment Variables and system()&lt;/h2&gt;
@@ -546,4 +546,4 @@ chmod +x date
 &lt;li&gt;
 &lt;p&gt;Pickle Modules is unsafe! &lt;a href="https://blog.nelhage.com/2011/03/exploiting-pickle/"&gt;Here&lt;/a&gt; and &lt;a href="http://penturalabs.wordpress.com/2011/03/17/python-cpickle-allows-for-arbitrary-code-execution/"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="SQLi"></category><category term="PHP"></category><category term="Wargames"></category><category term="CTF"></category><category term="Burp"></category><category term="curl"></category><category term="assembly"></category><category term="shellcode"></category><category term="gdb"></category><category term="C"></category><category term="objdump"></category><category term="Timing_attack"></category><category term="Buffer_overflow"></category><category term="Stack_overflow"></category></entry></feed>
+&lt;/ul&gt;</summary><category term="SQLi"></category><category term="PHP"></category><category term="Wargames"></category><category term="CTF"></category><category term="Burp"></category><category term="curl"></category><category term="assembly"></category><category term="shellcode"></category><category term="gdb"></category><category term="C"></category><category term="objdump"></category><category term="Timing_attack"></category><category term="Buffer_overflow"></category><category term="Stack_overflow"></category><category term="Python"></category></entry></feed>
