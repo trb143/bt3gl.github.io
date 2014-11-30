@@ -452,7 +452,7 @@ chmod +x date
 
 
 &lt;hr /&gt;
-&lt;h2&gt;Level 6: Timing Attack on Fork System Call&lt;/h2&gt;
+&lt;h2&gt;Level 6: Timing Attack&lt;/h2&gt;
 &lt;p&gt;And we have reached the sixth level!&lt;/p&gt;
 &lt;p&gt;The goal in this level is to read the password from &lt;em&gt;/home/the-flag/.password&lt;/em&gt;. To complete this  challenge, another &lt;strong&gt;setuid&lt;/strong&gt; binary  is given, which can be used to guess the password:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;level06&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt; &lt;span class="n"&gt;banana&lt;/span&gt;
@@ -461,7 +461,7 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;If this was a simple a case of &lt;a href="http://en.wikipedia.org/wiki/Timing_attack"&gt;Timing Atack&lt;/a&gt; we would be able to detect the output in &lt;strong&gt;stderr&lt;/strong&gt; and in &lt;strong&gt;stdout&lt;/strong&gt; to find the characters that form the password. But in this case there is a twist.&lt;/p&gt;
+&lt;p&gt;This turns out to be a case of &lt;a href="http://en.wikipedia.org/wiki/Timing_attack"&gt;Timing Atack&lt;/a&gt; we would be able to detect the output in &lt;strong&gt;stderr&lt;/strong&gt; and in &lt;strong&gt;stdout&lt;/strong&gt; to find the characters that form the password. But in this case there is a twist.&lt;/p&gt;
 &lt;p&gt;For every input character, a loop is executed. A dot is printed after each character comparison. If the guess is wrong, the system forks a child process and runs a little slower (since each loop has complexity O(n^2) to guess size).  The maximum size of a guess is &lt;strong&gt;MAX_ARG_STRLEN&lt;/strong&gt; which is around 0.1 MB. In other words, if &lt;strong&gt;stdout&lt;/strong&gt; and *&lt;em&gt;stderr&lt;/em&gt; can be blocked, the outputs can be timed to find the wring characters.&lt;/p&gt;
 &lt;p&gt;A   possible shell exploit:&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
