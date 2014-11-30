@@ -85,7 +85,7 @@ chmod +x date
 &lt;p&gt;Note: In the LiveCD this level is modified to use Python and &lt;a href="http://flask.pocoo.org/docs/0.10/"&gt;Flask&lt;/a&gt;. Luckily, I had some previous experience in Flask (check out my &lt;a href=""&gt;Anti-Social Network&lt;/a&gt;) and it was pretty easy to spot that the Pyhton code does &lt;em&gt;exactly&lt;/em&gt; the same thing as the one above.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Level 3: Failure in Input Validation&lt;/h2&gt;
-&lt;p&gt;The third level comes with another &lt;em&gt;setuid&lt;/em&gt; binary that is used to modify  strings:&lt;/p&gt;
+&lt;p&gt;The third level comes with another &lt;strong&gt;setuid&lt;/strong&gt; binary with the purpose of modifying a string:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;levels&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;level03&lt;/span&gt;
     &lt;span class="nl"&gt;Usage:&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;level03&lt;/span&gt; &lt;span class="n"&gt;INDEX&lt;/span&gt; &lt;span class="n"&gt;STRING&lt;/span&gt;
     &lt;span class="n"&gt;Possible&lt;/span&gt; &lt;span class="n"&gt;indices&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
@@ -94,7 +94,7 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;and the C code:&lt;/p&gt;
+&lt;p&gt;The C code is also given:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="nx"&gt;define&lt;/span&gt; &lt;span class="nx"&gt;NUM_FNS&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
 
 &lt;span class="nx"&gt;typedef&lt;/span&gt; &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nx"&gt;fn_ptr&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="kr"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -154,7 +154,7 @@ chmod +x date
 
 
 &lt;p&gt;In problems like this, the attack surface is usually any place where there is input from the user. For this  reason, our approach is to take a look at the arguments taken in the main function, checking for the common memory and overflow vulnerabilities  in C.&lt;/p&gt;
-&lt;p&gt;We find a vulnerability in the failure of checking for negative inputs:&lt;/p&gt;
+&lt;p&gt;A vulnerability is found in the failure of checking for negative inputs:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#define NUM_FNS 4&lt;/span&gt;
 &lt;span class="p"&gt;(...)&lt;/span&gt;
   &lt;span class="c1"&gt;// Parse supplied index&lt;/span&gt;
@@ -166,7 +166,7 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Where the &lt;strong&gt;index&lt;/strong&gt; variable is used in the function &lt;strong&gt;truncate_and_call&lt;/strong&gt;, where  the function &lt;strong&gt;fns&lt;/strong&gt; can be overflowed:&lt;/p&gt;
+&lt;p&gt;Moreover, the &lt;strong&gt;index&lt;/strong&gt; variable is used in the function &lt;strong&gt;truncate_and_call&lt;/strong&gt;, where  the function &lt;strong&gt;fns&lt;/strong&gt; can be overflowed:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="nf"&gt;int&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;fn_ptr&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;(...)&lt;/span&gt;
 &lt;span class="n"&gt;fn_ptr&lt;/span&gt; &lt;span class="n"&gt;fns&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;NUM_FNS&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;to_upper&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;to_lower&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;capitalize&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
@@ -182,7 +182,7 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Things  became easier when we notice that right before &lt;strong&gt;truncate_and_call&lt;/strong&gt; we have this convenient function:&lt;/p&gt;
+&lt;p&gt;The exploitation plan becomes easier when we notice that right before &lt;strong&gt;truncate_and_call&lt;/strong&gt; we have this convenient function:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -191,7 +191,8 @@ chmod +x date
 
 
 &lt;h3&gt;Description of the Exploit&lt;/h3&gt;
-&lt;p&gt;1)  To understand this problem we need to understand the &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;design of the stack frame&lt;/a&gt;.  In our exploit we will  craft a malicious index that is negative (so it pass the bound checking) to  have a shell running &lt;code&gt;system("/bin/sh");&lt;/code&gt; (which will be able to read password o level3 because it will have its &lt;a href="http://en.wikipedia.org/wiki/User_identifier_(Unix)"&gt;UID&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;To understand this problem we need to understand the &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;design of the stack frame&lt;/a&gt;.  With this in mind, the exploit is crafted as following:&lt;/p&gt;
+&lt;p&gt;1) We create a malicious index that is negative (so it pass the bound checking) to  have a shell running &lt;code&gt;system("/bin/sh");&lt;/code&gt; (which will be able to read password o level3 because it will have its &lt;a href="http://en.wikipedia.org/wiki/User_identifier_(Unix)"&gt;UID&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;2) We first need to find a memory location before &lt;strong&gt;fns&lt;/strong&gt; (which should be writable). We fire up &lt;strong&gt;gdb&lt;/strong&gt; and search for the pointer to &lt;strong&gt;buf&lt;/strong&gt;, which is right before &lt;strong&gt;fns&lt;/strong&gt; (this is different each time due to &lt;a href="http://en.wikipedia.org/wiki/Address_space_layout_randomization"&gt;ASLR&lt;/a&gt;):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;  &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;buf&lt;/span&gt;
     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="mh"&gt;0xffbffa00&lt;/span&gt;
