@@ -669,6 +669,8 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;h3&gt;Checking for DNS Leaks with VMs&lt;/h3&gt;
+&lt;p&gt;In a virtual machine look at &lt;strong&gt;statistics --&amp;gt; Endponts&lt;/strong&gt;. There should be only one public IP address: the VPN server that the virtual machine is connected to.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;ARP Cache Poisoning&lt;/h2&gt;
 &lt;h3&gt;Sniffing&lt;/h3&gt;
