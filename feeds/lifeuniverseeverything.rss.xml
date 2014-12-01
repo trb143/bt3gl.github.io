@@ -895,7 +895,14 @@
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;ifconfig&lt;/strong&gt; is supposed to be deprecated. See &lt;a href="https://coderwall.com/p/uf_44a"&gt;my short guide on ip-netns&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A good trick is to change the IP address, &lt;a href="http://en.wikipedia.org/wiki/Subnetwork"&gt;netmask&lt;/a&gt; and broadcast address for your network interface:&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ifconfig&lt;/span&gt; &lt;span class="n"&gt;eth0&lt;/span&gt; &lt;span class="mf"&gt;192.168.1.115&lt;/span&gt; &lt;span class="n"&gt;netmask&lt;/span&gt; &lt;span class="mf"&gt;255.255.255.0&lt;/span&gt; &lt;span class="n"&gt;broadcast&lt;/span&gt; &lt;span class="mf"&gt;192.168.1.255&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h3&gt;dhclient&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Linux has a DHCP server that runs a daemon called &lt;code&gt;dhcpd&lt;/code&gt;, assigning IP address to all the systems on the subnet (it also keeps logs files):&lt;/li&gt;
