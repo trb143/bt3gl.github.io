@@ -139,7 +139,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;This script pretty much gives always all the request you can issue to inspect the database, and we will see they will be enough to get our flag.&lt;/p&gt;
+&lt;p&gt;This script pretty much gives away all the request you can issue to inspect the database, and we will see they will be enough to get our flag.&lt;/p&gt;
 &lt;p&gt;The crucial detail here is to understand how the client encrypts the commands using the &lt;a href="http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_codebook_.28ECB.29"&gt;Electronic codebook (ECB)&lt;/a&gt; block cipher type. In this type of operation the message is divided into blocks that are encrypted separately (&lt;a href="https://www.dlitz.net/software/pycrypto/api/2.6/"&gt;PyCryptos's AES.MODE_ECB&lt;/a&gt;).&lt;/p&gt;
 &lt;h3&gt;The PCAP File&lt;/h3&gt;
 &lt;p&gt;The last file was a &lt;strong&gt;pcap&lt;/strong&gt; dump. Opening it with, &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;Wireshark&lt;/a&gt;, I verified it was really short, and the contend was simply a TCP handshake. Right-clicking some packet and selecting &lt;em&gt;Follow TCP Stream&lt;/em&gt; gives the result the example of connection suggested by the two script above:&lt;/p&gt;
