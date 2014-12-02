@@ -8,7 +8,7 @@
 
 
 &lt;h3&gt;The Client File&lt;/h3&gt;
-&lt;p&gt;The first file was a  script &lt;strong&gt;client.py&lt;/strong&gt;, where, by using Python's &lt;a href="https://docs.python.org/2/library/socket.html"&gt;socket&lt;/a&gt; library, showed how a connection could be made:&lt;/p&gt;
+&lt;p&gt;The first file was a  script &lt;strong&gt;client.py&lt;/strong&gt;, where, by using Python's &lt;a href="https://docs.python.org/2/library/socket.html"&gt;socket&lt;/a&gt; library, showed how a connection to the server could be made:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;Crypto.Cipher&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AES&lt;/span&gt;
 
