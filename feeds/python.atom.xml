@@ -54,7 +54,7 @@
 &lt;p&gt;The snippet also shows an example of a client packet, with some request options (which we will see the response later in the network dump).&lt;/p&gt;
 &lt;h3&gt;The Server File&lt;/h3&gt;
 &lt;p&gt;The second file was the &lt;strong&gt;server.py&lt;/strong&gt; script, which is basically a &lt;a href="http://redis.io/"&gt;Redis&lt;/a&gt; like database (hence, the &lt;em&gt;nosql&lt;/em&gt; title). Unlike SQL databases, Redis &lt;em&gt;maps keys to types of values&lt;/em&gt;. In this challenge, the idea was to recover an entry that had the key &lt;strong&gt;flag&lt;/strong&gt; returning the value of the flag.&lt;/p&gt;
-&lt;p&gt;In the script below, besides creating this database, functions such as: AES decrypting (encryption), MD5 (hashing), and hex (enconding) are implemented using Python's library:&lt;/p&gt;
+&lt;p&gt;In the script below, besides creating this database, functions such as: &lt;strong&gt;AES decrypting&lt;/strong&gt; (encryption), &lt;strong&gt;MD5&lt;/strong&gt; (hashing), and &lt;strong&gt;hex&lt;/strong&gt; (enconding) are implemented using Python's library:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;hashlib&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;Crypto.Cipher&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AES&lt;/span&gt;
 
