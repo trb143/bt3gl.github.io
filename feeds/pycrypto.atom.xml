@@ -153,13 +153,13 @@
 &lt;p&gt;Finally, our MD5 for the flag was printed as &lt;strong&gt;b7133e9fe8b1abb64b72805d2d97495f&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;As it was expected, searching for this hash in the usual channels (for example &lt;a href="http://hash-killer.com/"&gt;here&lt;/a&gt;, &lt;a href="http://www.md5this.com/"&gt;here&lt;/a&gt;, or &lt;a href="http://www.hashkiller.co.uk/"&gt;here&lt;/a&gt;) was not successful: &lt;em&gt;brute force it is not the way to go&lt;/em&gt;.&lt;/p&gt;
 &lt;h3&gt;Solving the Challenge&lt;/h3&gt;
-&lt;p&gt;It's pretty clear from our &lt;strong&gt;server.py&lt;/strong&gt; script that we can send other requests to the server to get our flag before it is hashed to MD5. For example, if we use &lt;em&gt;GET flag&lt;/em&gt;,&lt;/p&gt;
+&lt;p&gt;It's pretty clear from our &lt;strong&gt;server.py&lt;/strong&gt; script that we could craft a direct request to the server to get our flag before it is hashed to MD5. For example, if the request &lt;em&gt;GET flag&lt;/em&gt;,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
       &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;is exactly like &lt;em&gt;MD5 flag&lt;/em&gt;, without the hashing it first:&lt;/p&gt;
+&lt;p&gt;is exactly like &lt;em&gt;MD5 flag&lt;/em&gt;, without the hashing:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;MD5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
       &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;md5&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
