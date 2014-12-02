@@ -4,7 +4,7 @@
 &lt;p&gt;In this blog post I introduce Wireshark and I talk about my favorite features in the tool.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h1&gt;The Network Architecture&lt;/h1&gt;
-&lt;p&gt;Before we are able to understand and analyse network traffic packets, we must have an insight of how the network stack works.&lt;/p&gt;
+&lt;p&gt;Before we are able to understand and analyze network traffic packets, we must have an insight of how the network stack works.&lt;/p&gt;
 &lt;h2&gt;The OSI Model&lt;/h2&gt;
 &lt;p&gt;The &lt;a href="http://en.wikipedia.org/wiki/OSI_model"&gt;Open Systems Interconnection&lt;/a&gt; (OSI) model  was published in 1983 and is a conceptual model that characterizes and standardizes the internal functions of a communication system by partitioning it into abstraction layers.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/dZyiOTX.png" /&gt;&lt;/p&gt;
@@ -127,7 +127,7 @@ router.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;and &lt;strong&gt;traceroute&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;and &lt;strong&gt;traceroute&lt;/strong&gt; (ICMP in Windows, UDP in Linux):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;traceroute&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
 &lt;span class="n"&gt;traceroute&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;173.194.46.84&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt; &lt;span class="n"&gt;hops&lt;/span&gt; &lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt; &lt;span class="n"&gt;byte&lt;/span&gt; &lt;span class="n"&gt;packets&lt;/span&gt;
  &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
@@ -145,8 +145,8 @@ router.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The way traceroute works is by sending echo request that have a particular feature in the IP header: &lt;strong&gt;the TTL is 1&lt;/strong&gt;. This means that the packet will be dropped at the first router. The the second packet is a reply from the first router along the path to the destination, and so on.&lt;/p&gt;
-&lt;p&gt;To make this work, the router replies an ICMP response with a &lt;em&gt;double-headed packet&lt;/em&gt;, containing a copy of the IP header and the ICMP data that was sent in the original echo request.&lt;/p&gt;
+&lt;p&gt;The way traceroute works is by sending echo request that have a particular feature in the IP header: &lt;strong&gt;the TTL is 1&lt;/strong&gt;. This means that the packet will be dropped at the first hop. The second packet goes through the first hop and then is dropped in the second hop (TTL is 2), and so on.&lt;/p&gt;
+&lt;p&gt;To make this work, the router replies response with a &lt;em&gt;double-headed packet&lt;/em&gt;, containing a copy of the IP header and the data that was sent in the original echo request.&lt;/p&gt;
 &lt;h3&gt;The Transmission Control Protocol (Layer 4)&lt;/h3&gt;
 &lt;p&gt;Provides a reliable flow of data between two hosts with a &lt;strong&gt;three-way handshake&lt;/strong&gt;. The purpose is to allow the transmitting host to ensure that the destination host is up, and let the transmitting host check the availability of the port as well.&lt;/p&gt;
 &lt;p&gt;This handshake works as the follow:&lt;/p&gt;
@@ -625,7 +625,7 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;IP, Don't Fragment Flag&lt;/strong&gt;:&lt;ul&gt;
-&lt;li&gt;Set for Linux, Mac OS, Windoes&lt;/li&gt;
+&lt;li&gt;Set for Linux, Mac OS, Windows&lt;/li&gt;
 &lt;li&gt;Not set for Cisco IOS&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
