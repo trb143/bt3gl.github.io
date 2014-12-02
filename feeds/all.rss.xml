@@ -181,7 +181,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We are able to learn that if we send a command without arguments or an invalid command, the argument variables (&lt;em&gt;args&lt;/em&gt;) is not overwritten: it gets the same from one of the previous request that was valid! That's wonderful!&lt;/p&gt;
+&lt;p&gt;We are able to learn that if we send a &lt;strong&gt;command without arguments&lt;/strong&gt; or an &lt;strong&gt;invalid command&lt;/strong&gt;, the argument variables (&lt;em&gt;args&lt;/em&gt;) is not overwritten: it gets the same value from the previous valid request! That's wonderful!&lt;/p&gt;
 &lt;p&gt;Now the solution is very clear:
 1. We send the invalid command: &lt;code&gt;ION HEX&lt;/code&gt;.
 2. We send the valid command with the argument we want to keep: &lt;code&gt;ION HEX&lt;/code&gt;.
