@@ -637,7 +637,7 @@ router.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The way traceroute works is by sending echo request that have a particular feature in the IP header: &lt;strong&gt;the TTL is 1&lt;/strong&gt;. This means that the packet will be dropped at the first hop. The second packet goes through the first hop and then is dropped in the second hop (TTL is 2), and so on.&lt;/p&gt;
+&lt;p&gt;The way traceroute works is by sending an echo request that has a particular feature in the IP header: &lt;strong&gt;the TTL is 1&lt;/strong&gt;. This means that the packet will be dropped at the first hop. The second packet goes through the first hop and then is dropped in the second hop (TTL is 2), and so on.&lt;/p&gt;
 &lt;p&gt;To make this work, the router replies response with a &lt;em&gt;double-headed packet&lt;/em&gt;, containing a copy of the IP header and the data that was sent in the original echo request.&lt;/p&gt;
 &lt;h3&gt;The Transmission Control Protocol (Layer 4)&lt;/h3&gt;
 &lt;p&gt;Provides a reliable flow of data between two hosts with a &lt;strong&gt;three-way handshake&lt;/strong&gt;. The purpose is to allow the transmitting host to ensure that the destination host is up, and let the transmitting host check the availability of the port as well.&lt;/p&gt;
