@@ -190,4 +190,4 @@
 &lt;li&gt;We send the command without arguments: &lt;code&gt;GET&lt;/code&gt;, which will get the last valid argument (&lt;em&gt;flag&lt;/em&gt;), returning us the flag!&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;Awesome!&lt;/strong&gt;&lt;/p&gt;
-&lt;hr /&gt;</summary><category term="CTF"></category><category term="Redis"></category><category term="Python"></category><category term="NoSQL"></category><category term="ECB"></category><category term="AES"></category><category term="PyCrypto"></category><category term="socket"></category></entry></feed>
+&lt;hr /&gt;</summary><category term="CTF"></category><category term="Redis"></category><category term="Python"></category><category term="NoSQL"></category><category term="ECB"></category><category term="AES"></category><category term="PyCrypto"></category><category term="socket"></category><category term="Wireshark"></category></entry></feed>
