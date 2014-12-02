@@ -1,5 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/bt3.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-11-24T04:20:00-05:00</updated><entry><title>The First Stripe CTF</title><link href="http://bt3gl.github.io/the-first-stripe-ctf.html" rel="alternate"></link><updated>2014-11-24T04:20:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-11-24:the-first-stripe-ctf.html</id><summary type="html">&lt;p&gt;Although I did not have the chance of playing in neither of the three Stripe CTFs, I was quite enthralled when I took a look at the problems. I decided to solve them anyway and I am writing this series of writeups.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/bt3.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-01T02:00:00-05:00</updated><entry><title>On Redis &amp; Encryption in the 9447 CTF 2014</title><link href="http://bt3gl.github.io/on-redis-encryption-in-the-9447-ctf-2014.html" rel="alternate"></link><updated>2014-12-01T02:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-01:on-redis-encryption-in-the-9447-ctf-2014.html</id><summary type="html">&lt;p&gt;This last weekend, the &lt;a href="https://9447.plumbing/home"&gt;9447 CTF&lt;/a&gt; took place. One of the &lt;em&gt;misc&lt;/em&gt; problems was called &lt;strong&gt;NoSQL&lt;/strong&gt; and had the following description, together with an attachment with three files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Hey&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;don&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;understand&lt;/span&gt; &lt;span class="n"&gt;how&lt;/span&gt; &lt;span class="n"&gt;SQL&lt;/span&gt; &lt;span class="n"&gt;works&lt;/span&gt; &lt;span class="n"&gt;so&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;made&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt; &lt;span class="n"&gt;own&lt;/span&gt; &lt;span class="n"&gt;NoSQL&lt;/span&gt; &lt;span class="n"&gt;startup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;And&lt;/span&gt; &lt;span class="n"&gt;OpenSSL&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;bloody&lt;/span&gt; &lt;span class="n"&gt;crap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="nl"&gt;ip:&lt;/span&gt; &lt;span class="mf"&gt;54.148.249.150&lt;/span&gt;
+&lt;span class="nl"&gt;port:&lt;/span&gt; &lt;span class="mi"&gt;4479&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;The Client File&lt;/h3&gt;
+&lt;p&gt;The first file was a (funny) script for the client, where, by using Python's &lt;a href="https://docs.python.org/2/library/socket.html"&gt;socket&lt;/a&gt; library, showed how a connection could be made:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;Crypto.Cipher&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AES&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;EncryptedStream&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;this is not the flag nor the key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;msg&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\0&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;iv&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urandom&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;aes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AES&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AES&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MODE_ECB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;enc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;aes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encrypt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;I&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;enc&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;enc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;recv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;nbytes&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;recv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nbytes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="s"&gt;HELLO&lt;/span&gt;
+&lt;span class="s"&gt;SHOW VERSION&lt;/span&gt;
+&lt;span class="s"&gt;SET example This tiny script is basically a RedisStore...&lt;/span&gt;
+&lt;span class="s"&gt;GET example&lt;/span&gt;
+&lt;span class="s"&gt;SHOW KEYS&lt;/span&gt;
+&lt;span class="s"&gt;SET brucefact#1 Bruce Schneier can break elliptic curve cryptography by bending it into a circle&lt;/span&gt;
+&lt;span class="s"&gt;SET brucefact#2 Bruce Schneier always cooks his eggs scrambled. When he wants hardboiled eggs, he unscrambles them&lt;/span&gt;
+&lt;span class="s"&gt;SET brucefact#3 Bruce Schneier could solve this by inverting md5 hash of the flag&lt;/span&gt;
+&lt;span class="s"&gt;ENCRYPTION HEX&lt;/span&gt;
+&lt;span class="s"&gt;MD5 flag&lt;/span&gt;
+&lt;span class="s"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+
+&lt;span class="n"&gt;stream&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;EncryptedStream&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;recv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;break&lt;/span&gt;
+  &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This client script simply makes &lt;a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard"&gt;AES&lt;/a&gt; encrypted packets with the class &lt;strong&gt;EncryptedStream&lt;/strong&gt;, for a given host and port (the arguments). It then sends the packets and print out any stream received.&lt;/p&gt;
+&lt;p&gt;The snippet is also generous enough to show an example of a client packet, with some request options (that we will see the response  later in the network dump).&lt;/p&gt;
+&lt;h3&gt;The Server File&lt;/h3&gt;
+&lt;p&gt;The second file was the &lt;strong&gt;server.py&lt;/strong&gt; script, which is basically a &lt;a href="http://redis.io/"&gt;Redis&lt;/a&gt; like database (hence, the &lt;em&gt;nosql&lt;/em&gt; title). Unlike SQL databases, Redis &lt;em&gt;maps keys to types of values&lt;/em&gt;. In this challenge, the idea was to have an entry with key &lt;strong&gt;flag&lt;/strong&gt; that would return the value of the flag.&lt;/p&gt;
+&lt;p&gt;In the script below, besides creating this database, functions such as: AES decrypting (encryption), MD5 (hashing), and hex (enconding) are implemented using Python's library:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;hashlib&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;Crypto.Cipher&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AES&lt;/span&gt;
+
+&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;this is not the flag nor the key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;md5&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;hashlib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md5&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;digest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;decrypt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="n"&gt;iv&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urandom&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;aes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AES&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AES&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MODE_ECB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;aes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decrypt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rstrip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\0&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;reply_plain&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;reply_hex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="c"&gt;# This is totally encrypted, right?&lt;/span&gt;
+  &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;hex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+  &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;
+  &lt;span class="n"&gt;reply&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;reply_plain&lt;/span&gt;
+
+  &lt;span class="n"&gt;datalen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;I&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+  &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;datalen&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;
+  &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;decrypt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+  &lt;span class="n"&gt;commands&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;commands&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="k"&gt;continue&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s"&gt;&amp;#39; &amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;HELLO&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;WELCOME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;SHOW&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;VERSION&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;NoRedisSQL v1.0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;KEYS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;repr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+      &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;ME THE MONEY&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Jerry, doesn&amp;#39;t it make you feel good just to say that!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;u w0t m8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;SET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+      &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;OK&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;SNIPPET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;][:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;MD5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;md5&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;ENCRYPTION&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;HEX&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;reply&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;reply_hex&lt;/span&gt;
+        &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;OK&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;OFF&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;reply&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;reply_plain&lt;/span&gt;
+        &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;OK&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;u w0t m8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Unknown command &lt;/span&gt;&lt;span class="si"&gt;%r&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alarm&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIGALRM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+  &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This script pretty much gives always all the request you can issue to inspect the database, and we will see they will be enough to get our flag.&lt;/p&gt;
+&lt;p&gt;The crucial detail here is to understand how the client encrypts the commands using the &lt;a href="http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_codebook_.28ECB.29"&gt;Electronic codebook (ECB)&lt;/a&gt; block cipher type. In this type of operation the message is divided into blocks that are encrypted separately (&lt;a href="https://www.dlitz.net/software/pycrypto/api/2.6/"&gt;PyCryptos's AES.MODE_ECB&lt;/a&gt;).&lt;/p&gt;
+&lt;h3&gt;The PCAP File&lt;/h3&gt;
+&lt;p&gt;The last file was a &lt;strong&gt;pcap&lt;/strong&gt; dump. Opening it with, &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;Wireshark&lt;/a&gt;, I verified it was really short, and the contend was simply a TCP handshake. Right-clicking some packet and selecting &lt;em&gt;Follow TCP Stream&lt;/em&gt; gives the result the example of connection suggested by the two script above:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.imgur.com/2Y6aaW1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;However, we see that the database has already an entry for flag:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Also, notice that &lt;strong&gt;4f4b&lt;/strong&gt; is &lt;strong&gt;OK&lt;/strong&gt;  in ASCII, meaning that the switch &lt;strong&gt;ENCRYPTION HEX&lt;/strong&gt; was on (note: the "encryption" is actually just an encoding in hex, &lt;em&gt;i.e&lt;/em&gt;, completely reversible). Finally, our MD5 for the flag is &lt;strong&gt;b7133e9fe8b1abb64b72805d2d97495f&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;As it was expected, searching for this hash in the usual channels (for example &lt;a href="http://hash-killer.com/"&gt;here&lt;/a&gt;, &lt;a href="http://www.md5this.com/"&gt;here&lt;/a&gt;, or &lt;a href="http://www.hashkiller.co.uk/"&gt;here&lt;/a&gt;) was not successful: brute force it is not the way.&lt;/p&gt;
+&lt;h3&gt;Solving the Challenge&lt;/h3&gt;
+&lt;p&gt;It's pretty clear from our server.py script that we can send other requests to the server to get our flag before it is hashed to MD5. For example, if we use &lt;em&gt;GET flag&lt;/em&gt;,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;is exactly like &lt;em&gt;MD5 flag&lt;/em&gt;, without the hashing it first:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;MD5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;reply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;md5&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;However we do not have the AES key used by the server, only an example of communication given by the PCAP file. How do we get to send a &lt;strong&gt;GET flag&lt;/strong&gt; message?&lt;/p&gt;
+&lt;p&gt;The first thing comes to our minds is to use the network dump to replay the message, re-shaping it somehow to have a &lt;em&gt;GET flag&lt;/em&gt;. The blocks have a size of 16, with two particularly interesting:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ION&lt;/span&gt; &lt;span class="n"&gt;HEX&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;nMD5&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;edisStore&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;nGET&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we check how the oracle responds to several types of responses:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="mf"&gt;54.148.249.150&lt;/span&gt; &lt;span class="mi"&gt;4479&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We are able to learn that if we send a command without arguments or an invalid command, the argument variables (&lt;em&gt;args&lt;/em&gt;) is not overwritten: it gets the same from one of the previous request that was valid! That's wonderful!&lt;/p&gt;
+&lt;p&gt;Now the solution is very clear:
+1. We send the invalid command: &lt;code&gt;ION HEX&lt;/code&gt;.
+2. We send the valid command with the argument we want to keep: &lt;code&gt;ION HEX&lt;/code&gt;.
+3. We send the invalid command: &lt;code&gt;edisStore...&lt;/code&gt;.
+4. We send the command without arguments: &lt;code&gt;GET&lt;/code&gt;, which will get the last valid argument (&lt;em&gt;flag&lt;/em&gt;), returning us the flag!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Awesome!&lt;/strong&gt;&lt;/p&gt;
+&lt;hr /&gt;</summary><category term="CTF"></category><category term="Redis"></category><category term="Python"></category><category term="NoSQL"></category><category term="ECB"></category><category term="AES"></category><category term="PyCrypto"></category><category term="socket"></category></entry><entry><title>The First Stripe CTF</title><link href="http://bt3gl.github.io/the-first-stripe-ctf.html" rel="alternate"></link><updated>2014-11-24T04:20:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-11-24:the-first-stripe-ctf.html</id><summary type="html">&lt;p&gt;Although I did not have the chance of playing in neither of the three Stripe CTFs, I was quite enthralled when I took a look at the problems. I decided to solve them anyway and I am writing this series of writeups.&lt;/p&gt;
 &lt;p&gt;This post is about the first &lt;a href="https://stripe.com/"&gt;Stripe&lt;/a&gt; CTF, which &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;happened in the beginning of 2012&lt;/a&gt;. I was able to fully reproduce the game by using a &lt;a href="http://www.janosgyerik.com/hacking-contest-on-a-live-cd/"&gt;Live CD Image&lt;/a&gt;. Other options were &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;direct download and BitTorrent&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This CTF was composed of 6 levels, and its style was very similar to other Wargames I've talked about before in this blog (for instance, check &lt;a href="http://overthewire.org/wargames/"&gt;OverTheWire's&lt;/a&gt; &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Natas&lt;/a&gt;, &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;Narnia&lt;/a&gt;, and &lt;a href="http://bt3gl.github.io/cryptography-war-beating-krypton.html"&gt;Krypton&lt;/a&gt;).&lt;/p&gt;
 &lt;hr /&gt;
@@ -2838,139 +3026,4 @@ sed &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&
 &lt;p&gt;&lt;a href="https://www.isecpartners.com/media/17919/revocation-whitepaper_pdf__2_.pdf"&gt;Fixing Revocation for Web Browsers, iSEC Partners&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://wiki.mozilla.org/images/e/e3/SSLcertRevocation.pdf"&gt;Proposal for Better Revocation Model of SSL Certificates&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.ssllabs.com/ssltest/"&gt;SSL Server Test&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.digicert.com/help/"&gt;SSL Certificate Checker&lt;/a&gt;&lt;/p&gt;</summary><category term="CRL"></category><category term="CRLSets"></category><category term="OCSP"></category><category term="TLS"></category><category term="Chrome"></category></entry><entry><title>A Closer Look at Chrome's Security: Understanding V8</title><link href="http://bt3gl.github.io/a-closer-look-at-chromes-security-understanding-v8.html" rel="alternate"></link><updated>2014-11-01T04:20:00-04:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-11-01:a-closer-look-at-chromes-security-understanding-v8.html</id><summary type="html">&lt;p&gt;&lt;a href="http://blogoscoped.com/google-chrome/"&gt;In 2008, Google released a sandbox-oriented browser&lt;/a&gt;, that was assembled from several different code libraries from Google and third parties (for instance, it borrowed a rendering machinery from the open-source  &lt;a href="https://www.webkit.org/"&gt;Webkit layout engine&lt;/a&gt;, later changing it to a forked version, &lt;a href="http://en.wikipedia.org/wiki/Blink_(layout_engine)"&gt;Blink&lt;/a&gt;).  Six years later, Chrome has became the preferred browser for &lt;a href="http://en.wikipedia.org/wiki/File:Usage_share_of_web_browsers_(Source_StatCounter).svg"&gt;half of users in the Internet&lt;/a&gt;. This is enough reason to investigate further how security is dealt in this engine. With this motivation in mind, I summarize the main features of Chrome and its &lt;a href="http://www.chromium.org/Home"&gt;Chromium Project&lt;/a&gt;, describing the pristine way of processing JavaScript with the &lt;strong&gt;V8 JavaScript virtual machine&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2&gt;They way computers talk...&lt;/h2&gt;
-&lt;p&gt;In mainstream computer languages, a source code can either be &lt;strong&gt;compiled&lt;/strong&gt; or &lt;strong&gt;interpreted&lt;/strong&gt; . This is &lt;a href="https://www.youtube.com/watch?v=_C5AHaS1mOA"&gt;a very simple concept&lt;/a&gt;...&lt;/p&gt;
-&lt;h3&gt;Compilers and Interpreters&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Compilers&lt;/strong&gt;  produce  an intermediate form called &lt;strong&gt;code object&lt;/strong&gt;, which is like machine code but augmented with symbols tables  to make executable blocks (library files, with file objects). A linker is used to finally combine them to form executables.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Interpreters&lt;/strong&gt; execute instructions without compiling into machine language first. They can either parse and execute the instructions, translate into intermediate representation such as &lt;strong&gt;bytecode&lt;/strong&gt; or &lt;strong&gt;abstract syntax trees&lt;/strong&gt; (ASTs),  or store precompiled code by a compiler.&lt;/p&gt;
-&lt;p&gt;The truth is that things are generally mixed. For example, when you type some instruction in  Python's REPL, &lt;a href="http://akaptur.com/blog/2013/11/17/introduction-to-the-python-interpreter-3/"&gt;the language executes four steps&lt;/a&gt;: &lt;em&gt;lexing&lt;/em&gt; (breaks the code into pieces), &lt;em&gt;parsing&lt;/em&gt; (generates an AST with those pieces - it is the syntax analysis), &lt;em&gt;compiling&lt;/em&gt; (converts the AST into code objects - which are attributes of the function objects), and &lt;em&gt;interpreting&lt;/em&gt; (executes the code objects). By the way, bytecodes are attributes of the code object so to see them, you just need to call &lt;code&gt;func_code&lt;/code&gt; (code object) and &lt;code&gt;co_code&lt;/code&gt;(bytecode):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;some_function&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="k"&gt;return&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;some_function&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;func_code&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;co_code&lt;/span&gt;
-&lt;span class="s"&gt;&amp;#39;d&lt;/span&gt;&lt;span class="se"&gt;\x00\x00&lt;/span&gt;&lt;span class="s"&gt;S&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Traditional JavaScript code is represented as a bytecode or an AST, and then executed in a &lt;em&gt;virtual machine&lt;/em&gt; or further compiled into machine code. When JavaScript interprets code, it executes roughly the following steps: &lt;em&gt;parsing&lt;/em&gt; and &lt;em&gt;preprocessing&lt;/em&gt;, &lt;em&gt;scope analysis&lt;/em&gt;, and &lt;em&gt;bytecode or translation to native&lt;/em&gt;. Just a note: the JavaScript engine represents bytecode using &lt;a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Internals/Bytecode"&gt;SpiderMonkey&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;So we see that when modern languages choose the way they compile or interpret code, they are trading off with the speed they want things to run. Since browsers are preoccupied with delivering content the faster they can,  this is a fundamental concept.&lt;/p&gt;
-&lt;h3&gt;Method JITs and Tracing JITs&lt;/h3&gt;
-&lt;p&gt;To speed things up, instead of having the code being parsed and then executed (&lt;a href="http://en.wikipedia.org/wiki/Ahead-of-time_compilation"&gt;one at time&lt;/a&gt;),  &lt;strong&gt;dynamic translators&lt;/strong&gt;  (&lt;em&gt;Just-in-time&lt;/em&gt; translators, or JIT) can be used. JITs &lt;em&gt;translate intermediate representation into machine language  at runtime&lt;/em&gt;. They have the efficiency of running native code with the cost of startup time plus increased memory (when the bytecode or AST are first compiled).&lt;/p&gt;
-&lt;p&gt;Engines have different policies on code generation, which can roughly be grouped into types: &lt;strong&gt;tracing&lt;/strong&gt; and &lt;strong&gt;method&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Method JITs&lt;/strong&gt; emit native code for every block (method) of code and update references dynamically. Method JITs can implement an &lt;em&gt;inline cache&lt;/em&gt; for rewriting type lookups at runtime.&lt;/p&gt;
-&lt;p&gt;In &lt;strong&gt;tracing JITs&lt;/strong&gt;, native code is only emitted when a certain block (method) is considered &lt;em&gt;important&lt;/em&gt;. An example is given by traditional JavaScript: if you load a script with functions that are never used, they are never compiled. Additionally, in JavaScript a  &lt;em&gt;cache&lt;/em&gt; is usually implemented due to the nature of its &lt;em&gt;dynamic typing system&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;As we will see below, V8 performs direct JIT compilation from  (JavaScript) source code to native machine code (IA-32, x86-64, ARM, or MIPS ISAs),  &lt;strong&gt;without transforming it to bytecode first&lt;/strong&gt;. In addition, V8 performs  dynamic several optimizations at runtime (including &lt;strong&gt;inline caching&lt;/strong&gt;). But let's not get ahead of ourselves! Also,  as a note, Google has implemented a technology called &lt;a href="http://code.google.com/p/nativeclient/"&gt;&lt;strong&gt;Native Client&lt;/strong&gt;&lt;/a&gt; (NaCl), which  allows one to provide compiled code to the  Chrome browser.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h2&gt;The way JavaScript rolls...&lt;/h2&gt;
-&lt;p&gt;JavaScript's integration with &lt;a href="http://en.wikipedia.org/wiki/Netscape_Navigator"&gt;Netscape Navigator&lt;/a&gt; in the mid-90s made it easier for developers to access HTML page elements such as &lt;em&gt;forms&lt;/em&gt;, &lt;em&gt;frames&lt;/em&gt;, and &lt;em&gt;images&lt;/em&gt;. This was essential for JavaScript's accession to become the most popular scripting engine for the web.&lt;/p&gt;
-&lt;p&gt;However, the language's high dynamical behavior (that I'm briefly discussing here) came with a price: in the mid-2000s browsers had very slow  implementations that did not scale with code size or &lt;em&gt;object allocation&lt;/em&gt;. Issues such as &lt;em&gt;memory leaks&lt;/em&gt; when running web apps were becoming mainstream. It was clear that things would only get worse and a new JavaScript engine was a need.&lt;/p&gt;
-&lt;h3&gt;JavaScript's Structure&lt;/h3&gt;
-&lt;p&gt;In JavaScript, every object has a &lt;em&gt;prototype&lt;/em&gt;, and the prototype is also an object. All JavaScript objects inherit their properties and methods from their prototype.&lt;/p&gt;
-&lt;p&gt;So, for example, supposing an application that has an object &lt;em&gt;Point&lt;/em&gt; (borrowed from the &lt;a href="https://developers.google.com/v8/design"&gt;official documentation&lt;/a&gt;):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;We can create several objects:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;And we can access the propriety &lt;code&gt;x&lt;/code&gt; in these object by:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;In the above implementation, we would have two different Point objects that do not share any structure. This is because JavaScript is &lt;strong&gt;classless&lt;/strong&gt;: you create  new objects on the fly and dynamically add or remove proprieties. Functions can move from an object to another. Objects with same type can appear in the same sites in the program with no constraints.&lt;/p&gt;
-&lt;p&gt;Furthermore, to store their object proprieties, most JavaScript engines use a &lt;em&gt;dictionary-like data structure&lt;/em&gt;. Each property access demands a dynamic lookup to resolve their location in memory. This contrasts  &lt;em&gt;static&lt;/em&gt; languages such as Java, where instance variables are located at fixed offsets determined by the compiler (due to the &lt;em&gt;fixed&lt;/em&gt; object layout by the &lt;em&gt;object's class&lt;/em&gt;). In this case, access is given by a simple memory load or store (a single instruction).&lt;/p&gt;
-&lt;h3&gt;JavaScript's Garbage Collection&lt;/h3&gt;
-&lt;p&gt;Garbage collection is a form of &lt;em&gt;automatic memory management&lt;/em&gt;: an attempt to reclaim the memory occupied by objects that are not being used any longer (&lt;em&gt;i.e.&lt;/em&gt;, if an object loses its reference, the object's memory has to be reclaimed).&lt;/p&gt;
-&lt;p&gt;The other possibility is &lt;em&gt;manual memory management&lt;/em&gt;, which requires the developer to specify which objects need to be deallocated. However, manual garbage collection can result in bugs such as:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Dangling pointers&lt;/strong&gt;: when a piece of memory is freed while there are still pointers to it.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Double free bugs&lt;/strong&gt;: when the program tries to free a region of memory that it had already freed.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Memory leaks&lt;/strong&gt;: when the program fails to free memory occupied by an object that had became unreachable, leading to memory exhaustion.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;As one could guess, JavaScript has automatic memory management. Actually, the core design flaw of traditional JavaScript engines is &lt;strong&gt;bad garbage collection behavior&lt;/strong&gt;. The problem is that JavaScript engines do not know exactly where all the pointers are, and they will search through the entire execution stack to see what data looks like pointers (for instance, integers can look like a pointer to an address in the heap).&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h2&gt;Introducing V8&lt;/h2&gt;
-&lt;p&gt;A solution for the issues presented above came from Google,  with  the &lt;strong&gt;V8 Engine&lt;/strong&gt;. V8 is an &lt;a href="https://code.google.com/p/v8/"&gt;open source JavaScript engine&lt;/a&gt; written in C++ that gave birth to Chrome. V8 has a way to categorize the highly-dynamic JavaScript objects into classes, bringing techniques from static class-based languages. In addition, as I mentioned in the the beginning, V8 compiles JavaScript to native machine code before executing it.&lt;/p&gt;
-&lt;p&gt;In terms of performance, besides direct compilation to native code, three main features in V8 are fundamental:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="n"&gt;Hidden&lt;/span&gt; &lt;span class="n"&gt;classes&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-
-&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="n"&gt;In&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="n"&gt;caching&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;optimization&lt;/span&gt; &lt;span class="n"&gt;technique&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-
-&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="n"&gt;Efficient&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;management&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;garbage&lt;/span&gt; &lt;span class="n"&gt;collection&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Let's take a look at each of them.&lt;/p&gt;
-&lt;h3&gt;V8's Hidden Class&lt;/h3&gt;
-&lt;p&gt;In V8, as execution goes on, objects that end up with the same properties will share the same &lt;strong&gt;hidden class&lt;/strong&gt;. This way the engine  applies dynamic optimizations.&lt;/p&gt;
-&lt;p&gt;Consider the Point example from before: we have two different objects, &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;. Instead of having them completely independent, V8 makes them share a hidden class. So instead of creating two objects, we have &lt;em&gt;three&lt;/em&gt;. The hidden class shows that both objects have the same proprieties and an object changes its hidden class when a new property is added.&lt;/p&gt;
-&lt;p&gt;So, for our example, if another Point object is created:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Initially the Point object has no properties so the newly created object refers to the initial class &lt;strong&gt;C0&lt;/strong&gt;. The value is stored at offset zero of  the Point object.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;When property &lt;code&gt;x&lt;/code&gt; is added, V8 follows the hidden class transition from &lt;strong&gt;C0&lt;/strong&gt; to &lt;strong&gt;C1&lt;/strong&gt; and writes the value of &lt;code&gt;x&lt;/code&gt; at the offset specified by &lt;strong&gt;C1&lt;/strong&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;When property &lt;code&gt;y&lt;/code&gt; is added, V8 follows the hidden class transition from &lt;strong&gt;C1&lt;/strong&gt; to &lt;strong&gt;C2&lt;/strong&gt; and writes the value of &lt;code&gt;y&lt;/code&gt; at the offset specified by &lt;strong&gt;C2&lt;/strong&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Instead of having a generic lookup for a propriety, V8  generates an efficient machine code to search the propriety. The machine code generated for accessing &lt;code&gt;x&lt;/code&gt; is something like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# ebx = the point object&lt;/span&gt;
-&lt;span class="n"&gt;cmp&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ebx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;offset&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;cached&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="n"&gt;jne&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kr"&gt;inline&lt;/span&gt; &lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;miss&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="n"&gt;mv&lt;/span&gt; &lt;span class="n"&gt;eax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ebx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;cached&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;offset&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Instead of a complicated lookup at the propriety, the propriety reading translates into three machine operations!&lt;/p&gt;
-&lt;p&gt;It might seem inefficient to create a new hidden class whenever a property is added. However, because of the class transitions the hidden classes can be reused several times. It turns out that most of the access to objects are within the same hidden class.&lt;/p&gt;
-&lt;h3&gt;V8's Inline caching&lt;/h3&gt;
-&lt;p&gt;When the engine runs the code, it does not know about the hidden class. V8 optimizes property access by predicting that the class will also be used for all future objects accessed in the same section of code, and adds the information to the &lt;strong&gt;inline cache code&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Inline caching is a class-based object-oriented optimization technique employed by some language runtimes.  The concept of inline caching is based on the  observation that the objects that occur at a particular call site are often of the same type. Therefore, performance can be increased by storing the result of a method lookup &lt;em&gt;inline&lt;/em&gt; (at the call site).&lt;/p&gt;
-&lt;p&gt;If V8 has predicted correctly the property's value, this is assigned in a single operation. If the prediction is incorrect, V8 patches the code to remove the optimization. To facilitate this process, call sites are assigned in four different states:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Unitilized&lt;/strong&gt;: Initial state, for any object that was never seen before.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Pre-monomorphic&lt;/strong&gt;: Behaves like an uninitialized but do a one-time lookup and  rewrite it to the monophorfic state. It's good for code executed only once (such as initialization and setup).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Monomphorpic&lt;/strong&gt;: Very fast. Recodes the hidden class of the object already seen.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Megamorphic&lt;/strong&gt;: Like the initialized stub (since it always does runtime lookup) except that it never replaces itself.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;In conclusion, the combination of using hidden classes to access properties with inline caching (plus  machine code generation) does optimize in cases where  type of objects are frequently created and accessed in a similar way. This greatly improves the speed at which most JavaScript code can be executed.&lt;/p&gt;
-&lt;h3&gt;V8's Efficient Garbage Collecting&lt;/h3&gt;
-&lt;p&gt;In V8, a &lt;strong&gt;precise garbage collection&lt;/strong&gt; is used. &lt;em&gt;Every pointer's location are known on the execution stack&lt;/em&gt;, so V8 is able to implement incremental garbage collection. V8 can migrate an object to another place and just rewire the pointer.&lt;/p&gt;
-&lt;p&gt;In summary, &lt;a href="https://developers.google.com/v8/design#garb_coll"&gt;V8's garbage collection&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="n"&gt;stops&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="n"&gt;execution&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;performing&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;garbage&lt;/span&gt; &lt;span class="n"&gt;collection&lt;/span&gt; &lt;span class="n"&gt;cycle&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-
-&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="n"&gt;processes&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt; &lt;span class="n"&gt;part&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt; &lt;span class="n"&gt;heap&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;most&lt;/span&gt; &lt;span class="n"&gt;collection&lt;/span&gt; &lt;span class="n"&gt;cycles&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;minimizing&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;impact&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;stopping&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;application&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-
-&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="n"&gt;always&lt;/span&gt; &lt;span class="n"&gt;knows&lt;/span&gt; &lt;span class="n"&gt;exactly&lt;/span&gt; &lt;span class="n"&gt;where&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;pointers&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;avoiding&lt;/span&gt; &lt;span class="n"&gt;falsely&lt;/span&gt; &lt;span class="n"&gt;identifying&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;pointers&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;hr /&gt;
-&lt;p&gt;All right, enough of digression. This was a preparation for the second post in the series, where I go through the security features in Chrome (soon to come).&lt;/p&gt;</summary><category term="V8"></category><category term="JIT"></category><category term="JavaScript"></category><category term="garbage_collection"></category><category term="cache"></category><category term="bytecode"></category><category term="Chrome"></category><category term="Python"></category></entry></feed>
+&lt;p&gt;&lt;a href="https://www.digicert.com/help/"&gt;SSL Certificate Checker&lt;/a&gt;&lt;/p&gt;</summary><category term="CRL"></category><category term="CRLSets"></category><category term="OCSP"></category><category term="TLS"></category><category term="Chrome"></category></entry></feed>
