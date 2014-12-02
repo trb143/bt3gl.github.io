@@ -142,7 +142,7 @@
 &lt;p&gt;This script pretty much gives away all the requests that you can issue to inspect the database.&lt;/p&gt;
 &lt;p&gt;In addition, a crucial detail is to understand how the client encrypts the commands using the &lt;a href="http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_codebook_.28ECB.29"&gt;electronic codebook (ECB)&lt;/a&gt; block cipher type. In this type of operation the message is divided into blocks that are encrypted separately (&lt;a href="https://www.dlitz.net/software/pycrypto/api/2.6/"&gt;PyCryptos's AES.MODE_ECB&lt;/a&gt;).&lt;/p&gt;
 &lt;h3&gt;The PCAP File&lt;/h3&gt;
-&lt;p&gt;The last file was a &lt;strong&gt;pcap&lt;/strong&gt; dump. When opening it with &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;Wireshark&lt;/a&gt;, I verified it was really short, and the contend was simply a &lt;a href="http://www.inetdaemon.com/tutorials/internet/tcp/3-way_handshake.shtml"&gt;TCP handshake&lt;/a&gt;. Right-clicking some packet and selecting &lt;em&gt;Follow TCP Stream&lt;/em&gt; returned the dump of the connection suggested by the &lt;strong&gt;client.py&lt;/strong&gt; script:&lt;/p&gt;
+&lt;p&gt;The last file was a &lt;strong&gt;pcap&lt;/strong&gt; dump. When opening it with &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;Wireshark&lt;/a&gt;, I verified it was really short, and the content was simply a &lt;a href="http://www.inetdaemon.com/tutorials/internet/tcp/3-way_handshake.shtml"&gt;TCP handshake&lt;/a&gt;. Right-clicking some packet and selecting &lt;em&gt;Follow TCP Stream&lt;/em&gt; returned the dump of the connection suggested by the &lt;strong&gt;client.py&lt;/strong&gt; script:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/2Y6aaW1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;However, we see that the database has already an entry for flag:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -165,7 +165,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;However we do not have the AES key used by the server, only an example of communication given by the PCAP file. How do we get to send a &lt;strong&gt;GET flag&lt;/strong&gt; message?&lt;/p&gt;
+&lt;p&gt;However, we do not have the AES key used by the server, only an example of communication given by the PCAP file. How do we get to send a &lt;strong&gt;GET flag&lt;/strong&gt; message?&lt;/p&gt;
 &lt;p&gt;The first thing that comes  to our minds is to use the network dump to replay the message, re-shaping it somehow to have a &lt;em&gt;GET flag&lt;/em&gt;.  Remember that the blocks have a size of 16, and we see two blocks that are particularly interesting:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ION&lt;/span&gt; &lt;span class="n"&gt;HEX&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;nMD5&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
