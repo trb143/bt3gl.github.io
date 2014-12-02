@@ -166,7 +166,7 @@
 
 
 &lt;p&gt;However we do not have the AES key used by the server, only an example of communication given by the PCAP file. How do we get to send a &lt;strong&gt;GET flag&lt;/strong&gt; message?&lt;/p&gt;
-&lt;p&gt;The first thing comes to our minds is to use the network dump to replay the message, re-shaping it somehow to have a &lt;em&gt;GET flag&lt;/em&gt;. The blocks have a size of 16, with two particularly interesting:&lt;/p&gt;
+&lt;p&gt;The first thing that comes  to our minds is to use the network dump to replay the message, re-shaping it somehow to have a &lt;em&gt;GET flag&lt;/em&gt;.  Remember that the blocks have a size of 16, and we see two blocks that are particularly interesting:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ION&lt;/span&gt; &lt;span class="n"&gt;HEX&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;nMD5&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
