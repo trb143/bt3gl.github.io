@@ -167,12 +167,14 @@
 
 &lt;p&gt;However, we do not have the AES key used by the server, only an example of communication given by the PCAP file. How do we get to send a &lt;strong&gt;GET flag&lt;/strong&gt; message?&lt;/p&gt;
 &lt;p&gt;The first thing that comes  to our minds is to use the network dump to replay the message, re-shaping it somehow to have a &lt;em&gt;GET flag&lt;/em&gt;.  Remember that the blocks have a size of 16, and we see two blocks that are particularly interesting:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ION&lt;/span&gt; &lt;span class="n"&gt;HEX&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;nMD5&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ION&lt;/span&gt; &lt;span class="n"&gt;HEX&lt;/span&gt;
+&lt;span class="n"&gt;MD5&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;and&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;edisStore&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;nGET&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;edisStore&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="n"&gt;GET&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -184,8 +186,8 @@
 &lt;p&gt;We are able to learn that if we send a &lt;strong&gt;command without arguments&lt;/strong&gt; or an &lt;strong&gt;invalid command&lt;/strong&gt;, the argument variables (&lt;em&gt;args&lt;/em&gt;) is not overwritten: it gets the &lt;strong&gt;same args value from the previous valid request&lt;/strong&gt;! That's wonderful!&lt;/p&gt;
 &lt;p&gt;Now the solution is clear:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;We send the invalid command and a valid command with the argument that we will keep: &lt;code&gt;ION HEX&lt;/code&gt; + &lt;code&gt;MD5 flag&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;We send the invalid command and a command without an argument: &lt;code&gt;edisStore...&lt;/code&gt; + &lt;code&gt;GET&lt;/code&gt; (this will get the last valid argument (&lt;em&gt;flag&lt;/em&gt;), returning us the flag!).&lt;/li&gt;
+&lt;li&gt;We send the invalid command and a valid command with the argument that we will keep: &lt;code&gt;ION HEX\nMD5 flag&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;We send the invalid command and a command without an argument: &lt;code&gt;edisStore...\nGET&lt;/code&gt; (this will get the last valid argument (&lt;em&gt;flag&lt;/em&gt;), returning us the flag!).&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;This packets can be sent in several ways, adapting the original script.&lt;/p&gt;
 &lt;hr /&gt;</summary><category term="CTF"></category><category term="Redis"></category><category term="Python"></category><category term="NoSQL"></category><category term="ECB"></category><category term="AES"></category><category term="PyCrypto"></category><category term="socket"></category><category term="Wireshark"></category></entry><entry><title>The First Stripe CTF</title><link href="http://bt3gl.github.io/the-first-stripe-ctf.html" rel="alternate"></link><updated>2014-11-24T04:20:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-11-24:the-first-stripe-ctf.html</id><summary type="html">&lt;p&gt;Although I did not have the chance of playing in neither of the three Stripe CTFs, I was quite enthralled when I took a look at the problems. I decided to solve them anyway and I am writing this series of writeups.&lt;/p&gt;
