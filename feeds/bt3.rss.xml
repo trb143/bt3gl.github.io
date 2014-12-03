@@ -182,14 +182,12 @@
 
 
 &lt;p&gt;We are able to learn that if we send a &lt;strong&gt;command without arguments&lt;/strong&gt; or an &lt;strong&gt;invalid command&lt;/strong&gt;, the argument variables (&lt;em&gt;args&lt;/em&gt;) is not overwritten: it gets the &lt;strong&gt;same args value from the previous valid request&lt;/strong&gt;! That's wonderful!&lt;/p&gt;
-&lt;p&gt;Now the solution is very clear:&lt;/p&gt;
+&lt;p&gt;Now the solution is clear:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;We send the invalid command: &lt;code&gt;ION HEX&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;We send the valid command with the argument we want to keep: &lt;code&gt;ION HEX&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;We send the invalid command: &lt;code&gt;edisStore...&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;We send the command without arguments: &lt;code&gt;GET&lt;/code&gt;, which will get the last valid argument (&lt;em&gt;flag&lt;/em&gt;), returning us the flag!&lt;/li&gt;
+&lt;li&gt;We send the invalid command and a valid command with the argument that we will keep: &lt;code&gt;ION HEX&lt;/code&gt; + &lt;code&gt;MD5 flag&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;We send the invalid command and a command without an argument: &lt;code&gt;edisStore...&lt;/code&gt; + &lt;code&gt;GET&lt;/code&gt; (this will get the last valid argument (&lt;em&gt;flag&lt;/em&gt;), returning us the flag!).&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Awesome!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This packets can be sent in several ways, adapting the original script.&lt;/p&gt;
 &lt;hr /&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Mon, 01 Dec 2014 02:00:00 -0500</pubDate><guid>tag:bt3gl.github.io,2014-12-01:on-redis-aes-encryption-in-the-9447s-ctf.html</guid><category>CTF</category><category>Redis</category><category>Python</category><category>NoSQL</category><category>ECB</category><category>AES</category><category>PyCrypto</category><category>socket</category><category>Wireshark</category></item><item><title>The First Stripe CTF</title><link>http://bt3gl.github.io/the-first-stripe-ctf.html</link><description>&lt;p&gt;Although I did not have the chance of playing in neither of the three Stripe CTFs, I was quite enthralled when I took a look at the problems. I decided to solve them anyway and I am writing this series of writeups.&lt;/p&gt;
 &lt;p&gt;This post is about the first &lt;a href="https://stripe.com/"&gt;Stripe&lt;/a&gt; CTF, which &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;happened in the beginning of 2012&lt;/a&gt;. I was able to fully reproduce the game by using a &lt;a href="http://www.janosgyerik.com/hacking-contest-on-a-live-cd/"&gt;Live CD Image&lt;/a&gt;. Other options were &lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;direct download and BitTorrent&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This CTF was composed of 6 levels, and its style was very similar to other Wargames I've talked about before in this blog (for instance, check &lt;a href="http://overthewire.org/wargames/"&gt;OverTheWire's&lt;/a&gt; &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Natas&lt;/a&gt;, &lt;a href="http://bt3gl.github.io/smashing-the-stack-for-fun-or-wargames-narnia-0-4.html"&gt;Narnia&lt;/a&gt;, and &lt;a href="http://bt3gl.github.io/cryptography-war-beating-krypton.html"&gt;Krypton&lt;/a&gt;).&lt;/p&gt;
