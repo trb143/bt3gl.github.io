@@ -380,7 +380,7 @@ ACK
 
 
 &lt;h3&gt;Firing Up a Server and a Client&lt;/h3&gt;
-&lt;p&gt;Now we can put everything together and run the script as a server in a terminal and as a client in another. As a server:&lt;/p&gt;
+&lt;p&gt;Now we can put everything together and run the script as a server in a terminal and as a client in another. Running as a server:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;netcat_awesome.py -l -p 9000 -c
 &lt;/pre&gt;&lt;/div&gt;
 
