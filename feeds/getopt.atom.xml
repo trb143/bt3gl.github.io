@@ -601,7 +601,7 @@ Transfer-Encoding: chunked
 
 &lt;p&gt;&lt;strong&gt; Fun, isn't? Now check the next post about Python's &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-scapy-module.html"&gt;scapy module&lt;/a&gt; and &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-paramiko-module.html"&gt;paramiko module&lt;/a&gt;!&lt;/strong&gt;&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h2&gt;References:&lt;/h2&gt;
+&lt;h2&gt;Further References:&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
