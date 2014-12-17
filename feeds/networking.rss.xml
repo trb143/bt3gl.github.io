@@ -92,10 +92,10 @@
 
 &lt;p&gt;The magic happens in the &lt;strong&gt;ssh_client&lt;/strong&gt; function, which performs the following steps:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Create a paramiko ssh client object.&lt;/li&gt;
-&lt;li&gt;Check if the key variable is not empty, and in this case, it will load it. If the key is not found, the program sets the policy to accept the SSH key for the SSH server (if we don't do this, an exception is raised saying that the server is not found in known_hosts).&lt;/li&gt;
-&lt;li&gt;Make the connection and create a session.&lt;/li&gt;
-&lt;li&gt;Check if this section is active and run the command we want.&lt;/li&gt;
+&lt;li&gt;Creates a paramiko ssh client object.&lt;/li&gt;
+&lt;li&gt;Checks if the key variable is not empty, and in this case,  loads it. If the key is not found, the program sets the policy to accept the SSH key for the SSH server (if we don't do this, an exception is raised saying that the server is not found in known_hosts).&lt;/li&gt;
+&lt;li&gt;Makes the connection and creates a session.&lt;/li&gt;
+&lt;li&gt;Checks whether this section is active and run the command we want.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Let's see how this works in the code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ssh_client&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;passwd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
