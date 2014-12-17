@@ -880,8 +880,8 @@ Transfer-Encoding: chunked
 &lt;p&gt;(Remember that all the source codes in this post are available in my &lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;github repo&lt;/a&gt;).&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;A Simple SSH Client&lt;/h2&gt;
-&lt;p&gt;The first program we are going to write is a SSH client that makes a connection to a SSH server and runs a single command.&lt;/p&gt;
-&lt;p&gt;The first thing to do is to install &lt;strong&gt;paramiko&lt;/strong&gt; in our environment:&lt;/p&gt;
+&lt;p&gt;The first program we are going to write is a SSH client that makes a connection to any available SSH server to run a single command.&lt;/p&gt;
+&lt;p&gt;But before we start, the first thing to do is to install &lt;strong&gt;paramiko&lt;/strong&gt; in our environment:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install paramiko
 Downloading/unpacking paramiko
 Installing collected packages: paramiko, ecdsa
@@ -892,7 +892,7 @@ Cleaning up...
 
 
 &lt;h3&gt;Writing the Script&lt;/h3&gt;
-&lt;p&gt;Now we are ready to create our script. The first thing we write is our &lt;strong&gt;usage&lt;/strong&gt; function. &lt;strong&gt;Paramiko&lt;/strong&gt; supports authentication with both a password and/or a identity file (a key). Therefore, our usage function has options for port, username, the identity file, password, and the command we want to run in the server:&lt;/p&gt;
+&lt;p&gt;Now we are ready to create our script. We start with a &lt;strong&gt;usage&lt;/strong&gt; function. Since &lt;strong&gt;paramiko&lt;/strong&gt; supports authentication with both a password and/or a identity file (a key), our usage function helps with the arguments for these two information plus the port, username, and the command we want to run:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;usage&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Usage: ssh_client.py  &amp;lt;IP&amp;gt; -p &amp;lt;PORT&amp;gt; -u &amp;lt;USER&amp;gt; -c &amp;lt;COMMAND&amp;gt; -a &amp;lt;PASSWORD&amp;gt; -k &amp;lt;KEY&amp;gt; -c &amp;lt;COMMAND&amp;gt;&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;  -a                  password authentication&amp;quot;&lt;/span&gt;
@@ -907,16 +907,15 @@ Cleaning up...
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Moving to the &lt;strong&gt;main&lt;/strong&gt; function. Once more, we are going to use &lt;strong&gt;getopt&lt;/strong&gt; module to parse the arguments. That's basically what the main function does: parse the arguments, and send to the &lt;strong&gt;ssh_client&lt;/strong&gt; function:&lt;/p&gt;
+&lt;p&gt;Moving to the &lt;strong&gt;main&lt;/strong&gt; function, we are going to use &lt;strong&gt;getopt&lt;/strong&gt; module to parse the arguments. That's basically what the main function does: parse the arguments, sending them to the &lt;strong&gt;ssh_client&lt;/strong&gt; function:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;paramiko&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getopt&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
 
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:]):&lt;/span&gt;
         &lt;span class="n"&gt;usage&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
-    &lt;span class="c"&gt;# parse the arguments&lt;/span&gt;
     &lt;span class="n"&gt;IP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;0.0.0.0&amp;#39;&lt;/span&gt;
     &lt;span class="n"&gt;USER&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
     &lt;span class="n"&gt;PASSWORD&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
@@ -931,7 +930,6 @@ Cleaning up...
         &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;usage&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
-    &lt;span class="c"&gt;# Get user and ip&lt;/span&gt;
     &lt;span class="n"&gt;IP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[*] Initializing connection to &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;
 
@@ -950,7 +948,6 @@ Cleaning up...
         &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;This option does not exist!&amp;quot;&lt;/span&gt;
             &lt;span class="n"&gt;usage&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;USER&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[*] User set to &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;USER&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;PORT&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -975,8 +972,8 @@ Cleaning up...
 
 &lt;p&gt;The magic happens in the &lt;strong&gt;ssh_client&lt;/strong&gt; function, which performs the following steps:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Creates a paramiko ssh client object.&lt;/li&gt;
-&lt;li&gt;Check if the key has is not empty, and in this case load it. If this key is not found, we set the policy to accept the SSH key for the SSH server. If we don't do this, the program will raise an exception saying that the server is not found in known_hosts.&lt;/li&gt;
+&lt;li&gt;Create a paramiko ssh client object.&lt;/li&gt;
+&lt;li&gt;Check if the key variable is not empty, and in this case, it will load it. If the key is not found, the program sets the policy to accept the SSH key for the SSH server (if we don't do this, an exception is raised saying that the server is not found in known_hosts).&lt;/li&gt;
 &lt;li&gt;Make the connection and create a session.&lt;/li&gt;
 &lt;li&gt;Check if this section is active and run the command we want.&lt;/li&gt;
 &lt;/ol&gt;
@@ -1001,7 +998,7 @@ Cleaning up...
 
 &lt;p&gt;Easy, huh?&lt;/p&gt;
 &lt;h3&gt;Running the Script&lt;/h3&gt;
-&lt;p&gt;Now, we are ready to run our script. If we use the example in the usage function (and supposing the account exists in that host), we will see the following:&lt;/p&gt;
+&lt;p&gt;We are ready to run our script. If we use the example in the usage function (and supposing the account exists in that host), we will see the following:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_client.py 129.49.76.26 -u buffy -p 22 -a killvampires  -c &lt;span class="nb"&gt;pwd&lt;/span&gt;
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Initializing connection to 129.49.76.26
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; User &lt;span class="nb"&gt;set &lt;/span&gt;to buffy
@@ -1015,11 +1012,15 @@ Cleaning up...
 
 &lt;hr /&gt;
 &lt;h2&gt;A SSH Server to Reverse a Client Shell&lt;/h2&gt;
-&lt;p&gt;What if we also control the SSH server and we can send commands to our SSH client? In the session we are going to write a &lt;strong&gt;class&lt;/strong&gt; for this server, with a little help of the &lt;strong&gt;socket&lt;/strong&gt; module.&lt;/p&gt;
-&lt;p&gt;This script is based in some of the &lt;a href="https://github.com/paramiko/paramiko/blob/master/demo"&gt;paramiko demos&lt;/a&gt; and we specifically use the key from their demo files (&lt;a href="https://github.com/paramiko/paramiko/blob/master/demos/test_rsa.key"&gt;download here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;What if we also control the SSH server and we can send commands to our SSH client? In the session we are going to write a &lt;strong&gt;class&lt;/strong&gt; for this server, with a little help of the &lt;strong&gt;socket&lt;/strong&gt; module, and be able to &lt;strong&gt;reverse the shell&lt;/strong&gt;!&lt;/p&gt;
+&lt;p&gt;As a note, this script is based in some of the &lt;a href="https://github.com/paramiko/paramiko/blob/master/demo"&gt;paramiko demos&lt;/a&gt; and we specifically use the key from their demo files (&lt;a href="https://github.com/paramiko/paramiko/blob/master/demos/test_rsa.key"&gt;download here&lt;/a&gt;).&lt;/p&gt;
 &lt;h3&gt;The SSH Server&lt;/h3&gt;
-&lt;p&gt;Let  us start to take a look in our server script. First we create a class &lt;strong&gt;Server&lt;/strong&gt; that issues a new thread event, check whether the session is valid, and performs authentication. Notice that for simplicity we are hardcoding the values for username, password and host key, which is never a good practice.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Server&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;paramiko&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ServerInterface&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;p&gt;In our server script, we first  create a class &lt;strong&gt;Server&lt;/strong&gt; that issues a new thread event, checking whether the session is valid, and performing authentication. Notice that for simplicity we are hard-coding the values for username, password and host key, which is never a good practice:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;HOST_KEY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;paramiko&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RSAKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;test_rsa.key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;USERNAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;buffy&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;PASSWORD&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;killvampires&amp;#39;&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Server&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;paramiko&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ServerInterface&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;event&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Event&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;check_channel_request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;chanid&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -1035,9 +1036,9 @@ Cleaning up...
 
 &lt;p&gt;Now, let's take a look at the &lt;strong&gt;main&lt;/strong&gt; function, which does the following:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;It creates a socket object to bind the host and port, so it can listen for incoming connections.&lt;/li&gt;
-&lt;li&gt;Once a connection is established (the client tries to connect to the server and the socket accepts the connection), it creates a &lt;strong&gt;paramiko&lt;/strong&gt; Transport object for this socket.&lt;/li&gt;
-&lt;li&gt;The program instantiate an &lt;strong&gt;Server&lt;/strong&gt; object and start and start the paramiko session with this object, trying to authenticate.&lt;/li&gt;
+&lt;li&gt;Create a socket object to bind the host and port, so it can listen for incoming connections.&lt;/li&gt;
+&lt;li&gt;Once a connection is established (the client tried to connect to the server and the socket accepted the connection), it creates a &lt;strong&gt;paramiko&lt;/strong&gt; Transport object for this socket.&lt;/li&gt;
+&lt;li&gt;The program instantiates a &lt;strong&gt;Server&lt;/strong&gt; object and starts the paramiko session with this object, performing the authentication.&lt;/li&gt;
 &lt;li&gt;Once the authentication is successful, the server starts a loop where it will get an input command from the user and issue in the client, reversing the shell!&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;paramiko&lt;/span&gt;
@@ -1045,10 +1046,6 @@ Cleaning up...
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
-
-&lt;span class="n"&gt;HOST_KEY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;paramiko&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RSAKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;test_rsa.key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;USERNAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;buffy&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;PASSWORD&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;killvampires&amp;#39;&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:]):&lt;/span&gt;
@@ -1111,8 +1108,8 @@ Cleaning up...
 
 
 &lt;h3&gt;The SSH Client&lt;/h3&gt;
-&lt;p&gt;The last piece for this connection is the SSH client being able to receive commands from the server.&lt;/p&gt;
-&lt;p&gt;We are going to adapt the previous client script to receive these commands. All we need to do is add a loop in the session loop:&lt;/p&gt;
+&lt;p&gt;The last piece for our reversed shell is to make the SSH client to be able to receive commands from the server.&lt;/p&gt;
+&lt;p&gt;We are going to adapt the previous client script to receive several commands. All we need to do is to add a loop in the session:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;paramiko&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getopt&lt;/span&gt;
@@ -1183,7 +1180,7 @@ Cleaning up...
 
 
 &lt;h3&gt;Running both Scripts&lt;/h3&gt;
-&lt;p&gt;Now let's running each script in one terminal. First, the server:&lt;/p&gt;
+&lt;p&gt;Now let's run each script in one terminal. First, the server:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_server.py localhost 22
 &lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Listening &lt;span class="k"&gt;for &lt;/span&gt;connection ...
 &lt;/pre&gt;&lt;/div&gt;
