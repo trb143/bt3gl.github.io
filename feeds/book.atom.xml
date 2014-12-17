@@ -108,7 +108,7 @@ ACK
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now, back to the server server terminal we successfully see the established connection:&lt;/p&gt;
+&lt;p&gt;Now, back to the server  terminal, we successfully see the established connection:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python tcp_server.py
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Listening on 0.0.0.0:9090
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Accepted connection from: 127.0.0.1:44864
