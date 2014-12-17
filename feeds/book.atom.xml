@@ -601,7 +601,7 @@ Transfer-Encoding: chunked
 
 &lt;hr /&gt;
 &lt;h2&gt;Extra Stuff: The socket Object Methods&lt;/h2&gt;
-&lt;p&gt;Additionally, let's just take a quick look to all the methods available with the &lt;strong&gt;socket&lt;/strong&gt; object from the &lt;strong&gt;socket&lt;/strong&gt; module:&lt;/p&gt;
+&lt;p&gt;Additionally, let's  take a quick look to all the methods available with the &lt;strong&gt;socket&lt;/strong&gt; object from the &lt;strong&gt;socket&lt;/strong&gt; module. I think it's useful to have an idea of this list:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;socket.accept()&lt;/strong&gt;: Accept a connection.&lt;/p&gt;
