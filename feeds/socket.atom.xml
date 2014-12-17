@@ -119,7 +119,7 @@ ACK
 &lt;p&gt;Awesome!&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;An UDP Client&lt;/h2&gt;
-&lt;p&gt;UDP is an alternative protocol to TCP. Like TCP, it is used for packet transfer from one host to another. Unlike TCP, it is a connectionless and non-stream oriented protocol. This means that an UDP server receives incoming packets from any host without establishing a reliable pipe type of connection.&lt;/p&gt;
+&lt;p&gt;UDP is an alternative protocol to TCP. Like TCP, it is used for packet transfer from one host to another. Unlike TCP, it is a &lt;em&gt;connectionless&lt;/em&gt; and &lt;em&gt;non-stream oriented protocol&lt;/em&gt;. This means that an UDP server receives incoming packets from any host without establishing a reliable pipe type of connection.&lt;/p&gt;
 &lt;p&gt;We can make a few changes in the previous script to create a UDP client connection:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;we  use &lt;strong&gt;SOCK_DGRAM&lt;/strong&gt; instead of &lt;strong&gt;SOCK_STREAM&lt;/strong&gt;,&lt;/li&gt;
