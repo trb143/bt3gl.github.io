@@ -567,7 +567,7 @@ Transfer-Encoding: chunked
 
 
 &lt;h3&gt;Firing Up our Proxy&lt;/h3&gt;
-&lt;p&gt;Now we just need to run it with some server. For example, for a FTP server:&lt;/p&gt;
+&lt;p&gt;Now we just need to run our script with some server. For example, for a FTP server at the standrard port 21:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo ./tcp_proxy.py localhost 21 ftp.target 21 True
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Listening on localhost:21
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
