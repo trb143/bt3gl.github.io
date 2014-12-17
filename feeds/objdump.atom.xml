@@ -475,20 +475,12 @@ chmod +x date
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;p&gt;&lt;strong&gt;And we get our flag! This was really fun! :) Stay tuned, soon I'm writing about the other two CTFs!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;And we get our flag! This was really fun! :) &lt;/strong&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;Andy Brody's Post&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://github.com/stripe-ctf"&gt;Stripe CTF Repository&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Pickle Modules is unsafe! &lt;a href="https://blog.nelhage.com/2011/03/exploiting-pickle/"&gt;Here&lt;/a&gt; and &lt;a href="http://penturalabs.wordpress.com/2011/03/17/python-cpickle-allows-for-arbitrary-code-execution/"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Some other writeups: &lt;a href="http://blog.delroth.net/2012/03/my-stripe-ctf-writeup/"&gt;here&lt;/a&gt;, &lt;a href="https://khr0x40sh.wordpress.com/2012/02/"&gt;here&lt;/a&gt;, &lt;a href="http://du.nham.ca/blog/posts/2012/03/20/stripe-ctf/"&gt;here&lt;/a&gt;, and &lt;a href="https://isisblogs.poly.edu/2012/03/23/stripe-ctf-level01/"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stripe.com/blog/capture-the-flag-wrap-up"&gt;Andy Brody's Post&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/stripe-ctf"&gt;Stripe CTF Repository&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Pickle Modules is unsafe! &lt;a href="https://blog.nelhage.com/2011/03/exploiting-pickle/"&gt;Here&lt;/a&gt; and &lt;a href="http://penturalabs.wordpress.com/2011/03/17/python-cpickle-allows-for-arbitrary-code-execution/"&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Some other writeups: &lt;a href="http://blog.delroth.net/2012/03/my-stripe-ctf-writeup/"&gt;here&lt;/a&gt;, &lt;a href="https://khr0x40sh.wordpress.com/2012/02/"&gt;here&lt;/a&gt;, &lt;a href="http://du.nham.ca/blog/posts/2012/03/20/stripe-ctf/"&gt;here&lt;/a&gt;, and &lt;a href="https://isisblogs.poly.edu/2012/03/23/stripe-ctf-level01/"&gt;here&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="SQLi"></category><category term="PHP"></category><category term="Wargames"></category><category term="CTF"></category><category term="Burp"></category><category term="curl"></category><category term="assembly"></category><category term="shellcode"></category><category term="gdb"></category><category term="C"></category><category term="objdump"></category><category term="Timing_attack"></category><category term="Buffer_overflow"></category><category term="Stack_overflow"></category><category term="Python"></category><category term="Stripe"></category></entry></feed>
