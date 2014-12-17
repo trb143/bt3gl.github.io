@@ -11,7 +11,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The &lt;strong&gt;AF_INET&lt;/strong&gt; parameter is used to define the standard IPv4 address and the &lt;strong&gt;SOCK_STREAM&lt;/strong&gt; parameters indicate it is a &lt;strong&gt;TCP&lt;/strong&gt; connection.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;AF_INET&lt;/strong&gt; parameter is used to define the standard IPv4 address (other options are &lt;em&gt;AF_UNIX&lt;/em&gt; and &lt;em&gt;AF_INET6&lt;/em&gt;_. The &lt;strong&gt;SOCK_STREAM&lt;/strong&gt; parameters indicate it is a &lt;strong&gt;TCP&lt;/strong&gt; connection (other options are &lt;em&gt;SOCK_DGRAM&lt;/em&gt;,  &lt;em&gt;SOCK_RAW&lt;/em&gt;, &lt;em&gt;SOCK_RDM&lt;/em&gt;, &lt;em&gt;SOCK_SEQPACKET&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;The next things you want to do is to send and receive data, using socket's &lt;strong&gt;send&lt;/strong&gt; and &lt;strong&gt;recv&lt;/strong&gt; functions.&lt;/p&gt;
 &lt;p&gt;Let's put everything together to create our client script:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
@@ -603,6 +603,7 @@ Transfer-Encoding: chunked
 &lt;hr /&gt;
 &lt;h2&gt;Further References:&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.python.org/2/library/socket.html"&gt;Python's Socket Documentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/OffensivePython/Pinject/blob/master/pinject.py"&gt;A TCP Packet Injection tool&lt;/a&gt;.&lt;/li&gt;
