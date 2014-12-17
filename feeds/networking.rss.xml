@@ -342,7 +342,7 @@ ACK
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The &lt;strong&gt;threading&lt;/strong&gt; function calls &lt;strong&gt;client_handler&lt;/strong&gt; which will either upload a file, or execute a command (in a special shell):&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;threading&lt;/strong&gt; function calls &lt;strong&gt;client_handler&lt;/strong&gt; which will either upload a file, or execute a command (in a special shell named &lt;em&gt;NETCAT&lt;/em&gt;):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;client_handler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client_socket&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="n"&gt;UPLOAD&lt;/span&gt;
     &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="n"&gt;EXECUTE&lt;/span&gt;
