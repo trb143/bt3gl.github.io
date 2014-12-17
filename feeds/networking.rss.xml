@@ -199,7 +199,7 @@ ACK
 
 
 &lt;h2&gt;Parsing Arguments in the Main Function&lt;/h2&gt;
-&lt;p&gt;Now, before we dive in the functions, lets see what the main function does. First we define our constants which will carry the above options. Then we read the arguments and parse then using &lt;strong&gt;getopt&lt;/strong&gt;, following up by the handle of these arguments. Finally the program decide if it is a client or a server, with the option &lt;em&gt;LISTEN&lt;/em&gt;, running the appropriate function for each case:&lt;/p&gt;
+&lt;p&gt;Now, before we dive in each specific functions, lets see what the &lt;strong&gt;main&lt;/strong&gt; function does. First it reads the arguments and parses them using &lt;strong&gt;getopt&lt;/strong&gt;, following up by the handling of these arguments. Finally the program decide if it is a client or a server, with the option &lt;em&gt;LISTEN&lt;/em&gt;, running the appropriate function for each case:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getopt&lt;/span&gt;
