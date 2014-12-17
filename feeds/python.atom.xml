@@ -145,7 +145,7 @@ ACK
 
 &lt;hr /&gt;
 &lt;h2&gt;An UDP Server&lt;/h2&gt;
-&lt;p&gt;Below is an example of a very simple  UDP server. There is no listen or accept:&lt;/p&gt;
+&lt;p&gt;Below is an example of a very simple  UDP server. Notice that there is no &lt;strong&gt;listen&lt;/strong&gt; or &lt;strong&gt;accept&lt;/strong&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 
 &lt;span class="n"&gt;BIND_IP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;0.0.0.0&amp;#39;&lt;/span&gt;
@@ -165,7 +165,7 @@ ACK
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;You can test running the client in one terminal and the client in another.&lt;/p&gt;
+&lt;p&gt;You can test running the client in one terminal and the client in another. It works and it's cool!&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;A Very Simple Netcat Client&lt;/h2&gt;
 &lt;p&gt;Sometimes when you are penetrating a system, you wish you have &lt;a href="http://netcat.sourceforge.net/"&gt;netcat&lt;/a&gt;, which might be not installed. However, if you have Python, you can create a netcat network client and server.&lt;/p&gt;
