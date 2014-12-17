@@ -124,7 +124,7 @@ ACK
 &lt;ul&gt;
 &lt;li&gt;we  use &lt;strong&gt;SOCK_DGRAM&lt;/strong&gt; instead of &lt;strong&gt;SOCK_STREAM&lt;/strong&gt;,&lt;/li&gt;
 &lt;li&gt;because UDP is a connectionless protocol, we don't need to establish a connection beforehand, and&lt;/li&gt;
-&lt;li&gt;we use &lt;strong&gt;sendto&lt;/strong&gt; and &lt;strong&gt;recvfrom&lt;/strong&gt; instad of &lt;strong&gt;send&lt;/strong&gt; and &lt;strong&gt;recv&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;we use &lt;strong&gt;sendto&lt;/strong&gt; and &lt;strong&gt;recvfrom&lt;/strong&gt; instead of &lt;strong&gt;send&lt;/strong&gt; and &lt;strong&gt;recv&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 
@@ -591,7 +591,7 @@ Transfer-Encoding: chunked
 
 
 &lt;h3&gt;Firing Up our Proxy&lt;/h3&gt;
-&lt;p&gt;Now we just need to run our script with some server. For example, for a FTP server at the standrard port 21:&lt;/p&gt;
+&lt;p&gt;Now we just need to run our script with some server. For example, for a FTP server at the standard port 21:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo ./tcp_proxy.py localhost 21 ftp.target 21 True
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Listening on localhost:21
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
