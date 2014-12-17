@@ -602,12 +602,12 @@ Transfer-Encoding: chunked
 &lt;hr /&gt;
 &lt;h2&gt;References:&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/OffensivePython/Pinject/blob/master/pinject.py"&gt;A TCP Packet Injection tool&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/OffensivePython/PyProxy/blob/master/PyProxy.py"&gt;An asynchronous HTTP Proxy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/OffensivePython/Sniffy/blob/master/Sniffy.py"&gt;A network sniffer at the Network Layer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://beej.us/guide/bgnet/output/html/multipage/index.html"&gt;A Guide to Network Programming in C++&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/OffensivePython/Pinject/blob/master/pinject.py"&gt;A TCP Packet Injection tool&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/OffensivePython/PyProxy/blob/master/PyProxy.py"&gt;An asynchronous HTTP Proxy&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/OffensivePython/Sniffy/blob/master/Sniffy.py"&gt;A network sniffer at the Network Layer&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://beej.us/guide/bgnet/output/html/multipage/index.html"&gt;A Guide to Network Programming in C++&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;</summary><category term="Python"></category><category term="netcat"></category><category term="socket"></category></entry><entry><title>Wiresharking for Fun or Profit</title><link href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html" rel="alternate"></link><updated>2014-11-12T04:20:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-11-12:wiresharking-for-fun-or-profit.html</id><summary type="html">&lt;p&gt;&lt;a href="https://www.wireshark.org/"&gt;Wireshark&lt;/a&gt; is an open source &lt;strong&gt;network packet analyzer&lt;/strong&gt; that allows live  traffic analysis, with support to several  protocols.&lt;/p&gt;
 &lt;p&gt;Wireshark also allows &lt;strong&gt;network forensic&lt;/strong&gt;, being very useful for CTFs for example (check my writeups for the  &lt;a href="http://bt3gl.github.io/exploring-d-ctf-quals-2014s-exploits.html"&gt;D-CTF Quals 2014&lt;/a&gt; and for the CSAW Quals 2014 in &lt;a href="http://bt3gl.github.io/csaw-ctf-2014-networking-100-big-data.html"&gt;Networking&lt;/a&gt; and &lt;a href="http://bt3gl.github.io/csaw-ctf-2014-forensics-200-why-not-sftp.html"&gt;Forensics&lt;/a&gt;).&lt;/p&gt;
