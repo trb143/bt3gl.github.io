@@ -60,6 +60,7 @@ The document has moved
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;Simple like that.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;An UDP Client&lt;/h2&gt;
 &lt;p&gt;To rewrite the above script to become a UDP client connection, we  make a few changes:
