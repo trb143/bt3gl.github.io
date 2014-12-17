@@ -89,7 +89,7 @@ The document has moved
 &lt;hr /&gt;
 &lt;h2&gt;A TCP Server&lt;/h2&gt;
 &lt;p&gt;Let's move on and write a &lt;em&gt;multi-threaded&lt;/em&gt; TCP server. For this we will use Python's &lt;a href="https://docs.python.org/2/library/threading.html"&gt;threading&lt;/a&gt; module.&lt;/p&gt;
-&lt;p&gt;First we define the IP address and port that we want the server to listen on.  We then define a &lt;strong&gt;handle_client&lt;/strong&gt; function that starts a thread to handle client connections. It will take the client socket and gets data from the client, sending a &lt;strong&gt;ACK&lt;/strong&gt; message.&lt;/p&gt;
+&lt;p&gt;First we define the IP address and port that we want the server to listen on.  We then define a &lt;strong&gt;handle_client&lt;/strong&gt; function that starts a thread to handle client connections. The function takes the client socket and gets data from the client, sending a &lt;strong&gt;ACK&lt;/strong&gt; message.&lt;/p&gt;
 &lt;p&gt;The main function for our server creates a server socket and starts listening to the port and IP. Then it starts a loop waiting from when a client connects. When this happens,  we receive the client socket (the client variables go to the &lt;strong&gt;addr&lt;/strong&gt; variable). Now we can go ahead and create a thread object for the function &lt;strong&gt;handle_client&lt;/strong&gt; which we mention above:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
