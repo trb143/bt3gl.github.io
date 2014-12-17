@@ -230,7 +230,7 @@
 
 &lt;h3&gt;The SSH Client&lt;/h3&gt;
 &lt;p&gt;The last piece for our reversed shell is to make the SSH client to be able to receive commands from the server.&lt;/p&gt;
-&lt;p&gt;We are going to adapt the previous client script to receive these commands. All we need to do is to add a loop in the session:&lt;/p&gt;
+&lt;p&gt;We are going to adapt the previous client script to receive these commands. All we need to do is to add a loop inside the session:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;paramiko&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getopt&lt;/span&gt;
