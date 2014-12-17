@@ -476,8 +476,8 @@ Transfer-Encoding: chunked
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;The Proxy Handler Threaded Functions&lt;/h3&gt;
-&lt;p&gt;In the last two lines of the above snippet, the program spawns a thread for the function &lt;strong&gt;proxy_handler&lt;/strong&gt; which we show below. This function creates a TCP socket and connect to the remote host and port. After sending the &lt;em&gt;receive_first&lt;/em&gt;* if necessary, it goes to a loop where it:&lt;/p&gt;
+&lt;h3&gt;The Proxy Handler Functions&lt;/h3&gt;
+&lt;p&gt;In the last two lines of the above snippet, the program spawns a thread for the function &lt;strong&gt;proxy_handler&lt;/strong&gt; which we show below. This function creates a TCP socket and connects to the remote host and port. It then checks for the &lt;strong&gt;receive_first&lt;/strong&gt; parameter. Finally, it goes to a loop where it:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;reads from local host (with the function &lt;strong&gt;receive_from&lt;/strong&gt;),&lt;/li&gt;
 &lt;li&gt;process (with the function &lt;strong&gt;hexdump&lt;/strong&gt;),&lt;/li&gt;
