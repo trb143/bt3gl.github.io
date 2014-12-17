@@ -202,7 +202,7 @@ ACK
 
 &lt;hr /&gt;
 &lt;h2&gt;A Complete Netcat Client and Server&lt;/h2&gt;
-&lt;p&gt;Let's extend our previous example to write a script for a netcat server and client.&lt;/p&gt;
+&lt;p&gt;Let's extend our previous example to write a full program for a netcat server and client.&lt;/p&gt;
 &lt;p&gt;For this task we are going to use two special Python modules: &lt;a href="https://docs.python.org/2/library/getopt.html"&gt;getopt&lt;/a&gt;, which is a parser for command line options (familiar to users of the C getopt()), and &lt;a href="https://docs.python.org/2/library/subprocess.html"&gt;subprocess&lt;/a&gt;, which allows you to spawn new processes.&lt;/p&gt;
 &lt;h3&gt;The Usage Menu&lt;/h3&gt;
 &lt;p&gt;The first function we write is  &lt;strong&gt;usage&lt;/strong&gt;, with the options we want for our tool:&lt;/p&gt;
