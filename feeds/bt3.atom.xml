@@ -160,7 +160,7 @@
 &lt;li&gt;Once a connection is established (the client tried to connect to the server and the socket accepted the connection), it creates a &lt;strong&gt;paramiko&lt;/strong&gt; Transport object for this socket.&lt;/li&gt;
 &lt;li&gt;The program instantiates a &lt;strong&gt;Server&lt;/strong&gt; object and starts the paramiko session with it.&lt;/li&gt;
 &lt;li&gt;Authentication is attempted.&lt;/li&gt;
-&lt;li&gt;Once the authentication is successful, the server starts a loop where it will keep getting  input commands from the user and issuing it in the client. This is our reversed the shell!&lt;/li&gt;
+&lt;li&gt;Once the authentication is successful, the server starts a loop where it will keep getting  input commands from the user and issuing it in the client. This is our reversed  shell!&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;paramiko&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;getopt&lt;/span&gt;
