@@ -5,7 +5,7 @@
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/LdIxLg2.jpg" /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;A TCP Client&lt;/h2&gt;
-&lt;p&gt;Let's start from the beginning. Any time when you want to create a TCP connection with the &lt;strong&gt;socket&lt;/strong&gt; module, you do two things: create a socket object and then connect to a host in some port:&lt;/p&gt;
+&lt;p&gt;Let's start from the beginning. Whenever you want to create a TCP connection with the &lt;strong&gt;socket&lt;/strong&gt; module, you do two things: create a socket object and then connect to a host in some port:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SOCK_STREAM&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt; &lt;span class="n"&gt;HOST&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;PORT&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
