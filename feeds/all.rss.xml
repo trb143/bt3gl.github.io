@@ -5,7 +5,7 @@
 &lt;p&gt;Shall we start?&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;A Simple SSH Client&lt;/h2&gt;
-&lt;p&gt;The first program we are going to write is a SSH client that makes a connection to any available SSH server to run a single command.&lt;/p&gt;
+&lt;p&gt;The first program we are going to write is a SSH client that makes a connection to any available SSH server, and then runs a single command that we send to it.&lt;/p&gt;
 &lt;p&gt;But before we start, the first thing to do is to install &lt;strong&gt;paramiko&lt;/strong&gt; in our environment:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install paramiko
 Downloading/unpacking paramiko
