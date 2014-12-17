@@ -8,11 +8,6 @@
 &lt;p&gt;The first program we are going to write is a SSH client that makes a connection to some available SSH server, and then runs a single command that we send to it.&lt;/p&gt;
 &lt;p&gt;But before we start, make sure you have  &lt;strong&gt;paramiko&lt;/strong&gt; installed in our environment:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install paramiko
-Downloading/unpacking paramiko
-Installing collected packages: paramiko, ecdsa
-  Running setup.py install &lt;span class="k"&gt;for &lt;/span&gt;ecdsa
-Successfully installed paramiko ecdsa
-Cleaning up...
 &lt;/pre&gt;&lt;/div&gt;
 
 
