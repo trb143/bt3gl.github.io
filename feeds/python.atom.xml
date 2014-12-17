@@ -141,6 +141,7 @@ ACK
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;Awesome!&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;A Very Simple Netcat Client&lt;/h2&gt;
 &lt;p&gt;Sometimes when you are penetrating a system, you would like to have &lt;a href="http://netcat.sourceforge.net/"&gt;netcat&lt;/a&gt;, which might be not installed. However, if you have Python, you can create a netcat network client and server.&lt;/p&gt;
