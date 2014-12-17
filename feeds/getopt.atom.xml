@@ -12,7 +12,7 @@
 
 
 &lt;h3&gt;Writing the SSH  Client Script&lt;/h3&gt;
-&lt;p&gt;Now we are ready to create our script. We start with a &lt;strong&gt;usage&lt;/strong&gt; function. Since &lt;strong&gt;paramiko&lt;/strong&gt; supports authentication with both a password and/or an identity file (a key), our usage function shows how to send these arguments when we run the script, plus the port, username, and the command we want to run:&lt;/p&gt;
+&lt;p&gt;Now we are ready to create our script. We start with a &lt;strong&gt;usage&lt;/strong&gt; function. Since &lt;strong&gt;paramiko&lt;/strong&gt; supports authentication with both a password and/or an identity file (a key), our usage function shows how to send these arguments when we run the script (plus the port, username, and the command we want to run):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;usage&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Usage: ssh_client.py  &amp;lt;IP&amp;gt; -p &amp;lt;PORT&amp;gt; -u &amp;lt;USER&amp;gt; -c &amp;lt;COMMAND&amp;gt; -a &amp;lt;PASSWORD&amp;gt; -k &amp;lt;KEY&amp;gt; -c &amp;lt;COMMAND&amp;gt;&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;  -a                  password authentication&amp;quot;&lt;/span&gt;
