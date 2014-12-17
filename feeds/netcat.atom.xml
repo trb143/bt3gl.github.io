@@ -144,9 +144,9 @@ ACK
 &lt;p&gt;Awesome!&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;A Very Simple Netcat Client&lt;/h2&gt;
-&lt;p&gt;Sometimes when you are penetrating a system, you would like to have &lt;a href="http://netcat.sourceforge.net/"&gt;netcat&lt;/a&gt;, which might be not installed. However, if you have Python, you can create a netcat network client and server.&lt;/p&gt;
-&lt;p&gt;The following script is a the simplest netcat connection you can have, extended from our TCP client script above to support a loop.&lt;/p&gt;
-&lt;p&gt;Now we use &lt;strong&gt;sendall&lt;/strong&gt; method, which unlike &lt;strong&gt;send&lt;/strong&gt;, it will continue to send data from string until either all data has been sent or an error occurs (None is returned on success).&lt;/p&gt;
+&lt;p&gt;Sometimes when you are penetrating a system, you wish you have &lt;a href="http://netcat.sourceforge.net/"&gt;netcat&lt;/a&gt;, which might be not installed. However, if you have Python, you can create a netcat network client and server.&lt;/p&gt;
+&lt;p&gt;The following script is the simplest netcat client setup one can have, extended from our TCP client script to support a loop.&lt;/p&gt;
+&lt;p&gt;In addition, now we use the &lt;strong&gt;sendall&lt;/strong&gt; method which, unlike &lt;strong&gt;send&lt;/strong&gt;,  continues to send data until either all data has been sent or an error occurs (None is returned on success).&lt;/p&gt;
 &lt;p&gt;We also use &lt;strong&gt;close&lt;/strong&gt; to release the resource. This does not necessarily close the connection immediately so we use &lt;strong&gt;shutdown&lt;/strong&gt;  to close the connection in a timely fashion:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 
