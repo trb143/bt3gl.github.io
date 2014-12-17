@@ -448,7 +448,7 @@ Transfer-Encoding: chunked
 &lt;hr /&gt;
 &lt;h2&gt;A TCP Proxy&lt;/h2&gt;
 &lt;p&gt;A TCP proxy can be very useful for forwarding traffic and when assessing network-based softwares (for example, when you cannot run &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;Wireshark&lt;/a&gt; or you cannot load drivers or tools in the machine you are exploiting).&lt;/p&gt;
-&lt;p&gt;To create a proxy we need to first verify if we need to &lt;em&gt;first initiate a connection&lt;/em&gt; to the remote side and &lt;em&gt;request data before going into our main loop&lt;/em&gt;. Some server daemons will expect you to do this first (FTP servers, for example,  send a banner first). We will send this information as one of the running arguments.&lt;/p&gt;
+&lt;p&gt;To create a proxy we need to verify if we need to &lt;em&gt;first initiate a connection&lt;/em&gt; to the remote side and &lt;em&gt;request data before going into our main loop&lt;/em&gt;. Some server daemons will expect you to do this first (FTP servers, for example,  send a banner first). We will send this information as one of the running arguments.&lt;/p&gt;
 &lt;h3&gt;The Main Function&lt;/h3&gt;
 &lt;p&gt;So let us start with our &lt;strong&gt;main&lt;/strong&gt; function. First we define the usage, which should have four more arguments together with the above  &lt;strong&gt;receive_first&lt;/strong&gt; information. Then we check these arguments to variables and start a listening socket:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
