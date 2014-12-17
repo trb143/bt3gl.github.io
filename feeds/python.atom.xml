@@ -90,7 +90,7 @@ The document has moved
 &lt;h2&gt;A TCP Server&lt;/h2&gt;
 &lt;p&gt;Let's move on and write a &lt;em&gt;multi-threaded&lt;/em&gt; TCP server. For this we will use Python's &lt;a href="https://docs.python.org/2/library/threading.html"&gt;threading&lt;/a&gt; module.&lt;/p&gt;
 &lt;p&gt;First we define the IP address and port that we want the server to listen on.  We then define a &lt;strong&gt;handle_client&lt;/strong&gt; function that starts a thread to handle client connections. The function takes the client socket and gets data from the client, sending a &lt;strong&gt;ACK&lt;/strong&gt; message.&lt;/p&gt;
-&lt;p&gt;The main function for our server, &lt;strong&gt;tcp_server&lt;/strong&gt;, creates a server socket and starts listening to the port and IP (we set the maximum backlog of connections  to 5). Then it starts a loop waiting from when a client connects. When this happens,  we receive the client socket (the client variables go to the &lt;strong&gt;addr&lt;/strong&gt; variable).&lt;/p&gt;
+&lt;p&gt;The main function for our server, &lt;strong&gt;tcp_server&lt;/strong&gt;, creates a server socket and starts listening on the port and IP (we set the maximum backlog of connections  to 5). Then it starts a loop waiting from when a client connects. When this happens,  it receives the client socket (the client variables go to the &lt;strong&gt;addr&lt;/strong&gt; variable).&lt;/p&gt;
 &lt;p&gt;At this point, the program creates a thread object for the function &lt;strong&gt;handle_client&lt;/strong&gt; which we mention above:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
@@ -121,13 +121,13 @@ The document has moved
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We can run this script in one terminal and the a client script (like the one in we saw before) in a second terminal:&lt;/p&gt;
+&lt;p&gt;We can run this script in one terminal and the client script (like the one we saw before) in a second terminal. Running the server:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python tcp_server.py
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Listening on 0.0.0.0:9090
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;To run the client script, we change it to connect at 127.0.0.1:9090:&lt;/p&gt;
+&lt;p&gt;Running the client script (we changed it to connect at 127.0.0.1:9090):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python tcp_client.py
 ACK
 &lt;/pre&gt;&lt;/div&gt;
