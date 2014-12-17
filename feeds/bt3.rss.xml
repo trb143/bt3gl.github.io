@@ -156,7 +156,7 @@
 
 &lt;p&gt;Now, let's take a look at the &lt;strong&gt;main&lt;/strong&gt; function, which does the following:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Create a socket object to bind the host and port, so it can listen for incoming connections.&lt;/li&gt;
+&lt;li&gt;Created a socket object to bind the host and port, so it can listen for incoming connections.&lt;/li&gt;
 &lt;li&gt;Once a connection is established (the client tried to connect to the server and the socket accepted the connection), it creates a &lt;strong&gt;paramiko&lt;/strong&gt; Transport object for this socket.&lt;/li&gt;
 &lt;li&gt;The program instantiates a &lt;strong&gt;Server&lt;/strong&gt; object and starts the paramiko session with this object, performing the authentication.&lt;/li&gt;
 &lt;li&gt;Once the authentication is successful, the server starts a loop where it will get an input command from the user and issue in the client, reversing the shell!&lt;/li&gt;
