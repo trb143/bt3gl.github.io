@@ -33,9 +33,9 @@
 
 &lt;p&gt;The simplicity of this script relies in making the following assumptions about the sockets:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;our connection will always succeed,&lt;/li&gt;
-&lt;li&gt;the server is always waiting for us to send data first (as oppose to servers that expect to send data first and wait for response), and&lt;/li&gt;
-&lt;li&gt;the server will always send us data back in a short time.&lt;/li&gt;
+&lt;li&gt;our &lt;em&gt;connection will always succeed&lt;/em&gt;,&lt;/li&gt;
+&lt;li&gt;the &lt;em&gt;server is always waiting for us to send data first&lt;/em&gt; (as oppose to servers that expect to send data and then wait for response), and&lt;/li&gt;
+&lt;li&gt;the server will always send us data back in a &lt;em&gt;short time&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Let's run this script (notice that we get &lt;em&gt;Moved Permanently&lt;/em&gt; because Google only issues HTTPS connections):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; python tcp_client.py
