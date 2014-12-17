@@ -526,7 +526,7 @@ Transfer-Encoding: chunked
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The &lt;strong&gt;receive_from&lt;/strong&gt; function takes a socket object and performs the receive,dumping the contents of the packet.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;receive_from&lt;/strong&gt; function takes a socket object and performs the receive, dumping the contents of the packet:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;receive_from&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="nb"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
     &lt;span class="n"&gt;connection&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;settimeout&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -542,7 +542,7 @@ Transfer-Encoding: chunked
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The &lt;strong&gt;response_handler&lt;/strong&gt; function is used to modify the packet contents from the inbound traffic (for example, to  perform fuzzing, test for authentication,etc). The function &lt;strong&gt;request_handler&lt;/strong&gt; does the same for outbound traffic.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;response_handler&lt;/strong&gt; function is used to modify the packet contents from the inbound traffic (for example, to  perform fuzzing, test for authentication, etc). The function &lt;strong&gt;request_handler&lt;/strong&gt; does the same for outbound traffic:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;request_handler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="c"&gt;# perform packet modifications&lt;/span&gt;
     &lt;span class="nb"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39; Yaeah!&amp;#39;&lt;/span&gt;
@@ -554,7 +554,7 @@ Transfer-Encoding: chunked
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The function &lt;strong&gt;hexdump&lt;/strong&gt; outputs the packet details with hexadecimal and ASCII characters:&lt;/p&gt;
+&lt;p&gt;Finallty, the function &lt;strong&gt;hexdump&lt;/strong&gt; outputs the packet details with hexadecimal and ASCII characters:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hexdump&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
     &lt;span class="n"&gt;digists&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;unicode&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
