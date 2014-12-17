@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/ssh.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-16T06:30:00-05:00</updated><entry><title>Black Hat Python Networking: The Paramiko Module</title><link href="http://bt3gl.github.io/black-hat-python-networking-the-paramiko-module.html" rel="alternate"></link><updated>2014-12-16T06:30:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-16:black-hat-python-networking-the-paramiko-module.html</id><summary type="html">&lt;p&gt;This is the second post based on my readings from &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;. Yesterday I talked about Python's &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html"&gt;socket module&lt;/a&gt; and today I'm talking about the &lt;a href="http://www.paramiko.org/"&gt;paramiko&lt;/a&gt; module.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Paramiko&lt;/strong&gt; is awesome!!! It uses my dear &lt;a href="https://www.dlitz.net/software/pycrypto/"&gt;PyCrypto&lt;/a&gt; to give us access to the &lt;a href="http://en.wikipedia.org/wiki/SSH2"&gt;SSH2 protocol&lt;/a&gt;, and it has a flexible and easy to use API.&lt;/p&gt;
-&lt;p&gt;You are going to see it with your own eyes: in this post we will write code for SSH clients and servers, reverse shells and tunnel connections, and it will be smooth and fun (and remember that my source codes are available in my &lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;github repo&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;You are going to see it with your own eyes: in this post we will see code for SSH clients and servers, reverse shells, and tunnel connections, and it will be smooth and fun (and remember that my source codes are available in my &lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;github repo&lt;/a&gt;)!&lt;/p&gt;
 &lt;p&gt;Shall we start?&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;A Simple SSH Client&lt;/h2&gt;
@@ -157,7 +157,7 @@
 &lt;p&gt;Now, let's take a look at the &lt;strong&gt;main&lt;/strong&gt; function, which does the following:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Creates a socket object to bind the host and port, so it can listen for incoming connections.&lt;/li&gt;
-&lt;li&gt;Once a connection is established (the client tried to connect to the server and the socket accepted the connection), it creates a &lt;strong&gt;paramiko&lt;/strong&gt; Transport object for this socket.&lt;/li&gt;
+&lt;li&gt;Once a connection is established (the client tried to connect to the server and the socket accepted the connection), it creates a &lt;strong&gt;paramiko&lt;/strong&gt; Transport object for this socket (in paramiko there are two main communication methods: &lt;em&gt;transport&lt;/em&gt;, which makes and maintains the encrypted connection, and &lt;em&gt;channel&lt;/em&gt;, which is like a sock for sending/receiving data over the encrypted session).-&lt;/li&gt;
 &lt;li&gt;The program instantiates a &lt;strong&gt;Server&lt;/strong&gt; object and starts the paramiko session with it.&lt;/li&gt;
 &lt;li&gt;Authentication is attempted. If it is successful, we get a &lt;strong&gt;ClientConnected&lt;/strong&gt; message.&lt;/li&gt;
 &lt;li&gt;The server starts a loop where it will keep getting  input commands from the user and issuing it in the client. This is our reversed  shell!&lt;/li&gt;
@@ -333,11 +333,11 @@ Enter &lt;span class="nb"&gt;command&lt;/span&gt;:
 
 
 &lt;p&gt;&lt;strong&gt;Awesomesauce!&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Ah by the way, all these scripts work not only in Linux but in Windows and Mac as well (so next time you are in a lame Windows machine, no need to install &lt;a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html"&gt;Putty&lt;/a&gt; anymore =p ).&lt;/p&gt;
-&lt;hr /&gt;
+&lt;p&gt;Ah, by the way, all these scripts work not only in Linux but in Windows and Mac as well (so next time you are in a lame Windows machine, no need to install &lt;a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html"&gt;Putty&lt;/a&gt; anymore =p ).&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Further References:&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/paramiko/paramiko/blob/master/demos/rforward.py"&gt;Paramikos reverse SSH tunneling&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Python"></category><category term="paramiko"></category><category term="SSH"></category><category term="PyCrypto"></category><category term="getopt"></category><category term="threading"></category><category term="socket"></category></entry><entry><title>My Cute and Fluffy Intro to Linux (aka Yet Another Linux Guide)</title><link href="http://bt3gl.github.io/my-cute-and-fluffy-intro-to-linux-aka-yet-another-linux-guide.html" rel="alternate"></link><updated>2014-11-10T04:20:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-11-10:my-cute-and-fluffy-intro-to-linux-aka-yet-another-linux-guide.html</id><summary type="html">&lt;p&gt;Being a Linux user is, above all, a &lt;em&gt;life style&lt;/em&gt;. Interestingly, more and more people have been joining this community, keeping it dynamic and organic.&lt;/p&gt;
