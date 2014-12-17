@@ -132,7 +132,7 @@
 
 &lt;hr /&gt;
 &lt;h2&gt;A SSH Server to Reverse a Client Shell&lt;/h2&gt;
-&lt;p&gt;What if we also control the SSH server and we are able to send commands to our SSH client? In the session we are going to write a &lt;strong&gt;class&lt;/strong&gt; for this server, with a little help of the &lt;strong&gt;socket&lt;/strong&gt; module, and be able to &lt;strong&gt;reverse the shell&lt;/strong&gt;!&lt;/p&gt;
+&lt;p&gt;What if we also control the SSH server and we are able to send commands to our SSH client? This is exactly what we are going to do now: we are going to write a &lt;strong&gt;class&lt;/strong&gt; for this server (with a little help of the &lt;strong&gt;socket&lt;/strong&gt; module) and then we will be able to &lt;strong&gt;reverse the shell&lt;/strong&gt;!&lt;/p&gt;
 &lt;p&gt;As a note, this script is based in some of the &lt;a href="https://github.com/paramiko/paramiko/blob/master/demo"&gt;paramiko demos&lt;/a&gt; and we specifically use the key from their demo files (&lt;a href="https://github.com/paramiko/paramiko/blob/master/demos/test_rsa.key"&gt;download here&lt;/a&gt;).&lt;/p&gt;
 &lt;h3&gt;The SSH Server&lt;/h3&gt;
 &lt;p&gt;In our server script, we first  create a class &lt;strong&gt;Server&lt;/strong&gt; that issues a new thread event, checking whether the session is valid, and performing authentication. Notice that for simplicity we are hard-coding the values for username, password and host key, which is never a good practice:&lt;/p&gt;
