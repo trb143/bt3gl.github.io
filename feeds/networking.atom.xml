@@ -389,18 +389,18 @@ ACK
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python socket/netcat_awesome.py -t localhost -p 9000
 NETCAT:
 ls
-&lt;span class="o"&gt;(&lt;/span&gt;crack_linksys.py
+crack_linksys.py
 netcat_awesome.py
 netcat_simple.py
 reading_socket.py
 tcp_client.py
 tcp_server.py
 udp_client.py
-NETCAT:&lt;span class="o"&gt;)&lt;/span&gt;
+NETCAT:
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;The Good and Old Request&lt;/h3&gt;
+&lt;h3&gt;The Good 'n' Old Request&lt;/h3&gt;
 &lt;p&gt;Additionally, we can use our client to send out requests:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; -ne &lt;span class="s2"&gt;&amp;quot;GET / HTTP/1.1\nHost: www.google.com\r\n\r\n&amp;quot;&lt;/span&gt; | python socket/netcat_awesome.py -t www.google.com -p 80
 HTTP/1.1 200 OK
@@ -420,7 +420,7 @@ Transfer-Encoding: chunked
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Cool, huh? :)&lt;/p&gt;
+&lt;p&gt;Cool, huh?&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;A TCP Proxy&lt;/h2&gt;
 &lt;p&gt;A TCP proxy can be very useful for forwarding traffic and when assessing network-based softwares (for example, when you cannot run &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;Wireshark&lt;/a&gt; or you cannot load drivers or tools).&lt;/p&gt;
