@@ -575,7 +575,7 @@ Transfer-Encoding: chunked
 
 
 &lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt; Fun, isn't? Now check the next post about &lt;a href=""&gt;Python's scapy module&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; Fun, isn't? Now check the next post about &lt;a href=""&gt;Python's scapy module&lt;/a&gt;!&lt;/strong&gt;&lt;/p&gt;
 &lt;h2&gt;References:&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;&lt;/li&gt;
