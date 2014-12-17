@@ -301,7 +301,7 @@
 
 
 &lt;h3&gt;Running both Scripts&lt;/h3&gt;
-&lt;p&gt;Now let's run each script in a different terminal. First, the server:&lt;/p&gt;
+&lt;p&gt;Let's run each script in a different terminal. First, the server:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_server.py localhost 22
 &lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Listening &lt;span class="k"&gt;for &lt;/span&gt;connection ...
 &lt;/pre&gt;&lt;/div&gt;
