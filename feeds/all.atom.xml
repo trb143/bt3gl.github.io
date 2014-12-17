@@ -63,10 +63,13 @@ The document has moved
 &lt;p&gt;Simple like that.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;An UDP Client&lt;/h2&gt;
-&lt;p&gt;To rewrite the above script to become a UDP client connection, we  make a few changes:
-    * we  use &lt;strong&gt;SOCK_DGRAM&lt;/strong&gt; instead of &lt;strong&gt;SOCK_STREAM&lt;/strong&gt;,
-    * because UDP is a connectionless protocol, we don't need to establish a connection beforehand, and
-    * we use &lt;strong&gt;sendto&lt;/strong&gt; and &lt;strong&gt;recvfrom&lt;/strong&gt; instad of &lt;strong&gt;send&lt;/strong&gt; and &lt;strong&gt;recv&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;To rewrite the above script to become a UDP client connection, we  make a few changes:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt;  &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;SOCK_DGRAM&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;instead&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;SOCK_STREAM&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;because&lt;/span&gt; &lt;span class="n"&gt;UDP&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;connectionless&lt;/span&gt; &lt;span class="n"&gt;protocol&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;don&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;need&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;establish&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;connection&lt;/span&gt; &lt;span class="n"&gt;beforehand&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;sendto&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;recvfrom&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;instad&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;recv&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 
 &lt;span class="n"&gt;HOST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;127.0.0.1&amp;#39;&lt;/span&gt;
