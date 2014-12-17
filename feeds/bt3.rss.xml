@@ -60,7 +60,6 @@ The document has moved
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Simple like that.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;An UDP Client&lt;/h2&gt;
 &lt;p&gt;We can make a few changes in the previous script to create a UDP client connection:&lt;/p&gt;
@@ -86,6 +85,7 @@ The document has moved
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;Simple like that.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;A TCP Server&lt;/h2&gt;
 &lt;p&gt;Let's move on and write a &lt;em&gt;multi-threaded&lt;/em&gt; TCP server. For this we will use Python's &lt;a href="https://docs.python.org/2/library/threading.html"&gt;threading&lt;/a&gt; module.&lt;/p&gt;
