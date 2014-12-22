@@ -144,7 +144,7 @@ ACK
 
 
 &lt;hr /&gt;
-&lt;h2&gt;An UDP Server&lt;/h2&gt;
+&lt;h2&gt;A UDP Server&lt;/h2&gt;
 &lt;p&gt;Below is an example of a very simple  UDP server. Notice that there is no &lt;strong&gt;listen&lt;/strong&gt; or &lt;strong&gt;accept&lt;/strong&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 
