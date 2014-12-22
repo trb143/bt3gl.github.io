@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/sniffing.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-10-19T06:30:00-04:00</updated><entry><title>Black Hat Python Networking: Sniffing</title><link href="http://bt3gl.github.io/black-hat-python-networking-sniffing.html" rel="alternate"></link><updated>2014-10-19T06:30:00-04:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-10-19:black-hat-python-networking-sniffing.html</id><summary type="html">&lt;p&gt;Today is &lt;strong&gt;network sniffing&lt;/strong&gt; day! I have talked about &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;using Wireshark&lt;/a&gt; a few weeks ago, but what if you don't have Wireshark available to monitor a network traffic?&lt;/p&gt;
+&lt;p&gt;Again, Python comes with several solutions. Today I'm going to go through some of the Python's resources to deal with &lt;a href="http://en.wikipedia.org/wiki/Raw_socket"&gt;raw sockets&lt;/a&gt; and to write sniffers to view and decode network packets. This post is also based on &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt; (continuing the &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-paramiko-module.html"&gt;series&lt;/a&gt; &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html"&gt;of posts&lt;/a&gt; in the subject).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Raw sockets&lt;/strong&gt; access low-level networking information. For instance, we are able to check IP and ICMP headers, which are in the layer 3 of the OSI model, the network layer. We could even go lower to the layer 2, decoding Ethernet frames, for example, for attacks such as ARP poisoning.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;A&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Further References:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Python"></category><category term="socket"></category><category term="Book"></category><category term="sniffing"></category></entry></feed>

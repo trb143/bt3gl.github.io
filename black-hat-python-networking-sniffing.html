@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Higher Bytes by bt3 - JavaScript</title>
+    <title>Black Hat Python Networking: Sniffing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="bt3">
@@ -86,89 +86,61 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="http://bt3gl.github.io/a-closer-look-at-chromes-security-understanding-v8.html">A Closer Look at Chrome's Security: Understanding V8</a></h1>
-                <div class="well small"><footer class="post-info">
-<abbr class="published" title="2014-11-01T04:20:00">
-      Sat 01 November 2014 </abbr>
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Black Hat Python Networking: Sniffing">
+                                        Black Hat Python Networking: Sniffing
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<abbr class="published" title="2014-10-19T06:30:00">
+      Sun 19 October 2014 </abbr>
 
 <span class="label"> Category</span>
-<a href="http://bt3gl.github.io/category/web-security.html"><i class="icon-folder-open"></i>Web Security</a>
+<a href="http://bt3gl.github.io/category/networking.html"><i class="icon-folder-open"></i>Networking</a>
 
 
 <span class="label">Tags</span>
-	<a href="http://bt3gl.github.io/tag/v8.html"><i class="icon-tag"></i>V8</a>
-	<a href="http://bt3gl.github.io/tag/jit.html"><i class="icon-tag"></i>JIT</a>
-	<a href="http://bt3gl.github.io/tag/javascript.html"><i class="icon-tag"></i>JavaScript</a>
-	<a href="http://bt3gl.github.io/tag/garbage_collection.html"><i class="icon-tag"></i>garbage_collection</a>
-	<a href="http://bt3gl.github.io/tag/cache.html"><i class="icon-tag"></i>cache</a>
-	<a href="http://bt3gl.github.io/tag/bytecode.html"><i class="icon-tag"></i>bytecode</a>
-	<a href="http://bt3gl.github.io/tag/chrome.html"><i class="icon-tag"></i>Chrome</a>
 	<a href="http://bt3gl.github.io/tag/python.html"><i class="icon-tag"></i>Python</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p><a href="http://blogoscoped.com/google-chrome/">In 2008, Google released a sandbox-oriented browser</a>, that was assembled from several different code libraries from Google and third parties (for instance, it borrowed a rendering machinery from the open-source  <a href="https://www.webkit.org/">Webkit layout engine</a>, later changing it to a forked version, <a href="http://en.wikipedia.org/wiki/Blink_(layout_engine)">Blink</a>).  Six years later, Chrome has became the preferred browser ...</p>
-                        <a class="btn primary xsmall" href="http://bt3gl.github.io/a-closer-look-at-chromes-security-understanding-v8.html">more ...</a>
+	<a href="http://bt3gl.github.io/tag/socket.html"><i class="icon-tag"></i>socket</a>
+	<a href="http://bt3gl.github.io/tag/book.html"><i class="icon-tag"></i>Book</a>
+	<a href="http://bt3gl.github.io/tag/sniffing.html"><i class="icon-tag"></i>sniffing</a>
+</footer><!-- /.post-info -->                </div>
+                <p>Today is <strong>network sniffing</strong> day! I have talked about <a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html">using Wireshark</a> a few weeks ago, but what if you don't have Wireshark available to monitor a network traffic?</p>
+<p>Again, Python comes with several solutions. Today I'm going to go through some of the Python's resources to deal with <a href="http://en.wikipedia.org/wiki/Raw_socket">raw sockets</a> and to write sniffers to view and decode network packets. This post is also based on <a href="http://www.nostarch.com/blackhatpython">Black Hat Python</a> (continuing the <a href="http://bt3gl.github.io/black-hat-python-networking-the-paramiko-module.html">series</a> <a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html">of posts</a> in the subject).</p>
+<p><strong>Raw sockets</strong> access low-level networking information. For instance, we are able to check IP and ICMP headers, which are in the layer 3 of the OSI model, the network layer. We could even go lower to the layer 2, decoding Ethernet frames, for example, for attacks such as ARP poisoning.</p>
+<hr />
+<h2>A</h2>
+<hr />
+<h2>Further References:</h2>
+<ul>
+<li><a href="http://www.nostarch.com/blackhatpython">Black Hat Python</a>.</li>
+<li><a href="https://github.com/bt3gl/My-Gray-Hacker-Resources">My Gray hat repo</a>.</li>
+</ul>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "black-hat-python-networking-sniffing.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://bt3gl.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
                 </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html">Exploiting the Web in 20 Lessons (Natas)</a></h1>
-                <div class="well small"><footer class="post-info">
-<abbr class="published" title="2014-10-16T06:01:00">
-      Thu 16 October 2014 </abbr>
-
-<span class="label"> Category</span>
-<a href="http://bt3gl.github.io/category/web-security.html"><i class="icon-folder-open"></i>Web Security</a>
-
-
-<span class="label">Tags</span>
-	<a href="http://bt3gl.github.io/tag/wargames.html"><i class="icon-tag"></i>Wargames</a>
-	<a href="http://bt3gl.github.io/tag/python.html"><i class="icon-tag"></i>Python</a>
-	<a href="http://bt3gl.github.io/tag/burpsuite.html"><i class="icon-tag"></i>BurpSuite</a>
-	<a href="http://bt3gl.github.io/tag/request.html"><i class="icon-tag"></i>request</a>
-	<a href="http://bt3gl.github.io/tag/php.html"><i class="icon-tag"></i>PHP</a>
-	<a href="http://bt3gl.github.io/tag/javascript.html"><i class="icon-tag"></i>JavaScript</a>
-	<a href="http://bt3gl.github.io/tag/sqli.html"><i class="icon-tag"></i>SQLi</a>
-	<a href="http://bt3gl.github.io/tag/command_injection.html"><i class="icon-tag"></i>Command_Injection</a>
-	<a href="http://bt3gl.github.io/tag/mysql.html"><i class="icon-tag"></i>MySQL</a>
-	<a href="http://bt3gl.github.io/tag/xor.html"><i class="icon-tag"></i>XOR</a>
-	<a href="http://bt3gl.github.io/tag/brute_force.html"><i class="icon-tag"></i>Brute_Force</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p><img alt="" src="http://i.imgur.com/ihtJsdE.png" /></p>
-<p>Continuing my quest through the <a href="http://overthewire.org/wargames/">Wargames</a>, today I am going to talk about the 20 first levels of <a href="http://overthewire.org/wargames/natas/">Natas</a>, the <strong>web exploitation episode</strong>.</p>
-<p>I divide the exploits in two parts. The first part contains the easy challenges that don't demand much art (and are a bit boring). The second ...</p>
-                        <a class="btn primary xsmall" href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="http://bt3gl.github.io/csaw-ctf-2014-forensics-300-fluffy-no-more.html">CSAW CTF 2014 - Forensics 300: "Fluffy No More"</a></h1>
-                <div class="well small"><footer class="post-info">
-<abbr class="published" title="2014-09-28T11:21:00">
-      Sun 28 September 2014 </abbr>
-
-<span class="label"> Category</span>
-<a href="http://bt3gl.github.io/category/forensics.html"><i class="icon-folder-open"></i>Forensics</a>
-
-
-<span class="label">Tags</span>
-	<a href="http://bt3gl.github.io/tag/ctf.html"><i class="icon-tag"></i>CTF</a>
-	<a href="http://bt3gl.github.io/tag/csaw.html"><i class="icon-tag"></i>CSAW</a>
-	<a href="http://bt3gl.github.io/tag/hashcat.html"><i class="icon-tag"></i>hashcat</a>
-	<a href="http://bt3gl.github.io/tag/pdf-parser.html"><i class="icon-tag"></i>pdf-parser</a>
-	<a href="http://bt3gl.github.io/tag/qpdf.html"><i class="icon-tag"></i>qpdf</a>
-	<a href="http://bt3gl.github.io/tag/lamp.html"><i class="icon-tag"></i>LAMP</a>
-	<a href="http://bt3gl.github.io/tag/javascript.html"><i class="icon-tag"></i>JavaScript</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>This is the fourth and the last of the forensics challenge in the CSAW CTF 2014 competition. It was much harder than the three before, but it was also much more interesting.</p>
-<p>The challenge starts with the following text:</p>
-<blockquote>
-<p>OH NO WE'VE BEEN HACKED!!!!!! -- said the Eye Heart Fluffy ...</p></blockquote>
-                        <a class="btn primary xsmall" href="http://bt3gl.github.io/csaw-ctf-2014-forensics-300-fluffy-no-more.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
