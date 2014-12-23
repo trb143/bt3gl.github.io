@@ -270,7 +270,7 @@ Host up: 192.168.1.114
 
 
 &lt;p&gt;Pretty neat!&lt;/p&gt;
-&lt;p&gt;By the way, the results from this scanner can be checked with the values of the IP addresses in your router's &lt;strong&gt;DHCP table&lt;/strong&gt;. They should match!&lt;/p&gt;
+&lt;p&gt;By the way, the results from our scanner can be checked against the values of the IP addresses in your router's &lt;strong&gt;DHCP table&lt;/strong&gt;. They should match!&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;That's all, folks. Hope you had fun.&lt;/p&gt;
 &lt;h2&gt;Further References:&lt;/h2&gt;
