@@ -82,9 +82,8 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now we are ready to write our IP/ICMP hedar decoder. The script below creates a sniffer socket (just as we did before) and then creates a loop to continually read in packets and decode their information.&lt;/p&gt;
-&lt;p&gt;In the case of the IP header, it reads the packet, unpacking the first 20 bytes to the raw buffer, and then printing the hedar variables.&lt;/p&gt;
-&lt;p&gt;In the case of the ICMP&lt;/p&gt;
+&lt;p&gt;Now we are ready to write our IP/ICMP header decoder. The script below creates a sniffer socket (just as we did before) and then creates a loop to continually read in packets and decode their information.&lt;/p&gt;
+&lt;p&gt;Notice that for the IP header, it reads the packet, unpacking the first 20 bytes to the raw buffer, and then printing the header variables. In the case of the ICMP, it gets the ICMP size after the IP header data:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;struct&lt;/span&gt;
