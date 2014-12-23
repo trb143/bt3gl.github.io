@@ -7,7 +7,7 @@
 &lt;h2&gt;Writing a Packet Sniffing&lt;/h2&gt;
 &lt;p&gt;We start with a  very simple task: with Python's  &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html"&gt;socket&lt;/a&gt; library, we will write a very simple packet sniffer.&lt;/p&gt;
 &lt;p&gt;In this sniffer we create a raw socket and then we bind it to the public interface. The interface should be in &lt;strong&gt;promiscuous mode&lt;/strong&gt;, which means that every packet that the network card sees are captured, even those that are not destined to the host.&lt;/p&gt;
-&lt;p&gt;Things are slightly different if we are using Windows: in this case we need to send a &lt;a href="http://en.wikipedia.org/wiki/Ioctl"&gt;IOCTL&lt;/a&gt; package to set the interface to &lt;strong&gt;promiscuous mode&lt;/strong&gt;. In addition, while Linux needs to use ICMP, Windows allow us to sniff the incoming packets independently of the protocol.&lt;/p&gt;
+&lt;p&gt;One detail to remember is that things are slightly different if we are using Windows: in this case we need to send a &lt;a href="http://en.wikipedia.org/wiki/Ioctl"&gt;IOCTL&lt;/a&gt; package to set the interface to &lt;strong&gt;promiscuous mode&lt;/strong&gt;. In addition, while Linux needs to use ICMP, Windows allow us to sniff the incoming packets independently of the protocol:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 
@@ -28,7 +28,6 @@
         &lt;span class="c"&gt;# read in a single packet&lt;/span&gt;
         &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;sniffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;recvfrom&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;65565&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;OS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;OS&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;nt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -43,12 +42,12 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;To test this script, we run it in one terminal:&lt;/p&gt;
+&lt;p&gt;To test this script, we run the following in one terminal window:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python sniffer.py
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;And then we can  &lt;a href="http://en.wikipedia.org/wiki/Ping_(networking_utility)"&gt;ping&lt;/a&gt; or [traceroute]http://en.wikipedia.org/wiki/Traceroute) some address, for example www.google.com, in another terminal window. The results looks like this:&lt;/p&gt;
+&lt;p&gt;Then, in a second  window, we can  &lt;a href="http://en.wikipedia.org/wiki/Ping_(networking_utility)"&gt;ping&lt;/a&gt; or [traceroute]http://en.wikipedia.org/wiki/Traceroute) some address, for example www.google.com. The results will look like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python raw_socket.py
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;E\x00\x00T\xb3\xec\x00\x005\x01\xe4\x13J}\xe1\x11\xc0\xa8\x01r\x00\x00v\xdfx\xa2\x00\x01sr\x98T\x00\x00\x00\x008\xe3\r\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !&amp;quot;#$%&amp;amp;\&amp;#39;()*+,-./01234567&amp;#39;&lt;/span&gt;, &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;74.125.225.17&amp;#39;&lt;/span&gt;, 0&lt;span class="o"&gt;))&lt;/span&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;E\x00\x00T\xb4\x1b\x00\x005\x01\xe3\xe4J}\xe1\x11\xc0\xa8\x01r\x00\x00~\xd7x\xa2\x00\x02tr\x98T\x00\x00\x00\x00/\xea\r\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !&amp;quot;#$%&amp;amp;\&amp;#39;()*+,-./01234567&amp;#39;&lt;/span&gt;, &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;74.125.225.17&amp;#39;&lt;/span&gt;, 0&lt;span class="o"&gt;))&lt;/span&gt;
@@ -63,7 +62,7 @@
 &lt;p&gt;In the same way, ICMP can vary in its content but each message contains three elements that are consistent: &lt;strong&gt;type&lt;/strong&gt; and &lt;strong&gt;code&lt;/strong&gt; (tells the receiving host what type of ICMP message is arriving for decoding) and &lt;strong&gt;checksum&lt;/strong&gt; fields.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/gsUPKRa.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;For our scanner, we are looking for a &lt;strong&gt;type value of 3&lt;/strong&gt; and a &lt;strong&gt;code value of 3&lt;/strong&gt;, which are the &lt;strong&gt;Destination Unreachable&lt;/strong&gt; class and &lt;strong&gt;Port Unreachable&lt;/strong&gt; &lt;a href="http://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages"&gt;error in ICMP messages&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;To represent this header, we can create a class in Python, with the help of Python's &lt;a href="https://docs.python.org/2/library/ctypes.html"&gt;ctypes&lt;/a&gt; library:&lt;/p&gt;
+&lt;p&gt;To represent this header, we can a class, with the help of Python's &lt;a href="https://docs.python.org/2/library/ctypes.html"&gt;ctypes&lt;/a&gt; library:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;ctypes&lt;/span&gt;
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ICMP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ctypes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Structure&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
