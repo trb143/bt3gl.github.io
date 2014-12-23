@@ -130,20 +130,21 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Running the script in one terminal and &lt;strong&gt;ping&lt;/strong&gt;  in other will return something like this (notice the ICMP type 0):&lt;/p&gt;
+&lt;p&gt;Running the script in one terminal and sending a &lt;strong&gt;ping&lt;/strong&gt;  in other will return something like this (notice the ICMP type 0):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ping www.google.com
 PING www.google.com &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt; 56&lt;span class="o"&gt;(&lt;/span&gt;84&lt;span class="o"&gt;)&lt;/span&gt; bytes of data.
 64 bytes from lga15s42-in-f16.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1 &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56 &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;15.7 ms
 64 bytes from lga15s42-in-f16.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2 &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56 &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;15.0 ms
+&lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python ip_header_decode.py
 IP -&amp;gt; Version:4, Header Length:5, TTL:56, Protocol:1, Source:74.125.226.16, Destination:192.168.1.114
 ICMP -&amp;gt; Type:0, Code:0
-
 IP -&amp;gt; Version:4, Header Length:5, TTL:56, Protocol:1, Source:74.125.226.16, Destination:192.168.1.114
 ICMP -&amp;gt; Type:0, Code:0
+&lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -162,24 +163,18 @@ traceroute to www.google.com &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.50&l
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We get something like this: (notice the several types of ICMP responses):&lt;/p&gt;
+&lt;p&gt;We get something like this (notice the several types of ICMP responses):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo python ip_header_decode.py
 IP -&amp;gt; Version:4, Header Length:5, TTL:252, Protocol:1, Source:65.19.99.117, Destination:192.168.1.114
 ICMP -&amp;gt; Type:11, Code:0
-
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
-
 IP -&amp;gt; Version:4, Header Length:5, TTL:250, Protocol:1, Source:72.14.215.203, Destination:192.168.1.114
 ICMP -&amp;gt; Type:11, Code:0
-
 IP -&amp;gt; Version:4, Header Length:5, TTL:56, Protocol:1, Source:74.125.226.50, Destination:192.168.1.114
 ICMP -&amp;gt; Type:3, Code:3
-
 IP -&amp;gt; Version:4, Header Length:5, TTL:249, Protocol:1, Source:216.239.50.141, Destination:192.168.1.114
 ICMP -&amp;gt; Type:11, Code:0
-
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
-
 IP -&amp;gt; Version:4, Header Length:5, TTL:56, Protocol:1, Source:74.125.226.50, Destination:192.168.1.114
 ICMP -&amp;gt; Type:3, Code:3
 &lt;/pre&gt;&lt;/div&gt;
@@ -188,12 +183,12 @@ ICMP -&amp;gt; Type:3, Code:3
 &lt;hr /&gt;
 &lt;h2&gt;Writing the Scanner&lt;/h2&gt;
 &lt;h3&gt;Installing netaddr&lt;/h3&gt;
-&lt;p&gt;We are ready to write our full scanner. First, let's install &lt;a href="https://pypi.python.org/pypi/netaddr"&gt;netaddr&lt;/a&gt;. This allow to use a subnet mask such as 192.168.1.0/24:&lt;/p&gt;
+&lt;p&gt;We are ready to write our full scanner. First, let's install &lt;a href="https://pypi.python.org/pypi/netaddr"&gt;netaddr&lt;/a&gt;. This library allows to use a subnet mask such as 192.168.1.0/24:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install netaddr
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now let's quickly test this library. The following snippet should print "OK":&lt;/p&gt;
+&lt;p&gt;We can quickly test this library with the following snippet (which should print "OK"):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;netaddr&lt;/span&gt;
 
 &lt;span class="n"&gt;ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;192.168.1.114&amp;#39;&lt;/span&gt;
