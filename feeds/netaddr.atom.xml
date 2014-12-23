@@ -198,8 +198,8 @@ ICMP -&amp;gt; Type:3, Code:3
 
 
 &lt;h3&gt;Writing the Scanner&lt;/h3&gt;
-&lt;p&gt;To write our scanner we are going to put everything we have together, plus adding a loop to spray UDP datagrams with a string signature to all the address within our target subnet.&lt;/p&gt;
-&lt;p&gt;Each packet will be send in a separated thread, so we make sure that we are not interfering with the sniff responses:&lt;/p&gt;
+&lt;p&gt;To write our scanner we are going to put together everything we have, and then add a loop to spray UDP datagrams with a string signature to all the address within our target subnet.&lt;/p&gt;
+&lt;p&gt;To make this work, wach packet will be sent in a separated thread, so we make sure that we are not interfering with the sniff responses:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
