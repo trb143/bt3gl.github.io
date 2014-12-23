@@ -58,7 +58,7 @@
 &lt;p&gt;Now it's pretty obvious that we need to decode these headers.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Decoding the IP and ICMP Layers&lt;/h2&gt;
-&lt;p&gt;A typical IP header has the following structure, where each field belongs to a variable (this reader is originally &lt;a href="http://minirighi.sourceforge.net/html/structip.html"&gt;written in C&lt;/a&gt;):&lt;/p&gt;
+&lt;p&gt;A typical IP header has the following structure, where each field belongs to a variable (this header is originally &lt;a href="http://minirighi.sourceforge.net/html/structip.html"&gt;written in C&lt;/a&gt;):&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/3fmVLJS.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;In the same way, ICMP can vary in its content but each message contains three elements that are consistent: &lt;strong&gt;type&lt;/strong&gt; and &lt;strong&gt;code&lt;/strong&gt; (tells the receiving host what type of ICMP message is arriving for decoding) and &lt;strong&gt;checksum&lt;/strong&gt; fields.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/gsUPKRa.gif" /&gt;&lt;/p&gt;
