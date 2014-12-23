@@ -63,7 +63,7 @@
 &lt;p&gt;In the same way, ICMP can vary in its content but each message contains three elements that are consistent: &lt;strong&gt;type&lt;/strong&gt; and &lt;strong&gt;code&lt;/strong&gt; (tells the receiving host what type of ICMP message is arriving for decoding) and &lt;strong&gt;checksum&lt;/strong&gt; fields.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/gsUPKRa.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;For our scanner, we are looking for a &lt;strong&gt;type value of 3&lt;/strong&gt; and a &lt;strong&gt;code value of 3&lt;/strong&gt;, which are the &lt;strong&gt;Destination Unreachable&lt;/strong&gt; class and &lt;strong&gt;Port Unreachable&lt;/strong&gt; &lt;a href="http://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages"&gt;error in ICMP messages&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;To represent this header, we can a class, with the help of Python's &lt;a href="https://docs.python.org/2/library/ctypes.html"&gt;ctypes&lt;/a&gt; library:&lt;/p&gt;
+&lt;p&gt;To represent this header, we create a class, with the help of Python's &lt;a href="https://docs.python.org/2/library/ctypes.html"&gt;ctypes&lt;/a&gt; library:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;ctypes&lt;/span&gt;
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ICMP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ctypes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Structure&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
