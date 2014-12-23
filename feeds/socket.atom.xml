@@ -5,9 +5,9 @@
 &lt;p&gt;Finally, we use &lt;strong&gt;UDP datagrams&lt;/strong&gt; to make life easier. Differently from TCP,  UDP datagrams do not bring much overhead when we send them across an entire subnet (remember the TCP &lt;a href="http://www.inetdaemon.com/tutorials/internet/tcp/3-way_handshake.shtml"&gt;handshaking&lt;/a&gt;). We just wait for the ICMP responses saying whether the hosts are available or closed (unreachable).&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Writing a Packet Sniffing&lt;/h2&gt;
-&lt;p&gt;We start with a  very simple task. Using our dear &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html"&gt;socket&lt;/a&gt; Python's library, we write a simple packet sniffer.&lt;/p&gt;
-&lt;p&gt;In this program we create a raw socket and then we bind it to the public interface. The interface should be in &lt;strong&gt;promiscuous mode&lt;/strong&gt;, which means that every packet that the network card sees are captured, even those that are not destined to the host.&lt;/p&gt;
-&lt;p&gt;Things are slightly different if we are using Windows: in this case we need to send a &lt;a href="http://en.wikipedia.org/wiki/Ioctl"&gt;IOCTL&lt;/a&gt; package to set the interface to &lt;strong&gt;promiscuous mode&lt;/strong&gt;. In addition, while in Linux needs to use ICMP, Windows allow us to sniff the incoming packets independently of the protocol.&lt;/p&gt;
+&lt;p&gt;We start with a  very simple task: with Python's  &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html"&gt;socket&lt;/a&gt; library, we will write a very simple packet sniffer.&lt;/p&gt;
+&lt;p&gt;In this sniffer we create a raw socket and then we bind it to the public interface. The interface should be in &lt;strong&gt;promiscuous mode&lt;/strong&gt;, which means that every packet that the network card sees are captured, even those that are not destined to the host.&lt;/p&gt;
+&lt;p&gt;Things are slightly different if we are using Windows: in this case we need to send a &lt;a href="http://en.wikipedia.org/wiki/Ioctl"&gt;IOCTL&lt;/a&gt; package to set the interface to &lt;strong&gt;promiscuous mode&lt;/strong&gt;. In addition, while Linux needs to use ICMP, Windows allow us to sniff the incoming packets independently of the protocol.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 
