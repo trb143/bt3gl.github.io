@@ -199,7 +199,7 @@ ICMP -&amp;gt; Type:3, Code:3
 
 &lt;h3&gt;Writing the Scanner&lt;/h3&gt;
 &lt;p&gt;To write our scanner we are going to put together everything we have, and then add a loop to spray UDP datagrams with a string signature to all the address within our target subnet.&lt;/p&gt;
-&lt;p&gt;To make this work, wach packet will be sent in a separated thread, so we make sure that we are not interfering with the sniff responses:&lt;/p&gt;
+&lt;p&gt;To make this work, each packet will be sent in a separated thread, to make sure that we are not interfering with the sniff responses:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
@@ -211,10 +211,8 @@ ICMP -&amp;gt; Type:3, Code:3
 
 &lt;span class="c"&gt;# host to listen on&lt;/span&gt;
 &lt;span class="n"&gt;HOST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;192.168.1.114&amp;#39;&lt;/span&gt;
-
 &lt;span class="c"&gt;# subnet to target (iterates through all IP address in this subnet)&lt;/span&gt;
 &lt;span class="n"&gt;SUBNET&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;192.168.1.0/24&amp;#39;&lt;/span&gt;
-
 &lt;span class="c"&gt;# string signature&lt;/span&gt;
 &lt;span class="n"&gt;MESSAGE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;hellooooo&amp;#39;&lt;/span&gt;
 
@@ -222,7 +220,6 @@ ICMP -&amp;gt; Type:3, Code:3
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;udp_sender&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SUBNET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;MESSAGE&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;sender&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SOCK_DGRAM&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ip&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;IPNetwork&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SUBNET&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sendto&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MESSAGE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;65212&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -265,7 +262,7 @@ ICMP -&amp;gt; Type:3, Code:3
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Running the scanner will give a result similar to this:&lt;/p&gt;
+&lt;p&gt;Finally, running the scanner  gives a result similar to this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python scanner.py
 Host up: 192.168.1.114
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
