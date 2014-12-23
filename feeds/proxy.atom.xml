@@ -673,7 +673,7 @@ Transfer-Encoding: chunked
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt; Fun, isn't? Now check the next post about Python's &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-scapy-module.html"&gt;scapy module&lt;/a&gt; and &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-paramiko-module.html"&gt;paramiko module&lt;/a&gt;!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; Fun, isn't? Now check the next post about Python's &lt;a href="http://bt3gl.github.io/black-hat-python-infinite-possibilities-with-the-scapy-module.html"&gt;scapy module&lt;/a&gt; and &lt;a href="http://bt3gl.github.io/black-hat-python-the-paramiko-module.html"&gt;paramiko module&lt;/a&gt;!&lt;/strong&gt;&lt;/p&gt;
 &lt;h2&gt;Further References:&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://docs.python.org/2/library/socket.html"&gt;Python's Socket Documentation&lt;/a&gt;&lt;/li&gt;

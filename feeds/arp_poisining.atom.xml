@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/arp_poisining.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-10-20T06:30:00-04:00</updated><entry><title>Black Hat Python: Infinite possibilities with the Scapy Module</title><link href="http://bt3gl.github.io/black-hat-python-infinite-possibilities-with-the-scapy-module.html" rel="alternate"></link><updated>2014-10-20T06:30:00-04:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-10-20:black-hat-python-infinite-possibilities-with-the-scapy-module.html</id><summary type="html">&lt;p&gt;Today I'm talking about one of my favorites libraries in Python: &lt;a href="http://www.secdev.org/projects/scapy/"&gt;scapy&lt;/a&gt;. We will be seeing things like: how to make a traceroute tool, how to still plain text email data, how to ARP poison a machine, how to process PCAP files,... There are som many possibilities!&lt;/p&gt;
+&lt;p&gt;This post is based on a chapter from the &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt; book and some of my CTF scripts. Let's the game begin!&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Creating a Traceroute Tool&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Stealing Emails Credentials&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2&gt;ARP Cache Poisoning&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2&gt;PCAP Processing&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Further References:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.secdev.org/projects/scapy/doc/"&gt;Scapy Documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://sid.rstack.org/static/articles/w/i/f/Wifitap_EN_9613.html"&gt;Wifitap: PoC for communication over WiFi networks using traffic injection&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Python"></category><category term="scapy"></category><category term="Book"></category><category term="traceroute"></category><category term="PCAP"></category><category term="ARP_poisining"></category></entry></feed>
