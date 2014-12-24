@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/sniffing.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-18T06:30:00-05:00</updated><entry><title>Black Hat Python: Building a UDP Scanner</title><link href="http://bt3gl.github.io/black-hat-python-building-a-udp-scanner.html" rel="alternate"></link><updated>2014-12-18T06:30:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-18:black-hat-python-building-a-udp-scanner.html</id><summary type="html">&lt;p&gt;When it comes to the reconnaissance of some target network, the start point is undoubtedly on host discovering. This task might come together with the ability to sniff and parse the packets flying in the network.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/sniffing.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-16T06:30:00-05:00</updated><entry><title>Black Hat Python: Building a UDP Scanner</title><link href="http://bt3gl.github.io/black-hat-python-building-a-udp-scanner.html" rel="alternate"></link><updated>2014-12-16T06:30:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-16:black-hat-python-building-a-udp-scanner.html</id><summary type="html">&lt;p&gt;When it comes to the reconnaissance of some target network, the start point is undoubtedly on host discovering. This task might come together with the ability to sniff and parse the packets flying in the network.&lt;/p&gt;
 &lt;p&gt;A few weeks ago, I talked about &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;how to use Wireshark&lt;/a&gt; for packet sniffing, but what if you don't have Wireshark available to monitor a network traffic?&lt;/p&gt;
 &lt;p&gt;Again, Python comes with several solutions and today I'm going  through the steps to build a &lt;strong&gt;UDP Host discovery tool&lt;/strong&gt;. First, we are going to see how we deal with &lt;a href="http://en.wikipedia.org/wiki/Raw_socket"&gt;raw sockets&lt;/a&gt; to  write a simple sniffer, which is able to view and decode network packets. Then we are going to multithread this process within a subnet, which will result in our scanner.&lt;/p&gt;
 &lt;p&gt;The cool thing about &lt;strong&gt;raw sockets&lt;/strong&gt; is that they allow access to low-level networking information. For example, we can use it to check &lt;strong&gt;IP&lt;/strong&gt; and &lt;strong&gt;ICMP&lt;/strong&gt; headers, which are in the layer 3 of the OSI model (the network layer).&lt;/p&gt;
@@ -281,4 +281,247 @@ Host up: 192.168.1.114
 &lt;li&gt;&lt;a href="https://netaddr.readthedocs.org/en/latest/tutorial_01.html"&gt;Tutorial to learn netaddr&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Python"></category><category term="socket"></category><category term="sniffing"></category><category term="UDP"></category><category term="netaddr"></category><category term="ICMP"></category><category term="scanner"></category><category term="packet_header"></category></entry></feed>
+&lt;/ul&gt;</summary><category term="Python"></category><category term="socket"></category><category term="sniffing"></category><category term="UDP"></category><category term="netaddr"></category><category term="ICMP"></category><category term="scanner"></category><category term="packet_header"></category></entry><entry><title>Black Hat Python: AAInfinite possibilities with the Scapy Module</title><link href="http://bt3gl.github.io/black-hat-python-aainfinite-possibilities-with-the-scapy-module.html" rel="alternate"></link><updated>2014-10-20T00:00:00-04:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-10-20:black-hat-python-aainfinite-possibilities-with-the-scapy-module.html</id><summary type="html">&lt;p&gt;Today I'm talking about one of my favorites libraries in Python: &lt;a href="http://www.secdev.org/projects/scapy/"&gt;scapy&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Scapy is a very powerful interactive packet manipulation program. It is able to forge or decode packets of a wide number of protocols, send them on the wire, capture them, match requests and replies, and much more. It can easily handle most classical tasks like scanning, tracerouting, probing, unit tests, attacks or network discovery, etc.&lt;/p&gt;
+&lt;p&gt;In this post, we will be seeing things like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#intro"&gt;A Quick Intro to Scapy&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href="#email"&gt;how to still plain text email data&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href="#arp"&gt;how to ARP poison a machine&lt;/a&gt;, and&lt;/li&gt;
+&lt;li&gt;&lt;a href="#pcap"&gt;how to process PCAP files&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This post is based on a chapter from the &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt; book and some of my CTF script. I have been writing &lt;a href=""&gt;several&lt;/a&gt; &lt;a href=""&gt;posts&lt;/a&gt; &lt;a href=""&gt;about&lt;/a&gt; &lt;a href=""&gt;sniffing&lt;/a&gt;, but this time we are going to do serious hacking, dissecting the material we are sniffing!&lt;/p&gt;
+&lt;p&gt;All right, let's the fun begin!&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;&lt;a name="intro"&gt;&lt;/a&gt; Scapy 101&lt;/h2&gt;
+&lt;p&gt;If you never had the chance to play with scapy, here I'm introducing the basic concepts of this tool. If you already know the basics, skip to the next session!&lt;/p&gt;
+&lt;h3&gt;Installing and  Scapy&lt;/h3&gt;
+&lt;p&gt;But first, install Scapy in your machine:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install scapy
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;By the way, you can use Scapy iteratively too. Here some useful commands:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;scapy
+Welcome to Scapy &lt;span class="o"&gt;(&lt;/span&gt;2.2.0&lt;span class="o"&gt;)&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; ls&lt;span class="o"&gt;()&lt;/span&gt;    ---&amp;gt; list protocols
+ARP        : ARP
+ASN1_Packet : None
+BOOTP      : BOOTP
+CookedLinux : cooked linux
+DHCP       : DHCP options
+DHCP6      : DHCPv6 Generic Message&lt;span class="o"&gt;)&lt;/span&gt;
+DHCP6OptAuth : DHCP6 Option - Authentication
+&lt;span class="o"&gt;(&lt;/span&gt;..&lt;span class="o"&gt;)&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; lsc&lt;span class="o"&gt;()&lt;/span&gt;   ---&amp;gt; list commands
+arpcachepoison      : Poison target&lt;span class="s1"&gt;&amp;#39;s cache with (your MAC,victim&amp;#39;&lt;/span&gt;s IP&lt;span class="o"&gt;)&lt;/span&gt; couple
+arping              : Send ARP who-has requests to determine which hosts are up
+bind_layers         : Bind 2 layers on some specific fields&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; values
+corrupt_bits        : Flip a given percentage or number of bits from a string
+corrupt_bytes       : Corrupt a given percentage or number of bytes from a string
+&amp;gt;&amp;gt;&amp;gt; conf    ---&amp;gt; Display configurations
+&lt;span class="nv"&gt;ASN1_default_codec&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &amp;lt;ASN1Codec BER&lt;span class="o"&gt;[&lt;/span&gt;1&lt;span class="o"&gt;]&lt;/span&gt;&amp;gt;
+&lt;span class="nv"&gt;AS_resolver&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &amp;lt;scapy.as_resolvers.AS_resolver_multi instance at 0x2246680&amp;gt;
+&lt;span class="nv"&gt;BTsocket&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &amp;lt;BluetoothL2CAPSocket: &lt;span class="nb"&gt;read&lt;/span&gt;/write packets on a connected L2CAP ..
+&amp;gt;&amp;gt;&amp;gt; &lt;span class="nb"&gt;help&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;sniff&lt;span class="o"&gt;)&lt;/span&gt;     --&amp;gt; Help &lt;span class="k"&gt;for &lt;/span&gt;a specific &lt;span class="nb"&gt;command&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Sending a Packet&lt;/h3&gt;
+&lt;p&gt;Scapy's function &lt;a href=""&gt;send&lt;/a&gt; tells Scapy to send a single packet to some IP destination (it's a layer 3 send, so it decides the routing based on local table). In another hand, the method &lt;a href=""&gt;sendp&lt;/a&gt; is a layer 2 send. The operator &lt;strong&gt;/&lt;/strong&gt; is used as a composite operator between two layers&lt;/p&gt;
+&lt;p&gt;For example, let us create an ICMP packet with some message:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="n"&gt;packet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;192.168.1.114&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ICMP&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Helloooo!&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Notice that the method &lt;strong&gt;show()&lt;/strong&gt; displays details about the packet:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python send_packet.py
+.
+Sent 1 packets.
+&lt;span class="c"&gt;###[ IP ]###&lt;/span&gt;
+  &lt;span class="nv"&gt;version&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; 4
+  &lt;span class="nv"&gt;ihl&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; None
+  &lt;span class="nv"&gt;tos&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; 0x0
+  &lt;span class="nv"&gt;len&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; None
+  &lt;span class="nv"&gt;id&lt;/span&gt;        &lt;span class="o"&gt;=&lt;/span&gt; 1
+  &lt;span class="nv"&gt;flags&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt;
+  &lt;span class="nv"&gt;frag&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; 0
+  &lt;span class="nv"&gt;ttl&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; 64
+  &lt;span class="nv"&gt;proto&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; icmp
+  &lt;span class="nv"&gt;chksum&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; None
+  &lt;span class="nv"&gt;src&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; 192.168.1.114
+  &lt;span class="nv"&gt;dst&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; 192.168.1.114
+  &lt;span class="se"&gt;\o&lt;/span&gt;ptions   &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="c"&gt;###[ ICMP ]###&lt;/span&gt;
+     &lt;span class="nb"&gt;type&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt;-request
+     &lt;span class="nv"&gt;code&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; 0
+     &lt;span class="nv"&gt;chksum&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; None
+     &lt;span class="nv"&gt;id&lt;/span&gt;        &lt;span class="o"&gt;=&lt;/span&gt; 0x0
+     &lt;span class="nv"&gt;seq&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; 0x0
+&lt;span class="c"&gt;###[ Raw ]###&lt;/span&gt;
+        &lt;span class="nv"&gt;load&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Helloooo!&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This packet looks like this in &lt;a href=""&gt;Wireshark&lt;/a&gt;:
+&lt;img alt="" src="http://i.imgur.com/jjuWHaZ.png" /&gt;&lt;/p&gt;
+&lt;p&gt;To send the same packet over again we can simply add the &lt;strong&gt;loop=1&lt;/strong&gt; argument with the send packet:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python send_packet.py
+.....................................................................................................................
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Which looks like this in Wireshark:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.imgur.com/lv89lc3.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;Receiving a Packet&lt;/h3&gt;
+&lt;p&gt;There are two types of packet receiving, based on the network layer:
+&lt;em&gt; Layer 3: &lt;a href=""&gt;sr&lt;/a&gt; returns the answered and unanswered packets, while &lt;a href=""&gt;sr1&lt;/a&gt; only returns answered and sent packets.
+&lt;/em&gt; Layer 2: &lt;a href=""&gt;srp&lt;/a&gt; returns the answered and unanswered packets, while &lt;a href=""&gt;srp1&lt;/a&gt; only returns answered and sent packets.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;google.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ICMP&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;Output is:&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;
+&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unanswered&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;Result is:&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Which results in:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python receive_packet.py
+WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination :: &lt;span class="o"&gt;(&lt;/span&gt;no default route?&lt;span class="o"&gt;)&lt;/span&gt;
+Begin emission:
+.Finished to send 1 packets.
+*
+Received 2 packets, got 1 answers, remaining 0 packets
+
+Output is:
+&lt;span class="o"&gt;(&lt;/span&gt;&amp;lt;Results: TCP:0 UDP:0 ICMP:1 Other:0&amp;gt;, &amp;lt;Unanswered: TCP:0 UDP:0 ICMP:0 Other:0&amp;gt;&lt;span class="o"&gt;)&lt;/span&gt;
+
+Result is:
+&lt;span class="o"&gt;[(&lt;/span&gt;&amp;lt;IP  &lt;span class="nv"&gt;frag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0 &lt;span class="nv"&gt;proto&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;icmp &lt;span class="nv"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;74.125.228.40 |&amp;lt;ICMP  |&amp;gt;&amp;gt;, &amp;lt;IP  &lt;span class="nv"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4L &lt;span class="nv"&gt;ihl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;5L &lt;span class="nv"&gt;tos&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 &lt;span class="nv"&gt;len&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;28 &lt;span class="nv"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;9762 &lt;span class="nv"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;frag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0L &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;53 &lt;span class="nv"&gt;proto&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;icmp &lt;span class="nv"&gt;chksum&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x6eff &lt;span class="nv"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;74.125.228.40 &lt;span class="nv"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;192.168.1.114 &lt;span class="nv"&gt;options&lt;/span&gt;&lt;span class="o"&gt;=[]&lt;/span&gt; |&amp;lt;ICMP  &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;-reply &lt;span class="nv"&gt;code&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0 &lt;span class="nv"&gt;chksum&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 &lt;span class="nv"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 &lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 |&amp;gt;&amp;gt;&lt;span class="o"&gt;)]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;The Routing Table&lt;/h3&gt;
+&lt;p&gt;To look to the routing table of our machine we can just print the Scapy's command &lt;strong&gt;conf.route&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Network&lt;/span&gt;         &lt;span class="n"&gt;Netmask&lt;/span&gt;         &lt;span class="n"&gt;Gateway&lt;/span&gt;         &lt;span class="n"&gt;Iface&lt;/span&gt;           &lt;span class="n"&gt;Output&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;
+&lt;span class="mf"&gt;127.0.0.0&lt;/span&gt;       &lt;span class="mf"&gt;255.0.0.0&lt;/span&gt;       &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;         &lt;span class="n"&gt;lo&lt;/span&gt;              &lt;span class="mf"&gt;127.0.0.1&lt;/span&gt;
+&lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;         &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;         &lt;span class="mf"&gt;192.168.1.1&lt;/span&gt;     &lt;span class="n"&gt;wlp1s0&lt;/span&gt;          &lt;span class="mf"&gt;192.168.1.114&lt;/span&gt;
+&lt;span class="mf"&gt;192.168.1.0&lt;/span&gt;     &lt;span class="mf"&gt;255.255.255.0&lt;/span&gt;   &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;         &lt;span class="n"&gt;wlp1s0&lt;/span&gt;          &lt;span class="mf"&gt;192.168.1.114&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Scapy allows us to include a specified route to this table, so any packet intended to some specified host would go through the specified gateway:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;192.168.118.2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;gw&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;192.168.1.114&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;Network         Netmask         Gateway         Iface           Output IP
+127.0.0.0       255.0.0.0       0.0.0.0         lo              127.0.0.1
+0.0.0.0         0.0.0.0         192.168.1.1     wlp1s0          192.168.1.114
+192.168.1.0     255.255.255.0   0.0.0.0         wlp1s0          192.168.1.114
+192.168.118.2   255.255.255.255 192.168.1.114   lo              192.168.1.114
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally, to return to the original configuration, we use &lt;code&gt;conf.route.resync()&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;The Sniff Function&lt;/h3&gt;
+&lt;p&gt;Packet sniffing can be done with the function [sniff]. For example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;icmp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iface&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eth1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, to see the output in real time, we use the lambda function for the &lt;a href="method"&gt;summary&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;icmp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iface&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eth1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;prn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Saving Packets&lt;/h3&gt;
+&lt;p&gt;To save packets we can use the function &lt;a href=""&gt;wrpacp&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wrpcap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;packets.pcap&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To read packets we can use &lt;a href=""&gt;rdpcap&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rdpcap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;packets.pcap&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Creating Custom Packets&lt;/h3&gt;
+&lt;p&gt;We can create custom packets to perform port scanning. For example, we can create a TCP/IP packet with the TCP flag set to 'S' (SYM) for ports 1-1024:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;192.168.1.114&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;S&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It will take a couple of minutes to scan. We can check the output with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Network Functions&lt;/h3&gt;
+&lt;p&gt;Scapy can perform simple networking functions such as  &lt;strong&gt;traceroute&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;scapy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;traceroute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;www.google.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And commands for network based attack such as &lt;a href=""&gt;arpcachepoison&lt;/a&gt; and &lt;a href=""&gt;srpflood&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To discover hosts on the local Ethernet, we can use &lt;a href=""&gt;arping&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;arping&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;192.168.1.114&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Creating and Sending ARP Request Packets&lt;/h3&gt;
+&lt;p&gt;We can create a snippet that sends ARP requests and waits for response:&lt;/p&gt;
+&lt;h3&gt;Crafting the Three-way Handshake&lt;/h3&gt;
+&lt;p&gt;Scapy allows you to craft SYN request and match the corresponding returned SYN/ACK segment.&lt;/p&gt;
+&lt;p&gt;First we create an instance of an IP header. Then we define an instance of the TCP header called SYN. We send this and capture the server's response so that we can extract the server's TCP sequence number.&lt;/p&gt;
+&lt;p&gt;The code below will send one packet and match the first response with the command sr1 (layer 3). The notation &lt;strong&gt;SYNACK.seq&lt;/strong&gt; extract the TCP  sequence number from the server and increment it by 1.&lt;/p&gt;
+&lt;p&gt;Then we create a new instance of the TCP header &lt;strong&gt;ACK&lt;/strong&gt;, which now has the flag &lt;strong&gt;A&lt;/strong&gt;. We place the acknowledement value for the server thre. We then send everything (this command does not listen for a response).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;192.168.1.114&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;192.168.1.25&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;SYN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;S&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;12345&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;packet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;SYN&lt;/span&gt;
+&lt;span class="n"&gt;SYNACK&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sr1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ack&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SYNACK&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;seq&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;ACK&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;12346&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ack&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ack&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ACK&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;All we have to do now is create the segment with no TCP flags and payload and send it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;PUSH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;12346&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ack&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ack&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;HELLLO&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;PUSH&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Fuzzing&lt;/h3&gt;
+&lt;p&gt;Scapy provides &lt;a href=""&gt;fuzzing&lt;/a&gt; with the function &lt;a href=""&gt;fuzz&lt;/a&gt;. For example, we can write a DNS fuzzzer:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;192.168.1.114&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;UDP&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;fuzz&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DNS&lt;/span&gt;&lt;span class="p"&gt;()),&lt;/span&gt; &lt;span class="n"&gt;inter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;h2&gt;&lt;a name="email"&gt;&lt;/a&gt; Stealing Emails Credentials&lt;/h2&gt;
+&lt;p&gt;The idea of this script is to build a sniffer to capture &lt;a href=""&gt;SMTP&lt;/a&gt;, &lt;a href=""&gt;POP3&lt;/a&gt;, and &lt;a href=""&gt;IMAP&lt;/a&gt; credentials. Once we couple this sniffer with some &lt;a href=""&gt;MITM&lt;/a&gt; attack (such as **ARP poisoning), we can steal credentials from other machines in the network.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;&lt;a name="email"&gt;&lt;/a&gt; ARP Cache Poisoning&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2&gt;&lt;a name="pcap"&gt;&lt;/a&gt; PCAP Processing&lt;/h2&gt;
+&lt;p&gt;We have learned how to steal credentials from some email protocols, now let's extend this to all the traffic in the network!&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Further References:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.secdev.org/projects/scapy/doc/"&gt;Scapy Documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://sid.rstack.org/static/articles/w/i/f/Wifitap_EN_9613.html"&gt;Wifitap: PoC for communication over WiFi networks using traffic injection&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://code.google.com/p/surfjack/"&gt;SurfJack: hijack HTTP connections to steal cookies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Python"></category><category term="scapy"></category><category term="Book"></category><category term="traceroute"></category><category term="PCAP"></category><category term="ARP_poisining"></category><category term="sniffing"></category><category term="Wireshark"></category></entry></feed>
