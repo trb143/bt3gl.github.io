@@ -609,7 +609,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Running it results in an output like this:&lt;/p&gt;
+&lt;p&gt;Running the script results in an output like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;Extracted: 165 images
 Detected: 16 faces
 &lt;/pre&gt;&lt;/div&gt;
