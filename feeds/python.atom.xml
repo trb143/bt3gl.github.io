@@ -573,7 +573,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;3) The &lt;strong&gt;extract_image&lt;/strong&gt; function determines whether an image is in a HTTP response by checking by the &lt;strong&gt;'Content-Type'&lt;/strong&gt; string:&lt;/p&gt;
+&lt;p&gt;3) The &lt;strong&gt;extract_image&lt;/strong&gt; extract the data part from the HTTP content, decopressing it if necessary:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;extract_image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;http_payload&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;image_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
     &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
