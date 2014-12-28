@@ -1470,7 +1470,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 
 
 &lt;h3&gt;Fuzzing&lt;/h3&gt;
-&lt;p&gt;Scapy's = &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#fuzzing"&gt;fuzz()&lt;/a&gt; method allows one to craft fuzzing templates and send them in a loop, by changing default values by random ones.&lt;/p&gt;
+&lt;p&gt;Scapy's &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#fuzzing"&gt;fuzz()&lt;/a&gt; method allows one to craft fuzzing templates (by changing default values by random ones) and send them in a loop.&lt;/p&gt;
 &lt;p&gt;For example, we can have a standard IP layer with the UDP and NTP layers being fuzzed (but with the correct checksums). Below, the UDP destination port is overloaded by NTP and the NTP version is forced to be 4:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;192.168.1.114&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;fuzz&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UDP&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;NTP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;................^&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;
@@ -1489,16 +1489,16 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Or to discover hosts on the local Ethernet, with &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#arp-ping"&gt;arping&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;Or be used to discover hosts on the local Ethernet, with &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#arp-ping"&gt;arping&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;arping&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;192.168.1.114&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Scapy has also commands for network based attack such as &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#tcp-traceroute"&gt;arpcachepoison  and srpflood&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Additionally, we can use Scapy when we need to re-create a packet that has been sniffed or received. The method &lt;strong&gt;command()&lt;/strong&gt; returns a string of the command necessary to recreate that packet.&lt;/p&gt;
+&lt;p&gt;Scapy has also commands for network-based attack such as &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#tcp-traceroute"&gt;arpcachepoison  and srpflood&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Additionally, we can use Scapy to re-create a packet that has been sniffed or received. The method &lt;strong&gt;command()&lt;/strong&gt; returns a string of the commands necessary for this task.&lt;/p&gt;
 &lt;h3&gt;Plotting&lt;/h3&gt;
-&lt;p&gt;If you have &lt;a href="http://www.gnuplot.info/"&gt;GnuPlot&lt;/a&gt; installed (&lt;code&gt;pip install gnuplot&lt;/code&gt;), you can use the plot functionality with Scapy. It's pretty neat.&lt;/p&gt;
-&lt;p&gt;We also can plot  graphs with the function &lt;strong&gt;plot()&lt;/strong&gt; and&lt;strong&gt;graph()&lt;/strong&gt;,  and we can generate 3D  plots with &lt;strong&gt;trace3D()&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you have &lt;a href="http://www.gnuplot.info/"&gt;GnuPlot&lt;/a&gt; installed, you can use the plot functionality with Scapy. It's pretty neat.&lt;/p&gt;
+&lt;p&gt;We also can plot  graphs with the function &lt;strong&gt;plot()&lt;/strong&gt; and &lt;strong&gt;graph()&lt;/strong&gt;,  and we can generate 3D  plots with &lt;strong&gt;trace3D()&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3&gt;Nice Third Party Modules&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://nmap.org/book/osdetect-fingerprint-format.html"&gt;Fingerprinting&lt;/a&gt; can be made with the &lt;strong&gt;nmap_fp()&lt;/strong&gt; module (which comes from &lt;a href="http://nmap.org"&gt;Nmap&lt;/a&gt; prior to v4.23):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;load_module&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;nmap&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
