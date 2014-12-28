@@ -100,8 +100,8 @@
                 <div class="entry-content">
                 <div class="well">
 <footer class="post-info">
-<abbr class="published" title="2014-10-22T00:00:00">
-      Wed 22 October 2014 </abbr>
+<abbr class="published" title="2014-12-22T00:00:00">
+      Mon 22 December 2014 </abbr>
 
 <span class="label"> Category</span>
 <a href="http://bt3gl.github.io/category/networking.html"><i class="icon-folder-open"></i>Networking</a>
@@ -637,48 +637,129 @@ WARNING: No route found <span class="k">for </span>IPv6 destination :: <span cla
 <p>Now open in Wireshark the PCAP file resulting from the script. BAM! The entire traffic from the victim is in your hand!</p>
 <hr />
 <h2><a name="pcap"></a> PCAP Processing to Find Images</h2>
-<p>We have learned how to steal credentials from some email protocols, now let's extend this to all the traffic in the network!</p>
-<p>Sometimes you want to slice and dice PCAPs, some great cases are generating fuzzing test caes based on captured network traaffic or replaying traffic that you captured before.</p>
-<p>To save packets we can use the function <a href="">wrpacp</a>:</p>
+<p>We have learned how to steal credentials from some email protocols, now let us extend this to all the traffic in the network!</p>
+<h3>Writing and Saving PCAP Files</h3>
+<p>To save packets we can use the function <strong>wrpacp</strong>:</p>
 <div class="highlight"><pre><span class="n">wrpcap</span><span class="p">(</span><span class="s">&#39;packets.pcap&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 </pre></div>
 
 
-<p>To read packets we can use <a href="">rdpcap</a>:</p>
+<p>To read packets we can use <strong>rdpcap</strong>:</p>
 <div class="highlight"><pre><span class="n">p</span> <span class="o">=</span> <span class="n">rdpcap</span><span class="p">(</span><span class="s">&#39;packets.pcap&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
 
-<p>http://wiki.wireshark.org/SampleCaptures
-http://www.netresec.com/?page=PcapFiles
-http://www.pcapr.net/home</p>
-<p>http://www.pcapr.net/browse?q=facebook+AND+png</p>
-<p>http://alereimondo.no-ip.org/OpenCV/34/</p>
-<div class="highlight"><pre><span class="n">sudp</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
-<span class="nl">bash:</span> <span class="n">sudp</span><span class="o">:</span> <span class="n">command</span> <span class="n">not</span> <span class="n">found</span><span class="p">...</span>
-<span class="mi">13</span><span class="o">:</span><span class="mi">41</span><span class="o">&gt;</span><span class="n">scully</span><span class="o">&gt;</span><span class="n">bt3gl</span><span class="o">&gt;</span><span class="n">scapy</span><span class="o">&gt;</span> <span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
-<span class="p">[</span><span class="n">sudo</span><span class="p">]</span> <span class="n">password</span> <span class="k">for</span> <span class="n">bytegirl</span><span class="o">:</span>
-<span class="n">Requirement</span> <span class="n">already</span> <span class="n">satisfied</span> <span class="p">(</span><span class="n">use</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">to</span> <span class="n">upgrade</span><span class="p">)</span><span class="o">:</span> <span class="n">numpy</span> <span class="n">in</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span>
-<span class="n">Cleaning</span> <span class="n">up</span><span class="p">...</span>
-<span class="mi">13</span><span class="o">:</span><span class="mi">41</span><span class="o">&gt;</span><span class="n">scully</span><span class="o">&gt;</span><span class="n">bt3gl</span><span class="o">&gt;</span><span class="n">scapy</span><span class="o">&gt;</span> <span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">scipy</span>
-<span class="n">Requirement</span> <span class="n">already</span> <span class="n">satisfied</span> <span class="p">(</span><span class="n">use</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">to</span> <span class="n">upgrade</span><span class="p">)</span><span class="o">:</span> <span class="n">scipy</span> <span class="n">in</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span>
-<span class="n">Cleaning</span> <span class="n">up</span><span class="p">...</span>
-<span class="mi">13</span><span class="o">:</span><span class="mi">41</span><span class="o">&gt;</span><span class="n">scully</span><span class="o">&gt;</span><span class="n">bt3gl</span><span class="o">&gt;</span><span class="n">scapy</span><span class="o">&gt;</span> <span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">opencv</span>
-<span class="n">Downloading</span><span class="o">/</span><span class="n">unpacking</span> <span class="n">opencv</span>
-  <span class="n">Could</span> <span class="n">not</span> <span class="n">find</span> <span class="n">any</span> <span class="n">downloads</span> <span class="n">that</span> <span class="n">satisfy</span> <span class="n">the</span> <span class="n">requirement</span> <span class="n">opencv</span>
-<span class="n">Cleaning</span> <span class="n">up</span><span class="p">...</span>
-<span class="n">No</span> <span class="n">distributions</span> <span class="n">at</span> <span class="n">all</span> <span class="n">found</span> <span class="k">for</span> <span class="n">opencv</span>
-<span class="n">Storing</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">failure</span> <span class="n">in</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="p">.</span><span class="n">pip</span><span class="o">/</span><span class="n">pip</span><span class="p">.</span><span class="n">log</span>
-<span class="mi">13</span><span class="o">:</span><span class="mi">42</span><span class="o">&gt;</span><span class="n">scully</span><span class="o">&gt;</span><span class="n">bt3gl</span><span class="o">&gt;</span><span class="n">scapy</span><span class="o">&gt;</span> <span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">opencv</span>
-<span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">opencv</span><span class="o">-</span><span class="n">python</span>
+<h3>Analyzing PCAP Files</h3>
+<p>Based in one of the examples from <a href="">Black Hat Python</a> we are going to analyze images from HTTP traffic dumped in a PCAP file. We can do this with the library <a href="http://opencv.org/">opencv</a>. We also need to install <a href="http://www.numpy.org/">numpy</a> and <a href="http://www.scipy.org/">scipy</a>:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo pip install numpy
+<span class="nv">$ </span>sudo pip install scipy
+<span class="nv">$ </span>sudo yum install opencv-python
 </pre></div>
 
 
-<p>In the next snippet we are gong to try to find images from HTTP traffic and then use <a href="">OpenCV</a> to try to detect images that contain human faces so that we can narrow down images that might be interesting.</p>
-<p>We can use can create the pcap file in the same way we did in the previous session,  or you can extend the scrpit to do on the fly facal detection of images while the target is brownsing.</p>
+<p>To try to detect images that contain human faces, first either create or download some PCAP files with these images. Some dump sources:
+<a href="http://wiki.wireshark.org/SampleCaptures">here</a>, <a href="http://www.netresec.com/?page=PcapFiles">here</a>, <a href="http://www.pcapr.net/home">here</a>, and <a href="http://www.pcapr.net/browse?q=facebook+AND+png">here</a>.</p>
+<p>The following script does the following:</p>
+<p>1) The function <strong>http_assembler</strong> takes a PCAP and separates each TCP session in a dictionary. Then it loops in these section using the HTTP filter (which is the same as <em>Follow the TCP stream</em> in Wireshark). After the HTTP data is assembled, it parses the headers with the <strong>get_http_headers</strong> function and send to the <strong>extract_image</strong> function. If the image header are returned, it saves the image and try to detect faces with the function <strong>face_detect</strong>.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">http_assembler</span><span class="p">(</span><span class="n">PCAP</span><span class="p">):</span>
+    <span class="n">carved_images</span><span class="p">,</span> <span class="n">faces_detected</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">rdpcap</span><span class="p">(</span><span class="n">PCAP</span><span class="p">)</span>
+    <span class="n">sessions</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">sessions</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">session</span> <span class="ow">in</span> <span class="n">sessions</span><span class="p">:</span>
+        <span class="n">http_payload</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">sessions</span><span class="p">[</span><span class="n">session</span><span class="p">]:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">packet</span><span class="p">[</span><span class="n">TCP</span><span class="p">]</span><span class="o">.</span><span class="n">dport</span> <span class="o">==</span> <span class="mi">80</span> <span class="ow">or</span> <span class="n">packet</span><span class="p">[</span><span class="n">TCP</span><span class="p">]</span><span class="o">.</span><span class="n">sport</span> <span class="o">==</span> <span class="mi">80</span><span class="p">:</span>
+                    <span class="n">http_payload</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">packet</span><span class="p">[</span><span class="n">TCP</span><span class="p">]</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="n">get_http_headers</span><span class="p">(</span><span class="n">http_payload</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">headers</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c"># extract the raw image and return the image type and the binary body of</span>
+            <span class="c"># the image itself</span>
+            <span class="n">image</span><span class="p">,</span> <span class="n">image_type</span> <span class="o">=</span> <span class="n">extract_image</span><span class="p">(</span><span class="n">headers</span><span class="p">,</span> <span class="n">http_payload</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">image_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">file_name</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">-pic_carver_</span><span class="si">%d</span><span class="s">.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">PCAP</span><span class="p">,</span> <span class="n">carved_images</span><span class="p">,</span> <span class="n">image_type</span><span class="p">)</span>
+                <span class="n">fd</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">PIC_DIR</span><span class="p">,</span> <span class="n">file_name</span><span class="p">),</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span>
+                <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+                <span class="n">fd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">carved_images</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">face_detect</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">PIC_DIR</span><span class="p">,</span> <span class="n">file_name</span><span class="p">),</span> <span class="n">file_name</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                        <span class="n">faces_detected</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">carved_images</span><span class="p">,</span> <span class="n">faces_detected</span>
+</pre></div>
+
+
+<ol>
+<li>The <strong>get_http_headers</strong> function split the headers using regex to find <strong>'Content-Type'</strong>:</li>
+</ol>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">get_http_headers</span><span class="p">(</span><span class="n">http_payload</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">headers_raw</span> <span class="o">=</span> <span class="n">http_payload</span><span class="p">[:</span><span class="n">http_payload</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\r\n\r\n</span><span class="s">&quot;</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r&#39;(?P&lt;name&gt;.*?):(?P&lt;value&gt;.*?)\r\n&#39;</span><span class="p">,</span> <span class="n">headers_raw</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="s">&#39;Content-Type&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="n">headers</span>
+</pre></div>
+
+
+<ol>
+<li>The <strong>extract_image</strong> function determine whether an image is in a HTTP response by checking by the <strong>'Content-Type'</strong> string.</li>
+</ol>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">extract_image</span><span class="p">(</span><span class="n">headers</span><span class="p">,</span> <span class="n">http_payload</span><span class="p">):</span>
+    <span class="n">image</span><span class="p">,</span><span class="n">image_type</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s">&#39;image&#39;</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">]:</span>
+            <span class="n">image_type</span> <span class="o">=</span> <span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">http_payload</span><span class="p">[</span><span class="n">http_payload</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\r\n\r\n</span><span class="s">&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">4</span><span class="p">:]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s">&#39;Content-Encoding&#39;</span> <span class="ow">in</span> <span class="n">headers</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Encoding&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;gzip&#39;</span><span class="p">:</span>
+                        <span class="n">image</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">16</span><span class="o">+</span><span class="n">zlb</span><span class="o">.</span><span class="n">MAX_WBITS</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Encoding&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;deflate&#39;</span><span class="p">:</span>
+                        <span class="n">image</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">image_type</span>
+</pre></div>
+
+
+<ol>
+<li>Finally, the <strong>face_detect</strong> function uses the <strong>opencv</strong> library to apply a classifier that is trained for detecting faces. It returns a rectangle coordinates to where the face is and saves the final image. Several types of image classifiers can be found <a href="http://alereimondo.no-ip.org/OpenCV/34">here</a>.</li>
+</ol>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">face_detect</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">cascade</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CascadeClassifier</span><span class="p">(</span><span class="s">&#39;/home/bytegirl/Desktop/haarcascade_upperbody.xml&#39;</span><span class="p">)</span>
+    <span class="n">rects</span> <span class="o">=</span> <span class="n">cascade</span><span class="o">.</span><span class="n">detectMultiScale</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cv</span><span class="o">.</span><span class="n">CV_HAAR_SCALE_IMAGE</span><span class="p">,</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rects</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="n">rects</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span> <span class="o">+=</span> <span class="n">rects</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="ow">in</span> <span class="n">rects</span><span class="p">:</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">retangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="p">(</span><span class="mi">127</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">FACES_DIR</span><span class="p">,</span> <span class="n">PCAP</span><span class="p">,</span> <span class="n">file_name</span><span class="p">),</span> <span class="n">img</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">True</span>
+</pre></div>
+
+
+<p>Running it results in an output like this:</p>
+<div class="highlight"><pre>Extracted: 165 images
+Detected: 16 faces
+</pre></div>
+
+
+<p>Really cool!</p>
 <hr />
-<p>That's it.</p>
 <h2>Further References:</h2>
 <ul>
 <li><a href="http://www.secdev.org/projects/scapy/doc/">Scapy Documentation</a>.</li>
@@ -754,158 +835,13 @@ http://www.pcapr.net/home</p>
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/csrf.html">
-        <i class="icon-tag icon-large"></i>CSRF
+    <a href="http://bt3gl.github.io/tag/ifconfig.html">
+        <i class="icon-tag icon-large"></i>ifconfig
     </a>
 </li>
 <li class="tag-4">
     <a href="http://bt3gl.github.io/tag/tls.html">
         <i class="icon-tag icon-large"></i>TLS
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/csaw.html">
-        <i class="icon-tag icon-large"></i>CSAW
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/sql_injection.html">
-        <i class="icon-tag icon-large"></i>SQL_injection
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/exiftool.html">
-        <i class="icon-tag icon-large"></i>ExifTool
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bash.html">
-        <i class="icon-tag icon-large"></i>Bash
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/subprocess.html">
-        <i class="icon-tag icon-large"></i>subprocess
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/sqli.html">
-        <i class="icon-tag icon-large"></i>SQLi
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/stack_overflow.html">
-        <i class="icon-tag icon-large"></i>Stack_overflow
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/scapy.html">
-        <i class="icon-tag icon-large"></i>scapy
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/burp.html">
-        <i class="icon-tag icon-large"></i>Burp
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/rce.html">
-        <i class="icon-tag icon-large"></i>RCE
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/nmap.html">
-        <i class="icon-tag icon-large"></i>Nmap
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/getopt.html">
-        <i class="icon-tag icon-large"></i>getopt
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/aes.html">
-        <i class="icon-tag icon-large"></i>AES
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/ctf.html">
-        <i class="icon-tag icon-large"></i>CTF
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/traceroute.html">
-        <i class="icon-tag icon-large"></i>traceroute
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
-        <i class="icon-tag icon-large"></i>Buffer_overflow
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pgp.html">
-        <i class="icon-tag icon-large"></i>PGP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/unicode.html">
-        <i class="icon-tag icon-large"></i>Unicode
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/ssh.html">
-        <i class="icon-tag icon-large"></i>SSH
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/binary_search.html">
-        <i class="icon-tag icon-large"></i>Binary_Search
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/crlsets.html">
-        <i class="icon-tag icon-large"></i>CRLSets
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/cain__abel.html">
-        <i class="icon-tag icon-large"></i>Cain_&_Abel
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/wireshark.html">
-        <i class="icon-tag icon-large"></i>Wireshark
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/shellshock.html">
-        <i class="icon-tag icon-large"></i>Shellshock
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/coldfusion.html">
-        <i class="icon-tag icon-large"></i>ColdFusion
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/crl.html">
-        <i class="icon-tag icon-large"></i>CRL
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/xor.html">
-        <i class="icon-tag icon-large"></i>XOR
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
-        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ocsp.html">
-        <i class="icon-tag icon-large"></i>OCSP
     </a>
 </li>
 <li class="tag-3">
@@ -914,178 +850,8 @@ http://www.pcapr.net/home</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/redis.html">
-        <i class="icon-tag icon-large"></i>Redis
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/arpspoof.html">
-        <i class="icon-tag icon-large"></i>arpspoof
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/socket.html">
-        <i class="icon-tag icon-large"></i>socket
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pygenere.html">
-        <i class="icon-tag icon-large"></i>pygenere
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/xss.html">
-        <i class="icon-tag icon-large"></i>XSS
-    </a>
-</li>
-<li class="tag-4">
     <a href="http://bt3gl.github.io/tag/gpg.html">
         <i class="icon-tag icon-large"></i>GPG
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/paillier.html">
-        <i class="icon-tag icon-large"></i>Paillier
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ftp.html">
-        <i class="icon-tag icon-large"></i>FTP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/nosql.html">
-        <i class="icon-tag icon-large"></i>NoSQL
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/netsh.html">
-        <i class="icon-tag icon-large"></i>netsh
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mysql.html">
-        <i class="icon-tag icon-large"></i>MySQL
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://bt3gl.github.io/tag/python.html">
-        <i class="icon-tag icon-large"></i>Python
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/outguess.html">
-        <i class="icon-tag icon-large"></i>OutGuess
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/netcat.html">
-        <i class="icon-tag icon-large"></i>netcat
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/steganography.html">
-        <i class="icon-tag icon-large"></i>Steganography
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/arp.html">
-        <i class="icon-tag icon-large"></i>ARP
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jit.html">
-        <i class="icon-tag icon-large"></i>JIT
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/pcap.html">
-        <i class="icon-tag icon-large"></i>PCAP
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/packet_header.html">
-        <i class="icon-tag icon-large"></i>packet_header
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/base64.html">
-        <i class="icon-tag icon-large"></i>base64
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ecb.html">
-        <i class="icon-tag icon-large"></i>ECB
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
-        <i class="icon-tag icon-large"></i>pdf-parser
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/cache.html">
-        <i class="icon-tag icon-large"></i>cache
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/proxy.html">
-        <i class="icon-tag icon-large"></i>proxy
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/iwconfig.html">
-        <i class="icon-tag icon-large"></i>iwconfig
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/chrome.html">
-        <i class="icon-tag icon-large"></i>Chrome
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/kismet.html">
-        <i class="icon-tag icon-large"></i>Kismet
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/burpsuite.html">
-        <i class="icon-tag icon-large"></i>BurpSuite
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/telnet.html">
-        <i class="icon-tag icon-large"></i>telnet
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/command_injection.html">
-        <i class="icon-tag icon-large"></i>Command_Injection
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/c.html">
-        <i class="icon-tag icon-large"></i>C
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/threading.html">
-        <i class="icon-tag icon-large"></i>threading
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/javascript.html">
-        <i class="icon-tag icon-large"></i>JavaScript
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/ifconfig.html">
-        <i class="icon-tag icon-large"></i>ifconfig
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/tcp.html">
-        <i class="icon-tag icon-large"></i>TCP
     </a>
 </li>
 <li class="tag-4">
@@ -1094,18 +860,93 @@ http://www.pcapr.net/home</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/love.html">
-        <i class="icon-tag icon-large"></i>Love
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/wargames.html">
-        <i class="icon-tag icon-large"></i>Wargames
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/cms.html">
-        <i class="icon-tag icon-large"></i>CMS
+    <a href="http://bt3gl.github.io/tag/arpspoof.html">
+        <i class="icon-tag icon-large"></i>arpspoof
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>Nmap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cain__abel.html">
+        <i class="icon-tag icon-large"></i>Cain_&_Abel
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_spoofing.html">
+        <i class="icon-tag icon-large"></i>ARP_spoofing
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/redis.html">
+        <i class="icon-tag icon-large"></i>Redis
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/threading.html">
+        <i class="icon-tag icon-large"></i>threading
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vmware.html">
+        <i class="icon-tag icon-large"></i>VMWare
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xss.html">
+        <i class="icon-tag icon-large"></i>XSS
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>Chrome
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/nosql.html">
+        <i class="icon-tag icon-large"></i>NoSQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/timing_attack.html">
+        <i class="icon-tag icon-large"></i>Timing_attack
     </a>
 </li>
 <li class="tag-3">
@@ -1114,18 +955,53 @@ http://www.pcapr.net/home</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/jad.html">
-        <i class="icon-tag icon-large"></i>jad
+    <a href="http://bt3gl.github.io/tag/netsh.html">
+        <i class="icon-tag icon-large"></i>netsh
     </a>
 </li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/php.html">
-        <i class="icon-tag icon-large"></i>PHP
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ecb.html">
+        <i class="icon-tag icon-large"></i>ECB
     </a>
 </li>
 <li class="tag-4">
     <a href="http://bt3gl.github.io/tag/brute_force.html">
         <i class="icon-tag icon-large"></i>Brute_Force
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pycrypto.html">
+        <i class="icon-tag icon-large"></i>PyCrypto
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/csrf.html">
+        <i class="icon-tag icon-large"></i>CSRF
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>SSH
     </a>
 </li>
 <li class="tag-4">
@@ -1134,13 +1010,123 @@ http://www.pcapr.net/home</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/bytecode.html">
-        <i class="icon-tag icon-large"></i>bytecode
+    <a href="http://bt3gl.github.io/tag/paillier.html">
+        <i class="icon-tag icon-large"></i>Paillier
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crl.html">
+        <i class="icon-tag icon-large"></i>CRL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/proxy.html">
+        <i class="icon-tag icon-large"></i>proxy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/kismet.html">
+        <i class="icon-tag icon-large"></i>Kismet
     </a>
 </li>
 <li class="tag-3">
     <a href="http://bt3gl.github.io/tag/vigenere.html">
         <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/getopt.html">
+        <i class="icon-tag icon-large"></i>getopt
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ocsp.html">
+        <i class="icon-tag icon-large"></i>OCSP
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/subprocess.html">
+        <i class="icon-tag icon-large"></i>subprocess
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/packet_header.html">
+        <i class="icon-tag icon-large"></i>packet_header
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_poisining.html">
+        <i class="icon-tag icon-large"></i>ARP_poisining
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cms.html">
+        <i class="icon-tag icon-large"></i>CMS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
     </a>
 </li>
 <li class="tag-3">
@@ -1153,29 +1139,39 @@ http://www.pcapr.net/home</p>
         <i class="icon-tag icon-large"></i>Ettercap
     </a>
 </li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/udp.html">
-        <i class="icon-tag icon-large"></i>UDP
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/pycrypto.html">
-        <i class="icon-tag icon-large"></i>PyCrypto
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://bt3gl.github.io/tag/linux.html">
-        <i class="icon-tag icon-large"></i>Linux
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rce.html">
+        <i class="icon-tag icon-large"></i>RCE
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/mem.html">
-        <i class="icon-tag icon-large"></i>mem
+    <a href="http://bt3gl.github.io/tag/crlsets.html">
+        <i class="icon-tag icon-large"></i>CRLSets
     </a>
 </li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/rfi.html">
-        <i class="icon-tag icon-large"></i>RFI
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burp.html">
+        <i class="icon-tag icon-large"></i>Burp
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
+        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tcp.html">
+        <i class="icon-tag icon-large"></i>TCP
     </a>
 </li>
 <li class="tag-2">
@@ -1183,9 +1179,54 @@ http://www.pcapr.net/home</p>
         <i class="icon-tag icon-large"></i>Book
     </a>
 </li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/vmware.html">
-        <i class="icon-tag icon-large"></i>VMWare
+    <a href="http://bt3gl.github.io/tag/arp.html">
+        <i class="icon-tag icon-large"></i>ARP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iwconfig.html">
+        <i class="icon-tag icon-large"></i>iwconfig
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/netcat.html">
+        <i class="icon-tag icon-large"></i>netcat
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pcap.html">
+        <i class="icon-tag icon-large"></i>PCAP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
     </a>
 </li>
 <li class="tag-4">
@@ -1199,58 +1240,98 @@ http://www.pcapr.net/home</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/lamp.html">
-        <i class="icon-tag icon-large"></i>LAMP
+    <a href="http://bt3gl.github.io/tag/jit.html">
+        <i class="icon-tag icon-large"></i>JIT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/exiftool.html">
+        <i class="icon-tag icon-large"></i>ExifTool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/aes.html">
+        <i class="icon-tag icon-large"></i>AES
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/binary_search.html">
+        <i class="icon-tag icon-large"></i>Binary_Search
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow.html">
+        <i class="icon-tag icon-large"></i>Stack_overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/unicode.html">
+        <i class="icon-tag icon-large"></i>Unicode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/traceroute.html">
+        <i class="icon-tag icon-large"></i>traceroute
     </a>
 </li>
 <li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/tr.html">
-        <i class="icon-tag icon-large"></i>tr
+    <a href="http://bt3gl.github.io/tag/udp.html">
+        <i class="icon-tag icon-large"></i>UDP
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/arp_poisining.html">
-        <i class="icon-tag icon-large"></i>ARP_poisining
+    <a href="http://bt3gl.github.io/tag/bytecode.html">
+        <i class="icon-tag icon-large"></i>bytecode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
     </a>
 </li>
 <li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/gdb.html">
-        <i class="icon-tag icon-large"></i>gdb
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/rot13.html">
-        <i class="icon-tag icon-large"></i>ROT13
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/arp_spoofing.html">
-        <i class="icon-tag icon-large"></i>ARP_spoofing
+    <a href="http://bt3gl.github.io/tag/cache.html">
+        <i class="icon-tag icon-large"></i>cache
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/qpdf.html">
-        <i class="icon-tag icon-large"></i>qpdf
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/decimal.html">
-        <i class="icon-tag icon-large"></i>Decimal
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/apphp.html">
-        <i class="icon-tag icon-large"></i>ApPHP
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
     </a>
 </li>
-<li class="tag-3">
-    <a href="http://bt3gl.github.io/tag/lfi.html">
-        <i class="icon-tag icon-large"></i>LFI
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://bt3gl.github.io/tag/timing_attack.html">
-        <i class="icon-tag icon-large"></i>Timing_attack
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_overflow
     </a>
 </li>
 
