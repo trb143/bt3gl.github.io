@@ -707,9 +707,11 @@ Detected: 16 faces
 &lt;h2&gt;Further References:&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.secdev.org/projects/scapy/doc/"&gt;Scapy Documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.secdev.org/projects/scapy/doc/advanced_usage.html"&gt;Scapy Advanced Usage&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html"&gt;Scapy Examples&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://sid.rstack.org/static/articles/w/i/f/Wifitap_EN_9613.html"&gt;Wifitap: PoC for communication over WiFi networks using traffic injection&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://code.google.com/p/surfjack/"&gt;SurfJack: hijack HTTP connections to steal cookies&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://thepacketgeek.com/scapy-p-08-making-a-christmas-tree-packet/"&gt;Making a xmas tree packet&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Python"></category><category term="scapy"></category><category term="Book"></category><category term="traceroute"></category><category term="PCAP"></category><category term="ARP_poisining"></category><category term="sniffing"></category><category term="Wireshark"></category><category term="packet_header"></category></entry></feed>
