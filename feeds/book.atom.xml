@@ -238,7 +238,7 @@ Sent 3 packets, received 3 packets. 100.0% hits.
 
 
 &lt;h3&gt;The Sniff() Method&lt;/h3&gt;
-&lt;p&gt;In Scapy, packet sniffing can be done with the function &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#sniffing"&gt;sniff()&lt;/a&gt;.  The &lt;strong&gt;iface&lt;/strong&gt; parameter tells the sniffer which network interface to sniff on. The &lt;strong&gt;count&lt;/strong&gt; parameter specifies how many packet we want to sniff (where a blank value is infinite):&lt;/p&gt;
+&lt;p&gt;In Scapy, packet sniffing can be done with the function &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#sniffing"&gt;sniff()&lt;/a&gt;.  The &lt;strong&gt;iface&lt;/strong&gt; parameter tells the sniffer which network interface to sniff on. The &lt;strong&gt;count&lt;/strong&gt; parameter specifies how many packet we want to sniff (where a blank value is infinite). The &lt;strong&gt;timeout&lt;/strong&gt; parameter stop sniffing after a given time:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iface&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eth1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -420,7 +420,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 
 
 &lt;p&gt;Scapy has also commands for network-based attack such as &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#tcp-traceroute"&gt;arpcachepoison  and srpflood&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Additionally, we can use Scapy to re-create a packet that has been sniffed or received. The method &lt;strong&gt;command()&lt;/strong&gt; returns a string of the commands necessary for this task.&lt;/p&gt;
+&lt;p&gt;Additionally, we can use Scapy to re-create a packet that has been sniffed or received. The method &lt;strong&gt;command()&lt;/strong&gt; returns a string of the commands necessary for this task. Its output is similar to the command &lt;strong&gt;show()&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3&gt;Plotting&lt;/h3&gt;
 &lt;p&gt;If you have &lt;a href="http://www.gnuplot.info/"&gt;GnuPlot&lt;/a&gt; installed, you can use the plot functionality with Scapy. It's pretty neat.&lt;/p&gt;
 &lt;p&gt;We also can plot  graphs with the function &lt;strong&gt;plot()&lt;/strong&gt; and &lt;strong&gt;graph()&lt;/strong&gt;,  and we can generate 3D  plots with &lt;strong&gt;trace3D()&lt;/strong&gt;.&lt;/p&gt;
