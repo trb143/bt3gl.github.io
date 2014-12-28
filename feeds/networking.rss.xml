@@ -15,7 +15,7 @@ Welcome to Scapy &lt;span class="o"&gt;(&lt;/span&gt;2.2.0&lt;span class="o"&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;This post is divided as the following:&lt;/p&gt;
+&lt;h3&gt;Index:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#intro"&gt;Scapy 101 (including sniffing, scanning, fuzzing,...)&lt;/a&gt;,&lt;/li&gt;
 &lt;li&gt;&lt;a href="#email"&gt;Stealing Plain Text Email Data&lt;/a&gt;,&lt;/li&gt;
