@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/urllib2.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-10-05T04:30:00-04:00</updated><entry><title>Hacking the Web with urllib2</title><link href="http://bt3gl.github.io/hacking-the-web-with-urllib2.html" rel="alternate"></link><updated>2014-10-05T04:30:00-04:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-10-05:hacking-the-web-with-urllib2.html</id><summary type="html">&lt;hr /&gt;
+&lt;h2&gt;Further References:&lt;/h2&gt;</summary><category term="urllib2"></category></entry></feed>
