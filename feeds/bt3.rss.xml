@@ -138,7 +138,7 @@ Sent 1 packets.
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/lv89lc3.png" /&gt;&lt;/p&gt;
 &lt;h3&gt;Sending &amp;amp; Receiving a Packet&lt;/h3&gt;
 &lt;p&gt;Scapy also has the ability to listen for responses to packets it sends (for example, ICMP ping requests).&lt;/p&gt;
-&lt;p&gt;As in the send method, Scapy has two types of packet sending &amp;amp; receiving, based on the network layer.&lt;/p&gt;
+&lt;p&gt;As in the send method, Scapy has two types of packet sending &amp;amp; receiving, which are  on the network layer.&lt;/p&gt;
 &lt;p&gt;In the &lt;em&gt;layer 3&lt;/em&gt;, the methods are &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#send-and-receive-packets-sr"&gt;sr and sr1&lt;/a&gt;. The former returns the answered and unanswered packets, while the last only returns answered and sent packets.&lt;/p&gt;
 &lt;p&gt;In the &lt;em&gt;layer 2&lt;/em&gt;, the methods are &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#discussion"&gt;srp and srp1&lt;/a&gt;. The former returns the answered and unanswered packets, while the last only returns answered and sent packets.&lt;/p&gt;
 &lt;p&gt;A good way to remember their differences is to keep in mind that functions with a &lt;strong&gt;1&lt;/strong&gt;  are designed to send the specified packet and &lt;strong&gt;end after receiving 1 answer/response&lt;/strong&gt; (instead of &lt;strong&gt;continuing to listen for answers/responses&lt;/strong&gt;).&lt;/p&gt;
