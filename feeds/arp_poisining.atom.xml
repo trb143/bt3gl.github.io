@@ -5,7 +5,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;You can test the installation firing up Scapy iteratively. For example, these are some useful functions:&lt;/p&gt;
+&lt;p&gt;You can test the installation firing up Scapy iteratively. These are some useful functions:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;scapy
 Welcome to Scapy &lt;span class="o"&gt;(&lt;/span&gt;2.2.0&lt;span class="o"&gt;)&lt;/span&gt;
 &amp;gt;&amp;gt;&amp;gt; ls&lt;span class="o"&gt;()&lt;/span&gt;    ---&amp;gt; list protocols/layers
