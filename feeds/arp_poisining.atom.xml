@@ -453,7 +453,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Running this script when loading load some mail client (such as &lt;a href="https://www.mozilla.org/en-US/thunderbird/"&gt;Thunderbird&lt;/a&gt;) will allow us to see the login information, if they are sent to the server as plain text.&lt;/p&gt;
+&lt;p&gt;Running this script when loading  some mail client (such as &lt;a href="https://www.mozilla.org/en-US/thunderbird/"&gt;Thunderbird&lt;/a&gt;) will allow us to see the login information, if they are sent to the server as plain text.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="arp"&gt;&lt;/a&gt; ARP Cache Poisoning&lt;/h2&gt;
 &lt;p&gt;I talked about &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;ARP cache poisoning using command line arpspoof&lt;/a&gt; in my guide about Wireshark. Here we are going to see how to implement similar tool using Scapy.&lt;/p&gt;
