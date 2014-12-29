@@ -419,7 +419,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Scapy has also commands for network-based attack such as &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#tcp-traceroute"&gt;arpcachepoison  and srpflood&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Scapy also has  commands for network-based attack such as &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#tcp-traceroute"&gt;arpcachepoison  and srpflood&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Additionally, we can use Scapy to re-create a packet that has been sniffed or received. The method &lt;strong&gt;command()&lt;/strong&gt; returns a string of the commands necessary for this task. Its output is similar to the command &lt;strong&gt;show()&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3&gt;Plotting&lt;/h3&gt;
 &lt;p&gt;If you have &lt;a href="http://www.gnuplot.info/"&gt;GnuPlot&lt;/a&gt; installed, you can use the plot functionality with Scapy. It's pretty neat.&lt;/p&gt;
