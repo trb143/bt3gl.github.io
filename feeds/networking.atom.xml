@@ -226,8 +226,7 @@ Sent 3 packets, received 3 packets. 100.0% hits.
 &lt;p&gt;This does not prevent the source host from generating a reset each time it receives a packet from the session, however it does block it from silencing the resets.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Network Scanning and Sniffing&lt;/h2&gt;
-&lt;p&gt;Now that we know the Scapy basics, let's learn how to perform a &lt;strong&gt;port scanning&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;A very simple scanner can be crafted by sending a TCP/IP packet with the TCP flag set to SYM to every port in the range 1-1024 (this will take a couple of minutes to scan):&lt;/p&gt;
+&lt;p&gt;Let's learn how to perform a simple &lt;strong&gt;port scanning&lt;/strong&gt;.  This can be crafted by sending a TCP/IP packet with the TCP flag set to SYM to every port in the range 1-1024 (this will take a couple of minutes to scan):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;192.168.1.114&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;S&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
