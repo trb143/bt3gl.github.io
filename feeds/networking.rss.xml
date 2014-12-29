@@ -17,10 +17,10 @@ Welcome to Scapy &lt;span class="o"&gt;(&lt;/span&gt;2.2.0&lt;span class="o"&gt;
 
 &lt;h3&gt;Contents:&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#intro"&gt;Scapy 101 (including sniffing, scanning, fuzzing,...)&lt;/a&gt;,&lt;/li&gt;
-&lt;li&gt;&lt;a href="#email"&gt;Stealing Plain Text Email Data&lt;/a&gt;,&lt;/li&gt;
-&lt;li&gt;&lt;a href="#arp"&gt;ARP Poisoning a Machine&lt;/a&gt;, and&lt;/li&gt;
-&lt;li&gt;&lt;a href="#pcap"&gt;Processing PCAP Files&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="#intro"&gt;Scapy 101 (including sniffing, scanning, fuzzing,...)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#email"&gt;Stealing Plain Text Email Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#arp"&gt;ARP Poisoning a Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#pcap"&gt;Processing PCAP Files&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h1&gt;&lt;a name="intro"&gt;&lt;/a&gt; Scapy 101&lt;/h1&gt;
@@ -90,7 +90,7 @@ Welcome to Scapy &lt;span class="o"&gt;(&lt;/span&gt;2.2.0&lt;span class="o"&gt;
 
 
 &lt;h3&gt;Sending an ICMP Packet&lt;/h3&gt;
-&lt;p&gt;For example, let us create an ICMP packet with some message:&lt;/p&gt;
+&lt;p&gt;Now let's add some content to our packet. An ICMP packet with a message is created like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 &lt;span class="n"&gt;packet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;192.168.1.114&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ICMP&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Helloooo!&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
