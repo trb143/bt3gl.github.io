@@ -129,7 +129,7 @@ Sent 1 packets.
 
 &lt;p&gt;This  is how this packet looks like in &lt;a href=""&gt;Wireshark&lt;/a&gt;:
 &lt;img alt="" src="http://i.imgur.com/jjuWHaZ.png" /&gt;&lt;/p&gt;
-&lt;p&gt;To send the same packet over again we can simply add the &lt;strong&gt;loop=1&lt;/strong&gt; argument within the &lt;strong&gt;send&lt;/strong&gt; method:&lt;/p&gt;
+&lt;p&gt;To send a packet over several times we add the &lt;strong&gt;loop=1&lt;/strong&gt; argument within the &lt;strong&gt;send&lt;/strong&gt; method:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
