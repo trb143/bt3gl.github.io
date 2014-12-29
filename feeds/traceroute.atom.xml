@@ -602,7 +602,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Setting up the Enviroment&lt;/h3&gt;
+&lt;h3&gt;Setting up the Environment&lt;/h3&gt;
 &lt;p&gt;Based in one of the examples from &lt;a href=""&gt;Black Hat Python&lt;/a&gt; we are going to analyze images from HTTP traffic dumped in a PCAP file. We can do this with the library &lt;a href="http://opencv.org/"&gt;opencv&lt;/a&gt;. We also need to install &lt;a href="http://www.numpy.org/"&gt;numpy&lt;/a&gt; and &lt;a href="http://www.scipy.org/"&gt;scipy&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install numpy
 &lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install scipy
@@ -715,4 +715,4 @@ Detected: 16 faces
 &lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://thepacketgeek.com/scapy-p-08-making-a-christmas-tree-packet/"&gt;Making a xmas tree packet&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Python"></category><category term="scapy"></category><category term="Book"></category><category term="traceroute"></category><category term="PCAP"></category><category term="ARP_poisining"></category><category term="sniffing"></category><category term="Wireshark"></category><category term="packet_header"></category></entry></feed>
+&lt;/ul&gt;</summary><category term="Python"></category><category term="scapy"></category><category term="traceroute"></category><category term="PCAP"></category><category term="ARP_poisining"></category><category term="sniffing"></category><category term="Wireshark"></category><category term="packet_header"></category><category term="ICMP"></category><category term="fuzzing"></category><category term="nmap"></category><category term="ping"></category><category term="OpenCV"></category></entry></feed>
