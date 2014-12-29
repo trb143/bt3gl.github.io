@@ -453,7 +453,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Running this script when loading  some mail client (such as &lt;a href="https://www.mozilla.org/en-US/thunderbird/"&gt;Thunderbird&lt;/a&gt;) will allow us to see the login information, if they are sent to the server as plain text.&lt;/p&gt;
+&lt;p&gt;Running this script when loading  some mail client (such as &lt;a href="https://www.mozilla.org/en-US/thunderbird/"&gt;Thunderbird&lt;/a&gt;) will allow us to see the login information (useful if they are sent to the server as plain text).&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="arp"&gt;&lt;/a&gt; ARP Cache Poisoning&lt;/h2&gt;
 &lt;p&gt;I talked about &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;ARP cache poisoning using command line arpspoof&lt;/a&gt; in my guide about Wireshark. Here we are going to see how to implement similar tool using Scapy.&lt;/p&gt;
@@ -590,7 +590,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="pcap"&gt;&lt;/a&gt; PCAP Processing to Find Images&lt;/h2&gt;
 &lt;p&gt;We have learned how to steal credentials from some email protocols, now let us extend this to all the traffic in the network!&lt;/p&gt;
-&lt;h3&gt;Writing and Saving PCAP Files&lt;/h3&gt;
+&lt;h3&gt;The PCAP Files Manipulation&lt;/h3&gt;
 &lt;p&gt;To save packets we can use the function &lt;strong&gt;wrpacp&lt;/strong&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wrpcap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;packets.pcap&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -602,7 +602,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Analyzing PCAP Files&lt;/h3&gt;
+&lt;h3&gt;Setting up the Enviroment&lt;/h3&gt;
 &lt;p&gt;Based in one of the examples from &lt;a href=""&gt;Black Hat Python&lt;/a&gt; we are going to analyze images from HTTP traffic dumped in a PCAP file. We can do this with the library &lt;a href="http://opencv.org/"&gt;opencv&lt;/a&gt;. We also need to install &lt;a href="http://www.numpy.org/"&gt;numpy&lt;/a&gt; and &lt;a href="http://www.scipy.org/"&gt;scipy&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install numpy
 &lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install scipy
@@ -612,7 +612,8 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 
 &lt;p&gt;We are going to go through a script that tries to detect image with human faces. But, first, either create or download a PCAP file with these images. For instance, these are some PCAP dump online sources:
 &lt;a href="http://wiki.wireshark.org/SampleCaptures"&gt;here&lt;/a&gt;, &lt;a href="http://www.netresec.com/?page=PcapFiles"&gt;here&lt;/a&gt;, &lt;a href="http://www.pcapr.net/home"&gt;here&lt;/a&gt;, and &lt;a href="http://www.pcapr.net/browse?q=facebook+AND+png"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;OUr  script will basically do the following:&lt;/p&gt;
+&lt;h3&gt;Analyzing PCAP Files&lt;/h3&gt;
+&lt;p&gt;Now we are ready to automatically find human faces from HTTP traffic dump. Our  script basically does the following:&lt;/p&gt;
 &lt;p&gt;1) The function &lt;strong&gt;http_assembler&lt;/strong&gt; takes a PCAP and separates each TCP session in a dictionary. Then it loops in these section using the HTTP filter (which is the same as &lt;em&gt;Follow the TCP stream&lt;/em&gt; in Wireshark). After the HTTP data is assembled, it parses the headers with the &lt;strong&gt;get_http_headers&lt;/strong&gt; function and send to the &lt;strong&gt;extract_image&lt;/strong&gt; function. If  image headers are returned, it saves the image and try to detect faces with the function &lt;strong&gt;face_detect&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;http_assembler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PCAP&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;carved_images&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;faces_detected&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
