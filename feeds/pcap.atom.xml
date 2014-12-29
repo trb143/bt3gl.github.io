@@ -250,10 +250,10 @@ Sent 3 packets, received 3 packets. 100.0% hits.
 
 
 &lt;p&gt;We can also use &lt;strong&gt;sniff&lt;/strong&gt; with a  customized callback function to every packet that matches the filter, with the &lt;strong&gt;prn&lt;/strong&gt; parameter:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
-&lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;icmp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iface&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eth1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;icmp&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iface&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;eth1&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -265,7 +265,7 @@ Sent 3 packets, received 3 packets. 100.0% hits.
 
 &lt;hr /&gt;
 &lt;h2&gt;Changing a Routing Table&lt;/h2&gt;
-&lt;p&gt;To look to the routing table of our machine we can just print the Scapy's command &lt;strong&gt;conf.route&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;To look at the routing table of our machine we use the Scapy's command &lt;strong&gt;conf.route&lt;/strong&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Network&lt;/span&gt;         &lt;span class="n"&gt;Netmask&lt;/span&gt;         &lt;span class="n"&gt;Gateway&lt;/span&gt;         &lt;span class="n"&gt;Iface&lt;/span&gt;           &lt;span class="n"&gt;Output&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;
 &lt;span class="mf"&gt;127.0.0.0&lt;/span&gt;       &lt;span class="mf"&gt;255.0.0.0&lt;/span&gt;       &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;         &lt;span class="n"&gt;lo&lt;/span&gt;              &lt;span class="mf"&gt;127.0.0.1&lt;/span&gt;
 &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;         &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;         &lt;span class="mf"&gt;192.168.1.1&lt;/span&gt;     &lt;span class="n"&gt;wlp1s0&lt;/span&gt;          &lt;span class="mf"&gt;192.168.1.114&lt;/span&gt;
@@ -320,7 +320,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We can use fuzzers for something more interesting. For example to craft a [DDOS] script. This is a very simple example I have in my repository:&lt;/p&gt;
+&lt;p&gt;We can use fuzzers for something more interesting. For example to craft a &lt;a href="http://en.wikipedia.org/wiki/Denial-of-service_attack"&gt;DDOS&lt;/a&gt; script. This is a very simple example I have in my repository:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
