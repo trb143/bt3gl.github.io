@@ -236,6 +236,7 @@ Sent 3 packets, received 3 packets. 100.0% hits.
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;For more advanced stuff, check out &lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources/blob/master/Network_and_802.11/scapy/super_scanner.py"&gt;my script for scanning subnet in selected ports&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;The Sniff() Method&lt;/h3&gt;
 &lt;p&gt;In Scapy, packet sniffing can be done with the function &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#sniffing"&gt;sniff()&lt;/a&gt;.  The &lt;strong&gt;iface&lt;/strong&gt; parameter tells the sniffer which network interface to sniff on. The &lt;strong&gt;count&lt;/strong&gt; parameter specifies how many packet we want to sniff (where a blank value is infinite). The &lt;strong&gt;timeout&lt;/strong&gt; parameter stop sniffing after a given time:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iface&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eth1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
