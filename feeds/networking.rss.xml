@@ -216,9 +216,9 @@ Sent 3 packets, received 3 packets. 100.0% hits.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;However, running the snippet above will not work.&lt;/p&gt;
+&lt;p&gt;However, running the snippet above will not work!&lt;/p&gt;
 &lt;p&gt;The reason is that crafting TCP sessions with Scapy circumvents the native TCP/IP stack. Since the host is unaware that Scapy is sending packets, the native host would receive an unsolicited SYN/ACK that is not associated with any known open session/socket. This would result in the host reseting the connection when receiving the SYN/ACK.&lt;/p&gt;
-&lt;p&gt;One solution is to use the host's firewall with &lt;a href="http://en.wikipedia.org/wiki/Iptables"&gt;iptables&lt;/a&gt; to block the outbound resets. For example, to drop all outbound packets that are TCP and destined for IP 192.168.1.25 from 192.168.1.114 to destination port 80, examining the flag bits, we can run:&lt;/p&gt;
+&lt;p&gt;One solution is to use the host's firewall with &lt;a href="http://en.wikipedia.org/wiki/Iptables"&gt;iptables&lt;/a&gt; to block the outbound resets. For example, to drop all outbound packets that are TCP and destined to IP 192.168.1.25 from 192.168.1.114, destination port 80, we  run:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo iptables -A OUTPUT -p tcp -d 192.168.1.25 -s 192.168.1.114 --dport 80 --tcp-flags RST -j DROP
 &lt;/pre&gt;&lt;/div&gt;
 
