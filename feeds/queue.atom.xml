@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/queue.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-10-26T04:30:00-04:00</updated><entry><title>Hacking the Web with Python's urllib2</title><link href="http://bt3gl.github.io/hacking-the-web-with-pythons-urllib2.html" rel="alternate"></link><updated>2014-10-26T04:30:00-04:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-10-26:hacking-the-web-with-pythons-urllib2.html</id><summary type="html">&lt;p&gt;Python's  &lt;a href="https://docs.python.org/2/library/urllib2.html"&gt;urllib2&lt;/a&gt; library is the tool to interact with web services, with several functions and classes to help handling URLs. &lt;strong&gt;urllib2&lt;/strong&gt; is written in the top of &lt;a href="https://docs.python.org/2/library/httplib.html"&gt;httplib&lt;/a&gt; library (which defines classes to implement the client side of HTTP and HTTPs), which in turn uses the &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html"&gt;socket&lt;/a&gt; library.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/queue.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-26T04:30:00-05:00</updated><entry><title>Hacking the Web with Python's urllib2</title><link href="http://bt3gl.github.io/hacking-the-web-with-pythons-urllib2.html" rel="alternate"></link><updated>2014-12-26T04:30:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-26:hacking-the-web-with-pythons-urllib2.html</id><summary type="html">&lt;p&gt;Python's  &lt;a href="https://docs.python.org/2/library/urllib2.html"&gt;urllib2&lt;/a&gt; library is the tool to interact with web services, with several functions and classes to help handling URLs. &lt;strong&gt;urllib2&lt;/strong&gt; is written in the top of &lt;a href="https://docs.python.org/2/library/httplib.html"&gt;httplib&lt;/a&gt; library (which defines classes to implement the client side of HTTP and HTTPs), which in turn uses the &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html"&gt;socket&lt;/a&gt; library.&lt;/p&gt;
 &lt;p&gt;In this post I &lt;a href="#intro"&gt;introduce urllib2&lt;/a&gt; and then I work on three problems:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#map"&gt;Mapping Webapp Installations&lt;/a&gt;&lt;/li&gt;
@@ -222,7 +222,8 @@ of GET query strings):&lt;/p&gt;
 &lt;p&gt;In this session we are going to build a scanner that searches for all files that are reachable on the remote target, following the structure of the downloaded webapp. This is based in one of the examples of &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This can show installation files, directories that are not processed by &lt;a href="http://en.wikipedia.org/wiki/Htaccess"&gt;.htaccess&lt;/a&gt;, and other files that can be useful for an attack.&lt;/p&gt;
 &lt;h3&gt;Crafting the Scanner&lt;/h3&gt;
-&lt;p&gt;In our scanner script, we use Python's &lt;a href="https://docs.python.org/2/library/queue.html"&gt;Queue&lt;/a&gt; objects  to build a large stack of items and multiple threads picking items for processing. This will make the scanner run very quickly.&lt;/p&gt;
+&lt;p&gt;In our scanner script, we use Python's &lt;a href="https://docs.python.org/2/library/queue.html"&gt;Queue&lt;/a&gt; objects  to build a large stack of items and multiple threads picking items for processing. This will make the scanner run very quickly. The steps are the following:&lt;/p&gt;
+&lt;p&gt;1) We define the target URL, the number of threads, the local directory where we downloaded and extracted the webapp, and a filter with the file extensions we are not interested on:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib2&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;Queue&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
@@ -230,15 +231,13 @@ of GET query strings):&lt;/p&gt;
 
 &lt;span class="n"&gt;THREADS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
 &lt;span class="n"&gt;TARGET&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://www.blackhatpython.com&amp;#39;&lt;/span&gt;
-&lt;span class="c"&gt;# local directory into which we have downloaded and extracted the web app&lt;/span&gt;
 &lt;span class="n"&gt;DIRECTORY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;/home/User/Desktop/wordpress&amp;#39;&lt;/span&gt;
-&lt;span class="c"&gt;# list of file extensions to not fingerprinting&lt;/span&gt;
 &lt;span class="n"&gt;FILTERS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;.jpg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.css&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.gif&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;span class="c"&gt;# each operation in the loop will keep executing until the web_paths&lt;/span&gt;
-&lt;span class="c"&gt;# Queue is empty. on each iteration we grab a path from the queue, add it&lt;/span&gt;
-&lt;span class="c"&gt;# to the target website&amp;#39;s base path and then attempt to retrieve it&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_remote&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+
+&lt;p&gt;2) We define a function with a loop that keeps executing until the queue  with the paths is empty. On each iteration we get one of these paths and add it to the target URL to see whether it exists (outputting the HTTP status code):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_remote&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;web_paths&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
         &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;web_paths&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%s%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TARGET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -247,28 +246,18 @@ of GET query strings):&lt;/p&gt;
         &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
             &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-            &lt;span class="c"&gt;# if we are successfully retrieving the file, the output HTTP status code&lt;/span&gt;
-            &lt;span class="c"&gt;# and the full path for the file is printed&lt;/span&gt;
             &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;] =&amp;gt; &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
             &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-        &lt;span class="c"&gt;# if the file is not found or protected by .htaccess, error&lt;/span&gt;
         &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HTTPError&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="n"&gt;fail_count&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
             &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Failed&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;p&gt;3) The main loop first creates the queue for paths and then use the &lt;strong&gt;os.walk&lt;/strong&gt; method to map all the files and directories in the local version of the webapp, adding the names to the queue (after being filtered by our custom extension list):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DIRECTORY&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="c"&gt;# queue object where we store files to locate in the remote server&lt;/span&gt;
     &lt;span class="n"&gt;web_paths&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Queue&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Queue&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-    &lt;span class="c"&gt;# os.walk function walks through all the files and directories in the local&lt;/span&gt;
-    &lt;span class="c"&gt;# web application directory. this builds the full path to the target files&lt;/span&gt;
-    &lt;span class="c"&gt;# and test them against filter list to make sure we are looking for the&lt;/span&gt;
-    &lt;span class="c"&gt;# files types we want. For each valid file we find, we add it to our&lt;/span&gt;
-    &lt;span class="c"&gt;# web_paths Queue.&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;walk&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="n"&gt;remote_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -276,32 +265,31 @@ of GET query strings):&lt;/p&gt;
                 &lt;span class="n"&gt;remote_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;remote_path&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt;
             &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;splitext&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;FILTERS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
                 &lt;span class="n"&gt;web_paths&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;remote_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 
-    &lt;span class="c"&gt;# create a number of threads that will be called the test_remote function&lt;/span&gt;
-    &lt;span class="c"&gt;# it operates in a loop that keep executing untul the web_paths queue is&lt;/span&gt;
-    &lt;span class="c"&gt;# empty.&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;THREADS&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Spawning thread: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;p&gt;4) Finally, we create the threads that will be send to our function &lt;strong&gt;test_remote&lt;/strong&gt;. The loop is kept until the path queue is empty:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;THREADS&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Spawning thread number: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Thread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;test_remote&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;Testing the Scanner&lt;/h3&gt;
-&lt;p&gt;We test with &lt;a href=""&gt;WordPress&lt;/a&gt;, &lt;a href=""&gt;Drupal&lt;/a&gt;, and &lt;a href=""&gt;Joomla 3.1.1&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Running for Joomla&lt;/p&gt;
+&lt;p&gt;Now we are ready to test our scanners. We download and test three webapps: &lt;a href="https://en-ca.wordpress.org/download/"&gt;WordPress&lt;/a&gt;, &lt;a href="https://www.drupal.org/project/download"&gt;Drupal&lt;/a&gt;, and &lt;a href="http://www.joomla.org/announcements/release-news/5499-joomla-3-1-1-stable-released.html"&gt;Joomla 3.1.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Running first for Joomla gives the following results:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python mapping_web_app_install.py
-Spawning thread: 0
-Spawning thread: 1
-Spawning thread: 2
-Spawning thread: 3
-Spawning thread: 4
-Spawning thread: 5
-Spawning thread: 6
-Spawning thread: 7
-Spawning thread: 8
-Spawning thread: 9
+Spawning thread number: 1
+Spawning thread number: 2
+Spawning thread number: 3
+Spawning thread number: 4
+Spawning thread number: 5
+Spawning thread number: 6
+Spawning thread number: 7
+Spawning thread number: 8
+Spawning thread number: 9
+Spawning thread number: 10
 &lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; /web.config.txt
 &lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; /modules/mod_whosonline/helper.php
 &lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; /LICENSE.txt
@@ -313,18 +301,8 @@ Spawning thread: 9
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We see some nice results including XML and txt files.&lt;/p&gt;
 &lt;p&gt;Running for Wordpress:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Spawning thread: 0
-Spawning thread: 1
-Spawning thread: 2
-Spawning thread: 3
-Spawning thread: 4
-Spawning thread: 5
-Spawning thread: 6
-Spawning thread: 7
-Spawning thread: 8
-Spawning thread: 9
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; /wp-links-opml.php
 &lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; /index.php
 &lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; /wp-config-sample.php
@@ -341,17 +319,8 @@ Spawning thread: 9
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Finally, running for &lt;a href=""&gt;Drupal&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Spawning thread: 0
-Spawning thread: 1
-Spawning thread: 2
-Spawning thread: 3
-Spawning thread: 4
-Spawning thread: 5
-Spawning thread: 6
-Spawning thread: 7
-Spawning thread: 8
-Spawning thread: 9
+&lt;p&gt;Finally, running for Drupal, we only get five files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; /download.install
 &lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; /LICENSE.txt
 &lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; /README.txt
@@ -360,6 +329,7 @@ Spawning thread: 9
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;In all of these results we are able to find some nice results including XML and txt files. This  recon can be the start of an attack. Really cool.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Further References:&lt;/h2&gt;
 &lt;ul&gt;
