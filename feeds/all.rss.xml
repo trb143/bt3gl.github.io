@@ -324,7 +324,7 @@ Spawning thread number: 10
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In all of these results we are able to find some nice results including XML and txt files. This  recon can be the start of an attack. Really cool.&lt;/p&gt;
+&lt;p&gt;In all of these webapps we are able to find some interesting results,  including XML and txt files. This  recon can be the start of an attack. Really cool.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="brute1"&gt;&lt;/a&gt;Brute-Forcing the Contents of Webapps&lt;/h2&gt;
 &lt;p&gt;In general we are not aware about the  structure of files that are accessible in a web server (we don't have the webapp available like in the previous example). Usually we can deploy a spider, like in the &lt;a href="http://portswigger.net/burp/"&gt;Burp suite&lt;/a&gt;,  to crawl the target and find them. However this might not be able to find sensitive files such as, for example, development/configuration files and debugging scripts.&lt;/p&gt;
