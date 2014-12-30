@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hacking the Web with Python's urllib2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="bt3">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://bt3gl.github.io/theme/css/bootstrap.dark.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 11pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-4 {
+        font-size: 8pt;
+     }
+    </style>
+    <link href="http://bt3gl.github.io/theme/css/bootstrap-responsive.dark.css" rel="stylesheet">
+        <link href="http://bt3gl.github.io/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://bt3gl.github.io/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://bt3gl.github.io/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://bt3gl.github.io/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://bt3gl.github.io/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://bt3gl.github.io/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://bt3gl.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Higher Bytes by bt3 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://bt3gl.github.io/index.html">Higher Bytes by bt3 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://bt3gl.github.io/authors.html">About</a></li>
+                                <li><a href="https://github.com/bt3gl">GitHub</a></li>
+                                <li><a href="https://twitter.com/_b_t_3_">Twitter</a></li>
+                                <li><a href="https://coderwall.com/p/kubxjq?i=11&p=2&q=author%3Abt3gl&t%5B%5D=bt3gl">CodeWall</a></li>
+                                <li><a href="projects_page/index.html">Projects</a></li>
+                                <li><a href="http://bt3gl.github.io/archives.html"><b>Archives</b></a></li>
+
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Hacking the Web with Python's urllib2">
+                                        Hacking the Web with Python's urllib2
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<abbr class="published" title="2014-10-26T04:30:00">
+      Sun 26 October 2014 </abbr>
+
+<span class="label"> Category</span>
+<a href="http://bt3gl.github.io/category/web-security.html"><i class="icon-folder-open"></i>Web Security</a>
+
+
+<span class="label">Tags</span>
+	<a href="http://bt3gl.github.io/tag/urllib2.html"><i class="icon-tag"></i>urllib2</a>
+	<a href="http://bt3gl.github.io/tag/queue.html"><i class="icon-tag"></i>Queue</a>
+	<a href="http://bt3gl.github.io/tag/urlparse.html"><i class="icon-tag"></i>urlparse</a>
+	<a href="http://bt3gl.github.io/tag/urllib.html"><i class="icon-tag"></i>urllib</a>
+	<a href="http://bt3gl.github.io/tag/http_headers.html"><i class="icon-tag"></i>HTTP_Headers</a>
+	<a href="http://bt3gl.github.io/tag/threading.html"><i class="icon-tag"></i>threading</a>
+	<a href="http://bt3gl.github.io/tag/cms.html"><i class="icon-tag"></i>CMS</a>
+	<a href="http://bt3gl.github.io/tag/joomla.html"><i class="icon-tag"></i>Joomla</a>
+	<a href="http://bt3gl.github.io/tag/php.html"><i class="icon-tag"></i>PHP</a>
+	<a href="http://bt3gl.github.io/tag/htmlparser.html"><i class="icon-tag"></i>HTMLParser</a>
+	<a href="http://bt3gl.github.io/tag/cookies.html"><i class="icon-tag"></i>cookies</a>
+	<a href="http://bt3gl.github.io/tag/brute_force.html"><i class="icon-tag"></i>brute_force</a>
+</footer><!-- /.post-info -->                </div>
+                <p>Python's  <a href="https://docs.python.org/2/library/urllib2.html">urllib2</a> library is the tool to interact with web services, with several functions and classes to help handling URLs. <strong>urllib2</strong> is written in the top of <a href="https://docs.python.org/2/library/httplib.html">httplib</a> library (which defines classes to implement the client side of HTTP and HTTPs), which in turn uses the <a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html">socket</a> library.</p>
+<p>In this post I <a href="#intro">introduce urllib2</a> and then I work on three problems:</p>
+<ul>
+<li><a href="#map">Mapping Webapp Installations</a></li>
+<li><a href="#brute1">Brute-Forcing Content</a></li>
+<li><a href="#brute2">Brute-Forcing Form Authentication</a></li>
+</ul>
+<hr />
+<h2><a name="intro"></a>urllib2 101</h2>
+<p>The easiest way to start is with the <strong>urlopen</strong> method, which returns an object similar to a <strong>file</strong> in Python (plus three more methods: <strong>geturl</strong>, for the URL of the resource; <strong>info</strong>, for meta-information; and <strong>getcode</strong>, for HTTP status code).</p>
+<h3>A Simple GET</h3>
+<p>Let's see how a simple <a href="http://www.w3schools.com/tags/ref_httpmethods.asp">GET</a> request works. This is done directly  with <a href="https://docs.python.org/2/library/urllib2.html#urllib2.urlopen">urlopen</a>:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://www.google.com&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">msg</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="n">doctype</span> <span class="n">html</span><span class="o">&gt;&lt;</span><span class="n">html</span> <span class="n">itemscope</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="n">itemtype</span><span class="o">=</span><span class="s">&quot;http://schema.org/WebPage&quot;</span> <span class="n">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="o">&gt;&lt;</span><span class="n">head</span><span class="o">&gt;&lt;</span><span class="n">meta</span> <span class="n">content</span><span class="o">=</span><span class="s">&quot;Search the world&#39;s information, including (...)</span>
+</pre></div>
+
+
+<p>Notice that, differently from modules such as <a href="http://bt3gl.github.io/black-hat-python-infinite-possibilities-with-the-scapy-module.html">scapy</a> or <a href="http://bt3gl.github.io/black-hat-python-the-socket-module.html">socket</a>, we <em>need to specify the protocol</em> in the URL (HTTP).</p>
+<p>Now, let's be fancy and customize the output:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://localhost:8080/&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&#39;RESPONSE:&#39;</span><span class="p">,</span> <span class="n">response</span>
+<span class="k">print</span> <span class="s">&#39;URL     :&#39;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">geturl</span><span class="p">()</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="k">print</span> <span class="s">&#39;DATE    :&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="p">[</span><span class="s">&#39;date&#39;</span><span class="p">]</span>
+<span class="k">print</span> <span class="s">&#39;HEADERS :&#39;</span>
+<span class="k">print</span> <span class="n">headers</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span> <span class="s">&#39;LENGTH  :&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&#39;DATA    :&#39;</span>
+<span class="k">print</span> <span class="n">data</span>
+</pre></div>
+
+
+<p>Which leads to something like this:</p>
+<div class="highlight"><pre>RESPONSE: &lt;addinfourl at 140210027950304 whose <span class="nv">fp</span> <span class="o">=</span> &lt;socket._fileobject object at 0x7f8530eec350&gt;&gt;
+URL     : http://www.google.com
+DATE    : Tue, 23 Dec 2014 15:04:32 GMT
+HEADERS :
+Date: Tue, 23 Dec 2014 15:04:32 GMT
+Expires: -1
+Cache-Control: private, max-age<span class="o">=</span>0
+Content-Type: text/html; <span class="nv">charset</span><span class="o">=</span>ISO-8859-1
+Set-Cookie: <span class="nv">PREF</span><span class="o">=</span><span class="nv">ID</span><span class="o">=</span>365306c56a0ffee1:FF<span class="o">=</span>0:TM<span class="o">=</span>1419951872:LM<span class="o">=</span>1419951872:S<span class="o">=</span>lyvP_3cexMCllrVl; <span class="nv">expires</span><span class="o">=</span>Thu, 22-Dec-2016 15:04:32 GMT; <span class="nv">path</span><span class="o">=</span>/; <span class="nv">domain</span><span class="o">=</span>.google.com
+Set-Cookie: <span class="nv">NID</span><span class="o">=</span><span class="nv">67</span><span class="o">=</span>fkMfihQT2bLXyqQ8PIge1TwighxcsI4XVUWQl-7KoqW5i3T-jrzUqrC_lrtO7zd0vph3AzSMxwz2LkdWFN479RREL94s0hqRq3kOroGsUO_tFzBhN1oR9bDRMnW3hqOx; <span class="nv">expires</span><span class="o">=</span>Wed, 01-Jul-2015 15:04:32 GMT; <span class="nv">path</span><span class="o">=</span>/; <span class="nv">domain</span><span class="o">=</span>.google.com; HttpOnly
+Server: gws
+X-XSS-Protection: 1; <span class="nv">mode</span><span class="o">=</span>block
+X-Frame-Options: SAMEORIGIN
+Alternate-Protocol: 80:quic,p<span class="o">=</span>0.02
+Connection: close
+
+LENGTH  : 17393
+DATA    :
+&lt;!doctype html&gt;<span class="o">(</span>...<span class="o">)</span>
+</pre></div>
+
+
+<h3>A simple POST</h3>
+<p><a href="http://www.w3schools.com/tags/ref_httpmethods.asp">POST</a> requests send data to a URL (<a href="https://docs.python.org/2/howto/urllib2.html#data">often refering</a> to <a href="http://en.wikipedia.org/wiki/Common_Gateway_Interface">CGI</a> scripts or forms in a web applications).</p>
+<p>POST requests, differently from GET requests, usually have side-effects such as changing the state of the system. But data can also be passed in an HTTP GET reqest by encoding it in the URL.</p>
+<p>In the case of a HTTML form, the data needs to be encoded and  this encoding is made with <a href="https://docs.python.org/2/library/urllib.html">urllib</a>'s method <strong>urlencode</strong> (a method used for the generation
+of GET query strings):</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#39;q&#39;</span><span class="p">:</span><span class="s">&#39;query string&#39;</span><span class="p">,</span> <span class="s">&#39;foo&#39;</span><span class="p">:</span><span class="s">&#39;bar&#39;</span> <span class="p">}</span>
+<span class="n">encoded_data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://localhost:8080/?&#39;</span> <span class="o">+</span> <span class="n">encoded_data</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+
+
+<p>In reality, when working with <strong>urllib2</strong>, a more efficient way to customize the <strong>urlopen</strong> method is by passing a <strong>Request object</strong> as the data argument:</p>
+<div class="highlight"><pre><span class="n">data</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#39;q&#39;</span><span class="p">:</span><span class="s">&#39;query string&#39;</span><span class="p">,</span> <span class="s">&#39;foo&#39;</span><span class="p">:</span><span class="s">&#39;bar&#39;</span> <span class="p">}</span>
+<span class="n">encoded_data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">encoded_data</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+
+
+<p>That's one of the differences between <strong>urllib2</strong> and <strong>urllib</strong>: the former can accept a Request object to set the headers for a URL request, while the last  accepts only a URL.</p>
+<h3>Headers</h3>
+<p>As we have learned above, we can create a GET request using not only strings but also the <a href="https://docs.python.org/2/library/urllib2.html#urllib2.Request">Request</a> class. This allows us, for example, to define custom headers.</p>
+<p>To craft our own header we create a headers dictionary, with the header key and the custom value. Then we create a Request object to the <strong>urlopen</strong> function call.</p>
+<p>For example, let's see how this works for the <strong>User-Agent</strong> (which is the way the browser identifies itself) header:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">headers</span><span class="p">[</span><span class="s">&#39;User-Agent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;Googlebot&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="s">&quot;The Headers are: &quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">The</span> <span class="n">Headers</span> <span class="n">are</span><span class="p">:</span>  <span class="n">Date</span><span class="p">:</span> <span class="n">Tue</span><span class="p">,</span> <span class="mi">23</span> <span class="n">Dec</span> <span class="mi">2014</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mo">01</span> <span class="n">GMT</span>
+<span class="n">Expires</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">Cache</span><span class="o">-</span><span class="n">Control</span><span class="p">:</span> <span class="n">private</span><span class="p">,</span> <span class="nb">max</span><span class="o">-</span><span class="n">age</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">Set</span><span class="o">-</span><span class="n">Cookie</span><span class="p">:</span> <span class="n">PREF</span><span class="o">=</span><span class="n">ID</span><span class="o">=</span><span class="mi">8929</span><span class="n">a796c6fba710</span><span class="p">:</span><span class="n">FF</span><span class="o">=</span><span class="mi">0</span><span class="p">:</span><span class="n">TM</span><span class="o">=</span><span class="mi">1419953221</span><span class="p">:</span><span class="n">LM</span><span class="o">=</span><span class="mi">1419953221</span><span class="p">:</span><span class="n">S</span><span class="o">=</span><span class="n">oEh5NKUEIEBinpwX</span><span class="p">;</span> <span class="n">expires</span><span class="o">=</span><span class="n">Thu</span><span class="p">,</span> <span class="mi">22</span><span class="o">-</span><span class="n">Dec</span><span class="o">-</span><span class="mi">2016</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mo">01</span> <span class="n">GMT</span><span class="p">;</span> <span class="n">path</span><span class="o">=/</span><span class="p">;</span> <span class="n">domain</span><span class="o">=.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span>
+<span class="n">Set</span><span class="o">-</span><span class="n">Cookie</span><span class="p">:</span> <span class="n">NID</span><span class="o">=</span><span class="mi">67</span><span class="o">=</span><span class="n">QhRTCRsa254cvvos3EXz8PkKnjQ6qKblw4qegtPfe1WNagQ2p0GlD1io9viogAGbFm7RVDRAieauowuaNEJS3aySZMnogy9oSvwkODi3uV3NeiHwZG_neZlu2SkO9MWX</span><span class="p">;</span> <span class="n">expires</span><span class="o">=</span><span class="n">Wed</span><span class="p">,</span> <span class="mo">01</span><span class="o">-</span><span class="n">Jul</span><span class="o">-</span><span class="mi">2015</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mo">01</span> <span class="n">GMT</span><span class="p">;</span> <span class="n">path</span><span class="o">=/</span><span class="p">;</span> <span class="n">domain</span><span class="o">=.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="p">;</span> <span class="n">HttpOnly</span>
+<span class="n">P3P</span><span class="p">:</span> <span class="n">CP</span><span class="o">=</span><span class="s">&quot;This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&amp;answer=151657 for more info.&quot;</span>
+<span class="n">Server</span><span class="p">:</span> <span class="n">gws</span>
+<span class="n">X</span><span class="o">-</span><span class="n">XSS</span><span class="o">-</span><span class="n">Protection</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span> <span class="n">mode</span><span class="o">=</span><span class="n">block</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Frame</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">SAMEORIGIN</span>
+<span class="n">Alternate</span><span class="o">-</span><span class="n">Protocol</span><span class="p">:</span> <span class="mi">80</span><span class="p">:</span><span class="n">quic</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="mf">0.02</span>
+<span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="s">&quot;The Date is: &quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">info</span><span class="p">()[</span><span class="s">&#39;date&#39;</span><span class="p">]</span>
+<span class="n">The</span> <span class="n">Date</span> <span class="ow">is</span><span class="p">:</span>  <span class="n">Tue</span><span class="p">,</span> <span class="mi">23</span> <span class="n">Dec</span> <span class="mi">2014</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mo">01</span> <span class="n">GMT</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="s">&quot;The Server is: &quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">info</span><span class="p">()[</span><span class="s">&#39;server&#39;</span><span class="p">]</span>
+<span class="n">The</span> <span class="n">Server</span> <span class="ow">is</span><span class="p">:</span>  <span class="n">gws</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+
+<p>We could also add headers with the <strong>add_headers</strong> method:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">Request</span><span class="p">(</span><span class="err">&#39;</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.google.com/&#39;)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">request</span><span class="p">.</span><span class="n">add_header</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Referer</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.python.org/&#39;)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">request</span><span class="p">.</span><span class="n">add_header</span><span class="p">(</span><span class="err">&#39;</span><span class="n">User</span><span class="o">-</span><span class="n">agent</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Mozilla</span><span class="o">/</span><span class="mf">5.0</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>HTTP Authentication</h3>
+<p>When authentication is required, the server sends a header (and the <strong>401 error code</strong>) requesting this procedure. The response also specifies the <strong>authentication scheme</strong> and a <strong>realm</strong> . Something like this:</p>
+<div class="highlight"><pre><span class="n">WWW</span><span class="o">-</span><span class="n">Authenticate</span><span class="o">:</span> <span class="n">SCHEME</span> <span class="n">realm</span><span class="o">=</span><span class="s">&quot;REALM&quot;</span><span class="p">.</span>
+</pre></div>
+
+
+<p>The client then retries the request with the name and password for the realm, included as a header in the request. The steps for this process are the following:</p>
+<p>1) create a password manager,</p>
+<div class="highlight"><pre><span class="n">passwd_mgr</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+</pre></div>
+
+
+<p>2) add the username and password,</p>
+<div class="highlight"><pre><span class="n">top_url</span> <span class="o">=</span> <span class="s">&quot;http://example.com/&quot;</span>
+<span class="n">passwd_mgr</span><span class="p">.</span><span class="n">add_password</span><span class="p">(</span><span class="n">None</span><span class="p">,</span> <span class="n">top_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</pre></div>
+
+
+<p>3) create an auth handler,</p>
+<div class="highlight"><pre><span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_mgr</span><span class="p">)</span>
+</pre></div>
+
+
+<p>4) create "opener" (OpenerDirector instance),</p>
+<div class="highlight"><pre><span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+</pre></div>
+
+
+<p>5) use the opener to fetch a URL,</p>
+<div class="highlight"><pre><span class="n">opener</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">a_url</span><span class="p">)</span>
+</pre></div>
+
+
+<p>6) install the opener and calls to urllib2.urlopen,</p>
+<div class="highlight"><pre><span class="n">urllib2</span><span class="p">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+</pre></div>
+
+
+<p>7) finally, opens the page (where authentication is now handled automatically):</p>
+<div class="highlight"><pre><span class="n">pagehandle</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">top_url</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Error Handling</h3>
+<p><strong>urllib2</strong> has methods to handle URL errors:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;http://www.false_server.com&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">try</span><span class="p">:</span>
+        <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">except</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">URLError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">e</span><span class="o">.</span><span class="n">reason</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&#39;getaddrinfo failed&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Every HTTP response from the server contains a numeric <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">status code</a>. The default handlers handle some of these responses and for those it can't handle, <strong>urlopen</strong>  raises an <strong>HTTPError</strong>, which is a subclass of URLError.</p>
+<h3>Other Available Methods</h3>
+<p>Other available methods in the <strong>urllib2</strong> library:</p>
+<ul>
+<li>
+<p><strong>install_opener</strong> and <strong>build_opener</strong>: install and return an OpenDirector instance.</p>
+</li>
+<li>
+<p><strong> URLError</strong> and <strong>HTTPError</strong>: raises exceptions for problems, handles exotic HTTP errors, and processes <a href="https://docs.python.org/2/howto/urllib2.html#error-codes">HTTP error responses</a>, respectively.</p>
+</li>
+<li>
+<p><strong>HTTPCookieProcessor</strong>: handles HTTP cookies.</p>
+</li>
+<li>
+<p><strong>HTTPProxyHandler</strong>: sends requests to a proxy.</p>
+</li>
+<li>
+<p><strong>AbstractBasicAuthHandler</strong>, <strong>HTTPBasicAuthHandler</strong>, <strong>ProxyBasicAuthHandler</strong>, <strong>HTTPDigestAuthHandler</strong>, <strong>AbstractDigestAuthHandler</strong>, <strong>ProxyDigestAuthHandler</strong>: handle authentications.</p>
+</li>
+<li>
+<p><strong>HTTPPasswordMgr</strong> and <strong>HTTPPasswordMgrWithDefaultRealm</strong>: keep a database of realm, URL, user and passwords mappings.</p>
+</li>
+<li>
+<p><strong>HTTPHandler</strong>, <strong>HTTPSHandler</strong>, <strong>FileHandler</strong>, <strong>FTPHandler</strong>, <strong>UnknownHandler</strong>: handle sources.</p>
+</li>
+</ul>
+<p>Available methods for the <strong>Request</strong> objects:</p>
+<ul>
+<li><strong>add_data</strong>, <strong>has_data</strong>, and <strong>get_data</strong>: deal with the Request data.</li>
+<li><strong>add_header</strong>, <strong>add_unredirected_header</strong>, <strong>has_header</strong>, <strong>get_header</strong>, <strong>header_items</strong>: deal with the header data.</li>
+<li><strong>get_full_url</strong>, <strong>get_type</strong>, <strong>get_host</strong>, <strong>get_selector</strong>, <strong>set_proxy</strong>, <strong>get_origin_req_host</strong>: deal with the URL data.</li>
+</ul>
+<p>And let's not forget about <strong>urllib</strong>'s <a href="http://pymotw.com/2/urlparse/index.html#module-urlparse">urlparse</a>, which provides functions to analyze URL strings. <strong>urlparse</strong> breaks URL strings up in several optional  components: <strong>scheme</strong> (example: http), <strong>location</strong> (example: www.python.org:80), <strong>path</strong> (example: index.html), <strong>query</strong> and <strong>fragment</strong>.</p>
+<p>Other common functions are <strong>urljoin</strong> and <strong>urlsplit</strong>.</p>
+<hr />
+<h2><a name="map"></a>Mapping Webapp Installations</h2>
+<p><a href="http://en.wikipedia.org/wiki/Content_management_system">Content management systems</a> are platforms to make it easy to start blogs or  simple websites. They are  common in shared host environments. However, when all of the security procedures are not followed, they can be a easy target for attackers to gain access to the server.</p>
+<p>In this session we are going to build a scanner that searches for all files that are reachable on the remote target, following the structure of the downloaded webapp. This is based in one of the examples of <a href="http://www.nostarch.com/blackhatpython">Black Hat Python</a>.</p>
+<p>This can show installation files, directories that are not processed by <a href="http://en.wikipedia.org/wiki/Htaccess">.htaccess</a>, and other files that can be useful for an attack.</p>
+<h3>Crafting the Scanner</h3>
+<p>In our scanner script, we use Python's <a href="https://docs.python.org/2/library/queue.html">Queue</a> objects  to build a large stack of items and multiple threads picking items for processing. This will make the scanner run very quickly.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">Queue</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="n">THREADS</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">TARGET</span> <span class="o">=</span> <span class="s">&#39;http://www.blackhatpython.com&#39;</span>
+<span class="c"># local directory into which we have downloaded and extracted the web app</span>
+<span class="n">DIRECTORY</span> <span class="o">=</span> <span class="s">&#39;/home/User/Desktop/wordpress&#39;</span>
+<span class="c"># list of file extensions to not fingerprinting</span>
+<span class="n">FILTERS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;.jpg&#39;</span><span class="p">,</span> <span class="s">&#39;.css&#39;</span><span class="p">,</span> <span class="s">&#39;.gif&#39;</span><span class="p">,</span> <span class="s">&#39;.png&#39;</span><span class="p">]</span>
+
+<span class="c"># each operation in the loop will keep executing until the web_paths</span>
+<span class="c"># Queue is empty. on each iteration we grab a path from the queue, add it</span>
+<span class="c"># to the target website&#39;s base path and then attempt to retrieve it</span>
+<span class="k">def</span> <span class="nf">test_remote</span><span class="p">():</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">web_paths</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">web_paths</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+            <span class="c"># if we are successfully retrieving the file, the output HTTP status code</span>
+            <span class="c"># and the full path for the file is printed</span>
+            <span class="k">print</span> <span class="s">&#39;[</span><span class="si">%d</span><span class="s">] =&gt; </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="c"># if the file is not found or protected by .htaccess, error</span>
+        <span class="k">except</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">fail_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">print</span> <span class="s">&quot;Failed&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">DIRECTORY</span><span class="p">)</span>
+    <span class="c"># queue object where we store files to locate in the remote server</span>
+    <span class="n">web_paths</span> <span class="o">=</span> <span class="n">Queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+
+    <span class="c"># os.walk function walks through all the files and directories in the local</span>
+    <span class="c"># web application directory. this builds the full path to the target files</span>
+    <span class="c"># and test them against filter list to make sure we are looking for the</span>
+    <span class="c"># files types we want. For each valid file we find, we add it to our</span>
+    <span class="c"># web_paths Queue.</span>
+    <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">remote_path</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">remote_path</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;.&#39;</span><span class="p">:</span>
+                <span class="n">remote_path</span> <span class="o">=</span> <span class="n">remote_path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">files</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">FILTERS</span><span class="p">:</span>
+                <span class="n">web_paths</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">remote_path</span><span class="p">)</span>
+
+
+    <span class="c"># create a number of threads that will be called the test_remote function</span>
+    <span class="c"># it operates in a loop that keep executing untul the web_paths queue is</span>
+    <span class="c"># empty.</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">THREADS</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;Spawning thread: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">test_remote</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+
+
+<h3>Testing the Scanner</h3>
+<p>We test with <a href="">WordPress</a>, <a href="">Drupal</a>, and <a href="">Joomla 3.1.1</a>.</p>
+<p>Running for Joomla</p>
+<div class="highlight"><pre><span class="nv">$ </span>python mapping_web_app_install.py
+Spawning thread: 0
+Spawning thread: 1
+Spawning thread: 2
+Spawning thread: 3
+Spawning thread: 4
+Spawning thread: 5
+Spawning thread: 6
+Spawning thread: 7
+Spawning thread: 8
+Spawning thread: 9
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /web.config.txt
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /modules/mod_whosonline/helper.php
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /LICENSE.txt
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /README.txt
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /modules/mod_whosonline/mod_whosonline.xml
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /joomla.xml
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /robots.txt.dist
+<span class="o">(</span>...<span class="o">)</span>
+</pre></div>
+
+
+<p>We see some nice results including XML and txt files.</p>
+<p>Running for Wordpress:</p>
+<div class="highlight"><pre>Spawning thread: 0
+Spawning thread: 1
+Spawning thread: 2
+Spawning thread: 3
+Spawning thread: 4
+Spawning thread: 5
+Spawning thread: 6
+Spawning thread: 7
+Spawning thread: 8
+Spawning thread: 9
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /wp-links-opml.php
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /index.php
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /wp-config-sample.php
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /wp-load.php
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /license.txt
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /wp-mail.php
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /xmlrpc.php
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /wp-trackback.php
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /wp-cron.php
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /wp-admin/custom-background.php
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /wp-settings.php
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /wp-activate.php
+<span class="o">(</span>...<span class="o">)</span>
+</pre></div>
+
+
+<p>Finally, running for <a href="">Drupal</a>:</p>
+<div class="highlight"><pre>Spawning thread: 0
+Spawning thread: 1
+Spawning thread: 2
+Spawning thread: 3
+Spawning thread: 4
+Spawning thread: 5
+Spawning thread: 6
+Spawning thread: 7
+Spawning thread: 8
+Spawning thread: 9
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /download.install
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /LICENSE.txt
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /README.txt
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /download.module
+<span class="o">[</span>200<span class="o">]</span> <span class="o">=</span>&gt; /download.info
+</pre></div>
+
+
+<hr />
+<h2>Further References:</h2>
+<ul>
+<li><a href="http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.13.4">Form Contents</a></li>
+<li><a href="http://pymotw.com/2/robotparser/index.html#module-robotparser">A robot.txt parser</a></li>
+<li><a href="http://stackoverflow.com/questions/tagged/urllib2">stackoverflow</a></li>
+<li><a href="http://www.nostarch.com/blackhatpython">Black Hat Python</a>.</li>
+<li><a href="https://github.com/bt3gl/My-Gray-Hacker-Resources">My Gray hat repo</a>.</li>
+</ul>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "hacking-the-web-with-pythons-urllib2.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://bt3gl.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
+                </div>
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+
+
+<li class="nav-header"><h4>Categories</h4></li>
+<li>
+<a href="http://bt3gl.github.io/category/web-security.html">
+    <i class="icon-folder-open icon-large"></i>Web Security
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/vulnerabilities.html">
+    <i class="icon-folder-open icon-large"></i>Vulnerabilities
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/reverse-engineering.html">
+    <i class="icon-folder-open icon-large"></i>Reverse Engineering
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/networking.html">
+    <i class="icon-folder-open icon-large"></i>Networking
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/lifeuniverseeverything.html">
+    <i class="icon-folder-open icon-large"></i>Life,Universe,Everything
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/forensics.html">
+    <i class="icon-folder-open icon-large"></i>Forensics
+</a>
+</li>
+<li>
+<a href="http://bt3gl.github.io/category/cryptography.html">
+    <i class="icon-folder-open icon-large"></i>Cryptography
+</a>
+</li>
+
+<br>
+
+<li class="nav-header"><h4>Tags</h4></li>
+<ul class="tagcloud">
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/netsh.html">
+        <i class="icon-tag icon-large"></i>netsh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/proxy.html">
+        <i class="icon-tag icon-large"></i>proxy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iwconfig.html">
+        <i class="icon-tag icon-large"></i>iwconfig
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pcap.html">
+        <i class="icon-tag icon-large"></i>PCAP
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>SSH
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cookies.html">
+        <i class="icon-tag icon-large"></i>cookies
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ettercap.html">
+        <i class="icon-tag icon-large"></i>Ettercap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/urllib.html">
+        <i class="icon-tag icon-large"></i>urllib
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/readelf.html">
+        <i class="icon-tag icon-large"></i>readelf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xss.html">
+        <i class="icon-tag icon-large"></i>XSS
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>nmap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>Chrome
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/fuzzing.html">
+        <i class="icon-tag icon-large"></i>fuzzing
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/subprocess.html">
+        <i class="icon-tag icon-large"></i>subprocess
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/exiftool.html">
+        <i class="icon-tag icon-large"></i>ExifTool
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/kismet.html">
+        <i class="icon-tag icon-large"></i>Kismet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/aes.html">
+        <i class="icon-tag icon-large"></i>AES
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellcode.html">
+        <i class="icon-tag icon-large"></i>shellcode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/getopt.html">
+        <i class="icon-tag icon-large"></i>getopt
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/sniffing.html">
+        <i class="icon-tag icon-large"></i>sniffing
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/cms.html">
+        <i class="icon-tag icon-large"></i>CMS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/csrf.html">
+        <i class="icon-tag icon-large"></i>CSRF
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arpspoof.html">
+        <i class="icon-tag icon-large"></i>arpspoof
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jit.html">
+        <i class="icon-tag icon-large"></i>JIT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ifconfig.html">
+        <i class="icon-tag icon-large"></i>ifconfig
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/redis.html">
+        <i class="icon-tag icon-large"></i>Redis
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burp.html">
+        <i class="icon-tag icon-large"></i>Burp
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/paillier.html">
+        <i class="icon-tag icon-large"></i>Paillier
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp.html">
+        <i class="icon-tag icon-large"></i>ARP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/nosql.html">
+        <i class="icon-tag icon-large"></i>NoSQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vmware.html">
+        <i class="icon-tag icon-large"></i>VMWare
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ecb.html">
+        <i class="icon-tag icon-large"></i>ECB
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/brute_force.html">
+        <i class="icon-tag icon-large"></i>brute_force
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/packet_header.html">
+        <i class="icon-tag icon-large"></i>packet_header
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/threading.html">
+        <i class="icon-tag icon-large"></i>threading
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/http_headers.html">
+        <i class="icon-tag icon-large"></i>HTTP_Headers
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tcp.html">
+        <i class="icon-tag icon-large"></i>TCP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crl.html">
+        <i class="icon-tag icon-large"></i>CRL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tls.html">
+        <i class="icon-tag icon-large"></i>TLS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cain__abel.html">
+        <i class="icon-tag icon-large"></i>Cain_&_Abel
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/book.html">
+        <i class="icon-tag icon-large"></i>Book
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/queue.html">
+        <i class="icon-tag icon-large"></i>Queue
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bytecode.html">
+        <i class="icon-tag icon-large"></i>bytecode
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ocsp.html">
+        <i class="icon-tag icon-large"></i>OCSP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
+        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/icmp.html">
+        <i class="icon-tag icon-large"></i>ICMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/opencv.html">
+        <i class="icon-tag icon-large"></i>OpenCV
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/binary_search.html">
+        <i class="icon-tag icon-large"></i>Binary_Search
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cache.html">
+        <i class="icon-tag icon-large"></i>cache
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/netcat.html">
+        <i class="icon-tag icon-large"></i>netcat
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/unicode.html">
+        <i class="icon-tag icon-large"></i>Unicode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gpg.html">
+        <i class="icon-tag icon-large"></i>GPG
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/udp.html">
+        <i class="icon-tag icon-large"></i>UDP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pycrypto.html">
+        <i class="icon-tag icon-large"></i>PyCrypto
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ltrace.html">
+        <i class="icon-tag icon-large"></i>ltrace
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_spoofing.html">
+        <i class="icon-tag icon-large"></i>ARP_spoofing
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow.html">
+        <i class="icon-tag icon-large"></i>Stack_overflow
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/stripe.html">
+        <i class="icon-tag icon-large"></i>Stripe
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/joomla.html">
+        <i class="icon-tag icon-large"></i>Joomla
+    </a>
+</li>
+
+
+</ul>
+
+        </div><!--/.well -->
+
+      </div><!--/row-->
+
+
+
+      <footer>
+        <address id="about">
+
+        </address><!-- /#about -->
+
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+    <script src="http://bt3gl.github.io/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://bt3gl.github.io/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
