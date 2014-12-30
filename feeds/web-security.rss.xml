@@ -177,7 +177,7 @@ of GET query strings):&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Every HTTP response from the server contains a numeric &lt;a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes"&gt;status code&lt;/a&gt;. The default handlers handle some of these responses and for those it can't handle, &lt;strong&gt;urlopen&lt;/strong&gt;  raises an &lt;strong&gt;HTTPError&lt;/strong&gt;, which is a subclass of &lt;strong&gt;URLError&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Every HTTP response from the server contains a numeric &lt;a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes"&gt;status code&lt;/a&gt;. The default handlers take care some of these responses and for the others, &lt;strong&gt;urlopen&lt;/strong&gt;  raises an &lt;strong&gt;HTTPError&lt;/strong&gt;, which is a subclass of &lt;strong&gt;URLError&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3&gt;Other Available Methods&lt;/h3&gt;
 &lt;p&gt;Other available methods in the &lt;strong&gt;urllib2&lt;/strong&gt; library:&lt;/p&gt;
 &lt;ul&gt;
