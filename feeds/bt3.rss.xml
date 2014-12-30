@@ -442,7 +442,7 @@ Spawning thread number: 10
 &lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Fri, 26 Dec 2014 04:30:00 -0500</pubDate><guid>tag:bt3gl.github.io,2014-12-26:hacking-the-web-with-pythons-urllib2.html</guid><category>urllib2</category><category>Queue</category><category>urlparse</category><category>urllib</category><category>HTTP_Headers</category><category>threading</category><category>CMS</category><category>Joomla</category><category>PHP</category><category>HTMLParser</category><category>cookies</category><category>brute_force</category></item><item><title>Infinite possibilities with Python's Scapy Module</title><link>http://bt3gl.github.io/infinite-possibilities-with-pythons-scapy-module.html</link><description>&lt;p&gt;&lt;a href="http://www.secdev.org/projects/scapy/"&gt;Scapy&lt;/a&gt;  is able to send and capture packets of several protocols, forging and decoding them to be used to most network tasks such as scanning, tracerouting, probing, attacks, and network discovery.&lt;/p&gt;
-&lt;p&gt;In this post I will talk about some of my favorite scripts. But, before we start, make sure you have Scapy in your machine:&lt;/p&gt;
+&lt;p&gt;In this post I talk about some of my favorite methods and show some of my scripts. But, before we start, make sure you have Scapy in your machine:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install scapy
 &lt;/pre&gt;&lt;/div&gt;
 
