@@ -406,7 +406,7 @@ Spawning thread number: 10
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;4) In the main loop, we build the word list and then we spawn the tread for our &lt;strong&gt;dir_bruter&lt;/strong&gt; function:&lt;/p&gt;
+&lt;p&gt;4) In the main loop, we build the word list and then we spawn the thread for our &lt;strong&gt;dir_bruter&lt;/strong&gt; function:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;word_queue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;build_wordlist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WORDLIST_FILE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
