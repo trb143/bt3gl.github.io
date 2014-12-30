@@ -356,7 +356,7 @@ Spawning thread number: 10
 &lt;p&gt;In our script we accept word lists for common names of files and directories and use them to attempt to discover reachable paths on the server.&lt;/p&gt;
 &lt;p&gt;In the same way as before, we can achieve a reasonable speed by creating pool of threads to discover the contents.&lt;/p&gt;
 &lt;p&gt;The steps of our script are:&lt;/p&gt;
-&lt;p&gt;1) We define the target, the number of threads, the path for the wordlist (which I made available &lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources/tree/master/Other_Hackings/useful_lists/files_and_dir_lists"&gt;here&lt;/a&gt;, a rogue User-Agent, and the filter list of extensions that we want to look at:&lt;/p&gt;
+&lt;p&gt;1) We define the target, the number of threads, the path for the wordlist (which I made available &lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources/tree/master/Other_Hackings/useful_lists/files_and_dir_lists"&gt;here&lt;/a&gt;), a rogue User-Agent, and the filter list of extensions that we want to look at:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib2&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;Queue&lt;/span&gt;
