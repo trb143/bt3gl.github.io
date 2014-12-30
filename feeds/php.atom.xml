@@ -177,7 +177,7 @@ of GET query strings):&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Every HTTP response from the server contains a numeric &lt;a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes"&gt;status code&lt;/a&gt;. The default handlers take care some of these responses and for the others, &lt;strong&gt;urlopen&lt;/strong&gt;  raises an &lt;strong&gt;HTTPError&lt;/strong&gt;, which is a subclass of &lt;strong&gt;URLError&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Every HTTP response from the server contains a numeric &lt;a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes"&gt;status code&lt;/a&gt;. The default handlers take care some of these responses and for the others, &lt;strong&gt;urlopen&lt;/strong&gt;  raises an &lt;strong&gt;HTTPError&lt;/strong&gt; (which is a subclass of &lt;strong&gt;URLError&lt;/strong&gt;).&lt;/p&gt;
 &lt;h3&gt;Other Available Methods&lt;/h3&gt;
 &lt;p&gt;Other available methods in the &lt;strong&gt;urllib2&lt;/strong&gt; library:&lt;/p&gt;
 &lt;ul&gt;
@@ -212,7 +212,7 @@ of GET query strings):&lt;/p&gt;
 &lt;p&gt;And let's not forget about &lt;strong&gt;urllib&lt;/strong&gt;'s &lt;a href="http://pymotw.com/2/urlparse/index.html#module-urlparse"&gt;urlparse&lt;/a&gt;, which provides functions to analyze URL strings. &lt;strong&gt;urlparse&lt;/strong&gt; breaks URL strings up in several optional  components: &lt;strong&gt;scheme&lt;/strong&gt; (example: http), &lt;strong&gt;location&lt;/strong&gt; (example: www.python.org:80), &lt;strong&gt;path&lt;/strong&gt; (example: index.html), &lt;strong&gt;query&lt;/strong&gt; and &lt;strong&gt;fragment&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Other common functions are &lt;strong&gt;urljoin&lt;/strong&gt; and &lt;strong&gt;urlsplit&lt;/strong&gt;.&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h2&gt;&lt;a name="map"&gt;&lt;/a&gt;Mapping Webapp from their Installation Packages&lt;/h2&gt;
+&lt;h2&gt;&lt;a name="map"&gt;&lt;/a&gt;Mapping a Webapp from their Installation Packages&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Content_management_system"&gt;Content management systems&lt;/a&gt; are platforms to make it easy to start blogs or  simple websites. They are  common in shared host environments. However, when all of the security procedures are not followed, they can be a easy target for attackers to gain access to the server.&lt;/p&gt;
 &lt;p&gt;In this session we are going to build a scanner that searches for all files that are reachable on the remote target, following the structure of the downloaded webapp. This is based in one of the examples of &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This type of scanner can show installation files, directories that are not processed by &lt;a href="http://en.wikipedia.org/wiki/Htaccess"&gt;.htaccess&lt;/a&gt;, and other files that can be useful for an attack.&lt;/p&gt;
