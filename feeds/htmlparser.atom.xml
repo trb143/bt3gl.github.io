@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/htmlparser.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-26T04:30:00-05:00</updated><entry><title>Hacking the Web with Python's urllib2</title><link href="http://bt3gl.github.io/hacking-the-web-with-pythons-urllib2.html" rel="alternate"></link><updated>2014-12-26T04:30:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-26:hacking-the-web-with-pythons-urllib2.html</id><summary type="html">&lt;p&gt;Python's  &lt;a href="https://docs.python.org/2/library/urllib2.html"&gt;urllib2&lt;/a&gt; library is the tool to interact with web services, with several functions and classes to help handling URLs. &lt;strong&gt;urllib2&lt;/strong&gt; is written in the top of &lt;a href="https://docs.python.org/2/library/httplib.html"&gt;httplib&lt;/a&gt; library (which defines classes to implement the client side of HTTP and HTTPs). In turn, &lt;strong&gt;httplib&lt;/strong&gt; uses the &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html"&gt;socket&lt;/a&gt; library.&lt;/p&gt;
-&lt;p&gt;In this post I &lt;a href="#intro"&gt;introduce urllib2&lt;/a&gt; and then I work on three problems:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#map"&gt;Mapping Webapp Installations&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#brute1"&gt;Brute-Forcing Content&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#brute2"&gt;Brute-Forcing Form Authentication&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;In this post I &lt;a href="#intro"&gt;introduce urllib2&lt;/a&gt; and then I work on two problems: &lt;a href="#map"&gt;mapping webapp  from their installation files&lt;/a&gt; and &lt;a href="#brute1"&gt;brute-forcing webapp content to find hidden resources&lt;/a&gt;.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="intro"&gt;&lt;/a&gt;urllib2 101&lt;/h2&gt;
 &lt;p&gt;The easiest way to start is with the &lt;strong&gt;urlopen&lt;/strong&gt; method, which returns an object similar to a &lt;strong&gt;file&lt;/strong&gt; in Python (plus three more methods: &lt;strong&gt;geturl&lt;/strong&gt;, for the URL of the resource; &lt;strong&gt;info&lt;/strong&gt;, for meta-information; and &lt;strong&gt;getcode&lt;/strong&gt;, for HTTP status code).&lt;/p&gt;
