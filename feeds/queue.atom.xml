@@ -85,7 +85,7 @@ of GET query strings):&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;That's one of the differences between &lt;strong&gt;urllib2&lt;/strong&gt; and &lt;strong&gt;urllib&lt;/strong&gt;: the former can accept a Request object to set the headers for a URL request, while the last  accepts only a URL.&lt;/p&gt;
+&lt;p&gt;That's one of the differences between &lt;strong&gt;urllib2&lt;/strong&gt; and &lt;strong&gt;urllib&lt;/strong&gt;: the former can accept a &lt;strong&gt;Request object&lt;/strong&gt; to set the headers for a URL request, while the last  accepts only a URL.&lt;/p&gt;
 &lt;h3&gt;Headers&lt;/h3&gt;
 &lt;p&gt;As we have learned above, we can create a GET request using not only strings but also the &lt;a href="https://docs.python.org/2/library/urllib2.html#urllib2.Request"&gt;Request&lt;/a&gt; class. This allows us, for example, to define custom headers.&lt;/p&gt;
 &lt;p&gt;To craft our own header we create a headers dictionary, with the header key and the custom value. Then we create a Request object to the &lt;strong&gt;urlopen&lt;/strong&gt; function call.&lt;/p&gt;
