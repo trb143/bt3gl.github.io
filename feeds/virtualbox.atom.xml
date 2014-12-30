@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/virtualbox.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-10-05T04:30:00-04:00</updated><entry><title>Hacking 101: Setting up a Playing Environment with Virtual Machines</title><link href="http://bt3gl.github.io/hacking-101-setting-up-a-playing-environment-with-virtual-machines.html" rel="alternate"></link><updated>2014-10-05T04:30:00-04:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-10-05:hacking-101-setting-up-a-playing-environment-with-virtual-machines.html</id><summary type="html">&lt;p&gt;In this short post, I illustrate how to get started on setting up  virtual machines.&lt;/p&gt;
+&lt;h2&gt;Testing Virtual Machine Options&lt;/h2&gt;
+&lt;h3&gt;VMWare Player&lt;/h3&gt;
+&lt;h3&gt;Virtual Box&lt;/h3&gt;
+&lt;h3&gt;Setting the Environment&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Further References:&lt;/h2&gt;</summary><category term="VMWare"></category><category term="VirtualBox"></category></entry></feed>
