@@ -217,7 +217,7 @@ of GET query strings):&lt;/p&gt;
 &lt;p&gt;And let's not forget about &lt;strong&gt;urllib&lt;/strong&gt;'s &lt;a href="http://pymotw.com/2/urlparse/index.html#module-urlparse"&gt;urlparse&lt;/a&gt;, which provides functions to analyze URL strings. &lt;strong&gt;urlparse&lt;/strong&gt; breaks URL strings up in several optional  components: &lt;strong&gt;scheme&lt;/strong&gt; (example: http), &lt;strong&gt;location&lt;/strong&gt; (example: www.python.org:80), &lt;strong&gt;path&lt;/strong&gt; (example: index.html), &lt;strong&gt;query&lt;/strong&gt; and &lt;strong&gt;fragment&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Other common functions are &lt;strong&gt;urljoin&lt;/strong&gt; and &lt;strong&gt;urlsplit&lt;/strong&gt;.&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h2&gt;&lt;a name="map"&gt;&lt;/a&gt;Mapping Webapp Installations&lt;/h2&gt;
+&lt;h2&gt;&lt;a name="map"&gt;&lt;/a&gt;Mapping Webapp from their Installation Packages&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Content_management_system"&gt;Content management systems&lt;/a&gt; are platforms to make it easy to start blogs or  simple websites. They are  common in shared host environments. However, when all of the security procedures are not followed, they can be a easy target for attackers to gain access to the server.&lt;/p&gt;
 &lt;p&gt;In this session we are going to build a scanner that searches for all files that are reachable on the remote target, following the structure of the downloaded webapp. This is based in one of the examples of &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This type of scanner can show installation files, directories that are not processed by &lt;a href="http://en.wikipedia.org/wiki/Htaccess"&gt;.htaccess&lt;/a&gt;, and other files that can be useful for an attack.&lt;/p&gt;
@@ -331,7 +331,7 @@ Spawning thread number: 10
 
 &lt;p&gt;In all of these results we are able to find some nice results including XML and txt files. This  recon can be the start of an attack. Really cool.&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h2&gt;&lt;a name="brute1"&gt;&lt;/a&gt;Brute-Forcing Content&lt;/h2&gt;
+&lt;h2&gt;&lt;a name="brute1"&gt;&lt;/a&gt;Brute-Forcing Webapp Content&lt;/h2&gt;
 &lt;p&gt;In general we are not aware of  all of the files that are accessible in the web server (we don't have the webapp available like in the previous example). Usually we can deploy a spider, like in the [Burp suite](http://portswigger.net/burp/,  to crawl the target and find them. However this might not be able to find sensitive files (such as, for example, development/configuration files and debugging scripts).&lt;/p&gt;
 &lt;p&gt;The best way to find sensitive files is to brute-force common filenames and directories. How do we do this?&lt;/p&gt;
 &lt;p&gt;It turns out that the  task is really easy when we have available word lists for directory and files. These lists can be download from sources such as the &lt;a href="https://www.owasp.org/index.php/Category:OWASP_DirBuster_Project"&gt;DirBurster&lt;/a&gt; project or &lt;a href="https://www.netsparker.com/blog/web-security/svn-digger-better-lists-for-forced-browsing/"&gt;SVNDigger&lt;/a&gt;.&lt;/p&gt;
