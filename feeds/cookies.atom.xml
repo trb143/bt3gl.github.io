@@ -129,7 +129,7 @@ of GET query strings):&lt;/p&gt;
 
 
 &lt;h3&gt;HTTP Authentication&lt;/h3&gt;
-&lt;p&gt;When authentication is required, the server sends a header (and the &lt;strong&gt;401 error code&lt;/strong&gt;) requesting this procedure. The response also specifies the &lt;strong&gt;authentication scheme&lt;/strong&gt; and a &lt;strong&gt;realm&lt;/strong&gt; . Something like this:&lt;/p&gt;
+&lt;p&gt;When authentication is required, the server sends a header (and the &lt;strong&gt;401 error code&lt;/strong&gt;) requesting this procedure. The response also specifies the &lt;strong&gt;authentication scheme&lt;/strong&gt; and a &lt;strong&gt;realm&lt;/strong&gt;. Something like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;WWW&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Authenticate&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SCHEME&lt;/span&gt; &lt;span class="n"&gt;realm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;REALM&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -151,7 +151,7 @@ of GET query strings):&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;4) create "opener" (OpenerDirector instance),&lt;/p&gt;
+&lt;p&gt;4) create an &lt;em&gt;opener&lt;/em&gt; (a OpenerDirector instance),&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;opener&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;build_opener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;handler&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -161,12 +161,12 @@ of GET query strings):&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;6) install the opener and calls to urllib2.urlopen,&lt;/p&gt;
+&lt;p&gt;6) install the opener,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;install_opener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;opener&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;7) finally, opens the page (where authentication is now handled automatically):&lt;/p&gt;
+&lt;p&gt;7) finally, open the page (where authentication is now handled automatically):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pagehandle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;top_url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
