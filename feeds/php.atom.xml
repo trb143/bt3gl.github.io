@@ -3,7 +3,7 @@
 &lt;p&gt;In this post I &lt;a href="#intro"&gt;introduce urllib2&lt;/a&gt; and then I work on two problems: &lt;a href="#map"&gt;mapping webapp  from their installation files&lt;/a&gt; and &lt;a href="#brute1"&gt;brute-forcing webapp content to find hidden resources&lt;/a&gt;.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="intro"&gt;&lt;/a&gt;urllib2 101&lt;/h2&gt;
-&lt;p&gt;The easiest way to start is with the &lt;strong&gt;urlopen&lt;/strong&gt; method, which returns an object similar to a &lt;strong&gt;file&lt;/strong&gt; in Python (plus three more methods: &lt;strong&gt;geturl&lt;/strong&gt;, for the URL of the resource; &lt;strong&gt;info&lt;/strong&gt;, for meta-information; and &lt;strong&gt;getcode&lt;/strong&gt;, for HTTP status code).&lt;/p&gt;
+&lt;p&gt;The easiest way to start is by taking a look at the &lt;strong&gt;urlopen&lt;/strong&gt; method, which returns an object similar to a &lt;strong&gt;file&lt;/strong&gt; in Python (plus three more methods: &lt;strong&gt;geturl&lt;/strong&gt;, for the URL of the resource; &lt;strong&gt;info&lt;/strong&gt;, for meta-information; and &lt;strong&gt;getcode&lt;/strong&gt;, for HTTP status code).&lt;/p&gt;
 &lt;h3&gt;A Simple GET&lt;/h3&gt;
 &lt;p&gt;Let's see how a simple &lt;a href="http://www.w3schools.com/tags/ref_httpmethods.asp"&gt;GET&lt;/a&gt; request works. This is done directly  with &lt;a href="https://docs.python.org/2/library/urllib2.html#urllib2.urlopen"&gt;urlopen&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib2&lt;/span&gt;
