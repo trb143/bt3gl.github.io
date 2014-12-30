@@ -223,7 +223,7 @@ of GET query strings):&lt;/p&gt;
 &lt;p&gt;This type of scanner can show installation files, directories that are not processed by &lt;a href="http://en.wikipedia.org/wiki/Htaccess"&gt;.htaccess&lt;/a&gt;, and other files that can be useful for an attack.&lt;/p&gt;
 &lt;h3&gt;Crafting the Scanner&lt;/h3&gt;
 &lt;p&gt;In our scanner script, we use Python's &lt;a href="https://docs.python.org/2/library/queue.html"&gt;Queue&lt;/a&gt; objects  to build a large stack of items and multiple threads picking items for processing. This will make the scanner run very quickly. The steps are the following:&lt;/p&gt;
-&lt;p&gt;1) We define the target URL, the number of threads, the local directory where we downloaded and extracted the webapp, and a filter with the file extensions we are not interested on:&lt;/p&gt;
+&lt;p&gt;1) We define the target URL (in this case we are borrowing the example from the book), the number of threads, the local directory where we downloaded and extracted the webapp, and a filter with the file extensions we are not interested on:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib2&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;Queue&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
@@ -268,7 +268,7 @@ of GET query strings):&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;4) Finally, we create the threads that will be send to our function &lt;strong&gt;test_remote&lt;/strong&gt;. The loop is kept until the path queue is empty:&lt;/p&gt;
+&lt;p&gt;4) Finally, we create the threads that will be sent to our function &lt;strong&gt;test_remote&lt;/strong&gt;. The loop is kept until the path queue is empty:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;THREADS&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Spawning thread number: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Thread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;test_remote&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -277,7 +277,7 @@ of GET query strings):&lt;/p&gt;
 
 
 &lt;h3&gt;Testing the Scanner&lt;/h3&gt;
-&lt;p&gt;Now we are ready to test our scanners. We download and test three webapps: &lt;a href="https://en-ca.wordpress.org/download/"&gt;WordPress&lt;/a&gt;, &lt;a href="https://www.drupal.org/project/download"&gt;Drupal&lt;/a&gt;, and &lt;a href="http://www.joomla.org/announcements/release-news/5499-joomla-3-1-1-stable-released.html"&gt;Joomla 3.1.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Now we are ready to test our scanner. We download and test three webapps: &lt;a href="https://en-ca.wordpress.org/download/"&gt;WordPress&lt;/a&gt;, &lt;a href="https://www.drupal.org/project/download"&gt;Drupal&lt;/a&gt;, and &lt;a href="http://www.joomla.org/announcements/release-news/5499-joomla-3-1-1-stable-released.html"&gt;Joomla 3.1.1&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Running first for Joomla gives the following results:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python mapping_web_app_install.py
 Spawning thread number: 1
@@ -330,6 +330,115 @@ Spawning thread number: 10
 
 
 &lt;p&gt;In all of these results we are able to find some nice results including XML and txt files. This  recon can be the start of an attack. Really cool.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;&lt;a name="brute1"&gt;&lt;/a&gt;Brute-Forcing Content&lt;/h2&gt;
+&lt;p&gt;What if we are not aware of of all of the files accessible in the web server? In general you deploy a spider (like in the &lt;a href="http://portswigger.net/burp/"&gt;Burp suite&lt;/a&gt;  to crawl the target), however this might not be able to find sensitive files (such as, for example, development/configuration files and debugging scripts).&lt;/p&gt;
+&lt;p&gt;The best way to find sensitive files is to brute-force common filenames and directories. How do we do this?&lt;/p&gt;
+&lt;p&gt;It turns out that the  task is really easy when we have available word lists for directory and files. These lists can be download from sources such as the &lt;a href="https://www.owasp.org/index.php/Category:OWASP_DirBuster_Project"&gt;DirBurster&lt;/a&gt; project or &lt;a href="https://www.netsparker.com/blog/web-security/svn-digger-better-lists-for-forced-browsing/"&gt;SVNDigger&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Since scanning third party websites is not legal, we are going to use &lt;em&gt;play&lt;/em&gt; websites, which are available URLS for testing. Some examples (from &lt;a href="http://blog.taddong.com/2011/10/hacking-vulnerable-web-applications.html"&gt;here&lt;/a&gt;):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://testphp.vulnweb.com"&gt;http://testphp.vulnweb.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://testasp.vulnweb.com"&gt;http://testasp.vulnweb.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://testaspnet.vulnweb.com"&gt;http://testaspnet.vulnweb.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://testphp.vulnweb.com"&gt;http://testphp.vulnweb.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://crackme.cenzic.com"&gt;http://crackme.cenzic.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://google-gruyere.appspot.com/start"&gt;http://google-gruyere.appspot.com/start&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.hacking-lab.com/events/registerform.html?eventid=245"&gt;https://www.hacking-lab.com/events/registerform.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hack.me"&gt;https://hack.me&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.hackthissite.org"&gt;http://www.hackthissite.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://zero.webappsecurity.com"&gt;http://zero.webappsecurity.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://demo.testfire.net"&gt;http://demo.testfire.net&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.webscantest.com"&gt;http://www.webscantest.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="hackademic1.teilar.gr"&gt;hackademic1.teilar.gr&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://pentesteracademylab.appspot.com"&gt;http://pentesteracademylab.appspot.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Writing the Script&lt;/h3&gt;
+&lt;p&gt;In our script we accept word lists for common names of files and directories and use them to attempt to discover reachable paths on the server.&lt;/p&gt;
+&lt;p&gt;In the same way as before, we can have a reasonable speed by creating pool of threads to discover the contents.&lt;/p&gt;
+&lt;p&gt;The steps of our script are:&lt;/p&gt;
+&lt;p&gt;1) We define the target, the number of threads, the path for the wordlist (which I made available &lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources/tree/master/Other_Hackings/useful_lists/files_and_dir_lists"&gt;here&lt;/a&gt;, a rogue User-Agent, and the filter list of extensions that we want to look at:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib2&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;Queue&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib&lt;/span&gt;
+
+&lt;span class="n"&gt;THREADS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;span class="n"&gt;TARGETS&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://testphp.vulnweb.com&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;WORDLIST_FILE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;../files_and_dir_lists/SVNDigger/all.txt&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;USER_AGENT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Mozilla/5.0 (X11; Linux x86_64l rv:19.0) Gecko/20100101 Firefox/19.0&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;EXTENSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.bak&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.orig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.inc&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;2) We create a function that read our word list, and then add each of this words into a queue for the words, returning this queue:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;build_wordlist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WORDLIST_FILE&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WORDLIST_FILE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;raw_words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;found_resume&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+    &lt;span class="n"&gt;words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Queue&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Queue&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;raw_words&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rstrip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;3) We create a function that loop over the size of the queue of words for directories and for files (using an extension list), brute forcing the target URL for each of these words:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;dir_bruter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word_queue&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TARGET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;EXTENSIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;word_queue&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="n"&gt;attempt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;word_queue&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;attempt_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;attempt&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;attempt_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;/&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;attempt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;attempt_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;attempt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;EXTENSIONS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;extension&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;EXTENSIONS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;attempt_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/&lt;/span&gt;&lt;span class="si"&gt;%s%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;attempt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;extension&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;brute&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;attempt_list&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%s%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TARGET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;urllib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quote&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;brute&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+                &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;User-Agent&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;USER_AGENT&lt;/span&gt;
+                &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()):&lt;/span&gt;
+                    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;] =&amp;gt; &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;URLError&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;hasattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;code&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;404&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[! &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;] =&amp;gt; &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;4) In the main loop, we build the word list and then we spawn the tread for our &lt;strong&gt;dir_bruter&lt;/strong&gt; function:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;word_queue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;build_wordlist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WORDLIST_FILE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;THREADS&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Thread &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Thread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dir_bruter&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word_queue&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Running the Script&lt;/h3&gt;
+&lt;p&gt;Running this against one of the web application targets will print something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python brute_forcing_locations.py
+&lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; http://testphp.vulnweb.com/CVS
+&lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; http://testphp.vulnweb.com/admin
+&lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; http://testphp.vulnweb.com/script
+&lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; http://testphp.vulnweb.com/images
+&lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; http://testphp.vulnweb.com/pictures
+&lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; http://testphp.vulnweb.com/cart.php
+&lt;span class="o"&gt;[&lt;/span&gt;200&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; http://testphp.vulnweb.com/userinfo.php
+!!! &lt;span class="nv"&gt;403&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; http://testphp.vulnweb.com/cgi-bin/
+&lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Pretty neat!&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Further References:&lt;/h2&gt;
 &lt;ul&gt;
