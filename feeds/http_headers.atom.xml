@@ -436,6 +436,7 @@ Spawning thread number: 10
 &lt;hr /&gt;
 &lt;h2&gt;Further References:&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://urllib3.readthedocs.org/en/latest/"&gt;Keep-alive and HTTP connection are powered by urllib3, which is embedded within Requests&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.13.4"&gt;Form Contents&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://pymotw.com/2/robotparser/index.html#module-robotparser"&gt;A robot.txt parser&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://stackoverflow.com/questions/tagged/urllib2"&gt;Stackoverflow thread on urllib2&lt;/a&gt;&lt;/li&gt;
