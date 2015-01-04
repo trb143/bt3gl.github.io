@@ -503,8 +503,8 @@ chmod +x date
 &lt;p&gt;The ampersand should never appear in most HTML sections. Both angle brackets should not be used inside a tag, unless  properly quoted. Quote characters inside a tag can also be harmless in text.&lt;/p&gt;
 &lt;p&gt;If desired, we could allow these characters using an encoding scheme based in  ampersands and a semicolon-terminated strings. This is known as the &lt;a href="http://www.w3schools.com/html/html_entities.asp"&gt;Entity Encoding&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Non-Persistent XSS Attack:&lt;/h3&gt;
-&lt;p&gt;Non-persistent XSS attacks rely on getting users to click on a link with attacker's script. A typical scenario is described as the following:&lt;/p&gt;
-&lt;p&gt;1) The target website perform  query searches that are not sanitized. For example, the query could accept scripts on it. A simple example to check this vulnerability is by verifying whether the alert box with the message &lt;strong&gt;Pwnd&lt;/strong&gt; is displayed:&lt;/p&gt;
+&lt;p&gt;Non-persistent XSS attacks rely on getting users to click on a link pointing to the attacker's script. A typical scenario is described as the following:&lt;/p&gt;
+&lt;p&gt;1) The target website allows  query searches that are not sanitized (for example, the query could accept scripts). In general, it is possible to check for this vulnerability by verifying whether the following alert box is displayed:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//website.org?q=&amp;lt;script%20type=&amp;#39;text/javascript&amp;#39;&amp;gt;alert(&amp;#39;Pwnd!&amp;#39;);&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
