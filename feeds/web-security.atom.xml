@@ -701,7 +701,7 @@ Spawning thread number: 10
 &lt;p&gt;Servers should invalidate sessions from different IP addresses. However this can be mitigated if the attacker is behind a web proxy or behind the same NAT IP.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Clients should disabling scripts by default (for example with &lt;a href="https://addons.mozilla.org/en-us/firefox/addon/noscript/"&gt;NoScript&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Clients should disable scripts by default (for example with &lt;a href="https://addons.mozilla.org/en-us/firefox/addon/noscript/"&gt;NoScript&lt;/a&gt;).&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
