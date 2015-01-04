@@ -523,7 +523,7 @@ chmod +x date
 &lt;h3&gt;Attempts of mitigation:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Servers should  use &lt;strong&gt;Content Security Policy&lt;/strong&gt; (CSP) HTTP header, which allow the whitelist of resources contents. For instance, the &lt;em&gt;Content-Security-Policy&lt;/em&gt; header disables inline JavaScript by default.&lt;/p&gt;
+&lt;p&gt;Servers should  use &lt;strong&gt;Content Security Policy&lt;/strong&gt; (CSP) HTTP header, which allow the whitelist of resources contents. For instance, it is possible to disable inline JavaScript by default.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Servers can use the &lt;strong&gt;HttpOnly&lt;/strong&gt; HTTP header which allows to set a cookie that is unavailable to client-side scripts.&lt;/p&gt;
