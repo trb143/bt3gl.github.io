@@ -17,7 +17,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The ampersand should never appear in most HTML sections. Both angle brackets should not be used inside a tag, unless  properly quoted. Quote characters inside a tag can also be harmless in text.&lt;/p&gt;
-&lt;p&gt;To allow these characters to appear in problematic locations, an encoding based in an ampersand-prefixed and a semicolon-terminated scheme is used: the &lt;a href="http://www.w3schools.com/html/html_entities.asp"&gt;Entity Encoding&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If desired, we could allow these characters using an encoding scheme based in  ampersands and a semicolon-terminated strings. This is known as the &lt;a href="http://www.w3schools.com/html/html_entities.asp"&gt;Entity Encoding&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Non-Persistent Attack:&lt;/h3&gt;
 &lt;p&gt;XSS non-persistent attacks consist on getting users to click a link with attacker's script. A typical scenario is the following:&lt;/p&gt;
 &lt;ol&gt;
