@@ -705,8 +705,8 @@ chmod +x date
 &lt;p&gt;This type of vulnerability is caused by permitting attackers to supply the template to one of these functions. This can lead to  data leaks and code execution.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Integer Overflow&lt;/h2&gt;
-&lt;p&gt;Vulnerability specific to languages with no range checking. The flaw is caused by the developer failing to detect that an integer exceeded the maximum possible value and rolled back to zero, to a large negative integer, or to some hardware-specific  result.&lt;/p&gt;
-&lt;p&gt;Integer underflow is the opposite effect: crossing the minimum value and rolling over to a very large positive integer.&lt;/p&gt;
+&lt;p&gt;Vulnerability specific to languages with no range checking. The flaw is caused when the developer fails to detect that an integer exceeded the maximum possible value and rolled back to zero or to a large negative integer. In this case, the attacker might also have access  to some hardware-specific  result.&lt;/p&gt;
+&lt;p&gt;Integer underflow vulnerabilities result in the opposite effect: crossing the minimum value and rolling over to a very large positive integer.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Pointer Management Vulnerabilities&lt;/h2&gt;
 &lt;p&gt;In languages that use raw memory pointers such as C or C++, it is possible to use pointers that are either unitized or nor longer valid (dangling). These vulnerabilities will corrupt the internal state of the program and allow an attacker to execute attacker-supplied code.&lt;/p&gt;
