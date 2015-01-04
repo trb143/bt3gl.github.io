@@ -845,7 +845,7 @@ Spawning thread number: 10
 
 
 &lt;ul&gt;
-&lt;li&gt;The &lt;strong&gt;Error template type of malware infection&lt;/strong&gt; occurs when the template used for error messages, such as 404 File not Found, is configured to distribute malware. In this way, attackers can launch attacks on URLs that do not even exist on the victim's website.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Error template type of malware infection&lt;/strong&gt;, which occurs when the template used for error messages, such as 404 File not Found, is configured to distribute malware. In this case, attackers can launch attacks on URLs that do not even exist on the victim's website.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Attempts of mitigation:&lt;/h3&gt;
 &lt;ul&gt;
