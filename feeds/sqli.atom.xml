@@ -618,7 +618,7 @@ chmod +x date
 &lt;p&gt;2) The victim's server sends the large responses to the source IP address passed in the forged requests, overwhelming the system and causing a DoS situation.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Framebusting&lt;/h2&gt;
-&lt;p&gt;The possibility of a iframed page navigating the top-level document to a new URL without having to satisfy &lt;strong&gt;same-origin&lt;/strong&gt; checks. It might be exploited for phishing.&lt;/p&gt;
+&lt;p&gt;The possibility of a iframed page navigating the top-level document to a new URL without having to satisfy &lt;em&gt;Same Origin&lt;/em&gt; checks. It might be exploited for &lt;strong&gt;phishing&lt;/strong&gt;.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;HTTP Downgrade&lt;/h2&gt;
 &lt;p&gt;Ability of an attacker to prevent the user from reaching an HTTPS version of a site or to downgrade an existing HTTPS session to HTTP.&lt;/p&gt;
