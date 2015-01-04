@@ -556,10 +556,10 @@ chmod +x date
 &lt;h3&gt;Attempts of mitigation:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;A protection can be done by checking a nonce in each POST request (no replay attacks in a form POST).&lt;/p&gt;
+&lt;p&gt;A  &lt;strong&gt;nonce&lt;/strong&gt; can be added to each POST request, invalidating replay attacks.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Including a secret user- and session- specific value on the requests (as an additional query parameter or a hidden field). The attacker will not be able to read the value since access to cross-domain documents is restricted by the &lt;strong&gt;same-origin&lt;/strong&gt; policy.&lt;/p&gt;
+&lt;p&gt;A secret user- and session- specific value on the requests  can be included as an additional query parameter or a hidden field. The attacker will not be able to read the value since access to cross-domain documents is restricted by the &lt;strong&gt;Same Origin&lt;/strong&gt; policy.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
