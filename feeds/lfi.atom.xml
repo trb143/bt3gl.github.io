@@ -225,7 +225,7 @@
 &lt;p&gt;Integer underflow vulnerabilities result in the opposite effect: crossing the minimum value and rolling over to a very large positive integer.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Pointer Management Vulnerabilities&lt;/h2&gt;
-&lt;p&gt;In languages that use raw memory pointers such as C or C++, it is possible to use pointers that are either unitized or nor longer valid (dangling). These vulnerabilities will corrupt the internal state of the program and allow an attacker to execute attacker-supplied code.&lt;/p&gt;
+&lt;p&gt;In languages that use raw memory pointers such as C or C++, it is possible to use pointers that are either unitized or nor longer valid (dangling pointers). This type of vulnerability allows the corruption of the internal state of the program so that the attacker can execute malicious code.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Cache poisoning attacks&lt;/h2&gt;
 &lt;p&gt;Several variants of DNS spoofing attacks that can result in cache poisoning.&lt;/p&gt;
