@@ -230,7 +230,7 @@
 &lt;h2&gt;Cache poisoning attacks&lt;/h2&gt;
 &lt;p&gt;Several variants of DNS spoofing attacks that can result in cache poisoning.&lt;/p&gt;
 &lt;h3&gt;Example of Attack&lt;/h3&gt;
-&lt;p&gt;1) The attacker sends multiple queries of a domain name  to a target DNS resolver. The server should not authoritative so that it is unlikely to the resolver to already have the server's cache.&lt;/p&gt;
+&lt;p&gt;1) The attacker sends multiple queries of a domain name  to a target DNS resolver. The server should not be authoritative so that it is unlikely that the resolver already has the server's cache.&lt;/p&gt;
 &lt;p&gt;2) The resolver sends out requests to other nameservers (whose IP addresses the attacker can also predict).&lt;/p&gt;
 &lt;p&gt;3) In the meantime, the attacker floods the victim server with forged responses that appear to originate from the delegated nameserver. The responses contain records that ultimately resolve the requested domain to IP addresses controlled by the attacker. They might contain answer records for the resolved name or, worse, they may further delegate authority to a nameserver owned by the attacker, so that they takes control of an entire zone.&lt;/p&gt;
 &lt;p&gt;4) If one of the forged responses matches the resolver's request (for example, by query name, type, ID and resolver source port) and it is received before a response from the genuine nameserver, the resolver accepts the forged response and caches it, discarding  genuine responses.&lt;/p&gt;
