@@ -683,11 +683,10 @@ Spawning thread number: 10
 &lt;p&gt;1) The attacker verifies that the target website has an XSS stored vulnerability (for example, allowing their to post text with HTML tags).&lt;/p&gt;
 &lt;p&gt;2) The attacker creates an account in the target website and posts something with a hidden script (similar to the one above).&lt;/p&gt;
 &lt;p&gt;3) When a victim loads that post's page, the script runs, and the attacker is able to hijack the victim's section.&lt;/p&gt;
-&lt;p&gt;Additionally, in &lt;em&gt;password managers&lt;/em&gt;, there is a risk of  amplification of XSS bugs. In the web applications that use &lt;em&gt;&lt;a href="https://www.owasp.org/index.php/HttpOnly"&gt;httponly&lt;/a&gt;&lt;/em&gt; cookies, a successful exploitation of an XSS flaw may give the attacker a transient access to the user's account (and password).&lt;/p&gt;
 &lt;h3&gt;Attempts of mitigation:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Servers should should use &lt;strong&gt;Content Security Policy&lt;/strong&gt; (CSP) HTTP header, which allow the whitelist of resources contents. For instance, the &lt;em&gt;Content-Security-Policy&lt;/em&gt; header disables inline JavaScript by default.&lt;/p&gt;
+&lt;p&gt;Servers should  use &lt;strong&gt;Content Security Policy&lt;/strong&gt; (CSP) HTTP header, which allow the whitelist of resources contents. For instance, the &lt;em&gt;Content-Security-Policy&lt;/em&gt; header disables inline JavaScript by default.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Servers can use the &lt;strong&gt;HttpOnly&lt;/strong&gt; HTTP header which allows to set a cookie that is unavailable to client-side scripts.&lt;/p&gt;
