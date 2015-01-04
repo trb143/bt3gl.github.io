@@ -710,7 +710,7 @@ Spawning thread number: 10
 &lt;h3&gt;Examples of exploitation:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Any two windows with frames opened in a browser will remain &lt;strong&gt;Same Origin&lt;/strong&gt; with each other even if the user logs out from one account and permitting third-party to submit password and username and log int an attacked account. For example, the attacker can open and keep a frame pointing to a sensitive page and then log the victim into the attacker-controlled account to execute some code injection. Despite the change of  HTTP credentials the code injected will access the previous loaded frame.&lt;/p&gt;
+&lt;p&gt;A browser window with frame might remain &lt;em&gt;Same Origin&lt;/em&gt; to another window. In this case even if the user logs out from one account, a third-party can still submit their password and username. In a simple example, the attacker's website is open and it keeps a frame pointing to a sensitive page. The victims logs into that sensitive page in another window.  Then, the attacker-controlled frame executes the code injection and, despite the change of  HTTP credentials, this  will access the previous loaded frame.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;In several home network routers, CSRF can permit attackers to access the device and intercept or modify the network traffic.&lt;/p&gt;
