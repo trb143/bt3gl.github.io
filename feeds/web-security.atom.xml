@@ -801,7 +801,7 @@ Spawning thread number: 10
 &lt;p&gt;In low-level languages such as C or C++, buffer overflow happens when a program allows more information to be stored in a particular memory region than there is space to accommodate the incoming data, leading to the unexpected overwrite of other vital data structures.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Command Injection (SQL, PHP, Shellcode)&lt;/h2&gt;
-&lt;p&gt;Due to insufficient input filtering or output escaping, an attacker-controlled strings may be processed as statements in an interpreted language used by the application.&lt;/p&gt;
+&lt;p&gt;Due to insufficient input filtering or output escaping, attacker-controlled strings may be processed as statements in an interpreted language used by the application.&lt;/p&gt;
 &lt;h3&gt;Examples of exploitation:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Malicious code injections in an iframe to the attack site:&lt;/li&gt;
