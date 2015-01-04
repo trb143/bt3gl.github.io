@@ -526,7 +526,7 @@ chmod +x date
 &lt;p&gt;Servers should  use &lt;strong&gt;Content Security Policy&lt;/strong&gt; (CSP) HTTP header, which allow the whitelist of resources contents. For instance, it is possible to disable inline JavaScript by default.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Servers can use the &lt;strong&gt;HttpOnly&lt;/strong&gt; HTTP header which allows to set a cookie that is unavailable to client-side scripts.&lt;/p&gt;
+&lt;p&gt;Servers can use the &lt;strong&gt;HttpOnly&lt;/strong&gt; HTTP header which can set a cookie that is unavailable to client-side scripts.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Search inputs should &lt;em&gt;always&lt;/em&gt; be sanitized in both server-side and client-side.&lt;/p&gt;
@@ -535,7 +535,7 @@ chmod +x date
 &lt;p&gt;Servers should redirect invalid requests.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Servers should invalidate sessions from different IP addresses. However this can be mitigate if the attacker is behind a web proxy or behind the same NAT IP.&lt;/p&gt;
+&lt;p&gt;Servers should invalidate sessions from different IP addresses. However this can be mitigated if the attacker is behind a web proxy or behind the same NAT IP.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Clients should disabling scripts by default (for example with &lt;a href="https://addons.mozilla.org/en-us/firefox/addon/noscript/"&gt;NoScript&lt;/a&gt;).&lt;/p&gt;
