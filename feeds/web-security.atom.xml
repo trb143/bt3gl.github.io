@@ -791,13 +791,12 @@ Spawning thread number: 10
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Network Fenceposts&lt;/h2&gt;
-&lt;p&gt;When websites let the browser to interact with destinations not directly accessible to the attacker, for example, with the systems on a victim's internal networks. This attack can be performed with help of &lt;a href="http://en.wikipedia.org/wiki/DNS_rebinding"&gt;DNS rebinding&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When websites let the browser interact with destinations not directly accessible to the attacker, for example, with the systems on a victim's internal networks. This attack can be performed with help of &lt;a href="http://en.wikipedia.org/wiki/DNS_rebinding"&gt;DNS rebinding&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Attempts of mitigation:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Internet Explorer implements the zone model, a potential approach to the risk.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
-&lt;h1&gt;Vulnerabilities in the Server-Side&lt;/h1&gt;
 &lt;h2&gt;Buffer Overflow&lt;/h2&gt;
 &lt;p&gt;In low-level languages such as C or C++, buffer overflow happens when a program allows more information to be stored in a particular memory region than there is space to accommodate the incoming data, leading to the unexpected overwrite of other vital data structures.&lt;/p&gt;
 &lt;hr /&gt;
