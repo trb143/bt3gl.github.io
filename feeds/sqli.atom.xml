@@ -614,7 +614,7 @@ chmod +x date
 &lt;p&gt;DNS resolvers are attractive targets to attackers who exploit the resolvers' large response-to-request size ratio to gain additional free bandwidth. Resolvers that support EDNS0 (Extension Mechanisms for DNS) are especially vulnerable because of the substantially larger packet size that they can return.&lt;/p&gt;
 &lt;h3&gt;Examples of exploitation:&lt;/h3&gt;
 &lt;p&gt;In an amplification scenario, the attack proceeds as follows:&lt;/p&gt;
-&lt;p&gt;1) The attacker sends a victim DNS server queries using a forged source IP address. The queries may be sent from a single system or a network of systems all using the same forged IP address. The queries are for records that the attacker knows will result in much larger responses, up to several dozen times1 the size of the original queries..&lt;/p&gt;
+&lt;p&gt;1) The attacker sends DNS server queries using a forged source IP address. The queries may be sent from a single system or a network of systems all using the same forged IP address. The queries are for records that the attacker knows will result in much larger responses, up to several dozen times the size of the original queries.&lt;/p&gt;
 &lt;p&gt;2) The victim server sends the large responses to the source IP address passed in the forged requests, overwhelming the system and causing a DoS situation.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Framebusting&lt;/h2&gt;
