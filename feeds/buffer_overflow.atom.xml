@@ -487,7 +487,7 @@ chmod +x date
 &lt;p&gt;If you like this subject, I recommend &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Exploiting the web in 20 lessons&lt;/a&gt; and &lt;a href="http://bt3gl.github.io/exploring-d-ctf-quals-2014s-exploits.html"&gt;D-Camp CTF 2014&lt;/a&gt;.&lt;/p&gt;
 &lt;h1&gt;Vulnerabilities to Web Applications&lt;/h1&gt;
 &lt;h2&gt;Cross-site Scripting (XSS)&lt;/h2&gt;
-&lt;p&gt;XSS is caused by &lt;strong&gt;insufficient input validation or output escaping&lt;/strong&gt;. This can allow an attacker to insert HTML markup or scripts in a vulnerable website. The injected  code will have plenty of access in this site, and in many cases, to the HTTP cookies stored by the client.&lt;/p&gt;
+&lt;p&gt;XSS is caused by &lt;strong&gt;insufficient input validation and/or output escaping&lt;/strong&gt;. This type of vulnerability can allow an attacker to insert HTML markup or JavaScript snippets in a vulnerable website. The injected  code will have plenty of access in this site, and in many cases, to the HTTP cookies stored by the client.&lt;/p&gt;
 &lt;p&gt;HTML has five characters that are reserved:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
