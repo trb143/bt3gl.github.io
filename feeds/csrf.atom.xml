@@ -217,7 +217,8 @@
 &lt;p&gt;Some languages have APIs that can open local files and fetches remote URLS, which would easily allow the ability of retrieving attacker's files.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Format String Vulnerability&lt;/h2&gt;
-&lt;p&gt;Several libraries accept templates (format strings) followed by a set of parameters that the function is expected to insert into the template at predefined locations. For example,  C has functions such as &lt;em&gt;printf&lt;/em&gt;, &lt;em&gt;syslog&lt;/em&gt;, etc. The vulnerability is caused by permitting attackers to supply the template to one of these functions. This can lead to  data leaks and code execution.&lt;/p&gt;
+&lt;p&gt;Several libraries accept templates (format strings) followed by a set of parameters that the function is expected to insert into the template at predefined locations. For example,  C has functions such as &lt;em&gt;printf&lt;/em&gt;, &lt;em&gt;syslog&lt;/em&gt;, etc.&lt;/p&gt;
+&lt;p&gt;This type of vulnerability is caused by permitting attackers to supply the template to one of these functions. This can lead to  data leaks and code execution.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Integer Overflow&lt;/h2&gt;
 &lt;p&gt;Vulnerability specific to languages with no range checking. The flaw is caused by the developer failing to detect that an integer exceeded the maximum possible value and rolled back to zero, to a large negative integer, or to some hardware-specific  result.&lt;/p&gt;
