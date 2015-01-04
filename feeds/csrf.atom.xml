@@ -214,7 +214,7 @@
 &lt;hr /&gt;
 &lt;h2&gt;File Inclusion&lt;/h2&gt;
 &lt;p&gt;If used without a qualifier or prefixed with a &lt;strong&gt;local (LFI)&lt;/strong&gt;, the term is synonymous to read-related directory traversal. &lt;strong&gt;Remote file inclusion (RFI)&lt;/strong&gt; is an alternative way to exploit file-inclusion vulnerabilities by specifying a URL rather than a valid file path.&lt;/p&gt;
-&lt;p&gt;Some languages have APIs that can open local files and fetches remote URLS, which would supply the ability of retrieving attacker's files.&lt;/p&gt;
+&lt;p&gt;Some languages have APIs that can open local files and fetches remote URLS, which would easily allow the ability of retrieving attacker's files.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Format String Vulnerability&lt;/h2&gt;
 &lt;p&gt;Several libraries accept templates (format strings) followed by a set of parameters that the function is expected to insert into the template at predefined locations. For example,  C has functions such as &lt;em&gt;printf&lt;/em&gt;, &lt;em&gt;syslog&lt;/em&gt;, etc. The vulnerability is caused by permitting attackers to supply the template to one of these functions. This can lead to  data leaks and code execution.&lt;/p&gt;
