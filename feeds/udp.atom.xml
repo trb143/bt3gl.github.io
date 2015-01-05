@@ -319,7 +319,7 @@ Host up: 192.168.1.114
 &lt;li&gt;the &lt;em&gt;server is always waiting for us to send data first&lt;/em&gt; (as oppose to servers that expect to send data and then wait for response), and&lt;/li&gt;
 &lt;li&gt;the server will always send us data back in a &lt;em&gt;short time&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Let's run this script (notice that we get &lt;em&gt;Moved Permanently&lt;/em&gt; because Google  issues HTTPS connections):&lt;/p&gt;
+&lt;p&gt;Let's run this script (notice that we might get 301 &lt;em&gt;Moved Permanently&lt;/em&gt; or &lt;em&gt;Permanent Redirected&lt;/em&gt;, which tells the browser to go to HTTPs or to include &lt;em&gt;www&lt;/em&gt;):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; python tcp_client.py
 HTTP/1.1 301 Moved Permanently
 Location: http://www.google.com/
