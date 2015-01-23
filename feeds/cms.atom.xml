@@ -59,7 +59,7 @@ DATA    :
 &lt;h3&gt;A simple POST&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://www.w3schools.com/tags/ref_httpmethods.asp"&gt;POST&lt;/a&gt; requests send data to a URL (&lt;a href="https://docs.python.org/2/howto/urllib2.html#data"&gt;often refering&lt;/a&gt; to &lt;a href="http://en.wikipedia.org/wiki/Common_Gateway_Interface"&gt;CGI&lt;/a&gt; scripts or forms in a web applications).&lt;/p&gt;
 &lt;p&gt;POST requests, differently from GET requests, usually have side-effects such as changing the state of the system. But data can also be passed in an HTTP GET reqest by encoding it in the URL.&lt;/p&gt;
-&lt;p&gt;In the case of a HTTML form, the data needs to be encoded and  this encoding is made with &lt;a href="https://docs.python.org/2/library/urllib.html"&gt;urllib&lt;/a&gt;'s method &lt;strong&gt;urlencode&lt;/strong&gt; (a method used for the generation
+&lt;p&gt;In the case of an HTTML form, the data needs to be encoded and  this encoding is made with &lt;a href="https://docs.python.org/2/library/urllib.html"&gt;urllib&lt;/a&gt;'s method &lt;strong&gt;urlencode&lt;/strong&gt; (a method used for the generation
 of GET query strings):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib2&lt;/span&gt;
@@ -85,7 +85,7 @@ of GET query strings):&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;That's one of the differences between &lt;strong&gt;urllib2&lt;/strong&gt; and &lt;strong&gt;urllib&lt;/strong&gt;: the former can accept a &lt;strong&gt;Request object&lt;/strong&gt; to set the headers for a URL request, while the last  accepts only a URL.&lt;/p&gt;
+&lt;p&gt;That's one of the differences between &lt;strong&gt;urllib2&lt;/strong&gt; and &lt;strong&gt;urllib&lt;/strong&gt;: the former can accept a &lt;strong&gt;Request object&lt;/strong&gt; to set the headers for a URL request, while the latter  accepts only a URL.&lt;/p&gt;
 &lt;h3&gt;Headers&lt;/h3&gt;
 &lt;p&gt;As we have learned above, we can create a GET request using not only strings but also the &lt;a href="https://docs.python.org/2/library/urllib2.html#urllib2.Request"&gt;Request&lt;/a&gt; class. This allows us, for example, to define custom headers.&lt;/p&gt;
 &lt;p&gt;To craft our own header we create a headers dictionary, with the header key and the custom value. Then we create a Request object to the &lt;strong&gt;urlopen&lt;/strong&gt; function call.&lt;/p&gt;
@@ -213,7 +213,7 @@ of GET query strings):&lt;/p&gt;
 &lt;p&gt;Other common functions are &lt;strong&gt;urljoin&lt;/strong&gt; and &lt;strong&gt;urlsplit&lt;/strong&gt;.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="map"&gt;&lt;/a&gt;Mapping Webapps from their Installation Packages&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Content_management_system"&gt;Content management systems&lt;/a&gt; are platforms to make it easy to start blogs or  simple websites. They are  common in shared host environments. However, when all of the security procedures are not followed, they can be a easy target for attackers to gain access to the server.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Content_management_system"&gt;Content management systems&lt;/a&gt; are platforms to make it easy to start blogs or  simple websites. They are  common in shared host environments. However, when all of the security procedures are not followed, they can be an easy target for attackers to gain access to the server.&lt;/p&gt;
 &lt;p&gt;In this session we are going to build a scanner that searches for all files that are reachable on the remote target, following the structure of the downloaded webapp. This is based in one of the examples of &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This type of scanner can show installation files, directories that are not processed by &lt;a href="http://en.wikipedia.org/wiki/Htaccess"&gt;.htaccess&lt;/a&gt;, and other files that can be useful for an attack.&lt;/p&gt;
 &lt;h3&gt;Crafting the Scanner&lt;/h3&gt;
