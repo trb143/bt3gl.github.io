@@ -16,12 +16,12 @@ Determine &lt;span class="nb"&gt;type &lt;/span&gt;of FILEs.
   -m, --magic-file LIST      use LIST as a colon-separated list of magic
                                number files
   -z, --uncompress           try to look inside compressed files
-  -b, --brief                &lt;span class="k"&gt;do &lt;/span&gt;not prepend filenames to output lines
+  -b, --brief                &lt;span class="k"&gt;do&lt;/span&gt; not prepend filenames to output lines
   -c, --checking-printout    print the parsed form of the magic file, use in
                                conjunction with -m to debug a new magic file
                                before installing it
   -e, --exclude TEST         exclude TEST from the list of &lt;span class="nb"&gt;test &lt;/span&gt;to be
-                               performed &lt;span class="k"&gt;for &lt;/span&gt;file. Valid tests are:
+                               performed &lt;span class="k"&gt;for&lt;/span&gt; file. Valid tests are:
                                apptype, ascii, cdf, compress, elf, encoding,
                                soft, tar, text, tokens
   -f, --files-from FILE      &lt;span class="nb"&gt;read &lt;/span&gt;the filenames to be examined from FILE
@@ -49,7 +49,7 @@ Determine &lt;span class="nb"&gt;type &lt;/span&gt;of FILEs.
 
 &lt;p&gt;We find the flag &lt;code&gt;-z&lt;/code&gt;, which allows us to look inside the zipped files:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; file -z firefox.mem.zip
-firefox.mem.zip: ELF 64-bit LSB core file x86-64, version 1 &lt;span class="o"&gt;(&lt;/span&gt;SYSV&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;Zip archive data, at least v2.0 to extract&lt;span class="o"&gt;)&lt;/span&gt;
+firefox.mem.zip: ELF 64-bit LSB core file x86-64, version &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;SYSV&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;Zip archive data, at least v2.0 to extract&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -83,20 +83,20 @@ Usage: readelf &amp;lt;option&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class
   -s --syms              Display the symbol table
      --symbols           An &lt;span class="nb"&gt;alias &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; --syms
   --dyn-syms             Display the dynamic symbol table
-  -n --notes             Display the core notes &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;present&lt;span class="o"&gt;)&lt;/span&gt;
-  -r --relocs            Display the relocations &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;present&lt;span class="o"&gt;)&lt;/span&gt;
-  -u --unwind            Display the unwind info &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;present&lt;span class="o"&gt;)&lt;/span&gt;
-  -d --dynamic           Display the dynamic section &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;present&lt;span class="o"&gt;)&lt;/span&gt;
-  -V --version-info      Display the version sections &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;present&lt;span class="o"&gt;)&lt;/span&gt;
-  -A --arch-specific     Display architecture specific information &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;any&lt;span class="o"&gt;)&lt;/span&gt;
+  -n --notes             Display the core notes &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; present&lt;span class="o"&gt;)&lt;/span&gt;
+  -r --relocs            Display the relocations &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; present&lt;span class="o"&gt;)&lt;/span&gt;
+  -u --unwind            Display the unwind info &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; present&lt;span class="o"&gt;)&lt;/span&gt;
+  -d --dynamic           Display the dynamic section &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; present&lt;span class="o"&gt;)&lt;/span&gt;
+  -V --version-info      Display the version sections &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; present&lt;span class="o"&gt;)&lt;/span&gt;
+  -A --arch-specific     Display architecture specific information &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; any&lt;span class="o"&gt;)&lt;/span&gt;
   -c --archive-index     Display the symbol/file index in an archive
   -D --use-dynamic       Use the dynamic section info when displaying symbols
-  -x --hex-dump&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;number|name&amp;gt;
-                         Dump the contents of section &amp;lt;number|name&amp;gt; as bytes
-  -p --string-dump&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;number|name&amp;gt;
-                         Dump the contents of section &amp;lt;number|name&amp;gt; as strings
-  -R --relocated-dump&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;number|name&amp;gt;
-                         Dump the contents of section &amp;lt;number|name&amp;gt; as relocated bytes
+  -x --hex-dump&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;number&lt;span class="p"&gt;|&lt;/span&gt;name&amp;gt;
+                         Dump the contents of section &amp;lt;number&lt;span class="p"&gt;|&lt;/span&gt;name&amp;gt; as bytes
+  -p --string-dump&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;number&lt;span class="p"&gt;|&lt;/span&gt;name&amp;gt;
+                         Dump the contents of section &amp;lt;number&lt;span class="p"&gt;|&lt;/span&gt;name&amp;gt; as strings
+  -R --relocated-dump&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;number&lt;span class="p"&gt;|&lt;/span&gt;name&amp;gt;
+                         Dump the contents of section &amp;lt;number&lt;span class="p"&gt;|&lt;/span&gt;name&amp;gt; as relocated bytes
   -w&lt;span class="o"&gt;[&lt;/span&gt;lLiaprmfFsoRt&lt;span class="o"&gt;]&lt;/span&gt; or
   --debug-dump&lt;span class="o"&gt;[=&lt;/span&gt;rawline,&lt;span class="o"&gt;=&lt;/span&gt;decodedline,&lt;span class="o"&gt;=&lt;/span&gt;info,&lt;span class="o"&gt;=&lt;/span&gt;abbrev,&lt;span class="o"&gt;=&lt;/span&gt;pubnames,&lt;span class="o"&gt;=&lt;/span&gt;aranges,&lt;span class="o"&gt;=&lt;/span&gt;macro,&lt;span class="o"&gt;=&lt;/span&gt;frames,
                &lt;span class="o"&gt;=&lt;/span&gt;frames-interp,&lt;span class="o"&gt;=&lt;/span&gt;str,&lt;span class="o"&gt;=&lt;/span&gt;loc,&lt;span class="o"&gt;=&lt;/span&gt;Ranges,&lt;span class="o"&gt;=&lt;/span&gt;pubtypes,
@@ -106,7 +106,7 @@ Usage: readelf &amp;lt;option&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class
   --dwarf-start&lt;span class="o"&gt;=&lt;/span&gt;N        Display DIEs starting with N, at the same depth
                          or deeper
   -I --histogram         Display histogram of bucket list lengths
-  -W --wide              Allow output width to exceed 80 characters
+  -W --wide              Allow output width to exceed &lt;span class="m"&gt;80&lt;/span&gt; characters
   @&amp;lt;file&amp;gt;                Read options from &amp;lt;file&amp;gt;
   -H --help              Display this information
   -v --version           Display the version number of readelf
@@ -117,7 +117,7 @@ Usage: readelf &amp;lt;option&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class
 &lt;hr /&gt;
 &lt;h2&gt;Extracting Information from the &lt;em&gt;.mem&lt;/em&gt; File&lt;/h2&gt;
 &lt;p&gt;It turned out that we don't even need to know anything about the file to find the flag. All we need to do is to search for the &lt;em&gt;flag&lt;/em&gt; string:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat firefox.mem | grep -a &lt;span class="s1"&gt;&amp;#39;flag{&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat firefox.mem &lt;span class="p"&gt;|&lt;/span&gt; grep -a &lt;span class="s1"&gt;&amp;#39;flag{&amp;#39;&lt;/span&gt;
 P��negativeone_or_fdZZZZZZZZZZZZnegativeone_or_nothingZZnegativeone_or_ssize_tZZd_name_extra_sizeZZZZZZZZZZZZnull_or_dirent_ptrZZZZZZZZZZOSFILE_SIZEOF_DIRZZZZZZZZZZZZ���� 3���������ZZZZZZZH�f�L��L��ZZ����@�m���������ZZZZZZZAG�@r���y��ZZZZZZZZflag&lt;span class="o"&gt;{&lt;/span&gt;cd69b4957f06cd818d7bf3d61980e291&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 

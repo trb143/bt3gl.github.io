@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/subprocess.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-10T00:00:00-05:00</updated><entry><title>A Guide to Python's Socket Module</title><link href="http://bt3gl.github.io/a-guide-to-pythons-socket-module.html" rel="alternate"></link><updated>2014-12-10T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-10:a-guide-to-pythons-socket-module.html</id><summary type="html">&lt;p&gt;Last week I got my copy of &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;, the new &lt;a href="https://twitter.com/jms_dot_py"&gt;Justin Seitz&lt;/a&gt;'s book. The compilation talks about network programing, web hacking, and Windows exploitation. All in Python!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/subprocess.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-10T00:00:00-05:00</updated><entry><title>Black Hat Python Networking: The Socket Module</title><link href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html" rel="alternate"></link><updated>2014-12-10T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-10:black-hat-python-networking-the-socket-module.html</id><summary type="html">&lt;p&gt;Last week I got my copy of &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;, the new &lt;a href="https://twitter.com/jms_dot_py"&gt;Justin Seitz&lt;/a&gt;'s book. The compilation talks about network programing, web hacking, and Windows exploitation. All in Python!&lt;/p&gt;
 &lt;p&gt;I have been wanting to write about Python's network resources for a while and now this is my chance! In this first post I discuss Python's &lt;a href="https://docs.python.org/2/library/socket.html"&gt;socket&lt;/a&gt; module, which  contains all the tools to write &lt;a href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol"&gt;TCP&lt;/a&gt;/&lt;a href="http://en.wikipedia.org/wiki/User_Datagram_Protocol"&gt;UDP&lt;/a&gt; clients and servers, including &lt;a href="http://en.wikipedia.org/wiki/Raw_socket"&gt;raw sockets&lt;/a&gt;. It's really nice! &lt;strong&gt;T-1000&lt;/strong&gt; is loving it!&lt;/p&gt;
 &lt;p&gt;Ah, by the way, all the source codes in this post are available at &lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;my repo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/l3iyyOO.jpg" /&gt;&lt;/p&gt;
@@ -37,17 +37,17 @@
 &lt;li&gt;the &lt;em&gt;server is always waiting for us to send data first&lt;/em&gt; (as oppose to servers that expect to send data and then wait for response), and&lt;/li&gt;
 &lt;li&gt;the server will always send us data back in a &lt;em&gt;short time&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Let's run this script (notice that we might get 301 &lt;em&gt;Moved Permanently&lt;/em&gt; or &lt;em&gt;Permanent Redirected&lt;/em&gt;, which tells the browser to go to HTTPs or to include &lt;em&gt;www&lt;/em&gt;):&lt;/p&gt;
+&lt;p&gt;Let's run this script (notice that we get &lt;em&gt;Moved Permanently&lt;/em&gt; because Google  issues HTTPS connections):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; python tcp_client.py
-HTTP/1.1 301 Moved Permanently
+HTTP/1.1 &lt;span class="m"&gt;301&lt;/span&gt; Moved Permanently
 Location: http://www.google.com/
-Content-Type: text/html; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;UTF-8
-Date: Mon, 15 Dec 2014 16:52:46 GMT
-Expires: Wed, 14 Jan 2015 16:52:46 GMT
+Content-Type: text/html&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;UTF-8
+Date: Mon, &lt;span class="m"&gt;15&lt;/span&gt; Dec &lt;span class="m"&gt;2014&lt;/span&gt; 16:52:46 GMT
+Expires: Wed, &lt;span class="m"&gt;14&lt;/span&gt; Jan &lt;span class="m"&gt;2015&lt;/span&gt; 16:52:46 GMT
 Cache-Control: public, max-age&lt;span class="o"&gt;=&lt;/span&gt;2592000
 Server: gws
 Content-Length: 219
-X-XSS-Protection: 1; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
+X-XSS-Protection: 1&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
 X-Frame-Options: SAMEORIGIN
 Alternate-Protocol: 80:quic,p&lt;span class="o"&gt;=&lt;/span&gt;0.02
 
@@ -405,7 +405,7 @@ ACK
 
 &lt;h3&gt;Firing Up a Server and a Client&lt;/h3&gt;
 &lt;p&gt;Now we can put everything together and run the script as a server in a terminal and as a client in another. Running as a server:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;netcat_awesome.py -l -p 9000 -c
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;netcat_awesome.py -l -p &lt;span class="m"&gt;9000&lt;/span&gt; -c
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -426,17 +426,17 @@ NETCAT:
 
 &lt;h3&gt;The Good 'n' Old Request&lt;/h3&gt;
 &lt;p&gt;Additionally, we can use our client to send out requests:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; -ne &lt;span class="s2"&gt;&amp;quot;GET / HTTP/1.1\nHost: www.google.com\r\n\r\n&amp;quot;&lt;/span&gt; | python socket/netcat_awesome.py -t www.google.com -p 80
-HTTP/1.1 200 OK
-Date: Tue, 16 Dec 2014 21:04:27 GMT
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; -ne &lt;span class="s2"&gt;&amp;quot;GET / HTTP/1.1\nHost: www.google.com\r\n\r\n&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; python socket/netcat_awesome.py -t www.google.com -p 80
+HTTP/1.1 &lt;span class="m"&gt;200&lt;/span&gt; OK
+Date: Tue, &lt;span class="m"&gt;16&lt;/span&gt; Dec &lt;span class="m"&gt;2014&lt;/span&gt; 21:04:27 GMT
 Expires: -1
 Cache-Control: private, max-age&lt;span class="o"&gt;=&lt;/span&gt;0
-Content-Type: text/html; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ISO-8859-1
-Set-Cookie: &lt;span class="nv"&gt;PREF&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56f21d7bf67d66e0:FF&lt;span class="o"&gt;=&lt;/span&gt;0:TM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:LM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:S&lt;span class="o"&gt;=&lt;/span&gt;cI2xRwXGjb6bGx1u; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Thu, 15-Dec-2016 21:04:27 GMT; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com
-Set-Cookie: &lt;span class="nv"&gt;NID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;67&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ZGlY0-8CjkGDtTz4WwR7fEHOXGw-VvdI9f92oJKdelRgCxllAXoWfCC5vuQ5lJRFZIwghNRSxYbxKC0Z7ve132WTeBHOCHFB47Ic14ke1wdYGzevz8qFDR80fpiqHwMf; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Wed, 17-Jun-2015 21:04:27 GMT; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com; HttpOnly
+Content-Type: text/html&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ISO-8859-1
+Set-Cookie: &lt;span class="nv"&gt;PREF&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56f21d7bf67d66e0:FF&lt;span class="o"&gt;=&lt;/span&gt;0:TM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:LM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:S&lt;span class="o"&gt;=&lt;/span&gt;cI2xRwXGjb6bGx1u&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Thu, 15-Dec-2016 21:04:27 GMT&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com
+Set-Cookie: &lt;span class="nv"&gt;NID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;67&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ZGlY0-8CjkGDtTz4WwR7fEHOXGw-VvdI9f92oJKdelRgCxllAXoWfCC5vuQ5lJRFZIwghNRSxYbxKC0Z7ve132WTeBHOCHFB47Ic14ke1wdYGzevz8qFDR80fpiqHwMf&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Wed, 17-Jun-2015 21:04:27 GMT&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com&lt;span class="p"&gt;;&lt;/span&gt; HttpOnly
 P3P: &lt;span class="nv"&gt;CP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&amp;amp;answer=151657 for more info.&amp;quot;&lt;/span&gt;
 Server: gws
-X-XSS-Protection: 1; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
+X-XSS-Protection: 1&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
 X-Frame-Options: SAMEORIGIN
 Alternate-Protocol: 80:quic,p&lt;span class="o"&gt;=&lt;/span&gt;0.02
 Transfer-Encoding: chunked
@@ -592,7 +592,7 @@ Transfer-Encoding: chunked
 
 &lt;h3&gt;Firing Up our Proxy&lt;/h3&gt;
 &lt;p&gt;Now we just need to run our script with some server. For example, for a FTP server at the standard port 21:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo ./tcp_proxy.py localhost 21 ftp.target 21 True
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo ./tcp_proxy.py localhost &lt;span class="m"&gt;21&lt;/span&gt; ftp.target &lt;span class="m"&gt;21&lt;/span&gt; True
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Listening on localhost:21
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;

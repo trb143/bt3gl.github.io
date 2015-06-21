@@ -7,11 +7,11 @@
 &lt;/blockquote&gt;
 &lt;p&gt;Hacking PDFs, what fun!&lt;/p&gt;
 &lt;p&gt;In general, when dealing with reverse-engineering malicious documents, we follow these steps:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt; &lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="n"&gt;We&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;malicious&lt;/span&gt; &lt;span class="n"&gt;embedded&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shell&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;JavaScript&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; 1. We search for malicious embedded code (shell code, JavaScript).
 
- &lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="n"&gt;We&lt;/span&gt; &lt;span class="n"&gt;extract&lt;/span&gt; &lt;span class="n"&gt;any&lt;/span&gt; &lt;span class="n"&gt;suspicious&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="n"&gt;segments&lt;/span&gt;
+ 2. We extract any suspicious code segments
 
- &lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;see&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;disassemble&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;see&lt;/span&gt; &lt;span class="n"&gt;JavaScript&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;ActionScript&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;VB&lt;/span&gt; &lt;span class="n"&gt;macro&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;try&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;examine&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+ 3. If we see shell code, we disassemble or debug it. If we see JavaScript (or ActionScript or VB macro code), we try to examine it.
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -19,13 +19,13 @@
 &lt;hr /&gt;
 &lt;h2&gt;Finding the Flag in 10 Seconds&lt;/h2&gt;
 &lt;p&gt;Yeap, this easy:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="n"&gt;Download&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;PDF&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;1. Download the PDF file.
 
-&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="n"&gt;Open&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;any&lt;/span&gt; &lt;span class="n"&gt;PDF&lt;/span&gt; &lt;span class="n"&gt;viewer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+2. Open it in any PDF viewer.
 
-&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="n"&gt;CTRL&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;contend&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
+3. CTRL+A (select all the contend).
 
-&lt;span class="mf"&gt;4.&lt;/span&gt; &lt;span class="n"&gt;You&lt;/span&gt; &lt;span class="n"&gt;see&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+4. You see the flag!
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -75,7 +75,7 @@ PDFiD 0.1.2 pdf.pdf
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;unzip pdf-parser_V0_4_3.zip
 &lt;span class="nv"&gt;$ &lt;/span&gt;chmod a+x pdf-parser.py
 &lt;span class="nv"&gt;$ &lt;/span&gt;./pdf-parser.py
-Usage: pdf-parser.py &lt;span class="o"&gt;[&lt;/span&gt;options&lt;span class="o"&gt;]&lt;/span&gt; pdf-file|zip-file|url
+Usage: pdf-parser.py &lt;span class="o"&gt;[&lt;/span&gt;options&lt;span class="o"&gt;]&lt;/span&gt; pdf-file&lt;span class="p"&gt;|&lt;/span&gt;zip-file&lt;span class="p"&gt;|&lt;/span&gt;url
 pdf-parser, use it to parse a PDF document
 
 Options:
@@ -92,29 +92,29 @@ Options:
                         independent&lt;span class="o"&gt;)&lt;/span&gt;
   -e ELEMENTS, --elements&lt;span class="o"&gt;=&lt;/span&gt;ELEMENTS
                         &lt;span class="nb"&gt;type &lt;/span&gt;of elements to &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;cxtsi&lt;span class="o"&gt;)&lt;/span&gt;
-  -w, --raw             raw output &lt;span class="k"&gt;for &lt;/span&gt;data and filters
-  -a, --stats           display stats &lt;span class="k"&gt;for &lt;/span&gt;pdf document
+  -w, --raw             raw output &lt;span class="k"&gt;for&lt;/span&gt; data and filters
+  -a, --stats           display stats &lt;span class="k"&gt;for&lt;/span&gt; pdf document
   -t TYPE, --type&lt;span class="o"&gt;=&lt;/span&gt;TYPE  &lt;span class="nb"&gt;type &lt;/span&gt;of indirect object to &lt;span class="k"&gt;select&lt;/span&gt;
   -v, --verbose         display malformed PDF elements
   -x EXTRACT, --extract&lt;span class="o"&gt;=&lt;/span&gt;EXTRACT
                         filename to extract malformed content to
   -H, --hash            display &lt;span class="nb"&gt;hash &lt;/span&gt;of objects
   -n, --nocanonicalizedoutput
-                        &lt;span class="k"&gt;do &lt;/span&gt;not canonicalize the output
+                        &lt;span class="k"&gt;do&lt;/span&gt; not canonicalize the output
   -d DUMP, --dump&lt;span class="o"&gt;=&lt;/span&gt;DUMP  filename to dump stream content to
   -D, --debug           display debug info
-  -c, --content         display the content &lt;span class="k"&gt;for &lt;/span&gt;objects without streams or
+  -c, --content         display the content &lt;span class="k"&gt;for&lt;/span&gt; objects without streams or
                         with streams without filters
   --searchstream&lt;span class="o"&gt;=&lt;/span&gt;SEARCHSTREAM
                         string to search in streams
   --unfiltered          search in unfiltered streams
-  --casesensitive       &lt;span class="k"&gt;case &lt;/span&gt;sensitive search in streams
+  --casesensitive       &lt;span class="k"&gt;case&lt;/span&gt; sensitive search in streams
   --regex               use regex to search in streams
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Very interesting! We run it with our file, searching for the string &lt;em&gt;/ProcSet&lt;/em&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./pdf-parser.py  pdf.pdf | grep  /ProcSet
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./pdf-parser.py  pdf.pdf &lt;span class="p"&gt;|&lt;/span&gt; grep  /ProcSet
         /ProcSet &lt;span class="o"&gt;[&lt;/span&gt; /ImageC /Text /PDF /ImageI /ImageB &lt;span class="o"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 

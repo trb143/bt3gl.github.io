@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Higher Bytes by bt3</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/cryptography.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 01 Dec 2014 02:00:00 -0500</lastBuildDate><item><title>On Redis &amp; AES Encryption in the 9447's CTF</title><link>http://bt3gl.github.io/on-redis-aes-encryption-in-the-9447s-ctf.html</link><description>&lt;p&gt;During this last weekend, the &lt;a href="https://9447.plumbing/home"&gt;9447 CTF&lt;/a&gt; took place. One of the &lt;em&gt;misc&lt;/em&gt; problems was called &lt;strong&gt;NoSQL&lt;/strong&gt; and had the following description, together with an attachment with three files:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;Hey&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;don&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;understand&lt;/span&gt; &lt;span class="n"&gt;how&lt;/span&gt; &lt;span class="n"&gt;SQL&lt;/span&gt; &lt;span class="n"&gt;works&lt;/span&gt; &lt;span class="n"&gt;so&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;made&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt; &lt;span class="n"&gt;own&lt;/span&gt; &lt;span class="n"&gt;NoSQL&lt;/span&gt; &lt;span class="n"&gt;startup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;And&lt;/span&gt; &lt;span class="n"&gt;OpenSSL&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;bloody&lt;/span&gt; &lt;span class="n"&gt;crap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    Hey, I don&amp;#39;t understand how SQL works so I made my own NoSQL startup. And OpenSSL is bloody crap.
 
-    &lt;span class="nl"&gt;ip:&lt;/span&gt; &lt;span class="mf"&gt;54.148.249.150&lt;/span&gt;
-    &lt;span class="nl"&gt;port:&lt;/span&gt; &lt;span class="mi"&gt;4479&lt;/span&gt;
+    ip: 54.148.249.150
+    port: 4479
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -145,7 +145,7 @@
 &lt;p&gt;The last file was a &lt;strong&gt;pcap&lt;/strong&gt; dump. When opening it with &lt;a href="http://bt3gl.github.io/wiresharking-for-fun-or-profit.html"&gt;Wireshark&lt;/a&gt;, I verified it was really short, and the content was simply a &lt;a href="http://www.inetdaemon.com/tutorials/internet/tcp/3-way_handshake.shtml"&gt;TCP handshake&lt;/a&gt;. Right-clicking some packet and selecting &lt;em&gt;Follow TCP Stream&lt;/em&gt; returned the dump of the connection suggested by the &lt;strong&gt;client.py&lt;/strong&gt; script:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.imgur.com/2Y6aaW1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;However, we see that the database has already an entry for flag:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[&amp;#39;flag&amp;#39;, &amp;#39;example&amp;#39;]
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -167,19 +167,19 @@
 
 &lt;p&gt;However, we do not have the AES key used by the server, only an example of communication given by the PCAP file. How do we get to send a &lt;strong&gt;GET flag&lt;/strong&gt; message?&lt;/p&gt;
 &lt;p&gt;The first thing that comes  to our minds is to use the network dump to replay the message, re-shaping it somehow to have a &lt;em&gt;GET flag&lt;/em&gt;.  Remember that the blocks have a size of 16, and we see two blocks that are particularly interesting:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ION&lt;/span&gt; &lt;span class="n"&gt;HEX&lt;/span&gt;
-&lt;span class="n"&gt;MD5&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ION HEX
+MD5 flag
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;and&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;edisStore&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;
-&lt;span class="n"&gt;GET&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;edisStore...
+GET
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now we check how the oracle responds to several types of responses:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="mf"&gt;54.148.249.150&lt;/span&gt; &lt;span class="mi"&gt;4479&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python client.py 54.148.249.150 4479
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -276,7 +276,7 @@
 
 &lt;h4&gt;If you have more than one key:&lt;/h4&gt;
 &lt;p&gt;Edit &lt;code&gt;~/.gnupg/gpg.conf&lt;/code&gt; with your favorite key:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="n"&gt;KEY_NAME&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;default-key KEY_NAME
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -340,27 +340,27 @@
 &lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Tue, 28 Oct 2014 05:20:00 -0400</pubDate><guid>tag:bt3gl.github.io,2014-10-28:quick-and-dirty-intro-to-openpgp-gpg.html</guid><category>PGP</category><category>GPG</category></item><item><title>The Peace Pipe at Hack.lu's Final CTF 2014</title><link>http://bt3gl.github.io/the-peace-pipe-at-hacklus-final-ctf-2014.html</link><description>&lt;p&gt;Last week was the &lt;a href="https://wildwildweb.fluxfingers.net/scoreboard"&gt;Hack.lu&lt;/a&gt; Final CTF. In this post I  discuss  one of my favorite  crypto problems in that CTF: the "Peace Pipe".&lt;/p&gt;
 &lt;h2&gt;Understanding the Problem&lt;/h2&gt;
 &lt;p&gt;The problem starts with this weird story:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;After&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;sit&lt;/span&gt; &lt;span class="n"&gt;around&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;campfire&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;wild&lt;/span&gt; &lt;span class="n"&gt;wild&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;few&lt;/span&gt; &lt;span class="n"&gt;Sioux&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;met&lt;/span&gt; &lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;To&lt;/span&gt; &lt;span class="n"&gt;celebrate&lt;/span&gt; &lt;span class="n"&gt;friendship&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;them&lt;/span&gt; &lt;span class="n"&gt;takes&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt; &lt;span class="n"&gt;his&lt;/span&gt; &lt;span class="n"&gt;wooden&lt;/span&gt; &lt;span class="n"&gt;peace&lt;/span&gt; &lt;span class="n"&gt;pipe&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;minutes&lt;/span&gt; &lt;span class="n"&gt;later&lt;/span&gt; &lt;span class="n"&gt;everyone&lt;/span&gt; &lt;span class="n"&gt;seems&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;pretty&lt;/span&gt; &lt;span class="n"&gt;dizzy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;You&lt;/span&gt; &lt;span class="n"&gt;remember&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;their&lt;/span&gt; &lt;span class="n"&gt;war&lt;/span&gt; &lt;span class="n"&gt;chief&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Makawee&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;started&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;say&lt;/span&gt; &lt;span class="n"&gt;about&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;secret&lt;/span&gt; &lt;span class="n"&gt;tipi&lt;/span&gt; &lt;span class="n"&gt;filled&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;fire&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;water&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;good&lt;/span&gt; &lt;span class="n"&gt;stuff&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt; &lt;span class="n"&gt;But&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;he&lt;/span&gt; &lt;span class="n"&gt;noticed&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;interest&lt;/span&gt; &lt;span class="n"&gt;he&lt;/span&gt; &lt;span class="n"&gt;immediately&lt;/span&gt; &lt;span class="n"&gt;stopped&lt;/span&gt; &lt;span class="n"&gt;talking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;You&lt;/span&gt; &lt;span class="n"&gt;recall&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Makawee&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;spoke&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Wahkoowah&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;about&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;issue&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;but&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;ended&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;fight&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Since&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt; &lt;span class="n"&gt;Makawee&lt;/span&gt; &lt;span class="n"&gt;wouldnt&lt;/span&gt; &lt;span class="n"&gt;talk&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;Wahkoowah&lt;/span&gt; &lt;span class="n"&gt;anymore&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;While&lt;/span&gt; &lt;span class="n"&gt;they&lt;/span&gt; &lt;span class="n"&gt;argued&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Chapawee&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;wrote&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt; &lt;span class="n"&gt;down&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Maybe&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;exploit&lt;/span&gt; &lt;span class="n"&gt;their&lt;/span&gt; &lt;span class="n"&gt;dizzyness&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;tipi&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;After a long day, you sit around a campfire in the wild wild web with a few Sioux you met today.
+To celebrate friendship one of them takes out his wooden peace pipe and minutes later everyone seems to be pretty dizzy.
+You remember that their war chief &amp;quot;Makawee&amp;quot; started something to say about a secret tipi filled with fire-water (the good stuff). But when he noticed your interest he immediately stopped talking.
+You recall that &amp;quot;Makawee&amp;quot; spoke with &amp;quot;Wahkoowah&amp;quot; about that issue, but it ended with a fight.
+Since then Makawee wouldnt talk to Wahkoowah anymore. While they argued &amp;quot;Chapawee&amp;quot; wrote something down.
+Maybe you can exploit their dizzyness to find out the location of the tipi.
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Then it gives us three &lt;em&gt;ports&lt;/em&gt; in the &lt;em&gt;host&lt;/em&gt;. With the first one, we  talk to &lt;strong&gt;Chapawee&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wildwildweb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fluxfingers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="mi"&gt;1432&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wildwildweb.fluxfingers.net 1432
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;With the second, we talk to &lt;strong&gt;Wankoowah&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wildwildweb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fluxfingers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="mi"&gt;1433&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wildwildweb.fluxfingers.net 1433
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Finally, with the third, we talk to &lt;strong&gt;Makawee&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wildwildweb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fluxfingers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="mi"&gt;1434&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wildwildweb.fluxfingers.net 1434
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -369,7 +369,7 @@
 &lt;p&gt;When we &lt;em&gt;netcat&lt;/em&gt; to &lt;strong&gt;Chapawee&lt;/strong&gt; he answers:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; nc wildwildweb.fluxfingers.net 1432
 Hi I&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;m Chapawee. I know the truth about the stars
-Say stars &lt;span class="k"&gt;for &lt;/span&gt;more
+Say stars &lt;span class="k"&gt;for&lt;/span&gt; more
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -426,7 +426,7 @@ This is your key of truth
 50e7e1957c1786a9442f0c9f372ec19f74f52839e9e38849b47438153f9d2483213a43ad2d988fab4a8707922060aaefe6504a70637596fbcf9d58362b23e5d5e2177fd4e919b80437bab51eda931e065b6d66fce343d7cb2b7c1ca26214792d461895095ae58354af0dec6e63869007e23835892f26aabc96fe3d9084a829b4d6c5b92c6f3e0dd9a70cbd5c72d6434f2b94d21c3b0c58a288c140642b813ffb1b632bc358b3a6af0124902acd8792202c848de7f9d5d98bee51ca69040c8a2457ad3fa6276d6510701b9a875df612e035322cad06579a0a11f5e7cb4ebb7b69171c38585fc0f4fe07b0c889442397029d05dc801026a0648d7aa8c847420e9c
 With magic I did this:
 922a7f4b150eb83eab929e2a44bcbbb45435851262a6e7b84d2777d995ffbc315a2e57a580f4982797b45efde6d30b493880ecea33fe26e6c8ff636b75b7cb3f647f0c6f606249bc48ef09bd20738cf472bf47c7f52b9e11afcefc1548155637b0d2054d37cd74301e534208408074938ae4e7b54ef50fa0a39cb090dd34de7a4040024ba2394bac62262ccda529d2d69effe24338f0ec1b842539d2b89b081fa77a266a7c9f62c25d2a1ee1af3da8054d79d87ae88da61b8333e1fc195d2957341458700a3be70c98e1a8ab35bfe527ff6a2f255c66d753d03c59404993f1ed295a722bf1d0241eec9c01efe06e3cd5b845e84de3d29de17f9b68351bdc2d65
-We &lt;span class="k"&gt;continue &lt;/span&gt;our conversation, right?
+We &lt;span class="k"&gt;continue&lt;/span&gt; our conversation, right?
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -454,7 +454,7 @@ Ncat: Broken pipe.
 &lt;p&gt;Since Chapawee allows us to add keys to names, let's create some name with Wahkoowah's key (say "mrwhite") and send this to Makawee:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;nc wildwildweb.fluxfingers.net 1432
 Hi I&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;m Chapawee. I know the truth about the stars
-Say stars &lt;span class="k"&gt;for &lt;/span&gt;more
+Say stars &lt;span class="k"&gt;for&lt;/span&gt; more
 stars
 
         I can tell you the truth about
@@ -469,7 +469,7 @@ stars
 
 namestar mrwhite 218b783ec5676cbddd378ceb724820444599f22cdcfda0a5a195b3a8fbf4ab5c915703420ad3b84531c54b838b23858fb84fcaf04d4932d4b9ef861c7ae9b635c9d3f56dfb100aa47297afcd94df41efa9f5ecba6483c5328e43ec457027ee4efcecefa094a83945106d7da1878c1f47516c2f2578170eeb36955d8bd16e0d106f9e2effe9debff41e551db4ac2e87bc8a9378d8eadb042bee18f4ad72ab721833a27154a7318b8cbe6f98fb3c82da32d1688fdcdb718fb15d9d5e6276b037cef62d953c09b23ebe90d0b13f61cd1643e5e1b0a433d5e2522ec5a028817891b6df444e983e1e0ff2356044fea67c616dce6b4bd53b17ea8bc51ef816ab8f2d9e
 Add the star to the sky...
-Set the star &lt;span class="k"&gt;for &lt;/span&gt;mrwhite: 218b783ec5676cbddd378ceb724820444599f22cdcfda0a5a195b3a8fbf4ab5c915703420ad3b84531c54b838b23858fb84fcaf04d4932d4b9ef861c7ae9b635c9d3f56dfb100aa47297afcd94df41efa9f5ecba6483c5328e43ec457027ee4efcecefa094a83945106d7da1878c1f47516c2f2578170eeb36955d8bd16e0d106f9e2effe9debff41e551db4ac2e87bc8a9378d8eadb042bee18f4ad72ab721833a27154a7318b8cbe6f98fb3c82da32d1688fdcdb718fb15d9d5e6276b037cef62d953c09b23ebe90d0b13f61cd1643e5e1b0a433d5e2522ec5a028817891b6df444e983e1e0ff2356044fea67c616dce6b4bd53b17ea8bc51ef816ab8f2d9e
+Set the star &lt;span class="k"&gt;for&lt;/span&gt; mrwhite: 218b783ec5676cbddd378ceb724820444599f22cdcfda0a5a195b3a8fbf4ab5c915703420ad3b84531c54b838b23858fb84fcaf04d4932d4b9ef861c7ae9b635c9d3f56dfb100aa47297afcd94df41efa9f5ecba6483c5328e43ec457027ee4efcecefa094a83945106d7da1878c1f47516c2f2578170eeb36955d8bd16e0d106f9e2effe9debff41e551db4ac2e87bc8a9378d8eadb042bee18f4ad72ab721833a27154a7318b8cbe6f98fb3c82da32d1688fdcdb718fb15d9d5e6276b037cef62d953c09b23ebe90d0b13f61cd1643e5e1b0a433d5e2522ec5a028817891b6df444e983e1e0ff2356044fea67c616dce6b4bd53b17ea8bc51ef816ab8f2d9e
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -477,7 +477,7 @@ Set the star &lt;span class="k"&gt;for &lt;/span&gt;mrwhite: 218b783ec5676cbddd3
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;nc wildwildweb.fluxfingers.net 1434
 Hi, I&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;m, Makawee, and you are? Too bright here...
 mrwhite
-mrwhite ... &lt;span class="k"&gt;do &lt;/span&gt;I know you?
+mrwhite ... &lt;span class="k"&gt;do&lt;/span&gt; I know you?
 Disguise does not &lt;span class="nb"&gt;help&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -567,7 +567,7 @@ flag&lt;span class="o"&gt;{&lt;/span&gt;FreeBoozeForEverone-Party!&lt;span class
 &lt;hr /&gt;
 &lt;h2&gt;The Cryptosystem&lt;/h2&gt;
 &lt;p&gt;The challenge was started by netcating to &lt;code&gt;nc asis-ctf.ir 12445&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;  &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Here&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;well&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;known&lt;/span&gt; &lt;span class="n"&gt;cryptosystem&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;which&lt;/span&gt; &lt;span class="n"&gt;introduced&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;late&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;part&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;PhD&lt;/span&gt; &lt;span class="n"&gt;Thesis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;cryptosystem&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;probabilistic&lt;/span&gt; &lt;span class="n"&gt;asymmetric&lt;/span&gt; &lt;span class="n"&gt;algorithm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;so&lt;/span&gt; &lt;span class="n"&gt;computer&lt;/span&gt; &lt;span class="n"&gt;nerds&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;familiar&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;basics&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;power&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;cryptosystem&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;based&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt; &lt;span class="n"&gt;efficient&lt;/span&gt; &lt;span class="n"&gt;general&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;computing&lt;/span&gt; &lt;span class="n"&gt;discrete&lt;/span&gt; &lt;span class="n"&gt;logarithms&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;conventional&lt;/span&gt; &lt;span class="n"&gt;computers&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;known&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="n"&gt;real&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;could&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;used&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;situation&lt;/span&gt; &lt;span class="n"&gt;where&lt;/span&gt; &lt;span class="n"&gt;there&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;need&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;anonymity&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;mechanism&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;like&lt;/span&gt; &lt;span class="n"&gt;election&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;What&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;cryptosystem&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;  &amp;gt; Here we use a well-known cryptosystem, which introduced in late 90s as a part of PhD Thesis. This cryptosystem is a probabilistic asymmetric algorithm, so computer nerds are familiar with the basics. The power of this cryptosystem is based on the fact that no efficient general method for computing discrete logarithms on conventional computers is known. In real world it could be used in a situation where there is a need for anonymity and a mechanism to validate, like election. What&amp;#39;s the name of this cryptosystem?
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -661,14 +661,14 @@ Tell us your choice:
 &lt;ul&gt;
 &lt;li&gt;Encryption and decryption of any &lt;strong&gt;integer&lt;/strong&gt; works...&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="n"&gt;ncrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="n"&gt;ecrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;
-&lt;span class="n"&gt;Tell&lt;/span&gt; &lt;span class="n"&gt;us&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;encrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;Your&lt;/span&gt; &lt;span class="n"&gt;secret&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;73109965080485247131710209266123910705889636744106672869822932981580432295328645599823550448181731566435402609978665387224898646975403769881196399448975370668935092605229755765060164052771714510987944591017615792396157094596290728393053648253053017939625091326878542241485082342371560710778399247063411414649475517288243167425022137869055256778307340931947663486971023680806406250041891606619955393621120918102708442427400288119511466304393700124201965017764148482926998000012235997591413309617388902575733355188418714479900913342627281937156809563150498906460101268562252351167461233533852277300215020108137992142&lt;/span&gt;
-&lt;span class="n"&gt;Tell&lt;/span&gt; &lt;span class="n"&gt;us&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="o"&gt;------------------------&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="n"&gt;ncrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="n"&gt;ecrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;
-&lt;span class="n"&gt;Tell&lt;/span&gt; &lt;span class="n"&gt;us&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;secret&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;decrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;73109965080485247131710209266123910705889636744106672869822932981580432295328645599823550448181731566435402609978665387224898646975403769881196399448975370668935092605229755765060164052771714510987944591017615792396157094596290728393053648253053017939625091326878542241485082342371560710778399247063411414649475517288243167425022137869055256778307340931947663486971023680806406250041891606619955393621120918102708442427400288119511466304393700124201965017764148482926998000012235997591413309617388902575733355188418714479900913342627281937156809563150498906460101268562252351167461233533852277300215020108137992142&lt;/span&gt;
-&lt;span class="n"&gt;Your&lt;/span&gt; &lt;span class="n"&gt;original&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[E]ncrypt: [D]ecrypt: e
+Tell us your message to encrypt: 1
+Your secret is: 73109965080485247131710209266123910705889636744106672869822932981580432295328645599823550448181731566435402609978665387224898646975403769881196399448975370668935092605229755765060164052771714510987944591017615792396157094596290728393053648253053017939625091326878542241485082342371560710778399247063411414649475517288243167425022137869055256778307340931947663486971023680806406250041891606619955393621120918102708442427400288119511466304393700124201965017764148482926998000012235997591413309617388902575733355188418714479900913342627281937156809563150498906460101268562252351167461233533852277300215020108137992142
+Tell us your choice:
+------------------------
+[E]ncrypt: [D]ecrypt: d
+Tell us your secret to decrypt: 73109965080485247131710209266123910705889636744106672869822932981580432295328645599823550448181731566435402609978665387224898646975403769881196399448975370668935092605229755765060164052771714510987944591017615792396157094596290728393053648253053017939625091326878542241485082342371560710778399247063411414649475517288243167425022137869055256778307340931947663486971023680806406250041891606619955393621120918102708442427400288119511466304393700124201965017764148482926998000012235997591413309617388902575733355188418714479900913342627281937156809563150498906460101268562252351167461233533852277300215020108137992142
+Your original message is: 1
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -690,7 +690,7 @@ Tell us your choice:
 &lt;p&gt;Whenever we have a netcat challenge, I like to have a clean script to get and send messages (copying from terminal is lame).&lt;/p&gt;
 &lt;p&gt;In addition, all the numbers in this challenge were really long (the encrypted messages had 614 chars), so we need to perform operations in a consistent and efficient way.&lt;/p&gt;
 &lt;p&gt;To work with long numbers in Python, I use the &lt;a href="https://docs.python.org/2/library/decimal.html"&gt;Decimal&lt;/a&gt; library. For instance, considering that we could want to add two messages, I set the context to 1240 bytes:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getcontext&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;prec&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1240&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;decimal.getcontext().prec = 1240
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -819,7 +819,7 @@ Tell us your choice:
 
 
 &lt;p&gt;The script took around 5 minutes to be finished, returning our &lt;strong&gt;n&lt;/strong&gt; for the round:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;17671943390317527594740575037779239788090749028363849573873871285525785364877468659238291287413782918855995881353189626069716161186805808731291508724925847487655603905895106750055611619881911787280882269077856999823769344599404478814635216943095238063240285592085964648122007040660676934950342692770738186633&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;17671943390317527594740575037779239788090749028363849573873871285525785364877468659238291287413782918855995881353189626069716161186805808731291508724925847487655603905895106750055611619881911787280882269077856999823769344599404478814635216943095238063240285592085964648122007040660676934950342692770738186633
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -832,7 +832,7 @@ Tell us your choice:
 
 
 &lt;p&gt;This returns:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;112280008116052186646368021111109237871341887479615992317427354059600212357857288108129264030737539972269011409996912208818076010168198529262326772763879996822102998582534816837233418191109543582310863266347760528961946352593880742472731062537568071764692096627743690922908221673060800965135164509962029222789740380393803936034322030637125612078147029021325858011668393839188326210425016990153989714767763564793169128967154011677910768035056556423954036535193602627342043345257626256977045594687342553610052190731351090959432138598081567054374046432685112246445454537701332996220698854386609070078979440083610540257&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;112280008116052186646368021111109237871341887479615992317427354059600212357857288108129264030737539972269011409996912208818076010168198529262326772763879996822102998582534816837233418191109543582310863266347760528961946352593880742472731062537568071764692096627743690922908221673060800965135164509962029222789740380393803936034322030637125612078147029021325858011668393839188326210425016990153989714767763564793169128967154011677910768035056556423954036535193602627342043345257626256977045594687342553610052190731351090959432138598081567054374046432685112246445454537701332996220698854386609070078979440083610540257
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -856,17 +856,17 @@ ASIS
 
 
 &lt;p&gt;Running it, we get the hexadecimal form of our flag:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;32487808320243150435316584796155571093777738593139558163862909500838275925645449950017590&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;32487808320243150435316584796155571093777738593139558163862909500838275925645449950017590
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;And its ASCII decoding,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mh"&gt;0x415349535f3835633966656264346331353935306162316631396136626437613934663836&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;0x415349535f3835633966656264346331353935306162316631396136626437613934663836
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Leads to the flag:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ASIS_85c9febd4c15950ab1f19a6bd7a94f87&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ASIS_85c9febd4c15950ab1f19a6bd7a94f87
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -885,7 +885,7 @@ ASIS
 Use this password to log in to krypton.labs.overthewire.org with username krypton1 using SSH. You can the files for other levels in /krypton/.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Base64"&gt;Base64&lt;/a&gt; is just a way to represent binary data in ASCII, by translating it into a radix-64. Linux provides a built-in Base64 enconder/decoder tool, so all we need to do is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;base64&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="n"&gt;KRYPTON0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;base64 -d KRYPTON0.txt
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -898,11 +898,11 @@ Use this password to log in to krypton.labs.overthewire.org with username krypto
 &lt;p&gt;This is the classic &lt;a href="http://en.wikipedia.org/wiki/Caesar_cipher"&gt;Caesar Cypher&lt;/a&gt; (they really love this thing :).&lt;/p&gt;
 &lt;p&gt;In the Caesar’s cipher, the letters in the plaintext are shifted by a fixed number of elements down the alphabet. For example, if the shift is 3, A becomes D , B becomes E , and so on. Once we run out of letters, we circle back to A.&lt;/p&gt;
 &lt;p&gt;We can solve this challenge in a few lines using Linux's built-in &lt;a href="http://linux.die.net/man/1/tr"&gt;tr&lt;/a&gt; (translate tool):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;VAR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;krypton2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;VAR&lt;/span&gt;
-&lt;span class="n"&gt;YRIRY&lt;/span&gt; &lt;span class="n"&gt;GJB&lt;/span&gt; &lt;span class="n"&gt;CNFFJBEQ&lt;/span&gt; &lt;span class="n"&gt;EBGGRA&lt;/span&gt;
-&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;alias&lt;/span&gt; &lt;span class="n"&gt;rot13&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tr A-Za-z N-ZA-Mn-za-m&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton1&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$VAR&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;rot13&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;krypton1@melinda:/krypton/krypton1&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; VAR=&lt;/span&gt;&lt;span class="p"&gt;$(&lt;/span&gt;&lt;span class="err"&gt;cat&lt;/span&gt; &lt;span class="err"&gt;krypton2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;krypton1@melinda:/krypton/krypton1&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; echo &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;VAR&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;YRIRY GJB CNFFJBEQ EBGGRA&lt;/span&gt;
+&lt;span class="x"&gt;krypton1@melinda:/krypton/krypton1&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; alias rot13=&amp;quot;tr A-Za-z N-ZA-Mn-za-m&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;krypton1@melinda:/krypton/krypton1&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; echo &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;VAR&lt;/span&gt;&lt;span class="x"&gt;&amp;quot; | rot13&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -928,29 +928,29 @@ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n 
 
 
 &lt;p&gt;Running the binary:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;encrypt&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;ciphertext&lt;/span&gt;
-&lt;span class="n"&gt;MNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKL&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;/krypton/krypton2/encrypt file
+&lt;span class="nv"&gt;$ &lt;/span&gt;cat ciphertext
+MNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKL
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;We see a ROT14 (since ROT13 starts in N).&lt;/p&gt;
 &lt;p&gt;As a second way to find the rotation, we could use &lt;a href="http://linux.die.net/man/1/ltrace"&gt;ltrace&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ltrace&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;encrypt&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;less&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ltrace /krypton/krypton2/encrypt file &lt;span class="p"&gt;|&lt;/span&gt; less
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Which shows things such as:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;fgetc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mh"&gt;0x602250&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;toupper&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                          &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;isalpha&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;0x7ffff7dd0d00&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;0xffffffff&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt;
-&lt;span class="n"&gt;fputc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;M&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;0x602490&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;fgetc(0x602250)                                       = &amp;#39;A&amp;#39;
+toupper(&amp;#39;A&amp;#39;)                                          = &amp;#39;A&amp;#39;
+isalpha(65, 65, 0x7ffff7dd0d00, -1, 0xffffffff)       = 1024
+fputc(&amp;#39;M&amp;#39;, 0x602490)                                  = 77
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now that we know the rotation number,  we can decrypt the password in the same way as we did in the previous level:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;krypton2@melinda:/tmp&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;alias &lt;/span&gt;&lt;span class="nv"&gt;rot14&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tr A-Z O-ZA-N&amp;quot;&lt;/span&gt;
-krypton2@melinda:/tmp&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$VAR&amp;quot;&lt;/span&gt; | rot14
+krypton2@melinda:/tmp&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$VAR&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; rot14
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1010,12 +1010,12 @@ krypton2@melinda:/tmp&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&g
 
 
 &lt;p&gt;Running it gives us the key:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;found1&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cipher&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;found2&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cipher&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;found3&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cipher&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton3&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;freq&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;cipher&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;alias&lt;/span&gt; &lt;span class="n"&gt;rotvi&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;tr&lt;/span&gt; &lt;span class="n"&gt;ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;/span&gt; &lt;span class="n"&gt;BOIHPKNQVTWGURXZAJEYSLDFPU&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;krypton4&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;rotvi&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat /krypton/krypton3/found1 &amp;gt; cipher
+&lt;span class="nv"&gt;$ &lt;/span&gt;cat /krypton/krypton3/found2 &amp;gt;&amp;gt; cipher
+&lt;span class="nv"&gt;$ &lt;/span&gt;cat /krypton/krypton3/found3 &amp;gt;&amp;gt; cipher
+&lt;span class="nv"&gt;$ &lt;/span&gt;/krypton/krypton3&lt;span class="nv"&gt;$ &lt;/span&gt;python freq.py cipher
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;alias &lt;/span&gt;&lt;span class="nv"&gt;rotvi&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tr ABCDEFGHIJKLMNOPQRSTUVWXYZ BOIHPKNQVTWGURXZAJEYSLDFPU&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;cat /krypton/krypton3/krypton4 &lt;span class="p"&gt;|&lt;/span&gt; rotvi
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1039,26 +1039,26 @@ This level is a Vigenère Cipher. You have intercepted two longer, english langu
 &lt;/blockquote&gt;
 &lt;p&gt;This is a classical case of &lt;a href="http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher"&gt;Vigenere cipher&lt;/a&gt;, which  is a variation on the Caesar’s cipher. In this case, one uses multiple shift amounts according to a keyword.&lt;/p&gt;
 &lt;p&gt;To solve this we use the &lt;a href="http://smurfoncrack.com/pygenere/pygenere.py"&gt;pygenere&lt;/a&gt; library in Python. First we need to find the key:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;
-&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;pygenere&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Vigenere&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;VigCrack&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pygenere&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Vigenere&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;VigCrack&lt;/span&gt;
 
-&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;get_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-  &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;Vigenere&lt;/span&gt; &lt;span class="n"&gt;Cypher&lt;/span&gt;
-  &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="n"&gt;VigCrack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;crack_codeword&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-  &lt;span class="n"&gt;dec_msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VigCrack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;crack_message&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-  &lt;span class="n"&gt;dec_msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="n"&gt;dec_msg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="c"&gt;# Vigenere Cypher&lt;/span&gt;
+  &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="n"&gt;VigCrack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;crack_codeword&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+  &lt;span class="n"&gt;dec_msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VigCrack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;crack_message&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+  &lt;span class="n"&gt;dec_msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="n"&gt;dec_msg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dec_msg&lt;/span&gt;
 
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;__main__&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-  &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;getting&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;
-  &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;cipher&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="n"&gt;msg_in&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="c"&gt;# getting the key&lt;/span&gt;
+  &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;cipher&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;msg_in&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;answer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg_in&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Message&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;msg_in&lt;/span&gt;
-        &lt;span class="n"&gt;print&lt;/span&gt;
-        &lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Answer&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;answer&lt;/span&gt;
-        &lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;)&amp;#39;&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Message: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;msg_in&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Answer: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;answer&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;(key: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;)&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

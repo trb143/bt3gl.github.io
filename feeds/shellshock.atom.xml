@@ -34,7 +34,7 @@ DESCRIPTION
 &lt;h3&gt;Functions in Bash&lt;/h3&gt;
 &lt;p&gt;The interesting stuff comes from the fact that Bash  is also a scripting language, with the ability to define functions. This is super useful when you are writing scripts. For example, &lt;code&gt;hello.sh&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
-&lt;span class="k"&gt;function &lt;/span&gt;hello &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;function&lt;/span&gt; hello &lt;span class="o"&gt;{&lt;/span&gt;
   &lt;span class="nb"&gt;echo &lt;/span&gt;Hello!
 &lt;span class="o"&gt;}&lt;/span&gt;
 hello
@@ -50,7 +50,7 @@ Hello!
 
 &lt;p&gt;A function may be compacted into a single line. You just need to choose a name and put a &lt;code&gt;()&lt;/code&gt; after it. Everything inside &lt;code&gt;{}&lt;/code&gt; will belong to the scope of your function.&lt;/p&gt;
 &lt;p&gt;For example, we can create a function &lt;code&gt;bashiscool&lt;/code&gt; that uses &lt;code&gt;echo&lt;/code&gt;  to display message on the standard output:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;bashiscool&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Bash is actually Fun&amp;quot;&lt;/span&gt;; &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;bashiscool&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Bash is actually Fun&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;bashiscool
 Bash is actually Fun
 &lt;/pre&gt;&lt;/div&gt;
@@ -112,7 +112,7 @@ Bash is actually Fun
 
 
 &lt;p&gt;For example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;GREP_OPTIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-v&amp;#39;&lt;/span&gt; | grep fun file.txt    &lt;span class="c"&gt;# this does not work, we need another shell&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;GREP_OPTIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-v&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep fun file.txt    &lt;span class="c"&gt;# this does not work, we need another shell&lt;/span&gt;
 bash can be super fun
 &lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;GREP_OPTIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-v&amp;#39;&lt;/span&gt; bash -c &lt;span class="s1"&gt;&amp;#39;grep fun file.txt&amp;#39;&lt;/span&gt;  &lt;span class="c"&gt;# here we go&lt;/span&gt;
 bash can be dangerous
@@ -123,7 +123,7 @@ bash can be dangerous
 &lt;p&gt;What if we pass some function to the variable definition?&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;GREP_OPTIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;() { :;};&amp;#39;&lt;/span&gt; bash -c &lt;span class="s1"&gt;&amp;#39;grep fun file.txt&amp;#39;&lt;/span&gt;
 grep: &lt;span class="o"&gt;{&lt;/span&gt;: No such file or directory
-grep: :;&lt;span class="o"&gt;}&lt;/span&gt;;: No such file or directory
+grep: :&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;: No such file or directory
 grep: fun: No such file or directory
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -132,7 +132,7 @@ grep: fun: No such file or directory
 &lt;p&gt;What if we add stuff &lt;em&gt;after&lt;/em&gt; the function? Things start to get weirder:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;GREP_OPTIONS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-v () { :;}; echo NOOOOOOOOOOOOOOO!&amp;#39;&lt;/span&gt; bash -c &lt;span class="s1"&gt;&amp;#39;grep fun file.txt&amp;#39;&lt;/span&gt;
 grep: &lt;span class="o"&gt;{&lt;/span&gt;: No such file or directory
-grep: :;&lt;span class="o"&gt;}&lt;/span&gt;;: No such file or directory
+grep: :&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;: No such file or directory
 grep: &lt;span class="nb"&gt;echo&lt;/span&gt;: No such file or directory
 grep: NOOOOOOOOOOOOOOO!: No such file or directory
 grep: fun: No such file or directory
@@ -182,7 +182,7 @@ STILL NOOOOOOOO!!!!
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7169"&gt;CVE-2014-7169&lt;/a&gt;: Right after the first bug was disclosed, a &lt;a href="https://twitter.com/taviso/status/514887394294652929"&gt;tweet&lt;/a&gt; from &lt;a href="http://taviso.decsystem.org/"&gt;Tavis Ormandy&lt;/a&gt;  showed a &lt;em&gt;further parser error&lt;/em&gt; that became the second vulnerability:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;X&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;a&lt;span class="o"&gt;)=&lt;/span&gt;&amp;gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt; bash -c &lt;span class="s2"&gt;&amp;quot;echo vulnerable&amp;quot;&lt;/span&gt;; bash -c &lt;span class="s2"&gt;&amp;quot;echo Bug CVE-2014-7169 patched&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="nv"&gt;X&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;() { (a)=&amp;gt;\&amp;#39;&lt;/span&gt; bash -c &lt;span class="s2"&gt;&amp;quot;echo vulnerable&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; bash -c &lt;span class="s2"&gt;&amp;quot;echo Bug CVE-2014-7169 patched&amp;quot;&lt;/span&gt;
 vulnerable
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -208,7 +208,7 @@ vulnerable
 10.10.10.10
 22.22.22.22
 &lt;span class="o"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;for &lt;/span&gt;server in &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;servers&lt;/span&gt;&lt;span class="p"&gt;[@]&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; server in &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;servers&lt;/span&gt;&lt;span class="p"&gt;[@]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;do&lt;/span&gt;
 ssh &lt;span class="nv"&gt;$server&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;yum -y update bash&amp;#39;&lt;/span&gt;
 &lt;span class="k"&gt;done&lt;/span&gt;
@@ -235,7 +235,7 @@ ssh &lt;span class="nv"&gt;$server&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;
 &lt;p&gt;If case of an attack, publish the attacker's information! You can use &lt;a href="http://www.grymoire.com/Unix/Awk.html"&gt;awk&lt;/a&gt;  and  &lt;a href="http://en.wikipedia.org/wiki/Uniq"&gt;uniq&lt;/a&gt; (where &lt;em&gt;print $1&lt;/em&gt; means print the first column) to get her IP, for example:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat log_file |grep &lt;span class="s2"&gt;&amp;quot;{ :;};&amp;quot;&lt;/span&gt; | awk &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;|uniq
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat log_file &lt;span class="p"&gt;|&lt;/span&gt;grep &lt;span class="s2"&gt;&amp;quot;{ :;};&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;uniq
 &lt;/pre&gt;&lt;/div&gt;
 
 

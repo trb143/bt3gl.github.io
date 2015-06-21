@@ -47,7 +47,7 @@
 
 
 &lt;p&gt;Let's learn a bit more about this tool with &lt;code&gt;uncompyle2 --help&lt;/code&gt;. The usage is straightfoward, but it's a good knowledge to learn about the &lt;em&gt;-o&lt;/em&gt; flag, which will decompile to a &lt;em&gt;.dis&lt;/em&gt; file instead of &lt;em&gt;stdout&lt;/em&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Usage: uncompyle2 &lt;span class="o"&gt;[&lt;/span&gt;OPTIONS&lt;span class="o"&gt;]&lt;/span&gt;... &lt;span class="o"&gt;[&lt;/span&gt; FILE | DIR&lt;span class="o"&gt;]&lt;/span&gt;...
+&lt;div class="highlight"&gt;&lt;pre&gt;Usage: uncompyle2 &lt;span class="o"&gt;[&lt;/span&gt;OPTIONS&lt;span class="o"&gt;]&lt;/span&gt;... &lt;span class="o"&gt;[&lt;/span&gt; FILE &lt;span class="p"&gt;|&lt;/span&gt; DIR&lt;span class="o"&gt;]&lt;/span&gt;...
 
 Examples:
   uncompyle2      foo.pyc bar.pyc       &lt;span class="c"&gt;# decompile foo.pyc, bar.pyc to stdout&lt;/span&gt;
@@ -56,7 +56,7 @@ Examples:
 
 Options:
   -o &amp;lt;path&amp;gt;     output decompiled files to this path:
-                &lt;span class="k"&gt;if &lt;/span&gt;multiple input files are decompiled, the common prefix
+                &lt;span class="k"&gt;if&lt;/span&gt; multiple input files are decompiled, the common prefix
                 is stripped from these names and the remainder appended to
                 &amp;lt;path&amp;gt;
                   uncompyle -o /tmp bla/fasel.pyc bla/foo.pyc
@@ -67,7 +67,7 @@ Options:
 
 
 &lt;p&gt;We could also use &lt;em&gt;.py&lt;/em&gt; extension if we like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;  --py          use &lt;span class="s1"&gt;&amp;#39;.py&amp;#39;&lt;/span&gt; extension &lt;span class="k"&gt;for &lt;/span&gt;generated files
+&lt;div class="highlight"&gt;&lt;pre&gt;  --py          use &lt;span class="s1"&gt;&amp;#39;.py&amp;#39;&lt;/span&gt; extension &lt;span class="k"&gt;for&lt;/span&gt; generated files
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -76,7 +76,7 @@ Options:
   &lt;span class="s1"&gt;&amp;#39;.pyc_dis&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.pyo_dis&amp;#39;&lt;/span&gt;   successfully decompiled &lt;span class="o"&gt;(&lt;/span&gt;and verified &lt;span class="k"&gt;if&lt;/span&gt; --verify&lt;span class="o"&gt;)&lt;/span&gt;
   &lt;span class="s1"&gt;&amp;#39;.py&amp;#39;&lt;/span&gt;                   with --py option
     + &lt;span class="s1"&gt;&amp;#39;_unverified&amp;#39;&lt;/span&gt;       successfully decompile but --verify failed
-    + &lt;span class="s1"&gt;&amp;#39;_failed&amp;#39;&lt;/span&gt;           uncompyle failed &lt;span class="o"&gt;(&lt;/span&gt;contact author &lt;span class="k"&gt;for &lt;/span&gt;enhancement&lt;span class="o"&gt;)&lt;/span&gt;
+    + &lt;span class="s1"&gt;&amp;#39;_failed&amp;#39;&lt;/span&gt;           uncompyle failed &lt;span class="o"&gt;(&lt;/span&gt;contact author &lt;span class="k"&gt;for&lt;/span&gt; enhancement&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -100,7 +100,7 @@ Options:
 Well, let's see what this file does! Let's just &lt;em&gt;curl&lt;/em&gt; &lt;a href="http://kchung.co/lol.py"&gt;http://kchung.co/lol.py&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; curl http://kchung.co/lol.py
 import os
-&lt;span class="k"&gt;while &lt;/span&gt;True:
+&lt;span class="k"&gt;while&lt;/span&gt; True:
     try:
         os.fork&lt;span class="o"&gt;()&lt;/span&gt;
     except:
