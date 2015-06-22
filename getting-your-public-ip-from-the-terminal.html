@@ -112,8 +112,8 @@
 </footer><!-- /.post-info -->                </div>
                 <p>Public IPv4 addresses are assigned by <a href="https://en.wikipedia.org/?title=InterNIC">NIC</a> and belongs to <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR blocks</a> that are unique to the entire internet. </p>
 <p>In this little post I show many ways to find your public IP address form the Linux terminal. </p>
-<h3>Curling from IP Websites</h3>
-<p>You can simply curl it:</p>
+<h3>Using Curl</h3>
+<p>You can simply curl it from IP websites:</p>
 <div class="highlight"><pre><span class="nv">$ </span> curl ifconfig.me
 </pre></div>
 
@@ -127,20 +127,18 @@
 <h3>Using wget</h3>
 <p>Similary to curl:</p>
 <div class="highlight"><pre><span class="nv">$ </span>wget http://observebox.com/ip -O - -q <span class="p">;</span> <span class="nb">echo</span>
-<span class="sb">````</span>
+</pre></div>
 
-<span class="c">### Using dig and host</span>
 
-Another nice way to find the IP:
-
-<span class="sb">```</span>bash
-<span class="nv">$ </span>host -t a dartsclink.com <span class="p">|</span> sed <span class="s1">&#39;s/.*has address //&#39;</span>
+<h3>Using dig and host</h3>
+<p>Another nice way to find the IP:</p>
+<div class="highlight"><pre><span class="nv">$ </span>host -t a dartsclink.com <span class="p">|</span> sed <span class="s1">&#39;s/.*has address //&#39;</span>
 dig +short myip.opendns.com @resolver1.opendns.com
 </pre></div>
 
 
 <h3>If you use DynDNS</h3>
-<p>Finally, if you use <a href="http://dyn.com/dns/">DynDNS</a>:</p>
+<p>Finally, if you have a <a href="http://dyn.com/dns/">DynDNS</a> configuration:</p>
 <div class="highlight"><pre><span class="nv">$ </span>curl -s http://checkip.dyndns.org/ <span class="p">|</span> grep -o <span class="s2">&quot;[[:digit:].]\+&quot;</span>
 </pre></div>
 
