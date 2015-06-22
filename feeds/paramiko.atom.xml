@@ -119,11 +119,11 @@
 &lt;p&gt;Easy, huh?&lt;/p&gt;
 &lt;h3&gt;Running the Script&lt;/h3&gt;
 &lt;p&gt;We are ready to run our script. If we use the example in the usage function (and supposing the account exists in that host), we will see the following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_client.py 129.49.76.26 -u buffy -p &lt;span class="m"&gt;22&lt;/span&gt; -a killvampires  -c &lt;span class="nb"&gt;pwd&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_client.py 129.49.76.26 -u buffy -p 22 -a killvampires  -c &lt;span class="nb"&gt;pwd&lt;/span&gt;
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Initializing connection to 129.49.76.26
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; User &lt;span class="nb"&gt;set &lt;/span&gt;to buffy
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; The port to be used is 22.
-&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; A password with length &lt;span class="m"&gt;12&lt;/span&gt; was submitted.
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; A password with length 12 was submitted.
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Executing the &lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pwd&amp;#39;&lt;/span&gt; in the host...
 
 /home/buffy.
@@ -303,22 +303,22 @@
 &lt;h3&gt;Running both Scripts&lt;/h3&gt;
 &lt;p&gt;Let's run each script in a different terminal. First, the server:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_server.py localhost 22
-&lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Listening &lt;span class="k"&gt;for&lt;/span&gt; connection ...
+&lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Listening &lt;span class="k"&gt;for &lt;/span&gt;connection ...
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Then the client:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_client_reverse.py localhost -p &lt;span class="m"&gt;22&lt;/span&gt; -u buffy -a killvampires
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh_client_reverse.py localhost -p 22 -u buffy -a killvampires
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Initializing connection to localhost
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; User &lt;span class="nb"&gt;set &lt;/span&gt;to buffy
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; The port to be used is 22.
-&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; A password with length &lt;span class="m"&gt;12&lt;/span&gt; was submitted.
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; A password with length 12 was submitted.
 Welcome to Buffy&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s SSH
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now we can send any command from the server side to run  in the client: we have a reversed shell!&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Listening &lt;span class="k"&gt;for&lt;/span&gt; connection ...
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Listening &lt;span class="k"&gt;for &lt;/span&gt;connection ...
 &lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Connection Established!
 &lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Authenticated!
 Enter &lt;span class="nb"&gt;command&lt;/span&gt;: ls

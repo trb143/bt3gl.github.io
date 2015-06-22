@@ -100,7 +100,7 @@
                 <div class="entry-content">
                 <div class="well">
 <footer class="post-info">
-<abbr class="published" title="2014-10-09T01:30:00-04:00">
+<abbr class="published" title="2014-10-09T01:30:00">
       Thu 09 October 2014 </abbr>
 
 <span class="label"> Category</span>
@@ -129,7 +129,7 @@
 Use this password to log in to krypton.labs.overthewire.org with username krypton1 using SSH. You can the files for other levels in /krypton/.</p>
 </blockquote>
 <p><a href="http://en.wikipedia.org/wiki/Base64">Base64</a> is just a way to represent binary data in ASCII, by translating it into a radix-64. Linux provides a built-in Base64 enconder/decoder tool, so all we need to do is:</p>
-<div class="highlight"><pre><span class="nv">$ </span>base64 -d KRYPTON0.txt
+<div class="highlight"><pre><span class="err">$</span> <span class="n">base64</span> <span class="o">-</span><span class="n">d</span> <span class="n">KRYPTON0</span><span class="p">.</span><span class="n">txt</span>
 </pre></div>
 
 
@@ -142,11 +142,11 @@ Use this password to log in to krypton.labs.overthewire.org with username krypto
 <p>This is the classic <a href="http://en.wikipedia.org/wiki/Caesar_cipher">Caesar Cypher</a> (they really love this thing :).</p>
 <p>In the Caesar’s cipher, the letters in the plaintext are shifted by a fixed number of elements down the alphabet. For example, if the shift is 3, A becomes D , B becomes E , and so on. Once we run out of letters, we circle back to A.</p>
 <p>We can solve this challenge in a few lines using Linux's built-in <a href="http://linux.die.net/man/1/tr">tr</a> (translate tool):</p>
-<div class="highlight"><pre><span class="x">krypton1@melinda:/krypton/krypton1</span><span class="p">$</span><span class="x"> VAR=</span><span class="p">$(</span><span class="err">cat</span> <span class="err">krypton2</span><span class="p">)</span><span class="x"></span>
-<span class="x">krypton1@melinda:/krypton/krypton1</span><span class="p">$</span><span class="x"> echo </span><span class="p">$</span><span class="nv">VAR</span><span class="x"></span>
-<span class="x">YRIRY GJB CNFFJBEQ EBGGRA</span>
-<span class="x">krypton1@melinda:/krypton/krypton1</span><span class="p">$</span><span class="x"> alias rot13=&quot;tr A-Za-z N-ZA-Mn-za-m&quot;</span>
-<span class="x">krypton1@melinda:/krypton/krypton1</span><span class="p">$</span><span class="x"> echo &quot;</span><span class="p">$</span><span class="nv">VAR</span><span class="x">&quot; | rot13</span>
+<div class="highlight"><pre><span class="n">krypton1</span><span class="err">@</span><span class="n">melinda</span><span class="o">:/</span><span class="n">krypton</span><span class="o">/</span><span class="n">krypton1</span><span class="err">$</span> <span class="n">VAR</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">cat</span> <span class="n">krypton2</span><span class="p">)</span>
+<span class="n">krypton1</span><span class="err">@</span><span class="n">melinda</span><span class="o">:/</span><span class="n">krypton</span><span class="o">/</span><span class="n">krypton1</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">VAR</span>
+<span class="n">YRIRY</span> <span class="n">GJB</span> <span class="n">CNFFJBEQ</span> <span class="n">EBGGRA</span>
+<span class="n">krypton1</span><span class="err">@</span><span class="n">melinda</span><span class="o">:/</span><span class="n">krypton</span><span class="o">/</span><span class="n">krypton1</span><span class="err">$</span> <span class="n">alias</span> <span class="n">rot13</span><span class="o">=</span><span class="s">&quot;tr A-Za-z N-ZA-Mn-za-m&quot;</span>
+<span class="n">krypton1</span><span class="err">@</span><span class="n">melinda</span><span class="o">:/</span><span class="n">krypton</span><span class="o">/</span><span class="n">krypton1</span><span class="err">$</span> <span class="n">echo</span> <span class="s">&quot;$VAR&quot;</span> <span class="o">|</span> <span class="n">rot13</span>
 </pre></div>
 
 
@@ -172,29 +172,29 @@ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n 
 
 
 <p>Running the binary:</p>
-<div class="highlight"><pre><span class="nv">$ </span>/krypton/krypton2/encrypt file
-<span class="nv">$ </span>cat ciphertext
-MNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKL
+<div class="highlight"><pre><span class="err">$</span> <span class="o">/</span><span class="n">krypton</span><span class="o">/</span><span class="n">krypton2</span><span class="o">/</span><span class="n">encrypt</span> <span class="n">file</span>
+<span class="err">$</span> <span class="n">cat</span> <span class="n">ciphertext</span>
+<span class="n">MNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKL</span>
 </pre></div>
 
 
 <p>We see a ROT14 (since ROT13 starts in N).</p>
 <p>As a second way to find the rotation, we could use <a href="http://linux.die.net/man/1/ltrace">ltrace</a>:</p>
-<div class="highlight"><pre><span class="nv">$ </span>ltrace /krypton/krypton2/encrypt file <span class="p">|</span> less
+<div class="highlight"><pre><span class="err">$</span> <span class="n">ltrace</span> <span class="o">/</span><span class="n">krypton</span><span class="o">/</span><span class="n">krypton2</span><span class="o">/</span><span class="n">encrypt</span> <span class="n">file</span> <span class="o">|</span> <span class="n">less</span>
 </pre></div>
 
 
 <p>Which shows things such as:</p>
-<div class="highlight"><pre>fgetc(0x602250)                                       = &#39;A&#39;
-toupper(&#39;A&#39;)                                          = &#39;A&#39;
-isalpha(65, 65, 0x7ffff7dd0d00, -1, 0xffffffff)       = 1024
-fputc(&#39;M&#39;, 0x602490)                                  = 77
+<div class="highlight"><pre><span class="n">fgetc</span><span class="p">(</span><span class="mh">0x602250</span><span class="p">)</span>                                       <span class="o">=</span> <span class="sc">&#39;A&#39;</span>
+<span class="n">toupper</span><span class="p">(</span><span class="sc">&#39;A&#39;</span><span class="p">)</span>                                          <span class="o">=</span> <span class="sc">&#39;A&#39;</span>
+<span class="n">isalpha</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mh">0x7ffff7dd0d00</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mh">0xffffffff</span><span class="p">)</span>       <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">fputc</span><span class="p">(</span><span class="sc">&#39;M&#39;</span><span class="p">,</span> <span class="mh">0x602490</span><span class="p">)</span>                                  <span class="o">=</span> <span class="mi">77</span>
 </pre></div>
 
 
 <p>Now that we know the rotation number,  we can decrypt the password in the same way as we did in the previous level:</p>
 <div class="highlight"><pre>krypton2@melinda:/tmp<span class="nv">$ </span><span class="nb">alias </span><span class="nv">rot14</span><span class="o">=</span><span class="s2">&quot;tr A-Z O-ZA-N&quot;</span>
-krypton2@melinda:/tmp<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$VAR</span><span class="s2">&quot;</span> <span class="p">|</span> rot14
+krypton2@melinda:/tmp<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;$VAR&quot;</span> | rot14
 </pre></div>
 
 
@@ -254,12 +254,12 @@ krypton2@melinda:/tmp<span class="nv">$ </span><span class="nb">echo</span> <spa
 
 
 <p>Running it gives us the key:</p>
-<div class="highlight"><pre><span class="nv">$ </span>cat /krypton/krypton3/found1 &gt; cipher
-<span class="nv">$ </span>cat /krypton/krypton3/found2 &gt;&gt; cipher
-<span class="nv">$ </span>cat /krypton/krypton3/found3 &gt;&gt; cipher
-<span class="nv">$ </span>/krypton/krypton3<span class="nv">$ </span>python freq.py cipher
-<span class="nv">$ </span><span class="nb">alias </span><span class="nv">rotvi</span><span class="o">=</span><span class="s1">&#39;tr ABCDEFGHIJKLMNOPQRSTUVWXYZ BOIHPKNQVTWGURXZAJEYSLDFPU&#39;</span>
-<span class="nv">$ </span>cat /krypton/krypton3/krypton4 <span class="p">|</span> rotvi
+<div class="highlight"><pre><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">krypton</span><span class="o">/</span><span class="n">krypton3</span><span class="o">/</span><span class="n">found1</span> <span class="o">&gt;</span> <span class="n">cipher</span>
+<span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">krypton</span><span class="o">/</span><span class="n">krypton3</span><span class="o">/</span><span class="n">found2</span> <span class="o">&gt;&gt;</span> <span class="n">cipher</span>
+<span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">krypton</span><span class="o">/</span><span class="n">krypton3</span><span class="o">/</span><span class="n">found3</span> <span class="o">&gt;&gt;</span> <span class="n">cipher</span>
+<span class="err">$</span> <span class="o">/</span><span class="n">krypton</span><span class="o">/</span><span class="n">krypton3</span><span class="err">$</span> <span class="n">python</span> <span class="n">freq</span><span class="p">.</span><span class="n">py</span> <span class="n">cipher</span>
+<span class="err">$</span> <span class="n">alias</span> <span class="n">rotvi</span><span class="o">=</span><span class="err">&#39;</span><span class="n">tr</span> <span class="n">ABCDEFGHIJKLMNOPQRSTUVWXYZ</span> <span class="n">BOIHPKNQVTWGURXZAJEYSLDFPU</span><span class="err">&#39;</span>
+<span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">krypton</span><span class="o">/</span><span class="n">krypton3</span><span class="o">/</span><span class="n">krypton4</span> <span class="o">|</span> <span class="n">rotvi</span>
 </pre></div>
 
 
@@ -283,26 +283,26 @@ This level is a Vigenère Cipher. You have intercepted two longer, english langu
 </blockquote>
 <p>This is a classical case of <a href="http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher">Vigenere cipher</a>, which  is a variation on the Caesar’s cipher. In this case, one uses multiple shift amounts according to a keyword.</p>
 <p>To solve this we use the <a href="http://smurfoncrack.com/pygenere/pygenere.py">pygenere</a> library in Python. First we need to find the key:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">pygenere</span> <span class="kn">import</span> <span class="n">Vigenere</span><span class="p">,</span> <span class="n">VigCrack</span>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">sys</span>
+<span class="n">from</span> <span class="n">pygenere</span> <span class="n">import</span> <span class="n">Vigenere</span><span class="p">,</span> <span class="n">VigCrack</span>
 
-<span class="k">def</span> <span class="nf">get_key</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
-  <span class="c"># Vigenere Cypher</span>
-  <span class="n">key</span> <span class="o">=</span>  <span class="n">VigCrack</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">.</span><span class="n">crack_codeword</span><span class="p">()</span>
-  <span class="n">dec_msg</span> <span class="o">=</span> <span class="n">VigCrack</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">.</span><span class="n">crack_message</span><span class="p">()</span>
-  <span class="n">dec_msg</span> <span class="o">=</span>  <span class="n">dec_msg</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">get_key</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">:</span>
+  <span class="err">#</span> <span class="n">Vigenere</span> <span class="n">Cypher</span>
+  <span class="n">key</span> <span class="o">=</span>  <span class="n">VigCrack</span><span class="p">(</span><span class="n">msg</span><span class="p">).</span><span class="n">crack_codeword</span><span class="p">()</span>
+  <span class="n">dec_msg</span> <span class="o">=</span> <span class="n">VigCrack</span><span class="p">(</span><span class="n">msg</span><span class="p">).</span><span class="n">crack_message</span><span class="p">()</span>
+  <span class="n">dec_msg</span> <span class="o">=</span>  <span class="n">dec_msg</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">key</span><span class="p">,</span> <span class="n">dec_msg</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-  <span class="c"># getting the key</span>
-  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;cipher&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-        <span class="n">msg_in</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="err">&#39;</span><span class="n">__main__</span><span class="err">&#39;</span><span class="o">:</span>
+  <span class="err">#</span> <span class="n">getting</span> <span class="n">the</span> <span class="n">key</span>
+  <span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="err">&#39;</span><span class="n">cipher</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;r&#39;</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="o">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">msg_in</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">strip</span><span class="p">()</span>
         <span class="n">key</span><span class="p">,</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">get_key</span><span class="p">(</span><span class="n">msg_in</span><span class="p">)</span>
-        <span class="k">print</span> <span class="s">&#39;Message: &#39;</span> <span class="o">+</span> <span class="n">msg_in</span>
-        <span class="k">print</span>
-        <span class="k">print</span> <span class="s">&#39;Answer: &#39;</span> <span class="o">+</span> <span class="n">answer</span>
-        <span class="k">print</span> <span class="s">&#39;(key: &#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s">&#39;)&#39;</span>
+        <span class="n">print</span> <span class="err">&#39;</span><span class="n">Message</span><span class="o">:</span> <span class="err">&#39;</span> <span class="o">+</span> <span class="n">msg_in</span>
+        <span class="n">print</span>
+        <span class="n">print</span> <span class="err">&#39;</span><span class="n">Answer</span><span class="o">:</span> <span class="err">&#39;</span> <span class="o">+</span> <span class="n">answer</span>
+        <span class="n">print</span> <span class="err">&#39;</span><span class="p">(</span><span class="n">key</span><span class="o">:</span> <span class="err">&#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="sc">&#39;)&#39;</span>
 </pre></div>
 
 
@@ -421,6 +421,506 @@ ETIREDANDLAYDOWNUPONTHEGRASSANDFELLASLEEPWITHTHEWOODMANANDTHESCARECROWKEEPINGWAT
 
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pycrypto.html">
+        <i class="icon-tag icon-large"></i>PyCrypto
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/paillier.html">
+        <i class="icon-tag icon-large"></i>Paillier
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/redis.html">
+        <i class="icon-tag icon-large"></i>Redis
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/proxy.html">
+        <i class="icon-tag icon-large"></i>proxy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/getopt.html">
+        <i class="icon-tag icon-large"></i>getopt
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_overflow
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/sniffing.html">
+        <i class="icon-tag icon-large"></i>sniffing
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp.html">
+        <i class="icon-tag icon-large"></i>ARP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xss.html">
+        <i class="icon-tag icon-large"></i>XSS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burp.html">
+        <i class="icon-tag icon-large"></i>Burp
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iwconfig.html">
+        <i class="icon-tag icon-large"></i>iwconfig
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crlsets.html">
+        <i class="icon-tag icon-large"></i>CRLSets
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bytecode.html">
+        <i class="icon-tag icon-large"></i>bytecode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/icmp.html">
+        <i class="icon-tag icon-large"></i>ICMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/aes.html">
+        <i class="icon-tag icon-large"></i>AES
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/threading.html">
+        <i class="icon-tag icon-large"></i>threading
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/unicode.html">
+        <i class="icon-tag icon-large"></i>Unicode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/stripe.html">
+        <i class="icon-tag icon-large"></i>Stripe
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vmware.html">
+        <i class="icon-tag icon-large"></i>VMWare
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ecb.html">
+        <i class="icon-tag icon-large"></i>ECB
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pcap.html">
+        <i class="icon-tag icon-large"></i>PCAP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>Nmap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cain__abel.html">
+        <i class="icon-tag icon-large"></i>Cain_&_Abel
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cms.html">
+        <i class="icon-tag icon-large"></i>CMS
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/timing_attack.html">
+        <i class="icon-tag icon-large"></i>Timing_attack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ocsp.html">
+        <i class="icon-tag icon-large"></i>OCSP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_poisining.html">
+        <i class="icon-tag icon-large"></i>ARP_poisining
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/binary_search.html">
+        <i class="icon-tag icon-large"></i>Binary_Search
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>SSH
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tls.html">
+        <i class="icon-tag icon-large"></i>TLS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_spoofing.html">
+        <i class="icon-tag icon-large"></i>ARP_spoofing
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
+        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crl.html">
+        <i class="icon-tag icon-large"></i>CRL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellcode.html">
+        <i class="icon-tag icon-large"></i>shellcode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ettercap.html">
+        <i class="icon-tag icon-large"></i>Ettercap
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cache.html">
+        <i class="icon-tag icon-large"></i>cache
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/brute_force.html">
+        <i class="icon-tag icon-large"></i>Brute_Force
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/packet_header.html">
+        <i class="icon-tag icon-large"></i>packet_header
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/subprocess.html">
+        <i class="icon-tag icon-large"></i>subprocess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/traceroute.html">
+        <i class="icon-tag icon-large"></i>traceroute
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tcp.html">
+        <i class="icon-tag icon-large"></i>TCP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/udp.html">
+        <i class="icon-tag icon-large"></i>UDP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/exiftool.html">
+        <i class="icon-tag icon-large"></i>ExifTool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/kismet.html">
+        <i class="icon-tag icon-large"></i>Kismet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/csrf.html">
+        <i class="icon-tag icon-large"></i>CSRF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jit.html">
+        <i class="icon-tag icon-large"></i>JIT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/nosql.html">
+        <i class="icon-tag icon-large"></i>NoSQL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/book.html">
+        <i class="icon-tag icon-large"></i>Book
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ifconfig.html">
+        <i class="icon-tag icon-large"></i>ifconfig
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>Chrome
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rce.html">
+        <i class="icon-tag icon-large"></i>RCE
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/reverse_shell-netcat.html">
+        <i class="icon-tag icon-large"></i>Reverse_shell netcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ltrace.html">
+        <i class="icon-tag icon-large"></i>ltrace
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arpspoof.html">
+        <i class="icon-tag icon-large"></i>arpspoof
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/netsh.html">
+        <i class="icon-tag icon-large"></i>netsh
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/netcat.html">
+        <i class="icon-tag icon-large"></i>netcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gpg.html">
+        <i class="icon-tag icon-large"></i>GPG
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow.html">
+        <i class="icon-tag icon-large"></i>Stack_overflow
+    </a>
+</li>
 
 
 </ul>

@@ -15,20 +15,20 @@
 &lt;p&gt;Other destination that also works: ipinfo.io/ip.&lt;/p&gt;
 &lt;h3&gt;Using wget&lt;/h3&gt;
 &lt;p&gt;Similary to curl:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://observebox.com/ip -O - -q &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://observebox.com/ip -O - -q ; &lt;span class="nb"&gt;echo&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;Using dig and host&lt;/h3&gt;
 &lt;p&gt;Another nice way to find the IP:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;host -t a dartsclink.com &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="s1"&gt;&amp;#39;s/.*has address //&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;host -t a dartsclink.com | sed &lt;span class="s1"&gt;&amp;#39;s/.*has address //&amp;#39;&lt;/span&gt;
 dig +short myip.opendns.com @resolver1.opendns.com
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;If you use DynDNS&lt;/h3&gt;
 &lt;p&gt;Finally, if you have a &lt;a href="http://dyn.com/dns/"&gt;DynDNS&lt;/a&gt; configuration:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl -s http://checkip.dyndns.org/ &lt;span class="p"&gt;|&lt;/span&gt; grep -o &lt;span class="s2"&gt;&amp;quot;[[:digit:].]\+&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl -s http://checkip.dyndns.org/ | grep -o &lt;span class="s2"&gt;&amp;quot;[[:digit:].]\+&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

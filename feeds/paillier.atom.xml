@@ -4,7 +4,7 @@
 &lt;hr /&gt;
 &lt;h2&gt;The Cryptosystem&lt;/h2&gt;
 &lt;p&gt;The challenge was started by netcating to &lt;code&gt;nc asis-ctf.ir 12445&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;  &amp;gt; Here we use a well-known cryptosystem, which introduced in late 90s as a part of PhD Thesis. This cryptosystem is a probabilistic asymmetric algorithm, so computer nerds are familiar with the basics. The power of this cryptosystem is based on the fact that no efficient general method for computing discrete logarithms on conventional computers is known. In real world it could be used in a situation where there is a need for anonymity and a mechanism to validate, like election. What&amp;#39;s the name of this cryptosystem?
+&lt;div class="highlight"&gt;&lt;pre&gt;  &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Here&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;well&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;known&lt;/span&gt; &lt;span class="n"&gt;cryptosystem&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;which&lt;/span&gt; &lt;span class="n"&gt;introduced&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;late&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;part&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;PhD&lt;/span&gt; &lt;span class="n"&gt;Thesis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;cryptosystem&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;probabilistic&lt;/span&gt; &lt;span class="n"&gt;asymmetric&lt;/span&gt; &lt;span class="n"&gt;algorithm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;so&lt;/span&gt; &lt;span class="n"&gt;computer&lt;/span&gt; &lt;span class="n"&gt;nerds&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;familiar&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;basics&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;power&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;cryptosystem&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;based&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt; &lt;span class="n"&gt;efficient&lt;/span&gt; &lt;span class="n"&gt;general&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;computing&lt;/span&gt; &lt;span class="n"&gt;discrete&lt;/span&gt; &lt;span class="n"&gt;logarithms&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;conventional&lt;/span&gt; &lt;span class="n"&gt;computers&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;known&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="n"&gt;real&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;could&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;used&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;situation&lt;/span&gt; &lt;span class="n"&gt;where&lt;/span&gt; &lt;span class="n"&gt;there&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;need&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;anonymity&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;mechanism&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;like&lt;/span&gt; &lt;span class="n"&gt;election&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;What&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;cryptosystem&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -98,14 +98,14 @@ Tell us your choice:
 &lt;ul&gt;
 &lt;li&gt;Encryption and decryption of any &lt;strong&gt;integer&lt;/strong&gt; works...&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;[E]ncrypt: [D]ecrypt: e
-Tell us your message to encrypt: 1
-Your secret is: 73109965080485247131710209266123910705889636744106672869822932981580432295328645599823550448181731566435402609978665387224898646975403769881196399448975370668935092605229755765060164052771714510987944591017615792396157094596290728393053648253053017939625091326878542241485082342371560710778399247063411414649475517288243167425022137869055256778307340931947663486971023680806406250041891606619955393621120918102708442427400288119511466304393700124201965017764148482926998000012235997591413309617388902575733355188418714479900913342627281937156809563150498906460101268562252351167461233533852277300215020108137992142
-Tell us your choice:
-------------------------
-[E]ncrypt: [D]ecrypt: d
-Tell us your secret to decrypt: 73109965080485247131710209266123910705889636744106672869822932981580432295328645599823550448181731566435402609978665387224898646975403769881196399448975370668935092605229755765060164052771714510987944591017615792396157094596290728393053648253053017939625091326878542241485082342371560710778399247063411414649475517288243167425022137869055256778307340931947663486971023680806406250041891606619955393621120918102708442427400288119511466304393700124201965017764148482926998000012235997591413309617388902575733355188418714479900913342627281937156809563150498906460101268562252351167461233533852277300215020108137992142
-Your original message is: 1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="n"&gt;ncrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="n"&gt;ecrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;
+&lt;span class="n"&gt;Tell&lt;/span&gt; &lt;span class="n"&gt;us&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;encrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;Your&lt;/span&gt; &lt;span class="n"&gt;secret&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;73109965080485247131710209266123910705889636744106672869822932981580432295328645599823550448181731566435402609978665387224898646975403769881196399448975370668935092605229755765060164052771714510987944591017615792396157094596290728393053648253053017939625091326878542241485082342371560710778399247063411414649475517288243167425022137869055256778307340931947663486971023680806406250041891606619955393621120918102708442427400288119511466304393700124201965017764148482926998000012235997591413309617388902575733355188418714479900913342627281937156809563150498906460101268562252351167461233533852277300215020108137992142&lt;/span&gt;
+&lt;span class="n"&gt;Tell&lt;/span&gt; &lt;span class="n"&gt;us&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;------------------------&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="n"&gt;ncrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="n"&gt;ecrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;
+&lt;span class="n"&gt;Tell&lt;/span&gt; &lt;span class="n"&gt;us&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;secret&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;decrypt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;73109965080485247131710209266123910705889636744106672869822932981580432295328645599823550448181731566435402609978665387224898646975403769881196399448975370668935092605229755765060164052771714510987944591017615792396157094596290728393053648253053017939625091326878542241485082342371560710778399247063411414649475517288243167425022137869055256778307340931947663486971023680806406250041891606619955393621120918102708442427400288119511466304393700124201965017764148482926998000012235997591413309617388902575733355188418714479900913342627281937156809563150498906460101268562252351167461233533852277300215020108137992142&lt;/span&gt;
+&lt;span class="n"&gt;Your&lt;/span&gt; &lt;span class="n"&gt;original&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -127,7 +127,7 @@ Your original message is: 1
 &lt;p&gt;Whenever we have a netcat challenge, I like to have a clean script to get and send messages (copying from terminal is lame).&lt;/p&gt;
 &lt;p&gt;In addition, all the numbers in this challenge were really long (the encrypted messages had 614 chars), so we need to perform operations in a consistent and efficient way.&lt;/p&gt;
 &lt;p&gt;To work with long numbers in Python, I use the &lt;a href="https://docs.python.org/2/library/decimal.html"&gt;Decimal&lt;/a&gt; library. For instance, considering that we could want to add two messages, I set the context to 1240 bytes:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;decimal.getcontext().prec = 1240
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getcontext&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;prec&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1240&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -256,7 +256,7 @@ Your original message is: 1
 
 
 &lt;p&gt;The script took around 5 minutes to be finished, returning our &lt;strong&gt;n&lt;/strong&gt; for the round:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;17671943390317527594740575037779239788090749028363849573873871285525785364877468659238291287413782918855995881353189626069716161186805808731291508724925847487655603905895106750055611619881911787280882269077856999823769344599404478814635216943095238063240285592085964648122007040660676934950342692770738186633
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;17671943390317527594740575037779239788090749028363849573873871285525785364877468659238291287413782918855995881353189626069716161186805808731291508724925847487655603905895106750055611619881911787280882269077856999823769344599404478814635216943095238063240285592085964648122007040660676934950342692770738186633&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -269,7 +269,7 @@ Your original message is: 1
 
 
 &lt;p&gt;This returns:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;112280008116052186646368021111109237871341887479615992317427354059600212357857288108129264030737539972269011409996912208818076010168198529262326772763879996822102998582534816837233418191109543582310863266347760528961946352593880742472731062537568071764692096627743690922908221673060800965135164509962029222789740380393803936034322030637125612078147029021325858011668393839188326210425016990153989714767763564793169128967154011677910768035056556423954036535193602627342043345257626256977045594687342553610052190731351090959432138598081567054374046432685112246445454537701332996220698854386609070078979440083610540257
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;112280008116052186646368021111109237871341887479615992317427354059600212357857288108129264030737539972269011409996912208818076010168198529262326772763879996822102998582534816837233418191109543582310863266347760528961946352593880742472731062537568071764692096627743690922908221673060800965135164509962029222789740380393803936034322030637125612078147029021325858011668393839188326210425016990153989714767763564793169128967154011677910768035056556423954036535193602627342043345257626256977045594687342553610052190731351090959432138598081567054374046432685112246445454537701332996220698854386609070078979440083610540257&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -293,17 +293,17 @@ ASIS
 
 
 &lt;p&gt;Running it, we get the hexadecimal form of our flag:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;32487808320243150435316584796155571093777738593139558163862909500838275925645449950017590
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;32487808320243150435316584796155571093777738593139558163862909500838275925645449950017590&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;And its ASCII decoding,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;0x415349535f3835633966656264346331353935306162316631396136626437613934663836
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mh"&gt;0x415349535f3835633966656264346331353935306162316631396136626437613934663836&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Leads to the flag:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ASIS_85c9febd4c15950ab1f19a6bd7a94f87
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ASIS_85c9febd4c15950ab1f19a6bd7a94f87&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
