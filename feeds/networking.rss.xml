@@ -12,7 +12,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Other destination that also works: ipinfo.io/ip.&lt;/p&gt;
+&lt;p&gt;Other destination that also works: ipinfo.io/ip. Curling ipinfo.io is also great to get information about the Geographical Location of a provided IP address.&lt;/p&gt;
 &lt;h3&gt;Using wget&lt;/h3&gt;
 &lt;p&gt;Similary to curl:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://observebox.com/ip -O - -q ; &lt;span class="nb"&gt;echo&lt;/span&gt;
