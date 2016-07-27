@@ -413,6 +413,7 @@ em {
 }
 abbr[title] {
     border-bottom: 1px dotted #ddd;
+    font-family: Courier New;
     cursor: help;
 }
 abbr.initialism {
@@ -3160,6 +3161,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
     -webkit-border-radius: 3px 3px 0 0;
     -moz-border-radius: 3px 3px 0 0;
     border-radius: 3px 3px 0 0;
+    font-family: Courier New;
 }
 .popover-content {
     padding: 14px;
