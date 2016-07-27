@@ -113,7 +113,7 @@ a:hover {
     text-shadow: 0px 0px 1px rgba(255, 255, 255, 1);
 }
 .row {
-    margin-left: -20px;
+    /*    margin-left: -20px;*/
     *zoom: 1;
 }
 .row:before, .row:after {
@@ -123,10 +123,11 @@ a:hover {
 .row:after {
     clear: both;
 }
+/*
 [class*="span"] {
     float: left;
-    margin-left: 20px;
-}
+    margin-left: 20px;*
+}*/
 /*.container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
     width: 1040px;
 }
@@ -205,7 +206,7 @@ a:hover {
 .row-fluid {
     width: 100%;
     *zoom: 1;
-}*/
+}
 .row-fluid:before, .row-fluid:after {
     display: table;
     content: "";
@@ -255,7 +256,7 @@ a:hover {
 }
 .row-fluid > .span1 {
     width: 6.382978723%;
-}
+}*/
 .container {
     margin-left: auto;
     margin-right: auto;
@@ -282,7 +283,6 @@ a:hover {
 }
 p {
     margin: 0 0 9px;
-    /*font-family: Courier New;*/
     font-size: 13px;
     line-height: 18px;
 }
@@ -298,7 +298,8 @@ p small {
 }
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    font-family: inherit;
+    font-family: Courier New;
+/*    font-family: inherit;*/
     font-weight: bold;
     /* color: #dddddd; */
     text-rendering: optimizelegibility;
