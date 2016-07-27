@@ -48,8 +48,8 @@ Remember that ICMP is essentially a special control protocol that issues error r
 
 &lt;p&gt;Then, in a second  window, we can  &lt;a href="http://en.wikipedia.org/wiki/Ping_(networking_utility)"&gt;ping&lt;/a&gt; or &lt;a href="http://en.wikipedia.org/wiki/Traceroute"&gt;traceroute&lt;/a&gt; some address, for example &lt;a href="www.google.com"&gt;www.google.com&lt;/a&gt;. The results will look like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo python raw_socket.py
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;E\x00\x00T\xb3\xec\x00\x005\x01\xe4\x13J}\xe1\x11\xc0\xa8\x01r\x00\x00v\xdfx\xa2\x00\x01sr\x98T\x00\x00\x00\x008\xe3\r\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !&amp;quot;#$%&amp;amp;\&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;*+,-./01234567&lt;span class="s1"&gt;&amp;#39;, (&amp;#39;&lt;/span&gt;74.125.225.17&lt;span class="s1"&gt;&amp;#39;, 0))&lt;/span&gt;
-&lt;span class="s1"&gt;(&amp;#39;&lt;/span&gt;E&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00T&lt;span class="se"&gt;\x&lt;/span&gt;b4&lt;span class="se"&gt;\x&lt;/span&gt;1b&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;005&lt;span class="se"&gt;\x&lt;/span&gt;01&lt;span class="se"&gt;\x&lt;/span&gt;e3&lt;span class="se"&gt;\x&lt;/span&gt;e4J&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\x&lt;/span&gt;e1&lt;span class="se"&gt;\x&lt;/span&gt;11&lt;span class="se"&gt;\x&lt;/span&gt;c0&lt;span class="se"&gt;\x&lt;/span&gt;a8&lt;span class="se"&gt;\x&lt;/span&gt;01r&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00~&lt;span class="se"&gt;\x&lt;/span&gt;d7x&lt;span class="se"&gt;\x&lt;/span&gt;a2&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;02tr&lt;span class="se"&gt;\x&lt;/span&gt;98T&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00/&lt;span class="se"&gt;\x&lt;/span&gt;ea&lt;span class="se"&gt;\r\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;00&lt;span class="se"&gt;\x&lt;/span&gt;10&lt;span class="se"&gt;\x&lt;/span&gt;11&lt;span class="se"&gt;\x&lt;/span&gt;12&lt;span class="se"&gt;\x&lt;/span&gt;13&lt;span class="se"&gt;\x&lt;/span&gt;14&lt;span class="se"&gt;\x&lt;/span&gt;15&lt;span class="se"&gt;\x&lt;/span&gt;16&lt;span class="se"&gt;\x&lt;/span&gt;17&lt;span class="se"&gt;\x&lt;/span&gt;18&lt;span class="se"&gt;\x&lt;/span&gt;19&lt;span class="se"&gt;\x&lt;/span&gt;1a&lt;span class="se"&gt;\x&lt;/span&gt;1b&lt;span class="se"&gt;\x&lt;/span&gt;1c&lt;span class="se"&gt;\x&lt;/span&gt;1d&lt;span class="se"&gt;\x&lt;/span&gt;1e&lt;span class="se"&gt;\x&lt;/span&gt;1f !&lt;span class="s2"&gt;&amp;quot;#&lt;/span&gt;&lt;span class="nv"&gt;$%&lt;/span&gt;&lt;span class="s2"&gt;&amp;amp;\&amp;#39;()*+,-./01234567&amp;#39;, (&amp;#39;74.125.225.17&amp;#39;, 0))&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;E\x00\x00T\xb3\xec\x00\x005\x01\xe4\x13J}\xe1\x11\xc0\xa8\x01r\x00\x00v\xdfx\xa2\x00\x01sr\x98T\x00\x00\x00\x008\xe3\r\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !&amp;quot;#$%&amp;amp;\&amp;#39;()*+,-./01234567&amp;#39;&lt;/span&gt;, &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;74.125.225.17&amp;#39;&lt;/span&gt;, 0&lt;span class="o"&gt;))&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;E\x00\x00T\xb4\x1b\x00\x005\x01\xe3\xe4J}\xe1\x11\xc0\xa8\x01r\x00\x00~\xd7x\xa2\x00\x02tr\x98T\x00\x00\x00\x00/\xea\r\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !&amp;quot;#$%&amp;amp;\&amp;#39;()*+,-./01234567&amp;#39;&lt;/span&gt;, &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;74.125.225.17&amp;#39;&lt;/span&gt;, 0&lt;span class="o"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -135,8 +135,8 @@ Remember that ICMP is essentially a special control protocol that issues error r
 &lt;p&gt;Running the script in one terminal and sending a &lt;strong&gt;ping&lt;/strong&gt;  in other will return something like this (notice the ICMP type 0):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ping www.google.com
 PING www.google.com &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt; 56&lt;span class="o"&gt;(&lt;/span&gt;84&lt;span class="o"&gt;)&lt;/span&gt; bytes of data.
-&lt;span class="m"&gt;64&lt;/span&gt; bytes from lga15s42-in-f16.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;56&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;15.7 ms
-&lt;span class="m"&gt;64&lt;/span&gt; bytes from lga15s42-in-f16.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;56&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;15.0 ms
+64 bytes from lga15s42-in-f16.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1 &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56 &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;15.7 ms
+64 bytes from lga15s42-in-f16.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.16&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2 &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56 &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;15.0 ms
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -152,16 +152,16 @@ ICMP -&amp;gt; Type:0, Code:0
 
 &lt;p&gt;In the other hand, if we run &lt;strong&gt;traceroute&lt;/strong&gt; instead:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;traceroute www.google.com
-traceroute to www.google.com &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.50&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="m"&gt;30&lt;/span&gt; hops max, &lt;span class="m"&gt;60&lt;/span&gt; byte packets
- &lt;span class="m"&gt;1&lt;/span&gt;  * * *
- &lt;span class="m"&gt;2&lt;/span&gt;  * * *
- &lt;span class="m"&gt;3&lt;/span&gt;  67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  17.183 ms 67.59.255.129 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.129&lt;span class="o"&gt;)&lt;/span&gt;  70.563 ms 67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  21.480 ms
- &lt;span class="m"&gt;4&lt;/span&gt;  451be075.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.99.117&lt;span class="o"&gt;)&lt;/span&gt;  14.639 ms rtr102.wan.hcvlny.cv.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.99.205&lt;span class="o"&gt;)&lt;/span&gt;  24.086 ms 451be075.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.107.117&lt;span class="o"&gt;)&lt;/span&gt;  24.025 ms
- &lt;span class="m"&gt;5&lt;/span&gt;  64.15.3.246 &lt;span class="o"&gt;(&lt;/span&gt;64.15.3.246&lt;span class="o"&gt;)&lt;/span&gt;  24.005 ms 64.15.0.218 &lt;span class="o"&gt;(&lt;/span&gt;64.15.0.218&lt;span class="o"&gt;)&lt;/span&gt;  23.961 ms 451be0c2.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.120.194&lt;span class="o"&gt;)&lt;/span&gt;  23.935 ms
- &lt;span class="m"&gt;6&lt;/span&gt;  72.14.215.203 &lt;span class="o"&gt;(&lt;/span&gt;72.14.215.203&lt;span class="o"&gt;)&lt;/span&gt;  23.872 ms  46.943 ms *
- &lt;span class="m"&gt;7&lt;/span&gt;  216.239.50.141 &lt;span class="o"&gt;(&lt;/span&gt;216.239.50.141&lt;span class="o"&gt;)&lt;/span&gt;  48.906 ms  46.138 ms  46.122 ms
- &lt;span class="m"&gt;8&lt;/span&gt;  209.85.245.179 &lt;span class="o"&gt;(&lt;/span&gt;209.85.245.179&lt;span class="o"&gt;)&lt;/span&gt;  46.108 ms  46.095 ms  46.074 ms
- &lt;span class="m"&gt;9&lt;/span&gt;  lga15s43-in-f18.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.50&lt;span class="o"&gt;)&lt;/span&gt;  45.997 ms  19.507 ms  16.607 ms
+traceroute to www.google.com &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.50&lt;span class="o"&gt;)&lt;/span&gt;, 30 hops max, 60 byte packets
+ 1  * * *
+ 2  * * *
+ 3  67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  17.183 ms 67.59.255.129 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.129&lt;span class="o"&gt;)&lt;/span&gt;  70.563 ms 67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  21.480 ms
+ 4  451be075.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.99.117&lt;span class="o"&gt;)&lt;/span&gt;  14.639 ms rtr102.wan.hcvlny.cv.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.99.205&lt;span class="o"&gt;)&lt;/span&gt;  24.086 ms 451be075.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.107.117&lt;span class="o"&gt;)&lt;/span&gt;  24.025 ms
+ 5  64.15.3.246 &lt;span class="o"&gt;(&lt;/span&gt;64.15.3.246&lt;span class="o"&gt;)&lt;/span&gt;  24.005 ms 64.15.0.218 &lt;span class="o"&gt;(&lt;/span&gt;64.15.0.218&lt;span class="o"&gt;)&lt;/span&gt;  23.961 ms 451be0c2.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.120.194&lt;span class="o"&gt;)&lt;/span&gt;  23.935 ms
+ 6  72.14.215.203 &lt;span class="o"&gt;(&lt;/span&gt;72.14.215.203&lt;span class="o"&gt;)&lt;/span&gt;  23.872 ms  46.943 ms *
+ 7  216.239.50.141 &lt;span class="o"&gt;(&lt;/span&gt;216.239.50.141&lt;span class="o"&gt;)&lt;/span&gt;  48.906 ms  46.138 ms  46.122 ms
+ 8  209.85.245.179 &lt;span class="o"&gt;(&lt;/span&gt;209.85.245.179&lt;span class="o"&gt;)&lt;/span&gt;  46.108 ms  46.095 ms  46.074 ms
+ 9  lga15s43-in-f18.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.226.50&lt;span class="o"&gt;)&lt;/span&gt;  45.997 ms  19.507 ms  16.607 ms
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -321,15 +321,15 @@ Host up: 192.168.1.114
 &lt;/ul&gt;
 &lt;p&gt;Let's run this script (notice that we get &lt;em&gt;Moved Permanently&lt;/em&gt; because Google  issues HTTPS connections):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; python tcp_client.py
-HTTP/1.1 &lt;span class="m"&gt;301&lt;/span&gt; Moved Permanently
+HTTP/1.1 301 Moved Permanently
 Location: http://www.google.com/
-Content-Type: text/html&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;UTF-8
-Date: Mon, &lt;span class="m"&gt;15&lt;/span&gt; Dec &lt;span class="m"&gt;2014&lt;/span&gt; 16:52:46 GMT
-Expires: Wed, &lt;span class="m"&gt;14&lt;/span&gt; Jan &lt;span class="m"&gt;2015&lt;/span&gt; 16:52:46 GMT
+Content-Type: text/html; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;UTF-8
+Date: Mon, 15 Dec 2014 16:52:46 GMT
+Expires: Wed, 14 Jan 2015 16:52:46 GMT
 Cache-Control: public, max-age&lt;span class="o"&gt;=&lt;/span&gt;2592000
 Server: gws
 Content-Length: 219
-X-XSS-Protection: 1&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
+X-XSS-Protection: 1; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
 X-Frame-Options: SAMEORIGIN
 Alternate-Protocol: 80:quic,p&lt;span class="o"&gt;=&lt;/span&gt;0.02
 
@@ -687,7 +687,7 @@ ACK
 
 &lt;h3&gt;Firing Up a Server and a Client&lt;/h3&gt;
 &lt;p&gt;Now we can put everything together and run the script as a server in a terminal and as a client in another. Running as a server:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;netcat_awesome.py -l -p &lt;span class="m"&gt;9000&lt;/span&gt; -c
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;netcat_awesome.py -l -p 9000 -c
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -708,17 +708,17 @@ NETCAT:
 
 &lt;h3&gt;The Good 'n' Old Request&lt;/h3&gt;
 &lt;p&gt;Additionally, we can use our client to send out requests:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; -ne &lt;span class="s2"&gt;&amp;quot;GET / HTTP/1.1\nHost: www.google.com\r\n\r\n&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; python socket/netcat_awesome.py -t www.google.com -p 80
-HTTP/1.1 &lt;span class="m"&gt;200&lt;/span&gt; OK
-Date: Tue, &lt;span class="m"&gt;16&lt;/span&gt; Dec &lt;span class="m"&gt;2014&lt;/span&gt; 21:04:27 GMT
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; -ne &lt;span class="s2"&gt;&amp;quot;GET / HTTP/1.1\nHost: www.google.com\r\n\r\n&amp;quot;&lt;/span&gt; | python socket/netcat_awesome.py -t www.google.com -p 80
+HTTP/1.1 200 OK
+Date: Tue, 16 Dec 2014 21:04:27 GMT
 Expires: -1
 Cache-Control: private, max-age&lt;span class="o"&gt;=&lt;/span&gt;0
-Content-Type: text/html&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ISO-8859-1
-Set-Cookie: &lt;span class="nv"&gt;PREF&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56f21d7bf67d66e0:FF&lt;span class="o"&gt;=&lt;/span&gt;0:TM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:LM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:S&lt;span class="o"&gt;=&lt;/span&gt;cI2xRwXGjb6bGx1u&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Thu, 15-Dec-2016 21:04:27 GMT&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com
-Set-Cookie: &lt;span class="nv"&gt;NID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;67&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ZGlY0-8CjkGDtTz4WwR7fEHOXGw-VvdI9f92oJKdelRgCxllAXoWfCC5vuQ5lJRFZIwghNRSxYbxKC0Z7ve132WTeBHOCHFB47Ic14ke1wdYGzevz8qFDR80fpiqHwMf&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Wed, 17-Jun-2015 21:04:27 GMT&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com&lt;span class="p"&gt;;&lt;/span&gt; HttpOnly
+Content-Type: text/html; &lt;span class="nv"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ISO-8859-1
+Set-Cookie: &lt;span class="nv"&gt;PREF&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;56f21d7bf67d66e0:FF&lt;span class="o"&gt;=&lt;/span&gt;0:TM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:LM&lt;span class="o"&gt;=&lt;/span&gt;1418763867:S&lt;span class="o"&gt;=&lt;/span&gt;cI2xRwXGjb6bGx1u; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Thu, 15-Dec-2016 21:04:27 GMT; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com
+Set-Cookie: &lt;span class="nv"&gt;NID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;67&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ZGlY0-8CjkGDtTz4WwR7fEHOXGw-VvdI9f92oJKdelRgCxllAXoWfCC5vuQ5lJRFZIwghNRSxYbxKC0Z7ve132WTeBHOCHFB47Ic14ke1wdYGzevz8qFDR80fpiqHwMf; &lt;span class="nv"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Wed, 17-Jun-2015 21:04:27 GMT; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/; &lt;span class="nv"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.google.com; HttpOnly
 P3P: &lt;span class="nv"&gt;CP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&amp;amp;answer=151657 for more info.&amp;quot;&lt;/span&gt;
 Server: gws
-X-XSS-Protection: 1&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
+X-XSS-Protection: 1; &lt;span class="nv"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;block
 X-Frame-Options: SAMEORIGIN
 Alternate-Protocol: 80:quic,p&lt;span class="o"&gt;=&lt;/span&gt;0.02
 Transfer-Encoding: chunked
@@ -874,7 +874,7 @@ Transfer-Encoding: chunked
 
 &lt;h3&gt;Firing Up our Proxy&lt;/h3&gt;
 &lt;p&gt;Now we just need to run our script with some server. For example, for a FTP server at the standard port 21:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo ./tcp_proxy.py localhost &lt;span class="m"&gt;21&lt;/span&gt; ftp.target &lt;span class="m"&gt;21&lt;/span&gt; True
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo ./tcp_proxy.py localhost 21 ftp.target 21 True
 &lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Listening on localhost:21
 &lt;span class="o"&gt;(&lt;/span&gt;...&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;

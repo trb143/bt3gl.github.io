@@ -64,7 +64,7 @@ router.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Address_Resolution_Protocol"&gt;ARP&lt;/a&gt; is the protocol used to determine which &lt;a href="http://en.wikipedia.org/wiki/MAC_address"&gt;MAC address&lt;/a&gt; (physical address such as 00:09:5B:01:02:03 and belonging to layer 2) corresponds to a particular IP address (logical addresses such as 10.100.20.1, belonging to layer 3).&lt;/p&gt;
 &lt;p&gt;The ARP resolution process uses two packets (&lt;em&gt;ARP request&lt;/em&gt; and  &lt;em&gt;ARP response&lt;/em&gt;) to find the matching MAC address, sending a &lt;strong&gt;broadcast&lt;/strong&gt; packet to every device in the domain, and waiting for the response of the  correct client. This works because  a switch uses a MAC table to know through which port to send the traffic.&lt;/p&gt;
 &lt;p&gt;In Wireshark, ARP is easily spotted with sentences such as &lt;strong&gt;"Who has 192.168.11/ Tell 192.168.1.1"&lt;/strong&gt;. Additionally, you can see the ARP table in your device with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;arp -a
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;arp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -119,29 +119,29 @@ router.&lt;/p&gt;
 &lt;h3&gt;The Internet Control Message Protocol (Layer 3)&lt;/h3&gt;
 &lt;p&gt;ICMP is the utility protocol of TCP/IP responsible for providing information about the availability of devices, services, or routes on a network.&lt;/p&gt;
 &lt;p&gt;Examples of services that use ICMP are  &lt;strong&gt;ping&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ping www.google.com
-PING www.google.com &lt;span class="o"&gt;(&lt;/span&gt;74.125.228.210&lt;span class="o"&gt;)&lt;/span&gt; 56&lt;span class="o"&gt;(&lt;/span&gt;84&lt;span class="o"&gt;)&lt;/span&gt; bytes of data.
-&lt;span class="m"&gt;64&lt;/span&gt; bytes from iad23s23-in-f18.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.228.210&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;53&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;21.5 ms
-&lt;span class="m"&gt;64&lt;/span&gt; bytes from iad23s23-in-f18.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.228.210&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;53&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;22.5 ms
-&lt;span class="m"&gt;64&lt;/span&gt; bytes from iad23s23-in-f18.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;74.125.228.210&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;53&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;21.4 ms
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ping&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;span class="n"&gt;PING&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;74.125.228.210&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;56&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;84&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="mi"&gt;64&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;iad23s23&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f18&lt;/span&gt;&lt;span class="mf"&gt;.1e100&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;74.125.228.210&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;21.5&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+&lt;span class="mi"&gt;64&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;iad23s23&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f18&lt;/span&gt;&lt;span class="mf"&gt;.1e100&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;74.125.228.210&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;22.5&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+&lt;span class="mi"&gt;64&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;iad23s23&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f18&lt;/span&gt;&lt;span class="mf"&gt;.1e100&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;74.125.228.210&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;21.4&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;and &lt;strong&gt;traceroute&lt;/strong&gt; (Windows sends ICMP packets,  Linux sends UDP):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;traceroute www.google.com
-traceroute to www.google.com &lt;span class="o"&gt;(&lt;/span&gt;173.194.46.84&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="m"&gt;30&lt;/span&gt; hops max, &lt;span class="m"&gt;60&lt;/span&gt; byte packets
- &lt;span class="m"&gt;1&lt;/span&gt;  * * *
- &lt;span class="m"&gt;2&lt;/span&gt;  67.59.254.85 &lt;span class="o"&gt;(&lt;/span&gt;67.59.254.85&lt;span class="o"&gt;)&lt;/span&gt;  30.078 ms  30.452 ms  30.766 ms
- &lt;span class="m"&gt;3&lt;/span&gt;  67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  33.889 ms 67.59.255.129 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.129&lt;span class="o"&gt;)&lt;/span&gt;  33.426 ms 67.59.255.137 &lt;span class="o"&gt;(&lt;/span&gt;67.59.255.137&lt;span class="o"&gt;)&lt;/span&gt;  34.007 ms
- &lt;span class="m"&gt;4&lt;/span&gt;  rtr101.wan.hcvlny.cv.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.107.109&lt;span class="o"&gt;)&lt;/span&gt;  34.004 ms 451be075.cst.lightpath.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.107.117&lt;span class="o"&gt;)&lt;/span&gt;  32.743 ms rtr102.wan.hcvlny.cv.net &lt;span class="o"&gt;(&lt;/span&gt;65.19.107.125&lt;span class="o"&gt;)&lt;/span&gt;  33.951 ms
- &lt;span class="m"&gt;5&lt;/span&gt;  64.15.3.222 &lt;span class="o"&gt;(&lt;/span&gt;64.15.3.222&lt;span class="o"&gt;)&lt;/span&gt;  34.972 ms 64.15.0.218 &lt;span class="o"&gt;(&lt;/span&gt;64.15.0.218&lt;span class="o"&gt;)&lt;/span&gt;  35.187 ms  35.120 ms
- &lt;span class="m"&gt;6&lt;/span&gt;  * 72.14.215.203 &lt;span class="o"&gt;(&lt;/span&gt;72.14.215.203&lt;span class="o"&gt;)&lt;/span&gt;  29.225 ms  29.646 ms
- &lt;span class="m"&gt;7&lt;/span&gt;  209.85.248.242 &lt;span class="o"&gt;(&lt;/span&gt;209.85.248.242&lt;span class="o"&gt;)&lt;/span&gt;  29.361 ms 209.85.245.116 &lt;span class="o"&gt;(&lt;/span&gt;209.85.245.116&lt;span class="o"&gt;)&lt;/span&gt;  39.780 ms  42.108 ms
- &lt;span class="m"&gt;8&lt;/span&gt;  209.85.249.212 &lt;span class="o"&gt;(&lt;/span&gt;209.85.249.212&lt;span class="o"&gt;)&lt;/span&gt;  33.220 ms 209.85.252.242 &lt;span class="o"&gt;(&lt;/span&gt;209.85.252.242&lt;span class="o"&gt;)&lt;/span&gt;  33.500 ms  33.786 ms
- &lt;span class="m"&gt;9&lt;/span&gt;  216.239.50.248 &lt;span class="o"&gt;(&lt;/span&gt;216.239.50.248&lt;span class="o"&gt;)&lt;/span&gt;  53.231 ms  57.314 ms 216.239.46.215 &lt;span class="o"&gt;(&lt;/span&gt;216.239.46.215&lt;span class="o"&gt;)&lt;/span&gt;  52.140 ms
-&lt;span class="m"&gt;10&lt;/span&gt;  216.239.50.237 &lt;span class="o"&gt;(&lt;/span&gt;216.239.50.237&lt;span class="o"&gt;)&lt;/span&gt;  52.022 ms 209.85.254.241 &lt;span class="o"&gt;(&lt;/span&gt;209.85.254.241&lt;span class="o"&gt;)&lt;/span&gt;  48.517 ms  48.075 ms
-&lt;span class="m"&gt;11&lt;/span&gt;  209.85.243.55 &lt;span class="o"&gt;(&lt;/span&gt;209.85.243.55&lt;span class="o"&gt;)&lt;/span&gt;  56.220 ms  45.359 ms  44.934 ms
-&lt;span class="m"&gt;12&lt;/span&gt;  ord08s11-in-f20.1e100.net &lt;span class="o"&gt;(&lt;/span&gt;173.194.46.84&lt;span class="o"&gt;)&lt;/span&gt;  43.184 ms  39.770 ms  45.095 ms
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;traceroute&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;span class="n"&gt;traceroute&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;173.194.46.84&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt; &lt;span class="n"&gt;hops&lt;/span&gt; &lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt; &lt;span class="n"&gt;byte&lt;/span&gt; &lt;span class="n"&gt;packets&lt;/span&gt;
+ &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+ &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="mf"&gt;67.59.254.85&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;67.59.254.85&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;30.078&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;30.452&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;30.766&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+ &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="mf"&gt;67.59.255.137&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;67.59.255.137&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;33.889&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;67.59.255.129&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;67.59.255.129&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;33.426&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;67.59.255.137&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;67.59.255.137&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;34.007&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+ &lt;span class="mi"&gt;4&lt;/span&gt;  &lt;span class="n"&gt;rtr101&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wan&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hcvlny&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;65.19.107.109&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;34.004&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mi"&gt;451&lt;/span&gt;&lt;span class="n"&gt;be075&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cst&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lightpath&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;65.19.107.117&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;32.743&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="n"&gt;rtr102&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wan&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hcvlny&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;65.19.107.125&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;33.951&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+ &lt;span class="mi"&gt;5&lt;/span&gt;  &lt;span class="mf"&gt;64.15.3.222&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;64.15.3.222&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;34.972&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;64.15.0.218&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;64.15.0.218&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;35.187&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;35.120&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+ &lt;span class="mi"&gt;6&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mf"&gt;72.14.215.203&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;72.14.215.203&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;29.225&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;29.646&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+ &lt;span class="mi"&gt;7&lt;/span&gt;  &lt;span class="mf"&gt;209.85.248.242&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.248.242&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;29.361&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;209.85.245.116&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.245.116&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;39.780&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;42.108&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+ &lt;span class="mi"&gt;8&lt;/span&gt;  &lt;span class="mf"&gt;209.85.249.212&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.249.212&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;33.220&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;209.85.252.242&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.252.242&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;33.500&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;33.786&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+ &lt;span class="mi"&gt;9&lt;/span&gt;  &lt;span class="mf"&gt;216.239.50.248&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;216.239.50.248&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;53.231&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;57.314&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;216.239.46.215&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;216.239.46.215&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;52.140&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+&lt;span class="mi"&gt;10&lt;/span&gt;  &lt;span class="mf"&gt;216.239.50.237&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;216.239.50.237&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;52.022&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="mf"&gt;209.85.254.241&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.254.241&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;48.517&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;48.075&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+&lt;span class="mi"&gt;11&lt;/span&gt;  &lt;span class="mf"&gt;209.85.243.55&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;209.85.243.55&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;56.220&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;45.359&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;44.934&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
+&lt;span class="mi"&gt;12&lt;/span&gt;  &lt;span class="n"&gt;ord08s11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f20&lt;/span&gt;&lt;span class="mf"&gt;.1e100&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;173.194.46.84&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="mf"&gt;43.184&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;39.770&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;  &lt;span class="mf"&gt;45.095&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -270,7 +270,7 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Right click -&amp;gt; Follow TCP Stream&lt;/strong&gt;: Reassembles TCP streams into an  readable format (instead of having the data being in small chunks). The text displayed in &lt;em&gt;red&lt;/em&gt; to signifies traffic from the source to the destination, and in  &lt;em&gt;blue&lt;/em&gt; identifies traffic in the opposite direction. If you know the stream number (value to be followed to get various data packets), you can also use the following filter for the same purpose:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tcp.stream eq &amp;lt;number&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;tcp.stream&lt;/span&gt; &lt;span class="nb"&gt;eq&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;number&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -287,7 +287,7 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Proto&lt;/strong&gt;: restricts the match to a particular protocol (for example: &lt;strong&gt;ether&lt;/strong&gt;, &lt;strong&gt;ip&lt;/strong&gt;, &lt;strong&gt;tcp&lt;/strong&gt;, &lt;strong&gt;udp&lt;/strong&gt;, or &lt;strong&gt;http&lt;/strong&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;A example of primitive is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;dst host 192.168.0.10
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dst&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="mf"&gt;192.168.0.10&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -303,56 +303,56 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Traffic associated with a host's IPV4 address (also works for a IPv6 network).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;host 172.16.16.150
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="mf"&gt;172.16.16.150&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Traffic to or from a range of IP addresses:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;net 192.168.0.0/24
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="mf"&gt;192.168.0.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Device's hostname with the host qualifier:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;host testserver
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="n"&gt;testserver&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;If you are concerned that the IP address for a host changed, you can filter based on MAC address:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ether host ff-ff-ff-ff-ff-aa
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ether&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="n"&gt;ff&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ff&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ff&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ff&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ff&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;aa&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Only traffic coming from a particular host (host is an optional qualifier):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;src host 172.16.16.150
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="mf"&gt;172.16.16.150&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;All the traffic leaving a host:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;dst host 172.16.16.150
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dst&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="mf"&gt;172.16.16.150&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Only  traffic to or from IP address 173.15.2.1&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;host 173.15.2.1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="mf"&gt;173.15.2.1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Traffic from a range of IP addresses:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;src net 192.168.0.0/24
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="mf"&gt;192.168.0.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -360,7 +360,7 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Only traffic on port 8000:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;port 8000
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;8000&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -374,28 +374,28 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Traffic going to a host listening on 80:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;dst port 80
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dst&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Traffic within a range of port:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tcp portrange 1501-1549
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="n"&gt;portrange&lt;/span&gt; &lt;span class="mi"&gt;1501&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1549&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Both inbound and outbound traffic on port 80 and 21:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;port 80 || port == 21
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;21&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Only non-http and non-SMTP traffic (equivalent):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;host www.example.com and not (port 80 or port 25)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -403,14 +403,14 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Capture only unicast traffic (useful to get rid of noise on the network):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;not broadcast and not multicast
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;broadcast&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;multicast&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;ICMP traffic only:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;icmp
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;icmp&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -431,14 +431,14 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;DNS traffic:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;dns
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dns&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Clear text email traffic:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;smtp || pop || imap
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;smtp&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;pop&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;imap&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -446,21 +446,21 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;TCP packets with SYN flag set:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tcp[13]&amp;amp;2==2
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;ICMP packets with destination unreachable (type 3):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;icmp[0]==3
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;icmp&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;HTTP GET requests (bytes 'G','E','T' are hex values 47, 45, 54):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;port 80 and tcp[((tcp[12:1] &amp;amp; 0xf0 ) &amp;gt;&amp;gt; 2  ):4 ] = 0x47455420
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;[((&lt;/span&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="mh"&gt;0xf0&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x47455420&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -469,21 +469,21 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Filter by IP address:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ip.addr == 10.0.0.1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addr&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mf"&gt;10.0.0.1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;IP source address field:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ip.src == 192.168.1.114
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mf"&gt;192.168.1.114&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;IP address src/dst for a network range:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ip.addr== 192.168.1.0/24
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addr&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mf"&gt;192.168.1.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -491,14 +491,14 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Any TCP packet with 4000 as a source or destination port:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tcp.port == 4000
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;4000&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Source port:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tcp.srcport == 31337
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;srcport&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;31337&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -506,21 +506,21 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Drops  arp, icmp, dns, or whatever other protocols may be background noise:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;!(arp or icmp or dns)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arp&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;icmp&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;dns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Displays all re-transmissions in the trace (helps when tracking down slow application performance and packet loss):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tcp.analysis.retransmission
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;analysis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;retransmission&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;ICMP Type field to find all PING packets:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;icmp.type== 8
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;icmp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -528,63 +528,63 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Displays all HTTP GET requests:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;http.request
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Display all POST requests:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;http.request.method == &amp;quot;POST&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Filter for the HEX values:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;udp contains 33:27:58
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;udp&lt;/span&gt; &lt;span class="n"&gt;contains&lt;/span&gt; &lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;58&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Sequence number field in a TCP header:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tcp.seq == 52703261
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;seq&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;52703261&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Packets that are less than 128 bytes in length:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;frame.len &amp;lt;= 128
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;len&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;128&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;TCP packets with SYN flag set:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tcp.flags.syn == 1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;syn&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;TCP packets with RST flag set:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tcp.flags.rst == 1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rst&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Displays all TCP resets:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tcp.flags.reset == 1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reset&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;IP flags where fragment bit is not set (see if someone is trying ping):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ip.flags.df == 0
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -654,19 +654,19 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;h2&gt;Some Forensics Tips&lt;/h2&gt;
 &lt;h3&gt;DNS Queries&lt;/h3&gt;
 &lt;p&gt;Look at different DNS queries that are made while the user was online. A possible filter is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;dsn
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dsn&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This will give a view of any malicious DNS request done without the knowledge of the user. An example is a case where a  visited website has a hidden &lt;strong&gt;iframe&lt;/strong&gt; with some malicious script inside.&lt;/p&gt;
 &lt;h3&gt;HTTP GET Headers&lt;/h3&gt;
 &lt;p&gt;Look for different HTTP streams that have flown during the network activity:  HTML, JavaScript,  image traffic, 302 redirections, non-HTTP streams, Java Archive downloads, etc. A possible filter is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;http
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;http&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;You can also look at different GET requests  with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tcp contains &amp;quot;GET&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="n"&gt;contains&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;GET&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -680,7 +680,7 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;p&gt;When a MAC address is not in the cache list, ARP broadcasts a packet asking which IP address owns some MAC address. The destination machine replies to the packet with its MAC address via an ARP reply (as we have learned above). So,  at this point, the transmitting computer has the data link layer addressing the information it needs to communicate with the remote computer. This information is then stored into the ARP cache.&lt;/p&gt;
 &lt;p&gt;An attacker can spoof this process by  sending ARP messages to an Ethernet switch or router with fake MAC  addresses in order to intercept the traffic of another computer.&lt;/p&gt;
 &lt;p&gt;In Linux, ARP spoofing can be done with &lt;a href="http://www.irongeek.com/i.php?page=security/arpspoof"&gt;arpspoof or Ettercap&lt;/a&gt;. For instance, if  your wlan0 is at 192.168.0.10 and the router is at 192.168.0.1, you can run:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;arpspoof -i wlan0 -t 192.168.0.10 192.168.0.1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;arpspoof&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;wlan0&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="mf"&gt;192.168.0.10&lt;/span&gt; &lt;span class="mf"&gt;192.168.0.1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -711,18 +711,18 @@ a network, it would be assigned an address by hand.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;To access the wireless extensions in Linux you can type:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;iwconfig
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;iwconfig&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;To change the interface (for example eth1) to monitor mode, you type:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;iwconfig eth1 mode monitor
-&lt;span class="nv"&gt;$ &lt;/span&gt;iwconfig eth1 up
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;iwconfig&lt;/span&gt; &lt;span class="n"&gt;eth1&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt; &lt;span class="n"&gt;monitor&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;iwconfig&lt;/span&gt; &lt;span class="n"&gt;eth1&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;To change the channel of the interface:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;iwconfig eth&lt;span class="sb"&gt;`&lt;/span&gt; channel 4
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;iwconfig&lt;/span&gt; &lt;span class="n"&gt;eth&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt; &lt;span class="n"&gt;channel&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

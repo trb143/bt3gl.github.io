@@ -69,9 +69,8 @@
                           <ul class="nav pull-right">
                                 <li><a href="http://bt3gl.github.io/authors.html">About</a></li>
                                 <li><a href="https://github.com/bt3gl">GitHub</a></li>
-                                <li><a href="https://twitter.com/_b_t_3_">Twitter</a></li>
-                                <li><a href="https://coderwall.com/p/kubxjq?i=11&p=2&q=author%3Abt3gl&t%5B%5D=bt3gl">CodeWall</a></li>
-                                <li><a href="projects_page/index.html">Projects</a></li>
+                                <li><a href="https://twitter.com/1bt337">Twitter</a></li>
+                                <li><a href="http://bt3gl.github.io/projects_page/index.html">Ph.D.</a></li>
                                 <li><a href="http://bt3gl.github.io/archives.html"><b>Archives</b></a></li>
 
                           </ul>
@@ -100,7 +99,7 @@
                 <div class="entry-content">
                 <div class="well">
 <footer class="post-info">
-<abbr class="published" title="2014-11-12T04:20:00-05:00">
+<abbr class="published" title="2014-11-12T04:20:00">
       Wed 12 November 2014 </abbr>
 
 <span class="label"> Category</span>
@@ -185,7 +184,7 @@ router.</p>
 <p><a href="http://en.wikipedia.org/wiki/Address_Resolution_Protocol">ARP</a> is the protocol used to determine which <a href="http://en.wikipedia.org/wiki/MAC_address">MAC address</a> (physical address such as 00:09:5B:01:02:03 and belonging to layer 2) corresponds to a particular IP address (logical addresses such as 10.100.20.1, belonging to layer 3).</p>
 <p>The ARP resolution process uses two packets (<em>ARP request</em> and  <em>ARP response</em>) to find the matching MAC address, sending a <strong>broadcast</strong> packet to every device in the domain, and waiting for the response of the  correct client. This works because  a switch uses a MAC table to know through which port to send the traffic.</p>
 <p>In Wireshark, ARP is easily spotted with sentences such as <strong>"Who has 192.168.11/ Tell 192.168.1.1"</strong>. Additionally, you can see the ARP table in your device with:</p>
-<div class="highlight"><pre><span class="nv">$ </span>arp -a
+<div class="highlight"><pre><span class="err">$</span> <span class="n">arp</span> <span class="o">-</span><span class="n">a</span>
 </pre></div>
 
 
@@ -240,29 +239,29 @@ router.</p>
 <h3>The Internet Control Message Protocol (Layer 3)</h3>
 <p>ICMP is the utility protocol of TCP/IP responsible for providing information about the availability of devices, services, or routes on a network.</p>
 <p>Examples of services that use ICMP are  <strong>ping</strong>:</p>
-<div class="highlight"><pre><span class="nv">$ </span>ping www.google.com
-PING www.google.com <span class="o">(</span>74.125.228.210<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
-<span class="m">64</span> bytes from iad23s23-in-f18.1e100.net <span class="o">(</span>74.125.228.210<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">53</span> <span class="nb">time</span><span class="o">=</span>21.5 ms
-<span class="m">64</span> bytes from iad23s23-in-f18.1e100.net <span class="o">(</span>74.125.228.210<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">53</span> <span class="nb">time</span><span class="o">=</span>22.5 ms
-<span class="m">64</span> bytes from iad23s23-in-f18.1e100.net <span class="o">(</span>74.125.228.210<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">53</span> <span class="nb">time</span><span class="o">=</span>21.4 ms
+<div class="highlight"><pre><span class="err">$</span> <span class="n">ping</span> <span class="n">www</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span>
+<span class="n">PING</span> <span class="n">www</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span> <span class="p">(</span><span class="mf">74.125.228.210</span><span class="p">)</span> <span class="mi">56</span><span class="p">(</span><span class="mi">84</span><span class="p">)</span> <span class="n">bytes</span> <span class="n">of</span> <span class="n">data</span><span class="p">.</span>
+<span class="mi">64</span> <span class="n">bytes</span> <span class="n">from</span> <span class="n">iad23s23</span><span class="o">-</span><span class="n">in</span><span class="o">-</span><span class="n">f18</span><span class="mf">.1e100</span><span class="p">.</span><span class="n">net</span> <span class="p">(</span><span class="mf">74.125.228.210</span><span class="p">)</span><span class="o">:</span> <span class="n">icmp_seq</span><span class="o">=</span><span class="mi">1</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">53</span> <span class="n">time</span><span class="o">=</span><span class="mf">21.5</span> <span class="n">ms</span>
+<span class="mi">64</span> <span class="n">bytes</span> <span class="n">from</span> <span class="n">iad23s23</span><span class="o">-</span><span class="n">in</span><span class="o">-</span><span class="n">f18</span><span class="mf">.1e100</span><span class="p">.</span><span class="n">net</span> <span class="p">(</span><span class="mf">74.125.228.210</span><span class="p">)</span><span class="o">:</span> <span class="n">icmp_seq</span><span class="o">=</span><span class="mi">2</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">53</span> <span class="n">time</span><span class="o">=</span><span class="mf">22.5</span> <span class="n">ms</span>
+<span class="mi">64</span> <span class="n">bytes</span> <span class="n">from</span> <span class="n">iad23s23</span><span class="o">-</span><span class="n">in</span><span class="o">-</span><span class="n">f18</span><span class="mf">.1e100</span><span class="p">.</span><span class="n">net</span> <span class="p">(</span><span class="mf">74.125.228.210</span><span class="p">)</span><span class="o">:</span> <span class="n">icmp_seq</span><span class="o">=</span><span class="mi">3</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">53</span> <span class="n">time</span><span class="o">=</span><span class="mf">21.4</span> <span class="n">ms</span>
 </pre></div>
 
 
 <p>and <strong>traceroute</strong> (Windows sends ICMP packets,  Linux sends UDP):</p>
-<div class="highlight"><pre><span class="nv">$ </span>traceroute www.google.com
-traceroute to www.google.com <span class="o">(</span>173.194.46.84<span class="o">)</span>, <span class="m">30</span> hops max, <span class="m">60</span> byte packets
- <span class="m">1</span>  * * *
- <span class="m">2</span>  67.59.254.85 <span class="o">(</span>67.59.254.85<span class="o">)</span>  30.078 ms  30.452 ms  30.766 ms
- <span class="m">3</span>  67.59.255.137 <span class="o">(</span>67.59.255.137<span class="o">)</span>  33.889 ms 67.59.255.129 <span class="o">(</span>67.59.255.129<span class="o">)</span>  33.426 ms 67.59.255.137 <span class="o">(</span>67.59.255.137<span class="o">)</span>  34.007 ms
- <span class="m">4</span>  rtr101.wan.hcvlny.cv.net <span class="o">(</span>65.19.107.109<span class="o">)</span>  34.004 ms 451be075.cst.lightpath.net <span class="o">(</span>65.19.107.117<span class="o">)</span>  32.743 ms rtr102.wan.hcvlny.cv.net <span class="o">(</span>65.19.107.125<span class="o">)</span>  33.951 ms
- <span class="m">5</span>  64.15.3.222 <span class="o">(</span>64.15.3.222<span class="o">)</span>  34.972 ms 64.15.0.218 <span class="o">(</span>64.15.0.218<span class="o">)</span>  35.187 ms  35.120 ms
- <span class="m">6</span>  * 72.14.215.203 <span class="o">(</span>72.14.215.203<span class="o">)</span>  29.225 ms  29.646 ms
- <span class="m">7</span>  209.85.248.242 <span class="o">(</span>209.85.248.242<span class="o">)</span>  29.361 ms 209.85.245.116 <span class="o">(</span>209.85.245.116<span class="o">)</span>  39.780 ms  42.108 ms
- <span class="m">8</span>  209.85.249.212 <span class="o">(</span>209.85.249.212<span class="o">)</span>  33.220 ms 209.85.252.242 <span class="o">(</span>209.85.252.242<span class="o">)</span>  33.500 ms  33.786 ms
- <span class="m">9</span>  216.239.50.248 <span class="o">(</span>216.239.50.248<span class="o">)</span>  53.231 ms  57.314 ms 216.239.46.215 <span class="o">(</span>216.239.46.215<span class="o">)</span>  52.140 ms
-<span class="m">10</span>  216.239.50.237 <span class="o">(</span>216.239.50.237<span class="o">)</span>  52.022 ms 209.85.254.241 <span class="o">(</span>209.85.254.241<span class="o">)</span>  48.517 ms  48.075 ms
-<span class="m">11</span>  209.85.243.55 <span class="o">(</span>209.85.243.55<span class="o">)</span>  56.220 ms  45.359 ms  44.934 ms
-<span class="m">12</span>  ord08s11-in-f20.1e100.net <span class="o">(</span>173.194.46.84<span class="o">)</span>  43.184 ms  39.770 ms  45.095 ms
+<div class="highlight"><pre><span class="err">$</span> <span class="n">traceroute</span> <span class="n">www</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span>
+<span class="n">traceroute</span> <span class="n">to</span> <span class="n">www</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span> <span class="p">(</span><span class="mf">173.194.46.84</span><span class="p">),</span> <span class="mi">30</span> <span class="n">hops</span> <span class="n">max</span><span class="p">,</span> <span class="mi">60</span> <span class="n">byte</span> <span class="n">packets</span>
+ <span class="mi">1</span>  <span class="o">*</span> <span class="o">*</span> <span class="o">*</span>
+ <span class="mi">2</span>  <span class="mf">67.59.254.85</span> <span class="p">(</span><span class="mf">67.59.254.85</span><span class="p">)</span>  <span class="mf">30.078</span> <span class="n">ms</span>  <span class="mf">30.452</span> <span class="n">ms</span>  <span class="mf">30.766</span> <span class="n">ms</span>
+ <span class="mi">3</span>  <span class="mf">67.59.255.137</span> <span class="p">(</span><span class="mf">67.59.255.137</span><span class="p">)</span>  <span class="mf">33.889</span> <span class="n">ms</span> <span class="mf">67.59.255.129</span> <span class="p">(</span><span class="mf">67.59.255.129</span><span class="p">)</span>  <span class="mf">33.426</span> <span class="n">ms</span> <span class="mf">67.59.255.137</span> <span class="p">(</span><span class="mf">67.59.255.137</span><span class="p">)</span>  <span class="mf">34.007</span> <span class="n">ms</span>
+ <span class="mi">4</span>  <span class="n">rtr101</span><span class="p">.</span><span class="n">wan</span><span class="p">.</span><span class="n">hcvlny</span><span class="p">.</span><span class="n">cv</span><span class="p">.</span><span class="n">net</span> <span class="p">(</span><span class="mf">65.19.107.109</span><span class="p">)</span>  <span class="mf">34.004</span> <span class="n">ms</span> <span class="mi">451</span><span class="n">be075</span><span class="p">.</span><span class="n">cst</span><span class="p">.</span><span class="n">lightpath</span><span class="p">.</span><span class="n">net</span> <span class="p">(</span><span class="mf">65.19.107.117</span><span class="p">)</span>  <span class="mf">32.743</span> <span class="n">ms</span> <span class="n">rtr102</span><span class="p">.</span><span class="n">wan</span><span class="p">.</span><span class="n">hcvlny</span><span class="p">.</span><span class="n">cv</span><span class="p">.</span><span class="n">net</span> <span class="p">(</span><span class="mf">65.19.107.125</span><span class="p">)</span>  <span class="mf">33.951</span> <span class="n">ms</span>
+ <span class="mi">5</span>  <span class="mf">64.15.3.222</span> <span class="p">(</span><span class="mf">64.15.3.222</span><span class="p">)</span>  <span class="mf">34.972</span> <span class="n">ms</span> <span class="mf">64.15.0.218</span> <span class="p">(</span><span class="mf">64.15.0.218</span><span class="p">)</span>  <span class="mf">35.187</span> <span class="n">ms</span>  <span class="mf">35.120</span> <span class="n">ms</span>
+ <span class="mi">6</span>  <span class="o">*</span> <span class="mf">72.14.215.203</span> <span class="p">(</span><span class="mf">72.14.215.203</span><span class="p">)</span>  <span class="mf">29.225</span> <span class="n">ms</span>  <span class="mf">29.646</span> <span class="n">ms</span>
+ <span class="mi">7</span>  <span class="mf">209.85.248.242</span> <span class="p">(</span><span class="mf">209.85.248.242</span><span class="p">)</span>  <span class="mf">29.361</span> <span class="n">ms</span> <span class="mf">209.85.245.116</span> <span class="p">(</span><span class="mf">209.85.245.116</span><span class="p">)</span>  <span class="mf">39.780</span> <span class="n">ms</span>  <span class="mf">42.108</span> <span class="n">ms</span>
+ <span class="mi">8</span>  <span class="mf">209.85.249.212</span> <span class="p">(</span><span class="mf">209.85.249.212</span><span class="p">)</span>  <span class="mf">33.220</span> <span class="n">ms</span> <span class="mf">209.85.252.242</span> <span class="p">(</span><span class="mf">209.85.252.242</span><span class="p">)</span>  <span class="mf">33.500</span> <span class="n">ms</span>  <span class="mf">33.786</span> <span class="n">ms</span>
+ <span class="mi">9</span>  <span class="mf">216.239.50.248</span> <span class="p">(</span><span class="mf">216.239.50.248</span><span class="p">)</span>  <span class="mf">53.231</span> <span class="n">ms</span>  <span class="mf">57.314</span> <span class="n">ms</span> <span class="mf">216.239.46.215</span> <span class="p">(</span><span class="mf">216.239.46.215</span><span class="p">)</span>  <span class="mf">52.140</span> <span class="n">ms</span>
+<span class="mi">10</span>  <span class="mf">216.239.50.237</span> <span class="p">(</span><span class="mf">216.239.50.237</span><span class="p">)</span>  <span class="mf">52.022</span> <span class="n">ms</span> <span class="mf">209.85.254.241</span> <span class="p">(</span><span class="mf">209.85.254.241</span><span class="p">)</span>  <span class="mf">48.517</span> <span class="n">ms</span>  <span class="mf">48.075</span> <span class="n">ms</span>
+<span class="mi">11</span>  <span class="mf">209.85.243.55</span> <span class="p">(</span><span class="mf">209.85.243.55</span><span class="p">)</span>  <span class="mf">56.220</span> <span class="n">ms</span>  <span class="mf">45.359</span> <span class="n">ms</span>  <span class="mf">44.934</span> <span class="n">ms</span>
+<span class="mi">12</span>  <span class="n">ord08s11</span><span class="o">-</span><span class="n">in</span><span class="o">-</span><span class="n">f20</span><span class="mf">.1e100</span><span class="p">.</span><span class="n">net</span> <span class="p">(</span><span class="mf">173.194.46.84</span><span class="p">)</span>  <span class="mf">43.184</span> <span class="n">ms</span>  <span class="mf">39.770</span> <span class="n">ms</span>  <span class="mf">45.095</span> <span class="n">ms</span>
 </pre></div>
 
 
@@ -391,7 +390,7 @@ a network, it would be assigned an address by hand.</p>
 <p><strong>Right click -&gt; Follow TCP Stream</strong>: Reassembles TCP streams into an  readable format (instead of having the data being in small chunks). The text displayed in <em>red</em> to signifies traffic from the source to the destination, and in  <em>blue</em> identifies traffic in the opposite direction. If you know the stream number (value to be followed to get various data packets), you can also use the following filter for the same purpose:</p>
 </li>
 </ul>
-<div class="highlight"><pre>tcp.stream eq &lt;number&gt;
+<div class="highlight"><pre><span class="nx">tcp.stream</span> <span class="nb">eq</span> <span class="o">&lt;</span><span class="nx">number</span><span class="o">&gt;</span>
 </pre></div>
 
 
@@ -408,7 +407,7 @@ a network, it would be assigned an address by hand.</p>
 <li><strong>Proto</strong>: restricts the match to a particular protocol (for example: <strong>ether</strong>, <strong>ip</strong>, <strong>tcp</strong>, <strong>udp</strong>, or <strong>http</strong>)</li>
 </ul>
 <p>A example of primitive is:</p>
-<div class="highlight"><pre>dst host 192.168.0.10
+<div class="highlight"><pre><span class="n">dst</span> <span class="n">host</span> <span class="mf">192.168.0.10</span>
 </pre></div>
 
 
@@ -424,56 +423,56 @@ a network, it would be assigned an address by hand.</p>
 <ul>
 <li>Traffic associated with a host's IPV4 address (also works for a IPv6 network).</li>
 </ul>
-<div class="highlight"><pre>host 172.16.16.150
+<div class="highlight"><pre><span class="n">host</span> <span class="mf">172.16.16.150</span>
 </pre></div>
 
 
 <ul>
 <li>Traffic to or from a range of IP addresses:</li>
 </ul>
-<div class="highlight"><pre>net 192.168.0.0/24
+<div class="highlight"><pre><span class="n">net</span> <span class="mf">192.168.0.0</span><span class="o">/</span><span class="mi">24</span>
 </pre></div>
 
 
 <ul>
 <li>Device's hostname with the host qualifier:</li>
 </ul>
-<div class="highlight"><pre>host testserver
+<div class="highlight"><pre><span class="n">host</span> <span class="n">testserver</span>
 </pre></div>
 
 
 <ul>
 <li>If you are concerned that the IP address for a host changed, you can filter based on MAC address:</li>
 </ul>
-<div class="highlight"><pre>ether host ff-ff-ff-ff-ff-aa
+<div class="highlight"><pre><span class="n">ether</span> <span class="n">host</span> <span class="n">ff</span><span class="o">-</span><span class="n">ff</span><span class="o">-</span><span class="n">ff</span><span class="o">-</span><span class="n">ff</span><span class="o">-</span><span class="n">ff</span><span class="o">-</span><span class="n">aa</span>
 </pre></div>
 
 
 <ul>
 <li>Only traffic coming from a particular host (host is an optional qualifier):</li>
 </ul>
-<div class="highlight"><pre>src host 172.16.16.150
+<div class="highlight"><pre><span class="n">src</span> <span class="n">host</span> <span class="mf">172.16.16.150</span>
 </pre></div>
 
 
 <ul>
 <li>All the traffic leaving a host:</li>
 </ul>
-<div class="highlight"><pre>dst host 172.16.16.150
+<div class="highlight"><pre><span class="n">dst</span> <span class="n">host</span> <span class="mf">172.16.16.150</span>
 </pre></div>
 
 
 <ul>
 <li>Only  traffic to or from IP address 173.15.2.1</li>
 </ul>
-<div class="highlight"><pre>host 173.15.2.1
+<div class="highlight"><pre><span class="n">host</span> <span class="mf">173.15.2.1</span>
 </pre></div>
 
 
 <ul>
 <li>Traffic from a range of IP addresses:</li>
 </ul>
-<div class="highlight"><pre>src net 192.168.0.0/24
+<div class="highlight"><pre><span class="n">src</span> <span class="n">net</span> <span class="mf">192.168.0.0</span><span class="o">/</span><span class="mi">24</span>
 </pre></div>
 
 
@@ -481,7 +480,7 @@ a network, it would be assigned an address by hand.</p>
 <ul>
 <li>Only traffic on port 8000:</li>
 </ul>
-<div class="highlight"><pre>port 8000
+<div class="highlight"><pre><span class="n">port</span> <span class="mi">8000</span>
 </pre></div>
 
 
@@ -495,28 +494,28 @@ a network, it would be assigned an address by hand.</p>
 <ul>
 <li>Traffic going to a host listening on 80:</li>
 </ul>
-<div class="highlight"><pre>dst port 80
+<div class="highlight"><pre><span class="n">dst</span> <span class="n">port</span> <span class="mi">80</span>
 </pre></div>
 
 
 <ul>
 <li>Traffic within a range of port:</li>
 </ul>
-<div class="highlight"><pre>tcp portrange 1501-1549
+<div class="highlight"><pre><span class="n">tcp</span> <span class="n">portrange</span> <span class="mi">1501</span><span class="o">-</span><span class="mi">1549</span>
 </pre></div>
 
 
 <ul>
 <li>Both inbound and outbound traffic on port 80 and 21:</li>
 </ul>
-<div class="highlight"><pre>port 80 || port == 21
+<div class="highlight"><pre><span class="n">port</span> <span class="mi">80</span> <span class="o">||</span> <span class="n">port</span> <span class="o">==</span> <span class="mi">21</span>
 </pre></div>
 
 
 <ul>
 <li>Only non-http and non-SMTP traffic (equivalent):</li>
 </ul>
-<div class="highlight"><pre>host www.example.com and not (port 80 or port 25)
+<div class="highlight"><pre><span class="n">host</span> <span class="n">www</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span> <span class="n">and</span> <span class="n">not</span> <span class="p">(</span><span class="n">port</span> <span class="mi">80</span> <span class="n">or</span> <span class="n">port</span> <span class="mi">25</span><span class="p">)</span>
 </pre></div>
 
 
@@ -524,14 +523,14 @@ a network, it would be assigned an address by hand.</p>
 <ul>
 <li>Capture only unicast traffic (useful to get rid of noise on the network):</li>
 </ul>
-<div class="highlight"><pre>not broadcast and not multicast
+<div class="highlight"><pre><span class="n">not</span> <span class="n">broadcast</span> <span class="n">and</span> <span class="n">not</span> <span class="n">multicast</span>
 </pre></div>
 
 
 <ul>
 <li>ICMP traffic only:</li>
 </ul>
-<div class="highlight"><pre>icmp
+<div class="highlight"><pre><span class="n">icmp</span>
 </pre></div>
 
 
@@ -552,14 +551,14 @@ a network, it would be assigned an address by hand.</p>
 <ul>
 <li>DNS traffic:</li>
 </ul>
-<div class="highlight"><pre>dns
+<div class="highlight"><pre><span class="n">dns</span>
 </pre></div>
 
 
 <ul>
 <li>Clear text email traffic:</li>
 </ul>
-<div class="highlight"><pre>smtp || pop || imap
+<div class="highlight"><pre><span class="n">smtp</span> <span class="o">||</span> <span class="n">pop</span> <span class="o">||</span> <span class="n">imap</span>
 </pre></div>
 
 
@@ -567,21 +566,21 @@ a network, it would be assigned an address by hand.</p>
 <ul>
 <li>TCP packets with SYN flag set:</li>
 </ul>
-<div class="highlight"><pre>tcp[13]&amp;2==2
+<div class="highlight"><pre><span class="n">tcp</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span><span class="o">&amp;</span><span class="mi">2</span><span class="o">==</span><span class="mi">2</span>
 </pre></div>
 
 
 <ul>
 <li>ICMP packets with destination unreachable (type 3):</li>
 </ul>
-<div class="highlight"><pre>icmp[0]==3
+<div class="highlight"><pre><span class="n">icmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">3</span>
 </pre></div>
 
 
 <ul>
 <li>HTTP GET requests (bytes 'G','E','T' are hex values 47, 45, 54):</li>
 </ul>
-<div class="highlight"><pre>port 80 and tcp[((tcp[12:1] &amp; 0xf0 ) &gt;&gt; 2  ):4 ] = 0x47455420
+<div class="highlight"><pre><span class="n">port</span> <span class="mi">80</span> <span class="n">and</span> <span class="n">tcp</span><span class="p">[((</span><span class="n">tcp</span><span class="p">[</span><span class="mi">12</span><span class="o">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0xf0</span> <span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span>  <span class="p">)</span><span class="o">:</span><span class="mi">4</span> <span class="p">]</span> <span class="o">=</span> <span class="mh">0x47455420</span>
 </pre></div>
 
 
@@ -590,21 +589,21 @@ a network, it would be assigned an address by hand.</p>
 <ul>
 <li>Filter by IP address:</li>
 </ul>
-<div class="highlight"><pre>ip.addr == 10.0.0.1
+<div class="highlight"><pre><span class="n">ip</span><span class="p">.</span><span class="n">addr</span> <span class="o">==</span> <span class="mf">10.0.0.1</span>
 </pre></div>
 
 
 <ul>
 <li>IP source address field:</li>
 </ul>
-<div class="highlight"><pre>ip.src == 192.168.1.114
+<div class="highlight"><pre><span class="n">ip</span><span class="p">.</span><span class="n">src</span> <span class="o">==</span> <span class="mf">192.168.1.114</span>
 </pre></div>
 
 
 <ul>
 <li>IP address src/dst for a network range:</li>
 </ul>
-<div class="highlight"><pre>ip.addr== 192.168.1.0/24
+<div class="highlight"><pre><span class="n">ip</span><span class="p">.</span><span class="n">addr</span><span class="o">==</span> <span class="mf">192.168.1.0</span><span class="o">/</span><span class="mi">24</span>
 </pre></div>
 
 
@@ -612,14 +611,14 @@ a network, it would be assigned an address by hand.</p>
 <ul>
 <li>Any TCP packet with 4000 as a source or destination port:</li>
 </ul>
-<div class="highlight"><pre>tcp.port == 4000
+<div class="highlight"><pre><span class="n">tcp</span><span class="p">.</span><span class="n">port</span> <span class="o">==</span> <span class="mi">4000</span>
 </pre></div>
 
 
 <ul>
 <li>Source port:</li>
 </ul>
-<div class="highlight"><pre>tcp.srcport == 31337
+<div class="highlight"><pre><span class="n">tcp</span><span class="p">.</span><span class="n">srcport</span> <span class="o">==</span> <span class="mi">31337</span>
 </pre></div>
 
 
@@ -627,21 +626,21 @@ a network, it would be assigned an address by hand.</p>
 <ul>
 <li>Drops  arp, icmp, dns, or whatever other protocols may be background noise:</li>
 </ul>
-<div class="highlight"><pre>!(arp or icmp or dns)
+<div class="highlight"><pre><span class="o">!</span><span class="p">(</span><span class="n">arp</span> <span class="n">or</span> <span class="n">icmp</span> <span class="n">or</span> <span class="n">dns</span><span class="p">)</span>
 </pre></div>
 
 
 <ul>
 <li>Displays all re-transmissions in the trace (helps when tracking down slow application performance and packet loss):</li>
 </ul>
-<div class="highlight"><pre>tcp.analysis.retransmission
+<div class="highlight"><pre><span class="n">tcp</span><span class="p">.</span><span class="n">analysis</span><span class="p">.</span><span class="n">retransmission</span>
 </pre></div>
 
 
 <ul>
 <li>ICMP Type field to find all PING packets:</li>
 </ul>
-<div class="highlight"><pre>icmp.type== 8
+<div class="highlight"><pre><span class="n">icmp</span><span class="p">.</span><span class="n">type</span><span class="o">==</span> <span class="mi">8</span>
 </pre></div>
 
 
@@ -649,63 +648,63 @@ a network, it would be assigned an address by hand.</p>
 <ul>
 <li>Displays all HTTP GET requests:</li>
 </ul>
-<div class="highlight"><pre>http.request
+<div class="highlight"><pre><span class="n">http</span><span class="p">.</span><span class="n">request</span>
 </pre></div>
 
 
 <ul>
 <li>Display all POST requests:</li>
 </ul>
-<div class="highlight"><pre>http.request.method == &quot;POST&quot;
+<div class="highlight"><pre><span class="n">http</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;POST&quot;</span>
 </pre></div>
 
 
 <ul>
 <li>Filter for the HEX values:</li>
 </ul>
-<div class="highlight"><pre>udp contains 33:27:58
+<div class="highlight"><pre><span class="n">udp</span> <span class="n">contains</span> <span class="mi">33</span><span class="o">:</span><span class="mi">27</span><span class="o">:</span><span class="mi">58</span>
 </pre></div>
 
 
 <ul>
 <li>Sequence number field in a TCP header:</li>
 </ul>
-<div class="highlight"><pre>tcp.seq == 52703261
+<div class="highlight"><pre><span class="n">tcp</span><span class="p">.</span><span class="n">seq</span> <span class="o">==</span> <span class="mi">52703261</span>
 </pre></div>
 
 
 <ul>
 <li>Packets that are less than 128 bytes in length:</li>
 </ul>
-<div class="highlight"><pre>frame.len &lt;= 128
+<div class="highlight"><pre><span class="n">frame</span><span class="p">.</span><span class="n">len</span> <span class="o">&lt;=</span> <span class="mi">128</span>
 </pre></div>
 
 
 <ul>
 <li>TCP packets with SYN flag set:</li>
 </ul>
-<div class="highlight"><pre>tcp.flags.syn == 1
+<div class="highlight"><pre><span class="n">tcp</span><span class="p">.</span><span class="n">flags</span><span class="p">.</span><span class="n">syn</span> <span class="o">==</span> <span class="mi">1</span>
 </pre></div>
 
 
 <ul>
 <li>TCP packets with RST flag set:</li>
 </ul>
-<div class="highlight"><pre>tcp.flags.rst == 1
+<div class="highlight"><pre><span class="n">tcp</span><span class="p">.</span><span class="n">flags</span><span class="p">.</span><span class="n">rst</span> <span class="o">==</span> <span class="mi">1</span>
 </pre></div>
 
 
 <ul>
 <li>Displays all TCP resets:</li>
 </ul>
-<div class="highlight"><pre>tcp.flags.reset == 1
+<div class="highlight"><pre><span class="n">tcp</span><span class="p">.</span><span class="n">flags</span><span class="p">.</span><span class="n">reset</span> <span class="o">==</span> <span class="mi">1</span>
 </pre></div>
 
 
 <ul>
 <li>IP flags where fragment bit is not set (see if someone is trying ping):</li>
 </ul>
-<div class="highlight"><pre>ip.flags.df == 0
+<div class="highlight"><pre><span class="n">ip</span><span class="p">.</span><span class="n">flags</span><span class="p">.</span><span class="n">df</span> <span class="o">==</span> <span class="mi">0</span>
 </pre></div>
 
 
@@ -775,19 +774,19 @@ a network, it would be assigned an address by hand.</p>
 <h2>Some Forensics Tips</h2>
 <h3>DNS Queries</h3>
 <p>Look at different DNS queries that are made while the user was online. A possible filter is:</p>
-<div class="highlight"><pre>dsn
+<div class="highlight"><pre><span class="n">dsn</span>
 </pre></div>
 
 
 <p>This will give a view of any malicious DNS request done without the knowledge of the user. An example is a case where a  visited website has a hidden <strong>iframe</strong> with some malicious script inside.</p>
 <h3>HTTP GET Headers</h3>
 <p>Look for different HTTP streams that have flown during the network activity:  HTML, JavaScript,  image traffic, 302 redirections, non-HTTP streams, Java Archive downloads, etc. A possible filter is:</p>
-<div class="highlight"><pre>http
+<div class="highlight"><pre><span class="n">http</span>
 </pre></div>
 
 
 <p>You can also look at different GET requests  with:</p>
-<div class="highlight"><pre>tcp contains &quot;GET&quot;
+<div class="highlight"><pre><span class="n">tcp</span> <span class="n">contains</span> <span class="s">&quot;GET&quot;</span>
 </pre></div>
 
 
@@ -801,7 +800,7 @@ a network, it would be assigned an address by hand.</p>
 <p>When a MAC address is not in the cache list, ARP broadcasts a packet asking which IP address owns some MAC address. The destination machine replies to the packet with its MAC address via an ARP reply (as we have learned above). So,  at this point, the transmitting computer has the data link layer addressing the information it needs to communicate with the remote computer. This information is then stored into the ARP cache.</p>
 <p>An attacker can spoof this process by  sending ARP messages to an Ethernet switch or router with fake MAC  addresses in order to intercept the traffic of another computer.</p>
 <p>In Linux, ARP spoofing can be done with <a href="http://www.irongeek.com/i.php?page=security/arpspoof">arpspoof or Ettercap</a>. For instance, if  your wlan0 is at 192.168.0.10 and the router is at 192.168.0.1, you can run:</p>
-<div class="highlight"><pre><span class="nv">$ </span>arpspoof -i wlan0 -t 192.168.0.10 192.168.0.1
+<div class="highlight"><pre><span class="err">$</span> <span class="n">arpspoof</span> <span class="o">-</span><span class="n">i</span> <span class="n">wlan0</span> <span class="o">-</span><span class="n">t</span> <span class="mf">192.168.0.10</span> <span class="mf">192.168.0.1</span>
 </pre></div>
 
 
@@ -832,18 +831,18 @@ a network, it would be assigned an address by hand.</p>
 </li>
 </ul>
 <p>To access the wireless extensions in Linux you can type:</p>
-<div class="highlight"><pre><span class="nv">$ </span>iwconfig
+<div class="highlight"><pre><span class="err">$</span> <span class="n">iwconfig</span>
 </pre></div>
 
 
 <p>To change the interface (for example eth1) to monitor mode, you type:</p>
-<div class="highlight"><pre><span class="nv">$ </span>iwconfig eth1 mode monitor
-<span class="nv">$ </span>iwconfig eth1 up
+<div class="highlight"><pre><span class="err">$</span> <span class="n">iwconfig</span> <span class="n">eth1</span> <span class="n">mode</span> <span class="n">monitor</span>
+<span class="err">$</span> <span class="n">iwconfig</span> <span class="n">eth1</span> <span class="n">up</span>
 </pre></div>
 
 
 <p>To change the channel of the interface:</p>
-<div class="highlight"><pre><span class="nv">$ </span>iwconfig eth<span class="sb">`</span> channel 4
+<div class="highlight"><pre><span class="err">$</span> <span class="n">iwconfig</span> <span class="n">eth</span><span class="err">`</span> <span class="n">channel</span> <span class="mi">4</span>
 </pre></div>
 
 
@@ -930,6 +929,506 @@ a network, it would be assigned an address by hand.</p>
 
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xss.html">
+        <i class="icon-tag icon-large"></i>XSS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/aes.html">
+        <i class="icon-tag icon-large"></i>AES
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ifconfig.html">
+        <i class="icon-tag icon-large"></i>ifconfig
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vmware.html">
+        <i class="icon-tag icon-large"></i>VMWare
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow.html">
+        <i class="icon-tag icon-large"></i>Stack_overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/exiftool.html">
+        <i class="icon-tag icon-large"></i>ExifTool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gpg.html">
+        <i class="icon-tag icon-large"></i>GPG
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>Chrome
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/binary_search.html">
+        <i class="icon-tag icon-large"></i>Binary_Search
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/netcat.html">
+        <i class="icon-tag icon-large"></i>netcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arpspoof.html">
+        <i class="icon-tag icon-large"></i>arpspoof
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crlsets.html">
+        <i class="icon-tag icon-large"></i>CRLSets
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/packet_header.html">
+        <i class="icon-tag icon-large"></i>packet_header
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/sniffing.html">
+        <i class="icon-tag icon-large"></i>sniffing
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tls.html">
+        <i class="icon-tag icon-large"></i>TLS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/kismet.html">
+        <i class="icon-tag icon-large"></i>Kismet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/book.html">
+        <i class="icon-tag icon-large"></i>Book
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/stripe.html">
+        <i class="icon-tag icon-large"></i>Stripe
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
+        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/nosql.html">
+        <i class="icon-tag icon-large"></i>NoSQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_poisining.html">
+        <i class="icon-tag icon-large"></i>ARP_poisining
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/csrf.html">
+        <i class="icon-tag icon-large"></i>CSRF
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/brute_force.html">
+        <i class="icon-tag icon-large"></i>Brute_Force
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/reverse_shell-netcat.html">
+        <i class="icon-tag icon-large"></i>Reverse_shell netcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/icmp.html">
+        <i class="icon-tag icon-large"></i>ICMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bytecode.html">
+        <i class="icon-tag icon-large"></i>bytecode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/traceroute.html">
+        <i class="icon-tag icon-large"></i>traceroute
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_spoofing.html">
+        <i class="icon-tag icon-large"></i>ARP_spoofing
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/timing_attack.html">
+        <i class="icon-tag icon-large"></i>Timing_attack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/redis.html">
+        <i class="icon-tag icon-large"></i>Redis
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/netsh.html">
+        <i class="icon-tag icon-large"></i>netsh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cain__abel.html">
+        <i class="icon-tag icon-large"></i>Cain_&_Abel
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/threading.html">
+        <i class="icon-tag icon-large"></i>threading
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pcap.html">
+        <i class="icon-tag icon-large"></i>PCAP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ecb.html">
+        <i class="icon-tag icon-large"></i>ECB
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp.html">
+        <i class="icon-tag icon-large"></i>ARP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ltrace.html">
+        <i class="icon-tag icon-large"></i>ltrace
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellcode.html">
+        <i class="icon-tag icon-large"></i>shellcode
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>SSH
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rce.html">
+        <i class="icon-tag icon-large"></i>RCE
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crl.html">
+        <i class="icon-tag icon-large"></i>CRL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/udp.html">
+        <i class="icon-tag icon-large"></i>UDP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jit.html">
+        <i class="icon-tag icon-large"></i>JIT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burp.html">
+        <i class="icon-tag icon-large"></i>Burp
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/getopt.html">
+        <i class="icon-tag icon-large"></i>getopt
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cache.html">
+        <i class="icon-tag icon-large"></i>cache
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tcp.html">
+        <i class="icon-tag icon-large"></i>TCP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>Nmap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/proxy.html">
+        <i class="icon-tag icon-large"></i>proxy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pycrypto.html">
+        <i class="icon-tag icon-large"></i>PyCrypto
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/unicode.html">
+        <i class="icon-tag icon-large"></i>Unicode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ocsp.html">
+        <i class="icon-tag icon-large"></i>OCSP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/paillier.html">
+        <i class="icon-tag icon-large"></i>Paillier
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/subprocess.html">
+        <i class="icon-tag icon-large"></i>subprocess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iwconfig.html">
+        <i class="icon-tag icon-large"></i>iwconfig
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cms.html">
+        <i class="icon-tag icon-large"></i>CMS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ettercap.html">
+        <i class="icon-tag icon-large"></i>Ettercap
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
 
 
 </ul>

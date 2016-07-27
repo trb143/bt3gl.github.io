@@ -69,9 +69,8 @@
                           <ul class="nav pull-right">
                                 <li><a href="http://bt3gl.github.io/authors.html">About</a></li>
                                 <li><a href="https://github.com/bt3gl">GitHub</a></li>
-                                <li><a href="https://twitter.com/_b_t_3_">Twitter</a></li>
-                                <li><a href="https://coderwall.com/p/kubxjq?i=11&p=2&q=author%3Abt3gl&t%5B%5D=bt3gl">CodeWall</a></li>
-                                <li><a href="projects_page/index.html">Projects</a></li>
+                                <li><a href="https://twitter.com/1bt337">Twitter</a></li>
+                                <li><a href="http://bt3gl.github.io/projects_page/index.html">Ph.D.</a></li>
                                 <li><a href="http://bt3gl.github.io/archives.html"><b>Archives</b></a></li>
 
                           </ul>
@@ -100,7 +99,7 @@
                 <div class="entry-content">
                 <div class="well">
 <footer class="post-info">
-<abbr class="published" title="2014-12-22T00:00:00-05:00">
+<abbr class="published" title="2014-12-22T00:00:00">
       Mon 22 December 2014 </abbr>
 
 <span class="label"> Category</span>
@@ -131,7 +130,7 @@ Welcome to Scapy <span class="o">(</span>2.2.0<span class="o">)</span>
 &gt;&gt;&gt; ls<span class="o">()</span>    ---&gt; list protocols/layers
 &gt;&gt;&gt; lsc<span class="o">()</span>   ---&gt; list commands
 &gt;&gt;&gt; conf    ---&gt; Display configurations
-&gt;&gt;&gt; <span class="nb">help</span><span class="o">(</span>sniff<span class="o">)</span>     --&gt; Help <span class="k">for</span> a specific <span class="nb">command</span>
+&gt;&gt;&gt; <span class="nb">help</span><span class="o">(</span>sniff<span class="o">)</span>     --&gt; Help <span class="k">for </span>a specific <span class="nb">command</span>
 </pre></div>
 
 
@@ -186,26 +185,26 @@ Welcome to Scapy <span class="o">(</span>2.2.0<span class="o">)</span>
 
 
 <p>We could even go further, adding <em>layer 2 protocols</em> such as <strong>Ethernet</strong> or <strong>IEEE 802.11</strong>:</p>
-<div class="highlight"><pre>&gt;&gt;&gt; Ether()/Dot1Q()/IP()
-&lt;Ether  type=0x8100 |&lt;Dot1Q  type=0x800 |&lt;IP  |&gt;&gt;&gt;
-&gt;&gt;&gt; Dot11()/IP()
-&lt;Dot11  |&lt;IP  |&gt;&gt;
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">Ether</span><span class="p">()</span><span class="o">/</span><span class="n">Dot1Q</span><span class="p">()</span><span class="o">/</span><span class="n">IP</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="n">Ether</span>  <span class="n">type</span><span class="o">=</span><span class="mh">0x8100</span> <span class="o">|&lt;</span><span class="n">Dot1Q</span>  <span class="n">type</span><span class="o">=</span><span class="mh">0x800</span> <span class="o">|&lt;</span><span class="n">IP</span>  <span class="o">|&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Dot11</span><span class="p">()</span><span class="o">/</span><span class="n">IP</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="n">Dot11</span>  <span class="o">|&lt;</span><span class="n">IP</span>  <span class="o">|&gt;&gt;</span>
 </pre></div>
 
 
 <h3>Sending a Packet: Layer 2 vs. Layer 3</h3>
 <p>Now that we have a (very simple) packet, we can send it over the wire.</p>
 <p>Scapy's method <a href="http://www.secdev.org/projects/scapy/doc/usage.html#sending-packets">send</a>  is used to send a single packet to the IP destination. This is a <em>layer 3</em> operation, so  the route is based on the local table:</p>
-<div class="highlight"><pre>&gt;&gt;&gt; send(ip/tcp)
-.
-Sent 1 packets.
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">send</span><span class="p">(</span><span class="n">ip</span><span class="o">/</span><span class="n">tcp</span><span class="p">)</span>
+<span class="p">.</span>
+<span class="n">Sent</span> <span class="mi">1</span> <span class="n">packets</span><span class="p">.</span>
 </pre></div>
 
 
 <p>In another hand, Scapy's method <a href="http://www.secdev.org/projects/scapy/doc/usage.html#sending-packets">sendp</a> works in the <em>layer 2</em>:</p>
-<div class="highlight"><pre>&gt;&gt;&gt; sendp(Ether()/ip/tcp)
-.
-Sent 1 packets.
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">sendp</span><span class="p">(</span><span class="n">Ether</span><span class="p">()</span><span class="o">/</span><span class="n">ip</span><span class="o">/</span><span class="n">tcp</span><span class="p">)</span>
+<span class="p">.</span>
+<span class="n">Sent</span> <span class="mi">1</span> <span class="n">packets</span><span class="p">.</span>
 </pre></div>
 
 
@@ -221,7 +220,7 @@ Sent 1 packets.
 <p>Notice that the method <strong>show()</strong> displays details about the packet. Running the snippet above gives:</p>
 <div class="highlight"><pre><span class="nv">$ </span>sudo python send_packet.py
 .
-Sent <span class="m">1</span> packets.
+Sent 1 packets.
 <span class="c">###[ IP ]###</span>
   <span class="nv">version</span>   <span class="o">=</span> 4
   <span class="nv">ihl</span>       <span class="o">=</span> None
@@ -280,15 +279,15 @@ Sent <span class="m">1</span> packets.
 <p>Running the above snippet results in:</p>
 <div class="highlight"><pre><span class="nv">$ </span>sudo python receive_packet.py
 Begin emission:
-.Finished to send <span class="m">1</span> packets.
+.Finished to send 1 packets.
 *
-Received <span class="m">2</span> packets, got <span class="m">1</span> answers, remaining <span class="m">0</span> packets
+Received 2 packets, got 1 answers, remaining 0 packets
 
 Output is:
 <span class="o">(</span>&lt;Results: TCP:0 UDP:0 ICMP:1 Other:0&gt;, &lt;Unanswered: TCP:0 UDP:0 ICMP:0 Other:0&gt;<span class="o">)</span>
 
 Result is:
-<span class="o">[(</span>&lt;IP  <span class="nv">frag</span><span class="o">=</span><span class="m">0</span> <span class="nv">proto</span><span class="o">=</span>icmp <span class="nv">dst</span><span class="o">=</span>74.125.228.40 <span class="p">|</span>&lt;ICMP  <span class="p">|</span>&gt;&gt;, &lt;IP  <span class="nv">version</span><span class="o">=</span>4L <span class="nv">ihl</span><span class="o">=</span>5L <span class="nv">tos</span><span class="o">=</span>0x0 <span class="nv">len</span><span class="o">=</span><span class="m">28</span> <span class="nv">id</span><span class="o">=</span><span class="m">9762</span> <span class="nv">flags</span><span class="o">=</span> <span class="nv">frag</span><span class="o">=</span>0L <span class="nv">ttl</span><span class="o">=</span><span class="m">53</span> <span class="nv">proto</span><span class="o">=</span>icmp <span class="nv">chksum</span><span class="o">=</span>0x6eff <span class="nv">src</span><span class="o">=</span>74.125.228.40 <span class="nv">dst</span><span class="o">=</span>192.168.1.114 <span class="nv">options</span><span class="o">=[]</span> <span class="p">|</span>&lt;ICMP  <span class="nb">type</span><span class="o">=</span><span class="nb">echo</span>-reply <span class="nv">code</span><span class="o">=</span><span class="m">0</span> <span class="nv">chksum</span><span class="o">=</span>0x0 <span class="nv">id</span><span class="o">=</span>0x0 <span class="nv">seq</span><span class="o">=</span>0x0 <span class="p">|</span>&gt;&gt;<span class="o">)]</span>
+<span class="o">[(</span>&lt;IP  <span class="nv">frag</span><span class="o">=</span>0 <span class="nv">proto</span><span class="o">=</span>icmp <span class="nv">dst</span><span class="o">=</span>74.125.228.40 |&lt;ICMP  |&gt;&gt;, &lt;IP  <span class="nv">version</span><span class="o">=</span>4L <span class="nv">ihl</span><span class="o">=</span>5L <span class="nv">tos</span><span class="o">=</span>0x0 <span class="nv">len</span><span class="o">=</span>28 <span class="nv">id</span><span class="o">=</span>9762 <span class="nv">flags</span><span class="o">=</span> <span class="nv">frag</span><span class="o">=</span>0L <span class="nv">ttl</span><span class="o">=</span>53 <span class="nv">proto</span><span class="o">=</span>icmp <span class="nv">chksum</span><span class="o">=</span>0x6eff <span class="nv">src</span><span class="o">=</span>74.125.228.40 <span class="nv">dst</span><span class="o">=</span>192.168.1.114 <span class="nv">options</span><span class="o">=[]</span> |&lt;ICMP  <span class="nb">type</span><span class="o">=</span><span class="nb">echo</span>-reply <span class="nv">code</span><span class="o">=</span>0 <span class="nv">chksum</span><span class="o">=</span>0x0 <span class="nv">id</span><span class="o">=</span>0x0 <span class="nv">seq</span><span class="o">=</span>0x0 |&gt;&gt;<span class="o">)]</span>
 </pre></div>
 
 
@@ -299,7 +298,7 @@ RECV 1: IP / ICMP 74.125.228.51 &gt; 192.168.1.114 <span class="nb">echo</span>-
 RECV 1: IP / ICMP 74.125.228.51 &gt; 192.168.1.114 <span class="nb">echo</span>-reply 0
 RECV 1: IP / ICMP 74.125.228.51 &gt; 192.168.1.114 <span class="nb">echo</span>-reply 0
 
-Sent <span class="m">3</span> packets, received <span class="m">3</span> packets. 100.0% hits.
+Sent 3 packets, received 3 packets. 100.0% hits.
 </pre></div>
 
 
@@ -308,29 +307,29 @@ Sent <span class="m">3</span> packets, received <span class="m">3</span> packets
 <p>Scapy allows you to craft SYN request and match the corresponding returned <a href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol">SYN/ACK</a> segment.</p>
 <p>This is how it works:</p>
 <p>1) we create an instance of an IP header:</p>
-<div class="highlight"><pre>ip = IP(src=&#39;192.168.1.114&#39;, dst=&#39;192.168.1.25&#39;)
+<div class="highlight"><pre><span class="n">ip</span> <span class="o">=</span> <span class="n">IP</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="err">&#39;</span><span class="mf">192.168.1.114</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="err">&#39;</span><span class="mf">192.168.1.25</span><span class="err">&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>2) we define a SYN instance of the TCP header:</p>
-<div class="highlight"><pre>SYN = TCP(sport=1024, dport=80, flags=&#39;S&#39;, seq=12345)
+<div class="highlight"><pre><span class="n">SYN</span> <span class="o">=</span> <span class="n">TCP</span><span class="p">(</span><span class="n">sport</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">dport</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="sc">&#39;S&#39;</span><span class="p">,</span> <span class="n">seq</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
 </pre></div>
 
 
 <p>3) we send this and capture the server's response with  <strong>sr1</strong>:</p>
-<div class="highlight"><pre>packet = ip/SYN
-SYNACK = sr1(packet)
+<div class="highlight"><pre><span class="n">packet</span> <span class="o">=</span> <span class="n">ip</span><span class="o">/</span><span class="n">SYN</span>
+<span class="n">SYNACK</span> <span class="o">=</span> <span class="n">sr1</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
 </pre></div>
 
 
 <p>4) we extract the server's TCP sequence number from the server, with <strong>SYNACK.seq</strong>, and  increment it by 1:</p>
-<div class="highlight"><pre>ack = SYNACK.seq + 1
+<div class="highlight"><pre><span class="n">ack</span> <span class="o">=</span> <span class="n">SYNACK</span><span class="p">.</span><span class="n">seq</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 
 
 <p>5) we create a new instance of the TCP header <strong>ACK</strong>, which now has the flag <strong>A</strong> (placing the acknowledgment  value for the server there) and  we send everything out:</p>
-<div class="highlight"><pre>ACK = TCP(sport=1024, dport=80, flags=&#39;A&#39;, seq=12346, ack=ack)
-send(ip/ACK)
+<div class="highlight"><pre><span class="n">ACK</span> <span class="o">=</span> <span class="n">TCP</span><span class="p">(</span><span class="n">sport</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">dport</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="n">seq</span><span class="o">=</span><span class="mi">12346</span><span class="p">,</span> <span class="n">ack</span><span class="o">=</span><span class="n">ack</span><span class="p">)</span>
+<span class="n">send</span><span class="p">(</span><span class="n">ip</span><span class="o">/</span><span class="n">ACK</span><span class="p">)</span>
 </pre></div>
 
 
@@ -344,7 +343,7 @@ send(ip/ACK)
 <p>However, running the snippet above will not work.</p>
 <p>The reason is that crafting TCP sessions with Scapy circumvents the native TCP/IP stack. Since the host is unaware that Scapy is sending packets, the native host would receive an unsolicited SYN/ACK that is not associated with any known open session/socket. This would result in the host reseting the connection when receiving the SYN/ACK.</p>
 <p>One solution is to use the host's firewall with <a href="http://en.wikipedia.org/wiki/Iptables">iptables</a> to block the outbound resets. For example, to drop all outbound packets that are TCP and destined for IP 192.168.1.25 from 192.168.1.114 to destination port 80, examining the flag bits, we can run:</p>
-<div class="highlight"><pre><span class="nv">$ </span>sudo iptables -A OUTPUT -p tcp -d 192.168.1.25 -s 192.168.1.114 --dport <span class="m">80</span> --tcp-flags RST -j DROP
+<div class="highlight"><pre><span class="nv">$ </span>sudo iptables -A OUTPUT -p tcp -d 192.168.1.25 -s 192.168.1.114 --dport 80 --tcp-flags RST -j DROP
 </pre></div>
 
 
@@ -370,7 +369,7 @@ send(ip/ACK)
 
 
 <p>We can specify filters too:</p>
-<div class="highlight"><pre>&gt;&gt;&gt;&gt; p = sniff(filter=&quot;tcp and (port 25 or port 110)&quot;)
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">sniff</span><span class="p">(</span><span class="n">filter</span><span class="o">=</span><span class="s">&quot;tcp and (port 25 or port 110)&quot;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -391,10 +390,10 @@ send(ip/ACK)
 <hr />
 <h2>Changing a Routing Table</h2>
 <p>To look to the routing table of our machine we can just print the Scapy's command <strong>conf.route</strong>:</p>
-<div class="highlight"><pre>Network         Netmask         Gateway         Iface           Output IP
-127.0.0.0       255.0.0.0       0.0.0.0         lo              127.0.0.1
-0.0.0.0         0.0.0.0         192.168.1.1     wlp1s0          192.168.1.114
-192.168.1.0     255.255.255.0   0.0.0.0         wlp1s0          192.168.1.114
+<div class="highlight"><pre><span class="n">Network</span>         <span class="n">Netmask</span>         <span class="n">Gateway</span>         <span class="n">Iface</span>           <span class="n">Output</span> <span class="n">IP</span>
+<span class="mf">127.0.0.0</span>       <span class="mf">255.0.0.0</span>       <span class="mf">0.0.0.0</span>         <span class="n">lo</span>              <span class="mf">127.0.0.1</span>
+<span class="mf">0.0.0.0</span>         <span class="mf">0.0.0.0</span>         <span class="mf">192.168.1.1</span>     <span class="n">wlp1s0</span>          <span class="mf">192.168.1.114</span>
+<span class="mf">192.168.1.0</span>     <span class="mf">255.255.255.0</span>   <span class="mf">0.0.0.0</span>         <span class="n">wlp1s0</span>          <span class="mf">192.168.1.114</span>
 </pre></div>
 
 
@@ -413,8 +412,8 @@ send(ip/ACK)
 <h2>Other Useful Stuff</h2>
 <h3>Dumping Binary data in Hex form</h3>
 <p>A very useful function  is <a href="https://pypi.python.org/pypi/hexdump">hexdump()</a>, which can be used to display one or more packets using classic hexdump format:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="nb">str</span><span class="p">(</span><span class="n">IP</span><span class="p">())</span>
+<div class="highlight"><pre><span class="n">from</span> <span class="n">scapy</span><span class="p">.</span><span class="n">all</span> <span class="n">import</span> <span class="o">*</span>
+<span class="n">str</span><span class="p">(</span><span class="n">IP</span><span class="p">())</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">Ether</span><span class="p">()</span><span class="o">/</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s">&quot;www.google.com&quot;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">()</span><span class="o">/</span><span class="s">&quot;GET /index.html HTTP/1.1&quot;</span>
 <span class="n">hexdump</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
@@ -422,12 +421,12 @@ send(ip/ACK)
 
 <p>Running this snippet gives:</p>
 <div class="highlight"><pre><span class="nv">$ </span>sudo python example_hexdump.py
-WARNING: No route found <span class="k">for</span> IPv6 destination :: <span class="o">(</span>no default route?<span class="o">)</span>
-<span class="m">0000</span>   <span class="m">00</span> <span class="m">90</span> A9 A3 F1 <span class="m">46</span> A4 <span class="m">17</span>  <span class="m">31</span> E9 B3 <span class="m">27</span> <span class="m">08</span> <span class="m">00</span> <span class="m">45</span> <span class="m">00</span>   .....F..1..<span class="err">&#39;</span>..E.
-<span class="m">0010</span>   <span class="m">00</span> <span class="m">40</span> <span class="m">00</span> <span class="m">01</span> <span class="m">00</span> <span class="m">00</span> <span class="m">40</span> <span class="m">06</span>  8D 0F C0 A8 <span class="m">01</span> <span class="m">72</span> 4A 7D   .@....@......rJ<span class="o">}</span>
-<span class="m">0020</span>   E1 <span class="m">10</span> <span class="m">00</span> <span class="m">14</span> <span class="m">00</span> <span class="m">50</span> <span class="m">00</span> <span class="m">00</span>  <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">50</span> <span class="m">02</span>   .....P........P.
-<span class="m">0030</span>   <span class="m">20</span> <span class="m">00</span> FA <span class="m">15</span> <span class="m">00</span> <span class="m">00</span> <span class="m">47</span> <span class="m">45</span>  <span class="m">54</span> <span class="m">20</span> 2F <span class="m">69</span> 6E <span class="m">64</span> <span class="m">65</span> <span class="m">78</span>    .....GET /index
-<span class="m">0040</span>   2E <span class="m">68</span> <span class="m">74</span> 6D 6C <span class="m">20</span> <span class="m">48</span> <span class="m">54</span>  <span class="m">54</span> <span class="m">50</span> 2F <span class="m">31</span> 2E <span class="m">31</span>         .html HTTP/1.1
+WARNING: No route found <span class="k">for </span>IPv6 destination :: <span class="o">(</span>no default route?<span class="o">)</span>
+0000   00 90 A9 A3 F1 46 A4 17  31 E9 B3 27 08 00 45 00   .....F..1..<span class="err">&#39;</span>..E.
+0010   00 40 00 01 00 00 40 06  8D 0F C0 A8 01 72 4A 7D   .@....@......rJ<span class="o">}</span>
+0020   E1 10 00 14 00 50 00 00  00 00 00 00 00 00 50 02   .....P........P.
+0030   20 00 FA 15 00 00 47 45  54 20 2F 69 6E 64 65 78    .....GET /index
+0040   2E 68 74 6D 6C 20 48 54  54 50 2F 31 2E 31         .html HTTP/1.1
 </pre></div>
 
 
@@ -616,19 +615,19 @@ WARNING: No route found <span class="k">for</span> IPv6 destination :: <span cla
 
 
 <p>To run it, we need to tell the local host machine (Kali Linux) to forward packets along both the gateway and the target IP address:</p>
-<div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo </span><span class="m">1</span> /proc/sys/net/ipv4/ip_foward
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo </span>1 /proc/sys/net/ipv4/ip_foward
 </pre></div>
 
 
 <p>Running this in our attack machine (Kali Linux),</p>
-<div class="highlight"><pre><span class="nv">$ </span>sudo python arp_cache_poisoning.py
-<span class="o">[</span>*<span class="o">]</span> Setting up wlp1s0
-<span class="o">[</span>*<span class="o">]</span> Gateway 192.168.1.1 is at 00:90:a9:a3:f1:46
-<span class="o">[</span>*<span class="o">]</span> Target 192.168.1.107 is at 00:25:9c:b3:87:c4
-<span class="o">[</span>*<span class="o">]</span> Beginning the ARP poison. <span class="o">[</span>CTRL-C to stop<span class="o">]</span>
-<span class="o">[</span>*<span class="o">]</span> Starting sniffer <span class="k">for</span> <span class="m">1000</span> packets
-<span class="o">[</span>*<span class="o">]</span> ARP poison attack finished.
-<span class="o">[</span>*<span class="o">]</span> Restoring targets...
+<div class="highlight"><pre><span class="err">$</span> <span class="n">sudo</span> <span class="n">python</span> <span class="n">arp_cache_poisoning</span><span class="p">.</span><span class="n">py</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Setting</span> <span class="n">up</span> <span class="n">wlp1s0</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Gateway</span> <span class="mf">192.168.1.1</span> <span class="n">is</span> <span class="n">at</span> <span class="mo">00</span><span class="o">:</span><span class="mi">90</span><span class="o">:</span><span class="n">a9</span><span class="o">:</span><span class="n">a3</span><span class="o">:</span><span class="n">f1</span><span class="o">:</span><span class="mi">46</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Target</span> <span class="mf">192.168.1.107</span> <span class="n">is</span> <span class="n">at</span> <span class="mo">00</span><span class="o">:</span><span class="mi">25</span><span class="o">:</span><span class="mi">9</span><span class="n">c</span><span class="o">:</span><span class="n">b3</span><span class="o">:</span><span class="mi">87</span><span class="o">:</span><span class="n">c4</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Beginning</span> <span class="n">the</span> <span class="n">ARP</span> <span class="n">poison</span><span class="p">.</span> <span class="p">[</span><span class="n">CTRL</span><span class="o">-</span><span class="n">C</span> <span class="n">to</span> <span class="n">stop</span><span class="p">]</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Starting</span> <span class="n">sniffer</span> <span class="k">for</span> <span class="mi">1000</span> <span class="n">packets</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">ARP</span> <span class="n">poison</span> <span class="n">attack</span> <span class="n">finished</span><span class="p">.</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Restoring</span> <span class="n">targets</span><span class="p">...</span>
 </pre></div>
 
 
@@ -753,8 +752,8 @@ WARNING: No route found <span class="k">for</span> IPv6 destination :: <span cla
 
 
 <p>Running it results in an output like this:</p>
-<div class="highlight"><pre>Extracted: <span class="m">165</span> images
-Detected: <span class="m">16</span> faces
+<div class="highlight"><pre>Extracted: 165 images
+Detected: 16 faces
 </pre></div>
 
 
@@ -839,6 +838,506 @@ Detected: <span class="m">16</span> faces
 
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xss.html">
+        <i class="icon-tag icon-large"></i>XSS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/aes.html">
+        <i class="icon-tag icon-large"></i>AES
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ifconfig.html">
+        <i class="icon-tag icon-large"></i>ifconfig
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vmware.html">
+        <i class="icon-tag icon-large"></i>VMWare
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow.html">
+        <i class="icon-tag icon-large"></i>Stack_overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/exiftool.html">
+        <i class="icon-tag icon-large"></i>ExifTool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gpg.html">
+        <i class="icon-tag icon-large"></i>GPG
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>Chrome
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/binary_search.html">
+        <i class="icon-tag icon-large"></i>Binary_Search
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/netcat.html">
+        <i class="icon-tag icon-large"></i>netcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arpspoof.html">
+        <i class="icon-tag icon-large"></i>arpspoof
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crlsets.html">
+        <i class="icon-tag icon-large"></i>CRLSets
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/packet_header.html">
+        <i class="icon-tag icon-large"></i>packet_header
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/sniffing.html">
+        <i class="icon-tag icon-large"></i>sniffing
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tls.html">
+        <i class="icon-tag icon-large"></i>TLS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/kismet.html">
+        <i class="icon-tag icon-large"></i>Kismet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/book.html">
+        <i class="icon-tag icon-large"></i>Book
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/stripe.html">
+        <i class="icon-tag icon-large"></i>Stripe
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
+        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/nosql.html">
+        <i class="icon-tag icon-large"></i>NoSQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_poisining.html">
+        <i class="icon-tag icon-large"></i>ARP_poisining
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/csrf.html">
+        <i class="icon-tag icon-large"></i>CSRF
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/brute_force.html">
+        <i class="icon-tag icon-large"></i>Brute_Force
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/reverse_shell-netcat.html">
+        <i class="icon-tag icon-large"></i>Reverse_shell netcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/icmp.html">
+        <i class="icon-tag icon-large"></i>ICMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bytecode.html">
+        <i class="icon-tag icon-large"></i>bytecode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/traceroute.html">
+        <i class="icon-tag icon-large"></i>traceroute
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_spoofing.html">
+        <i class="icon-tag icon-large"></i>ARP_spoofing
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/timing_attack.html">
+        <i class="icon-tag icon-large"></i>Timing_attack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/redis.html">
+        <i class="icon-tag icon-large"></i>Redis
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/netsh.html">
+        <i class="icon-tag icon-large"></i>netsh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cain__abel.html">
+        <i class="icon-tag icon-large"></i>Cain_&_Abel
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/threading.html">
+        <i class="icon-tag icon-large"></i>threading
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pcap.html">
+        <i class="icon-tag icon-large"></i>PCAP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ecb.html">
+        <i class="icon-tag icon-large"></i>ECB
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp.html">
+        <i class="icon-tag icon-large"></i>ARP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ltrace.html">
+        <i class="icon-tag icon-large"></i>ltrace
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellcode.html">
+        <i class="icon-tag icon-large"></i>shellcode
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>SSH
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rce.html">
+        <i class="icon-tag icon-large"></i>RCE
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crl.html">
+        <i class="icon-tag icon-large"></i>CRL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/udp.html">
+        <i class="icon-tag icon-large"></i>UDP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jit.html">
+        <i class="icon-tag icon-large"></i>JIT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burp.html">
+        <i class="icon-tag icon-large"></i>Burp
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/getopt.html">
+        <i class="icon-tag icon-large"></i>getopt
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cache.html">
+        <i class="icon-tag icon-large"></i>cache
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tcp.html">
+        <i class="icon-tag icon-large"></i>TCP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>Nmap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/proxy.html">
+        <i class="icon-tag icon-large"></i>proxy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pycrypto.html">
+        <i class="icon-tag icon-large"></i>PyCrypto
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/unicode.html">
+        <i class="icon-tag icon-large"></i>Unicode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ocsp.html">
+        <i class="icon-tag icon-large"></i>OCSP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/paillier.html">
+        <i class="icon-tag icon-large"></i>Paillier
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/subprocess.html">
+        <i class="icon-tag icon-large"></i>subprocess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iwconfig.html">
+        <i class="icon-tag icon-large"></i>iwconfig
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cms.html">
+        <i class="icon-tag icon-large"></i>CMS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ettercap.html">
+        <i class="icon-tag icon-large"></i>Ettercap
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
 
 
 </ul>

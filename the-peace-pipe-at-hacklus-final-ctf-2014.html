@@ -69,9 +69,8 @@
                           <ul class="nav pull-right">
                                 <li><a href="http://bt3gl.github.io/authors.html">About</a></li>
                                 <li><a href="https://github.com/bt3gl">GitHub</a></li>
-                                <li><a href="https://twitter.com/_b_t_3_">Twitter</a></li>
-                                <li><a href="https://coderwall.com/p/kubxjq?i=11&p=2&q=author%3Abt3gl&t%5B%5D=bt3gl">CodeWall</a></li>
-                                <li><a href="projects_page/index.html">Projects</a></li>
+                                <li><a href="https://twitter.com/1bt337">Twitter</a></li>
+                                <li><a href="http://bt3gl.github.io/projects_page/index.html">Ph.D.</a></li>
                                 <li><a href="http://bt3gl.github.io/archives.html"><b>Archives</b></a></li>
 
                           </ul>
@@ -100,7 +99,7 @@
                 <div class="entry-content">
                 <div class="well">
 <footer class="post-info">
-<abbr class="published" title="2014-10-23T06:30:00-04:00">
+<abbr class="published" title="2014-10-23T06:30:00">
       Thu 23 October 2014 </abbr>
 
 <span class="label"> Category</span>
@@ -113,27 +112,27 @@
                 <p>Last week was the <a href="https://wildwildweb.fluxfingers.net/scoreboard">Hack.lu</a> Final CTF. In this post I  discuss  one of my favorite  crypto problems in that CTF: the "Peace Pipe".</p>
 <h2>Understanding the Problem</h2>
 <p>The problem starts with this weird story:</p>
-<div class="highlight"><pre>After a long day, you sit around a campfire in the wild wild web with a few Sioux you met today.
-To celebrate friendship one of them takes out his wooden peace pipe and minutes later everyone seems to be pretty dizzy.
-You remember that their war chief &quot;Makawee&quot; started something to say about a secret tipi filled with fire-water (the good stuff). But when he noticed your interest he immediately stopped talking.
-You recall that &quot;Makawee&quot; spoke with &quot;Wahkoowah&quot; about that issue, but it ended with a fight.
-Since then Makawee wouldnt talk to Wahkoowah anymore. While they argued &quot;Chapawee&quot; wrote something down.
-Maybe you can exploit their dizzyness to find out the location of the tipi.
+<div class="highlight"><pre><span class="n">After</span> <span class="n">a</span> <span class="kt">long</span> <span class="n">day</span><span class="p">,</span> <span class="n">you</span> <span class="n">sit</span> <span class="n">around</span> <span class="n">a</span> <span class="n">campfire</span> <span class="n">in</span> <span class="n">the</span> <span class="n">wild</span> <span class="n">wild</span> <span class="n">web</span> <span class="n">with</span> <span class="n">a</span> <span class="n">few</span> <span class="n">Sioux</span> <span class="n">you</span> <span class="n">met</span> <span class="n">today</span><span class="p">.</span>
+<span class="n">To</span> <span class="n">celebrate</span> <span class="n">friendship</span> <span class="n">one</span> <span class="n">of</span> <span class="n">them</span> <span class="n">takes</span> <span class="n">out</span> <span class="n">his</span> <span class="n">wooden</span> <span class="n">peace</span> <span class="n">pipe</span> <span class="n">and</span> <span class="n">minutes</span> <span class="n">later</span> <span class="n">everyone</span> <span class="n">seems</span> <span class="n">to</span> <span class="n">be</span> <span class="n">pretty</span> <span class="n">dizzy</span><span class="p">.</span>
+<span class="n">You</span> <span class="n">remember</span> <span class="n">that</span> <span class="n">their</span> <span class="n">war</span> <span class="n">chief</span> <span class="s">&quot;Makawee&quot;</span> <span class="n">started</span> <span class="n">something</span> <span class="n">to</span> <span class="n">say</span> <span class="n">about</span> <span class="n">a</span> <span class="n">secret</span> <span class="n">tipi</span> <span class="n">filled</span> <span class="n">with</span> <span class="n">fire</span><span class="o">-</span><span class="n">water</span> <span class="p">(</span><span class="n">the</span> <span class="n">good</span> <span class="n">stuff</span><span class="p">).</span> <span class="n">But</span> <span class="n">when</span> <span class="n">he</span> <span class="n">noticed</span> <span class="n">your</span> <span class="n">interest</span> <span class="n">he</span> <span class="n">immediately</span> <span class="n">stopped</span> <span class="n">talking</span><span class="p">.</span>
+<span class="n">You</span> <span class="n">recall</span> <span class="n">that</span> <span class="s">&quot;Makawee&quot;</span> <span class="n">spoke</span> <span class="n">with</span> <span class="s">&quot;Wahkoowah&quot;</span> <span class="n">about</span> <span class="n">that</span> <span class="n">issue</span><span class="p">,</span> <span class="n">but</span> <span class="n">it</span> <span class="n">ended</span> <span class="n">with</span> <span class="n">a</span> <span class="n">fight</span><span class="p">.</span>
+<span class="n">Since</span> <span class="n">then</span> <span class="n">Makawee</span> <span class="n">wouldnt</span> <span class="n">talk</span> <span class="n">to</span> <span class="n">Wahkoowah</span> <span class="n">anymore</span><span class="p">.</span> <span class="n">While</span> <span class="n">they</span> <span class="n">argued</span> <span class="s">&quot;Chapawee&quot;</span> <span class="n">wrote</span> <span class="n">something</span> <span class="n">down</span><span class="p">.</span>
+<span class="n">Maybe</span> <span class="n">you</span> <span class="n">can</span> <span class="n">exploit</span> <span class="n">their</span> <span class="n">dizzyness</span> <span class="n">to</span> <span class="n">find</span> <span class="n">out</span> <span class="n">the</span> <span class="n">location</span> <span class="n">of</span> <span class="n">the</span> <span class="n">tipi</span><span class="p">.</span>
 </pre></div>
 
 
 <p>Then it gives us three <em>ports</em> in the <em>host</em>. With the first one, we  talk to <strong>Chapawee</strong>:</p>
-<div class="highlight"><pre>wildwildweb.fluxfingers.net 1432
+<div class="highlight"><pre><span class="n">wildwildweb</span><span class="p">.</span><span class="n">fluxfingers</span><span class="p">.</span><span class="n">net</span> <span class="mi">1432</span>
 </pre></div>
 
 
 <p>With the second, we talk to <strong>Wankoowah</strong>:</p>
-<div class="highlight"><pre>wildwildweb.fluxfingers.net 1433
+<div class="highlight"><pre><span class="n">wildwildweb</span><span class="p">.</span><span class="n">fluxfingers</span><span class="p">.</span><span class="n">net</span> <span class="mi">1433</span>
 </pre></div>
 
 
 <p>Finally, with the third, we talk to <strong>Makawee</strong>:</p>
-<div class="highlight"><pre>wildwildweb.fluxfingers.net 1434
+<div class="highlight"><pre><span class="n">wildwildweb</span><span class="p">.</span><span class="n">fluxfingers</span><span class="p">.</span><span class="n">net</span> <span class="mi">1434</span>
 </pre></div>
 
 
@@ -142,7 +141,7 @@ Maybe you can exploit their dizzyness to find out the location of the tipi.
 <p>When we <em>netcat</em> to <strong>Chapawee</strong> he answers:</p>
 <div class="highlight"><pre><span class="nv">$ </span> nc wildwildweb.fluxfingers.net 1432
 Hi I<span class="err">&#39;</span>m Chapawee. I know the truth about the stars
-Say stars <span class="k">for</span> more
+Say stars <span class="k">for </span>more
 </pre></div>
 
 
@@ -199,7 +198,7 @@ This is your key of truth
 50e7e1957c1786a9442f0c9f372ec19f74f52839e9e38849b47438153f9d2483213a43ad2d988fab4a8707922060aaefe6504a70637596fbcf9d58362b23e5d5e2177fd4e919b80437bab51eda931e065b6d66fce343d7cb2b7c1ca26214792d461895095ae58354af0dec6e63869007e23835892f26aabc96fe3d9084a829b4d6c5b92c6f3e0dd9a70cbd5c72d6434f2b94d21c3b0c58a288c140642b813ffb1b632bc358b3a6af0124902acd8792202c848de7f9d5d98bee51ca69040c8a2457ad3fa6276d6510701b9a875df612e035322cad06579a0a11f5e7cb4ebb7b69171c38585fc0f4fe07b0c889442397029d05dc801026a0648d7aa8c847420e9c
 With magic I did this:
 922a7f4b150eb83eab929e2a44bcbbb45435851262a6e7b84d2777d995ffbc315a2e57a580f4982797b45efde6d30b493880ecea33fe26e6c8ff636b75b7cb3f647f0c6f606249bc48ef09bd20738cf472bf47c7f52b9e11afcefc1548155637b0d2054d37cd74301e534208408074938ae4e7b54ef50fa0a39cb090dd34de7a4040024ba2394bac62262ccda529d2d69effe24338f0ec1b842539d2b89b081fa77a266a7c9f62c25d2a1ee1af3da8054d79d87ae88da61b8333e1fc195d2957341458700a3be70c98e1a8ab35bfe527ff6a2f255c66d753d03c59404993f1ed295a722bf1d0241eec9c01efe06e3cd5b845e84de3d29de17f9b68351bdc2d65
-We <span class="k">continue</span> our conversation, right?
+We <span class="k">continue </span>our conversation, right?
 </pre></div>
 
 
@@ -227,7 +226,7 @@ Ncat: Broken pipe.
 <p>Since Chapawee allows us to add keys to names, let's create some name with Wahkoowah's key (say "mrwhite") and send this to Makawee:</p>
 <div class="highlight"><pre><span class="nv">$ </span>nc wildwildweb.fluxfingers.net 1432
 Hi I<span class="err">&#39;</span>m Chapawee. I know the truth about the stars
-Say stars <span class="k">for</span> more
+Say stars <span class="k">for </span>more
 stars
 
         I can tell you the truth about
@@ -242,7 +241,7 @@ stars
 
 namestar mrwhite 218b783ec5676cbddd378ceb724820444599f22cdcfda0a5a195b3a8fbf4ab5c915703420ad3b84531c54b838b23858fb84fcaf04d4932d4b9ef861c7ae9b635c9d3f56dfb100aa47297afcd94df41efa9f5ecba6483c5328e43ec457027ee4efcecefa094a83945106d7da1878c1f47516c2f2578170eeb36955d8bd16e0d106f9e2effe9debff41e551db4ac2e87bc8a9378d8eadb042bee18f4ad72ab721833a27154a7318b8cbe6f98fb3c82da32d1688fdcdb718fb15d9d5e6276b037cef62d953c09b23ebe90d0b13f61cd1643e5e1b0a433d5e2522ec5a028817891b6df444e983e1e0ff2356044fea67c616dce6b4bd53b17ea8bc51ef816ab8f2d9e
 Add the star to the sky...
-Set the star <span class="k">for</span> mrwhite: 218b783ec5676cbddd378ceb724820444599f22cdcfda0a5a195b3a8fbf4ab5c915703420ad3b84531c54b838b23858fb84fcaf04d4932d4b9ef861c7ae9b635c9d3f56dfb100aa47297afcd94df41efa9f5ecba6483c5328e43ec457027ee4efcecefa094a83945106d7da1878c1f47516c2f2578170eeb36955d8bd16e0d106f9e2effe9debff41e551db4ac2e87bc8a9378d8eadb042bee18f4ad72ab721833a27154a7318b8cbe6f98fb3c82da32d1688fdcdb718fb15d9d5e6276b037cef62d953c09b23ebe90d0b13f61cd1643e5e1b0a433d5e2522ec5a028817891b6df444e983e1e0ff2356044fea67c616dce6b4bd53b17ea8bc51ef816ab8f2d9e
+Set the star <span class="k">for </span>mrwhite: 218b783ec5676cbddd378ceb724820444599f22cdcfda0a5a195b3a8fbf4ab5c915703420ad3b84531c54b838b23858fb84fcaf04d4932d4b9ef861c7ae9b635c9d3f56dfb100aa47297afcd94df41efa9f5ecba6483c5328e43ec457027ee4efcecefa094a83945106d7da1878c1f47516c2f2578170eeb36955d8bd16e0d106f9e2effe9debff41e551db4ac2e87bc8a9378d8eadb042bee18f4ad72ab721833a27154a7318b8cbe6f98fb3c82da32d1688fdcdb718fb15d9d5e6276b037cef62d953c09b23ebe90d0b13f61cd1643e5e1b0a433d5e2522ec5a028817891b6df444e983e1e0ff2356044fea67c616dce6b4bd53b17ea8bc51ef816ab8f2d9e
 </pre></div>
 
 
@@ -250,7 +249,7 @@ Set the star <span class="k">for</span> mrwhite: 218b783ec5676cbddd378ceb7248204
 <div class="highlight"><pre><span class="nv">$ </span>nc wildwildweb.fluxfingers.net 1434
 Hi, I<span class="err">&#39;</span>m, Makawee, and you are? Too bright here...
 mrwhite
-mrwhite ... <span class="k">do</span> I know you?
+mrwhite ... <span class="k">do </span>I know you?
 Disguise does not <span class="nb">help</span>
 </pre></div>
 
@@ -406,6 +405,506 @@ flag<span class="o">{</span>FreeBoozeForEverone-Party!<span class="o">}</span>
 
 <li class="nav-header"><h4>Tags</h4></li>
 <ul class="tagcloud">
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rot13.html">
+        <i class="icon-tag icon-large"></i>ROT13
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xss.html">
+        <i class="icon-tag icon-large"></i>XSS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/aes.html">
+        <i class="icon-tag icon-large"></i>AES
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/socket.html">
+        <i class="icon-tag icon-large"></i>socket
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/rfi.html">
+        <i class="icon-tag icon-large"></i>RFI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/outguess.html">
+        <i class="icon-tag icon-large"></i>OutGuess
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pygenere.html">
+        <i class="icon-tag icon-large"></i>pygenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ifconfig.html">
+        <i class="icon-tag icon-large"></i>ifconfig
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/lfi.html">
+        <i class="icon-tag icon-large"></i>LFI
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/vigenere.html">
+        <i class="icon-tag icon-large"></i>Vigenere
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/apphp.html">
+        <i class="icon-tag icon-large"></i>ApPHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/vmware.html">
+        <i class="icon-tag icon-large"></i>VMWare
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow.html">
+        <i class="icon-tag icon-large"></i>Stack_overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mem.html">
+        <i class="icon-tag icon-large"></i>mem
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/javascript.html">
+        <i class="icon-tag icon-large"></i>JavaScript
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/exiftool.html">
+        <i class="icon-tag icon-large"></i>ExifTool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/gpg.html">
+        <i class="icon-tag icon-large"></i>GPG
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>Chrome
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/binary_search.html">
+        <i class="icon-tag icon-large"></i>Binary_Search
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pdf-parser.html">
+        <i class="icon-tag icon-large"></i>pdf-parser
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/netcat.html">
+        <i class="icon-tag icon-large"></i>netcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arpspoof.html">
+        <i class="icon-tag icon-large"></i>arpspoof
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/buffer_overflow.html">
+        <i class="icon-tag icon-large"></i>Buffer_overflow
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crlsets.html">
+        <i class="icon-tag icon-large"></i>CRLSets
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/gdb.html">
+        <i class="icon-tag icon-large"></i>gdb
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/c.html">
+        <i class="icon-tag icon-large"></i>C
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/packet_header.html">
+        <i class="icon-tag icon-large"></i>packet_header
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellshock.html">
+        <i class="icon-tag icon-large"></i>Shellshock
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/sniffing.html">
+        <i class="icon-tag icon-large"></i>sniffing
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/assembly.html">
+        <i class="icon-tag icon-large"></i>assembly
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tls.html">
+        <i class="icon-tag icon-large"></i>TLS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/decimal.html">
+        <i class="icon-tag icon-large"></i>Decimal
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/telnet.html">
+        <i class="icon-tag icon-large"></i>telnet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/sql_injection.html">
+        <i class="icon-tag icon-large"></i>SQL_injection
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/kismet.html">
+        <i class="icon-tag icon-large"></i>Kismet
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/xor.html">
+        <i class="icon-tag icon-large"></i>XOR
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/book.html">
+        <i class="icon-tag icon-large"></i>Book
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/stripe.html">
+        <i class="icon-tag icon-large"></i>Stripe
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/qpdf.html">
+        <i class="icon-tag icon-large"></i>qpdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/love.html">
+        <i class="icon-tag icon-large"></i>Love
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/stack_overflow-nop.html">
+        <i class="icon-tag icon-large"></i>Stack_Overflow NOP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/scapy.html">
+        <i class="icon-tag icon-large"></i>scapy
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/php.html">
+        <i class="icon-tag icon-large"></i>PHP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bash.html">
+        <i class="icon-tag icon-large"></i>Bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/nosql.html">
+        <i class="icon-tag icon-large"></i>NoSQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_poisining.html">
+        <i class="icon-tag icon-large"></i>ARP_poisining
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/base64.html">
+        <i class="icon-tag icon-large"></i>base64
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/csrf.html">
+        <i class="icon-tag icon-large"></i>CSRF
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/command_injection.html">
+        <i class="icon-tag icon-large"></i>Command_Injection
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/steganography.html">
+        <i class="icon-tag icon-large"></i>Steganography
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/wargames.html">
+        <i class="icon-tag icon-large"></i>Wargames
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/brute_force.html">
+        <i class="icon-tag icon-large"></i>Brute_Force
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/reverse_shell-netcat.html">
+        <i class="icon-tag icon-large"></i>Reverse_shell netcat
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/icmp.html">
+        <i class="icon-tag icon-large"></i>ICMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/bytecode.html">
+        <i class="icon-tag icon-large"></i>bytecode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/traceroute.html">
+        <i class="icon-tag icon-large"></i>traceroute
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp_spoofing.html">
+        <i class="icon-tag icon-large"></i>ARP_spoofing
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>FTP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/timing_attack.html">
+        <i class="icon-tag icon-large"></i>Timing_attack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/coldfusion.html">
+        <i class="icon-tag icon-large"></i>ColdFusion
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/redis.html">
+        <i class="icon-tag icon-large"></i>Redis
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/netsh.html">
+        <i class="icon-tag icon-large"></i>netsh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cain__abel.html">
+        <i class="icon-tag icon-large"></i>Cain_&_Abel
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/threading.html">
+        <i class="icon-tag icon-large"></i>threading
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pcap.html">
+        <i class="icon-tag icon-large"></i>PCAP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ecb.html">
+        <i class="icon-tag icon-large"></i>ECB
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/ctf.html">
+        <i class="icon-tag icon-large"></i>CTF
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/wireshark.html">
+        <i class="icon-tag icon-large"></i>Wireshark
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/arp.html">
+        <i class="icon-tag icon-large"></i>ARP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/lamp.html">
+        <i class="icon-tag icon-large"></i>LAMP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ltrace.html">
+        <i class="icon-tag icon-large"></i>ltrace
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burpsuite.html">
+        <i class="icon-tag icon-large"></i>BurpSuite
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/pgp.html">
+        <i class="icon-tag icon-large"></i>PGP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/shellcode.html">
+        <i class="icon-tag icon-large"></i>shellcode
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>SSH
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/rce.html">
+        <i class="icon-tag icon-large"></i>RCE
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/crl.html">
+        <i class="icon-tag icon-large"></i>CRL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/udp.html">
+        <i class="icon-tag icon-large"></i>UDP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jit.html">
+        <i class="icon-tag icon-large"></i>JIT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/jad.html">
+        <i class="icon-tag icon-large"></i>jad
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/burp.html">
+        <i class="icon-tag icon-large"></i>Burp
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/getopt.html">
+        <i class="icon-tag icon-large"></i>getopt
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cache.html">
+        <i class="icon-tag icon-large"></i>cache
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/tcp.html">
+        <i class="icon-tag icon-large"></i>TCP
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>Nmap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/proxy.html">
+        <i class="icon-tag icon-large"></i>proxy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/mysql.html">
+        <i class="icon-tag icon-large"></i>MySQL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/pycrypto.html">
+        <i class="icon-tag icon-large"></i>PyCrypto
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://bt3gl.github.io/tag/tr.html">
+        <i class="icon-tag icon-large"></i>tr
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://bt3gl.github.io/tag/sqli.html">
+        <i class="icon-tag icon-large"></i>SQLi
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/unicode.html">
+        <i class="icon-tag icon-large"></i>Unicode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ocsp.html">
+        <i class="icon-tag icon-large"></i>OCSP
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/paillier.html">
+        <i class="icon-tag icon-large"></i>Paillier
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/subprocess.html">
+        <i class="icon-tag icon-large"></i>subprocess
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/iwconfig.html">
+        <i class="icon-tag icon-large"></i>iwconfig
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/cms.html">
+        <i class="icon-tag icon-large"></i>CMS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://bt3gl.github.io/tag/ettercap.html">
+        <i class="icon-tag icon-large"></i>Ettercap
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://bt3gl.github.io/tag/csaw.html">
+        <i class="icon-tag icon-large"></i>CSAW
+    </a>
+</li>
 
 
 </ul>

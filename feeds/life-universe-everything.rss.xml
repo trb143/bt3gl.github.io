@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Higher Bytes by bt3</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/life-universe-everything.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 04 Jul 2015 02:00:00 -0400</lastBuildDate><item><title>Little Terminal Hack</title><link>http://bt3gl.github.io/little-terminal-hack.html</link><description>&lt;p&gt;Want the date and a clock all the time in the right corner of your terminal?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="k"&gt;while &lt;/span&gt;sleep 1;do tput sc;tput cup 0 &lt;span class="k"&gt;$(($(&lt;/span&gt;tput cols&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="m"&gt;29&lt;/span&gt;&lt;span class="k"&gt;))&lt;/span&gt;;date;tput rc;done &amp;amp;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;:)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">bt3</dc:creator><pubDate>Sat, 04 Jul 2015 02:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2015-07-04:little-terminal-hack.html</guid><category>Linux</category><category>shell</category></item></channel></rss>
