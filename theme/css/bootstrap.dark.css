@@ -392,10 +392,10 @@ dd {
     clear: left;
     /*width: 120px;*/
     text-align: right;
-}
+}/*
 .dl-horizontal dd {
     margin-left: 130px;
-}
+}*/
 hr {
     margin: 40px 0;
     border: 0;
