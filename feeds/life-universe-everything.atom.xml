@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes by bt3</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/life-universe-everything.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2015-07-04T02:00:00-04:00</updated><entry><title>Little Terminal Hack</title><link href="http://bt3gl.github.io/little-terminal-hack.html" rel="alternate"></link><updated>2015-07-04T02:00:00-04:00</updated><author><name>bt3</name></author><id>tag:bt3gl.github.io,2015-07-04:little-terminal-hack.html</id><summary type="html">&lt;p&gt;Want the date and a clock all the time in the right corner of your terminal?&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="k"&gt;while &lt;/span&gt;sleep 1;do tput sc;tput cup 0 &lt;span class="k"&gt;$(($(&lt;/span&gt;tput cols&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="m"&gt;29&lt;/span&gt;&lt;span class="k"&gt;))&lt;/span&gt;;date;tput rc;done &amp;amp;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;:)&lt;/p&gt;</summary><category term="Linux"></category><category term="shell"></category></entry></feed>
