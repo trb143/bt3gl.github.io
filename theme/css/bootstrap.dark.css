@@ -390,7 +390,7 @@ dd {
 .dl-horizontal dt {
     float: left;
     clear: left;
-    width: 120px;
+    /*width: 120px;*/
     text-align: right;
 }
 .dl-horizontal dd {
