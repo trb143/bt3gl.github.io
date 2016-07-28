@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Higher Bytes</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/misc.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 16 Jul 2016 00:00:00 -0400</lastBuildDate><item><title>AI &amp; ML at 28th week of 2016</title><link>http://bt3gl.github.io/ai-ml-at-28th-week-of-2016.html</link><description>&lt;h2&gt;Papers&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://arxiv.org/pdf/1607.02533v1.pdf"&gt;Adversarial Examples in the Physical World&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Articles&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.benjamintd.com/blog/spynet/?utm_campaign=Artificial%2BIntelligence%2BWeekly&amp;amp;utm_medium=web&amp;amp;utm_source=Artificial_Intelligence_Weekly_42"&gt;Teaching an AI to write Python code with Python code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/"&gt;Understanding LSTM Networks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://efavdb.com/deep-learning-with-jupyter-on-aws/"&gt;Starting DL with Jupyter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.google.com/presentation/d/1UeKXVgRvvxg9OUdh_UiC5G71UMscNPlvArsWER41PsU/edit#slide=id.gc2fcdcce7_216_515"&gt;DIY Deep Learning for Vision:  a Hands-On Tutorial with Caffe&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Talks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://icml.cc/2016/tutorials/icml2016_tutorial_deep_residual_networks_kaiminghe.pdf"&gt;Deep Residual Networks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Resources_files/AlphaGo_IJCAI.pdf"&gt;AlphaGo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=XkltShNd6XE"&gt;Prof. Jürgen Schmidhuber - True Artificial Intelligence Will Change Everything&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 16 Jul 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-07-16:ai-ml-at-28th-week-of-2016.html</guid></item></channel></rss>
