@@ -5,7 +5,10 @@
 &lt;p&gt;&lt;a href="http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/"&gt;Neural Networks, Manifolds, and Topology&lt;/a&gt;. This is a 2-years-old article, but a very well-written high-level explanation of the topology of low-dimensional NNs. "&lt;em&gt;The task of a classification algorithm is fundamentally to separate a bunch of tangled manifolds.&lt;/em&gt;"&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="http://colah.github.io/posts/2015-01-Visualizing-Representations/"&gt;Visualizing Representations: Deep Learning and Human Beings.&lt;/a&gt; Another Christopher Olah's great post, now on NN's different layers representations, tanging some philosophic aspects of it.]&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://colah.github.io/posts/2015-01-Visualizing-Representations/"&gt;Visualizing Representations: Deep Learning and Human Beings.&lt;/a&gt; Another Christopher Olah's great post, now on NN's different layers representations, tanging some philosophic aspects of it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://cs.stanford.edu/people/karpathy/cnnembed/"&gt;Karpathy's t-SNE visualization of CNN codes.&lt;/a&gt; He takes the 50k ILSVRC 2012 validation images, extracts the 4096-dimensional fc7 CNN features using Caffe and then uses Barnes-Hut t-SNE to compute a 2-dimensional embedding that respects the high-dimensional (L2) distances. &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Tools&lt;/h2&gt;
@@ -18,7 +21,13 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://download.tensorflow.org/paper/whitepaper2015.pdf"&gt;Tensor Flow Whitepaper, (Abadi, &lt;strong&gt;et al.&lt;/strong&gt; (2014)&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2&gt;Talks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44921.pdf"&gt;Large-Scale Deep Learning for Intelligent Computer Systems by Jeff Dean&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2&gt;Yolo&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
