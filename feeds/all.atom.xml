@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/all.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-07-30T00:00:00-04:00</updated><entry><title>ICYM AI &amp; ML - Week #30 of 2016</title><link href="http://bt3gl.github.io/icym-ai-ml-week-30-of-2016.html" rel="alternate"></link><updated>2016-07-30T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-07-30:icym-ai-ml-week-30-of-2016.html</id><summary type="html">&lt;h2&gt;Articles&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;&lt;a href="http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/"&gt;Neural Networks, Manifolds, and Topology&lt;/a&gt;. This is a 2-years-old article, but a very well-written high-level explanation of the topology of low-dimensional NNs. "&lt;/em&gt;The task of a classification algorithm is fundamentally to separate a bunch of tangled manifolds.*"&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/"&gt;Neural Networks, Manifolds, and Topology&lt;/a&gt;. This is a 2-years-old article, but a very well-written high-level explanation of the topology of low-dimensional NNs. "&lt;em&gt;The task of a classification algorithm is fundamentally to separate a bunch of tangled manifolds.&lt;/em&gt;"&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2&gt;Tools&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://cloud.google.com/blog/big-data/2016/07/understanding-neural-networks-with-tensorflow-playground"&gt;Understanding neural networks with TensorFlow Playground&lt;/a&gt;.  This Playground is fun, see some examples below.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/blog/big-data/2016/07/understanding-neural-networks-with-tensorflow-playground"&gt;Understanding neural networks with TensorFlow Playground&lt;/a&gt;.  &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="http://cs.stanford.edu/people/karpathy/convnetjs//demo/classify2d.html"&gt;Karpathy's viz tool.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://cs.stanford.edu/people/karpathy/convnetjs//demo/classify2d.html"&gt;Karpathy's convnetjs viz tool.&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
@@ -18,16 +20,13 @@
 &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=Ics9CjRSMfc"&gt;Baidu AI Composer&lt;/a&gt;. &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Remember that the hidden layer learns a representation so that the data is linearly separable, so that's is how you do separate a spiral two-dimensional dataset:&lt;/p&gt;
+&lt;p&gt;Remember that the hidden layer learns a representation so that the data is linearly separable, so that's is how you do separate a spiral two-dimensional dataset using Tensorflow playground and Convnetjs:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;With tanh:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="tahn2" height="300px" src="./tensor_flow_playground/tanh2.png" width="400px" /&gt;&lt;br /&gt;
-&lt;img alt="tahn11" height="300px" src="./tensor_flow_playground/tan1.png" width="400px" /&gt;&lt;br /&gt;
-&lt;img alt="tan2" height="300px" src="./tensor_flow_playground/tan2.png" width="400px" /&gt;&lt;br /&gt;
-&lt;img alt="tan3" height="300px" src="./tensor_flow_playground/tan3.png" width="400px" /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img alt="tahn2" height="300px" src="./tensor_flow_playground/tanh2.png" width="400px" /&gt;  &lt;img alt="tahn11" height="300px" src="./tensor_flow_playground/tan1.png" width="400px" /&gt;   &lt;img alt="tan2" height="300px" src="./tensor_flow_playground/tan2.png" width="400px" /&gt;   &lt;img alt="tan3" height="300px" src="./tensor_flow_playground/tan3.png" width="400px" /&gt; &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;With&lt;/span&gt; &lt;span class="n"&gt;ReLU&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
