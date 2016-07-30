@@ -22,13 +22,13 @@
 &lt;/ul&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://download.tensorflow.org/paper/whitepaper2015.pdf"&gt;Tensor Flow Whitepaper, (Abadi, &lt;strong&gt;et al.&lt;/strong&gt; (2014)&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://download.tensorflow.org/paper/whitepaper2015.pdf"&gt;Tensor Flow Whitepaper, (Abadi, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Talks&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44921.pdf"&gt;Large-Scale Deep Learning for Intelligent Computer Systems by Jeff Dean&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Yolo&lt;/h2&gt;
+&lt;h2&gt;&amp;lt;3&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=Ics9CjRSMfc"&gt;Baidu AI Composer&lt;/a&gt;. &lt;/p&gt;
@@ -46,7 +46,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;img alt="linear" height="300px" src="./tensor_flow_playground/linear.png" width="400px" /&gt; &lt;img alt="relu_no" height="300px" src="./tensor_flow_playground/relu_no.png" width="400px" /&gt; &lt;img alt="sigmoid" height="300px" src="./tensor_flow_playground/sigmoid.png" width="400px" /&gt;  &lt;img alt="relu_no2" height="300px" src="./tensor_flow_playground/relu_no2.png" width="400px" /&gt;  &lt;img alt="relu_no3" height="300px" src="./tensor_flow_playground/relu_no3.png" width="400px" /&gt;  &lt;img alt="relu_no4" height="300px" src="./tensor_flow_playground/relu_no4.png" width="400px" /&gt; &lt;/p&gt;</summary></entry><entry><title>ICYM AI &amp; ML - Week #29 of 2016</title><link href="http://bt3gl.github.io/icym-ai-ml-week-29-of-2016.html" rel="alternate"></link><updated>2016-07-23T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-07-23:icym-ai-ml-week-29-of-2016.html</id><summary type="html">&lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://arxiv.org/pdf/1409.4842.pdf"&gt;Going deeper with Convolutions (Szegedy, &lt;strong&gt;et al.&lt;/strong&gt; (2014)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://arxiv.org/pdf/1409.4842.pdf"&gt;Going deeper with Convolutions (Szegedy, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Talks&lt;/h2&gt;
 &lt;ul&gt;
@@ -54,15 +54,15 @@
 &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=yxxRAHVtafI"&gt;The Science of Talking with Computers&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=NK6O8CtI2D4"&gt;Megan Smith: Perspectives on artificial intelligence from the White House&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=NK6O8CtI2D4"&gt;Megan Smith: Perspectives on artificial intelligence from the White House&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=6eBpjEdgSm0"&gt;NVIDIA Deep Learning Course: Class #1 – Introduction to Deep Learning&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=6eBpjEdgSm0"&gt;NVIDIA Deep Learning Course: Class #1 – Introduction to Deep Learning&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Yolo&lt;/h2&gt;
+&lt;h2&gt;&amp;lt;3&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=u2t77mQmJiY"&gt;A genetic algorithm learns how to fight!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=u2t77mQmJiY"&gt;A genetic algorithm learns how to fight!&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;</summary></entry><entry><title>ICYM AI &amp; ML - Week #28 of 2016</title><link href="http://bt3gl.github.io/icym-ai-ml-week-28-of-2016.html" rel="alternate"></link><updated>2016-07-16T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-07-16:icym-ai-ml-week-28-of-2016.html</id><summary type="html">&lt;h2&gt;Articles&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.benjamintd.com/blog/spynet/?utm_campaign=Artificial%2BIntelligence%2BWeekly&amp;amp;utm_medium=web&amp;amp;utm_source=Artificial_Intelligence_Weekly_42"&gt;Teaching an AI to write Python code with Python code&lt;/a&gt;&lt;/li&gt;
@@ -74,23 +74,25 @@
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://gogameguru.com/i/2016/03/deepmind-mastering-go.pdf"&gt;Mastering the Game of Go with Deep Neural Networks and Tree Search&lt;/a&gt;. Basically:
-        * Values networks to evaluate board positions and policy networks to select moves.
-        * Trained with supervised learning from human expert games and reinforcement learning from games of self-play.
-        * NN playS Go at the level of state-of-art Monte-Carlo tree search that simulate thousands of random games of self-play.
-        * New search algorithm that combines Monte-Carlo simulation with value and policy network&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://gogameguru.com/i/2016/03/deepmind-mastering-go.pdf"&gt;Mastering the Game of Go with Deep Neural Networks and Tree Search&lt;/a&gt;. Basically:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Values networks to evaluate board positions and policy networks to select moves.&lt;/li&gt;
+&lt;li&gt;Trained with supervised learning from human expert games and reinforcement learning from games of self-play.&lt;/li&gt;
+&lt;li&gt;NN playS Go at the level of state-of-art Monte-Carlo tree search that simulate thousands of random games of self-play.&lt;/li&gt;
+&lt;li&gt;New search algorithm that combines Monte-Carlo simulation with value and policy network&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="http://arxiv.org/pdf/1607.02533v1.pdf"&gt;Adversarial Examples in the Physical World&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://arxiv.org/pdf/1607.02533v1.pdf"&gt;Adversarial Examples in the Physical World (Kurakin, &lt;em&gt;et al.&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Talks&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://icml.cc/2016/tutorials/icml2016_tutorial_deep_residual_networks_kaiminghe.pdf"&gt;Deep Residual Networks, Kaiming He, Facebook AI Research&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Resources_files/AlphaGo_IJCAI.pdf"&gt;AlphaGo Preso&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=XkltShNd6XE"&gt;Prof. Jürgen Schmidhuber - True Artificial Intelligence Will Change Everything&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://icml.cc/2016/tutorials/icml2016_tutorial_deep_residual_networks_kaiminghe.pdf"&gt;Deep Residual Networks, Kaiming He, Facebook AI Research&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Resources_files/AlphaGo_IJCAI.pdf"&gt;AlphaGo Presentation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=XkltShNd6XE"&gt;Prof. Jürgen Schmidhuber - True Artificial Intelligence Will Change Everything&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Yolo&lt;/h2&gt;
+&lt;h2&gt;&amp;lt;3&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Remember: "All games of perfect information have an optimal value function which determines the outcome of the game".&lt;/p&gt;
