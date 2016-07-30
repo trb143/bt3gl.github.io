@@ -1,18 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Higher Bytes</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/ai-ml-review.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 16 Jul 2016 00:00:00 -0400</lastBuildDate><item><title>AI &amp; ML - Week #28 of 2016</title><link>http://bt3gl.github.io/ai-ml-week-28-of-2016.html</link><description>&lt;h2&gt;Papers&lt;/h2&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Higher Bytes</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/ai-ml-review.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 23 Jul 2016 00:00:00 -0400</lastBuildDate><item><title>ICYM AI &amp; ML - Week #29 of 2016</title><link>http://bt3gl.github.io/icym-ai-ml-week-29-of-2016.html</link><description>&lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://arxiv.org/pdf/1607.02533v1.pdf"&gt;Adversarial Examples in the Physical World&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://arxiv.org/pdf/1409.4842.pdf"&gt;Going deeper with convolutions&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Articles&lt;/h2&gt;
+&lt;h2&gt;Talks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=u2t77mQmJiY"&gt;A genetic algorithm learns how to fight!&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=yxxRAHVtafI"&gt;The Science of Talking with Computers&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=NK6O8CtI2D4"&gt;Megan Smith: Perspectives on artificial intelligence from the White House&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=6eBpjEdgSm0"&gt;NVIDIA Deep Learning Course: Class #1 – Introduction to Deep Learning&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 23 Jul 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-07-23:icym-ai-ml-week-29-of-2016.html</guid></item><item><title>ICYM AI &amp; ML - Week #28 of 2016</title><link>http://bt3gl.github.io/icym-ai-ml-week-28-of-2016.html</link><description>&lt;h2&gt;Articles&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.benjamintd.com/blog/spynet/?utm_campaign=Artificial%2BIntelligence%2BWeekly&amp;amp;utm_medium=web&amp;amp;utm_source=Artificial_Intelligence_Weekly_42"&gt;Teaching an AI to write Python code with Python code&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/"&gt;Understanding LSTM Networks&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://efavdb.com/deep-learning-with-jupyter-on-aws/"&gt;Starting DL with Jupyter&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://docs.google.com/presentation/d/1UeKXVgRvvxg9OUdh_UiC5G71UMscNPlvArsWER41PsU/edit#slide=id.gc2fcdcce7_216_515"&gt;DIY Deep Learning for Vision:  a Hands-On Tutorial with Caffe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://research.googleblog.com/2016/06/wide-deep-learning-better-together-with.html"&gt;Wide &amp;amp; Deep Learning: Better Together with TensorFlow&lt;/a&gt; - &lt;em&gt;Can we teach computers to learn like humans do, by combining the power of memorization and generalization?&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Papers&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://gogameguru.com/i/2016/03/deepmind-mastering-go.pdf"&gt;Mastering the Game of Go with Deep Neural Networks and Tree Search&lt;/a&gt;. Basically:
+        * Values networks to evaluate board positions and policy networks to select moves.
+        * Trained with supervised learning from human expert games and reinforcement learning from games of self-play.
+        * NN playS Go at the level of state-of-art Monte-Carlo tree search that simulate thousands of random games of self-play.
+        * New search algorithm that combines Monte-Carlo simulation with value and policy network&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://arxiv.org/pdf/1607.02533v1.pdf"&gt;Adversarial Examples in the Physical World&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Talks&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://icml.cc/2016/tutorials/icml2016_tutorial_deep_residual_networks_kaiminghe.pdf"&gt;Deep Residual Networks, Kaiming He, Facebook AI Research&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Resources_files/AlphaGo_IJCAI.pdf"&gt;AlphaGo Preso&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=XkltShNd6XE"&gt;Prof. Jürgen Schmidhuber - True Artificial Intelligence Will Change Everything&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 16 Jul 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-07-16:ai-ml-week-28-of-2016.html</guid></item></channel></rss>
+&lt;/ul&gt;
+&lt;h2&gt;Yolo&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Remember: "All games of perfect information have an optimal value function which determines the outcome of the game".&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://diogenes.greedbag.com/buy/ghost-lanes-0/"&gt;Post-Rock as it best: Ghost Lanes&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 16 Jul 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-07-16:icym-ai-ml-week-28-of-2016.html</guid></item></channel></rss>
