@@ -8,20 +8,18 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="relu1" src="./tensor_flow_playground/relu1.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="relu2" src="./tensor_flow_playground/relu2.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="tahn1" src="./tensor_flow_playground/tahn1.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="tahn2" src="./tensor_flow_playground/tahn2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="relu2" src="./tensor_flow_playground/relu2.png" title="=250x" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="tahn2" src="./tensor_flow_playground/tanh2.png" title="=250x" /&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;That&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;how&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;separate&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;spiral&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt; &lt;span class="n"&gt;dataset&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="linear" src="./tensor_flow_playground/linear.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="relu_no" src="./tensor_flow_playground/relu_no.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="sigmoid" src="./tensor_flow_playground/sigmoid.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="relu_no2" src="./tensor_flow_playground/relu_no2.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="relu_no3" src="./tensor_flow_playground/relu_no3.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="relu_no4" src="./tensor_flow_playground/relu_no4.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="linear" src="./tensor_flow_playground/linear.png" title="=250x" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="relu_no" src="./tensor_flow_playground/relu_no.png" title="=250x" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="sigmoid" src="./tensor_flow_playground/sigmoid.png" title="=250x" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="relu_no2" src="./tensor_flow_playground/relu_no2.png" title="=250x" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="relu_no3" src="./tensor_flow_playground/relu_no3.png" title="=250x" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="relu_no4" src="./tensor_flow_playground/relu_no4.png" title="=250x" /&gt;&lt;/p&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;h2&gt;Talks&lt;/h2&gt;
 &lt;h2&gt;Yolo&lt;/h2&gt;
