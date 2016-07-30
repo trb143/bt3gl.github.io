@@ -11,10 +11,10 @@
 &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=Ics9CjRSMfc"&gt;Baidu AI Composer&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;That's is how you do separate a spiral binary dataset:&lt;/p&gt;
+&lt;p&gt;Tensorflow Playground is fun. That's is how you do separate a spiral binary dataset:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="relu2" height="300px" src="./tensor_flow_playground/relu2.png" width="400px" /&gt;(./tensor_flow_playground/relu2.png) &lt;img alt="tahn2" height="300px" src="./tensor_flow_playground/tanh2.png" width="400px" /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img alt="relu2" height="300px" src="./tensor_flow_playground/relu2.png" width="400px" /&gt; &lt;img alt="tahn2" height="300px" src="./tensor_flow_playground/tanh2.png" width="400px" /&gt; &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;That's is how you do not separate a spiral binary dataset:&lt;/li&gt;
 &lt;/ul&gt;
