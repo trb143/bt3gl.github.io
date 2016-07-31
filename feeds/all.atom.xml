@@ -2,7 +2,16 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>chmod +x singularity.sh</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/all.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-07-30T00:00:00-04:00</updated><entry><title>ICYM AI &amp; ML - Week #30 of 2016</title><link href="http://bt3gl.github.io/icym-ai-ml-week-30-of-2016.html" rel="alternate"></link><updated>2016-07-30T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-07-30:icym-ai-ml-week-30-of-2016.html</id><summary type="html">&lt;h2&gt;Articles&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
+&lt;p&gt;&lt;a href="https://yanpanlau.github.io/2016/07/10/FlappyBird-Keras.html"&gt;Using Keras and Deep Q-Network to Play FlappyBird&lt;/a&gt;. Hands-on on Google DeepMind's Deep Q-Network.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a href="http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/"&gt;Neural Networks, Manifolds, and Topology&lt;/a&gt;. This is a 2-years-old article, but a very well-written high-level explanation of the topology of low-dimensional NNs. "&lt;em&gt;The task of a classification algorithm is fundamentally to separate a bunch of tangled manifolds.&lt;/em&gt;"&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://colah.github.io/posts/2015-08-Backprop/"&gt;Calculus on Computational Graphs: Backpropagation&lt;/a&gt;. Backpropagation explaned in a very well-written text.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/"&gt;Understanding LSTM Networks.&lt;/a&gt;. Another hit :).&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href="http://colah.github.io/posts/2015-01-Visualizing-Representations/"&gt;Visualizing Representations: Deep Learning and Human Beings.&lt;/a&gt; Another Christopher Olah's great post, now on NN's different layers representations, tanging some philosophic aspects of it.&lt;/p&gt;
