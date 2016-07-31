@@ -15,6 +15,7 @@
 &lt;li&gt;&lt;a href="http://download.tensorflow.org/paper/whitepaper2015.pdf"&gt;Tensor Flow Whitepaper, (Abadi, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://lvdmaaten.github.io/publications/papers/Torchnet_2016.pdf"&gt;Torchnet: An Open-Source Platform for (Deep) Learning Research, (Collobert, &lt;em&gt;et al.&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;Interesting to see the relation between 1998's LeCun 10^6 transistors and 10^7 pixels in training and then 2012's Krizhevsky 10^9 transistors (and GPU) and 10^14 pixels in training.&lt;/p&gt;
 &lt;h2&gt;Articles&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://yanpanlau.github.io/2016/07/10/FlappyBird-Keras.html"&gt;Using Keras and Deep Q-Network to Play FlappyBird&lt;/a&gt;. Hands-on on Google DeepMind's Deep Q-Network.&lt;/li&gt;
