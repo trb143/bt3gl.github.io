@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Higher Bytes</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/all.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-07-30T00:00:00-04:00</updated><entry><title>ICYM AI &amp; ML - Week #30 of 2016</title><link href="http://bt3gl.github.io/icym-ai-ml-week-30-of-2016.html" rel="alternate"></link><updated>2016-07-30T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-07-30:icym-ai-ml-week-30-of-2016.html</id><summary type="html">&lt;h2&gt;Articles&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>chmod +x singularity.sh</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/all.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-07-30T00:00:00-04:00</updated><entry><title>ICYM AI &amp; ML - Week #30 of 2016</title><link href="http://bt3gl.github.io/icym-ai-ml-week-30-of-2016.html" rel="alternate"></link><updated>2016-07-30T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-07-30:icym-ai-ml-week-30-of-2016.html</id><summary type="html">&lt;h2&gt;Articles&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href="http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/"&gt;Neural Networks, Manifolds, and Topology&lt;/a&gt;. This is a 2-years-old article, but a very well-written high-level explanation of the topology of low-dimensional NNs. "&lt;em&gt;The task of a classification algorithm is fundamentally to separate a bunch of tangled manifolds.&lt;/em&gt;"&lt;/p&gt;
@@ -13,6 +13,9 @@
 &lt;li&gt;
 &lt;p&gt;&lt;a href="https://blogs.nvidia.com/blog/2016/01/12/accelerating-ai-artificial-intelligence-gpus/"&gt;NVIDIA's Accelerating AI with GPUs: A New Computing Model&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://code.facebook.com/posts/580706092103929/lighting-the-way-to-deep-machine-learning/"&gt;Torchnet: Lighting the way to deep machine learning&lt;/a&gt;. "&lt;em&gt;&lt;a href="https://github.com/torchnet/torchnet"&gt;Torchnet&lt;/a&gt; is different from frameworks such as Caffe, Chainer, TensorFlow, and Theano, in that it does not focus on performing efficient inference and gradient computations in deep networks. Instead, Torchnet provides a framework on top of a deep learning framework that makes rapid experimentation easier.&lt;/em&gt;"&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
@@ -21,6 +24,9 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href="http://download.tensorflow.org/paper/whitepaper2015.pdf"&gt;Tensor Flow Whitepaper, (Abadi, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://lvdmaaten.github.io/publications/papers/Torchnet_2016.pdf"&gt;Torchnet: An Open-Source Platform for (Deep) Learning Research, (Collobert, &lt;em&gt;et al.&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Talks&lt;/h2&gt;
@@ -35,6 +41,10 @@
 &lt;li&gt;
 &lt;p&gt;&lt;a href="http://cs.stanford.edu/people/karpathy/convnetjs//demo/classify2d.html"&gt;Karpathy's Convnetjs viz tool.&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Videos&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=JeBkUtYvBBM"&gt;Prof Adrian Owen on The Search for Consciousness: detecting awareness in the vegetative state (2015)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;&amp;lt;3&lt;/h2&gt;
 &lt;ul&gt;
