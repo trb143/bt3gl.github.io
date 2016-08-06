@@ -26,12 +26,12 @@
 &lt;h2&gt;Tools&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://norvig.com/ipython/README.html"&gt;List of IPython (Jupyter) Notebooks by Peter Norvig&lt;/a&gt;.  &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/cchio/deep-pwning"&gt;Deep Pwning: Metasploit for machine learning.&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/cchio/deep-pwning"&gt;Deep Pwning: Metasploit for machine learning&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/jcjohnson/cnn-benchmarks"&gt;Benchmarks for popular CNN models&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Videos&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=GWn7vD2Ud3M"&gt;Build an Autoencoder in 5 Min.&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=GWn7vD2Ud3M"&gt;Build an Autoencoder in 5 Min&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 06 Aug 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-08-06:icym-ai-ml-week-31-of-2016.html</guid></item><item><title>ICYM AI &amp; ML - Week #30 of 2016</title><link>http://bt3gl.github.io/icym-ai-ml-week-30-of-2016.html</link><description>&lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf"&gt;ImageNet Classification with Deep Convolutional Neural Networks (Krizhevsky, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;. AlexNet.&lt;/li&gt;
