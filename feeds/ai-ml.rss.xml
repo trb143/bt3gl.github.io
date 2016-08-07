@@ -17,7 +17,7 @@
 &lt;li&gt;&lt;a href="http://prefrontal.org/files/posters/Bennett-Salmon-2009.pdf"&gt;Neural correlates of interspecies perspective taking in the post-mortem Atlantic Salmon: An argument for multiple comparisons correction&lt;/a&gt;. Researchers show claims showing that the interpretation of functional MRI data is questionable.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://sarahjamielewis.com/posts/adversarial-machine-learning.html"&gt;Adversarial Machine Learning for Security&lt;/a&gt;. A marvelous introduction to AML, with several references.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://deepdrive.io/"&gt;DeepDrive: self-driving car AI&lt;/a&gt;. DNN resources for self-driving car, including integration with OpenAI Gym.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://intelligence.org/2016/08/02/2016-summer-program-recap/"&gt;2016 summer program recap&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://intelligence.org/2016/08/02/2016-summer-program-recap/"&gt;2016 summer program recap&lt;/a&gt;. A Colloquium Series on Robust and Beneficial AI (CSRBAI) at the MIRI office, co-hosted with the Oxford Future of Humanity Institute. &lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.benjamintd.com/blog/spynet/"&gt;Teaching an AI to write Python code with Python code&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
@@ -38,7 +38,8 @@
 &lt;h2&gt;Videos&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=GWn7vD2Ud3M"&gt;Build an Autoencoder in 5 Min&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 06 Aug 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-08-06:icym-ai-ml-week-31-of-2016.html</guid></item><item><title>ICYM AI &amp; ML - Week #30 of 2016</title><link>http://bt3gl.github.io/icym-ai-ml-week-30-of-2016.html</link><description>&lt;h2&gt;Papers&lt;/h2&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="relu2" src="./cyberpunk/1.jpeg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 06 Aug 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-08-06:icym-ai-ml-week-31-of-2016.html</guid></item><item><title>ICYM AI &amp; ML - Week #30 of 2016</title><link>http://bt3gl.github.io/icym-ai-ml-week-30-of-2016.html</link><description>&lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf"&gt;ImageNet Classification with Deep Convolutional Neural Networks (Krizhevsky, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;. AlexNet.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://arxiv.org/pdf/1409.1556.pdf"&gt;Very Deep Convolutional Networks for large-scale image recognition (Simonyan, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;. Image classification.&lt;/li&gt;
