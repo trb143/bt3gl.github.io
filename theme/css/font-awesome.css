@@ -32,8 +32,6 @@
 /* sprites.less reset */
 [class^="icon-"], [class*=" icon-"] {
     display: inline;
-    width: 4em;
-    height: 4em;
     line-height: inherit;
     vertical-align: baseline;
     background-image: none;
