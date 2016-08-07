@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>chmod +x singularity.sh</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/ai-ml.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 06 Aug 2016 00:00:00 -0400</lastBuildDate><item><title>This week in AI &amp; ML &amp; Hacking - Week #31 of 2016</title><link>http://bt3gl.github.io/this-week-in-ai-ml-hacking-week-31-of-2016.html</link><description>&lt;p&gt;&lt;img alt="relu2" height="300px" src="./cyberpunk/1.jpeg" width="400px" /&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>chmod +x singularity.sh</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/ai-ml.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 06 Aug 2016 00:00:00 -0400</lastBuildDate><item><title>This week in AI &amp; ML &amp; Hacking - #31 of 2016</title><link>http://bt3gl.github.io/this-week-in-ai-ml-hacking-31-of-2016.html</link><description>&lt;p&gt;&lt;img alt="relu2" height="300px" src="./cyberpunk/1.jpeg" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;Talks&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.blackhat.com/docs/us-16/materials/us-16-Wolff-Applied-Machine-Learning-For-Data-Exfil-And-Other-Fun-Topics.pdf"&gt;Black Hat 2016: Applied Machine Learning for Data Exfil and Other Fun Topics&lt;/a&gt;. Cylance's researchers show some examples of how they apply K-means, Decision Trees, and Markov Chains to security's problems.&lt;/li&gt;
@@ -39,7 +39,7 @@
 &lt;h2&gt;Videos&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=GWn7vD2Ud3M"&gt;Build an Autoencoder in 5 Min&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 06 Aug 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-08-06:this-week-in-ai-ml-hacking-week-31-of-2016.html</guid></item><item><title>ICYM AI &amp; ML - Week #30 of 2016</title><link>http://bt3gl.github.io/icym-ai-ml-week-30-of-2016.html</link><description>&lt;h2&gt;Papers&lt;/h2&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 06 Aug 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-08-06:this-week-in-ai-ml-hacking-31-of-2016.html</guid></item><item><title>This week in AI &amp; ML &amp; Hacking - #30 of 2016</title><link>http://bt3gl.github.io/this-week-in-ai-ml-hacking-30-of-2016.html</link><description>&lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf"&gt;ImageNet Classification with Deep Convolutional Neural Networks (Krizhevsky, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;. AlexNet.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://arxiv.org/pdf/1409.1556.pdf"&gt;Very Deep Convolutional Networks for large-scale image recognition (Simonyan, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;. Image classification.&lt;/li&gt;
@@ -55,7 +55,6 @@
 &lt;li&gt;&lt;a href="http://download.tensorflow.org/paper/whitepaper2015.pdf"&gt;Tensor Flow Whitepaper, (Abadi, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://lvdmaaten.github.io/publications/papers/Torchnet_2016.pdf"&gt;Torchnet: An Open-Source Platform for (Deep) Learning Research, (Collobert, &lt;em&gt;et al.&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Interesting to see the relation between 1998's LeCun 10^6 transistors and 10^7 pixels in training and then 2012's Krizhevsky 10^9 transistors (and GPU) and 10^14 pixels in training.&lt;/p&gt;
 &lt;h2&gt;Articles&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://yanpanlau.github.io/2016/07/10/FlappyBird-Keras.html"&gt;Using Keras and Deep Q-Network to Play FlappyBird&lt;/a&gt;. Hands-on on Google DeepMind's Deep Q-Network.&lt;/li&gt;
@@ -79,15 +78,11 @@
 &lt;h2&gt;Videos&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=JeBkUtYvBBM"&gt;Prof. Adrian Owen on The Search for Consciousness: detecting awareness in the vegetative state (2015)&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Ics9CjRSMfc"&gt;Baidu AI Composer&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;&amp;lt;3&lt;/h2&gt;
+&lt;h2&gt;Cool Plots&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=Ics9CjRSMfc"&gt;Baidu AI Composer&lt;/a&gt;. &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Remember that the hidden layer learns a representation so that the data is linearly separable, so that's is how you do separate a spiral two-dimensional dataset using Tensorflow playground and Convnetjs:&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Remember that the hidden layer learns a representation so that the data is linearly separable, so that's is how you do separate a spiral two-dimensional dataset using Tensorflow playground and Convnetjs:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;With tanh:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="tahn2" height="300px" src="./tensor_flow_playground/tanh2.png" width="400px" /&gt;  &lt;img alt="tahn11" height="300px" src="./tensor_flow_playground/tan1.png" width="400px" /&gt;   &lt;img alt="tan2" height="300px" src="./tensor_flow_playground/tan2.png" width="400px" /&gt;   &lt;img alt="tan3" height="300px" src="./tensor_flow_playground/tan3.png" width="400px" /&gt; &lt;/p&gt;
@@ -96,7 +91,7 @@
 &lt;ul&gt;
 &lt;li&gt;That's is how you do not separate a spiral two-dimensional dataset:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="linear" height="300px" src="./tensor_flow_playground/linear.png" width="400px" /&gt; &lt;img alt="relu_no" height="300px" src="./tensor_flow_playground/relu_no.png" width="400px" /&gt; &lt;img alt="sigmoid" height="300px" src="./tensor_flow_playground/sigmoid.png" width="400px" /&gt;  &lt;img alt="relu_no2" height="300px" src="./tensor_flow_playground/relu_no2.png" width="400px" /&gt;  &lt;img alt="relu_no3" height="300px" src="./tensor_flow_playground/relu_no3.png" width="400px" /&gt;  &lt;img alt="relu_no4" height="300px" src="./tensor_flow_playground/relu_no4.png" width="400px" /&gt; &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 30 Jul 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-07-30:icym-ai-ml-week-30-of-2016.html</guid></item><item><title>ICYM AI &amp; ML - Week #29 of 2016</title><link>http://bt3gl.github.io/icym-ai-ml-week-29-of-2016.html</link><description>&lt;h2&gt;Papers&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="linear" height="300px" src="./tensor_flow_playground/linear.png" width="400px" /&gt; &lt;img alt="relu_no" height="300px" src="./tensor_flow_playground/relu_no.png" width="400px" /&gt; &lt;img alt="sigmoid" height="300px" src="./tensor_flow_playground/sigmoid.png" width="400px" /&gt;  &lt;img alt="relu_no2" height="300px" src="./tensor_flow_playground/relu_no2.png" width="400px" /&gt;  &lt;img alt="relu_no3" height="300px" src="./tensor_flow_playground/relu_no3.png" width="400px" /&gt;  &lt;img alt="relu_no4" height="300px" src="./tensor_flow_playground/relu_no4.png" width="400px" /&gt; &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 30 Jul 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-07-30:this-week-in-ai-ml-hacking-30-of-2016.html</guid></item><item><title>This week in AI &amp; ML &amp; Hacking - #29 of 2016</title><link>http://bt3gl.github.io/this-week-in-ai-ml-hacking-29-of-2016.html</link><description>&lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://arxiv.org/pdf/1409.4842.pdf"&gt;Going deeper with Convolutions (Szegedy, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
@@ -106,10 +101,13 @@
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=NK6O8CtI2D4"&gt;Megan Smith: Perspectives on artificial intelligence from the White House&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=6eBpjEdgSm0"&gt;NVIDIA Deep Learning Course: Class #1 – Introduction to Deep Learning&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;&amp;lt;3&lt;/h2&gt;
+&lt;h2&gt;Videos&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=u2t77mQmJiY"&gt;A genetic algorithm learns how to fight!&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 23 Jul 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-07-23:icym-ai-ml-week-29-of-2016.html</guid></item><item><title>ICYM AI &amp; ML - Week #28 of 2016</title><link>http://bt3gl.github.io/icym-ai-ml-week-28-of-2016.html</link><description>&lt;h2&gt;Articles&lt;/h2&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 23 Jul 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-07-23:this-week-in-ai-ml-hacking-29-of-2016.html</guid></item><item><title>This week in AI &amp; ML &amp; Hacking - #28 of 2016</title><link>http://bt3gl.github.io/this-week-in-ai-ml-hacking-28-of-2016.html</link><description>&lt;p&gt;&lt;left&gt;&lt;em&gt;"All games of perfect information have an optimal 
+value function which determines the outcome of the game".&lt;/em&gt; 
+&lt;/left&gt;&lt;/p&gt;
+&lt;h2&gt;Articles&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.benjamintd.com/blog/spynet/?utm_campaign=Artificial%2BIntelligence%2BWeekly&amp;amp;utm_medium=web&amp;amp;utm_source=Artificial_Intelligence_Weekly_42"&gt;Teaching an AI to write Python code with Python code&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/"&gt;Understanding LSTM Networks&lt;/a&gt;&lt;/li&gt;
@@ -138,12 +136,7 @@
 &lt;li&gt;&lt;a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Resources_files/AlphaGo_IJCAI.pdf"&gt;AlphaGo Presentation&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=XkltShNd6XE"&gt;Prof. Jürgen Schmidhuber - True Artificial Intelligence Will Change Everything&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;&amp;lt;3&lt;/h2&gt;
+&lt;h2&gt;Beats&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;em&gt;"All games of perfect information have an optimal value function which determines the outcome of the game".&lt;/em&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://diogenes.greedbag.com/buy/ghost-lanes-0/"&gt;Post-Rock as it best: Ghost Lanes&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 16 Jul 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-07-16:icym-ai-ml-week-28-of-2016.html</guid></item></channel></rss>
+&lt;li&gt;&lt;a href="https://diogenes.greedbag.com/buy/ghost-lanes-0/"&gt;Post-Rock as it best: Ghost Lanes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sat, 16 Jul 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-07-16:this-week-in-ai-ml-hacking-28-of-2016.html</guid></item></channel></rss>
