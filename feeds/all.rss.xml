@@ -11,12 +11,12 @@
 &lt;li&gt;&lt;a href="http://r2rt.com/written-memories-understanding-deriving-and-extending-the-lstm.html"&gt;Written Memories: Understanding, Deriving and Extending the LSTM&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://medium.com/technologymadeeasy/the-best-explanation-of-convolutional-neural-networks-on-the-internet-fbb8b1ad5df8#.4on1g3268"&gt;(Self-titled) The best explanation of Convolutional Neural Networks on the Internet&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://nuit-blanche.blogspot.com/2016/08/secure-group-testing.html"&gt;Secure Group Testing&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.theverge.com/2016/7/13/12172904/facebook-ai-big-sur-machine-learning-prineville-data-center"&gt;Exploring Facebook’s massive, picture-painting AI brain&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://code.facebook.com/posts/1687861518126048/facebook-to-open-source-ai-hardware-design/?_fb_noscript=1"&gt;Facebook to open-source AI hardware design&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.theverge.com/2016/7/13/12172904/facebook-ai-big-sur-machine-learning-prineville-data-center"&gt;Exploring Facebook’s massive, picture-painting AI brain&lt;/a&gt;. A 350,000-square-foot building  with Facebook’s most valuable artificial intelligence tools, Big Sur. &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://code.facebook.com/posts/1687861518126048/facebook-to-open-source-ai-hardware-design/?_fb_noscript=1"&gt;Facebook to open-source AI hardware design&lt;/a&gt;. Facebook's Open Compute Project GPU hardware contribution, FAIR, which has achieved lots of advancements in the development of AI training hardware.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://arstechnica.com/science/2016/07/algorithms-used-to-study-brain-activity-may-be-exaggerating-results/"&gt;Software faults raise questions about the validity of brain studies&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://prefrontal.org/files/posters/Bennett-Salmon-2009.pdf"&gt;Neural correlates of interspecies perspective taking in the post-mortem Atlantic Salmon: An argument for multiple comparisons correction&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://sarahjamielewis.com/posts/adversarial-machine-learning.html"&gt;Adversarial Machine Learning for Security&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://deepdrive.io/"&gt;DeepDriveself-driving car AI&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://prefrontal.org/files/posters/Bennett-Salmon-2009.pdf"&gt;Neural correlates of interspecies perspective taking in the post-mortem Atlantic Salmon: An argument for multiple comparisons correction&lt;/a&gt;. Researchers show claims showing that the interpretation of functional MRI data is questionable.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://sarahjamielewis.com/posts/adversarial-machine-learning.html"&gt;Adversarial Machine Learning for Security&lt;/a&gt;. A marvelous introduction to AML, with several references.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://deepdrive.io/"&gt;DeepDrive: self-driving car AI&lt;/a&gt;. DNN resources for self-driving car, including integration with OpenAI Gym.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://intelligence.org/2016/08/02/2016-summer-program-recap/"&gt;2016 summer program recap&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.benjamintd.com/blog/spynet/"&gt;Teaching an AI to write Python code with Python code&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
