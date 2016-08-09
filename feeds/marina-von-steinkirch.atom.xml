@@ -41,11 +41,12 @@
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=GWn7vD2Ud3M"&gt;Build an Autoencoder in 5 Min&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;</summary></entry><entry><title>This week in AI &amp; ML &amp; Hacking - #30 of 2016</title><link href="http://bt3gl.github.io/this-week-in-ai-ml-hacking-30-of-2016.html" rel="alternate"></link><updated>2016-07-30T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-07-30:this-week-in-ai-ml-hacking-30-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./cyberpunk/2.jpg" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt; This is a selection of quintessential papers for anyone starting on Deep Learning (Thanks to Joe Zimmerman):&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf"&gt;ImageNet Classification with Deep Convolutional Neural Networks (Krizhevsky, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;. AlexNet.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://arxiv.org/pdf/1409.1556.pdf"&gt;Very Deep Convolutional Networks for large-scale image recognition (Simonyan, &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;. Image classification.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://arxiv.org/pdf/1207.0580.pdf"&gt;Improving neural networks by preventing co-adaptation of feature detectors&lt;/a&gt;. Dropout and regularization.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://arxiv.org/pdf/1503.03832v3.pdf"&gt;FaceNet: A Unified Embedding for Face Recognition and Clustering (Schroff, &lt;em&gt;et al.&lt;/em&gt;, 2015)&lt;/a&gt;.  Metric learning (FaceNet).&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/pdf/1503.03832v3.pdf"&gt;FaceNet: A Unified Embedding for Face Recognition and Clustering (Schroff, &lt;em&gt;et al.&lt;/em&gt;, 2015)&lt;/a&gt;.  Metric learning (FaceNet). (Metric learning)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://arxiv.org/pdf/1512.03385v1.pdf"&gt;Deep Residual Learning for Image Recognition (He, &lt;em&gt;et al.&lt;/em&gt;, 2015)&lt;/a&gt;. Very deep networks (ResNet).&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://arxiv.org/pdf/1409.0473v7.pdf"&gt;Neural Machine Translation by jointly learning to align and translate (Bahdanau, &lt;em&gt;et al.&lt;/em&gt;, 2015)&lt;/a&gt;. RNNs, LSTMs, GRUs - machine translation with alignment.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://arxiv.org/pdf/1412.5903v5.pdf"&gt;Deep structured output learning for unconstrained text recognition (Jaderberg,  &lt;em&gt;et al.&lt;/em&gt;, 2014)&lt;/a&gt;.  Text recognition.&lt;/li&gt;
@@ -107,9 +108,6 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=u2t77mQmJiY"&gt;A genetic algorithm learns how to fight!&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;</summary></entry><entry><title>This week in AI &amp; ML &amp; Hacking - #28 of 2016</title><link href="http://bt3gl.github.io/this-week-in-ai-ml-hacking-28-of-2016.html" rel="alternate"></link><updated>2016-07-16T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-07-16:this-week-in-ai-ml-hacking-28-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./cyberpunk/3.gif" width="400px" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;right&gt;&lt;em&gt;"All games of perfect information have an optimal 
-value function which determines the outcome of the game".&lt;/em&gt; 
-&lt;/right&gt;&lt;/p&gt;
 &lt;h2&gt;Articles&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.benjamintd.com/blog/spynet/?utm_campaign=Artificial%2BIntelligence%2BWeekly&amp;amp;utm_medium=web&amp;amp;utm_source=Artificial_Intelligence_Weekly_42"&gt;Teaching an AI to write Python code with Python code&lt;/a&gt;&lt;/li&gt;
@@ -121,7 +119,8 @@ value function which determines the outcome of the game".&lt;/em&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://gogameguru.com/i/2016/03/deepmind-mastering-go.pdf"&gt;Mastering the Game of Go with Deep Neural Networks and Tree Search&lt;/a&gt;. Basically:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://gogameguru.com/i/2016/03/deepmind-mastering-go.pdf"&gt;Mastering the Game of Go with Deep Neural Networks and Tree Search&lt;/a&gt;. &lt;em&gt;"All games of perfect information have an optimal 
+value function which determines the outcome of the game".&lt;/em&gt; , Basically:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Values networks to evaluate board positions and policy networks to select moves.&lt;/li&gt;
 &lt;li&gt;Trained with supervised learning from human expert games and reinforcement learning from games of self-play.&lt;/li&gt;
