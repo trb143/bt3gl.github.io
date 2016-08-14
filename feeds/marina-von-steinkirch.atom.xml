@@ -6,10 +6,13 @@
 Rational Agents&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/dmorr-google/wiki-reading"&gt;WIKIREADING: A Novel Large-scale Language Understanding Task
 over Wikipedia&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://users.dsic.upv.es/~flip/EGPAI2016/papers/EGPAI_2016_paper_9.pdf"&gt;Evaluation of General-Purpose Artificial Intelligence: Why, What &amp;amp; How, &lt;em&gt;(Bieger, et al 2016)&lt;/em&gt;&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/karpathy/paper-notes"&gt;Andrej Karpathy's papers notes.&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;News&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.technologyreview.com/s/602094/ais-language-problem/?utm_campaign=add_this&amp;amp;utm_source=twitter&amp;amp;utm_medium=post"&gt;AI’s Language Problem&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://bamos.github.io/2016/08/09/deep-completion/"&gt;Image Completion with Deep Learning in TensorFlow&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://curatedai.com/"&gt;CuratedAI, A literary magazine written by machines, for people&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://techcrunch.com/2016/08/08/machine-learning-and-molecular-tinder-may-change-the-game-for-oled-screens/"&gt;Machine learning and “molecular Tinder” may change the game for OLED screens&lt;/a&gt;. Interesting article on how ML on molecules is helping to push the OLED screens industry.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.nextplatform.com/2016/08/08/deep-learning-chip-upstart-set-take-gpus-task/"&gt;Deep Learning Chip Upstart Takes GPUs to Task&lt;/a&gt;. Nirvana System’s pitch, including a comparison of Pascal and Maxwell TitanX.&lt;/li&gt;
@@ -17,6 +20,21 @@ over Wikipedia&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://futureoflife.org/background/aimyths/"&gt;Top Myths about Advanced AI from Future of Life Institute&lt;/a&gt;. An interesting (and maybe alarmist) review of GAI myths and (maybe) facts.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://bamos.github.io/2016/08/09/deep-completion/"&gt;Image Completion with Deep Learning in TensorFlow&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://techcrunch.com/2016/08/13/hearing-is-like-seeing-for-our-brains-and-for-machines/?ncid=rss"&gt;Hearing is like seeing for our brains and for machines&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.technologyreview.com/s/602115/machine-learning-algorithm-combs-the-darknet-for-zero-day-exploits-and-finds-them/?set=602116&amp;amp;utm_content=buffer49be6&amp;amp;utm_medium=social&amp;amp;utm_source=twitter.com&amp;amp;utm_campaign=buffer"&gt;Machine-Learning Algorithm Combs the Darknet for Zero Day Exploits, and Finds Them&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gab41.lab41.org/exploring-pipelines-68f900625bd4#.njpynqaon"&gt;Exploring Pipelines&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://research.facebook.com/blog/cat-people-dog-people/?_fb_noscript=1"&gt;Cat People, Dog People&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.fastforwardlabs.com/post/148842796218/introducing-variational-autoencoders-in-prose-and"&gt;Introducing Variational Autoencoders (in Prose and Code)&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://defensesystems.com/articles/2016/08/12/quantum-center-upgrade-lockheed-usc.aspx"&gt;Quantum computing center upgrades to focus on AI&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.reddit.com/r/MachineLearning/comments/4w6tsv/ama_we_are_the_google_brain_team_wed_love_to/"&gt;Google Brain's AMA&lt;/a&gt;.
+Value Iteration Networks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Tools and Apps&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://moralmachine.mit.edu/"&gt;MIT's Moral Machine.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Conference Slides&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://sites.google.com/site/deeplearningsummerschool2016/speakers"&gt;The Deep Learning Summer School&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Videos&lt;/h2&gt;
 &lt;ul&gt;
