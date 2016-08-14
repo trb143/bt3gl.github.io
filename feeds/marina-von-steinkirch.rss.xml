@@ -2,17 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>chmod +x singularity.sh</title><link>http://bt3gl.github.io/</link><description></description><atom:link href="http://bt3gl.github.io/feeds/marina-von-steinkirch.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 14 Aug 2016 00:00:00 -0400</lastBuildDate><item><title>This week in AI &amp; ML &amp; Hacking - #32 of 2016</title><link>http://bt3gl.github.io/this-week-in-ai-ml-hacking-32-of-2016.html</link><description>&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./cyberpunk/5.jpg" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="http://www.tomeveritt.se/papers/AGI16-sm.pdf"&gt;Self-Modification of Policy and Utility Function in
-Rational Agents&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://github.com/dmorr-google/wiki-reading"&gt;WIKIREADING: A Novel Large-scale Language Understanding Task
-over Wikipedia&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://github.com/karpathy/paper-notes"&gt;Andrej Karpathy's papers notes.&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.tomeveritt.se/papers/AGI16-sm.pdf"&gt;Self-Modification of Policy and Utility Function in
+Rational Agents&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/dmorr-google/wiki-reading"&gt;WIKIREADING: A Novel Large-scale Language Understanding Task
+over Wikipedia&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/karpathy/paper-notes"&gt;Andrej Karpathy's papers notes.&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;News&lt;/h2&gt;
 &lt;ul&gt;
@@ -35,7 +29,7 @@ over Wikipedia&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.businessinsider.com/william-gibson-the-peripheral-interview-business-insider-2016-8"&gt;William Gibson talks about 'The Peripheral,' the power of Twitter, and his next book set in today's Silicon Valley&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./draws/gan.jpg" width="400px" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sun, 14 Aug 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-08-14:this-week-in-ai-ml-hacking-32-of-2016.html</guid></item><item><title>This week in AI &amp; ML &amp; Hacking - #31 of 2016</title><link>http://bt3gl.github.io/this-week-in-ai-ml-hacking-31-of-2016.html</link><description>&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./cyberpunk/1.jpeg" width="400px" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./draws/gan.png" width="400px" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Sun, 14 Aug 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-08-14:this-week-in-ai-ml-hacking-32-of-2016.html</guid></item><item><title>This week in AI &amp; ML &amp; Hacking - #31 of 2016</title><link>http://bt3gl.github.io/this-week-in-ai-ml-hacking-31-of-2016.html</link><description>&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./cyberpunk/1.jpeg" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;Talks&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.blackhat.com/docs/us-16/materials/us-16-Wolff-Applied-Machine-Learning-For-Data-Exfil-And-Other-Fun-Topics.pdf"&gt;Black Hat 2016: Applied Machine Learning for Data Exfil and Other Fun Topics&lt;/a&gt;. Cylance's researchers show some examples of how they apply K-means, Decision Trees, and Markov Chains to security's problems.&lt;/li&gt;
