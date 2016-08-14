@@ -3,10 +3,10 @@
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.tomeveritt.se/papers/AGI16-sm.pdf"&gt;Self-Modification of Policy and Utility Function in
-Rational Agents&lt;/a&gt;.&lt;/li&gt;
+Rational Agents (Everitt, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/dmorr-google/wiki-reading"&gt;WIKIREADING: A Novel Large-scale Language Understanding Task
-over Wikipedia&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://users.dsic.upv.es/~flip/EGPAI2016/papers/EGPAI_2016_paper_9.pdf"&gt;Evaluation of General-Purpose Artificial Intelligence: Why, What &amp;amp; How, &lt;em&gt;(Bieger, et al 2016)&lt;/em&gt;&lt;/a&gt;.&lt;/li&gt;
+over Wikipedia (Hewlett, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://users.dsic.upv.es/~flip/EGPAI2016/papers/EGPAI_2016_paper_9.pdf"&gt;Evaluation of General-Purpose Artificial Intelligence: Why, What &amp;amp; How, (Bieger, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/karpathy/paper-notes"&gt;Andrej Karpathy's papers notes.&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;News&lt;/h2&gt;
@@ -15,7 +15,7 @@ over Wikipedia&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://bamos.github.io/2016/08/09/deep-completion/"&gt;Image Completion with Deep Learning in TensorFlow&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://curatedai.com/"&gt;CuratedAI, A literary magazine written by machines, for people&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://techcrunch.com/2016/08/08/machine-learning-and-molecular-tinder-may-change-the-game-for-oled-screens/"&gt;Machine learning and “molecular Tinder” may change the game for OLED screens&lt;/a&gt;. Interesting article on how ML on molecules is helping to push the OLED screens industry.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.nextplatform.com/2016/08/08/deep-learning-chip-upstart-set-take-gpus-task/"&gt;Deep Learning Chip Upstart Takes GPUs to Task&lt;/a&gt;. Nirvana System’s pitch, including a comparison of Pascal and Maxwell TitanX.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.nextplatform.com/2016/08/08/deep-learning-chip-upstart-set-take-gpus-task/"&gt;Deep Learning Chip Upstart Takes GPUs to Task&lt;/a&gt;. Nervana System’s pitch, including a comparison of Pascal and Maxwell TitanX.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.nextplatform.com/2016/05/04/nvlink-takes-gpu-acceleration-next-level/"&gt;NVLink Takes GPU Acceleration To The Next Level&lt;/a&gt;. &lt;/li&gt;
 &lt;li&gt;&lt;a href="http://futureoflife.org/background/aimyths/"&gt;Top Myths about Advanced AI from Future of Life Institute&lt;/a&gt;. An interesting (and maybe alarmist) review of GAI myths and (maybe) facts.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://bamos.github.io/2016/08/09/deep-completion/"&gt;Image Completion with Deep Learning in TensorFlow&lt;/a&gt;.&lt;/li&gt;
