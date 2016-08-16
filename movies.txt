@@ -74,12 +74,12 @@ To Kill a Mockingbird
 BEST DIRECTORS
 ==============
 
-1. David Lynch
-2. Martin Scorsese
-3. Quentin Tarantino
-4. Stanley Kubrick
-5. Terrence Malick
-6. Brian de Palma
+David Lynch
+Martin Scorsese
+Quentin Tarantino
+Stanley Kubrick
+Terrence Malick
+Brian de Palma
 
 
 BEST SERIES
@@ -88,11 +88,26 @@ BEST SERIES
 X-files
 Breaking Bad
 Twin Peaks
+The Man in the High Castle
 House
 Misfits
 GoT
 Sense 8
 Stranger Things
 Death Note
+
+
+BEST GRAPHIC NOVELS
+===================
+
+Walking Dead
+
+
+
+BEST BOOKS
+==========
+
+Animal Farm
+Brave New World
 
 
