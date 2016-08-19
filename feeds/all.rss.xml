@@ -57,6 +57,15 @@ https://www.youtube.com/watch?v=Fsh1qMTg1xI"&gt;Demystifying Deep Reinforcement 
 &lt;li&gt;&lt;a href="https://www.reddit.com/r/artificial/comments/4xtile/why_elon_musk_says_were_living_in_a_simulation/"&gt;Reddit 'We are Living in Simulation' funny thread&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.scientificamerican.com/article/20-big-questions-about-the-future-of-humanity/"&gt;20 Big Questions about the Future of Humanity&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3&gt;Visualizing the network for MNIST Database of handwritten&lt;/h3&gt;
+&lt;p&gt;&lt;a href=""&gt;This tool&lt;/a&gt; allow you to vizualize the a NN trained with MNIST to recognize digits. There you can see the ouput layer (top) followed by the second hidden layer, the first hidden layer, and the input layer. &lt;/p&gt;
+&lt;p&gt;Interesting examples:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="mnist" height="300px" src="./mnist/1.jpg" width="400px" /&gt;
+&lt;img alt="mnist" height="300px" src="./mnist/2.jpg" width="400px" /&gt;
+&lt;img alt="mnist" height="300px" src="./mnist/3.jpg" width="400px" /&gt;
+&lt;img alt="mnist" height="300px" src="./mnist/4.jpg" width="400px" /&gt;
+&lt;img alt="mnist" height="300px" src="./mnist/5.jpg" width="400px" /&gt;
+&lt;img alt="mnist" height="300px" src="./mnist/6.jpg" width="400px" /&gt;&lt;/p&gt;
 &lt;h4&gt;33 is an awesome number.&lt;/h4&gt;
 &lt;p&gt;&lt;img alt="cyberpunk" height="600px" src="./draws/gan.png" width="900px" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Fri, 19 Aug 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-08-19:this-week-in-ai-ml-hacking-33-of-2016.html</guid></item><item><title>This week in AI &amp; ML &amp; Hacking - #32 of 2016</title><link>http://bt3gl.github.io/this-week-in-ai-ml-hacking-32-of-2016.html</link><description>&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./cyberpunk/5.jpg" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
