@@ -10,11 +10,11 @@
 &lt;p&gt;Google released the code of its &lt;a href="https://github.com/BVLC/caffe/tree/master/models/bvlc_googlenet"&gt;GoogLeNet model&lt;/a&gt;, which is trained trained on &lt;a href="http://www.image-net.org/"&gt;ImageNet dataset&lt;/a&gt;.  I slightly adapted it &lt;a href="https://github.com/bt3gl/Machine-Learning-Resources/tree/master/Deep_Art/deepdream"&gt;here&lt;/a&gt;, adding some instructions on how one can play with it in a AWS GPU instance.&lt;/p&gt;
 &lt;p&gt;Examples of &lt;strong&gt;deep dream&lt;/strong&gt; with the following layers:&lt;/p&gt;
 &lt;h4&gt;&lt;em&gt;inception_3b/5x5_reduce&lt;/em&gt; (lower levels):&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="dream" height="300px" src="./dream/d12.jpeg" width="400px" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="dream" height="400px" src="./dream/d12.jpeg" width="500px" /&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;em&gt;inception_4c/output&lt;/em&gt; (higher levels):&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="dream" height="300px" src="./dream/d11.jpeg" width="400px" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="dream" height="400px" src="./dream/d11.jpeg" width="500px" /&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;em&gt;inception_3b/output&lt;/em&gt; (controlled dreams):&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="dream" height="300px" src="./dream/d3.jpg" width="400px" /&gt;
+&lt;p&gt;&lt;img alt="dream" height="400px" src="./dream/d3.jpg" width="500px" /&gt;
 &lt;img alt="dream" height="300px" src="./dream/d13.jpeg" width="400px" /&gt;&lt;/p&gt;
 &lt;h3&gt;Enjoy!&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="dream" height="300px" src="./dream/1.jpg" width="400px" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Marina von Steinkirch</dc:creator><pubDate>Fri, 19 Aug 2016 00:00:00 -0400</pubDate><guid>tag:bt3gl.github.io,2016-08-19:the-effects-of-convolutional-neural-networks-on-a-hot-summer-night.html</guid></item><item><title>This week in AI &amp; ML &amp; Hacking - #33 of 2016</title><link>http://bt3gl.github.io/this-week-in-ai-ml-hacking-33-of-2016.html</link><description>&lt;p&gt;&lt;a href="https://www.reddit.com/r/Cyberpunk/comments/4xun92/would_anyone_want_more_photoshops_like_this/"&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/6.png" width="400px" /&gt;&lt;/a&gt;&lt;/p&gt;
