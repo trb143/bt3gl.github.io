@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>chmod +x singularity.sh</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/ai-ml.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-09-03T00:00:00-04:00</updated><entry><title>This week in AI &amp; ML &amp; Hacking - #35 of 2016</title><link href="http://bt3gl.github.io/this-week-in-ai-ml-hacking-35-of-2016.html" rel="alternate"></link><updated>2016-09-03T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-09-03:this-week-in-ai-ml-hacking-35-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" src="./cyberpunk/8.jpg" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>chmod +x singularity.sh</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/ai-ml.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-09-03T00:00:00-04:00</updated><entry><title>This week in AI &amp; ML &amp; Hacking - #35 of 2016</title><link href="http://bt3gl.github.io/this-week-in-ai-ml-hacking-35-of-2016.html" rel="alternate"></link><updated>2016-09-03T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-09-03:this-week-in-ai-ml-hacking-35-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/8.jpg" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;News&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://deepmind.com/blog#decoupled-neural-interfaces-using-synthetic-gradients"&gt;Decoupled Neural Interfaces Using Synthetic Gradients&lt;/a&gt;.&lt;/li&gt;
@@ -14,6 +14,7 @@
 &lt;/ul&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ai100.stanford.edu/sites/default/files/ai_100_report_0901fnlc_single.pdf"&gt;Artificial Intelligence and Life in 2030&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://arxiv.org/abs/1311.2901"&gt;Visualizing and Understanding Convolutional Networks (2013)&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Tools&lt;/h2&gt;
