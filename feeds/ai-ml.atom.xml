@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>chmod +x singularity.sh</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/ai-ml.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-09-03T00:00:00-04:00</updated><entry><title>This week in Artificial Inteligence &amp; Computer Primitives - #35 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-inteligence-computer-primitives-35-of-2016.html" rel="alternate"></link><updated>2016-09-03T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-09-03:this-week-in-artificial-inteligence-computer-primitives-35-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/8.jpg" width="400px" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>chmod +x singularity.sh</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/ai-ml.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-09-03T00:00:00-04:00</updated><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #35 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-35-of-2016.html" rel="alternate"></link><updated>2016-09-03T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-09-03:this-week-in-artificial-intelligence-computer-primitives-35-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/8.jpg" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;News&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://deepmind.com/blog#decoupled-neural-interfaces-using-synthetic-gradients"&gt;Decoupled Neural Interfaces Using Synthetic Gradients&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.svds.com/learning-imbalanced-classes"&gt;Learning from Imbalanced Classes&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://highnoongmt.wordpress.com/2016/08/28/millennial-whoop-with-derp-learning/"&gt;Millennial Whoop with Derp Learning&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://highnoongmt.wordpress.com/2016/08/28/millennial-whoop-with-derp-learning/"&gt;Millennial Whoop with Deep Learning&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.newyorker.com/business/currency/the-hype-and-hope-of-artificial-intelligence"&gt;The Hype-and Hope-of Artificial Intelligence&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://openai.com/blog/infrastructure-for-deep-learning/"&gt;Infrastructure for Deep Learning&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://medium.com/@Jaconda/a-concise-history-of-neural-networks-2070655d3fec#.tztqbuo0t"&gt;A Concise History of Neural Networks&lt;/a&gt;.&lt;/li&gt;
@@ -27,15 +27,17 @@
 &lt;/ul&gt;
 &lt;h2&gt;Tools&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/dyelax/Adversarial_Video_Generation"&gt;Adversarial Video Generation&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/david-gpu/srez"&gt;Image super-resolution through deep learning&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/amznlabs/amazon-dsstne"&gt;Amazon's Deep Scalable Sparse Tensor Network Engine (DSSTNE)&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.paddlepaddle.org/?utm_campaign=Revue%20newsletter&amp;amp;utm_medium=Newsletter&amp;amp;utm_source=revue"&gt;PaddlePaddle, Open and Easy-to-Use Deep Learning Platform for Enterprise and Research&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Videos&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://techtalks.tv/talks/deep-reinforcement-learning/62360/"&gt;Deep Reinforcement Learning by David Silver (Google DeepMind)&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/playlist?list=PLE6Wd9FR--EfW8dtjAuPoTuPcqmOV53Fu"&gt;Deep learning at Oxford 2015 by Nando de Freitas&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=BsSmBPmPeYQ"&gt;Deep Dream (Google) - Computerphile&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</summary></entry><entry><title>This week in Artificial Inteligence &amp; Computer Primitives - #34 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-inteligence-computer-primitives-34-of-2016.html" rel="alternate"></link><updated>2016-08-27T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-08-27:this-week-in-artificial-inteligence-computer-primitives-34-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/7.gif" width="400px" /&gt;&lt;/p&gt;
+&lt;/ul&gt;</summary></entry><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #34 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-34-of-2016.html" rel="alternate"></link><updated>2016-08-27T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-08-27:this-week-in-artificial-intelligence-computer-primitives-34-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/7.gif" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://arxiv.org/abs/1608.05343"&gt;Decoupled Neural Interfaces using Synthetic Gradients&lt;/a&gt;. New DeepMind's paper reviewing backpropagation, using a modeled synthetic gradient in place of true backpropagated error gradients. Backpropagation is a a bottleneck in DNN, so the idea is instead use an asynchronous estimator, that would be obtained by supervised training of another mini neural network (a fully-connected NN regressor with 0-3 layers). Some speedup was showed in DeepMind’s hardware, but still raising questions on whether this would add any improvement on low-end GPUs setup.&lt;/li&gt;
@@ -81,7 +83,7 @@ A Scalable ADMM Approach&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=ohmajJTcpNk"&gt;Face2Face: Real-time Face Capture and Reenactment of RGB Videos (CVPR 2016 Oral)&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=2FmcHiLCwTU"&gt;TensorFlow in 5 Minutes&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="cyber" height="500px" src="./draws/a1.png" width="600px" /&gt;&lt;/p&gt;</summary></entry><entry><title>This week in Artificial Inteligence &amp; Computer Primitives - #33 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-inteligence-computer-primitives-33-of-2016.html" rel="alternate"></link><updated>2016-08-19T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-08-19:this-week-in-artificial-inteligence-computer-primitives-33-of-2016.html</id><summary type="html">&lt;p&gt;&lt;a href="https://www.reddit.com/r/Cyberpunk/comments/4xun92/would_anyone_want_more_photoshops_like_this/"&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/6.png" width="400px" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="cyber" height="500px" src="./draws/a1.png" width="600px" /&gt;&lt;/p&gt;</summary></entry><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #33 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-33-of-2016.html" rel="alternate"></link><updated>2016-08-19T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-08-19:this-week-in-artificial-intelligence-computer-primitives-33-of-2016.html</id><summary type="html">&lt;p&gt;&lt;a href="https://www.reddit.com/r/Cyberpunk/comments/4xun92/would_anyone_want_more_photoshops_like_this/"&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/6.png" width="400px" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://arxiv.org/pdf/1608.05343.pdf"&gt;Decoupled Neural Interfaces using Synthetic Gradients&lt;/a&gt;.&lt;/li&gt;
@@ -140,7 +142,7 @@ https://www.youtube.com/watch?v=Fsh1qMTg1xI"&gt;Demystifying Deep Reinforcement 
 &lt;li&gt;&lt;a href="http://www.scientificamerican.com/article/20-big-questions-about-the-future-of-humanity/"&gt;20 Big Questions about the Future of Humanity&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Visualizing the network for MNIST Database of handwritten&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://scs.ryerson.ca/~aharley/vis/fc/"&gt;This tool&lt;/a&gt; allows you to vizualize a NN trained with MNIST to recognize digits. There you can see the ouput layer (top), followed by the second hidden layer, the first hidden layer, and the input layer. &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://scs.ryerson.ca/~aharley/vis/fc/"&gt;This tool&lt;/a&gt; allows you to visualize a NN trained with MNIST to recognize digits. There you can see the ouput layer (top), followed by the second hidden layer, the first hidden layer, and the input layer. &lt;/p&gt;
 &lt;p&gt;Interesting examples:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="mnist" height="300px" src="./mnist/1.png" width="400px" /&gt;
 &lt;img alt="mnist" height="300px" src="./mnist/2.png" width="400px" /&gt;
@@ -149,7 +151,7 @@ https://www.youtube.com/watch?v=Fsh1qMTg1xI"&gt;Demystifying Deep Reinforcement 
 &lt;img alt="mnist" height="300px" src="./mnist/5.png" width="400px" /&gt;
 &lt;img alt="mnist" height="300px" src="./mnist/6.png" width="400px" /&gt;&lt;/p&gt;
 &lt;h4&gt;33 is an awesome number.&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="cyberpunk" height="600px" src="./draws/gan.png" width="900px" /&gt;&lt;/p&gt;</summary></entry><entry><title>This week in Artificial Inteligence &amp; Computer Primitives - #32 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-inteligence-computer-primitives-32-of-2016.html" rel="alternate"></link><updated>2016-08-14T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-08-14:this-week-in-artificial-inteligence-computer-primitives-32-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./cyberpunk/5.jpg" width="400px" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="cyberpunk" height="600px" src="./draws/gan.png" width="900px" /&gt;&lt;/p&gt;</summary></entry><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #32 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-32-of-2016.html" rel="alternate"></link><updated>2016-08-14T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-08-14:this-week-in-artificial-intelligence-computer-primitives-32-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./cyberpunk/5.jpg" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.tomeveritt.se/papers/AGI16-sm.pdf"&gt;Self-Modification of Policy and Utility Function in
@@ -220,7 +222,7 @@ Using Unstructured Documents, (Yan, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img alt="cyberpunk" height="600px" src="./draws/nn1.png" width="900px" /&gt;
 &lt;img alt="cyberpunk" height="600px" src="./draws/nn2.png" width="900px" /&gt;
-&lt;img alt="cyberpunk" height="600px" src="./draws/nn3.png" width="900px" /&gt;&lt;/p&gt;</summary></entry><entry><title>This week in Artificial Inteligence &amp; Computer Primitives - #31 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-inteligence-computer-primitives-31-of-2016.html" rel="alternate"></link><updated>2016-08-06T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-08-06:this-week-in-artificial-inteligence-computer-primitives-31-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./cyberpunk/1.jpeg" width="400px" /&gt;&lt;/p&gt;
+&lt;img alt="cyberpunk" height="600px" src="./draws/nn3.png" width="900px" /&gt;&lt;/p&gt;</summary></entry><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #31 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-31-of-2016.html" rel="alternate"></link><updated>2016-08-06T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-08-06:this-week-in-artificial-intelligence-computer-primitives-31-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./cyberpunk/1.jpeg" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;Talks&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.blackhat.com/docs/us-16/materials/us-16-Wolff-Applied-Machine-Learning-For-Data-Exfil-And-Other-Fun-Topics.pdf"&gt;Black Hat 2016: Applied Machine Learning for Data Exfil and Other Fun Topics&lt;/a&gt;. Cylance's researchers show some examples of how they apply K-means, Decision Trees, and Markov Chains to security's problems.&lt;/li&gt;
