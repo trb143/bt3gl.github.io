@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>chmod +x singularity.sh</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/marina-von-steinkirch.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-09-03T00:00:00-04:00</updated><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #35 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-35-of-2016.html" rel="alternate"></link><updated>2016-09-03T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-09-03:this-week-in-artificial-intelligence-computer-primitives-35-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/8.jpg" width="400px" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>chmod +x singularity.sh</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/marina-von-steinkirch.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-09-10T00:00:00-04:00</updated><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #36 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-36-of-2016.html" rel="alternate"></link><updated>2016-09-10T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-09-10:this-week-in-artificial-intelligence-computer-primitives-36-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/9.png" width="400px" /&gt;&lt;/p&gt;
+&lt;h2&gt;News&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ai100.stanford.edu/sites/default/files/ai_100_report_0901fnlc_single.pdf"&gt;Stanford's Artificial Intelligence and Life in 2030&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://openai.com/blog/infrastructure-for-deep-learning/"&gt;OpenAI's Infrastructure for Deep Learning&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://jaan.io/unreasonable-confusion/"&gt;The Unreasonable Confusion of Variational Autoenconders&lt;/a&gt;.
+*&lt;a href="https://medium.com/@ageitgey/machine-learning-is-fun-part-5-language-translation-with-deep-learning-and-the-magic-of-sequences-2ace0acca0aa#.k5x7tahrq"&gt;Machine Learning is Fun Part 5: Language Translation with Deep Learning and the Magic of Sequences&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://rubenfiszel.github.io/posts/rl4j/2016-08-24-Reinforcement-Learning-and-DQN.html"&gt;Reinforcement Learning and DQN, learning to play from pixels&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.wildml.com/2016/08/rnns-in-tensorflow-a-practical-guide-and-undocumented-features/"&gt;RNNs in Tensorflow, a practical guide and undocumented features&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://kvfrans.com/variational-autoencoders-explained/#"&gt;Variational Autoencoders Explained&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://nlpers.blogspot.com/2016/08/debugging-machine-learning.html"&gt;Debugging machine learning&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/@Jaconda/a-concise-history-of-neural-networks-2070655d3fec#.xucie9dhi"&gt;A Concise History of Neural Networks&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.quora.com/session/Yann-LeCun/1"&gt;Quora Session with Yann LeCun&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Papers&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://arxiv.org/abs/1608.08225"&gt;Why does deep and cheap learning work so well?&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://arxiv.org/pdf/1608.06993v1.pdf"&gt;Densely connected convolutional networks&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/pdf/1601.06759v3.pdf"&gt;Pixel Recurrent Neural Networks&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/pdf/1601.06759v3.pdf"&gt;Deep Neural Networks for YouTube Recommendations&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/pdf/1601.04920v1.pdf"&gt;Understanding Deep Convolutional Networks&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</summary></entry><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #35 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-35-of-2016.html" rel="alternate"></link><updated>2016-09-03T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-09-03:this-week-in-artificial-intelligence-computer-primitives-35-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/8.jpg" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;News&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://deepmind.com/blog#decoupled-neural-interfaces-using-synthetic-gradients"&gt;Decoupled Neural Interfaces Using Synthetic Gradients&lt;/a&gt;.&lt;/li&gt;
@@ -52,27 +73,6 @@
 &lt;li&gt;&lt;a href="http://techtalks.tv/talks/deep-reinforcement-learning/62360/"&gt;Deep Reinforcement Learning by David Silver (Google DeepMind)&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/playlist?list=PLE6Wd9FR--EfW8dtjAuPoTuPcqmOV53Fu"&gt;Deep learning at Oxford 2015 by Nando de Freitas&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=BsSmBPmPeYQ"&gt;Deep Dream (Google) - Computerphile&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</summary></entry><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #36 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-36-of-2016.html" rel="alternate"></link><updated>2016-09-03T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-09-03:this-week-in-artificial-intelligence-computer-primitives-36-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/9.png" width="400px" /&gt;&lt;/p&gt;
-&lt;h2&gt;News&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://ai100.stanford.edu/sites/default/files/ai_100_report_0901fnlc_single.pdf"&gt;Stanford's Artificial Intelligence and Life in 2030&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://openai.com/blog/infrastructure-for-deep-learning/"&gt;OpenAI's Infrastructure for Deep Learning&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://jaan.io/unreasonable-confusion/"&gt;The Unreasonable Confusion of Variational Autoenconders&lt;/a&gt;.
-*&lt;a href="https://medium.com/@ageitgey/machine-learning-is-fun-part-5-language-translation-with-deep-learning-and-the-magic-of-sequences-2ace0acca0aa#.k5x7tahrq"&gt;Machine Learning is Fun Part 5: Language Translation with Deep Learning and the Magic of Sequences&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://rubenfiszel.github.io/posts/rl4j/2016-08-24-Reinforcement-Learning-and-DQN.html"&gt;Reinforcement Learning and DQN, learning to play from pixels&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.wildml.com/2016/08/rnns-in-tensorflow-a-practical-guide-and-undocumented-features/"&gt;RNNs in Tensorflow, a practical guide and undocumented features&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://kvfrans.com/variational-autoencoders-explained/#"&gt;Variational Autoencoders Explained&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://nlpers.blogspot.com/2016/08/debugging-machine-learning.html"&gt;Debugging machine learning&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://medium.com/@Jaconda/a-concise-history-of-neural-networks-2070655d3fec#.xucie9dhi"&gt;A Concise History of Neural Networks&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.quora.com/session/Yann-LeCun/1"&gt;Quora Session with Yann LeCun&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Papers&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://arxiv.org/abs/1608.08225"&gt;Why does deep and cheap learning work so well?&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://arxiv.org/pdf/1608.06993v1.pdf"&gt;Densely connected convolutional networks&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://arxiv.org/pdf/1601.06759v3.pdf"&gt;Pixel Recurrent Neural Networks&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://arxiv.org/pdf/1601.06759v3.pdf"&gt;Deep Neural Networks for YouTube Recommendations&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://arxiv.org/pdf/1601.04920v1.pdf"&gt;Understanding Deep Convolutional Networks&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;</summary></entry><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #34 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-34-of-2016.html" rel="alternate"></link><updated>2016-08-27T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-08-27:this-week-in-artificial-intelligence-computer-primitives-34-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/7.gif" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;Papers&lt;/h2&gt;
 &lt;ul&gt;
