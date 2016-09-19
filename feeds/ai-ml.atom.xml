@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>chmod +x singularity.sh</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/ai-ml.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-09-10T00:00:00-04:00</updated><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #36 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-36-of-2016.html" rel="alternate"></link><updated>2016-09-10T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-09-10:this-week-in-artificial-intelligence-computer-primitives-36-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/9.png" width="400px" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>chmod +x singularity.sh</title><link href="http://bt3gl.github.io/" rel="alternate"></link><link href="http://bt3gl.github.io/feeds/ai-ml.atom.xml" rel="self"></link><id>http://bt3gl.github.io/</id><updated>2016-09-17T00:00:00-04:00</updated><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #37 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-37-of-2016.html" rel="alternate"></link><updated>2016-09-17T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-09-17:this-week-in-artificial-intelligence-computer-primitives-37-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/10.jpg" width="400px" /&gt;&lt;/p&gt;
+&lt;h2&gt;Papers&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/file/d/0B3cxcnOkPx9AeWpLVXhkTDJINDQ/view"&gt;WaveNet: A Generative Model for Raw Audio&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://arxiv.org/pdf/1609.02993v1.pdf"&gt;Episodic Exploration for Deep Deterministic Policies:
+An Application to StarCraft Micromanagement Tasks&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://arxiv.org/abs/1609.00408"&gt;Defeating Image Obfuscation with Deep Learning&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://arxiv.org/abs/1609.04802"&gt;Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;News&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/"&gt;WaveNet: A Generative Model for Raw Audio&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://distill.pub/2016/augmented-rnns/"&gt;Attention and Augmented Recurrent Neural Networks&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.janexwang.com/blog/2016/9/10/attractor-state-part-1"&gt;Attractor State, Part 1&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.nextplatform.com/2016/09/13/nvidia-pushes-deep-learning-inference-new-pascal-gpus/"&gt;NVIDIA Announces Tesla P40 &amp;amp; Tesla P4 - Neural Network Inference, Big &amp;amp; Small&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.nextplatform.com/2016/09/07/next-wave-deep-learning-architectures/"&gt;The Next Wave of Deep Learning Architectures&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/@katecrawford/artificial-intelligence-is-hard-to-see-a71e74f386db#.icgq55dzd"&gt;Artificial intelligence is hard to see&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.technologyreview.com/s/602344/the-extraordinary-link-between-deep-neural-networks-and-the-nature-of-the-universe/"&gt;The Extraordinary Link Between Deep Neural Networks and the Nature of the Universe&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://aiimpacts.org/what-if-you-turned-the-worlds-hardware-into-ai-minds/"&gt;What if you turned the world’s hardware into AI minds?&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/@nitin_pande/deep-neural-nets-and-the-purpose-of-life-d3d60a38d108#.rwgalfbdo"&gt;Deep neural nets and the purpose of life&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.technologyreview.com/s/602274/three-grand-challenges-for-brain-science-that-can-be-solved-in-10-years/"&gt;Three Grand Challenges for Brain Science That Can Be Solved in 10 Years&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Videos&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Xogn6veSyxA"&gt;Ian Goodfellow lectures about Batch Normalization and Convolutional Networks.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=x1kf4Zojtb0"&gt;Nando de Freita's Learning to learn and compositionality with deep recurrent neural networks&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=9c4z6YsBGQ0&amp;amp;feature=youtu.be"&gt;Generative Visual Manipulation on the Natural Image Manifold&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://cmusatyalab.github.io/openface/demo-4-sphere/"&gt;CMU's Real-Time Face Embedding Visualization&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Tools&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/yaringal/DropoutUncertaintyExps#updated-results-compared-to-the-original-paper"&gt;Experiments used in "Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning"&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</summary></entry><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #36 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-36-of-2016.html" rel="alternate"></link><updated>2016-09-10T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-09-10:this-week-in-artificial-intelligence-computer-primitives-36-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyber" height="300px" src="./cyberpunk/9.png" width="400px" /&gt;&lt;/p&gt;
 &lt;h2&gt;News&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://ai100.stanford.edu/sites/default/files/ai_100_report_0901fnlc_single.pdf"&gt;Stanford's Artificial Intelligence and Life in 2030&lt;/a&gt;.&lt;/li&gt;
@@ -187,75 +219,4 @@ https://www.youtube.com/watch?v=Fsh1qMTg1xI"&gt;Demystifying Deep Reinforcement 
 &lt;img alt="mnist" height="300px" src="./mnist/5.png" width="400px" /&gt;
 &lt;img alt="mnist" height="300px" src="./mnist/6.png" width="400px" /&gt;&lt;/p&gt;
 &lt;h4&gt;33 is an awesome number.&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="cyberpunk" height="600px" src="./draws/gan.png" width="900px" /&gt;&lt;/p&gt;</summary></entry><entry><title>This week in Artificial Intelligence &amp; Computer Primitives - #32 of 2016</title><link href="http://bt3gl.github.io/this-week-in-artificial-intelligence-computer-primitives-32-of-2016.html" rel="alternate"></link><updated>2016-08-14T00:00:00-04:00</updated><author><name>Marina von Steinkirch</name></author><id>tag:bt3gl.github.io,2016-08-14:this-week-in-artificial-intelligence-computer-primitives-32-of-2016.html</id><summary type="html">&lt;p&gt;&lt;img alt="cyberpunk" height="300px" src="./cyberpunk/5.jpg" width="400px" /&gt;&lt;/p&gt;
-&lt;h2&gt;Papers&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://www.tomeveritt.se/papers/AGI16-sm.pdf"&gt;Self-Modification of Policy and Utility Function in
-Rational Agents (Everitt, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/dmorr-google/wiki-reading"&gt;WIKIREADING: A Novel Large-scale Language Understanding Task
-over Wikipedia (Hewlett, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://users.dsic.upv.es/~flip/EGPAI2016/papers/EGPAI_2016_paper_9.pdf"&gt;Evaluation of General-Purpose Artificial Intelligence: Why, What &amp;amp; How, (Bieger, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.aclweb.org/anthology/P/P16/P16-1013.pdf"&gt;Learning the Curriculum with Bayesian Optimization
-for Task-Specific Word Representation Learning, (Tsvetkov, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.aclweb.org/anthology/P/P16/P16-1015.pdf"&gt;Generalized Transition-based Dependency Parsing
-via Control Parameters, (Bohnet, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.aclweb.org/anthology/P/P16/P16-1057.pdf"&gt;Latent Predictor Networks for Code Generation, (Ling, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.aclweb.org/anthology/P/P16/P16-1059.pdf"&gt;Collective Entity Resolution with Multi-Focal Attention, (Globerson, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.aclweb.org/anthology/P/P16/P16-1231.pdf"&gt;Globally Normalized Transition-Based Neural Networks, (Andor, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://arxiv.org/pdf/1605.02817v1.pdf"&gt;Unethical Research: How to Create a Malevolent Artificial Intelligence, (Pistono, &lt;em&gt;et. al&lt;/em&gt;, 2016))&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://arxiv.org/pdf/1606.00652v1.pdf"&gt;Death and Suicide in Universal Artificial Intelligence, (Martin, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://aclweb.org/anthology/P/P16/P16-1043.pdf"&gt;Easy Questions First?
-A Case Study on Curriculum Learning for Question Answering, (Sachan, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://aclweb.org/anthology/P/P16/P16-1035.pdf"&gt;Query Expansion with Locally-Trained Word Embeddings (Diaz, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://aclweb.org/anthology/P/P16/P16-1049.pdf"&gt;DocChat: An Information Retrieval Approach for Chatbot Engines
-Using Unstructured Documents, (Yan, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://aclweb.org/anthology/P/P16/P16-1224.pdf"&gt;Learning Language Games through Interaction, (Wang, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://aclweb.org/anthology/P/P16/P16-1170.pdf"&gt;Generating Natural Questions About an Image, (Mostafazadeh, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://aclweb.org/anthology/P/P16/P16-1186.pdf"&gt;Strategies for Training Large Vocabulary Neural Language Models, (Chen, &lt;em&gt;et. al&lt;/em&gt;, 2016)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/karpathy/paper-notes"&gt;Andrej Karpathy's papers notes.&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;News&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.technologyreview.com/s/602094/ais-language-problem/?utm_campaign=add_this&amp;amp;utm_source=twitter&amp;amp;utm_medium=post"&gt;AI’s Language Problem&lt;/a&gt;. "One reason that understanding language is so difficult for computers and AI systems is that words often have meanings based on context and even the appearance of the letters and words. In the images that accompany this story, several artists demonstrate the use of a variety of visual clues to convey meanings far beyond the actual letters."&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://bamos.github.io/2016/08/09/deep-completion/"&gt;Image Completion with Deep Learning in TensorFlow&lt;/a&gt;. Great detailed tutorial using a DCGAN.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://techcrunch.com/2016/08/08/machine-learning-and-molecular-tinder-may-change-the-game-for-oled-screens/"&gt;Machine learning and “molecular Tinder” may change the game for OLED screens&lt;/a&gt;. Interesting article on how ML on molecules is helping to push the OLED screens industry.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.nextplatform.com/2016/08/08/deep-learning-chip-upstart-set-take-gpus-task/"&gt;Deep Learning Chip Upstart Takes GPUs to Task&lt;/a&gt;. Nervana System’s pitch, including a comparison of Pascal and Maxwell TitanX.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://futureoflife.org/background/aimyths/"&gt;Top Myths about Advanced AI from Future of Life Institute&lt;/a&gt;. An interesting (and maybe alarmist) review of GAI myths and (maybe) facts.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://techcrunch.com/2016/08/13/hearing-is-like-seeing-for-our-brains-and-for-machines/?ncid=rss"&gt;Hearing is like seeing for our brains and for machines&lt;/a&gt;. Think synesthesia. &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.technologyreview.com/s/602115/machine-learning-algorithm-combs-the-darknet-for-zero-day-exploits-and-finds-them/?set=602116&amp;amp;utm_content=buffer49be6&amp;amp;utm_medium=social&amp;amp;utm_source=twitter.com&amp;amp;utm_campaign=buffer"&gt;Machine-Learning Algorithm Combs the Darknet for Zero Day Exploits, and Finds Them&lt;/a&gt;. "The first machine-based search of online hacker marketplaces identifies over 300 significant cyberthreats every week."&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://gab41.lab41.org/exploring-pipelines-68f900625bd4#.njpynqaon"&gt;Exploring Pipelines&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://research.facebook.com/blog/cat-people-dog-people/?_fb_noscript=1"&gt;Cat People, Dog People&lt;/a&gt;. Funny post exploring characteristics (features) of "dog people" and "cat people" on Facebook. &lt;/li&gt;
-&lt;li&gt;&lt;a href="http://blog.fastforwardlabs.com/post/148842796218/introducing-variational-autoencoders-in-prose-and"&gt;Introducing Variational Autoencoders (in Prose and Code)&lt;/a&gt;. Good introduction to autocoders.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://defensesystems.com/articles/2016/08/12/quantum-center-upgrade-lockheed-usc.aspx"&gt;Quantum computing center upgrades to focus on AI&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.reddit.com/r/MachineLearning/comments/4w6tsv/ama_we_are_the_google_brain_team_wed_love_to/"&gt;Google Brain's AMA&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://medium.com/@camrongodbout/recurrent-neural-networks-for-beginners-7aca4e933b82#.3ofku68fe"&gt;Recurrent Neural Networks for Beginners&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://blogs.nvidia.com/blog/2016/07/21/titan-x/?utm_campaign=Artificial%2BIntelligence%2BWeekly&amp;amp;utm_medium=email&amp;amp;utm_source=Artificial_Intelligence_Weekly_43"&gt;The New NVIDIA TITAN X&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://gab41.lab41.org/lab41-reading-group-deep-compression-9c36064fb209#.jzw0hmaqs"&gt;Lab41 Reading Group: Deep Compression&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://blog.forallsecure.com/2016/02/09/unleashing-mayhem/"&gt;Unleashing the Mayhem CRS (DARPA CGC).&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Tools and Apps&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://moralmachine.mit.edu/"&gt;MIT's Moral Machine.&lt;/a&gt; "A platform for gathering a human perspective on moral decisions made by machine intelligence".&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/getzerofox/SNAP_R"&gt;A machine learning based social media pen-testing tool&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Conference Slides&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://sites.google.com/site/deeplearningsummerschool2016/speakers"&gt;The Deep Learning Summer School&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Videos&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=g_ypY4Qjj1Y"&gt;Drone Dreaming&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=LzC8NkTZAF4"&gt;Neural GPU Learned Algorithms&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://vimeo.com/170189199"&gt;AI, Deep Learning, and Machine Learning: A Primer&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=3otrUaWcLYU"&gt;Most robots dancing simultaneously - Guinness World Records&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Fun&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://curatedai.com/"&gt;CuratedAI, A literary magazine written by machines, for people&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.businessinsider.com/william-gibson-the-peripheral-interview-business-insider-2016-8"&gt;William Gibson talks about 'The Peripheral,' the power of Twitter, and his next book set in today's Silicon Valley&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.wired.com/2016/08/no-mans-sky-review/"&gt;No Man's Sky is out!&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=8pJD-IgUTfw"&gt;Scann-tec - Hope&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img alt="cyberpunk" height="600px" src="./draws/nn1.png" width="900px" /&gt;
-&lt;img alt="cyberpunk" height="600px" src="./draws/nn2.png" width="900px" /&gt;
-&lt;img alt="cyberpunk" height="600px" src="./draws/nn3.png" width="900px" /&gt;&lt;/p&gt;</summary></entry></feed>
+&lt;p&gt;&lt;img alt="cyberpunk" height="600px" src="./draws/gan.png" width="900px" /&gt;&lt;/p&gt;</summary></entry></feed>
